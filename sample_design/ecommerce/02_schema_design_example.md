@@ -1,4 +1,4 @@
-_# E-commerce Gold Zone Schema Design
+# E-commerce Gold Zone Schema Design
 
 ## 1. Goal
 
