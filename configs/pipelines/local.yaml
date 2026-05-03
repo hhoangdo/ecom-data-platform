@@ -1,0 +1,14 @@
+runtime: local
+engine: duckdb
+
+storage:
+  duckdb_path: data/vina_bim_shop.duckdb
+  raw_root: data/raw
+  bronze_root: data/bronze
+  silver_root: data/silver
+  gold_root: data/gold
+
+scheduling:
+  bronze_interval_minutes: 10
+  silver_interval_minutes: 30
+  gold_interval_minutes: 30

@@ -1,0 +1,23 @@
+platform_name: vina-bim-shop
+random_seed: 42
+history_days: 180
+
+taxonomy:
+  source_path: data/reference/taxonomy/taxonomy_snapshot.yaml
+
+entities:
+  customers: 50000
+  sellers: 2500
+  products: 30000
+  orders: 200000
+
+outputs:
+  raw_root: data/raw
+  samples_root: data/samples
+
+quality_scenarios:
+  city_skew_ratio: 0.75
+  category_skew_ratio: 0.7
+  offline_duplicate_rate: 0.02
+  stream_duplicate_rate: 0.015
+  late_arrival_rate: 0.12
