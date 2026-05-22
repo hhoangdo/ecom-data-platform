@@ -1,0 +1,8 @@
+dataset,issue_type,affected_rows,observed_rate
+order_items,exact_duplicate_payload,135,0.01959
+products,missing_brand,17,0.02833
+orders,missing_shipping_method,52,0.02889
+products,schema_evolution_category_attributes,255,0.425
+stream_events,exact_duplicate_event_payload,187,0.01475
+stream_events,missing_device_type,497,0.03921
+stream_events,late_arrival,1589,0.12536

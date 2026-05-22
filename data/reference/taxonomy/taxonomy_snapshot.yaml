@@ -18,7 +18,7 @@ level_1_categories:
       - TVs & Audio
       - Home Appliances
       - Smart Devices & Cameras
-  - category_code: FASH
+  - category_code: Fashion
     category_name: Fashion
     subcategories:
       - Women's Fashion
@@ -26,7 +26,7 @@ level_1_categories:
       - Footwear
       - Bags & Luggage
       - Fashion Accessories
-  - category_code: HOME
+  - category_code: Home & Living
     category_name: Home & Living
     subcategories:
       - Kitchen & Dining
