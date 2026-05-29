@@ -149,6 +149,18 @@ Section `01` models the source side of a Lambda architecture:
 - MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides SQL access.
 - Runnable Spark/Flink/MinIO jobs are deferred to Section `02`; Section `01` only owns source contracts and generated raw payloads.
 
+Architecture note:
+
+- Offline source snapshots are table-state extracts such as hourly `orders`, `payments`, and `customers` Parquet dumps landed into the MinIO Bronze/raw layer.
+- Replayable event logs are append-only Kafka event histories, such as `order_placed` or `payment_failed`, also landed into the MinIO Bronze/raw layer as JSON.
+- Spark batch inputs come from landed Bronze data in MinIO, not directly from operational source systems.
+- Flink reads Kafka directly for real-time processing, while Kafka-to-MinIO landing preserves replayable event history for later Spark recomputation.
+
+Beginner-friendly examples:
+
+- Offline example: at `11:00`, source systems export hourly `orders`, `payments`, and `customers` Parquet snapshots into MinIO Bronze; Spark reads those landed files on the next batch run and writes cleaned Silver outputs.
+- Streaming example: an `order_placed` event enters Kafka at `10:07`; Flink consumes it immediately for real-time revenue monitoring, and a Kafka sink also lands the raw JSON event into MinIO Bronze so Spark can replay it later during the hourly batch cycle.
+
 ### Required Timestamps and Event-Time Semantics
 
 All generated datasets must define timestamps consistently:

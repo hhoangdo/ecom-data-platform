@@ -20,17 +20,17 @@ rectangle "Lambda Processing Paths" as Lambda {
   component "Flink Streaming Path\nevent-time watermarks,\nallowed lateness,\nreal-time revenue/issues/anomalies" as Flink
 }
 
-database "MinIO Medallion Lakehouse\nBronze raw JSON/Parquet\nSilver cleaned standard records\nGold deferred to Section 02" as MinIO
+database "MinIO Medallion Lakehouse\nBronze batch landing: offline Parquet snapshots\nBronze event landing: replayable Kafka JSON\nSilver cleaned outputs\nGold deferred to Section 02" as MinIO
 database "Hive Metastore\nlakehouse table metadata" as Hive
 component "Trino\nSQL query access" as Trino
 
-Offline --> MinIO : raw Parquet snapshots
+Offline --> MinIO : landed batch snapshots (Parquet)
 Producer --> Kafka : JSON envelope events
-Kafka --> Flink : direct stream consumption
-Kafka --> MinIO : replayable Bronze JSON
-MinIO --> Spark : hourly batch inputs
+Kafka --> Flink : direct real-time consumption
+Kafka --> MinIO : landed replayable event log (JSON)
+MinIO --> Spark : hourly batch reads landed Bronze data
 Spark --> MinIO : Silver and later Gold outputs
-Flink --> MinIO : real-time Bronze/Silver-ready outputs
+Flink --> MinIO : curated streaming sink outputs
 MinIO --> Hive : table registration
 Hive --> Trino : catalog metadata
 Trino --> Executive : hourly BI extracts

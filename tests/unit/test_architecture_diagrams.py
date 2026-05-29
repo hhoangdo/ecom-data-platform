@@ -19,6 +19,11 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
         "BI/Livestreaming Teams",
     ]:
         assert expected in content
+    assert "landed batch snapshots (Parquet)" in content
+    assert "landed replayable event log (JSON)" in content
+    assert "hourly batch reads landed Bronze data" in content
+    assert "direct real-time consumption" in content
+    assert "hourly batch inputs" not in content
 
 
 def test_excalidraw_architecture_file_is_json_and_names_major_components() -> None:
@@ -38,6 +43,17 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "Trino",
         "Executive Teams",
         "BI/Livestreaming Teams",
+    ]:
+        assert expected in labels
+    for expected in [
+        "landed batch snapshots (Parquet)",
+        "landed replayable event log (JSON)",
+        "hourly batch reads landed Bronze data",
+        "direct real-time consumption",
+        "Bronze batch landing",
+        "Bronze event landing",
+        "Silver cleaned outputs",
+        "Gold deferred to Section 02",
     ]:
         assert expected in labels
 
