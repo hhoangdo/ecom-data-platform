@@ -4,7 +4,7 @@
   "mode": "full",
   "random_seed": 42,
   "history_days": 7,
-  "generated_at": "2026-05-22T18:11:52.005838+00:00",
+  "generated_at": "2026-05-29T16:51:54.789351+00:00",
   "raw_root": "data/raw",
   "evidence_root": "evidence/01_data_generator",
   "row_counts": {
@@ -18,7 +18,14 @@
     "promotions": 16,
     "sellers": 80,
     "shipments": 1800,
-    "stream_events": 12676
+    "stream_events": 12676,
+    "kafka_topics": 24855
+  },
+  "kafka_topics": {
+    "catalog_events": 1940,
+    "commerce_events": 17810,
+    "fulfillment_events": 5100,
+    "ops_events": 5
   },
   "config_path": "configs/generator/base.yaml"
 }

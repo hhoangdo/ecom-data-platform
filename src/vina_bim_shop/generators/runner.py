@@ -35,6 +35,7 @@ GENERATOR_DATASETS = [
     "payments",
     "shipments",
     "stream_events",
+    "kafka_topics",
 ]
 
 
@@ -60,6 +61,7 @@ def run_generation(
 
     offline_generation = generate_offline(config)
     datasets: dict[str, pd.DataFrame] = {}
+    topic_events: dict[str, pd.DataFrame] = {}
     issue_records = list(offline_generation.issue_records)
 
     if mode in {"offline", "full"}:
@@ -68,15 +70,19 @@ def run_generation(
     if mode in {"streaming", "full"}:
         streaming_generation = generate_streaming_events(config, offline_generation.datasets)
         datasets["stream_events"] = streaming_generation.stream_events
+        topic_events = streaming_generation.topic_events
         issue_records.extend(streaming_generation.issue_records)
 
-    _write_raw_outputs(config.raw_root, datasets)
-    evidence_paths = write_evidence(config, datasets, issue_records, mode=mode)
+    _write_raw_outputs(config.raw_root, datasets, topic_events)
+    evidence_paths = write_evidence(config, datasets, issue_records, mode=mode, topic_events=topic_events)
+    row_counts = {name: len(frame) for name, frame in datasets.items()}
+    if topic_events:
+        row_counts["kafka_topics"] = sum(len(frame) for frame in topic_events.values())
 
     return GenerationResult(
         raw_root=config.raw_root,
         evidence_root=config.evidence_root,
-        row_counts={name: len(frame) for name, frame in datasets.items()},
+        row_counts=row_counts,
         evidence_paths=evidence_paths,
     )
 
@@ -90,7 +96,11 @@ def _clean_outputs(raw_root: Path, evidence_root: Path) -> None:
         shutil.rmtree(evidence_root)
 
 
-def _write_raw_outputs(raw_root: Path, datasets: dict[str, pd.DataFrame]) -> None:
+def _write_raw_outputs(
+    raw_root: Path,
+    datasets: dict[str, pd.DataFrame],
+    topic_events: dict[str, pd.DataFrame],
+) -> None:
     raw_root.mkdir(parents=True, exist_ok=True)
     for name, frame in datasets.items():
         dataset_path = raw_root / name
@@ -99,3 +109,7 @@ def _write_raw_outputs(raw_root: Path, datasets: dict[str, pd.DataFrame]) -> Non
             frame.to_json(dataset_path / "stream_events.jsonl", orient="records", lines=True, date_format="iso")
         else:
             frame.to_parquet(dataset_path / "part-000.parquet", index=False)
+    for topic, frame in sorted(topic_events.items()):
+        topic_path = raw_root / "kafka_topics" / topic
+        topic_path.mkdir(parents=True, exist_ok=True)
+        frame.to_json(topic_path / "events.jsonl", orient="records", lines=True, date_format="iso")

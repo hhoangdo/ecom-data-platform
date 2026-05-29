@@ -20,6 +20,7 @@
 - `sellers`: 80 rows
 - `shipments`: 1,800 rows
 - `stream_events`: 12,676 rows
+- `kafka_topics`: 24,855 rows
 
 ## Quality Metrics
 
@@ -40,6 +41,20 @@
 - `issue_stream_events_exact_duplicate_event_payload`: 0.01475
 - `issue_stream_events_missing_device_type`: 0.03921
 - `issue_stream_events_late_arrival`: 0.12536
+
+## Kafka Topic Row Counts
+
+- `catalog_events`: 1,940 events
+- `commerce_events`: 17,810 events
+- `fulfillment_events`: 5,100 events
+- `ops_events`: 5 events
+
+## Schema Version Summary
+
+- `catalog_events` schema `1`: 1,940 events
+- `commerce_events` schema `1`: 17,810 events
+- `fulfillment_events` schema `1`: 5,100 events
+- `ops_events` schema `1`: 5 events
 
 ## Issue Manifest Summary
 

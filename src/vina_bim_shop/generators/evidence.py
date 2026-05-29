@@ -17,14 +17,20 @@ def write_evidence(
     issue_records: list[dict[str, Any]],
     *,
     mode: str,
+    topic_events: dict[str, pd.DataFrame] | None = None,
 ) -> dict[str, Path]:
+    topic_events = topic_events or {}
     config.evidence_root.mkdir(parents=True, exist_ok=True)
     sample_root = config.evidence_root / "sample_rows"
     sample_root.mkdir(parents=True, exist_ok=True)
 
-    row_counts = pd.DataFrame(
-        [{"dataset": name, "row_count": len(frame)} for name, frame in sorted(datasets.items())]
-    )
+    row_count_records = [
+        {"dataset": name, "row_count": len(frame)}
+        for name, frame in sorted(datasets.items())
+    ]
+    if topic_events:
+        row_count_records.append({"dataset": "kafka_topics", "row_count": sum(len(frame) for frame in topic_events.values())})
+    row_counts = pd.DataFrame(row_count_records)
     row_counts_path = config.evidence_root / "row_counts.csv"
     row_counts.to_csv(row_counts_path, index=False)
 
@@ -44,6 +50,16 @@ def write_evidence(
 
     for name, frame in sorted(datasets.items()):
         frame.head(20).to_csv(sample_root / f"{name}.csv", index=False)
+    for topic, frame in sorted(topic_events.items()):
+        frame.head(20).to_csv(sample_root / f"kafka_topic_{topic}.csv", index=False)
+
+    event_topic_counts = _event_topic_counts(topic_events)
+    event_topic_counts_path = config.evidence_root / "event_topic_row_counts.csv"
+    event_topic_counts.to_csv(event_topic_counts_path, index=False)
+
+    schema_versions = _schema_version_summary(topic_events)
+    schema_versions_path = config.evidence_root / "schema_version_summary.csv"
+    schema_versions.to_csv(schema_versions_path, index=False)
 
     manifest = {
         "platform_name": config.platform_name,
@@ -55,19 +71,28 @@ def write_evidence(
         "raw_root": _portable_path(config, config.raw_root),
         "evidence_root": _portable_path(config, config.evidence_root),
         "row_counts": {row["dataset"]: int(row["row_count"]) for row in row_counts.to_dict("records")},
+        "kafka_topics": {
+            row["event_topic"]: int(row["row_count"])
+            for row in event_topic_counts.to_dict("records")
+        },
         "config_path": _portable_path(config, config.source_config_path),
     }
     manifest_path = config.evidence_root / "run_manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     report_path = config.evidence_root / "quality_report.md"
-    report_path.write_text(_quality_report(config, row_counts, quality_metrics, issues), encoding="utf-8")
+    report_path.write_text(
+        _quality_report(config, row_counts, quality_metrics, issues, event_topic_counts, schema_versions),
+        encoding="utf-8",
+    )
 
     return {
         "row_counts": row_counts_path,
         "schema_summary": schema_summary_path,
         "quality_metrics": quality_metrics_path,
         "issue_manifest": issue_path,
+        "event_topic_row_counts": event_topic_counts_path,
+        "schema_version_summary": schema_versions_path,
         "run_manifest": manifest_path,
         "quality_report": report_path,
     }
@@ -124,6 +149,8 @@ def _quality_report(
     row_counts: pd.DataFrame,
     quality_metrics: pd.DataFrame,
     issues: pd.DataFrame,
+    event_topic_counts: pd.DataFrame,
+    schema_versions: pd.DataFrame,
 ) -> str:
     row_count_lines = "\n".join(
         f"- `{row.dataset}`: {int(row.row_count):,} rows" for row in row_counts.itertuples(index=False)
@@ -134,6 +161,13 @@ def _quality_report(
     issue_lines = "\n".join(
         f"- `{row.dataset}` / `{row.issue_type}`: {int(row.affected_rows):,} rows, observed rate {row.observed_rate}"
         for row in issues.itertuples(index=False)
+    )
+    topic_lines = "\n".join(
+        f"- `{row.event_topic}`: {int(row.row_count):,} events" for row in event_topic_counts.itertuples(index=False)
+    )
+    version_lines = "\n".join(
+        f"- `{row.event_topic}` schema `{row.schema_version}`: {int(row.row_count):,} events"
+        for row in schema_versions.itertuples(index=False)
     )
     return f"""# Section 01 Data Generator Quality Report
 
@@ -152,6 +186,14 @@ def _quality_report(
 
 {metric_lines}
 
+## Kafka Topic Row Counts
+
+{topic_lines}
+
+## Schema Version Summary
+
+{version_lines}
+
 ## Issue Manifest Summary
 
 {issue_lines}
@@ -164,3 +206,22 @@ def _portable_path(config: GeneratorConfig, path: Path) -> str:
         return str(path.resolve().relative_to(repo_root)).replace("\\", "/")
     except ValueError:
         return str(path)
+
+
+def _event_topic_counts(topic_events: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    rows = [
+        {"event_topic": topic, "row_count": len(frame)}
+        for topic, frame in sorted(topic_events.items())
+    ]
+    return pd.DataFrame(rows, columns=["event_topic", "row_count"])
+
+
+def _schema_version_summary(topic_events: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    rows: list[dict[str, Any]] = []
+    for topic, frame in sorted(topic_events.items()):
+        if frame.empty:
+            rows.append({"event_topic": topic, "schema_version": None, "row_count": 0})
+            continue
+        grouped = frame.groupby(["event_topic", "schema_version"]).size().reset_index(name="row_count")
+        rows.extend(grouped.to_dict("records"))
+    return pd.DataFrame(rows, columns=["event_topic", "schema_version", "row_count"])

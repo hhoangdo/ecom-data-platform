@@ -1,0 +1,155 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "x": 40,
+      "y": 100,
+      "width": 170,
+      "height": 70,
+      "label": "Source Systems\nOffline snapshots + JSON events",
+      "backgroundColor": "#fff4d6",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "arrow",
+      "x": 215,
+      "y": 135,
+      "width": 95,
+      "height": 0,
+      "label": "produce"
+    },
+    {
+      "type": "rectangle",
+      "x": 320,
+      "y": 88,
+      "width": 190,
+      "height": 95,
+      "label": "Kafka\ncommerce/catalog/fulfillment/ops",
+      "backgroundColor": "#dff3ff",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "arrow",
+      "x": 515,
+      "y": 118,
+      "width": 120,
+      "height": -55,
+      "label": "stream"
+    },
+    {
+      "type": "rectangle",
+      "x": 650,
+      "y": 30,
+      "width": 170,
+      "height": 70,
+      "label": "Flink\nreal-time path",
+      "backgroundColor": "#e5ffe5",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "arrow",
+      "x": 825,
+      "y": 65,
+      "width": 110,
+      "height": 0,
+      "label": "seconds"
+    },
+    {
+      "type": "rectangle",
+      "x": 950,
+      "y": 30,
+      "width": 210,
+      "height": 70,
+      "label": "BI/Livestreaming Teams\nrevenue, issues, anomalies",
+      "backgroundColor": "#f0e7ff",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "arrow",
+      "x": 515,
+      "y": 155,
+      "width": 120,
+      "height": 65,
+      "label": "replay"
+    },
+    {
+      "type": "rectangle",
+      "x": 650,
+      "y": 205,
+      "width": 170,
+      "height": 70,
+      "label": "Spark\nhourly batch path",
+      "backgroundColor": "#ffe7d6",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "arrow",
+      "x": 825,
+      "y": 240,
+      "width": 110,
+      "height": 0,
+      "label": "1 hour"
+    },
+    {
+      "type": "rectangle",
+      "x": 950,
+      "y": 205,
+      "width": 210,
+      "height": 70,
+      "label": "Executive Teams\nGMV, category, ops KPIs",
+      "backgroundColor": "#f0e7ff",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "rectangle",
+      "x": 300,
+      "y": 340,
+      "width": 610,
+      "height": 95,
+      "label": "MinIO Medallion Lakehouse\nBronze raw JSON/Parquet | Silver cleaned | Gold deferred to Section 02",
+      "backgroundColor": "#eef2ff",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "rectangle",
+      "x": 940,
+      "y": 340,
+      "width": 220,
+      "height": 95,
+      "label": "Hive Metastore + Trino\ncatalog metadata + SQL access",
+      "backgroundColor": "#e8fff8",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "type": "arrow",
+      "x": 735,
+      "y": 105,
+      "width": -125,
+      "height": 220,
+      "label": "raw/bronze"
+    },
+    {
+      "type": "arrow",
+      "x": 735,
+      "y": 275,
+      "width": -80,
+      "height": 55,
+      "label": "batch writes"
+    },
+    {
+      "type": "arrow",
+      "x": 915,
+      "y": 388,
+      "width": 20,
+      "height": 0,
+      "label": "tables"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}

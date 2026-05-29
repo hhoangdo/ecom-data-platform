@@ -24,3 +24,11 @@ def test_load_generator_config_applies_scale_and_output_overrides(tmp_path: Path
     assert config.category_weights["FMCG"] > config.category_weights["Fashion"]
     assert "FMCG" in config.taxonomy.level_1_categories
     assert "Health & Beauty" in config.taxonomy.subcategories["FMCG"]
+    assert set(config.kafka["topics"]) == {
+        "commerce_events",
+        "catalog_events",
+        "fulfillment_events",
+        "ops_events",
+    }
+    assert config.kafka["event_format"] == "json"
+    assert config.kafka["consumer_freshness_targets"]["executive_teams_minutes"] == 60

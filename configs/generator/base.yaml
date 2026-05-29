@@ -172,3 +172,28 @@ streaming:
     app: 0.70
     web: 0.20
     ads: 0.10
+
+kafka:
+  bootstrap_servers: localhost:9092
+  event_format: json
+  producer: vina_bim_shop.synthetic_source
+  topics:
+    commerce_events:
+      schema_version: 1
+      description: Customer session, cart, checkout, order, and payment events.
+    catalog_events:
+      schema_version: 1
+      description: Product, price, inventory, and promotion source changes.
+    fulfillment_events:
+      schema_version: 1
+      description: Shipment lifecycle events from creation through delivery or payment block.
+    ops_events:
+      schema_version: 1
+      description: Source observability events for bursts, lateness, duplicates, and schema changes.
+  watermark:
+    event_time_column: event_timestamp
+    out_of_orderness_seconds: 5
+    allowed_lateness_seconds: 10
+  consumer_freshness_targets:
+    executive_teams_minutes: 60
+    bi_livestreaming_teams_seconds: 30

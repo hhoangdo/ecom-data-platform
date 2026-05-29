@@ -32,6 +32,7 @@ class GeneratorConfig:
     seller_tiers: dict[str, dict[str, Any]]
     quality: dict[str, Any]
     streaming: dict[str, Any]
+    kafka: dict[str, Any]
     source_config_path: Path
 
 
@@ -114,5 +115,6 @@ def load_generator_config(
         seller_tiers=data["seller_tiers"],
         quality=data["quality_scenarios"],
         streaming=data["streaming"],
+        kafka=data["kafka"],
         source_config_path=config_path,
     )

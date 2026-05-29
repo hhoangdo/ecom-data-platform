@@ -30,7 +30,8 @@ The following sections are intentionally deferred, but the repo is structured to
 
 - Offline and streaming source datasets both exist.
 - Dataset contracts, grains, timestamps, and controls are documented.
-- Bronze, Silver, Gold, and feature-serving expectations are documented for local implementation.
+- Lambda architecture expectations are documented: Kafka ingestion, Spark batch, Flink streaming, and a MinIO-backed medallion lakehouse.
+- Bronze, Silver, Gold, and feature-serving expectations are documented, while final Gold schemas remain a Section `02` task.
 - The repo cleanly separates architecture docs, coursework deliverables, code, SQL, data, and evidence.
 - The scaffold is reproducible with `uv sync` and executable later with `uv run`.
 
@@ -121,17 +122,32 @@ The offline generator should produce the following domain tables as Parquet file
 
 ### Streaming Datasets
 
-The streaming generator should produce JSON event payloads for session and commerce behavior.
+The streaming generator produces human-readable JSON event payloads that are shaped like Kafka topic messages. In Section `01`, these are written as JSONL files rather than published to a running Kafka cluster.
 
-Recommended event families:
+The event catalog lives in:
 
-- `view`
-- `add_to_cart`
-- `checkout_started`
-- `order_placed`
-- `payment_failed`
+- `architecture/domain/source-event-catalog.md`
 
-Additional events are allowed later if they directly support conversion analysis or operational monitoring.
+Approved Kafka domain topics:
+
+| Topic | Event Families |
+| --- | --- |
+| `commerce_events` | sessions, search, product views, cart, checkout, order, and payment outcomes |
+| `catalog_events` | product, price, inventory, and promotion source changes |
+| `fulfillment_events` | shipment lifecycle and payment-blocked fulfillment events |
+| `ops_events` | heartbeat, burst, lateness, duplicate, and schema-version observability events |
+
+The legacy flat `stream_events` JSONL output remains as a convenience dataset for fast local analysis, but the Kafka-topic-shaped outputs are the authoritative streaming source contract for Lambda architecture.
+
+### Lambda Architecture Contract
+
+Section `01` models the source side of a Lambda architecture:
+
+- Kafka is the ingestion layer for domain-grouped JSON events.
+- Spark is the hourly batch path for executive consumers who accept 1-hour freshness.
+- Flink is the real-time streaming path for BI/livestreaming teams that need revenue, payment issue, traffic burst, and anomaly visibility.
+- MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides SQL access.
+- Runnable Spark/Flink/MinIO jobs are deferred to Section `02`; Section `01` only owns source contracts and generated raw payloads.
 
 ### Required Timestamps and Event-Time Semantics
 
@@ -179,21 +195,28 @@ The scaffolding should keep a placeholder for later drift scenarios in Section `
 
 ### Local Implementation Stack
 
-The implementation target for this phase is:
+The architecture target for Sections `01` and `02` is:
 
-- Python for generation and orchestration
-- DuckDB for local analytical storage and transformation
-- Parquet for offline persisted datasets
-- JSON or JSONL-style event payloads for streaming examples
+- Python for source generation and orchestration
+- Kafka for JSON event ingestion
+- Spark for hourly batch processing
+- Flink for event-time streaming processing
+- MinIO for medallion lakehouse object storage
+- Hive Metastore for table metadata
+- Trino for SQL query access
+- Parquet for offline persisted source snapshots
+- JSON/JSONL for human-readable event payload examples
+
+DuckDB may still be useful for lightweight local inspection, but it is no longer the primary architecture target.
 
 ### Layering Model
 
 The repository and logical storage follow a medallion pattern:
 
 - `raw`: generator outputs and raw source payloads
-- `bronze`: append-oriented ingestion with ingest metadata
-- `silver`: cleaned, standardized, deduplicated records
-- `gold`: business-ready dimensions, facts, OBTs, and feature tables
+- `bronze`: append-oriented ingestion with Kafka metadata, file lineage, and ingest timestamps
+- `silver`: cleaned, standardized, deduplicated records from both Spark and Flink paths
+- `gold`: business-ready dimensions, facts, OBTs, and feature tables designed in Section `02`
 
 ### Naming Conventions
 
@@ -261,9 +284,11 @@ Every source and modeled dataset should explicitly define:
 
 ### SLA Targets for the Local Coursework Stack
 
-- Raw/Bronze freshness: within 10 minutes of a generator run
-- Silver freshness: within 30 minutes
-- Gold freshness: within 30 minutes
+- Raw/Bronze freshness for generated source files: within 10 minutes of a generator run
+- Spark batch path freshness for executive teams: within 1 hour
+- Flink streaming path freshness for BI/livestreaming teams: target under 30 seconds in local design
+- Silver freshness: within 30 minutes for batch-derived tables, near real-time for stream-derived monitoring views
+- Gold freshness: Section `02` will define final targets by serving table
 - Feature freshness: between 5 and 60 minutes depending on the feature table
 - Scheduled pipeline success target: at least 99 percent weekly in design intent
 
@@ -361,5 +386,6 @@ The following areas are intentionally scaffolded now for later work:
 - Python `3.12` is the default runtime version.
 - `uv` is the package manager of record.
 - Large generated datasets should stay out of Git; only small samples and evidence should be committed.
-- The project remains local-first for Sections `01` and `02`; Spark, dbt, and Airflow are not required in this phase.
+- Section `01` remains source-contract-first; runnable Spark, Flink, Kafka, MinIO, Hive Metastore, and Trino jobs are deferred to Section `02`.
+- Spark and Flink references are architectural targets inspired by the EDAI transformation-layer projects, not copied wholesale.
 - The simplified taxonomy is stable once committed unless the coursework requirements change.
