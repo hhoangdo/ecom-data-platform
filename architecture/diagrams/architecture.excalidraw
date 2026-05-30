@@ -1554,10 +1554,10 @@
     {
       "id": "flink_to_realtime",
       "type": "arrow",
-      "x": 1325.2313467199456,
-      "y": 15.761674128256374,
-      "width": 254.38063126337238,
-      "height": 139.08701063575523,
+      "x": 1324.8814267189482,
+      "y": 15.403984037784113,
+      "width": 255.12040282057887,
+      "height": 130.75896499190793,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1572,11 +1572,11 @@
         "type": 2
       },
       "seed": 1036,
-      "version": 1499,
-      "versionNonce": 2112766202,
+      "version": 1539,
+      "versionNonce": 1846102601,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132639958,
+      "updated": 1780137144599,
       "link": null,
       "locked": false,
       "index": "aZ",
@@ -1586,20 +1586,20 @@
           0
         ],
         [
-          254.38063126337238,
-          139.08701063575523
+          255.12040282057887,
+          130.75896499190793
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "flink_box",
-        "focus": -0.5377937491226326,
-        "gap": 3.981346719945577
+        "focus": -0.521408559048244,
+        "gap": 3.6314267189482052
       },
       "endBinding": {
         "elementId": "realtime_serving_box",
-        "focus": -0.6753110343011377,
-        "gap": 5.388022016682044
+        "focus": -0.5941746858668511,
+        "gap": 4.99817046047292
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -1705,10 +1705,10 @@
     {
       "id": "hive_trino_to_exec_label",
       "type": "text",
-      "x": 1437.240500125407,
-      "y": 438.8966992999493,
-      "width": 118.90540895473126,
-      "height": 36.00946429122445,
+      "x": 1436.2377467254798,
+      "y": 439.3723757765148,
+      "width": 123.90898893433747,
+      "height": 37.52475477454056,
       "angle": 6.279572692284694,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1721,8 +1721,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 1039,
-      "version": 510,
-      "versionNonce": 1629819913,
+      "version": 524,
+      "versionNonce": 567760295,
       "isDeleted": false,
       "boundElements": [
         {
@@ -1730,12 +1730,12 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780137001105,
+      "updated": 1780137140024,
       "link": null,
       "locked": false,
       "index": "ab",
       "text": "canonical hourly\nSQL dashboards",
-      "fontSize": 14.403785716489777,
+      "fontSize": 15.009901909816225,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1802,10 +1802,10 @@
     {
       "id": "hive_trino_to_bi_label",
       "type": "text",
-      "x": 1413.139162273354,
-      "y": 341.51692258890085,
-      "width": 99.8518724104413,
-      "height": 35,
+      "x": 1411.2242045213911,
+      "y": 337.82161503033154,
+      "width": 108.78793859984171,
+      "height": 38.132262911840094,
       "angle": 5.898276141440334,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1818,8 +1818,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 1041,
-      "version": 290,
-      "versionNonce": 1152136806,
+      "version": 299,
+      "versionNonce": 1328184457,
       "isDeleted": false,
       "boundElements": [
         {
@@ -1827,12 +1827,12 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780132490663,
+      "updated": 1780137135914,
       "link": null,
       "locked": false,
       "index": "ad",
       "text": "reconciled\nhistorical SQL",
-      "fontSize": 14,
+      "fontSize": 15.252905164736035,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1931,9 +1931,9 @@
       "id": "realtime_serving_box",
       "type": "rectangle",
       "x": 1585,
-      "y": 106.66666666666669,
+      "y": 98.66666666666669,
       "width": 254.4444444444444,
-      "height": 88,
+      "height": 96,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#e5ffe5",
@@ -1948,8 +1948,8 @@
         "type": 3
       },
       "seed": 2102,
-      "version": 353,
-      "versionNonce": 2089360442,
+      "version": 377,
+      "versionNonce": 1768453481,
       "isDeleted": false,
       "boundElements": [
         {
@@ -1965,7 +1965,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780132468273,
+      "updated": 1780137131734,
       "link": null,
       "locked": false,
       "index": "ag"
@@ -1974,7 +1974,7 @@
       "id": "realtime_serving_box_text",
       "type": "text",
       "x": 1599.3183297051323,
-      "y": 130.66666666666669,
+      "y": 116.66666666666669,
       "width": 225.8077850341797,
       "height": 60,
       "angle": 0,
@@ -1989,11 +1989,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 2103,
-      "version": 354,
-      "versionNonce": 735579770,
+      "version": 378,
+      "versionNonce": 1736516105,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132468273,
+      "updated": 1780137131734,
       "link": null,
       "locked": false,
       "index": "ah",
@@ -2011,10 +2011,10 @@
     {
       "id": "realtime_to_bi",
       "type": "arrow",
-      "x": 1712.1665215333985,
-      "y": 194.99781824097897,
-      "width": 0.05664673660248809,
-      "height": 75.90924178511847,
+      "x": 1712.3012301987562,
+      "y": 195.02363795915358,
+      "width": 0.12420280320293386,
+      "height": 75.88342206694381,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -2029,11 +2029,11 @@
         "type": 2
       },
       "seed": 2104,
-      "version": 354,
-      "versionNonce": 17225146,
+      "version": 380,
+      "versionNonce": 1207365417,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132468273,
+      "updated": 1780137131734,
       "link": null,
       "locked": false,
       "index": "ai",
@@ -2043,8 +2043,8 @@
           0
         ],
         [
-          0.05664673660248809,
-          75.90924178511847
+          0.12420280320293386,
+          75.88342206694381
         ]
       ],
       "lastCommittedPoint": null,
