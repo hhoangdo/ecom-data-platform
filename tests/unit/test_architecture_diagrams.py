@@ -15,6 +15,8 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
         "MinIO",
         "Hive Metastore",
         "Trino",
+        "Apache Pinot",
+        "DuckDB executive mart",
         "Executive Teams",
         "BI/Livestreaming Teams",
     ]:
@@ -26,10 +28,16 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
     assert "Hive Metastore\\ncatalog only" in content
     assert "Trino SQL Serving" in content
     assert "Realtime serving sink" in content
+    assert "Apache Pinot" in content
+    assert "DuckDB executive mart" in content
+    assert "local KPI mart" in content
+    assert "canonical hourly SQL" in content
     assert "Flink --> Realtime" in content
     assert "Realtime --> BI : live operations" in content
+    assert "MinIO --> DuckDB" in content
+    assert "DuckDB --> Executive" in content
     assert "curated streaming tables" in content
-    assert "hourly KPI dashboards" in content
+    assert "canonical hourly SQL dashboards" in content
     assert "reconciled historical SQL" in content
     assert "table registration for curated lakehouse tables" in content
     assert "hourly batch inputs" not in content
@@ -54,6 +62,8 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "MinIO",
         "Hive Metastore",
         "Trino",
+        "Apache Pinot",
+        "DuckDB executive mart",
         "Executive Teams",
         "BI/Livestreaming Teams",
     ]:
@@ -70,9 +80,13 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "Hive Metastore\\ncatalog only",
         "Trino SQL Serving",
         "Realtime serving sink",
+        "Apache Pinot",
+        "DuckDB executive mart",
+        "local KPI mart",
+        "canonical hourly SQL",
         "curated streaming tables",
-        "hourly KPI dashboards",
-        "live metrics / alerts",
+        "hourly export from",
+        "metrics / alerts",
         "reconciled",
         "historical SQL",
         "table registration\\nfor curated lakehouse tables",

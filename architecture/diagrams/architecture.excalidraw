@@ -559,6 +559,10 @@
         {
           "id": "hive_trino_to_exec",
           "type": "arrow"
+        },
+        {
+          "id": "duckdb_to_exec",
+          "type": "arrow"
         }
       ],
       "updated": 1780132483083,
@@ -655,6 +659,10 @@
         },
         {
           "id": "spark_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "minio_to_duckdb",
           "type": "arrow"
         }
       ],
@@ -1629,13 +1637,13 @@
       "link": null,
       "locked": false,
       "index": "aa",
-      "text": "live metrics / alerts /\ndashboard sink",
+      "text": "event-time metrics /\nalerts to Pinot",
       "fontSize": 14,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "live metrics / alerts /\ndashboard sink",
+      "originalText": "event-time metrics /\nalerts to Pinot",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
@@ -1726,13 +1734,13 @@
       "link": null,
       "locked": false,
       "index": "ab",
-      "text": "hourly KPI\ndashboards",
+      "text": "canonical hourly SQL\ndashboards",
       "fontSize": 14,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "hourly KPI dashboards",
+      "originalText": "canonical hourly SQL dashboards",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
@@ -1908,13 +1916,13 @@
       "link": null,
       "locked": false,
       "index": "af",
-      "text": "Trino SQL Serving\nqueries curated tables",
+      "text": "Trino SQL Serving\ncanonical hourly SQL",
       "fontSize": 16,
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "trino_box",
-      "originalText": "Trino SQL Serving\nqueries curated tables",
+      "originalText": "Trino SQL Serving\ncanonical hourly SQL",
       "autoResize": true,
       "lineHeight": 1.25,
       "baseline": 14
@@ -1968,7 +1976,7 @@
       "x": 1599.3183297051323,
       "y": 130.66666666666669,
       "width": 225.8077850341797,
-      "height": 40,
+      "height": 60,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1989,13 +1997,13 @@
       "link": null,
       "locked": false,
       "index": "ah",
-      "text": "Realtime serving sink\nmetrics / alerts / dashboard",
+      "text": "Apache Pinot\nRealtime serving sink\nmetrics / alerts / dashboard",
       "fontSize": 16,
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "realtime_serving_box",
-      "originalText": "Realtime serving sink\nmetrics / alerts / dashboard",
+      "originalText": "Apache Pinot\nRealtime serving sink\nmetrics / alerts / dashboard",
       "autoResize": true,
       "lineHeight": 1.25,
       "baseline": 14
@@ -2107,6 +2115,281 @@
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
+    },
+    {
+      "id": "duckdb_box",
+      "type": "rectangle",
+      "x": 1212.888888888889,
+      "y": 558,
+      "width": 202,
+      "height": 78,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#fff4e6",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2201,
+      "version": 1,
+      "versionNonce": 220101,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "duckdb_box_text",
+          "type": "text"
+        },
+        {
+          "id": "minio_to_duckdb",
+          "type": "arrow"
+        },
+        {
+          "id": "duckdb_to_exec",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780162200000,
+      "link": null,
+      "locked": false,
+      "index": "ak"
+    },
+    {
+      "id": "duckdb_box_text",
+      "type": "text",
+      "x": 1230,
+      "y": 577,
+      "width": 168,
+      "height": 40,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 2202,
+      "version": 1,
+      "versionNonce": 220201,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1780162200000,
+      "link": null,
+      "locked": false,
+      "index": "al",
+      "text": "DuckDB executive mart\nlocal KPI mart",
+      "fontSize": 16,
+      "fontFamily": 5,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "duckdb_box",
+      "originalText": "DuckDB executive mart\nlocal KPI mart",
+      "autoResize": true,
+      "lineHeight": 1.25,
+      "baseline": 14
+    },
+    {
+      "id": "minio_to_duckdb",
+      "type": "arrow",
+      "x": 800,
+      "y": 515,
+      "width": 411.888888888889,
+      "height": 82,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 2203,
+      "version": 1,
+      "versionNonce": 220301,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1780162200000,
+      "link": null,
+      "locked": false,
+      "index": "am",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          411.888888888889,
+          82
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "minio_box",
+        "focus": 0.5,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "duckdb_box",
+        "focus": 0,
+        "gap": 1
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "minio_to_duckdb_label",
+      "type": "text",
+      "x": 910,
+      "y": 532,
+      "width": 175,
+      "height": 35,
+      "angle": 0.2,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 2204,
+      "version": 1,
+      "versionNonce": 220401,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "minio_to_duckdb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780162200000,
+      "link": null,
+      "locked": false,
+      "index": "an",
+      "text": "hourly export from\nGold tables",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "hourly export from\nGold tables",
+      "autoResize": false,
+      "lineHeight": 1.25,
+      "baseline": 12
+    },
+    {
+      "id": "duckdb_to_exec",
+      "type": "arrow",
+      "x": 1414.888888888889,
+      "y": 596,
+      "width": 171.08333333333326,
+      "height": 115,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 2205,
+      "version": 1,
+      "versionNonce": 220501,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1780162200000,
+      "link": null,
+      "locked": false,
+      "index": "ao",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          171.08333333333326,
+          -115
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "duckdb_box",
+        "focus": 0.25,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "exec_box",
+        "focus": 0.25,
+        "gap": 1
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "duckdb_to_exec_label",
+      "type": "text",
+      "x": 1466,
+      "y": 547,
+      "width": 94,
+      "height": 18,
+      "angle": 5.7,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 2206,
+      "version": 1,
+      "versionNonce": 220601,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "duckdb_to_exec",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780162200000,
+      "link": null,
+      "locked": false,
+      "index": "ap",
+      "text": "local KPI mart",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "local KPI mart",
+      "autoResize": false,
+      "lineHeight": 1.25,
+      "baseline": 12
     }
   ],
   "appState": {

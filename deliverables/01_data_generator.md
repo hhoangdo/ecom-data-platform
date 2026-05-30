@@ -14,7 +14,7 @@ The Section `01` generator produces:
 
 The generator is optimized for a balanced DE and AI foundation. It is realistic enough for downstream Bronze/Silver/Gold pipelines and structured enough for later ML/LLM experiments.
 
-Section `01` now explicitly follows a Lambda architecture source design. Kafka is the ingestion layer, Spark is the hourly batch path for executive teams, Flink is the real-time path for BI/livestreaming teams, MinIO stores lakehouse files, Hive Metastore provides catalog metadata, and Trino is the SQL serving layer. Runnable Spark/Flink jobs and final Gold schemas are intentionally deferred to Section `02`.
+Section `01` now explicitly follows a Lambda architecture source design with two consumption serving planes. Kafka is the ingestion layer, Spark is the hourly batch path for reconciled executive KPIs, and Flink is the real-time path for BI/livestreaming teams. Apache Pinot is the planned realtime OLAP serving sink for low-latency live dashboards, Trino is the canonical SQL interface over curated lakehouse tables, and DuckDB is a coursework-friendly local executive mart generated from Gold tables. Runnable Spark/Flink/Pinot/DuckDB jobs and final Gold schemas are intentionally deferred to Section `02`.
 
 ## 2. How to Run
 
@@ -100,6 +100,8 @@ Streaming behavior included in v1:
 - Kafka payloads remain JSON for human readability and easier coursework inspection
 
 The source event catalog is maintained in `architecture/domain/source-event-catalog.md`.
+
+Section `01` does not add derived serving topics such as `realtime_metrics`. Those outputs belong to Section `02`, where Flink will define event-time metrics and alerts before publishing them to Apache Pinot for live dashboard queries.
 
 ## 5. Data Challenges Injected
 

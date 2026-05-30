@@ -22,8 +22,9 @@ rectangle "Lambda Processing Paths" as Lambda {
 
 database "MinIO Medallion Lakehouse\nBronze batch: Parquet snapshots\nBronze event: JSONL replay logs\nSilver/Gold: curated tables" as MinIO
 database "Hive Metastore\ncatalog only" as Hive
-component "Trino SQL Serving\nqueries curated lakehouse tables" as Trino
-component "Realtime serving sink\nmetrics / alerts / dashboard" as Realtime
+component "Trino SQL Serving\ncanonical SQL over curated tables" as Trino
+component "Apache Pinot\nRealtime serving sink\nmetrics / alerts / dashboard" as Realtime
+database "DuckDB executive mart\nlocal KPI mart from Gold tables" as DuckDB
 
 Offline --> MinIO : Parquet snapshots: checkpointed table state
 Producer --> Kafka : JSON envelope events
@@ -31,12 +32,14 @@ Kafka --> Flink : direct real-time consumption
 Kafka --> MinIO : JSONL event log: replayable business events
 MinIO --> Spark : hourly batch reads landed Bronze data
 Spark --> MinIO : curated Silver/Gold tables
-Flink --> Realtime : live metrics / alerts / dashboard
+Flink --> Realtime : event-time live metrics / alerts / dashboard
 Realtime --> BI : live operations
 Flink --> MinIO : curated streaming tables
 MinIO --> Hive : table registration for curated lakehouse tables
 Hive --> Trino : catalog metadata
-Trino --> Executive : hourly KPI dashboards
+Trino --> Executive : canonical hourly SQL dashboards
+MinIO --> DuckDB : hourly export from Gold tables
+DuckDB --> Executive : local KPI mart
 Trino --> BI : reconciled historical SQL
 
 note bottom of MinIO

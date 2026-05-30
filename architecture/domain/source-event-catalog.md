@@ -87,11 +87,12 @@ Source observability and pipeline-readiness events.
 
 | Consumer | Path | Target Freshness |
 | --- | --- | --- |
-| Executive teams | Spark-curated lakehouse tables served through Trino | 1 hour |
-| BI/livestreaming teams | Flink live serving outputs, with Trino for reconciled historical SQL | real-time, target under 30 seconds in local design |
+| Executive teams | Spark Gold -> Trino canonical SQL + DuckDB local mart | 1 hour |
+| BI/livestreaming teams | Flink -> Apache Pinot realtime OLAP serving, with Trino for reconciled historical SQL | real-time, target under 30 seconds in local design |
 
 ## Section Boundary
 
 Section `01` owns synthetic source contracts, topic-shaped JSONL event-log outputs, and evidence.
-Section `02` will own the runnable Kafka, Spark, Flink, MinIO, Hive Metastore, Trino, and
-Bronze/Silver/Gold pipeline implementation details.
+Section `02` will own the runnable Kafka, Spark, Flink, MinIO, Hive Metastore, Trino, Apache Pinot,
+DuckDB, and Bronze/Silver/Gold pipeline implementation details. Derived serving outputs such as
+`realtime_metrics` are Section `02` products, not Section `01` source topics.

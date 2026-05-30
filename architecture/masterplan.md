@@ -146,8 +146,10 @@ Section `01` models the source side of a Lambda architecture:
 - Kafka is the ingestion layer for domain-grouped JSON events.
 - Spark is the hourly batch compute path that prepares curated Silver/Gold tables for consumers who accept 1-hour freshness.
 - Flink is the real-time streaming compute path for BI/livestreaming use cases that need revenue, payment issue, traffic burst, and anomaly visibility.
-- MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides SQL serving access.
-- Runnable Spark/Flink/MinIO jobs are deferred to Section `02`; Section `01` only owns source contracts and generated raw payloads.
+- Apache Pinot is the realtime OLAP serving sink for low-latency live dashboard queries over Flink-derived operational metrics.
+- MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides the canonical SQL serving access for curated Gold tables.
+- DuckDB is a local coursework-friendly executive mart generated from Gold tables; it is not the canonical multi-user warehouse.
+- Runnable Kafka/Spark/Flink/MinIO/Hive Metastore/Trino/Pinot/DuckDB jobs are deferred to Section `02`; Section `01` only owns source contracts and generated raw payloads.
 
 Architecture note:
 
@@ -155,18 +157,31 @@ Architecture note:
 - Replayable event logs are append-only Kafka event histories, such as `order_placed` or `payment_failed`, landed into the MinIO Bronze/raw layer as JSONL.
 - Spark batch inputs come from landed Bronze data in MinIO, not directly from operational source systems.
 - Flink reads Kafka directly for real-time processing, while Kafka-to-MinIO landing preserves replayable event history for later Spark recomputation.
-- Raw Bronze files are not the normal business consumption interface. Executive teams consume Trino-accessible curated tables after Spark writes Silver/Gold outputs, while BI/livestreaming teams consume low-latency Flink serving outputs and use Trino for reconciled historical SQL.
+- Raw Bronze files are not the normal business consumption interface. Executive teams consume Trino-accessible curated tables after Spark writes Silver/Gold outputs, with a DuckDB local mart available for coursework dashboards. BI/livestreaming teams consume low-latency Apache Pinot serving outputs and use Trino for reconciled historical SQL.
+
+Consumption serving planes:
+
+The consumption layer has two serving planes. The real-time plane uses Flink to compute event-time-correct operational metrics and publishes them to Apache Pinot for low-latency dashboard queries over recent streaming data. The reconciled analytical plane uses Spark to build hourly Gold tables in the MinIO lakehouse, served through Trino as the canonical SQL interface. For coursework portability, an hourly DuckDB executive mart is also generated from Gold tables so executive KPI dashboards can run locally without a full multi-user warehouse.
+
+The durable decision record lives in `architecture/decisions/2026-05-30-consumption-serving-planes.md`.
+
+| Plane | Consumers | Compute path | Serving interface | Truth role |
+| --- | --- | --- | --- | --- |
+| Real-time operational serving | BI/livestreaming teams | Kafka source events -> Flink event-time metrics and alerts | Apache Pinot realtime OLAP serving sink | Fresh operational view, subject to later reconciliation |
+| Reconciled analytical serving | Executive teams and historical BI | MinIO Bronze -> Spark Silver/Gold | Trino canonical SQL over Gold tables, plus DuckDB local KPI mart | Reconciled KPI truth |
 
 Consumption-layer contract:
 
 | Need | Serving path | Hive Metastore needed? |
 | --- | --- | --- |
-| Executive hourly KPIs | Spark writes Gold tables to MinIO; Trino serves SQL dashboards | Yes, for table metadata |
-| BI live operations | Flink writes metrics, alerts, or dashboard-ready values to a realtime serving sink | No |
+| Executive hourly KPIs | Spark writes Gold tables to MinIO; Trino serves canonical hourly SQL dashboards; DuckDB provides a local KPI mart generated from Gold | Yes for Trino table metadata; no for the DuckDB file export |
+| BI live operations | Flink writes metrics, alerts, or dashboard-ready values to an Apache Pinot realtime OLAP serving sink | No |
 | BI reconciled history | Flink/Spark writes curated tables to MinIO; Trino queries them | Yes |
 | Data engineering inspection | Direct file or object inspection when debugging | Optional |
 
 Hive Metastore is catalog metadata only: it records table names, schemas, partitions, and object-store locations. Consumers query Trino, and Trino uses Hive Metastore to find and interpret the curated files in MinIO.
+
+Apache Pinot and DuckDB do not replace the lakehouse truth layer. Pinot serves recent operational metrics for low-latency dashboards, while DuckDB is a regenerated local mart for coursework-friendly executive KPI consumption. Reconciled business truth comes from Spark-produced Gold tables served through Trino.
 
 Snapshot and event-log distinction:
 
@@ -240,6 +255,8 @@ The architecture target for Sections `01` and `02` is:
 - MinIO for medallion lakehouse object storage
 - Hive Metastore for table metadata
 - Trino for SQL serving access
+- Apache Pinot for realtime OLAP dashboard serving
+- DuckDB for an hourly local executive KPI mart generated from Gold tables
 - Parquet for offline persisted source snapshots
 - JSON for in-Kafka event envelopes and JSONL for persisted, human-readable event-log examples
 
@@ -271,7 +288,7 @@ Planned Gold entities include:
 - OBT: `obt_order_performance`
 - feature tables: `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified`
 
-Consumer-facing dashboards and extracts should use curated Silver/Gold tables through Trino or low-latency Flink serving outputs. Flink outputs that become durable analytical tables are registered through Hive Metastore and served through Trino; live metrics and alerts bypass Hive Metastore because they are operational serving values, not lakehouse tables. Raw/Bronze files remain available for data engineering inspection, replay, and lineage checks, but they are not the normal interface for executive or livestreaming consumers.
+Consumer-facing dashboards and extracts should use the appropriate serving plane. Executive and historical BI dashboards use curated Silver/Gold tables through Trino, with DuckDB generated from Gold as a local coursework mart. BI/livestreaming dashboards use Apache Pinot for low-latency operational metrics produced by Flink. Flink outputs that become durable analytical tables are registered through Hive Metastore and served through Trino; live metrics and alerts in Pinot bypass Hive Metastore because they are operational serving values, not lakehouse tables. Raw/Bronze files remain available for data engineering inspection, replay, and lineage checks, but they are not the normal interface for executive or livestreaming consumers.
 
 ### Update Policy
 
@@ -422,6 +439,6 @@ The following areas are intentionally scaffolded now for later work:
 - Python `3.12` is the default runtime version.
 - `uv` is the package manager of record.
 - Large generated datasets should stay out of Git; only small samples and evidence should be committed.
-- Section `01` remains source-contract-first; runnable Spark, Flink, Kafka, MinIO, Hive Metastore, and Trino jobs are deferred to Section `02`.
+- Section `01` remains source-contract-first; runnable Spark, Flink, Kafka, MinIO, Hive Metastore, Trino, Pinot, and DuckDB jobs are deferred to Section `02`.
 - Spark and Flink references are architectural targets inspired by the EDAI transformation-layer projects, not copied wholesale.
 - The simplified taxonomy is stable once committed unless the coursework requirements change.

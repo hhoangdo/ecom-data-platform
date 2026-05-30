@@ -9,6 +9,7 @@
 ## PlantUML
 
 - Primary file: `lambda_architecture.puml`
+- The current consumption-layer labels name Apache Pinot and DuckDB as Section `02` implementation targets. Section `01` still owns source contracts and architecture documentation only.
 - Workspace defaults in `.vscode/settings.json` use PlantUML server rendering:
   - `"plantuml.render": "PlantUMLServer"`
   - `"plantuml.server": "https://www.plantuml.com/plantuml"`
