@@ -5,6 +5,8 @@
 This catalog defines the Section `01` Kafka-shaped source event contracts for `vina-bim-shop`.
 The generator writes human-readable JSONL files that mirror Kafka domain topics; a real Kafka
 producer is deferred until the Section `02` pipeline implementation.
+Each Kafka message is modeled as a JSON envelope. When those messages are persisted to local
+files or object storage, they are stored one envelope per line as a JSONL event log.
 
 ## Common JSON Envelope
 
@@ -85,11 +87,11 @@ Source observability and pipeline-readiness events.
 
 | Consumer | Path | Target Freshness |
 | --- | --- | --- |
-| Executive teams | Spark batch path | 1 hour |
-| BI/livestreaming teams | Flink streaming path | real-time, target under 30 seconds in local design |
+| Executive teams | Spark-curated lakehouse tables served through Trino | 1 hour |
+| BI/livestreaming teams | Flink live serving outputs, with Trino for reconciled historical SQL | real-time, target under 30 seconds in local design |
 
 ## Section Boundary
 
-Section `01` owns synthetic source contracts, topic-shaped JSONL outputs, and evidence.
+Section `01` owns synthetic source contracts, topic-shaped JSONL event-log outputs, and evidence.
 Section `02` will own the runnable Kafka, Spark, Flink, MinIO, Hive Metastore, Trino, and
 Bronze/Silver/Gold pipeline implementation details.

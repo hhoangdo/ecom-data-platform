@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Python-first coursework scaffold for the Vina Bim Shop data engineering and AI project."
 requires-python = ">=3.12"
 dependencies = [
-  "duckdb>=1.2",
   "faker>=24.0",
   "pandas>=2.2",
   "pyarrow>=19.0",

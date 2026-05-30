@@ -19,11 +19,24 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
         "BI/Livestreaming Teams",
     ]:
         assert expected in content
-    assert "landed batch snapshots (Parquet)" in content
-    assert "landed replayable event log (JSON)" in content
+    assert "Parquet snapshots: checkpointed table state" in content
+    assert "JSONL event log: replayable business events" in content
     assert "hourly batch reads landed Bronze data" in content
     assert "direct real-time consumption" in content
+    assert "Hive Metastore\\ncatalog only" in content
+    assert "Trino SQL Serving" in content
+    assert "Realtime serving sink" in content
+    assert "Flink --> Realtime" in content
+    assert "Realtime --> BI : live operations" in content
+    assert "curated streaming tables" in content
+    assert "hourly KPI dashboards" in content
+    assert "reconciled historical SQL" in content
+    assert "table registration for curated lakehouse tables" in content
     assert "hourly batch inputs" not in content
+    assert "Spark --> Executive" not in content
+    assert "Flink --> BI" not in content
+    assert "landed replayable event log (JSON)" not in content
+    assert "Hive Metastore + Trino" not in content
 
 
 def test_excalidraw_architecture_file_is_json_and_names_major_components() -> None:
@@ -46,16 +59,30 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
     ]:
         assert expected in labels
     for expected in [
-        "landed batch snapshots (Parquet)",
-        "landed replayable event log (JSON)",
+        "Periodic table-state exports",
+        "Parquet snapshots: checkpointed table state",
+        "JSONL event log: replayable business events",
         "hourly batch reads landed Bronze data",
         "direct real-time consumption",
-        "Bronze batch landing",
-        "Bronze event landing",
-        "Silver cleaned outputs",
-        "Gold deferred to Section 02",
+        "Bronze batch: Parquet snapshots",
+        "Bronze event: JSONL replay logs",
+        "Silver/Gold: curated tables",
+        "Hive Metastore\\ncatalog only",
+        "Trino SQL Serving",
+        "Realtime serving sink",
+        "curated streaming tables",
+        "hourly KPI dashboards",
+        "live metrics / alerts",
+        "reconciled",
+        "historical SQL",
+        "table registration\\nfor curated lakehouse tables",
     ]:
         assert expected in labels
+    assert "landed replayable event log (JSON)" not in labels
+    assert "landed batch snapshots (Parquet)" not in labels
+    assert "spark_to_exec" not in labels
+    assert "Hive Metastore + Trino" not in labels
+    assert "curated streaming sink outputs" not in labels
 
 
 def test_excalidraw_architecture_elements_include_required_fields() -> None:

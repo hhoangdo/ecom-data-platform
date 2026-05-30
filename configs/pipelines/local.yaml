@@ -1,8 +1,11 @@
 runtime: local
-engine: duckdb
+batch_engine: spark
+stream_engine: flink
+sql_engine: trino
+catalog: hive_metastore
+object_store: minio
 
 storage:
-  duckdb_path: data/vina_bim_shop.duckdb
   raw_root: data/raw
   bronze_root: data/bronze
   silver_root: data/silver

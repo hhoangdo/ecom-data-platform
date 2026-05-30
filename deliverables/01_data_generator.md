@@ -14,7 +14,7 @@ The Section `01` generator produces:
 
 The generator is optimized for a balanced DE and AI foundation. It is realistic enough for downstream Bronze/Silver/Gold pipelines and structured enough for later ML/LLM experiments.
 
-Section `01` now explicitly follows a Lambda architecture source design. Kafka is the ingestion layer, Spark is the hourly batch path for executive teams, Flink is the real-time path for BI/livestreaming teams, and MinIO/Hive Metastore/Trino form the lakehouse query foundation. Runnable Spark/Flink jobs and final Gold schemas are intentionally deferred to Section `02`.
+Section `01` now explicitly follows a Lambda architecture source design. Kafka is the ingestion layer, Spark is the hourly batch path for executive teams, Flink is the real-time path for BI/livestreaming teams, MinIO stores lakehouse files, Hive Metastore provides catalog metadata, and Trino is the SQL serving layer. Runnable Spark/Flink jobs and final Gold schemas are intentionally deferred to Section `02`.
 
 ## 2. How to Run
 

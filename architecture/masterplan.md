@@ -144,22 +144,46 @@ The legacy flat `stream_events` JSONL output remains as a convenience dataset fo
 Section `01` models the source side of a Lambda architecture:
 
 - Kafka is the ingestion layer for domain-grouped JSON events.
-- Spark is the hourly batch path for executive consumers who accept 1-hour freshness.
-- Flink is the real-time streaming path for BI/livestreaming teams that need revenue, payment issue, traffic burst, and anomaly visibility.
-- MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides SQL access.
+- Spark is the hourly batch compute path that prepares curated Silver/Gold tables for consumers who accept 1-hour freshness.
+- Flink is the real-time streaming compute path for BI/livestreaming use cases that need revenue, payment issue, traffic burst, and anomaly visibility.
+- MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides SQL serving access.
 - Runnable Spark/Flink/MinIO jobs are deferred to Section `02`; Section `01` only owns source contracts and generated raw payloads.
 
 Architecture note:
 
 - Offline source snapshots are table-state extracts such as hourly `orders`, `payments`, and `customers` Parquet dumps landed into the MinIO Bronze/raw layer.
-- Replayable event logs are append-only Kafka event histories, such as `order_placed` or `payment_failed`, also landed into the MinIO Bronze/raw layer as JSON.
+- Replayable event logs are append-only Kafka event histories, such as `order_placed` or `payment_failed`, landed into the MinIO Bronze/raw layer as JSONL.
 - Spark batch inputs come from landed Bronze data in MinIO, not directly from operational source systems.
 - Flink reads Kafka directly for real-time processing, while Kafka-to-MinIO landing preserves replayable event history for later Spark recomputation.
+- Raw Bronze files are not the normal business consumption interface. Executive teams consume Trino-accessible curated tables after Spark writes Silver/Gold outputs, while BI/livestreaming teams consume low-latency Flink serving outputs and use Trino for reconciled historical SQL.
+
+Consumption-layer contract:
+
+| Need | Serving path | Hive Metastore needed? |
+| --- | --- | --- |
+| Executive hourly KPIs | Spark writes Gold tables to MinIO; Trino serves SQL dashboards | Yes, for table metadata |
+| BI live operations | Flink writes metrics, alerts, or dashboard-ready values to a realtime serving sink | No |
+| BI reconciled history | Flink/Spark writes curated tables to MinIO; Trino queries them | Yes |
+| Data engineering inspection | Direct file or object inspection when debugging | Optional |
+
+Hive Metastore is catalog metadata only: it records table names, schemas, partitions, and object-store locations. Consumers query Trino, and Trino uses Hive Metastore to find and interpret the curated files in MinIO.
+
+Snapshot and event-log distinction:
+
+| Concept | Parquet snapshots | JSONL event log |
+| --- | --- | --- |
+| Core question | What did the source tables look like at this checkpoint? | What happened, when, and in what order? |
+| Data shape | Tabular state such as `orders`, `payments`, `shipments`, and `customers` | Event envelopes such as `order_placed`, `payment_failed`, and `shipment_delivered` |
+| Landing path | Source systems export files into MinIO Bronze batch landing | Kafka messages are persisted into MinIO Bronze event landing |
+| Format rationale | Parquet is compact, columnar, and efficient for Spark batch scans | JSONL preserves the raw message shape and remains readable/replayable |
+| Main value | Batch truth, joins, reconciliation, reference state, and backfills | Real-time monitoring, event replay, sequence analysis, and timing analysis |
+
+The overlap between `orders`, `payments`, and `shipments` snapshots and similarly named events is intentional: snapshots provide checkpointed system-of-record state for reconciliation, while events provide the immediate business timeline.
 
 Beginner-friendly examples:
 
 - Offline example: at `11:00`, source systems export hourly `orders`, `payments`, and `customers` Parquet snapshots into MinIO Bronze; Spark reads those landed files on the next batch run and writes cleaned Silver outputs.
-- Streaming example: an `order_placed` event enters Kafka at `10:07`; Flink consumes it immediately for real-time revenue monitoring, and a Kafka sink also lands the raw JSON event into MinIO Bronze so Spark can replay it later during the hourly batch cycle.
+- Streaming example: an `order_placed` event enters Kafka at `10:07`; Flink consumes it immediately for real-time revenue monitoring, and a Kafka sink also lands the raw event as JSONL into MinIO Bronze so Spark can replay it later during the hourly batch cycle.
 
 ### Required Timestamps and Event-Time Semantics
 
@@ -215,11 +239,9 @@ The architecture target for Sections `01` and `02` is:
 - Flink for event-time streaming processing
 - MinIO for medallion lakehouse object storage
 - Hive Metastore for table metadata
-- Trino for SQL query access
+- Trino for SQL serving access
 - Parquet for offline persisted source snapshots
-- JSON/JSONL for human-readable event payload examples
-
-DuckDB may still be useful for lightweight local inspection, but it is no longer the primary architecture target.
+- JSON for in-Kafka event envelopes and JSONL for persisted, human-readable event-log examples
 
 ### Layering Model
 
@@ -249,11 +271,13 @@ Planned Gold entities include:
 - OBT: `obt_order_performance`
 - feature tables: `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified`
 
+Consumer-facing dashboards and extracts should use curated Silver/Gold tables through Trino or low-latency Flink serving outputs. Flink outputs that become durable analytical tables are registered through Hive Metastore and served through Trino; live metrics and alerts bypass Hive Metastore because they are operational serving values, not lakehouse tables. Raw/Bronze files remain available for data engineering inspection, replay, and lineage checks, but they are not the normal interface for executive or livestreaming consumers.
+
 ### Update Policy
 
 - Raw and Bronze are append-oriented.
 - Silver is incrementally rebuilt or merged using stable business keys plus event-time logic.
-- Gold facts and dimensions are updated via idempotent merges or replace-partition strategies suitable for local DuckDB workflows.
+- Gold facts and dimensions are updated via idempotent merges or replace-partition strategies suitable for lakehouse table workflows.
 - Feature tables retain the latest `created_ts` for each entity and `event_timestamp` pair.
 
 ### Backfill Policy
