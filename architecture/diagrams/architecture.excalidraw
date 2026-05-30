@@ -6,8 +6,8 @@
     {
       "id": "title_text",
       "type": "text",
-      "x": 393.4722222222224,
-      "y": -173.47222222222223,
+      "x": 414.7222222222224,
+      "y": -162.22222222222223,
       "width": 992.3756489000824,
       "height": 55.000000000000036,
       "angle": 0,
@@ -22,11 +22,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1001,
-      "version": 187,
-      "versionNonce": 620501562,
+      "version": 205,
+      "versionNonce": 20638215,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132591363,
+      "updated": 1780137027614,
       "link": null,
       "locked": false,
       "index": "a0",
@@ -612,7 +612,7 @@
       "id": "minio_box",
       "type": "rectangle",
       "x": 280,
-      "y": 350,
+      "y": 348.8888888888889,
       "width": 520,
       "height": 185.00000000000006,
       "angle": 0,
@@ -629,8 +629,8 @@
         "type": 3
       },
       "seed": 1016,
-      "version": 75,
-      "versionNonce": 700445657,
+      "version": 76,
+      "versionNonce": 2138512169,
       "isDeleted": false,
       "boundElements": [
         {
@@ -666,7 +666,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780129044607,
+      "updated": 1780136934570,
       "link": null,
       "locked": false,
       "index": "aF"
@@ -675,7 +675,7 @@
       "id": "minio_box_text",
       "type": "text",
       "x": 392.05810546875,
-      "y": 397.5,
+      "y": 396.3888888888889,
       "width": 295.8837890625,
       "height": 90,
       "angle": 0,
@@ -690,11 +690,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1017,
-      "version": 71,
-      "versionNonce": 493515257,
+      "version": 72,
+      "versionNonce": 370920969,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780129044608,
+      "updated": 1780136934570,
       "link": null,
       "locked": false,
       "index": "aG",
@@ -794,9 +794,9 @@
       "id": "offline_to_minio",
       "type": "arrow",
       "x": 147.53059497529634,
-      "y": 320.19530415167276,
-      "width": 129.78805285701358,
-      "height": 140.90423301816804,
+      "y": 320.3725924908641,
+      "width": 129.78805285701353,
+      "height": 139.98377820773368,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -811,11 +811,11 @@
         "type": 2
       },
       "seed": 1020,
-      "version": 611,
-      "versionNonce": 460689817,
+      "version": 612,
+      "versionNonce": 1457823689,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780129044607,
+      "updated": 1780136934573,
       "link": null,
       "locked": false,
       "index": "aJ",
@@ -825,8 +825,8 @@
           0
         ],
         [
-          129.78805285701358,
-          140.90423301816804
+          129.78805285701353,
+          139.98377820773368
         ]
       ],
       "lastCommittedPoint": null,
@@ -1079,10 +1079,10 @@
     {
       "id": "kafka_to_minio",
       "type": "arrow",
-      "x": 621.2840676701794,
-      "y": 202.81632001272092,
-      "width": 1.2641468433018872,
-      "height": 146.84642976933466,
+      "x": 621.2850666756078,
+      "y": 202.81632001272095,
+      "width": 1.2603540704789111,
+      "height": 145.7353186582235,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1097,11 +1097,11 @@
         "type": 2
       },
       "seed": 1026,
-      "version": 112,
-      "versionNonce": 434239097,
+      "version": 113,
+      "versionNonce": 2058337961,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780129044608,
+      "updated": 1780136934573,
       "link": null,
       "locked": false,
       "index": "aP",
@@ -1111,8 +1111,8 @@
           0
         ],
         [
-          -1.2641468433018872,
-          146.84642976933466
+          -1.2603540704789111,
+          145.7353186582235
         ]
       ],
       "lastCommittedPoint": null,
@@ -1172,9 +1172,9 @@
       "id": "minio_to_spark",
       "type": "arrow",
       "x": 800.9414150468823,
-      "y": 411.0689040440363,
-      "width": 308.243100912708,
-      "height": 176.63377490118916,
+      "y": 410.73212771696296,
+      "width": 308.2455026111028,
+      "height": 176.2639133617933,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1189,11 +1189,11 @@
         "type": 2
       },
       "seed": 1028,
-      "version": 328,
-      "versionNonce": 2108831098,
+      "version": 329,
+      "versionNonce": 1617750121,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132543154,
+      "updated": 1780136934574,
       "link": null,
       "locked": false,
       "index": "aR",
@@ -1203,8 +1203,8 @@
           0
         ],
         [
-          308.243100912708,
-          -176.63377490118916
+          308.2455026111028,
+          -176.2639133617933
         ]
       ],
       "lastCommittedPoint": null,
@@ -1268,10 +1268,10 @@
     {
       "id": "spark_to_minio",
       "type": "arrow",
-      "x": 1151.5365962104897,
-      "y": 254.0092042291339,
-      "width": 350.1255436942382,
-      "height": 200.26241932428087,
+      "x": 1151.5715523833492,
+      "y": 254.00920422913393,
+      "width": 350.16049986709766,
+      "height": 199.66566381376774,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1286,11 +1286,11 @@
         "type": 2
       },
       "seed": 1030,
-      "version": 684,
-      "versionNonce": 349822138,
+      "version": 685,
+      "versionNonce": 157676361,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132543153,
+      "updated": 1780136934574,
       "link": null,
       "locked": false,
       "index": "aT",
@@ -1300,8 +1300,8 @@
           0
         ],
         [
-          -350.1255436942382,
-          200.26241932428087
+          -350.16049986709766,
+          199.66566381376774
         ]
       ],
       "lastCommittedPoint": null,
@@ -1365,10 +1365,10 @@
     {
       "id": "flink_to_minio",
       "type": "arrow",
-      "x": 1113.4066453006747,
-      "y": 47.70717612597778,
-      "width": 389.52119671273863,
-      "height": 301.95557365607783,
+      "x": 1113.4372474962233,
+      "y": 47.75916170019488,
+      "width": 389.14609039357185,
+      "height": 300.79247697074953,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1383,11 +1383,11 @@
         "type": 2
       },
       "seed": 1032,
-      "version": 447,
-      "versionNonce": 1529790297,
+      "version": 448,
+      "versionNonce": 2037645705,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780129044608,
+      "updated": 1780136934573,
       "link": null,
       "locked": false,
       "index": "aV",
@@ -1397,8 +1397,8 @@
           0
         ],
         [
-          -389.52119671273863,
-          301.95557365607783
+          -389.14609039357185,
+          300.79247697074953
         ]
       ],
       "lastCommittedPoint": null,
@@ -1458,9 +1458,9 @@
       "id": "minio_to_hive_trino",
       "type": "arrow",
       "x": 802.3578555800046,
-      "y": 472.3848925311647,
-      "width": 200.2263722329401,
-      "height": 0.8838489024607838,
+      "y": 471.7919171894856,
+      "width": 200.2263722329402,
+      "height": 0.2913910108726441,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1475,11 +1475,11 @@
         "type": 2
       },
       "seed": 1034,
-      "version": 519,
-      "versionNonce": 2111926950,
+      "version": 520,
+      "versionNonce": 526853353,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780132478993,
+      "updated": 1780136934572,
       "link": null,
       "locked": false,
       "index": "aX",
@@ -1489,8 +1489,8 @@
           0
         ],
         [
-          200.2263722329401,
-          -0.8838489024607838
+          200.2263722329402,
+          -0.2913910108726441
         ]
       ],
       "lastCommittedPoint": null,
@@ -1705,10 +1705,10 @@
     {
       "id": "hive_trino_to_exec_label",
       "type": "text",
-      "x": 1451.6868840290238,
-      "y": 501.08152411673404,
-      "width": 83.33402938518319,
-      "height": 35,
+      "x": 1437.240500125407,
+      "y": 438.8966992999493,
+      "width": 118.90540895473126,
+      "height": 36.00946429122445,
       "angle": 6.279572692284694,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1721,8 +1721,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 1039,
-      "version": 386,
-      "versionNonce": 1368829734,
+      "version": 510,
+      "versionNonce": 1629819913,
       "isDeleted": false,
       "boundElements": [
         {
@@ -1730,12 +1730,12 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780132484743,
+      "updated": 1780137001105,
       "link": null,
       "locked": false,
       "index": "ab",
-      "text": "canonical hourly SQL\ndashboards",
-      "fontSize": 14,
+      "text": "canonical hourly\nSQL dashboards",
+      "fontSize": 14.403785716489777,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2119,8 +2119,8 @@
     {
       "id": "duckdb_box",
       "type": "rectangle",
-      "x": 1212.888888888889,
-      "y": 558,
+      "x": 1187.3333333333333,
+      "y": 603.5555555555555,
       "width": 202,
       "height": 78,
       "angle": 0,
@@ -2137,8 +2137,8 @@
         "type": 3
       },
       "seed": 2201,
-      "version": 1,
-      "versionNonce": 220101,
+      "version": 64,
+      "versionNonce": 292392519,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2154,7 +2154,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780162200000,
+      "updated": 1780137006925,
       "link": null,
       "locked": false,
       "index": "ak"
@@ -2162,8 +2162,8 @@
     {
       "id": "duckdb_box_text",
       "type": "text",
-      "x": 1230,
-      "y": 577,
+      "x": 1204.4444444444443,
+      "y": 622.5555555555555,
       "width": 168,
       "height": 40,
       "angle": 0,
@@ -2178,11 +2178,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 2202,
-      "version": 1,
-      "versionNonce": 220201,
+      "version": 64,
+      "versionNonce": 1834102119,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780162200000,
+      "updated": 1780137006925,
       "link": null,
       "locked": false,
       "index": "al",
@@ -2200,10 +2200,10 @@
     {
       "id": "minio_to_duckdb",
       "type": "arrow",
-      "x": 800,
-      "y": 515,
-      "width": 411.888888888889,
-      "height": 82,
+      "x": 518.6297011666271,
+      "y": 534.3786783201144,
+      "width": 666.8064970793811,
+      "height": 109.28257762947067,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -2218,11 +2218,11 @@
         "type": 2
       },
       "seed": 2203,
-      "version": 1,
-      "versionNonce": 220301,
+      "version": 154,
+      "versionNonce": 496363655,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780162200000,
+      "updated": 1780137006925,
       "link": null,
       "locked": false,
       "index": "am",
@@ -2232,20 +2232,20 @@
           0
         ],
         [
-          411.888888888889,
-          82
+          666.8064970793811,
+          109.28257762947067
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "minio_box",
-        "focus": 0.5,
-        "gap": 1
+        "focus": 0.7144348570314973,
+        "gap": 1.4483613290555013
       },
       "endBinding": {
         "elementId": "duckdb_box",
-        "focus": 0,
-        "gap": 1
+        "focus": -0.3231465542226595,
+        "gap": 2.0420843095982946
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -2254,11 +2254,11 @@
     {
       "id": "minio_to_duckdb_label",
       "type": "text",
-      "x": 910,
-      "y": 532,
-      "width": 175,
-      "height": 35,
-      "angle": 0.2,
+      "x": 728.6444799496953,
+      "y": 601.5866443382748,
+      "width": 249.72784323367384,
+      "height": 19.876509046046635,
+      "angle": 0.17032305749927623,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -2270,8 +2270,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 2204,
-      "version": 1,
-      "versionNonce": 220401,
+      "version": 359,
+      "versionNonce": 1798474631,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2279,17 +2279,17 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780162200000,
+      "updated": 1780137016124,
       "link": null,
       "locked": false,
       "index": "an",
-      "text": "hourly export from\nGold tables",
-      "fontSize": 14,
+      "text": "hourly export from Gold tables",
+      "fontSize": 15.901207236837303,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "hourly export from\nGold tables",
+      "originalText": "hourly export from Gold tables",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
@@ -2297,10 +2297,10 @@
     {
       "id": "duckdb_to_exec",
       "type": "arrow",
-      "x": 1414.888888888889,
-      "y": 596,
-      "width": 171.08333333333326,
-      "height": 115,
+      "x": 1389.2100526127433,
+      "y": 614.6765465125745,
+      "width": 198.20080401736573,
+      "height": 99.02664574807636,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -2315,11 +2315,11 @@
         "type": 2
       },
       "seed": 2205,
-      "version": 1,
-      "versionNonce": 220501,
+      "version": 64,
+      "versionNonce": 2146779047,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780162200000,
+      "updated": 1780137006925,
       "link": null,
       "locked": false,
       "index": "ao",
@@ -2329,8 +2329,8 @@
           0
         ],
         [
-          171.08333333333326,
-          -115
+          198.20080401736573,
+          -99.02664574807636
         ]
       ],
       "lastCommittedPoint": null,
@@ -2351,11 +2351,11 @@
     {
       "id": "duckdb_to_exec_label",
       "type": "text",
-      "x": 1466,
-      "y": 547,
-      "width": 94,
-      "height": 18,
-      "angle": 5.7,
+      "x": 1440.2532457966004,
+      "y": 578.4725733137391,
+      "width": 100.3906717289109,
+      "height": 19.223745650216983,
+      "angle": 5.8187353770252885,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -2367,8 +2367,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 2206,
-      "version": 1,
-      "versionNonce": 220601,
+      "version": 118,
+      "versionNonce": 439193447,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2376,12 +2376,12 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780162200000,
+      "updated": 1780137022604,
       "link": null,
       "locked": false,
       "index": "ap",
       "text": "local KPI mart",
-      "fontSize": 14,
+      "fontSize": 14.951802172390984,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
