@@ -6,12 +6,12 @@
     {
       "id": "title_text",
       "type": "text",
-      "x": 280,
-      "y": 10,
-      "width": 448,
-      "height": 25,
+      "x": 228.75,
+      "y": -166.25,
+      "width": 992.3756489000824,
+      "height": 55.000000000000036,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#1971c2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -22,16 +22,16 @@
       "frameId": null,
       "roundness": null,
       "seed": 1001,
-      "version": 1,
-      "versionNonce": 1101,
+      "version": 111,
+      "versionNonce": 620019643,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780124028987,
       "link": null,
       "locked": false,
       "index": "a0",
       "text": "Vina Bim Shop Section 01 Lambda Architecture",
-      "fontSize": 20,
+      "fontSize": 44.00000000000004,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -44,9 +44,9 @@
     {
       "id": "offline_box",
       "type": "rectangle",
-      "x": 30,
-      "y": 90,
-      "width": 240,
+      "x": -127.5,
+      "y": 261.25000000000006,
+      "width": 270,
       "height": 120,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -62,11 +62,20 @@
         "type": 3
       },
       "seed": 1002,
-      "version": 1,
-      "versionNonce": 1102,
+      "version": 431,
+      "versionNonce": 728257787,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "offline_box_text"
+        },
+        {
+          "id": "offline_to_minio",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123890958,
       "link": null,
       "locked": false,
       "index": "a1"
@@ -74,10 +83,10 @@
     {
       "id": "offline_box_text",
       "type": "text",
-      "x": 52,
-      "y": 113,
-      "width": 196,
-      "height": 74,
+      "x": -102.88389587402344,
+      "y": 291.25000000000006,
+      "width": 220.76779174804688,
+      "height": 60,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -90,11 +99,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1003,
-      "version": 1,
-      "versionNonce": 1103,
+      "version": 431,
+      "versionNonce": 1865022875,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123890958,
       "link": null,
       "locked": false,
       "index": "a2",
@@ -112,10 +121,10 @@
     {
       "id": "producer_box",
       "type": "rectangle",
-      "x": 310,
-      "y": 90,
-      "width": 210,
-      "height": 120,
+      "x": 48.75,
+      "y": 85,
+      "width": 222.5,
+      "height": 100,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#fff4d6",
@@ -130,11 +139,20 @@
         "type": 3
       },
       "seed": 1004,
-      "version": 1,
-      "versionNonce": 1104,
+      "version": 208,
+      "versionNonce": 968401979,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "producer_box_text"
+        },
+        {
+          "id": "producer_to_kafka",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123020955,
       "link": null,
       "locked": false,
       "index": "a3"
@@ -142,10 +160,10 @@
     {
       "id": "producer_box_text",
       "type": "text",
-      "x": 336,
-      "y": 113,
-      "width": 158,
-      "height": 74,
+      "x": 78.37606048583984,
+      "y": 105,
+      "width": 163.2478790283203,
+      "height": 60,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -158,11 +176,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1005,
-      "version": 1,
-      "versionNonce": 1105,
+      "version": 208,
+      "versionNonce": 1160668379,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123020955,
       "link": null,
       "locked": false,
       "index": "a4",
@@ -180,8 +198,8 @@
     {
       "id": "kafka_box",
       "type": "rectangle",
-      "x": 590,
-      "y": 90,
+      "x": 501.25,
+      "y": 80,
       "width": 250,
       "height": 120,
       "angle": 0,
@@ -198,11 +216,28 @@
         "type": 3
       },
       "seed": 1006,
-      "version": 1,
-      "versionNonce": 1106,
+      "version": 34,
+      "versionNonce": 961423547,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "kafka_box_text"
+        },
+        {
+          "id": "producer_to_kafka",
+          "type": "arrow"
+        },
+        {
+          "id": "kafka_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "kafka_to_flink",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123033838,
       "link": null,
       "locked": false,
       "index": "a5"
@@ -210,8 +245,8 @@
     {
       "id": "kafka_box_text",
       "type": "text",
-      "x": 621,
-      "y": 113,
+      "x": 532.25,
+      "y": 103,
       "width": 188,
       "height": 74,
       "angle": 0,
@@ -226,11 +261,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1007,
-      "version": 1,
-      "versionNonce": 1107,
+      "version": 31,
+      "versionNonce": 885206715,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123020955,
       "link": null,
       "locked": false,
       "index": "a6",
@@ -248,8 +283,8 @@
     {
       "id": "flink_box",
       "type": "rectangle",
-      "x": 930,
-      "y": 50,
+      "x": 1111.25,
+      "y": -33.75,
       "width": 210,
       "height": 90,
       "angle": 0,
@@ -266,11 +301,28 @@
         "type": 3
       },
       "seed": 1008,
-      "version": 1,
-      "versionNonce": 1108,
+      "version": 259,
+      "versionNonce": 1672110971,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "flink_box_text"
+        },
+        {
+          "id": "kafka_to_flink",
+          "type": "arrow"
+        },
+        {
+          "id": "flink_to_bi",
+          "type": "arrow"
+        },
+        {
+          "id": "flink_to_minio",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123570450,
       "link": null,
       "locked": false,
       "index": "a7"
@@ -278,8 +330,8 @@
     {
       "id": "flink_box_text",
       "type": "text",
-      "x": 971,
-      "y": 75,
+      "x": 1152.25,
+      "y": -8.75,
       "width": 128,
       "height": 40,
       "angle": 0,
@@ -294,11 +346,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1009,
-      "version": 1,
-      "versionNonce": 1109,
+      "version": 254,
+      "versionNonce": 556153883,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123570450,
       "link": null,
       "locked": false,
       "index": "a8",
@@ -316,8 +368,8 @@
     {
       "id": "spark_box",
       "type": "rectangle",
-      "x": 930,
-      "y": 220,
+      "x": 1110,
+      "y": 112.5,
       "width": 210,
       "height": 90,
       "angle": 0,
@@ -334,11 +386,28 @@
         "type": 3
       },
       "seed": 1010,
-      "version": 1,
-      "versionNonce": 1110,
+      "version": 179,
+      "versionNonce": 1869214805,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "spark_box_text"
+        },
+        {
+          "id": "spark_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "spark_to_exec",
+          "type": "arrow"
+        },
+        {
+          "id": "minio_to_spark",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123302113,
       "link": null,
       "locked": false,
       "index": "a9"
@@ -346,9 +415,9 @@
     {
       "id": "spark_box_text",
       "type": "text",
-      "x": 976,
-      "y": 245,
-      "width": 118,
+      "x": 1145.6400680541992,
+      "y": 137.5,
+      "width": 138.71986389160156,
       "height": 40,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -362,11 +431,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1011,
-      "version": 1,
-      "versionNonce": 1111,
+      "version": 175,
+      "versionNonce": 1932698037,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123302113,
       "link": null,
       "locked": false,
       "index": "aA",
@@ -384,9 +453,9 @@
     {
       "id": "bi_box",
       "type": "rectangle",
-      "x": 1190,
-      "y": 50,
-      "width": 250,
+      "x": 1421.25,
+      "y": -30,
+      "width": 249.99999999999991,
       "height": 90,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -402,11 +471,20 @@
         "type": 3
       },
       "seed": 1012,
-      "version": 1,
-      "versionNonce": 1112,
+      "version": 329,
+      "versionNonce": 1245042331,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "bi_box_text"
+        },
+        {
+          "id": "flink_to_bi",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123570451,
       "link": null,
       "locked": false,
       "index": "aB"
@@ -414,9 +492,9 @@
     {
       "id": "bi_box_text",
       "type": "text",
-      "x": 1211,
-      "y": 75,
-      "width": 208,
+      "x": 1447.3380966186523,
+      "y": -5,
+      "width": 197.8238067626953,
       "height": 40,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -430,11 +508,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1013,
-      "version": 1,
-      "versionNonce": 1113,
+      "version": 327,
+      "versionNonce": 135678779,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123570451,
       "link": null,
       "locked": false,
       "index": "aC",
@@ -452,8 +530,8 @@
     {
       "id": "exec_box",
       "type": "rectangle",
-      "x": 1190,
-      "y": 220,
+      "x": 1421.25,
+      "y": 113.75,
       "width": 250,
       "height": 90,
       "angle": 0,
@@ -470,11 +548,20 @@
         "type": 3
       },
       "seed": 1014,
-      "version": 1,
-      "versionNonce": 1114,
+      "version": 590,
+      "versionNonce": 1515367701,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "exec_box_text"
+        },
+        {
+          "id": "spark_to_exec",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123904108,
       "link": null,
       "locked": false,
       "index": "aD"
@@ -482,8 +569,8 @@
     {
       "id": "exec_box_text",
       "type": "text",
-      "x": 1221,
-      "y": 245,
+      "x": 1452.25,
+      "y": 138.75,
       "width": 188,
       "height": 40,
       "angle": 0,
@@ -498,11 +585,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1015,
-      "version": 1,
-      "versionNonce": 1115,
+      "version": 587,
+      "versionNonce": 436617845,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123904108,
       "link": null,
       "locked": false,
       "index": "aE",
@@ -538,11 +625,40 @@
         "type": 3
       },
       "seed": 1016,
-      "version": 1,
-      "versionNonce": 1116,
+      "version": 7,
+      "versionNonce": 506927541,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "minio_box_text"
+        },
+        {
+          "id": "minio_to_hive_trino",
+          "type": "arrow"
+        },
+        {
+          "id": "offline_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "kafka_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "flink_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "minio_to_spark",
+          "type": "arrow"
+        },
+        {
+          "id": "spark_to_minio",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123815972,
       "link": null,
       "locked": false,
       "index": "aF"
@@ -588,10 +704,10 @@
     {
       "id": "hive_trino_box",
       "type": "rectangle",
-      "x": 900,
-      "y": 390,
-      "width": 260,
-      "height": 100,
+      "x": 1051.25,
+      "y": 432.91666666666674,
+      "width": 317.0833333333333,
+      "height": 84.99999999999997,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#e8fff8",
@@ -606,11 +722,24 @@
         "type": 3
       },
       "seed": 1018,
-      "version": 1,
-      "versionNonce": 1118,
+      "version": 162,
+      "versionNonce": 599554971,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "hive_trino_box_text"
+        },
+        {
+          "id": "spark_to_minio",
+          "type": "arrow"
+        },
+        {
+          "id": "minio_to_hive_trino",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123821779,
       "link": null,
       "locked": false,
       "index": "aH"
@@ -618,9 +747,9 @@
     {
       "id": "hive_trino_box_text",
       "type": "text",
-      "x": 930,
-      "y": 420,
-      "width": 200,
+      "x": 1085.6477915445962,
+      "y": 455.41666666666674,
+      "width": 248.28775024414062,
       "height": 40,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -634,11 +763,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 1019,
-      "version": 1,
-      "versionNonce": 1119,
+      "version": 161,
+      "versionNonce": 595611707,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123821779,
       "link": null,
       "locked": false,
       "index": "aI",
@@ -656,10 +785,10 @@
     {
       "id": "offline_to_minio",
       "type": "arrow",
-      "x": 150,
-      "y": 210,
-      "width": 260,
-      "height": 140,
+      "x": 147.53059497529634,
+      "y": 319.69990093274225,
+      "width": 129.77994800216473,
+      "height": 138.31480510444055,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -674,21 +803,35 @@
         "type": 2
       },
       "seed": 1020,
-      "version": 1,
-      "versionNonce": 1120,
+      "version": 541,
+      "versionNonce": 1777177147,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123890959,
       "link": null,
       "locked": false,
       "index": "aJ",
       "points": [
-        [0, 0],
-        [260, 140]
+        [
+          0,
+          0
+        ],
+        [
+          129.77994800216473,
+          138.31480510444055
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "offline_box",
+        "focus": -0.7399530895680337,
+        "gap": 5.550812184029297
+      },
+      "endBinding": {
+        "elementId": "minio_box",
+        "focus": -0.8107670305616749,
+        "gap": 2.852327188753918
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -696,11 +839,11 @@
     {
       "id": "offline_to_minio_label",
       "type": "text",
-      "x": 120,
-      "y": 290,
-      "width": 250,
-      "height": 20,
-      "angle": 0,
+      "x": -49.63884447352986,
+      "y": 417.5350644333095,
+      "width": 279.6418705608327,
+      "height": 20.180341174493076,
+      "angle": 0.008737894538125346,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -712,32 +855,32 @@
       "frameId": null,
       "roundness": null,
       "seed": 1021,
-      "version": 1,
-      "versionNonce": 1121,
+      "version": 236,
+      "versionNonce": 1985754933,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780124013137,
       "link": null,
       "locked": false,
       "index": "aK",
       "text": "landed batch snapshots (Parquet)",
-      "fontSize": 14,
+      "fontSize": 16.14427293959446,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "landed batch snapshots (Parquet)",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "producer_to_kafka",
       "type": "arrow",
-      "x": 520,
-      "y": 150,
-      "width": 70,
-      "height": 0,
+      "x": 275.66732341045855,
+      "y": 142.5825612065499,
+      "width": 223.4326077040826,
+      "height": 1.038481174482115,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -752,21 +895,35 @@
         "type": 2
       },
       "seed": 1022,
-      "version": 1,
-      "versionNonce": 1122,
+      "version": 456,
+      "versionNonce": 1763427669,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123021408,
       "link": null,
       "locked": false,
       "index": "aL",
       "points": [
-        [0, 0],
-        [70, 0]
+        [
+          0,
+          0
+        ],
+        [
+          223.4326077040826,
+          1.038481174482115
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "producer_box",
+        "focus": 0.13945694826143332,
+        "gap": 4.41732341045855
+      },
+      "endBinding": {
+        "elementId": "kafka_box",
+        "focus": -0.0695270479946849,
+        "gap": 2.150068885458836
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -774,10 +931,10 @@
     {
       "id": "producer_to_kafka_label",
       "type": "text",
-      "x": 517,
-      "y": 124,
-      "width": 130,
-      "height": 20,
+      "x": 294.5,
+      "y": 109,
+      "width": 186.07142857142853,
+      "height": 21.249999999999996,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -790,32 +947,37 @@
       "frameId": null,
       "roundness": null,
       "seed": 1023,
-      "version": 1,
-      "versionNonce": 1123,
+      "version": 139,
+      "versionNonce": 371228149,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "id": "producer_to_kafka",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123741850,
       "link": null,
       "locked": false,
       "index": "aM",
       "text": "JSON envelope events",
-      "fontSize": 14,
+      "fontSize": 16.999999999999996,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "JSON envelope events",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "kafka_to_flink",
       "type": "arrow",
-      "x": 840,
-      "y": 120,
-      "width": 90,
-      "height": -10,
+      "x": 754.9312924920594,
+      "y": 144.0968259609472,
+      "width": 355.4013624968445,
+      "height": 135.3066775422752,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -830,21 +992,35 @@
         "type": 2
       },
       "seed": 1024,
-      "version": 1,
-      "versionNonce": 1124,
+      "version": 429,
+      "versionNonce": 1440540507,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123873210,
       "link": null,
       "locked": false,
       "index": "aN",
       "points": [
-        [0, 0],
-        [90, -10]
+        [
+          0,
+          0
+        ],
+        [
+          355.4013624968445,
+          -135.3066775422752
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "kafka_box",
+        "focus": 0.4934291443488244,
+        "gap": 3.681292492059356
+      },
+      "endBinding": {
+        "elementId": "flink_box",
+        "focus": 0.5034909439646547,
+        "gap": 1
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -852,11 +1028,11 @@
     {
       "id": "kafka_to_flink_label",
       "type": "text",
-      "x": 830,
-      "y": 82,
-      "width": 186,
-      "height": 20,
-      "angle": 0,
+      "x": 797.6109948333252,
+      "y": 37.535242564403134,
+      "width": 228.6240194706116,
+      "height": 24.583227900065765,
+      "angle": 5.9401227477037075,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -868,16 +1044,21 @@
       "frameId": null,
       "roundness": null,
       "seed": 1025,
-      "version": 1,
-      "versionNonce": 1125,
+      "version": 311,
+      "versionNonce": 1757020213,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "id": "kafka_to_flink",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123578821,
       "link": null,
       "locked": false,
       "index": "aO",
       "text": "direct real-time consumption",
-      "fontSize": 14,
+      "fontSize": 17.208259530046035,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -890,10 +1071,10 @@
     {
       "id": "kafka_to_minio",
       "type": "arrow",
-      "x": 690,
-      "y": 210,
-      "width": -70,
-      "height": 140,
+      "x": 621.25,
+      "y": 206.25,
+      "width": 1.25,
+      "height": 143.75,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -908,21 +1089,35 @@
         "type": 2
       },
       "seed": 1026,
-      "version": 1,
-      "versionNonce": 1126,
+      "version": 42,
+      "versionNonce": 550140373,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123024880,
       "link": null,
       "locked": false,
       "index": "aP",
       "points": [
-        [0, 0],
-        [-70, 140]
+        [
+          0,
+          0
+        ],
+        [
+          -1.25,
+          143.75
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "kafka_box",
+        "focus": 0.035244198129546024,
+        "gap": 6.25
+      },
+      "endBinding": {
+        "elementId": "minio_box",
+        "focus": 0.30376792264088065,
+        "gap": 1
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -930,10 +1125,10 @@
     {
       "id": "kafka_to_minio_label",
       "type": "text",
-      "x": 600,
-      "y": 290,
-      "width": 224,
-      "height": 20,
+      "x": 335.8571428571429,
+      "y": 260,
+      "width": 273.1428571428571,
+      "height": 19.999999999999993,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -946,32 +1141,32 @@
       "frameId": null,
       "roundness": null,
       "seed": 1027,
-      "version": 1,
-      "versionNonce": 1127,
+      "version": 137,
+      "versionNonce": 2092767093,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123884728,
       "link": null,
       "locked": false,
       "index": "aQ",
       "text": "landed replayable event log (JSON)",
-      "fontSize": 14,
+      "fontSize": 15.999999999999995,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "landed replayable event log (JSON)",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "minio_to_spark",
       "type": "arrow",
-      "x": 800,
-      "y": 400,
-      "width": 130,
-      "height": -120,
+      "x": 800.9442525006617,
+      "y": 395.5066965793027,
+      "width": 309.7927545744186,
+      "height": 206.51976988310804,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -986,21 +1181,35 @@
         "type": 2
       },
       "seed": 1028,
-      "version": 1,
-      "versionNonce": 1128,
+      "version": 170,
+      "versionNonce": 969722837,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123849044,
       "link": null,
       "locked": false,
       "index": "aR",
       "points": [
-        [0, 0],
-        [130, -120]
+        [
+          0,
+          0
+        ],
+        [
+          309.7927545744186,
+          -206.51976988310804
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "minio_box",
+        "focus": 0.4916421985703738,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "spark_box",
+        "focus": 0.33060673595629547,
+        "gap": 1
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -1008,11 +1217,11 @@
     {
       "id": "minio_to_spark_label",
       "type": "text",
-      "x": 770,
-      "y": 315,
-      "width": 230,
-      "height": 20,
-      "angle": 0,
+      "x": 787.8097809625106,
+      "y": 255.68825555767143,
+      "width": 331.57772130595424,
+      "height": 20.360035518786642,
+      "angle": 5.705342460038999,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -1024,32 +1233,37 @@
       "frameId": null,
       "roundness": null,
       "seed": 1029,
-      "version": 1,
-      "versionNonce": 1129,
+      "version": 839,
+      "versionNonce": 1845165877,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "id": "minio_to_spark",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123853158,
       "link": null,
       "locked": false,
       "index": "aS",
       "text": "hourly batch reads landed Bronze data",
-      "fontSize": 14,
+      "fontSize": 16.288028415029316,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "hourly batch reads landed Bronze data",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "spark_to_minio",
       "type": "arrow",
-      "x": 1020,
-      "y": 310,
-      "width": -120,
-      "height": 80,
+      "x": 1151.8462995055868,
+      "y": 210.29944657411156,
+      "width": 350.3468519701088,
+      "height": 232.0216451321776,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1064,21 +1278,35 @@
         "type": 2
       },
       "seed": 1030,
-      "version": 1,
-      "versionNonce": 1130,
+      "version": 506,
+      "versionNonce": 929744373,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123834871,
       "link": null,
       "locked": false,
       "index": "aT",
       "points": [
-        [0, 0],
-        [-120, 80]
+        [
+          0,
+          0
+        ],
+        [
+          -350.3468519701088,
+          232.0216451321776
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "spark_box",
+        "focus": -0.09582101782737804,
+        "gap": 7.799446574111556
+      },
+      "endBinding": {
+        "elementId": "minio_box",
+        "focus": 0.6693754786001974,
+        "gap": 1.499447535477998
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -1086,11 +1314,11 @@
     {
       "id": "spark_to_minio_label",
       "type": "text",
-      "x": 970,
-      "y": 338,
-      "width": 176,
-      "height": 20,
-      "angle": 0,
+      "x": 869.8185129395872,
+      "y": 322.8558700862391,
+      "width": 283.1237403237259,
+      "height": 23.2319271815859,
+      "angle": 5.682619481371861,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -1102,32 +1330,37 @@
       "frameId": null,
       "roundness": null,
       "seed": 1031,
-      "version": 1,
-      "versionNonce": 1131,
+      "version": 545,
+      "versionNonce": 1224237365,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "id": "spark_to_minio",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123863359,
       "link": null,
       "locked": false,
       "index": "aU",
       "text": "Silver and later Gold outputs",
-      "fontSize": 14,
+      "fontSize": 18.58554174526872,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Silver and later Gold outputs",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "flink_to_minio",
       "type": "arrow",
-      "x": 1010,
-      "y": 140,
-      "width": -220,
-      "height": 230,
+      "x": 1113.2814293829713,
+      "y": 47.490104323983076,
+      "width": 392.5668558189867,
+      "height": 302.18067353977096,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1142,21 +1375,35 @@
         "type": 2
       },
       "seed": 1032,
-      "version": 1,
-      "versionNonce": 1132,
+      "version": 377,
+      "versionNonce": 1765494267,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123570451,
       "link": null,
       "locked": false,
       "index": "aV",
       "points": [
-        [0, 0],
-        [-220, 230]
+        [
+          0,
+          0
+        ],
+        [
+          -392.5668558189867,
+          302.18067353977096
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "flink_box",
+        "focus": 0.34160916078001796,
+        "gap": 1
+      },
+      "endBinding": {
+        "elementId": "minio_box",
+        "focus": 0.16914541823367257,
+        "gap": 1
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -1164,11 +1411,11 @@
     {
       "id": "flink_to_minio_label",
       "type": "text",
-      "x": 860,
-      "y": 248,
-      "width": 178,
-      "height": 20,
-      "angle": 0,
+      "x": 746.3560596771504,
+      "y": 176.8017865467005,
+      "width": 283.02350237131805,
+      "height": 22.850801806219458,
+      "angle": 5.65755712418701,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
@@ -1180,32 +1427,32 @@
       "frameId": null,
       "roundness": null,
       "seed": 1033,
-      "version": 1,
-      "versionNonce": 1133,
+      "version": 692,
+      "versionNonce": 61563483,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123589950,
       "link": null,
       "locked": false,
       "index": "aW",
       "text": "curated streaming sink outputs",
-      "fontSize": 14,
+      "fontSize": 18.280641444975558,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "curated streaming sink outputs",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "minio_to_hive_trino",
       "type": "arrow",
-      "x": 800,
-      "y": 440,
-      "width": 100,
-      "height": 0,
+      "x": 806.2575306960713,
+      "y": 468.22564204417034,
+      "width": 243.5651619606034,
+      "height": 0.7524997624084904,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1220,21 +1467,35 @@
         "type": 2
       },
       "seed": 1034,
-      "version": 1,
-      "versionNonce": 1134,
+      "version": 271,
+      "versionNonce": 1897959643,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123821779,
       "link": null,
       "locked": false,
       "index": "aX",
       "points": [
-        [0, 0],
-        [100, 0]
+        [
+          0,
+          0
+        ],
+        [
+          243.5651619606034,
+          0.7524997624084904
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "minio_box",
+        "focus": 0.31475629568261865,
+        "gap": 6.655929353167494
+      },
+      "endBinding": {
+        "elementId": "hive_trino_box",
+        "focus": 0.13164589287518993,
+        "gap": 1.4802329045553506
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -1242,10 +1503,10 @@
     {
       "id": "minio_to_hive_trino_label",
       "type": "text",
-      "x": 820,
-      "y": 416,
-      "width": 108,
-      "height": 20,
+      "x": 846.25,
+      "y": 478.6388888888889,
+      "width": 160.5089285714287,
+      "height": 22.500000000000004,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1258,32 +1519,37 @@
       "frameId": null,
       "roundness": null,
       "seed": 1035,
-      "version": 1,
-      "versionNonce": 1135,
+      "version": 104,
+      "versionNonce": 1867211541,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780160400000,
+      "boundElements": [
+        {
+          "id": "minio_to_hive_trino",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780123909208,
       "link": null,
       "locked": false,
       "index": "aY",
       "text": "table registration",
-      "fontSize": 14,
+      "fontSize": 18.000000000000004,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "table registration",
-      "autoResize": true,
+      "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 12
     },
     {
       "id": "flink_to_bi",
       "type": "arrow",
-      "x": 1140,
-      "y": 95,
-      "width": 50,
-      "height": 0,
+      "x": 1319.6673450110961,
+      "y": 12.980224273450801,
+      "width": 100.88560970155504,
+      "height": 0.9936332777014663,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1298,21 +1564,35 @@
         "type": 2
       },
       "seed": 1036,
-      "version": 1,
-      "versionNonce": 1136,
+      "version": 802,
+      "versionNonce": 1331705717,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123571016,
       "link": null,
       "locked": false,
       "index": "aZ",
       "points": [
-        [0, 0],
-        [50, 0]
+        [
+          0,
+          0
+        ],
+        [
+          100.88560970155504,
+          0.9936332777014663
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "flink_box",
+        "focus": 0.015459296256102486,
+        "gap": 1.5826549889038688
+      },
+      "endBinding": {
+        "elementId": "bi_box",
+        "focus": -0.004582654621008482,
+        "gap": 1
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
@@ -1320,10 +1600,10 @@
     {
       "id": "spark_to_exec",
       "type": "arrow",
-      "x": 1140,
-      "y": 265,
-      "width": 50,
-      "height": 0,
+      "x": 1323.6226268708228,
+      "y": 159.89709774117927,
+      "width": 91.51849304692769,
+      "height": 0.528929729184199,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1338,21 +1618,35 @@
         "type": 2
       },
       "seed": 1037,
-      "version": 1,
-      "versionNonce": 1137,
+      "version": 1035,
+      "versionNonce": 1029712853,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780160400000,
+      "updated": 1780123904108,
       "link": null,
       "locked": false,
       "index": "aa",
       "points": [
-        [0, 0],
-        [50, 0]
+        [
+          0,
+          0
+        ],
+        [
+          91.51849304692769,
+          0.528929729184199
+        ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {
+        "elementId": "spark_box",
+        "focus": 0.03869956491572307,
+        "gap": 3.9716259975318735
+      },
+      "endBinding": {
+        "elementId": "exec_box",
+        "focus": -0.05319030388184011,
+        "gap": 6.561289939407061
+      },
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
