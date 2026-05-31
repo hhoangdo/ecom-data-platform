@@ -119,6 +119,21 @@ def test_catalog_summary_rows_include_columns_and_descriptions() -> None:
     ]
 
 
+def test_schema_design_render_metadata_records_fallback(tmp_path: Path) -> None:
+    evidence = load_evidence_module()
+
+    def unavailable_server(source: str, output_path: Path) -> None:
+        raise OSError("offline")
+
+    evidence.render_plantuml_png = unavailable_server
+
+    metadata = evidence.render_schema_design(Path(__file__).resolve().parents[2], tmp_path / "schema_design.png")
+
+    assert metadata["schema_design_render_mode"] == "fallback_png"
+    assert "offline" in metadata["schema_design_render_error"]
+    assert (tmp_path / "schema_design.png").is_file()
+
+
 def test_section02_deliverable_references_evidence_artifacts() -> None:
     repo_root = Path(__file__).resolve().parents[2]
     content = (repo_root / "deliverables" / "02_schema_design.md").read_text(encoding="utf-8")

@@ -81,7 +81,7 @@ def main() -> int:
     write_csv(evidence_root / "schema_inventory.csv", inventory_rows)
     write_csv(evidence_root / "table_row_counts.csv", row_count_rows)
 
-    render_schema_design(repo_root, screenshots_root / "schema_design.png")
+    render_metadata = render_schema_design(repo_root, screenshots_root / "schema_design.png")
     write_table_png(
         screenshots_root / "gold_schema_inventory.png",
         "Gold Schema Inventory",
@@ -104,6 +104,7 @@ def main() -> int:
         "catalog_model_count": len(catalog_rows),
         "schema_inventory_row_count": len(inventory_rows),
         "table_row_count": len(row_count_rows),
+        **render_metadata,
         "artifacts": expected_artifact_paths(),
     }
     (evidence_root / "run_manifest.json").write_text(json.dumps(run_manifest, indent=2), encoding="utf-8")
@@ -294,10 +295,11 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         writer.writerows(rows)
 
 
-def render_schema_design(repo_root: Path, output_path: Path) -> None:
+def render_schema_design(repo_root: Path, output_path: Path) -> dict[str, str]:
     source = (repo_root / "architecture/diagrams/schema_design.puml").read_text(encoding="utf-8")
     try:
         render_plantuml_png(source, output_path)
+        return {"schema_design_render_mode": "plantuml_server"}
     except (OSError, urllib.error.URLError, TimeoutError, ValueError) as exc:
         write_table_png(
             output_path,
@@ -305,6 +307,10 @@ def render_schema_design(repo_root: Path, output_path: Path) -> None:
             [{"status": "PlantUML server unavailable", "detail": str(exc)[:120]}],
             ["status", "detail"],
         )
+        return {
+            "schema_design_render_mode": "fallback_png",
+            "schema_design_render_error": str(exc)[:240],
+        }
 
 
 def render_plantuml_png(source: str, output_path: Path) -> None:
