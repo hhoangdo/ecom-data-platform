@@ -1,22 +1,23 @@
 {
-  "generated_at": "2026-05-31T03:20:06.143546+00:00",
+  "generated_at": "2026-05-31T11:50:03.151820+00:00",
   "commands": [
     {
       "command": "dbt build --project-dir dbt --profiles-dir dbt",
       "return_code": 0,
-      "elapsed_seconds": 25.191
+      "elapsed_seconds": 17.543
     },
     {
       "command": "dbt docs generate --project-dir dbt --profiles-dir dbt",
       "return_code": 0,
-      "elapsed_seconds": 8.349
+      "elapsed_seconds": 7.851
     }
   ],
   "dbt_model_count": 52,
-  "dbt_test_count": 60,
+  "dbt_test_count": 66,
   "catalog_model_count": 52,
-  "schema_inventory_row_count": 630,
+  "schema_inventory_row_count": 634,
   "table_row_count": 52,
+  "schema_design_render_mode": "plantuml_server",
   "artifacts": [
     "dbt_build_report.md",
     "dbt_test_results.csv",

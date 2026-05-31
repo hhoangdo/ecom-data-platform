@@ -1,5 +1,8 @@
 import importlib.util
+import json
 from pathlib import Path
+
+import pandas as pd
 
 
 def load_evidence_module():
@@ -145,3 +148,14 @@ def test_section02_deliverable_references_evidence_artifacts() -> None:
         "evidence/02_schema_design/table_row_counts.csv",
     ]:
         assert phrase in content
+
+
+def test_generated_section02_evidence_records_quarantine_and_render_mode() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    manifest = json.loads((repo_root / "evidence" / "02_schema_design" / "run_manifest.json").read_text(encoding="utf-8"))
+    row_counts = pd.read_csv(repo_root / "evidence" / "02_schema_design" / "table_row_counts.csv")
+    indexed_counts = row_counts.set_index(["schema", "table_name"])["row_count"]
+
+    assert manifest["schema_design_render_mode"] in {"plantuml_server", "fallback_png"}
+    assert indexed_counts[("bronze", "raw_bad_events")] > 0
+    assert indexed_counts[("bronze", "raw_bad_snapshots")] > 0

@@ -1,6 +1,6 @@
 schema,model_name,relation_type,column_count,columns,description
-bronze,raw_bad_events,VIEW,4,"error_reason, ingest_ts, raw_payload, source_topic",Quarantine contract for malformed Kafka envelopes and Kafka DLQ payloads.
-bronze,raw_bad_snapshots,VIEW,4,"error_reason, ingest_ts, raw_record, source_dataset",Quarantine contract for malformed periodic table-state export records.
+bronze,raw_bad_events,VIEW,7,"dlq_id, error_reason, event_topic, ingest_ts, raw_payload, schema_version, source_topic",Quarantine contract for malformed Kafka envelopes and Kafka DLQ payloads.
+bronze,raw_bad_snapshots,VIEW,5,"bad_record_id, error_reason, ingest_ts, raw_record, source_dataset",Quarantine contract for malformed periodic table-state export records.
 bronze,raw_customers,VIEW,13,"acquisition_channel, anonymous_id, city, city_code, country, created_ts, customer_id, ingest_ts, marketing_opt_in, preferred_device, region, segment, signup_ts",
 bronze,raw_inventory_snapshots,VIEW,7,"ingest_ts, product_id, reserved_stock, seller_id, snapshot_id, snapshot_ts, stock_on_hand",
 bronze,raw_kafka_catalog_events,VIEW,10,"correlation_ids, created_ts, event_id, event_timestamp, event_topic, event_type, ingest_ts, payload, producer, schema_version",

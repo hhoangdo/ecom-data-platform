@@ -15,6 +15,8 @@ The target architecture remains:
 
 For local implementation, `dbt-DuckDB is the local execution and test harness`. This lets the coursework run schema transformations and data quality tests without standing up the full Spark/Trino/Pinot stack. The dbt models mirror the intended Bronze, Silver, and Gold contracts so the implementation stays aligned with the current Lambda architecture.
 
+Spark, Flink, Apache Pinot, and Trino remain architectural target contracts in this local coursework phase. The runnable implementation for Section `02` is dbt-DuckDB, with evidence generated from the final medium Section `01` raw dataset.
+
 ### Central Source Rationale
 
 `JSON event envelopes answer what happened now`. They preserve producer intent, event time, creation time, correlation IDs, and payload details. They are best for immediate operational visibility, replay, and timing analysis.
@@ -177,5 +179,6 @@ The evidence package is written under `evidence/02_schema_design/` and includes:
 - `evidence/02_schema_design/screenshots/schema_design.png`
 - `evidence/02_schema_design/screenshots/gold_schema_inventory.png`
 - `evidence/02_schema_design/screenshots/dbt_test_summary.png`
+- `evidence/final_dataset/final_dataset_manifest.json`
 
 The full dbt docs site in `dbt/target/` remains a transient local artifact and is not committed.

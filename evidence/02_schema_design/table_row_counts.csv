@@ -1,53 +1,53 @@
 schema,table_name,relation_type,row_count
-bronze,raw_bad_events,VIEW,0
-bronze,raw_bad_snapshots,VIEW,0
-bronze,raw_customers,VIEW,800
-bronze,raw_inventory_snapshots,VIEW,1200
-bronze,raw_kafka_catalog_events,VIEW,1940
-bronze,raw_kafka_commerce_events,VIEW,17810
-bronze,raw_kafka_fulfillment_events,VIEW,5100
+bronze,raw_bad_events,VIEW,4
+bronze,raw_bad_snapshots,VIEW,4
+bronze,raw_customers,VIEW,12000
+bronze,raw_inventory_snapshots,VIEW,60000
+bronze,raw_kafka_catalog_events,VIEW,69160
+bronze,raw_kafka_commerce_events,VIEW,442451
+bronze,raw_kafka_fulfillment_events,VIEW,127921
 bronze,raw_kafka_ops_events,VIEW,5
-bronze,raw_order_items,VIEW,6891
-bronze,raw_orders,VIEW,1800
-bronze,raw_payments,VIEW,1800
-bronze,raw_product_category_map,VIEW,729
-bronze,raw_products,VIEW,600
-bronze,raw_promotions,VIEW,16
-bronze,raw_sellers,VIEW,80
-bronze,raw_shipments,VIEW,1800
-gold,agg_hourly_reconciled_kpi,BASE TABLE,164
-gold,bridge_product_category,BASE TABLE,729
+bronze,raw_order_items,VIEW,168496
+bronze,raw_orders,VIEW,45000
+bronze,raw_payments,VIEW,45000
+bronze,raw_product_category_map,VIEW,7340
+bronze,raw_products,VIEW,6000
+bronze,raw_promotions,VIEW,80
+bronze,raw_sellers,VIEW,600
+bronze,raw_shipments,VIEW,45000
+gold,agg_hourly_reconciled_kpi,BASE TABLE,1440
+gold,bridge_product_category,BASE TABLE,7340
 gold,dim_category,BASE TABLE,20
-gold,dim_customer,BASE TABLE,800
-gold,dim_date,BASE TABLE,9
+gold,dim_customer,BASE TABLE,12000
+gold,dim_date,BASE TABLE,62
 gold,dim_order_status,BASE TABLE,2
 gold,dim_payment_method,BASE TABLE,5
-gold,dim_product,BASE TABLE,600
-gold,dim_promotion,BASE TABLE,16
-gold,dim_seller,BASE TABLE,80
+gold,dim_product,BASE TABLE,6000
+gold,dim_promotion,BASE TABLE,80
+gold,dim_seller,BASE TABLE,600
 gold,dim_shipment_status,BASE TABLE,4
 gold,dim_shipping_method,BASE TABLE,5
-gold,fact_inventory_snapshot,BASE TABLE,1200
-gold,fact_order,BASE TABLE,1800
-gold,fact_order_item,BASE TABLE,6756
-gold,fact_payment_attempt,BASE TABLE,1800
-gold,fact_promotion_application,BASE TABLE,2233
-gold,fact_shipment,BASE TABLE,1800
-gold,feat_customer_90d,BASE TABLE,688
-gold,feat_customer_unified,BASE TABLE,688
-gold,feat_stream_60m,BASE TABLE,4652
-gold,obt_order_performance,BASE TABLE,1800
-silver,stg_catalog_events,VIEW,1940
-silver,stg_commerce_events,VIEW,17623
-silver,stg_customers,VIEW,800
-silver,stg_fulfillment_events,VIEW,5100
-silver,stg_inventory_snapshots,VIEW,1200
+gold,fact_inventory_snapshot,BASE TABLE,60000
+gold,fact_order,BASE TABLE,45000
+gold,fact_order_item,BASE TABLE,165193
+gold,fact_payment_attempt,BASE TABLE,45000
+gold,fact_promotion_application,BASE TABLE,58401
+gold,fact_shipment,BASE TABLE,45000
+gold,feat_customer_90d,BASE TABLE,11479
+gold,feat_customer_unified,BASE TABLE,11479
+gold,feat_stream_60m,BASE TABLE,117638
+gold,obt_order_performance,BASE TABLE,45000
+silver,stg_catalog_events,VIEW,69160
+silver,stg_commerce_events,VIEW,437811
+silver,stg_customers,VIEW,12000
+silver,stg_fulfillment_events,VIEW,127921
+silver,stg_inventory_snapshots,VIEW,60000
 silver,stg_ops_events,VIEW,5
-silver,stg_order_items,VIEW,6756
-silver,stg_orders,VIEW,1800
-silver,stg_payments,VIEW,1800
-silver,stg_product_category_map,VIEW,729
-silver,stg_products,VIEW,600
-silver,stg_promotions,VIEW,16
-silver,stg_sellers,VIEW,80
-silver,stg_shipments,VIEW,1800
+silver,stg_order_items,VIEW,165193
+silver,stg_orders,VIEW,45000
+silver,stg_payments,VIEW,45000
+silver,stg_product_category_map,VIEW,7340
+silver,stg_products,VIEW,6000
+silver,stg_promotions,VIEW,80
+silver,stg_sellers,VIEW,600
+silver,stg_shipments,VIEW,45000

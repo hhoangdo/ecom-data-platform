@@ -122,48 +122,52 @@ Lambda-specific generated evidence also records Kafka topic row counts and schem
 
 Quarantine examples are generated as wrapper records so invalid JSON examples do not break the local file readers. The bad-record set covers missing required keys, invalid JSON payloads, invalid timestamps, and unknown schema versions. These records are routed only to quarantine/DLQ contracts and are excluded from normal Bronze, Silver, and Gold tables.
 
-## 6. Latest Smoke Evidence
+## 6. Final Medium Evidence
 
-Latest command:
+Final Section `01` evidence baseline command:
 
 ```powershell
-uv run python scripts/generate/run_generator.py --scale smoke --mode full --clean
+uv run python scripts/generate/run_generator.py --scale medium --mode full --clean --seed 42
 ```
 
 Generated row counts:
 
 | Dataset | Rows |
 | --- | ---: |
-| `customers` | 800 |
-| `sellers` | 80 |
-| `products` | 600 |
-| `product_category_map` | 729 |
-| `inventory_snapshots` | 1,200 |
-| `promotions` | 16 |
-| `orders` | 1,800 |
-| `order_items` | 6,891 |
-| `payments` | 1,800 |
-| `shipments` | 1,800 |
-| `kafka_topics` | 24,855 |
+| `bad_snapshots` | 4 |
+| `customers` | 12,000 |
+| `sellers` | 600 |
+| `products` | 6,000 |
+| `product_category_map` | 7,340 |
+| `inventory_snapshots` | 60,000 |
+| `promotions` | 80 |
+| `orders` | 45,000 |
+| `order_items` | 168,496 |
+| `payments` | 45,000 |
+| `shipments` | 45,000 |
+| `kafka_topics` | 639,541 |
 
 Selected quality metrics:
 
 | Metric | Observed Value |
 | --- | ---: |
-| `hcmc_hanoi_customer_share` | 0.45125 |
-| `fmcg_elha_product_share` | 0.66 |
-| `offline_order_item_duplicate_rate` | 0.01959 |
-| `issue_commerce_events_late_arrival` | 0.12536 |
-| `issue_commerce_events_exact_duplicate_event_payload` | 0.01475 |
-| `issue_commerce_events_missing_device_type` | 0.03921 |
+| `hcmc_hanoi_customer_share` | 0.453 |
+| `fmcg_elha_product_share` | 0.66933 |
+| `offline_order_item_duplicate_rate` | 0.0196 |
+| `issue_commerce_events_late_arrival` | 0.11959 |
+| `issue_commerce_events_exact_duplicate_event_payload` | 0.01478 |
+| `issue_commerce_events_missing_device_type` | 0.03988 |
+| `issue_bad_snapshots_invalid_json` | 0.25 |
+| `issue_dead_letter_events_invalid_json` | 0.25 |
 
 Kafka topic row counts:
 
 | Topic | Rows |
 | --- | ---: |
-| `catalog_events` | 1,940 |
-| `commerce_events` | 17,810 |
-| `fulfillment_events` | 5,100 |
+| `catalog_events` | 69,160 |
+| `commerce_events` | 442,451 |
+| `dead_letter_events` | 4 |
+| `fulfillment_events` | 127,921 |
 | `ops_events` | 5 |
 
 Evidence files:
@@ -177,6 +181,8 @@ Evidence files:
 - `evidence/01_data_generator/schema_version_summary.csv`
 - `evidence/01_data_generator/sample_rows/*.csv`
 - `evidence/01_data_generator/quality_report.md`
+- `evidence/final_dataset/vina_bim_shop_medium_raw.zip`
+- `evidence/final_dataset/final_dataset_manifest.json`
 
 ## 7. Sample Rows
 
@@ -184,19 +190,31 @@ Sample `orders` row:
 
 | order_id | customer_id | session_id | primary_category | status | shipping_city | promotion_id | order_net_amount |
 | --- | --- | --- | --- | --- | --- | --- | ---: |
-| `ORD-HCM-20260429-00000001` | `CUS-HCM-00000751` | `SES-HCM-20260429-00000001` | `Fashion` | `paid` | `Ho Chi Minh City` | `PRM-FASHION-00000005` | 511064.0 |
+| `ORD-BDG-20260412-00000001` | `CUS-BDG-00011235` | `SES-BDG-20260412-00000001` | `Fashion` | `paid` | `Binh Duong` |  | 1671000.0 |
 
 Sample `products` row:
 
 | product_id | seller_id | primary_category | primary_subcategory | brand | fulfillment_channel |
 | --- | --- | --- | --- | --- | --- |
-| `PRD-FASHION-00000003` | `SEL-HCM-STA-00000051` | `Fashion` | `Men's Fashion` | `DenimSaigon` | `platform_fulfilled` |
+| `PRD-FMCG-00000001` | `SEL-DAD-STA-00000267` | `FMCG` | `Household Goods` | `GlowVina` |  |
 
 Sample Kafka-shaped `commerce_events` row:
 
 | event_id | event_type | event_topic | schema_version | producer |
 | --- | --- | --- | ---: | --- |
-| `KEVT-COM-SEARCH-PERFORMED-20260425-0000000001` | `search_performed` | `commerce_events` | 1 | `vina_bim_shop.synthetic_source` |
+| `KEVT-COM-SEARCH-PERFORMED-20260303-0000000001` | `search_performed` | `commerce_events` | 1 | `vina_bim_shop.synthetic_source` |
+
+Sample DLQ `dead_letter_events` row:
+
+| dlq_id | source_topic | error_reason | event_topic |
+| --- | --- | --- | --- |
+| `DLQ-EVENT-0002` | `commerce_events` | `invalid_json` | `dead_letter_events` |
+
+Sample `bad_snapshots` row:
+
+| bad_record_id | source_dataset | error_reason |
+| --- | --- | --- |
+| `BAD-SNAPSHOT-0003` | `shipments` | `invalid_timestamp` |
 
 ## 8. Implementation Notes
 
@@ -218,4 +236,5 @@ Acceptance tests cover:
 - duplicate, missingness, late-arrival, and burst-event behavior
 - CLI execution and evidence generation
 - Kafka topic output existence, common envelope fields, and event-topic evidence summaries
+- DLQ and bad-snapshot quarantine examples
 - Lambda architecture diagram artifact presence
