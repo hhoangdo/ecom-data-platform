@@ -18,3 +18,7 @@ data/gold/*
 !data/gold/.gitkeep
 
 *.duckdb
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml

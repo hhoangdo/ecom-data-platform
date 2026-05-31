@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: dim_customer
+    columns:
+      - name: customer_key
+        tests: [not_null, unique]
+      - name: customer_id
+        tests: [not_null, unique]
+  - name: dim_product
+    columns:
+      - name: product_key
+        tests: [not_null, unique]
+      - name: product_id
+        tests: [not_null, unique]
+  - name: dim_category
+    columns:
+      - name: category_key
+        tests: [not_null, unique]
+  - name: fact_order
+    tests:
+      - expression_is_true:
+          arguments:
+            expression: "official_paid_revenue >= 0"
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_key
+      - name: order_status_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_order_status')
+                field: order_status_key
+  - name: dim_order_status
+    columns:
+      - name: order_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["paid", "payment_failed"]
+  - name: fact_order_item
+    tests:
+      - expression_is_true:
+          arguments:
+            expression: "estimated_cost >= 0 and estimated_margin is not null"
+    columns:
+      - name: order_item_id
+        tests: [not_null, unique]
+      - name: product_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_key
+  - name: fact_payment_attempt
+    columns:
+      - name: payment_id
+        tests: [not_null, unique]
+      - name: payment_method_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_payment_method')
+                field: payment_method_key
+  - name: fact_shipment
+    columns:
+      - name: shipment_id
+        tests: [not_null, unique]
+  - name: fact_inventory_snapshot
+    columns:
+      - name: snapshot_id
+        tests: [not_null, unique]
+  - name: fact_promotion_application
+    columns:
+      - name: order_item_id
+        tests: [not_null, unique]
+  - name: obt_order_performance
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
+  - name: agg_hourly_reconciled_kpi
+    columns:
+      - name: metric_hour
+        tests: [not_null]
+  - name: feat_customer_90d
+    columns:
+      - name: customer_id
+        tests: [not_null]
+      - name: event_timestamp
+        tests: [not_null]
+  - name: feat_stream_60m
+    columns:
+      - name: customer_id
+        tests: [not_null]
+      - name: event_timestamp
+        tests: [not_null]
+  - name: feat_customer_unified
+    columns:
+      - name: customer_id
+        tests: [not_null]
+      - name: event_timestamp
+        tests: [not_null]
