@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-31T11:50:03.151820+00:00",
+  "generated_at": "2026-05-31T17:54:17.233301+00:00",
   "commands": [
     {
       "command": "dbt build --project-dir dbt --profiles-dir dbt",
       "return_code": 0,
-      "elapsed_seconds": 17.543
+      "elapsed_seconds": 35.647
     },
     {
       "command": "dbt docs generate --project-dir dbt --profiles-dir dbt",
       "return_code": 0,
-      "elapsed_seconds": 7.851
+      "elapsed_seconds": 8.09
     }
   ],
   "dbt_model_count": 52,

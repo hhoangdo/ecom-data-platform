@@ -12,6 +12,9 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+on-run-start:
+  - "{{ reset_gold_schema() }}"
+
 models:
   vina_bim_shop:
     bronze:

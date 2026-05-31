@@ -5,4 +5,4 @@ vina_bim_shop:
       type: duckdb
       path: data/gold/vina_bim_shop.duckdb
       schema: main
-      threads: 4
+      threads: 1

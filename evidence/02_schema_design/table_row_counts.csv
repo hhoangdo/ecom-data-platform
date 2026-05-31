@@ -23,7 +23,7 @@ gold,dim_date,BASE TABLE,62
 gold,dim_order_status,BASE TABLE,2
 gold,dim_payment_method,BASE TABLE,5
 gold,dim_product,BASE TABLE,6000
-gold,dim_promotion,BASE TABLE,80
+gold,dim_promotion,BASE TABLE,81
 gold,dim_seller,BASE TABLE,600
 gold,dim_shipment_status,BASE TABLE,4
 gold,dim_shipping_method,BASE TABLE,5

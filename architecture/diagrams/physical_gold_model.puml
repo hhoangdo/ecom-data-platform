@@ -1,0 +1,889 @@
+﻿@startuml
+title Vina Bim Shop Physical Data Model - Bronze, Silver, And Gold
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam defaultFontName Arial
+hide circle
+
+class "__physical_pdm_anchor__" as physical_pdm_anchor <<metadata>>
+hide physical_pdm_anchor
+
+legend right
+  <<PK>> physical primary key
+  <<FK>> physical foreign key
+  <<AK>> alternate/unique key
+  <<NK>> natural/source key
+  <<SCD2>> SCD Type 2 support column
+endlegend
+
+note top
+Bronze and Silver are views; Gold is physically constrained in DuckDB for DBeaver ERD lines.
+obt_order_performance is a derived non-canonical OBT.
+agg_hourly_reconciled_kpi is reconciliation evidence for realtime-vs-batch comparison.
+feat_* tables are ML/AI preparation tables and keep customer_id as their feature entity key.
+end note
+
+package "Bronze Views - Source Fidelity" as Bronze {
+  class "raw_bad_events" as raw_bad_events <<view>> {
+    dlq_id : VARCHAR
+    source_topic : VARCHAR
+    raw_payload : VARCHAR
+    error_reason : VARCHAR
+    event_topic : VARCHAR
+    schema_version : BIGINT
+    ingest_ts : TIMESTAMP
+  }
+
+  class "raw_bad_snapshots" as raw_bad_snapshots <<view>> {
+    bad_record_id : VARCHAR
+    source_dataset : VARCHAR
+    raw_record : VARCHAR
+    error_reason : VARCHAR
+    ingest_ts : TIMESTAMP
+  }
+
+  class "raw_customers" as raw_customers <<view>> {
+    customer_id : VARCHAR
+    anonymous_id : VARCHAR
+    signup_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+    country : VARCHAR
+    region : VARCHAR
+    city : VARCHAR
+    city_code : VARCHAR
+    segment : VARCHAR
+    marketing_opt_in : BOOLEAN
+    preferred_device : VARCHAR
+    acquisition_channel : VARCHAR
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_inventory_snapshots" as raw_inventory_snapshots <<view>> {
+    snapshot_id : VARCHAR
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    snapshot_ts : TIMESTAMP
+    stock_on_hand : BIGINT
+    reserved_stock : BIGINT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_kafka_catalog_events" as raw_kafka_catalog_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : BIGINT
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    correlation_ids : STRUCT
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_kafka_commerce_events" as raw_kafka_commerce_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : BIGINT
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    correlation_ids : STRUCT
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_kafka_fulfillment_events" as raw_kafka_fulfillment_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : BIGINT
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    correlation_ids : STRUCT
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_kafka_ops_events" as raw_kafka_ops_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : BIGINT
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    correlation_ids : STRUCT
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_order_items" as raw_order_items <<view>> {
+    order_item_id : VARCHAR
+    order_id : VARCHAR
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    primary_category : VARCHAR
+    primary_subcategory : VARCHAR
+    quantity : BIGINT
+    unit_price : DOUBLE
+    gross_amount : DOUBLE
+    discount_amount : DOUBLE
+    net_amount : DOUBLE
+    promotion_id : VARCHAR
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_orders" as raw_orders <<view>> {
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    session_id : VARCHAR
+    anonymous_id : VARCHAR
+    order_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    order_date : VARCHAR
+    primary_category : VARCHAR
+    status : VARCHAR
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR
+    fulfillment_channel : VARCHAR
+    promotion_id : VARCHAR
+    coupon_code : VARCHAR
+    item_count : BIGINT
+    order_gross_amount : DOUBLE
+    order_discount_amount : DOUBLE
+    order_net_amount : DOUBLE
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_payments" as raw_payments <<view>> {
+    payment_id : VARCHAR
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    payment_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    payment_method : VARCHAR
+    amount : DOUBLE
+    payment_status : VARCHAR
+    failure_reason : VARCHAR
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_product_category_map" as raw_product_category_map <<view>> {
+    product_id : VARCHAR
+    category : VARCHAR
+    subcategory : VARCHAR
+    is_primary : BOOLEAN
+    assigned_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_products" as raw_products <<view>> {
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    primary_category : VARCHAR
+    primary_subcategory : VARCHAR
+    brand : VARCHAR
+    product_name : VARCHAR
+    base_price : DOUBLE
+    price_band : VARCHAR
+    is_active : BOOLEAN
+    created_ts : TIMESTAMP
+    fulfillment_channel : VARCHAR
+    category_attributes : VARCHAR
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_promotions" as raw_promotions <<view>> {
+    promotion_id : VARCHAR
+    promotion_name : VARCHAR
+    funding_type : VARCHAR
+    funding_detail : VARCHAR
+    seller_id : VARCHAR
+    category : VARCHAR
+    discount_rate : DOUBLE
+    promotion_start_ts : TIMESTAMP
+    promotion_end_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_sellers" as raw_sellers <<view>> {
+    seller_id : VARCHAR
+    seller_name : VARCHAR
+    seller_tier : VARCHAR
+    primary_category : VARCHAR
+    city : VARCHAR
+    region : VARCHAR
+    seller_rating : DOUBLE
+    fulfillment_speed_days : DOUBLE
+    inventory_reliability : DOUBLE
+    price_band : VARCHAR
+    is_official_store : BOOLEAN
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "raw_shipments" as raw_shipments <<view>> {
+    shipment_id : VARCHAR
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR
+    shipment_status : VARCHAR
+    handoff_ts : TIMESTAMP
+    estimated_delivery_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+}
+
+package "Silver Views - Cleaned And Flattened" as Silver {
+  class "stg_catalog_events" as stg_catalog_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : INTEGER
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    snapshot_id : VARCHAR
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    promotion_id : VARCHAR
+    category : VARCHAR
+    stock_on_hand : DOUBLE
+    discount_rate : DOUBLE
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_commerce_events" as stg_commerce_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : INTEGER
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    session_id : VARCHAR
+    anonymous_id : VARCHAR
+    customer_id : VARCHAR
+    product_id : VARCHAR
+    order_id : VARCHAR
+    payment_id : VARCHAR
+    primary_category : VARCHAR
+    device_type : VARCHAR
+    source : VARCHAR
+    order_status : VARCHAR
+    order_net_amount : DOUBLE
+    payment_method : VARCHAR
+    payment_amount : DOUBLE
+    failure_reason : VARCHAR
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_customers" as stg_customers <<view>> {
+    customer_id : VARCHAR
+    anonymous_id : VARCHAR
+    signup_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+    country : VARCHAR
+    region : VARCHAR
+    city : VARCHAR
+    city_code : VARCHAR
+    segment : VARCHAR
+    marketing_opt_in : BOOLEAN
+    preferred_device : VARCHAR
+    acquisition_channel : VARCHAR
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_fulfillment_events" as stg_fulfillment_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : INTEGER
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    shipment_id : VARCHAR
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    shipment_status : VARCHAR
+    shipping_city : VARCHAR
+    shipping_method : VARCHAR
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_inventory_snapshots" as stg_inventory_snapshots <<view>> {
+    snapshot_id : VARCHAR
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    snapshot_ts : TIMESTAMP
+    stock_on_hand : BIGINT
+    reserved_stock : BIGINT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_ops_events" as stg_ops_events <<view>> {
+    event_id : VARCHAR
+    event_type : VARCHAR
+    event_topic : VARCHAR
+    schema_version : INTEGER
+    event_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    producer : VARCHAR
+    burst_event_count : INTEGER
+    late_event_count : INTEGER
+    duplicate_event_count : INTEGER
+    payload : STRUCT
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_order_items" as stg_order_items <<view>> {
+    order_item_id : VARCHAR
+    order_id : VARCHAR
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    primary_category : VARCHAR
+    primary_subcategory : VARCHAR
+    quantity : BIGINT
+    unit_price : DOUBLE
+    gross_amount : DOUBLE
+    discount_amount : DOUBLE
+    net_amount : DOUBLE
+    promotion_id : VARCHAR
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_orders" as stg_orders <<view>> {
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    session_id : VARCHAR
+    anonymous_id : VARCHAR
+    order_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    order_date : VARCHAR
+    primary_category : VARCHAR
+    status : VARCHAR
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR
+    fulfillment_channel : VARCHAR
+    promotion_id : VARCHAR
+    coupon_code : VARCHAR
+    item_count : BIGINT
+    order_gross_amount : DOUBLE
+    order_discount_amount : DOUBLE
+    order_net_amount : DOUBLE
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_payments" as stg_payments <<view>> {
+    payment_id : VARCHAR
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    payment_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    payment_method : VARCHAR
+    amount : DOUBLE
+    payment_status : VARCHAR
+    failure_reason : VARCHAR
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_product_category_map" as stg_product_category_map <<view>> {
+    product_id : VARCHAR
+    category : VARCHAR
+    subcategory : VARCHAR
+    is_primary : BOOLEAN
+    assigned_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_products" as stg_products <<view>> {
+    product_id : VARCHAR
+    seller_id : VARCHAR
+    primary_category : VARCHAR
+    primary_subcategory : VARCHAR
+    brand : VARCHAR
+    product_name : VARCHAR
+    base_price : DOUBLE
+    price_band : VARCHAR
+    is_active : BOOLEAN
+    created_ts : TIMESTAMP
+    fulfillment_channel : VARCHAR
+    category_attributes : VARCHAR
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_promotions" as stg_promotions <<view>> {
+    promotion_id : VARCHAR
+    promotion_name : VARCHAR
+    funding_type : VARCHAR
+    funding_detail : VARCHAR
+    seller_id : VARCHAR
+    category : VARCHAR
+    discount_rate : DOUBLE
+    promotion_start_ts : TIMESTAMP
+    promotion_end_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+    platform_funding_share : DOUBLE
+    seller_funding_share : DOUBLE
+  }
+
+  class "stg_sellers" as stg_sellers <<view>> {
+    seller_id : VARCHAR
+    seller_name : VARCHAR
+    seller_tier : VARCHAR
+    primary_category : VARCHAR
+    city : VARCHAR
+    region : VARCHAR
+    seller_rating : DOUBLE
+    fulfillment_speed_days : DOUBLE
+    inventory_reliability : DOUBLE
+    price_band : VARCHAR
+    is_official_store : BOOLEAN
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+  class "stg_shipments" as stg_shipments <<view>> {
+    shipment_id : VARCHAR
+    order_id : VARCHAR
+    customer_id : VARCHAR
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR
+    shipment_status : VARCHAR
+    handoff_ts : TIMESTAMP
+    estimated_delivery_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+    ingest_ts : TIMESTAMPTZ
+  }
+
+}
+
+package "Gold Physical Tables - Constrained Snowflake + Serving" as Gold {
+  class "agg_hourly_reconciled_kpi" as agg_hourly_reconciled_kpi <<table>> {
+    metric_hour : TIMESTAMP <<PK>>
+    order_count : BIGINT
+    paid_order_count : HUGEINT
+    gross_order_amount : DOUBLE
+    discount_amount : DOUBLE
+    official_paid_revenue : DOUBLE
+    gross_merchandise_value : DOUBLE
+    estimated_cost : DOUBLE
+    estimated_margin : DOUBLE
+    average_order_value : DOUBLE
+    cancelled_or_failed_order_count : HUGEINT
+    cancellation_rate : DOUBLE
+    payment_attempt_count : BIGINT
+    payment_success_count : HUGEINT
+    payment_success_rate : DOUBLE
+    shipment_count : BIGINT
+    delayed_shipment_count : HUGEINT
+    delivery_delay_rate : DOUBLE
+    checkout_started_count : HUGEINT
+    order_placed_event_count : HUGEINT
+    conversion_rate : DOUBLE
+  }
+
+  class "bridge_product_category" as bridge_product_category <<table>> {
+    product_key : BIGINT <<PK>> <<FK>>
+    product_id : VARCHAR <<FK>> <<NK>>
+    category_key : BIGINT <<PK>> <<FK>>
+    category : VARCHAR
+    subcategory : VARCHAR
+    is_primary : BOOLEAN
+    assigned_ts : TIMESTAMP
+  }
+
+  class "dim_category" as dim_category <<table>> {
+    category_key : BIGINT <<PK>>
+    category : VARCHAR <<AK>>
+    subcategory : VARCHAR <<AK>>
+    category_cost_rate : DECIMAL(3,2)
+  }
+
+  class "dim_customer" as dim_customer <<table>> {
+    customer_key : BIGINT <<PK>>
+    customer_id : VARCHAR <<AK>> <<NK>>
+    anonymous_id : VARCHAR <<NK>>
+    signup_ts : TIMESTAMP
+    country : VARCHAR
+    region : VARCHAR
+    city : VARCHAR
+    city_code : VARCHAR
+    segment : VARCHAR
+    marketing_opt_in : BOOLEAN
+    preferred_device : VARCHAR
+    acquisition_channel : VARCHAR
+    created_ts : TIMESTAMP
+    valid_from_ts : TIMESTAMP <<SCD2>>
+    valid_to_ts : TIMESTAMP <<SCD2>>
+    is_current : BOOLEAN <<SCD2>>
+  }
+
+  class "dim_date" as dim_date <<table>> {
+    date_key : INTEGER <<PK>>
+    calendar_date : DATE <<AK>> <<NK>>
+    day_of_week : INTEGER
+    month : INTEGER
+    year : INTEGER
+    is_weekend : BOOLEAN
+  }
+
+  class "dim_order_status" as dim_order_status <<table>> {
+    order_status_key : BIGINT <<PK>>
+    order_status : VARCHAR <<AK>> <<NK>>
+  }
+
+  class "dim_payment_method" as dim_payment_method <<table>> {
+    payment_method_key : BIGINT <<PK>>
+    payment_method : VARCHAR <<AK>> <<NK>>
+  }
+
+  class "dim_product" as dim_product <<table>> {
+    product_key : BIGINT <<PK>>
+    product_id : VARCHAR <<AK>> <<NK>>
+    seller_key : BIGINT <<FK>>
+    seller_id : VARCHAR <<FK>> <<NK>>
+    primary_category : VARCHAR
+    primary_subcategory : VARCHAR
+    brand : VARCHAR
+    product_name : VARCHAR
+    base_price : DOUBLE
+    price_band : VARCHAR
+    is_active : BOOLEAN
+    fulfillment_channel : VARCHAR
+    category_attributes : VARCHAR
+    created_ts : TIMESTAMP
+    valid_from_ts : TIMESTAMP <<SCD2>>
+    valid_to_ts : TIMESTAMP <<SCD2>>
+    is_current : BOOLEAN <<SCD2>>
+  }
+
+  class "dim_promotion" as dim_promotion <<table>> {
+    promotion_key : BIGINT <<PK>>
+    promotion_id : VARCHAR <<AK>> <<NK>>
+    promotion_name : VARCHAR
+    funding_type : VARCHAR
+    funding_detail : VARCHAR
+    seller_id : VARCHAR <<NK>>
+    category : VARCHAR
+    discount_rate : DOUBLE
+    platform_funding_share : DOUBLE
+    seller_funding_share : DOUBLE
+    promotion_start_ts : TIMESTAMP
+    promotion_end_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+  }
+
+  class "dim_seller" as dim_seller <<table>> {
+    seller_key : BIGINT <<PK>>
+    seller_id : VARCHAR <<AK>> <<NK>>
+    seller_name : VARCHAR
+    seller_tier : VARCHAR
+    primary_category : VARCHAR
+    city : VARCHAR
+    region : VARCHAR
+    seller_rating : DOUBLE
+    fulfillment_speed_days : DOUBLE
+    inventory_reliability : DOUBLE
+    price_band : VARCHAR
+    is_official_store : BOOLEAN
+    created_ts : TIMESTAMP
+    valid_from_ts : TIMESTAMP <<SCD2>>
+    valid_to_ts : TIMESTAMP <<SCD2>>
+    is_current : BOOLEAN <<SCD2>>
+  }
+
+  class "dim_shipment_status" as dim_shipment_status <<table>> {
+    shipment_status_key : BIGINT <<PK>>
+    shipment_status : VARCHAR <<AK>> <<NK>>
+  }
+
+  class "dim_shipping_method" as dim_shipping_method <<table>> {
+    shipping_method_key : BIGINT <<PK>>
+    shipping_method : VARCHAR <<AK>> <<NK>>
+  }
+
+  class "fact_inventory_snapshot" as fact_inventory_snapshot <<table>> {
+    inventory_snapshot_key : BIGINT <<AK>>
+    snapshot_id : VARCHAR <<AK>> <<NK>>
+    product_key : BIGINT <<PK>> <<FK>>
+    seller_key : BIGINT <<PK>> <<FK>>
+    snapshot_date_key : INTEGER <<PK>> <<FK>>
+    product_id : VARCHAR <<FK>> <<NK>>
+    seller_id : VARCHAR <<FK>> <<NK>>
+    snapshot_ts : TIMESTAMP
+    stock_on_hand : BIGINT
+    reserved_stock : BIGINT
+    available_stock : BIGINT
+  }
+
+  class "fact_order" as fact_order <<table>> {
+    order_key : BIGINT <<PK>>
+    order_id : VARCHAR <<AK>> <<NK>>
+    customer_key : BIGINT <<FK>>
+    order_date_key : INTEGER <<FK>>
+    order_status_key : BIGINT <<FK>>
+    customer_id : VARCHAR <<FK>> <<NK>>
+    session_id : VARCHAR <<NK>>
+    anonymous_id : VARCHAR <<NK>>
+    order_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    primary_category : VARCHAR
+    order_status : VARCHAR <<FK>> <<NK>>
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR <<NK>>
+    fulfillment_channel : VARCHAR
+    promotion_id : VARCHAR <<NK>>
+    coupon_code : VARCHAR
+    item_count : BIGINT
+    order_gross_amount : DOUBLE
+    order_discount_amount : DOUBLE
+    order_net_amount : DOUBLE
+    has_successful_payment : BOOLEAN
+    is_paid_order : BOOLEAN
+    official_paid_revenue : DOUBLE
+    gross_merchandise_value : DOUBLE
+    payment_attempt_count : BIGINT
+  }
+
+  class "fact_order_item" as fact_order_item <<table>> {
+    order_item_key : BIGINT <<PK>>
+    order_item_id : VARCHAR <<AK>> <<NK>>
+    order_id : VARCHAR <<FK>> <<NK>>
+    order_key : BIGINT <<FK>>
+    customer_key : BIGINT <<FK>>
+    product_key : BIGINT <<FK>>
+    category_key : BIGINT <<FK>>
+    promotion_key : BIGINT <<FK>>
+    order_date_key : INTEGER <<FK>>
+    product_id : VARCHAR <<FK>> <<NK>>
+    seller_id : VARCHAR <<FK>> <<NK>>
+    primary_category : VARCHAR
+    primary_subcategory : VARCHAR
+    quantity : BIGINT
+    unit_price : DOUBLE
+    gross_amount : DOUBLE
+    discount_amount : DOUBLE
+    net_amount : DOUBLE
+    category_cost_rate : DECIMAL(3,2)
+    line_paid_revenue : DOUBLE
+    line_gmv : DOUBLE
+    estimated_cost : DOUBLE
+    estimated_margin : DOUBLE
+    promotion_id : VARCHAR <<NK>>
+    created_ts : TIMESTAMP
+  }
+
+  class "fact_payment_attempt" as fact_payment_attempt <<table>> {
+    payment_attempt_key : BIGINT <<PK>>
+    payment_id : VARCHAR <<AK>> <<NK>>
+    order_id : VARCHAR <<FK>> <<NK>>
+    order_key : BIGINT <<FK>>
+    customer_key : BIGINT <<FK>>
+    payment_date_key : INTEGER <<FK>>
+    payment_method_key : BIGINT <<FK>>
+    customer_id : VARCHAR <<FK>> <<NK>>
+    payment_timestamp : TIMESTAMP
+    created_ts : TIMESTAMP
+    payment_method : VARCHAR <<FK>> <<NK>>
+    amount : DOUBLE
+    payment_status : VARCHAR
+    is_payment_success : BOOLEAN
+    is_payment_failed : BOOLEAN
+    failure_reason : VARCHAR
+  }
+
+  class "fact_promotion_application" as fact_promotion_application <<table>> {
+    promotion_application_key : BIGINT <<PK>>
+    order_item_id : VARCHAR <<FK>> <<AK>> <<NK>>
+    order_id : VARCHAR <<FK>> <<NK>>
+    order_key : BIGINT <<FK>>
+    customer_key : BIGINT <<FK>>
+    promotion_key : BIGINT <<FK>>
+    promotion_id : VARCHAR <<FK>> <<NK>>
+    gross_amount : DOUBLE
+    discount_amount : DOUBLE
+    platform_discount_amount : DOUBLE
+    seller_discount_amount : DOUBLE
+    funding_type : VARCHAR
+    platform_funding_share : DOUBLE
+    seller_funding_share : DOUBLE
+  }
+
+  class "fact_shipment" as fact_shipment <<table>> {
+    shipment_key : BIGINT <<PK>>
+    shipment_id : VARCHAR <<AK>> <<NK>>
+    order_id : VARCHAR <<FK>> <<NK>>
+    order_key : BIGINT <<FK>>
+    customer_key : BIGINT <<FK>>
+    shipment_status_key : BIGINT <<FK>>
+    shipping_method_key : BIGINT <<FK>>
+    shipment_created_date_key : INTEGER <<FK>>
+    customer_id : VARCHAR <<FK>> <<NK>>
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR <<FK>> <<NK>>
+    shipment_status : VARCHAR <<FK>> <<NK>>
+    is_delivery_delayed : BOOLEAN
+    is_payment_blocked : BOOLEAN
+    handoff_ts : TIMESTAMP
+    estimated_delivery_ts : TIMESTAMP
+    created_ts : TIMESTAMP
+  }
+
+  class "feat_customer_90d" as feat_customer_90d <<table>> {
+    customer_id : VARCHAR <<PK>> <<FK>> <<NK>>
+    event_timestamp : TIMESTAMP <<PK>>
+    f_customer_total_orders_90d : BIGINT
+    f_customer_paid_revenue_90d : DOUBLE
+    f_customer_avg_order_value_90d : DOUBLE
+    f_customer_distinct_categories_90d : BIGINT
+    created_ts : TIMESTAMP
+  }
+
+  class "feat_customer_unified" as feat_customer_unified <<table>> {
+    customer_id : VARCHAR <<PK>> <<FK>> <<NK>>
+    event_timestamp : TIMESTAMP <<PK>>
+    f_customer_total_orders_90d : BIGINT
+    f_customer_paid_revenue_90d : DOUBLE
+    f_customer_avg_order_value_90d : DOUBLE
+    f_customer_distinct_categories_90d : BIGINT
+    f_stream_views_60m : HUGEINT
+    f_stream_add_to_cart_60m : HUGEINT
+    f_stream_checkout_started_60m : HUGEINT
+    f_stream_order_placed_60m : HUGEINT
+    f_stream_cart_to_purchase_ratio_60m : DOUBLE
+    created_ts : TIMESTAMP
+  }
+
+  class "feat_stream_60m" as feat_stream_60m <<table>> {
+    customer_id : VARCHAR <<PK>> <<FK>> <<NK>>
+    event_timestamp : TIMESTAMP <<PK>>
+    f_stream_views_60m : HUGEINT
+    f_stream_add_to_cart_60m : HUGEINT
+    f_stream_checkout_started_60m : HUGEINT
+    f_stream_order_placed_60m : HUGEINT
+    f_stream_cart_to_purchase_ratio_60m : DOUBLE
+    created_ts : TIMESTAMP
+  }
+
+  class "obt_order_performance" as obt_order_performance <<table>> {
+    order_id : VARCHAR <<PK>> <<FK>> <<NK>>
+    order_timestamp : TIMESTAMP
+    customer_id : VARCHAR <<FK>> <<NK>>
+    segment : VARCHAR
+    customer_city : VARCHAR
+    primary_category : VARCHAR
+    order_status : VARCHAR <<NK>>
+    shipping_city : VARCHAR
+    shipping_region : VARCHAR
+    shipping_method : VARCHAR <<NK>>
+    promotion_id : VARCHAR <<NK>>
+    coupon_code : VARCHAR
+    item_count : BIGINT
+    total_quantity : HUGEINT
+    distinct_products : BIGINT
+    distinct_sellers : BIGINT
+    order_gross_amount : DOUBLE
+    order_discount_amount : DOUBLE
+    order_net_amount : DOUBLE
+    official_paid_revenue : DOUBLE
+    gross_merchandise_value : DOUBLE
+    estimated_cost : DOUBLE
+    estimated_margin : DOUBLE
+    has_successful_payment : BOOLEAN
+    is_paid_order : BOOLEAN
+    payment_attempts : BIGINT
+    successful_payment_attempts : HUGEINT
+    successful_payment_method : VARCHAR
+    last_payment_ts : TIMESTAMP
+    shipment_status : VARCHAR <<NK>>
+    is_delivery_delayed : BOOLEAN
+    is_payment_blocked : BOOLEAN
+  }
+
+}
+
+raw_customers ..> stg_customers : logical view lineage
+raw_sellers ..> stg_sellers : logical view lineage
+raw_products ..> stg_products : logical view lineage
+raw_product_category_map ..> stg_product_category_map : logical view lineage
+raw_inventory_snapshots ..> stg_inventory_snapshots : logical view lineage
+raw_promotions ..> stg_promotions : logical view lineage
+raw_orders ..> stg_orders : logical view lineage
+raw_order_items ..> stg_order_items : logical view lineage
+raw_payments ..> stg_payments : logical view lineage
+raw_shipments ..> stg_shipments : logical view lineage
+raw_kafka_commerce_events ..> stg_commerce_events : logical view lineage
+raw_kafka_catalog_events ..> stg_catalog_events : logical view lineage
+raw_kafka_fulfillment_events ..> stg_fulfillment_events : logical view lineage
+raw_kafka_ops_events ..> stg_ops_events : logical view lineage
+stg_customers ..> dim_customer : dbt transform lineage
+stg_sellers ..> dim_seller : dbt transform lineage
+stg_products ..> dim_product : dbt transform lineage
+stg_product_category_map ..> dim_category : dbt transform lineage
+stg_product_category_map ..> bridge_product_category : dbt transform lineage
+stg_promotions ..> dim_promotion : dbt transform lineage
+stg_orders ..> fact_order : dbt transform lineage
+stg_order_items ..> fact_order_item : dbt transform lineage
+stg_payments ..> fact_payment_attempt : dbt transform lineage
+stg_shipments ..> fact_shipment : dbt transform lineage
+stg_inventory_snapshots ..> fact_inventory_snapshot : dbt transform lineage
+stg_commerce_events ..> feat_stream_60m : dbt transform lineage
+dim_seller ||--o{ dim_product : seller_key->seller_key; seller_id->seller_id
+dim_product ||--o{ bridge_product_category : product_key->product_key; product_id->product_id
+dim_category ||--o{ bridge_product_category : category_key->category_key
+dim_customer ||--o{ fact_order : customer_key->customer_key; customer_id->customer_id
+dim_date ||--o{ fact_order : order_date_key->date_key
+dim_order_status ||--o{ fact_order : order_status_key->order_status_key; order_status->order_status
+fact_order ||--o{ fact_order_item : order_key->order_key; order_id->order_id
+dim_customer ||--o{ fact_order_item : customer_key->customer_key
+dim_product ||--o{ fact_order_item : product_key->product_key; product_id->product_id
+dim_seller ||--o{ fact_order_item : seller_id->seller_id
+dim_category ||--o{ fact_order_item : category_key->category_key
+dim_promotion ||--o{ fact_order_item : promotion_key->promotion_key
+dim_date ||--o{ fact_order_item : order_date_key->date_key
+fact_order ||--o{ fact_payment_attempt : order_key->order_key; order_id->order_id
+dim_customer ||--o{ fact_payment_attempt : customer_key->customer_key; customer_id->customer_id
+dim_date ||--o{ fact_payment_attempt : payment_date_key->date_key
+dim_payment_method ||--o{ fact_payment_attempt : payment_method_key->payment_method_key; payment_method->payment_method
+fact_order ||--o{ fact_shipment : order_key->order_key; order_id->order_id
+dim_customer ||--o{ fact_shipment : customer_key->customer_key; customer_id->customer_id
+dim_shipment_status ||--o{ fact_shipment : shipment_status_key->shipment_status_key; shipment_status->shipment_status
+dim_shipping_method ||--o{ fact_shipment : shipping_method_key->shipping_method_key; shipping_method->shipping_method
+dim_date ||--o{ fact_shipment : shipment_created_date_key->date_key
+dim_product ||--o{ fact_inventory_snapshot : product_key->product_key; product_id->product_id
+dim_seller ||--o{ fact_inventory_snapshot : seller_key->seller_key; seller_id->seller_id
+dim_date ||--o{ fact_inventory_snapshot : snapshot_date_key->date_key
+fact_order_item ||--o{ fact_promotion_application : order_item_id->order_item_id
+fact_order ||--o{ fact_promotion_application : order_key->order_key; order_id->order_id
+dim_customer ||--o{ fact_promotion_application : customer_key->customer_key
+dim_promotion ||--o{ fact_promotion_application : promotion_key->promotion_key; promotion_id->promotion_id
+fact_order ||--o{ obt_order_performance : order_id->order_id
+dim_customer ||--o{ obt_order_performance : customer_id->customer_id
+dim_customer ||--o{ feat_customer_90d : customer_id->customer_id
+dim_customer ||--o{ feat_stream_60m : customer_id->customer_id
+dim_customer ||--o{ feat_customer_unified : customer_id->customer_id
+
+@enduml

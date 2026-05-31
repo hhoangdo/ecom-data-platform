@@ -71,6 +71,7 @@ uv run dbt build --project-dir dbt --profiles-dir dbt
 | Section 01 streaming datasets | Fulfilled | Kafka-topic JSONL under ignored `data/raw/kafka_topics/`, summarized in Section 01 evidence |
 | Section 01 quarantine/DLQ examples | Fulfilled | `dead_letter_events` and `bad_snapshots` are generated and modeled in dbt Bronze |
 | Section 02 Bronze/Silver/Gold schema | Fulfilled | `deliverables/02_schema_design.md`, `evidence/02_schema_design/dbt_build_report.md` |
+| Section 02 physical ERD and DuckDB constraints | Fulfilled | `architecture/diagrams/physical_gold_model.puml`, `architecture/diagrams/physical_gold_model.png` |
 | Section 02 dbt tests | Fulfilled | dbt evidence records model/test results |
 | Final raw dataset archive | Fulfilled after finalizer run | `evidence/final_dataset/vina_bim_shop_medium_raw.zip` |
 | Final dataset manifest | Fulfilled after finalizer run | `evidence/final_dataset/final_dataset_manifest.json` |
@@ -81,6 +82,8 @@ uv run dbt build --project-dir dbt --profiles-dir dbt
 | --- | --- |
 | `deliverables/01_data_generator.md` | Section 01 design, run instructions, generated data contracts, evidence summary. |
 | `deliverables/02_schema_design.md` | Section 02 schema rationale, dbt-DuckDB model design, business formulas, evidence summary. |
+| `architecture/diagrams/physical_gold_model.puml` | Physical data model covering Bronze, Silver, Gold, OBT, aggregate, bridge, and feature tables. |
+| `architecture/diagrams/physical_gold_model.png` | White-background physical ERD screenshot for DBeaver-style relationship review. |
 | `evidence/01_data_generator/quality_report.md` | Section 01 row counts, quality metrics, Kafka topic counts, issue manifest summary. |
 | `evidence/02_schema_design/dbt_build_report.md` | Section 02 dbt model/test summary and Gold row counts. |
 | `evidence/02_schema_design/run_manifest.json` | Section 02 evidence command metadata, model/test counts, screenshot render mode. |

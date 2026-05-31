@@ -1,6 +1,106 @@
 from pathlib import Path
 
 
+def test_physical_gold_model_puml_documents_all_layers_and_purposes() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "physical_gold_model.puml"
+
+    content = diagram.read_text(encoding="utf-8")
+
+    assert "skinparam backgroundColor white" in content
+    for marker in ["<<PK>>", "<<FK>>", "<<AK>>", "<<NK>>", "<<SCD2>>"]:
+        assert marker in content
+
+    dbt_model_names = [
+        path.stem
+        for path in (repo_root / "dbt" / "models").rglob("*.sql")
+        if path.stem != ".gitkeep"
+    ]
+    for model_name in dbt_model_names:
+        assert model_name in content
+
+    for purpose_label in [
+        "derived non-canonical OBT",
+        "reconciliation evidence",
+        "ML/AI preparation",
+        "Bronze and Silver are views; Gold is physically constrained",
+    ]:
+        assert purpose_label in content
+
+
+def test_duckdb_gold_tables_have_physical_constraints_for_dbeaver_erd() -> None:
+    import duckdb
+
+    repo_root = Path(__file__).resolve().parents[2]
+    db_path = repo_root / "data" / "gold" / "vina_bim_shop.duckdb"
+
+    with duckdb.connect(str(db_path), read_only=True) as connection:
+        constraints = connection.execute(
+            """
+            select
+              table_name,
+              constraint_type,
+              constraint_column_names,
+              referenced_table,
+              referenced_column_names
+            from duckdb_constraints()
+            where schema_name = 'gold'
+            """
+        ).fetchall()
+
+    primary_keys = {
+        (table_name, tuple(column_names))
+        for table_name, constraint_type, column_names, _, _ in constraints
+        if constraint_type == "PRIMARY KEY"
+    }
+    foreign_keys = {
+        (table_name, tuple(column_names), referenced_table, tuple(referenced_columns))
+        for table_name, constraint_type, column_names, referenced_table, referenced_columns in constraints
+        if constraint_type == "FOREIGN KEY"
+    }
+
+    for expected_pk in [
+        ("dim_customer", ("customer_key",)),
+        ("dim_product", ("product_key",)),
+        ("fact_order", ("order_key",)),
+        ("fact_order_item", ("order_item_key",)),
+        ("fact_payment_attempt", ("payment_attempt_key",)),
+        ("bridge_product_category", ("product_key", "category_key")),
+        ("agg_hourly_reconciled_kpi", ("metric_hour",)),
+        ("feat_customer_90d", ("customer_id", "event_timestamp")),
+    ]:
+        assert expected_pk in primary_keys
+
+    for expected_fk in [
+        ("fact_order", ("customer_key",), "dim_customer", ("customer_key",)),
+        ("fact_order", ("order_status_key",), "dim_order_status", ("order_status_key",)),
+        ("fact_order_item", ("order_key",), "fact_order", ("order_key",)),
+        ("fact_order_item", ("product_key",), "dim_product", ("product_key",)),
+        ("fact_payment_attempt", ("payment_method_key",), "dim_payment_method", ("payment_method_key",)),
+        ("fact_shipment", ("shipping_method_key",), "dim_shipping_method", ("shipping_method_key",)),
+        ("fact_inventory_snapshot", ("seller_key",), "dim_seller", ("seller_key",)),
+    ]:
+        assert expected_fk in foreign_keys
+
+
+def test_promotion_sentinel_makes_fact_order_item_promotion_key_non_null() -> None:
+    import duckdb
+
+    repo_root = Path(__file__).resolve().parents[2]
+    db_path = repo_root / "data" / "gold" / "vina_bim_shop.duckdb"
+
+    with duckdb.connect(str(db_path), read_only=True) as connection:
+        sentinel_count = connection.execute(
+            "select count(*) from gold.dim_promotion where promotion_id = 'NO_PROMOTION'"
+        ).fetchone()[0]
+        null_promotion_key_count = connection.execute(
+            "select count(*) from gold.fact_order_item where promotion_key is null"
+        ).fetchone()[0]
+
+    assert sentinel_count == 1
+    assert null_promotion_key_count == 0
+
+
 def test_section02_documentation_records_core_design_decisions() -> None:
     repo_root = Path(__file__).resolve().parents[2]
     content = (repo_root / "deliverables" / "02_schema_design.md").read_text(encoding="utf-8")
@@ -15,6 +115,9 @@ def test_section02_documentation_records_core_design_decisions() -> None:
         "category_cost_rate",
         "obt_order_performance",
         "dead_letter_events",
+        "architecture/diagrams/physical_gold_model.puml",
+        "architecture/diagrams/physical_gold_model.png",
+        "Gold DuckDB tables enforce primary-key and foreign-key constraints",
     ]
     for phrase in required_phrases:
         assert phrase in content

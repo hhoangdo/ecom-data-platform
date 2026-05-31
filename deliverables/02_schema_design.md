@@ -49,6 +49,15 @@ Silver deduplication uses stable business keys plus latest `created_ts`. Event S
 
 The reconciled analytical model is a snowflake/star hybrid. Normalized dimensions keep business entities reusable, fact tables preserve grains, and one OBT reduces join overhead for the most common executive BI workflow.
 
+Gold DuckDB tables enforce primary-key and foreign-key constraints through dbt contracts so DBeaver can render physical ERD relationship lines from database metadata. Bronze and Silver remain views, but they are included in the physical model for lineage context. The physical data model is committed as `architecture/diagrams/physical_gold_model.puml` with a white-background rendered PNG at `architecture/diagrams/physical_gold_model.png`.
+
+Physical key policy:
+
+- Surrogate keys such as `customer_key`, `product_key`, and `order_key` are the main dimensional join path.
+- Natural/source IDs such as `customer_id`, `product_id`, `order_id`, `payment_id`, `shipment_id`, and `snapshot_id` are retained for auditability and declared as alternate keys where they are unique.
+- `dim_promotion` includes a single `NO_PROMOTION` sentinel row so `fact_order_item.promotion_key` is never null; source `promotion_id` remains nullable for non-promoted order items.
+- Current v1 dimensions include SCD Type 2 support columns (`valid_from_ts`, `valid_to_ts`, `is_current`) but still contain one current row per natural entity.
+
 ### Dimensions And Bridge
 
 | Table | Grain | Purpose |

@@ -27,6 +27,8 @@ def test_root_readme_links_section_evidence() -> None:
     for path in [
         "deliverables/01_data_generator.md",
         "deliverables/02_schema_design.md",
+        "architecture/diagrams/physical_gold_model.puml",
+        "architecture/diagrams/physical_gold_model.png",
         "evidence/01_data_generator/quality_report.md",
         "evidence/02_schema_design/dbt_build_report.md",
     ]:

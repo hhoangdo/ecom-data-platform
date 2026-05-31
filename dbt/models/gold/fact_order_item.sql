@@ -44,4 +44,4 @@ left join {{ ref('dim_category') }} c
   on oi.primary_category = c.category
  and oi.primary_subcategory = c.subcategory
 left join {{ ref('dim_promotion') }} pr
-  on oi.promotion_id = pr.promotion_id
+  on coalesce(oi.promotion_id, 'NO_PROMOTION') = pr.promotion_id
