@@ -39,7 +39,7 @@ Bronze preserves source fidelity and adds ingestion metadata. Silver standardize
 | --- | --- | --- | --- |
 | Periodic table-state exports | `raw_customers`, `raw_sellers`, `raw_products`, `raw_product_category_map`, `raw_inventory_snapshots`, `raw_promotions`, `raw_orders`, `raw_order_items`, `raw_payments`, `raw_shipments` | matching `stg_` tables | Parquet snapshots are compact and efficient for batch joins and reconciliation. |
 | Kafka event envelopes | `raw_kafka_commerce_events`, `raw_kafka_catalog_events`, `raw_kafka_fulfillment_events`, `raw_kafka_ops_events` | `stg_commerce_events`, `stg_catalog_events`, `stg_fulfillment_events`, `stg_ops_events` | Bronze preserves nested `correlation_ids`, `payload`, `schema_version`, `event_timestamp`, and `created_ts`; Silver flattens common fields. |
-| Bad records | `raw_bad_events`, `raw_bad_snapshots`, Kafka DLQ topic `dead_letter_events` | inspection only | Malformed records are quarantined instead of silently dropped. |
+| Bad records | `raw_bad_events`, `raw_bad_snapshots`, Kafka DLQ topic `dead_letter_events` | inspection only | Generated malformed examples are quarantined instead of silently dropped. |
 
 Silver deduplication uses stable business keys plus latest `created_ts`. Event Silver tables deduplicate by `event_id`, keeping the latest created copy. New optional columns from schema evolution remain nullable, and event `schema_version` is retained.
 
@@ -140,7 +140,7 @@ dbt tests cover:
 
 Operational quality rules:
 
-- Bronze keeps raw records and writes malformed records to `raw_bad_events`, `raw_bad_snapshots`, or Kafka `dead_letter_events`.
+- Bronze keeps raw records and reads generated malformed examples into `raw_bad_events`, `raw_bad_snapshots`, or Kafka `dead_letter_events`.
 - Silver normalizes nullable schema-evolution fields and keeps `schema_version`.
 - Gold facts and OBTs are rebuilt idempotently in local dbt-DuckDB. In the target Spark lakehouse, these would map to partition replacement or merge jobs.
 - Pinot metrics are compared against `agg_hourly_reconciled_kpi` using hourly windows and a small tolerance for late events and event-time watermarking.

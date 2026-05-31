@@ -71,3 +71,16 @@ def test_dbt_project_declares_expected_model_layers_and_tests() -> None:
     assert "relationships" in schema_yml
     assert "accepted_values" in schema_yml
     assert "expression_is_true" in schema_yml
+
+
+def test_quarantine_models_read_generated_bad_record_sources() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+
+    raw_bad_events = (repo_root / "dbt" / "models" / "bronze" / "raw_bad_events.sql").read_text(encoding="utf-8")
+    raw_bad_snapshots = (repo_root / "dbt" / "models" / "bronze" / "raw_bad_snapshots.sql").read_text(encoding="utf-8")
+    bronze_schema = (repo_root / "dbt" / "models" / "bronze" / "schema.yml").read_text(encoding="utf-8")
+
+    assert "kafka_topics/dead_letter_events/events.jsonl" in raw_bad_events
+    assert "bad_snapshots/bad_snapshots.jsonl" in raw_bad_snapshots
+    for column_name in ["error_reason", "raw_payload", "source_topic", "raw_record", "source_dataset"]:
+        assert column_name in bronze_schema

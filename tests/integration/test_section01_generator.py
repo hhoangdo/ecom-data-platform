@@ -42,6 +42,8 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     payments = pd.read_parquet(raw_root / "payments")
     shipments = pd.read_parquet(raw_root / "shipments")
     commerce_events = pd.read_json(raw_root / "kafka_topics" / "commerce_events" / "events.jsonl", lines=True)
+    dead_letter_events = pd.read_json(raw_root / "kafka_topics" / "dead_letter_events" / "events.jsonl", lines=True)
+    bad_snapshots = pd.read_json(raw_root / "bad_snapshots" / "bad_snapshots.jsonl", lines=True)
 
     assert {"customer_id", "segment", "city", "signup_ts"}.issubset(customers.columns)
     assert {
@@ -72,6 +74,8 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     assert 0.005 <= duplicate_item_rate <= 0.05
 
     assert not (raw_root / "stream_events").exists()
+    assert (raw_root / "kafka_topics" / "dead_letter_events" / "events.jsonl").is_file()
+    assert (raw_root / "bad_snapshots" / "bad_snapshots.jsonl").is_file()
     assert {
         "product_viewed",
         "add_to_cart",
@@ -85,6 +89,20 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
         pd.to_datetime(commerce_events["event_timestamp"])
     ).all()
     assert commerce_events["event_id"].duplicated().mean() > 0
+    assert {
+        "missing_required_key",
+        "invalid_json",
+        "invalid_timestamp",
+        "unknown_schema_version",
+    }.issubset(set(dead_letter_events["error_reason"]))
+    assert {
+        "missing_required_key",
+        "invalid_json",
+        "invalid_timestamp",
+        "unknown_schema_version",
+    }.issubset(set(bad_snapshots["error_reason"]))
+    assert dead_letter_events["raw_payload"].notna().all()
+    assert bad_snapshots["raw_record"].notna().all()
 
     assert (evidence_root / "run_manifest.json").is_file()
     assert (evidence_root / "row_counts.csv").is_file()
@@ -92,8 +110,12 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     assert (evidence_root / "quality_metrics.csv").is_file()
     assert (evidence_root / "issue_manifest.csv").is_file()
     assert (evidence_root / "sample_rows" / "orders.csv").is_file()
+    assert (evidence_root / "sample_rows" / "bad_snapshots.csv").is_file()
+    assert (evidence_root / "sample_rows" / "kafka_topic_dead_letter_events.csv").is_file()
     assert not (evidence_root / "sample_rows" / "stream_events.csv").exists()
     assert (evidence_root / "quality_report.md").is_file()
 
     quality_metrics = pd.read_csv(evidence_root / "quality_metrics.csv").set_index("metric")["value"]
     assert 0.05 <= quality_metrics["issue_commerce_events_late_arrival"] <= 0.20
+    assert quality_metrics["issue_dead_letter_events_invalid_json"] > 0
+    assert quality_metrics["issue_bad_snapshots_invalid_timestamp"] > 0

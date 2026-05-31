@@ -64,6 +64,8 @@ Marketplace realism included in v1:
 The generator writes one streaming-friendly raw output family:
 
 - `data/raw/kafka_topics/<topic>/events.jsonl`: the authoritative Kafka-topic-shaped source contract for Lambda architecture.
+- `data/raw/kafka_topics/dead_letter_events/events.jsonl`: valid JSONL wrappers around malformed event payloads for DLQ/quarantine testing.
+- `data/raw/bad_snapshots/bad_snapshots.jsonl`: valid JSONL wrappers around malformed periodic table-state export records.
 
 The earlier flat stream helper output was removed so downstream schema design has one clear streaming source contract.
 
@@ -117,6 +119,8 @@ The generator intentionally mixes known problems into the primary outputs and re
 | Burst traffic | Kafka ops events summarize lunch and evening burst windows |
 
 Lambda-specific generated evidence also records Kafka topic row counts and schema-version counts so Section `02` can validate ingestion coverage before building Bronze/Silver tables.
+
+Quarantine examples are generated as wrapper records so invalid JSON examples do not break the local file readers. The bad-record set covers missing required keys, invalid JSON payloads, invalid timestamps, and unknown schema versions. These records are routed only to quarantine/DLQ contracts and are excluded from normal Bronze, Silver, and Gold tables.
 
 ## 6. Latest Smoke Evidence
 

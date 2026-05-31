@@ -33,5 +33,19 @@ models:
                 values: ["commerce_events"]
   - name: raw_bad_events
     description: Quarantine contract for malformed Kafka envelopes and Kafka DLQ payloads.
+    columns:
+      - name: source_topic
+        tests: [not_null]
+      - name: raw_payload
+        tests: [not_null]
+      - name: error_reason
+        tests: [not_null]
   - name: raw_bad_snapshots
     description: Quarantine contract for malformed periodic table-state export records.
+    columns:
+      - name: source_dataset
+        tests: [not_null]
+      - name: raw_record
+        tests: [not_null]
+      - name: error_reason
+        tests: [not_null]

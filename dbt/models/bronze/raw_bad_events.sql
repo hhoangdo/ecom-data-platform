@@ -1,6 +1,9 @@
 select
-  cast(null as varchar) as source_topic,
-  cast(null as varchar) as raw_payload,
-  cast(null as varchar) as error_reason,
-  cast(null as timestamp) as ingest_ts
-where false
+  dlq_id,
+  source_topic,
+  raw_payload,
+  error_reason,
+  event_topic,
+  schema_version,
+  cast(ingest_ts as timestamp) as ingest_ts
+from read_json_auto('{{ var("raw_root", "data/raw") }}/kafka_topics/dead_letter_events/events.jsonl')
