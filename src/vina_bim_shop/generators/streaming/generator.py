@@ -13,7 +13,6 @@ from vina_bim_shop.generators.ids import dated_ids
 
 @dataclass
 class StreamingGeneration:
-    stream_events: pd.DataFrame
     topic_events: dict[str, pd.DataFrame]
     issue_records: list[dict[str, Any]]
 
@@ -48,7 +47,7 @@ def generate_streaming_events(
     events, issues = _inject_stream_duplicates(config, rng, events)
     issues.append(
         {
-            "dataset": "stream_events",
+            "dataset": "commerce_events",
             "issue_type": "missing_device_type",
             "affected_rows": int(events["device_type"].isna().sum()),
             "observed_rate": round(float(events["device_type"].isna().mean()), 5),
@@ -56,14 +55,14 @@ def generate_streaming_events(
     )
     issues.append(
         {
-            "dataset": "stream_events",
+            "dataset": "commerce_events",
             "issue_type": "late_arrival",
             "affected_rows": int(events["is_late_arrival"].sum()),
             "observed_rate": round(float(events["is_late_arrival"].mean()), 5),
         }
     )
     topic_events = _build_topic_events(config, rng, events, offline_datasets)
-    return StreamingGeneration(stream_events=events, topic_events=topic_events, issue_records=issues)
+    return StreamingGeneration(topic_events=topic_events, issue_records=issues)
 
 
 def _events_from_orders(
@@ -282,7 +281,7 @@ def _inject_stream_duplicates(
     output = pd.concat([events, duplicate_rows], ignore_index=True)
     return output, [
         {
-            "dataset": "stream_events",
+            "dataset": "commerce_events",
             "issue_type": "exact_duplicate_event_payload",
             "affected_rows": int(n_dupes),
             "observed_rate": round(float(n_dupes / len(output)), 5),
@@ -293,14 +292,14 @@ def _inject_stream_duplicates(
 def _build_topic_events(
     config: GeneratorConfig,
     rng: np.random.Generator,
-    stream_events: pd.DataFrame,
+    session_events: pd.DataFrame,
     offline_datasets: dict[str, pd.DataFrame],
 ) -> dict[str, pd.DataFrame]:
     return {
         "commerce_events": _commerce_topic_events(
             config,
             rng,
-            stream_events,
+            session_events,
             offline_datasets["orders"],
             offline_datasets["payments"],
         ),
@@ -311,20 +310,20 @@ def _build_topic_events(
             offline_datasets["promotions"],
         ),
         "fulfillment_events": _fulfillment_topic_events(config, offline_datasets["shipments"]),
-        "ops_events": _ops_topic_events(config, stream_events),
+        "ops_events": _ops_topic_events(config, session_events),
     }
 
 
 def _commerce_topic_events(
     config: GeneratorConfig,
     rng: np.random.Generator,
-    stream_events: pd.DataFrame,
+    session_events: pd.DataFrame,
     orders: pd.DataFrame,
     payments: pd.DataFrame,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
     topic = "commerce_events"
-    ordered_events = stream_events.sort_values(["event_timestamp", "session_id", "event_type"]).reset_index(drop=True)
+    ordered_events = session_events.sort_values(["event_timestamp", "session_id", "event_type"]).reset_index(drop=True)
     orders_by_id = orders.drop_duplicates("order_id").set_index("order_id").to_dict("index")
 
     for event in ordered_events.itertuples(index=False):
@@ -709,7 +708,7 @@ def _fulfillment_topic_events(config: GeneratorConfig, shipments: pd.DataFrame) 
     return _topic_frame(rows)
 
 
-def _ops_topic_events(config: GeneratorConfig, stream_events: pd.DataFrame) -> pd.DataFrame:
+def _ops_topic_events(config: GeneratorConfig, session_events: pd.DataFrame) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
     topic = "ops_events"
     run_ts = pd.Timestamp(config.end_date) + pd.Timedelta(hours=23, minutes=59)
@@ -727,8 +726,8 @@ def _ops_topic_events(config: GeneratorConfig, stream_events: pd.DataFrame) -> p
         )
     )
 
-    burst_count = int(stream_events["is_burst_window"].sum())
-    burst_ts = stream_events.loc[stream_events["is_burst_window"], "event_timestamp"].min() if burst_count else run_ts
+    burst_count = int(session_events["is_burst_window"].sum())
+    burst_ts = session_events.loc[session_events["is_burst_window"], "event_timestamp"].min() if burst_count else run_ts
     rows.append(
         _envelope(
             config,
@@ -742,8 +741,8 @@ def _ops_topic_events(config: GeneratorConfig, stream_events: pd.DataFrame) -> p
         )
     )
 
-    late_count = int(stream_events["is_late_arrival"].sum())
-    late_ts = stream_events.loc[stream_events["is_late_arrival"], "created_ts"].min() if late_count else run_ts
+    late_count = int(session_events["is_late_arrival"].sum())
+    late_ts = session_events.loc[session_events["is_late_arrival"], "created_ts"].min() if late_count else run_ts
     rows.append(
         _envelope(
             config,
@@ -760,7 +759,7 @@ def _ops_topic_events(config: GeneratorConfig, stream_events: pd.DataFrame) -> p
         )
     )
 
-    duplicate_count = int(stream_events["event_id"].duplicated().sum())
+    duplicate_count = int(session_events["event_id"].duplicated().sum())
     rows.append(
         _envelope(
             config,

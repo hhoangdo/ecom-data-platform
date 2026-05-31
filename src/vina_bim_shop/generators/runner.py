@@ -23,7 +23,7 @@ class GenerationResult:
     evidence_paths: dict[str, Path]
 
 
-GENERATOR_DATASETS = [
+CLEANABLE_GENERATOR_OUTPUTS = [
     "customers",
     "sellers",
     "products",
@@ -34,7 +34,6 @@ GENERATOR_DATASETS = [
     "order_items",
     "payments",
     "shipments",
-    "stream_events",
     "kafka_topics",
 ]
 
@@ -69,7 +68,6 @@ def run_generation(
 
     if mode in {"streaming", "full"}:
         streaming_generation = generate_streaming_events(config, offline_generation.datasets)
-        datasets["stream_events"] = streaming_generation.stream_events
         topic_events = streaming_generation.topic_events
         issue_records.extend(streaming_generation.issue_records)
 
@@ -88,7 +86,7 @@ def run_generation(
 
 
 def _clean_outputs(raw_root: Path, evidence_root: Path) -> None:
-    for dataset in GENERATOR_DATASETS:
+    for dataset in CLEANABLE_GENERATOR_OUTPUTS:
         dataset_path = raw_root / dataset
         if dataset_path.exists():
             shutil.rmtree(dataset_path)
@@ -105,10 +103,7 @@ def _write_raw_outputs(
     for name, frame in datasets.items():
         dataset_path = raw_root / name
         dataset_path.mkdir(parents=True, exist_ok=True)
-        if name == "stream_events":
-            frame.to_json(dataset_path / "stream_events.jsonl", orient="records", lines=True, date_format="iso")
-        else:
-            frame.to_parquet(dataset_path / "part-000.parquet", index=False)
+        frame.to_parquet(dataset_path / "part-000.parquet", index=False)
     for topic, frame in sorted(topic_events.items()):
         topic_path = raw_root / "kafka_topics" / topic
         topic_path.mkdir(parents=True, exist_ok=True)

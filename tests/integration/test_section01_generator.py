@@ -31,9 +31,9 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
         "order_items",
         "payments",
         "shipments",
-        "stream_events",
     }
     assert expected_datasets.issubset(result.row_counts)
+    assert "stream_events" not in result.row_counts
 
     customers = pd.read_parquet(raw_root / "customers")
     products = pd.read_parquet(raw_root / "products")
@@ -41,7 +41,7 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     order_items = pd.read_parquet(raw_root / "order_items")
     payments = pd.read_parquet(raw_root / "payments")
     shipments = pd.read_parquet(raw_root / "shipments")
-    stream_events = pd.read_json(raw_root / "stream_events" / "stream_events.jsonl", lines=True)
+    commerce_events = pd.read_json(raw_root / "kafka_topics" / "commerce_events" / "events.jsonl", lines=True)
 
     assert {"customer_id", "segment", "city", "signup_ts"}.issubset(customers.columns)
     assert {
@@ -71,19 +71,20 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     ).mean()
     assert 0.005 <= duplicate_item_rate <= 0.05
 
-    assert {"view", "add_to_cart", "checkout_started", "order_placed", "payment_failed"}.issubset(
-        set(stream_events["event_type"])
+    assert not (raw_root / "stream_events").exists()
+    assert {
+        "product_viewed",
+        "add_to_cart",
+        "checkout_started",
+        "order_placed",
+        "payment_failed",
+    }.issubset(
+        set(commerce_events["event_type"])
     )
-    assert pd.to_datetime(stream_events["created_ts"]).ge(
-        pd.to_datetime(stream_events["event_timestamp"])
+    assert pd.to_datetime(commerce_events["created_ts"]).ge(
+        pd.to_datetime(commerce_events["event_timestamp"])
     ).all()
-    late_rate = (
-        pd.to_datetime(stream_events["created_ts"])
-        > pd.to_datetime(stream_events["event_timestamp"])
-    ).mean()
-    assert 0.05 <= late_rate <= 0.20
-    assert stream_events["event_id"].duplicated().mean() > 0
-    assert stream_events["is_burst_window"].any()
+    assert commerce_events["event_id"].duplicated().mean() > 0
 
     assert (evidence_root / "run_manifest.json").is_file()
     assert (evidence_root / "row_counts.csv").is_file()
@@ -91,4 +92,8 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     assert (evidence_root / "quality_metrics.csv").is_file()
     assert (evidence_root / "issue_manifest.csv").is_file()
     assert (evidence_root / "sample_rows" / "orders.csv").is_file()
+    assert not (evidence_root / "sample_rows" / "stream_events.csv").exists()
     assert (evidence_root / "quality_report.md").is_file()
+
+    quality_metrics = pd.read_csv(evidence_root / "quality_metrics.csv").set_index("metric")["value"]
+    assert 0.05 <= quality_metrics["issue_commerce_events_late_arrival"] <= 0.20

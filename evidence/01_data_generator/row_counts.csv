@@ -9,5 +9,4 @@ products,600
 promotions,16
 sellers,80
 shipments,1800
-stream_events,12676
 kafka_topics,24855

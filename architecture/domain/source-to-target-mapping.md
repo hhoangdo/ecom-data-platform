@@ -18,10 +18,14 @@ This document maps planned source datasets from Section `01` to the Bronze, Silv
 | `payments` | `raw_payments` | `stg_payments` | `fact_payment_attempt`, `obt_order_performance`, `feat_customer_90d` |
 | `shipments` | `raw_shipments` | `stg_shipments` | `fact_shipment`, `obt_order_performance` |
 | `promotions` | `raw_promotions` | `stg_promotions` | promotion analysis, future features |
-| `stream_events` | `raw_stream_events` | `stg_stream_events` | `feat_stream_60m`, `feat_customer_unified` |
+| `kafka_topics/commerce_events` | `raw_kafka_commerce_events` | `stg_commerce_events` | `feat_stream_60m`, `feat_customer_unified`, Pinot commerce metrics |
+| `kafka_topics/catalog_events` | `raw_kafka_catalog_events` | `stg_catalog_events` | Pinot catalog and stock signals, inventory context |
+| `kafka_topics/fulfillment_events` | `raw_kafka_fulfillment_events` | `stg_fulfillment_events` | Pinot fulfillment alerts, shipment context |
+| `kafka_topics/ops_events` | `raw_kafka_ops_events` | `stg_ops_events` | Pinot operational alerts |
 
 ## Contract Reminders
 
 - Bronze adds ingest metadata and preserves source fidelity.
 - Silver standardizes types, fills missing optional columns, and applies deduplication rules.
 - Gold exposes business-ready keys, measures, and point-in-time-safe feature inputs.
+- The removed flat stream helper is not modeled; Kafka-topic-shaped JSONL files are the only streaming source contract.

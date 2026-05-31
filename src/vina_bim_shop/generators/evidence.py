@@ -133,12 +133,6 @@ def _quality_metrics(datasets: dict[str, pd.DataFrame], issue_records: list[dict
             subset=["order_id", "product_id", "quantity", "unit_price", "discount_amount"]
         ).mean()
         rows.append({"metric": "offline_order_item_duplicate_rate", "value": round(float(duplicate_rate), 5)})
-    if "stream_events" in datasets:
-        events = datasets["stream_events"]
-        rows.append({"metric": "stream_late_arrival_rate", "value": round(float(events["is_late_arrival"].mean()), 5)})
-        rows.append({"metric": "stream_event_duplicate_id_rate", "value": round(float(events["event_id"].duplicated().mean()), 5)})
-        rows.append({"metric": "stream_missing_device_type_rate", "value": round(float(events["device_type"].isna().mean()), 5)})
-        rows.append({"metric": "stream_burst_event_count", "value": int(events["is_burst_window"].sum())})
     for issue in issue_records:
         rows.append({"metric": f"issue_{issue['dataset']}_{issue['issue_type']}", "value": issue["observed_rate"]})
     return pd.DataFrame(rows)

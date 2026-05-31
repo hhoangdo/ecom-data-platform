@@ -7,7 +7,6 @@
 The Section `01` generator produces:
 
 - offline source datasets as Parquet files under `data/raw/<dataset>/`
-- one legacy flat streaming event dataset as JSONL under `data/raw/stream_events/`
 - Kafka-topic-shaped JSONL events under `data/raw/kafka_topics/<topic>/`
 - evidence files under `evidence/01_data_generator/`
 - a run manifest, quality report, issue manifest, schema summary, row counts, event-topic summaries, and sample rows
@@ -62,10 +61,11 @@ Marketplace realism included in v1:
 
 ## 4. Lambda Streaming Source Design
 
-The generator writes two streaming-friendly raw outputs:
+The generator writes one streaming-friendly raw output family:
 
-- `data/raw/stream_events/stream_events.jsonl`: a flat convenience stream for fast local analysis and continuity with the first implementation.
 - `data/raw/kafka_topics/<topic>/events.jsonl`: the authoritative Kafka-topic-shaped source contract for Lambda architecture.
+
+The earlier flat stream helper output was removed so downstream schema design has one clear streaming source contract.
 
 Kafka topic outputs use domain topics rather than one topic per event:
 
@@ -110,11 +110,11 @@ The generator intentionally mixes known problems into the primary outputs and re
 | Challenge | Implementation |
 | --- | --- |
 | Skew | HCMC/Ha Noi city skew and FMCG/ELHA catalog skew |
-| Duplicates | exact duplicate order-item payloads and exact duplicate stream-event payloads |
-| Late arrivals | configured portion of stream events have delayed `created_ts` |
+| Duplicates | exact duplicate order-item payloads and exact duplicate commerce-event envelope payloads |
+| Late arrivals | configured portion of commerce events have delayed `created_ts` |
 | Missing values | intentional missingness in `shipping_method`, `brand`, and `device_type` |
 | Schema evolution | older marketplace slices miss newer fields such as fulfillment channel, promotion funding detail, device metadata, and category attributes |
-| Burst traffic | stream events mark lunch and evening burst windows |
+| Burst traffic | Kafka ops events summarize lunch and evening burst windows |
 
 Lambda-specific generated evidence also records Kafka topic row counts and schema-version counts so Section `02` can validate ingestion coverage before building Bronze/Silver tables.
 
@@ -140,7 +140,6 @@ Generated row counts:
 | `order_items` | 6,891 |
 | `payments` | 1,800 |
 | `shipments` | 1,800 |
-| `stream_events` | 12,676 |
 | `kafka_topics` | 24,855 |
 
 Selected quality metrics:
@@ -150,10 +149,9 @@ Selected quality metrics:
 | `hcmc_hanoi_customer_share` | 0.45125 |
 | `fmcg_elha_product_share` | 0.66 |
 | `offline_order_item_duplicate_rate` | 0.01959 |
-| `stream_late_arrival_rate` | 0.12536 |
-| `stream_event_duplicate_id_rate` | 0.01475 |
-| `stream_missing_device_type_rate` | 0.03921 |
-| `stream_burst_event_count` | 687 |
+| `issue_commerce_events_late_arrival` | 0.12536 |
+| `issue_commerce_events_exact_duplicate_event_payload` | 0.01475 |
+| `issue_commerce_events_missing_device_type` | 0.03921 |
 
 Kafka topic row counts:
 
@@ -190,12 +188,6 @@ Sample `products` row:
 | --- | --- | --- | --- | --- | --- |
 | `PRD-FASHION-00000003` | `SEL-HCM-STA-00000051` | `Fashion` | `Men's Fashion` | `DenimSaigon` | `platform_fulfilled` |
 
-Sample `stream_events` row:
-
-| event_id | event_type | session_id | customer_id | product_id | event_timestamp | is_late_arrival |
-| --- | --- | --- | --- | --- | --- | --- |
-| `EVT-VIE-20260425-00000001` | `view` | `SES-HUI-20260426-00001107` | `CUS-HUI-00000241` | `PRD-FASHION-00000294` | `2026-04-25 22:53:05` | `False` |
-
 Sample Kafka-shaped `commerce_events` row:
 
 | event_id | event_type | event_topic | schema_version | producer |
@@ -208,7 +200,7 @@ Implementation files:
 
 - `src/vina_bim_shop/generators/config.py`: config and taxonomy loading
 - `src/vina_bim_shop/generators/offline/generator.py`: offline source generation
-- `src/vina_bim_shop/generators/streaming/generator.py`: flat stream plus Kafka-topic-shaped source event generation
+- `src/vina_bim_shop/generators/streaming/generator.py`: Kafka-topic-shaped source event generation
 - `src/vina_bim_shop/generators/evidence.py`: manifest, metrics, issue, and sample-row evidence
 - `src/vina_bim_shop/generators/runner.py`: orchestration and output writing
 - `scripts/generate/run_generator.py`: CLI entrypoint

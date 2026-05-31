@@ -4,7 +4,7 @@
   "mode": "full",
   "random_seed": 42,
   "history_days": 7,
-  "generated_at": "2026-05-29T16:51:54.789351+00:00",
+  "generated_at": "2026-05-31T03:19:21.689313+00:00",
   "raw_root": "data/raw",
   "evidence_root": "evidence/01_data_generator",
   "row_counts": {
@@ -18,7 +18,6 @@
     "promotions": 16,
     "sellers": 80,
     "shipments": 1800,
-    "stream_events": 12676,
     "kafka_topics": 24855
   },
   "kafka_topics": {

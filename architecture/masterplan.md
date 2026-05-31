@@ -137,7 +137,7 @@ Approved Kafka domain topics:
 | `fulfillment_events` | shipment lifecycle and payment-blocked fulfillment events |
 | `ops_events` | heartbeat, burst, lateness, duplicate, and schema-version observability events |
 
-The legacy flat `stream_events` JSONL output remains as a convenience dataset for fast local analysis, but the Kafka-topic-shaped outputs are the authoritative streaming source contract for Lambda architecture.
+Kafka-topic-shaped JSONL outputs are the authoritative streaming source contract for Lambda architecture. The older flat stream helper output is removed so Section `02` has one clear streaming contract.
 
 ### Lambda Architecture Contract
 
@@ -271,7 +271,7 @@ The repository and logical storage follow a medallion pattern:
 
 ### Naming Conventions
 
-- raw/source assets use source-oriented names such as `orders`, `payments`, `stream_events`
+- raw/source assets use source-oriented names such as `orders`, `payments`, and `kafka_topics/<topic>`
 - Bronze tables use `raw_` prefixes when represented as tables or SQL models
 - Silver tables use `stg_` prefixes
 - Gold dimension tables use `dim_`
