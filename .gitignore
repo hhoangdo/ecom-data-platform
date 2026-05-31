@@ -8,6 +8,12 @@ __pycache__/
 .coverage
 htmlcov/
 
+# Deferred coursework workspaces
+/ai/
+/infra/
+/notebooks/
+/sql/
+
 data/raw/*
 !data/raw/.gitkeep
 data/bronze/*
