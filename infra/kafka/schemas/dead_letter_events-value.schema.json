@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vina-bim-shop.local/schemas/dead_letter_events-value.schema.json",
+  "title": "dead_letter_events value",
+  "type": "object",
+  "required": [
+    "dlq_id",
+    "source_topic",
+    "error_reason",
+    "raw_payload",
+    "event_topic",
+    "schema_version",
+    "ingest_ts"
+  ],
+  "properties": {
+    "dlq_id": {"type": "string", "minLength": 1},
+    "source_topic": {"type": "string", "minLength": 1},
+    "error_reason": {"type": "string", "minLength": 1},
+    "raw_payload": {"type": "string", "minLength": 1},
+    "event_topic": {"const": "dead_letter_events"},
+    "schema_version": {"type": "integer", "minimum": 1},
+    "ingest_ts": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

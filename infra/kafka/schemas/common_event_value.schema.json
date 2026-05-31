@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vina-bim-shop.local/schemas/common_event_value.schema.json",
+  "title": "Vina Bim Shop Common Source Event Envelope",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "event_topic",
+    "schema_version",
+    "event_timestamp",
+    "created_ts",
+    "producer",
+    "correlation_ids",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "event_type": {"type": "string", "minLength": 1},
+    "event_topic": {"type": "string", "minLength": 1},
+    "schema_version": {"type": "integer", "minimum": 1},
+    "event_timestamp": {"type": "string", "minLength": 1},
+    "created_ts": {"type": "string", "minLength": 1},
+    "producer": {"type": "string", "minLength": 1},
+    "correlation_ids": {"type": "object"},
+    "payload": {"type": "object"}
+  },
+  "additionalProperties": true
+}
