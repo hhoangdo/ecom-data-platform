@@ -1,0 +1,5 @@
+bad_record_id,source_dataset,error_reason,raw_record,ingest_ts
+BAD-SNAPSHOT-0001,orders,missing_required_key,"{""customer_id"":""CUS-MISSING-ORDER-ID"",""order_timestamp"":""2026-05-01T09:00:00"",""status"":""paid""}",2026-05-02T00:10:00
+BAD-SNAPSHOT-0002,payments,invalid_json,"{""payment_id"":""PAY-BROKEN"",""order_id"":""ORD-BROKEN"",",2026-05-02T00:10:00
+BAD-SNAPSHOT-0003,shipments,invalid_timestamp,"{""shipment_id"":""SHP-BAD-TS"",""order_id"":""ORD-BAD-TS"",""handoff_ts"":""tomorrow-ish"",""shipment_status"":""handoff""}",2026-05-02T00:10:00
+BAD-SNAPSHOT-0004,products,unknown_schema_version,"{""schema_version"":99,""product_id"":""PRD-UNKNOWN-SCHEMA"",""primary_category"":""FMCG"",""category_attributes"":{""unexpected"":""shape""}}",2026-05-02T00:10:00

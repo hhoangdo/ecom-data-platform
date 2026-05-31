@@ -1,0 +1,6 @@
+event_topic,row_count
+catalog_events,1940
+commerce_events,17689
+dead_letter_events,4
+fulfillment_events,5132
+ops_events,5

@@ -1,0 +1,81 @@
+{
+  "catalog_events": {
+    "correlation_ids": {
+      "promotion_id": "PRM-ELHA-00000013",
+      "seller_id": "SEL-OVN-PRE-00000007"
+    },
+    "created_ts": "2026-04-21T18:54:40",
+    "event_id": "KEVT-CAT-PROMOTION-CREATED-20260421-0000000013",
+    "event_timestamp": "2026-04-21T18:54:40",
+    "event_topic": "catalog_events",
+    "event_type": "promotion_created",
+    "payload": {
+      "category": "ELHA",
+      "discount_rate": 0.256,
+      "funding_detail": {},
+      "funding_type": "mixed",
+      "promotion_name": "Mixed ELHA Campaign"
+    },
+    "producer": "vina_bim_shop.synthetic_source",
+    "schema_version": 1
+  },
+  "commerce_events": {
+    "correlation_ids": {
+      "anonymous_id": "ANON-00000503",
+      "customer_id": null,
+      "session_id": "SES-BDG-20260426-00001033"
+    },
+    "created_ts": "2026-04-25T22:41:40",
+    "event_id": "KEVT-COM-SEARCH-PERFORMED-20260425-0000000001",
+    "event_timestamp": "2026-04-25T22:41:20",
+    "event_topic": "commerce_events",
+    "event_type": "search_performed",
+    "payload": {
+      "query_family": "FMCG",
+      "result_count": 14
+    },
+    "producer": "vina_bim_shop.synthetic_source",
+    "schema_version": 1
+  },
+  "dead_letter_events": {
+    "dlq_id": "DLQ-EVENT-0001",
+    "error_reason": "missing_required_key",
+    "event_topic": "dead_letter_events",
+    "ingest_ts": "2026-05-02T00:05:00",
+    "raw_payload": "{\"event_type\":\"order_placed\",\"event_topic\":\"commerce_events\",\"schema_version\":1,\"event_timestamp\":\"2026-05-01T10:00:00\",\"created_ts\":\"2026-05-01T10:00:03\",\"producer\":\"vina_bim_shop.synthetic_source\",\"payload\":{\"order_id\":\"ORD-MISSING-EVENT-ID\"}}",
+    "schema_version": 1,
+    "source_topic": "commerce_events"
+  },
+  "fulfillment_events": {
+    "correlation_ids": {
+      "customer_id": "CUS-HPH-00000637",
+      "order_id": "ORD-HPH-20260426-00001460",
+      "shipment_id": "SHP-HAI-20260426-00001460"
+    },
+    "created_ts": "2026-04-26T00:03:04",
+    "event_id": "KEVT-FUL-SHIPMENT-CREATED-20260426-0000001460",
+    "event_timestamp": "2026-04-26T00:03:04",
+    "event_topic": "fulfillment_events",
+    "event_type": "shipment_created",
+    "payload": {
+      "shipping_city": "Hai Phong",
+      "shipping_method": "standard"
+    },
+    "producer": "vina_bim_shop.synthetic_source",
+    "schema_version": 1
+  },
+  "ops_events": {
+    "correlation_ids": {},
+    "created_ts": "2026-04-25T23:51:21",
+    "event_id": "KEVT-OPS-LATE-ARRIVAL-OBSERVED-20260425-0000000001",
+    "event_timestamp": "2026-04-25T23:51:21",
+    "event_topic": "ops_events",
+    "event_type": "late_arrival_observed",
+    "payload": {
+      "allowed_lateness_seconds": 10,
+      "late_event_count": 1510
+    },
+    "producer": "vina_bim_shop.synthetic_source",
+    "schema_version": 1
+  }
+}

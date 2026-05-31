@@ -1,0 +1,7 @@
+[
+  "catalog_events-value",
+  "commerce_events-value",
+  "dead_letter_events-value",
+  "fulfillment_events-value",
+  "ops_events-value"
+]

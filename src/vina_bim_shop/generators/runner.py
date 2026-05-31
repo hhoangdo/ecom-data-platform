@@ -49,6 +49,9 @@ def run_generation(
     evidence_root: str | Path | None = None,
     seed: int | None = None,
     clean: bool = False,
+    publish_kafka: bool = False,
+    kafka_bootstrap_servers: str | None = None,
+    kafka_flush_timeout_seconds: float = 30.0,
 ) -> GenerationResult:
     config = load_generator_config(
         config_path,
@@ -78,6 +81,14 @@ def run_generation(
         issue_records.extend(_quarantine_issue_records("dead_letter_events", topic_events["dead_letter_events"]))
 
     _write_raw_outputs(config.raw_root, datasets, topic_events)
+    if publish_kafka and topic_events:
+        from vina_bim_shop.kafka.publisher import publish_topic_events
+
+        publish_topic_events(
+            topic_events=topic_events,
+            bootstrap_servers=kafka_bootstrap_servers or str(config.kafka["bootstrap_servers"]),
+            flush_timeout_seconds=kafka_flush_timeout_seconds,
+        )
     evidence_paths = write_evidence(config, datasets, issue_records, mode=mode, topic_events=topic_events)
     row_counts = {name: len(frame) for name, frame in datasets.items()}
     if topic_events:

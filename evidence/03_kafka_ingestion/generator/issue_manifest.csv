@@ -1,0 +1,16 @@
+dataset,issue_type,affected_rows,observed_rate
+order_items,exact_duplicate_payload,133,0.0195
+products,missing_brand,11,0.01833
+orders,missing_shipping_method,48,0.02667
+products,schema_evolution_category_attributes,257,0.42833
+bad_snapshots,invalid_json,1,0.25
+bad_snapshots,invalid_timestamp,1,0.25
+bad_snapshots,missing_required_key,1,0.25
+bad_snapshots,unknown_schema_version,1,0.25
+commerce_events,exact_duplicate_event_payload,185,0.01473
+commerce_events,missing_device_type,491,0.0391
+commerce_events,late_arrival,1510,0.12024
+dead_letter_events,invalid_json,1,0.25
+dead_letter_events,invalid_timestamp,1,0.25
+dead_letter_events,missing_required_key,1,0.25
+dead_letter_events,unknown_schema_version,1,0.25
