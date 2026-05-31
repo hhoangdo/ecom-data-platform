@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-05-31T03:20:06.143546+00:00",
+  "commands": [
+    {
+      "command": "dbt build --project-dir dbt --profiles-dir dbt",
+      "return_code": 0,
+      "elapsed_seconds": 25.191
+    },
+    {
+      "command": "dbt docs generate --project-dir dbt --profiles-dir dbt",
+      "return_code": 0,
+      "elapsed_seconds": 8.349
+    }
+  ],
+  "dbt_model_count": 52,
+  "dbt_test_count": 60,
+  "catalog_model_count": 52,
+  "schema_inventory_row_count": 630,
+  "table_row_count": 52,
+  "artifacts": [
+    "dbt_build_report.md",
+    "dbt_test_results.csv",
+    "dbt_model_results.csv",
+    "dbt_catalog_summary.csv",
+    "schema_inventory.csv",
+    "table_row_counts.csv",
+    "run_manifest.json",
+    "screenshots/schema_design.png",
+    "screenshots/gold_schema_inventory.png",
+    "screenshots/dbt_test_summary.png"
+  ]
+}

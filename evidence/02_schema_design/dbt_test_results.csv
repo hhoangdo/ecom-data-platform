@@ -1,0 +1,61 @@
+test_name,status,failures,execution_time_seconds,depends_on
+accepted_values_dim_order_status_order_status__paid__payment_failed,pass,0,0.079,dim_order_status
+accepted_values_raw_kafka_commerce_events_event_topic__commerce_events,pass,0,0.312,raw_kafka_commerce_events
+accepted_values_stg_orders_status__paid__payment_failed,pass,0,0.109,stg_orders
+accepted_values_stg_payments_payment_status__success__failed,pass,0,0.095,stg_payments
+assert_fact_order_reconciles_to_stg_orders,pass,0,0.107,"stg_orders, fact_order"
+assert_order_item_totals_reconcile,pass,0,0.098,"stg_order_items, stg_orders"
+expression_is_true_fact_order_item_estimated_cost_0_and_estimated_margin_is_not_null,pass,0,0.092,fact_order_item
+expression_is_true_fact_order_official_paid_revenue_0,pass,0,0.122,fact_order
+not_null_agg_hourly_reconciled_kpi_metric_hour,pass,0,0.02,agg_hourly_reconciled_kpi
+not_null_dim_category_category_key,pass,0,0.086,dim_category
+not_null_dim_customer_customer_id,pass,0,0.097,dim_customer
+not_null_dim_customer_customer_key,pass,0,0.095,dim_customer
+not_null_dim_product_product_id,pass,0,0.083,dim_product
+not_null_dim_product_product_key,pass,0,0.09,dim_product
+not_null_fact_inventory_snapshot_snapshot_id,pass,0,0.129,fact_inventory_snapshot
+not_null_fact_order_customer_key,pass,0,0.113,fact_order
+not_null_fact_order_item_order_item_id,pass,0,0.07,fact_order_item
+not_null_fact_order_order_id,pass,0,0.099,fact_order
+not_null_fact_payment_attempt_payment_id,pass,0,0.094,fact_payment_attempt
+not_null_fact_promotion_application_order_item_id,pass,0,0.092,fact_promotion_application
+not_null_fact_shipment_shipment_id,pass,0,0.092,fact_shipment
+not_null_feat_customer_90d_customer_id,pass,0,0.084,feat_customer_90d
+not_null_feat_customer_90d_event_timestamp,pass,0,0.076,feat_customer_90d
+not_null_feat_customer_unified_customer_id,pass,0,0.087,feat_customer_unified
+not_null_feat_customer_unified_event_timestamp,pass,0,0.08,feat_customer_unified
+not_null_feat_stream_60m_customer_id,pass,0,0.119,feat_stream_60m
+not_null_feat_stream_60m_event_timestamp,pass,0,0.11,feat_stream_60m
+not_null_obt_order_performance_order_id,pass,0,0.057,obt_order_performance
+not_null_raw_kafka_commerce_events_event_id,pass,0,0.287,raw_kafka_commerce_events
+not_null_raw_order_items_order_item_id,pass,0,0.12,raw_order_items
+not_null_raw_orders_order_id,pass,0,0.117,raw_orders
+not_null_raw_payments_payment_id,pass,0,0.092,raw_payments
+not_null_raw_shipments_shipment_id,pass,0,0.067,raw_shipments
+not_null_stg_commerce_events_event_id,pass,0,0.289,stg_commerce_events
+not_null_stg_commerce_events_event_type,pass,0,0.319,stg_commerce_events
+not_null_stg_order_items_order_item_id,pass,0,0.09,stg_order_items
+not_null_stg_orders_order_id,pass,0,0.09,stg_orders
+not_null_stg_payments_payment_id,pass,0,0.092,stg_payments
+not_null_stg_shipments_shipment_id,pass,0,0.095,stg_shipments
+relationships_fact_order_customer_key__customer_key__ref_dim_customer_,pass,0,0.13,"dim_customer, fact_order"
+relationships_fact_order_item_product_key__product_key__ref_dim_product_,pass,0,0.1,"dim_product, fact_order_item"
+relationships_fact_order_order_status_key__order_status_key__ref_dim_order_status_,pass,0,0.118,"dim_order_status, fact_order"
+relationships_fact_payment_attempt_payment_method_key__payment_method_key__ref_dim_payment_method_,pass,0,0.097,"dim_payment_method, fact_payment_attempt"
+unique_dim_category_category_key,pass,0,0.08,dim_category
+unique_dim_customer_customer_id,pass,0,0.093,dim_customer
+unique_dim_customer_customer_key,pass,0,0.09,dim_customer
+unique_dim_product_product_id,pass,0,0.086,dim_product
+unique_dim_product_product_key,pass,0,0.082,dim_product
+unique_fact_inventory_snapshot_snapshot_id,pass,0,0.126,fact_inventory_snapshot
+unique_fact_order_item_order_item_id,pass,0,0.085,fact_order_item
+unique_fact_order_order_id,pass,0,0.132,fact_order
+unique_fact_payment_attempt_payment_id,pass,0,0.08,fact_payment_attempt
+unique_fact_promotion_application_order_item_id,pass,0,0.1,fact_promotion_application
+unique_fact_shipment_shipment_id,pass,0,0.103,fact_shipment
+unique_obt_order_performance_order_id,pass,0,0.061,obt_order_performance
+unique_stg_commerce_events_event_id,pass,0,0.326,stg_commerce_events
+unique_stg_order_items_order_item_id,pass,0,0.1,stg_order_items
+unique_stg_orders_order_id,pass,0,0.094,stg_orders
+unique_stg_payments_payment_id,pass,0,0.09,stg_payments
+unique_stg_shipments_shipment_id,pass,0,0.09,stg_shipments

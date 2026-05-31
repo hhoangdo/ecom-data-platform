@@ -1,0 +1,631 @@
+schema,table_name,relation_type,column_name,data_type,ordinal_position
+bronze,raw_bad_events,VIEW,source_topic,VARCHAR,1
+bronze,raw_bad_events,VIEW,raw_payload,VARCHAR,2
+bronze,raw_bad_events,VIEW,error_reason,VARCHAR,3
+bronze,raw_bad_events,VIEW,ingest_ts,TIMESTAMP,4
+bronze,raw_bad_snapshots,VIEW,source_dataset,VARCHAR,1
+bronze,raw_bad_snapshots,VIEW,raw_record,VARCHAR,2
+bronze,raw_bad_snapshots,VIEW,error_reason,VARCHAR,3
+bronze,raw_bad_snapshots,VIEW,ingest_ts,TIMESTAMP,4
+bronze,raw_customers,VIEW,customer_id,VARCHAR,1
+bronze,raw_customers,VIEW,anonymous_id,VARCHAR,2
+bronze,raw_customers,VIEW,signup_ts,TIMESTAMP,3
+bronze,raw_customers,VIEW,created_ts,TIMESTAMP,4
+bronze,raw_customers,VIEW,country,VARCHAR,5
+bronze,raw_customers,VIEW,region,VARCHAR,6
+bronze,raw_customers,VIEW,city,VARCHAR,7
+bronze,raw_customers,VIEW,city_code,VARCHAR,8
+bronze,raw_customers,VIEW,segment,VARCHAR,9
+bronze,raw_customers,VIEW,marketing_opt_in,BOOLEAN,10
+bronze,raw_customers,VIEW,preferred_device,VARCHAR,11
+bronze,raw_customers,VIEW,acquisition_channel,VARCHAR,12
+bronze,raw_customers,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,13
+bronze,raw_inventory_snapshots,VIEW,snapshot_id,VARCHAR,1
+bronze,raw_inventory_snapshots,VIEW,product_id,VARCHAR,2
+bronze,raw_inventory_snapshots,VIEW,seller_id,VARCHAR,3
+bronze,raw_inventory_snapshots,VIEW,snapshot_ts,TIMESTAMP,4
+bronze,raw_inventory_snapshots,VIEW,stock_on_hand,BIGINT,5
+bronze,raw_inventory_snapshots,VIEW,reserved_stock,BIGINT,6
+bronze,raw_inventory_snapshots,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,7
+bronze,raw_kafka_catalog_events,VIEW,event_id,VARCHAR,1
+bronze,raw_kafka_catalog_events,VIEW,event_type,VARCHAR,2
+bronze,raw_kafka_catalog_events,VIEW,event_topic,VARCHAR,3
+bronze,raw_kafka_catalog_events,VIEW,schema_version,BIGINT,4
+bronze,raw_kafka_catalog_events,VIEW,event_timestamp,TIMESTAMP,5
+bronze,raw_kafka_catalog_events,VIEW,created_ts,TIMESTAMP,6
+bronze,raw_kafka_catalog_events,VIEW,producer,VARCHAR,7
+bronze,raw_kafka_catalog_events,VIEW,correlation_ids,"STRUCT(promotion_id VARCHAR, seller_id VARCHAR, snapshot_id VARCHAR, product_id VARCHAR)",8
+bronze,raw_kafka_catalog_events,VIEW,payload,"STRUCT(promotion_name VARCHAR, funding_type VARCHAR, funding_detail STRUCT(platform_share DOUBLE, seller_share DOUBLE), category VARCHAR, discount_rate DOUBLE, stock_on_hand BIGINT, threshold DOUBLE, reserved_stock BIGINT, product_name VARCHAR, primary_category VARCHAR, primary_subcategory VARCHAR, brand VARCHAR, base_price DOUBLE, category_attributes STRUCT(pack_size VARCHAR, shelf_life_days BIGINT, subcategory VARCHAR, variant VARCHAR, energy_rating VARCHAR, spec_tier VARCHAR, warranty_months BIGINT, material VARCHAR, size_family VARCHAR, style VARCHAR, assembly_required BOOLEAN, room_type VARCHAR), promotion_end_ts TIMESTAMP, changed_fields VARCHAR[], fulfillment_channel VARCHAR, old_price DOUBLE, new_price DOUBLE)",9
+bronze,raw_kafka_catalog_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,10
+bronze,raw_kafka_commerce_events,VIEW,event_id,VARCHAR,1
+bronze,raw_kafka_commerce_events,VIEW,event_type,VARCHAR,2
+bronze,raw_kafka_commerce_events,VIEW,event_topic,VARCHAR,3
+bronze,raw_kafka_commerce_events,VIEW,schema_version,BIGINT,4
+bronze,raw_kafka_commerce_events,VIEW,event_timestamp,TIMESTAMP,5
+bronze,raw_kafka_commerce_events,VIEW,created_ts,TIMESTAMP,6
+bronze,raw_kafka_commerce_events,VIEW,producer,VARCHAR,7
+bronze,raw_kafka_commerce_events,VIEW,correlation_ids,"STRUCT(session_id VARCHAR, anonymous_id VARCHAR, customer_id VARCHAR, product_id VARCHAR, order_id VARCHAR, payment_id VARCHAR)",8
+bronze,raw_kafka_commerce_events,VIEW,payload,"STRUCT(query_family VARCHAR, result_count BIGINT, device_type VARCHAR, ""source"" VARCHAR, surface VARCHAR, product_id VARCHAR, order_id VARCHAR, primary_category VARCHAR, order_status VARCHAR, order_net_amount DOUBLE, cart_action VARCHAR, checkout_step VARCHAR, order_source VARCHAR, payment_method VARCHAR, amount DOUBLE, failure_reason VARCHAR, abandonment_stage VARCHAR, failure_surface VARCHAR, coupon_code VARCHAR, promotion_id VARCHAR, cancel_reason VARCHAR)",9
+bronze,raw_kafka_commerce_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,10
+bronze,raw_kafka_fulfillment_events,VIEW,event_id,VARCHAR,1
+bronze,raw_kafka_fulfillment_events,VIEW,event_type,VARCHAR,2
+bronze,raw_kafka_fulfillment_events,VIEW,event_topic,VARCHAR,3
+bronze,raw_kafka_fulfillment_events,VIEW,schema_version,BIGINT,4
+bronze,raw_kafka_fulfillment_events,VIEW,event_timestamp,TIMESTAMP,5
+bronze,raw_kafka_fulfillment_events,VIEW,created_ts,TIMESTAMP,6
+bronze,raw_kafka_fulfillment_events,VIEW,producer,VARCHAR,7
+bronze,raw_kafka_fulfillment_events,VIEW,correlation_ids,"STRUCT(shipment_id VARCHAR, order_id VARCHAR, customer_id VARCHAR)",8
+bronze,raw_kafka_fulfillment_events,VIEW,payload,"STRUCT(shipping_city VARCHAR, shipping_method VARCHAR, block_reason VARCHAR, shipment_status VARCHAR, delay_reason VARCHAR, shipping_region VARCHAR)",9
+bronze,raw_kafka_fulfillment_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,10
+bronze,raw_kafka_ops_events,VIEW,event_id,VARCHAR,1
+bronze,raw_kafka_ops_events,VIEW,event_type,VARCHAR,2
+bronze,raw_kafka_ops_events,VIEW,event_topic,VARCHAR,3
+bronze,raw_kafka_ops_events,VIEW,schema_version,BIGINT,4
+bronze,raw_kafka_ops_events,VIEW,event_timestamp,TIMESTAMP,5
+bronze,raw_kafka_ops_events,VIEW,created_ts,TIMESTAMP,6
+bronze,raw_kafka_ops_events,VIEW,producer,VARCHAR,7
+bronze,raw_kafka_ops_events,VIEW,correlation_ids,STRUCT(producer VARCHAR),8
+bronze,raw_kafka_ops_events,VIEW,payload,"STRUCT(late_event_count BIGINT, allowed_lateness_seconds BIGINT, burst_event_count BIGINT, burst_windows VARCHAR[], old_schema_version BIGINT, new_schema_version BIGINT, changed_fields VARCHAR[], duplicate_event_count BIGINT, dedup_key VARCHAR[], status VARCHAR, topics VARCHAR[])",9
+bronze,raw_kafka_ops_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,10
+bronze,raw_order_items,VIEW,order_item_id,VARCHAR,1
+bronze,raw_order_items,VIEW,order_id,VARCHAR,2
+bronze,raw_order_items,VIEW,product_id,VARCHAR,3
+bronze,raw_order_items,VIEW,seller_id,VARCHAR,4
+bronze,raw_order_items,VIEW,primary_category,VARCHAR,5
+bronze,raw_order_items,VIEW,primary_subcategory,VARCHAR,6
+bronze,raw_order_items,VIEW,quantity,BIGINT,7
+bronze,raw_order_items,VIEW,unit_price,DOUBLE,8
+bronze,raw_order_items,VIEW,gross_amount,DOUBLE,9
+bronze,raw_order_items,VIEW,discount_amount,DOUBLE,10
+bronze,raw_order_items,VIEW,net_amount,DOUBLE,11
+bronze,raw_order_items,VIEW,promotion_id,VARCHAR,12
+bronze,raw_order_items,VIEW,created_ts,TIMESTAMP,13
+bronze,raw_order_items,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,14
+bronze,raw_orders,VIEW,order_id,VARCHAR,1
+bronze,raw_orders,VIEW,customer_id,VARCHAR,2
+bronze,raw_orders,VIEW,session_id,VARCHAR,3
+bronze,raw_orders,VIEW,anonymous_id,VARCHAR,4
+bronze,raw_orders,VIEW,order_timestamp,TIMESTAMP,5
+bronze,raw_orders,VIEW,created_ts,TIMESTAMP,6
+bronze,raw_orders,VIEW,order_date,VARCHAR,7
+bronze,raw_orders,VIEW,primary_category,VARCHAR,8
+bronze,raw_orders,VIEW,status,VARCHAR,9
+bronze,raw_orders,VIEW,shipping_city,VARCHAR,10
+bronze,raw_orders,VIEW,shipping_region,VARCHAR,11
+bronze,raw_orders,VIEW,shipping_method,VARCHAR,12
+bronze,raw_orders,VIEW,fulfillment_channel,VARCHAR,13
+bronze,raw_orders,VIEW,promotion_id,VARCHAR,14
+bronze,raw_orders,VIEW,coupon_code,VARCHAR,15
+bronze,raw_orders,VIEW,item_count,BIGINT,16
+bronze,raw_orders,VIEW,order_gross_amount,DOUBLE,17
+bronze,raw_orders,VIEW,order_discount_amount,DOUBLE,18
+bronze,raw_orders,VIEW,order_net_amount,DOUBLE,19
+bronze,raw_orders,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,20
+bronze,raw_payments,VIEW,payment_id,VARCHAR,1
+bronze,raw_payments,VIEW,order_id,VARCHAR,2
+bronze,raw_payments,VIEW,customer_id,VARCHAR,3
+bronze,raw_payments,VIEW,payment_timestamp,TIMESTAMP,4
+bronze,raw_payments,VIEW,created_ts,TIMESTAMP,5
+bronze,raw_payments,VIEW,payment_method,VARCHAR,6
+bronze,raw_payments,VIEW,amount,DOUBLE,7
+bronze,raw_payments,VIEW,payment_status,VARCHAR,8
+bronze,raw_payments,VIEW,failure_reason,VARCHAR,9
+bronze,raw_payments,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,10
+bronze,raw_product_category_map,VIEW,product_id,VARCHAR,1
+bronze,raw_product_category_map,VIEW,category,VARCHAR,2
+bronze,raw_product_category_map,VIEW,subcategory,VARCHAR,3
+bronze,raw_product_category_map,VIEW,is_primary,BOOLEAN,4
+bronze,raw_product_category_map,VIEW,assigned_ts,TIMESTAMP,5
+bronze,raw_product_category_map,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,6
+bronze,raw_products,VIEW,product_id,VARCHAR,1
+bronze,raw_products,VIEW,seller_id,VARCHAR,2
+bronze,raw_products,VIEW,primary_category,VARCHAR,3
+bronze,raw_products,VIEW,primary_subcategory,VARCHAR,4
+bronze,raw_products,VIEW,brand,VARCHAR,5
+bronze,raw_products,VIEW,product_name,VARCHAR,6
+bronze,raw_products,VIEW,base_price,DOUBLE,7
+bronze,raw_products,VIEW,price_band,VARCHAR,8
+bronze,raw_products,VIEW,is_active,BOOLEAN,9
+bronze,raw_products,VIEW,created_ts,TIMESTAMP,10
+bronze,raw_products,VIEW,fulfillment_channel,VARCHAR,11
+bronze,raw_products,VIEW,category_attributes,VARCHAR,12
+bronze,raw_products,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,13
+bronze,raw_promotions,VIEW,promotion_id,VARCHAR,1
+bronze,raw_promotions,VIEW,promotion_name,VARCHAR,2
+bronze,raw_promotions,VIEW,funding_type,VARCHAR,3
+bronze,raw_promotions,VIEW,funding_detail,VARCHAR,4
+bronze,raw_promotions,VIEW,seller_id,VARCHAR,5
+bronze,raw_promotions,VIEW,category,VARCHAR,6
+bronze,raw_promotions,VIEW,discount_rate,DOUBLE,7
+bronze,raw_promotions,VIEW,promotion_start_ts,TIMESTAMP,8
+bronze,raw_promotions,VIEW,promotion_end_ts,TIMESTAMP,9
+bronze,raw_promotions,VIEW,created_ts,TIMESTAMP,10
+bronze,raw_promotions,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,11
+bronze,raw_sellers,VIEW,seller_id,VARCHAR,1
+bronze,raw_sellers,VIEW,seller_name,VARCHAR,2
+bronze,raw_sellers,VIEW,seller_tier,VARCHAR,3
+bronze,raw_sellers,VIEW,primary_category,VARCHAR,4
+bronze,raw_sellers,VIEW,city,VARCHAR,5
+bronze,raw_sellers,VIEW,region,VARCHAR,6
+bronze,raw_sellers,VIEW,seller_rating,DOUBLE,7
+bronze,raw_sellers,VIEW,fulfillment_speed_days,DOUBLE,8
+bronze,raw_sellers,VIEW,inventory_reliability,DOUBLE,9
+bronze,raw_sellers,VIEW,price_band,VARCHAR,10
+bronze,raw_sellers,VIEW,is_official_store,BOOLEAN,11
+bronze,raw_sellers,VIEW,created_ts,TIMESTAMP,12
+bronze,raw_sellers,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,13
+bronze,raw_shipments,VIEW,shipment_id,VARCHAR,1
+bronze,raw_shipments,VIEW,order_id,VARCHAR,2
+bronze,raw_shipments,VIEW,customer_id,VARCHAR,3
+bronze,raw_shipments,VIEW,shipping_city,VARCHAR,4
+bronze,raw_shipments,VIEW,shipping_region,VARCHAR,5
+bronze,raw_shipments,VIEW,shipping_method,VARCHAR,6
+bronze,raw_shipments,VIEW,shipment_status,VARCHAR,7
+bronze,raw_shipments,VIEW,handoff_ts,TIMESTAMP,8
+bronze,raw_shipments,VIEW,estimated_delivery_ts,TIMESTAMP,9
+bronze,raw_shipments,VIEW,created_ts,TIMESTAMP,10
+bronze,raw_shipments,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,11
+gold,agg_hourly_reconciled_kpi,BASE TABLE,metric_hour,TIMESTAMP,1
+gold,agg_hourly_reconciled_kpi,BASE TABLE,order_count,BIGINT,2
+gold,agg_hourly_reconciled_kpi,BASE TABLE,paid_order_count,HUGEINT,3
+gold,agg_hourly_reconciled_kpi,BASE TABLE,gross_order_amount,DOUBLE,4
+gold,agg_hourly_reconciled_kpi,BASE TABLE,discount_amount,DOUBLE,5
+gold,agg_hourly_reconciled_kpi,BASE TABLE,official_paid_revenue,DOUBLE,6
+gold,agg_hourly_reconciled_kpi,BASE TABLE,gross_merchandise_value,DOUBLE,7
+gold,agg_hourly_reconciled_kpi,BASE TABLE,estimated_cost,DOUBLE,8
+gold,agg_hourly_reconciled_kpi,BASE TABLE,estimated_margin,DOUBLE,9
+gold,agg_hourly_reconciled_kpi,BASE TABLE,average_order_value,DOUBLE,10
+gold,agg_hourly_reconciled_kpi,BASE TABLE,cancelled_or_failed_order_count,HUGEINT,11
+gold,agg_hourly_reconciled_kpi,BASE TABLE,cancellation_rate,DOUBLE,12
+gold,agg_hourly_reconciled_kpi,BASE TABLE,payment_attempt_count,BIGINT,13
+gold,agg_hourly_reconciled_kpi,BASE TABLE,payment_success_count,HUGEINT,14
+gold,agg_hourly_reconciled_kpi,BASE TABLE,payment_success_rate,DOUBLE,15
+gold,agg_hourly_reconciled_kpi,BASE TABLE,shipment_count,BIGINT,16
+gold,agg_hourly_reconciled_kpi,BASE TABLE,delayed_shipment_count,HUGEINT,17
+gold,agg_hourly_reconciled_kpi,BASE TABLE,delivery_delay_rate,DOUBLE,18
+gold,agg_hourly_reconciled_kpi,BASE TABLE,checkout_started_count,HUGEINT,19
+gold,agg_hourly_reconciled_kpi,BASE TABLE,order_placed_event_count,HUGEINT,20
+gold,agg_hourly_reconciled_kpi,BASE TABLE,conversion_rate,DOUBLE,21
+gold,bridge_product_category,BASE TABLE,product_key,BIGINT,1
+gold,bridge_product_category,BASE TABLE,product_id,VARCHAR,2
+gold,bridge_product_category,BASE TABLE,category_key,BIGINT,3
+gold,bridge_product_category,BASE TABLE,category,VARCHAR,4
+gold,bridge_product_category,BASE TABLE,subcategory,VARCHAR,5
+gold,bridge_product_category,BASE TABLE,is_primary,BOOLEAN,6
+gold,bridge_product_category,BASE TABLE,assigned_ts,TIMESTAMP,7
+gold,dim_category,BASE TABLE,category_key,BIGINT,1
+gold,dim_category,BASE TABLE,category,VARCHAR,2
+gold,dim_category,BASE TABLE,subcategory,VARCHAR,3
+gold,dim_category,BASE TABLE,category_cost_rate,"DECIMAL(3,2)",4
+gold,dim_customer,BASE TABLE,customer_key,BIGINT,1
+gold,dim_customer,BASE TABLE,customer_id,VARCHAR,2
+gold,dim_customer,BASE TABLE,anonymous_id,VARCHAR,3
+gold,dim_customer,BASE TABLE,signup_ts,TIMESTAMP,4
+gold,dim_customer,BASE TABLE,country,VARCHAR,5
+gold,dim_customer,BASE TABLE,region,VARCHAR,6
+gold,dim_customer,BASE TABLE,city,VARCHAR,7
+gold,dim_customer,BASE TABLE,city_code,VARCHAR,8
+gold,dim_customer,BASE TABLE,segment,VARCHAR,9
+gold,dim_customer,BASE TABLE,marketing_opt_in,BOOLEAN,10
+gold,dim_customer,BASE TABLE,preferred_device,VARCHAR,11
+gold,dim_customer,BASE TABLE,acquisition_channel,VARCHAR,12
+gold,dim_customer,BASE TABLE,created_ts,TIMESTAMP,13
+gold,dim_customer,BASE TABLE,valid_from_ts,TIMESTAMP,14
+gold,dim_customer,BASE TABLE,valid_to_ts,TIMESTAMP,15
+gold,dim_customer,BASE TABLE,is_current,BOOLEAN,16
+gold,dim_date,BASE TABLE,date_key,INTEGER,1
+gold,dim_date,BASE TABLE,calendar_date,DATE,2
+gold,dim_date,BASE TABLE,day_of_week,INTEGER,3
+gold,dim_date,BASE TABLE,month,INTEGER,4
+gold,dim_date,BASE TABLE,year,INTEGER,5
+gold,dim_date,BASE TABLE,is_weekend,BOOLEAN,6
+gold,dim_order_status,BASE TABLE,order_status_key,BIGINT,1
+gold,dim_order_status,BASE TABLE,order_status,VARCHAR,2
+gold,dim_payment_method,BASE TABLE,payment_method_key,BIGINT,1
+gold,dim_payment_method,BASE TABLE,payment_method,VARCHAR,2
+gold,dim_product,BASE TABLE,product_key,BIGINT,1
+gold,dim_product,BASE TABLE,product_id,VARCHAR,2
+gold,dim_product,BASE TABLE,seller_key,BIGINT,3
+gold,dim_product,BASE TABLE,seller_id,VARCHAR,4
+gold,dim_product,BASE TABLE,primary_category,VARCHAR,5
+gold,dim_product,BASE TABLE,primary_subcategory,VARCHAR,6
+gold,dim_product,BASE TABLE,brand,VARCHAR,7
+gold,dim_product,BASE TABLE,product_name,VARCHAR,8
+gold,dim_product,BASE TABLE,base_price,DOUBLE,9
+gold,dim_product,BASE TABLE,price_band,VARCHAR,10
+gold,dim_product,BASE TABLE,is_active,BOOLEAN,11
+gold,dim_product,BASE TABLE,fulfillment_channel,VARCHAR,12
+gold,dim_product,BASE TABLE,category_attributes,VARCHAR,13
+gold,dim_product,BASE TABLE,created_ts,TIMESTAMP,14
+gold,dim_product,BASE TABLE,valid_from_ts,TIMESTAMP,15
+gold,dim_product,BASE TABLE,valid_to_ts,TIMESTAMP,16
+gold,dim_product,BASE TABLE,is_current,BOOLEAN,17
+gold,dim_promotion,BASE TABLE,promotion_key,BIGINT,1
+gold,dim_promotion,BASE TABLE,promotion_id,VARCHAR,2
+gold,dim_promotion,BASE TABLE,promotion_name,VARCHAR,3
+gold,dim_promotion,BASE TABLE,funding_type,VARCHAR,4
+gold,dim_promotion,BASE TABLE,funding_detail,VARCHAR,5
+gold,dim_promotion,BASE TABLE,seller_id,VARCHAR,6
+gold,dim_promotion,BASE TABLE,category,VARCHAR,7
+gold,dim_promotion,BASE TABLE,discount_rate,DOUBLE,8
+gold,dim_promotion,BASE TABLE,platform_funding_share,DOUBLE,9
+gold,dim_promotion,BASE TABLE,seller_funding_share,DOUBLE,10
+gold,dim_promotion,BASE TABLE,promotion_start_ts,TIMESTAMP,11
+gold,dim_promotion,BASE TABLE,promotion_end_ts,TIMESTAMP,12
+gold,dim_promotion,BASE TABLE,created_ts,TIMESTAMP,13
+gold,dim_seller,BASE TABLE,seller_key,BIGINT,1
+gold,dim_seller,BASE TABLE,seller_id,VARCHAR,2
+gold,dim_seller,BASE TABLE,seller_name,VARCHAR,3
+gold,dim_seller,BASE TABLE,seller_tier,VARCHAR,4
+gold,dim_seller,BASE TABLE,primary_category,VARCHAR,5
+gold,dim_seller,BASE TABLE,city,VARCHAR,6
+gold,dim_seller,BASE TABLE,region,VARCHAR,7
+gold,dim_seller,BASE TABLE,seller_rating,DOUBLE,8
+gold,dim_seller,BASE TABLE,fulfillment_speed_days,DOUBLE,9
+gold,dim_seller,BASE TABLE,inventory_reliability,DOUBLE,10
+gold,dim_seller,BASE TABLE,price_band,VARCHAR,11
+gold,dim_seller,BASE TABLE,is_official_store,BOOLEAN,12
+gold,dim_seller,BASE TABLE,created_ts,TIMESTAMP,13
+gold,dim_seller,BASE TABLE,valid_from_ts,TIMESTAMP,14
+gold,dim_seller,BASE TABLE,valid_to_ts,TIMESTAMP,15
+gold,dim_seller,BASE TABLE,is_current,BOOLEAN,16
+gold,dim_shipment_status,BASE TABLE,shipment_status_key,BIGINT,1
+gold,dim_shipment_status,BASE TABLE,shipment_status,VARCHAR,2
+gold,dim_shipping_method,BASE TABLE,shipping_method_key,BIGINT,1
+gold,dim_shipping_method,BASE TABLE,shipping_method,VARCHAR,2
+gold,fact_inventory_snapshot,BASE TABLE,inventory_snapshot_key,BIGINT,1
+gold,fact_inventory_snapshot,BASE TABLE,snapshot_id,VARCHAR,2
+gold,fact_inventory_snapshot,BASE TABLE,product_key,BIGINT,3
+gold,fact_inventory_snapshot,BASE TABLE,seller_key,BIGINT,4
+gold,fact_inventory_snapshot,BASE TABLE,snapshot_date_key,INTEGER,5
+gold,fact_inventory_snapshot,BASE TABLE,product_id,VARCHAR,6
+gold,fact_inventory_snapshot,BASE TABLE,seller_id,VARCHAR,7
+gold,fact_inventory_snapshot,BASE TABLE,snapshot_ts,TIMESTAMP,8
+gold,fact_inventory_snapshot,BASE TABLE,stock_on_hand,BIGINT,9
+gold,fact_inventory_snapshot,BASE TABLE,reserved_stock,BIGINT,10
+gold,fact_inventory_snapshot,BASE TABLE,available_stock,BIGINT,11
+gold,fact_order,BASE TABLE,order_key,BIGINT,1
+gold,fact_order,BASE TABLE,order_id,VARCHAR,2
+gold,fact_order,BASE TABLE,customer_key,BIGINT,3
+gold,fact_order,BASE TABLE,order_date_key,INTEGER,4
+gold,fact_order,BASE TABLE,order_status_key,BIGINT,5
+gold,fact_order,BASE TABLE,customer_id,VARCHAR,6
+gold,fact_order,BASE TABLE,session_id,VARCHAR,7
+gold,fact_order,BASE TABLE,anonymous_id,VARCHAR,8
+gold,fact_order,BASE TABLE,order_timestamp,TIMESTAMP,9
+gold,fact_order,BASE TABLE,created_ts,TIMESTAMP,10
+gold,fact_order,BASE TABLE,primary_category,VARCHAR,11
+gold,fact_order,BASE TABLE,order_status,VARCHAR,12
+gold,fact_order,BASE TABLE,shipping_city,VARCHAR,13
+gold,fact_order,BASE TABLE,shipping_region,VARCHAR,14
+gold,fact_order,BASE TABLE,shipping_method,VARCHAR,15
+gold,fact_order,BASE TABLE,fulfillment_channel,VARCHAR,16
+gold,fact_order,BASE TABLE,promotion_id,VARCHAR,17
+gold,fact_order,BASE TABLE,coupon_code,VARCHAR,18
+gold,fact_order,BASE TABLE,item_count,BIGINT,19
+gold,fact_order,BASE TABLE,order_gross_amount,DOUBLE,20
+gold,fact_order,BASE TABLE,order_discount_amount,DOUBLE,21
+gold,fact_order,BASE TABLE,order_net_amount,DOUBLE,22
+gold,fact_order,BASE TABLE,has_successful_payment,BOOLEAN,23
+gold,fact_order,BASE TABLE,is_paid_order,BOOLEAN,24
+gold,fact_order,BASE TABLE,official_paid_revenue,DOUBLE,25
+gold,fact_order,BASE TABLE,gross_merchandise_value,DOUBLE,26
+gold,fact_order,BASE TABLE,payment_attempt_count,BIGINT,27
+gold,fact_order_item,BASE TABLE,order_item_key,BIGINT,1
+gold,fact_order_item,BASE TABLE,order_item_id,VARCHAR,2
+gold,fact_order_item,BASE TABLE,order_id,VARCHAR,3
+gold,fact_order_item,BASE TABLE,order_key,BIGINT,4
+gold,fact_order_item,BASE TABLE,customer_key,BIGINT,5
+gold,fact_order_item,BASE TABLE,product_key,BIGINT,6
+gold,fact_order_item,BASE TABLE,category_key,BIGINT,7
+gold,fact_order_item,BASE TABLE,promotion_key,BIGINT,8
+gold,fact_order_item,BASE TABLE,order_date_key,INTEGER,9
+gold,fact_order_item,BASE TABLE,product_id,VARCHAR,10
+gold,fact_order_item,BASE TABLE,seller_id,VARCHAR,11
+gold,fact_order_item,BASE TABLE,primary_category,VARCHAR,12
+gold,fact_order_item,BASE TABLE,primary_subcategory,VARCHAR,13
+gold,fact_order_item,BASE TABLE,quantity,BIGINT,14
+gold,fact_order_item,BASE TABLE,unit_price,DOUBLE,15
+gold,fact_order_item,BASE TABLE,gross_amount,DOUBLE,16
+gold,fact_order_item,BASE TABLE,discount_amount,DOUBLE,17
+gold,fact_order_item,BASE TABLE,net_amount,DOUBLE,18
+gold,fact_order_item,BASE TABLE,category_cost_rate,"DECIMAL(3,2)",19
+gold,fact_order_item,BASE TABLE,line_paid_revenue,DOUBLE,20
+gold,fact_order_item,BASE TABLE,line_gmv,DOUBLE,21
+gold,fact_order_item,BASE TABLE,estimated_cost,DOUBLE,22
+gold,fact_order_item,BASE TABLE,estimated_margin,DOUBLE,23
+gold,fact_order_item,BASE TABLE,promotion_id,VARCHAR,24
+gold,fact_order_item,BASE TABLE,created_ts,TIMESTAMP,25
+gold,fact_payment_attempt,BASE TABLE,payment_attempt_key,BIGINT,1
+gold,fact_payment_attempt,BASE TABLE,payment_id,VARCHAR,2
+gold,fact_payment_attempt,BASE TABLE,order_id,VARCHAR,3
+gold,fact_payment_attempt,BASE TABLE,order_key,BIGINT,4
+gold,fact_payment_attempt,BASE TABLE,customer_key,BIGINT,5
+gold,fact_payment_attempt,BASE TABLE,payment_date_key,INTEGER,6
+gold,fact_payment_attempt,BASE TABLE,payment_method_key,BIGINT,7
+gold,fact_payment_attempt,BASE TABLE,customer_id,VARCHAR,8
+gold,fact_payment_attempt,BASE TABLE,payment_timestamp,TIMESTAMP,9
+gold,fact_payment_attempt,BASE TABLE,created_ts,TIMESTAMP,10
+gold,fact_payment_attempt,BASE TABLE,payment_method,VARCHAR,11
+gold,fact_payment_attempt,BASE TABLE,amount,DOUBLE,12
+gold,fact_payment_attempt,BASE TABLE,payment_status,VARCHAR,13
+gold,fact_payment_attempt,BASE TABLE,is_payment_success,BOOLEAN,14
+gold,fact_payment_attempt,BASE TABLE,is_payment_failed,BOOLEAN,15
+gold,fact_payment_attempt,BASE TABLE,failure_reason,VARCHAR,16
+gold,fact_promotion_application,BASE TABLE,promotion_application_key,BIGINT,1
+gold,fact_promotion_application,BASE TABLE,order_item_id,VARCHAR,2
+gold,fact_promotion_application,BASE TABLE,order_id,VARCHAR,3
+gold,fact_promotion_application,BASE TABLE,order_key,BIGINT,4
+gold,fact_promotion_application,BASE TABLE,customer_key,BIGINT,5
+gold,fact_promotion_application,BASE TABLE,promotion_key,BIGINT,6
+gold,fact_promotion_application,BASE TABLE,promotion_id,VARCHAR,7
+gold,fact_promotion_application,BASE TABLE,gross_amount,DOUBLE,8
+gold,fact_promotion_application,BASE TABLE,discount_amount,DOUBLE,9
+gold,fact_promotion_application,BASE TABLE,platform_discount_amount,DOUBLE,10
+gold,fact_promotion_application,BASE TABLE,seller_discount_amount,DOUBLE,11
+gold,fact_promotion_application,BASE TABLE,funding_type,VARCHAR,12
+gold,fact_promotion_application,BASE TABLE,platform_funding_share,DOUBLE,13
+gold,fact_promotion_application,BASE TABLE,seller_funding_share,DOUBLE,14
+gold,fact_shipment,BASE TABLE,shipment_key,BIGINT,1
+gold,fact_shipment,BASE TABLE,shipment_id,VARCHAR,2
+gold,fact_shipment,BASE TABLE,order_id,VARCHAR,3
+gold,fact_shipment,BASE TABLE,order_key,BIGINT,4
+gold,fact_shipment,BASE TABLE,customer_key,BIGINT,5
+gold,fact_shipment,BASE TABLE,shipment_status_key,BIGINT,6
+gold,fact_shipment,BASE TABLE,shipping_method_key,BIGINT,7
+gold,fact_shipment,BASE TABLE,shipment_created_date_key,INTEGER,8
+gold,fact_shipment,BASE TABLE,customer_id,VARCHAR,9
+gold,fact_shipment,BASE TABLE,shipping_city,VARCHAR,10
+gold,fact_shipment,BASE TABLE,shipping_region,VARCHAR,11
+gold,fact_shipment,BASE TABLE,shipping_method,VARCHAR,12
+gold,fact_shipment,BASE TABLE,shipment_status,VARCHAR,13
+gold,fact_shipment,BASE TABLE,is_delivery_delayed,BOOLEAN,14
+gold,fact_shipment,BASE TABLE,is_payment_blocked,BOOLEAN,15
+gold,fact_shipment,BASE TABLE,handoff_ts,TIMESTAMP,16
+gold,fact_shipment,BASE TABLE,estimated_delivery_ts,TIMESTAMP,17
+gold,fact_shipment,BASE TABLE,created_ts,TIMESTAMP,18
+gold,feat_customer_90d,BASE TABLE,customer_id,VARCHAR,1
+gold,feat_customer_90d,BASE TABLE,event_timestamp,TIMESTAMP,2
+gold,feat_customer_90d,BASE TABLE,f_customer_total_orders_90d,BIGINT,3
+gold,feat_customer_90d,BASE TABLE,f_customer_paid_revenue_90d,DOUBLE,4
+gold,feat_customer_90d,BASE TABLE,f_customer_avg_order_value_90d,DOUBLE,5
+gold,feat_customer_90d,BASE TABLE,f_customer_distinct_categories_90d,BIGINT,6
+gold,feat_customer_90d,BASE TABLE,created_ts,TIMESTAMP,7
+gold,feat_customer_unified,BASE TABLE,customer_id,VARCHAR,1
+gold,feat_customer_unified,BASE TABLE,event_timestamp,TIMESTAMP,2
+gold,feat_customer_unified,BASE TABLE,f_customer_total_orders_90d,BIGINT,3
+gold,feat_customer_unified,BASE TABLE,f_customer_paid_revenue_90d,DOUBLE,4
+gold,feat_customer_unified,BASE TABLE,f_customer_avg_order_value_90d,DOUBLE,5
+gold,feat_customer_unified,BASE TABLE,f_customer_distinct_categories_90d,BIGINT,6
+gold,feat_customer_unified,BASE TABLE,f_stream_views_60m,HUGEINT,7
+gold,feat_customer_unified,BASE TABLE,f_stream_add_to_cart_60m,HUGEINT,8
+gold,feat_customer_unified,BASE TABLE,f_stream_checkout_started_60m,HUGEINT,9
+gold,feat_customer_unified,BASE TABLE,f_stream_order_placed_60m,HUGEINT,10
+gold,feat_customer_unified,BASE TABLE,f_stream_cart_to_purchase_ratio_60m,DOUBLE,11
+gold,feat_customer_unified,BASE TABLE,created_ts,TIMESTAMP,12
+gold,feat_stream_60m,BASE TABLE,customer_id,VARCHAR,1
+gold,feat_stream_60m,BASE TABLE,event_timestamp,TIMESTAMP,2
+gold,feat_stream_60m,BASE TABLE,f_stream_views_60m,HUGEINT,3
+gold,feat_stream_60m,BASE TABLE,f_stream_add_to_cart_60m,HUGEINT,4
+gold,feat_stream_60m,BASE TABLE,f_stream_checkout_started_60m,HUGEINT,5
+gold,feat_stream_60m,BASE TABLE,f_stream_order_placed_60m,HUGEINT,6
+gold,feat_stream_60m,BASE TABLE,f_stream_cart_to_purchase_ratio_60m,DOUBLE,7
+gold,feat_stream_60m,BASE TABLE,created_ts,TIMESTAMP,8
+gold,obt_order_performance,BASE TABLE,order_id,VARCHAR,1
+gold,obt_order_performance,BASE TABLE,order_timestamp,TIMESTAMP,2
+gold,obt_order_performance,BASE TABLE,customer_id,VARCHAR,3
+gold,obt_order_performance,BASE TABLE,segment,VARCHAR,4
+gold,obt_order_performance,BASE TABLE,customer_city,VARCHAR,5
+gold,obt_order_performance,BASE TABLE,primary_category,VARCHAR,6
+gold,obt_order_performance,BASE TABLE,order_status,VARCHAR,7
+gold,obt_order_performance,BASE TABLE,shipping_city,VARCHAR,8
+gold,obt_order_performance,BASE TABLE,shipping_region,VARCHAR,9
+gold,obt_order_performance,BASE TABLE,shipping_method,VARCHAR,10
+gold,obt_order_performance,BASE TABLE,promotion_id,VARCHAR,11
+gold,obt_order_performance,BASE TABLE,coupon_code,VARCHAR,12
+gold,obt_order_performance,BASE TABLE,item_count,BIGINT,13
+gold,obt_order_performance,BASE TABLE,total_quantity,HUGEINT,14
+gold,obt_order_performance,BASE TABLE,distinct_products,BIGINT,15
+gold,obt_order_performance,BASE TABLE,distinct_sellers,BIGINT,16
+gold,obt_order_performance,BASE TABLE,order_gross_amount,DOUBLE,17
+gold,obt_order_performance,BASE TABLE,order_discount_amount,DOUBLE,18
+gold,obt_order_performance,BASE TABLE,order_net_amount,DOUBLE,19
+gold,obt_order_performance,BASE TABLE,official_paid_revenue,DOUBLE,20
+gold,obt_order_performance,BASE TABLE,gross_merchandise_value,DOUBLE,21
+gold,obt_order_performance,BASE TABLE,estimated_cost,DOUBLE,22
+gold,obt_order_performance,BASE TABLE,estimated_margin,DOUBLE,23
+gold,obt_order_performance,BASE TABLE,has_successful_payment,BOOLEAN,24
+gold,obt_order_performance,BASE TABLE,is_paid_order,BOOLEAN,25
+gold,obt_order_performance,BASE TABLE,payment_attempts,BIGINT,26
+gold,obt_order_performance,BASE TABLE,successful_payment_attempts,HUGEINT,27
+gold,obt_order_performance,BASE TABLE,successful_payment_method,VARCHAR,28
+gold,obt_order_performance,BASE TABLE,last_payment_ts,TIMESTAMP,29
+gold,obt_order_performance,BASE TABLE,shipment_status,VARCHAR,30
+gold,obt_order_performance,BASE TABLE,is_delivery_delayed,BOOLEAN,31
+gold,obt_order_performance,BASE TABLE,is_payment_blocked,BOOLEAN,32
+silver,stg_catalog_events,VIEW,event_id,VARCHAR,1
+silver,stg_catalog_events,VIEW,event_type,VARCHAR,2
+silver,stg_catalog_events,VIEW,event_topic,VARCHAR,3
+silver,stg_catalog_events,VIEW,schema_version,INTEGER,4
+silver,stg_catalog_events,VIEW,event_timestamp,TIMESTAMP,5
+silver,stg_catalog_events,VIEW,created_ts,TIMESTAMP,6
+silver,stg_catalog_events,VIEW,producer,VARCHAR,7
+silver,stg_catalog_events,VIEW,snapshot_id,VARCHAR,8
+silver,stg_catalog_events,VIEW,product_id,VARCHAR,9
+silver,stg_catalog_events,VIEW,seller_id,VARCHAR,10
+silver,stg_catalog_events,VIEW,promotion_id,VARCHAR,11
+silver,stg_catalog_events,VIEW,category,VARCHAR,12
+silver,stg_catalog_events,VIEW,stock_on_hand,DOUBLE,13
+silver,stg_catalog_events,VIEW,discount_rate,DOUBLE,14
+silver,stg_catalog_events,VIEW,payload,"STRUCT(promotion_name VARCHAR, funding_type VARCHAR, funding_detail STRUCT(platform_share DOUBLE, seller_share DOUBLE), category VARCHAR, discount_rate DOUBLE, stock_on_hand BIGINT, threshold DOUBLE, reserved_stock BIGINT, product_name VARCHAR, primary_category VARCHAR, primary_subcategory VARCHAR, brand VARCHAR, base_price DOUBLE, category_attributes STRUCT(pack_size VARCHAR, shelf_life_days BIGINT, subcategory VARCHAR, variant VARCHAR, energy_rating VARCHAR, spec_tier VARCHAR, warranty_months BIGINT, material VARCHAR, size_family VARCHAR, style VARCHAR, assembly_required BOOLEAN, room_type VARCHAR), promotion_end_ts TIMESTAMP, changed_fields VARCHAR[], fulfillment_channel VARCHAR, old_price DOUBLE, new_price DOUBLE)",15
+silver,stg_catalog_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,16
+silver,stg_commerce_events,VIEW,event_id,VARCHAR,1
+silver,stg_commerce_events,VIEW,event_type,VARCHAR,2
+silver,stg_commerce_events,VIEW,event_topic,VARCHAR,3
+silver,stg_commerce_events,VIEW,schema_version,INTEGER,4
+silver,stg_commerce_events,VIEW,event_timestamp,TIMESTAMP,5
+silver,stg_commerce_events,VIEW,created_ts,TIMESTAMP,6
+silver,stg_commerce_events,VIEW,producer,VARCHAR,7
+silver,stg_commerce_events,VIEW,session_id,VARCHAR,8
+silver,stg_commerce_events,VIEW,anonymous_id,VARCHAR,9
+silver,stg_commerce_events,VIEW,customer_id,VARCHAR,10
+silver,stg_commerce_events,VIEW,product_id,VARCHAR,11
+silver,stg_commerce_events,VIEW,order_id,VARCHAR,12
+silver,stg_commerce_events,VIEW,payment_id,VARCHAR,13
+silver,stg_commerce_events,VIEW,primary_category,VARCHAR,14
+silver,stg_commerce_events,VIEW,device_type,VARCHAR,15
+silver,stg_commerce_events,VIEW,source,VARCHAR,16
+silver,stg_commerce_events,VIEW,order_status,VARCHAR,17
+silver,stg_commerce_events,VIEW,order_net_amount,DOUBLE,18
+silver,stg_commerce_events,VIEW,payment_method,VARCHAR,19
+silver,stg_commerce_events,VIEW,payment_amount,DOUBLE,20
+silver,stg_commerce_events,VIEW,failure_reason,VARCHAR,21
+silver,stg_commerce_events,VIEW,payload,"STRUCT(query_family VARCHAR, result_count BIGINT, device_type VARCHAR, ""source"" VARCHAR, surface VARCHAR, product_id VARCHAR, order_id VARCHAR, primary_category VARCHAR, order_status VARCHAR, order_net_amount DOUBLE, cart_action VARCHAR, checkout_step VARCHAR, order_source VARCHAR, payment_method VARCHAR, amount DOUBLE, failure_reason VARCHAR, abandonment_stage VARCHAR, failure_surface VARCHAR, coupon_code VARCHAR, promotion_id VARCHAR, cancel_reason VARCHAR)",22
+silver,stg_commerce_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,23
+silver,stg_customers,VIEW,customer_id,VARCHAR,1
+silver,stg_customers,VIEW,anonymous_id,VARCHAR,2
+silver,stg_customers,VIEW,signup_ts,TIMESTAMP,3
+silver,stg_customers,VIEW,created_ts,TIMESTAMP,4
+silver,stg_customers,VIEW,country,VARCHAR,5
+silver,stg_customers,VIEW,region,VARCHAR,6
+silver,stg_customers,VIEW,city,VARCHAR,7
+silver,stg_customers,VIEW,city_code,VARCHAR,8
+silver,stg_customers,VIEW,segment,VARCHAR,9
+silver,stg_customers,VIEW,marketing_opt_in,BOOLEAN,10
+silver,stg_customers,VIEW,preferred_device,VARCHAR,11
+silver,stg_customers,VIEW,acquisition_channel,VARCHAR,12
+silver,stg_customers,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,13
+silver,stg_fulfillment_events,VIEW,event_id,VARCHAR,1
+silver,stg_fulfillment_events,VIEW,event_type,VARCHAR,2
+silver,stg_fulfillment_events,VIEW,event_topic,VARCHAR,3
+silver,stg_fulfillment_events,VIEW,schema_version,INTEGER,4
+silver,stg_fulfillment_events,VIEW,event_timestamp,TIMESTAMP,5
+silver,stg_fulfillment_events,VIEW,created_ts,TIMESTAMP,6
+silver,stg_fulfillment_events,VIEW,producer,VARCHAR,7
+silver,stg_fulfillment_events,VIEW,shipment_id,VARCHAR,8
+silver,stg_fulfillment_events,VIEW,order_id,VARCHAR,9
+silver,stg_fulfillment_events,VIEW,customer_id,VARCHAR,10
+silver,stg_fulfillment_events,VIEW,shipment_status,VARCHAR,11
+silver,stg_fulfillment_events,VIEW,shipping_city,VARCHAR,12
+silver,stg_fulfillment_events,VIEW,shipping_method,VARCHAR,13
+silver,stg_fulfillment_events,VIEW,payload,"STRUCT(shipping_city VARCHAR, shipping_method VARCHAR, block_reason VARCHAR, shipment_status VARCHAR, delay_reason VARCHAR, shipping_region VARCHAR)",14
+silver,stg_fulfillment_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,15
+silver,stg_inventory_snapshots,VIEW,snapshot_id,VARCHAR,1
+silver,stg_inventory_snapshots,VIEW,product_id,VARCHAR,2
+silver,stg_inventory_snapshots,VIEW,seller_id,VARCHAR,3
+silver,stg_inventory_snapshots,VIEW,snapshot_ts,TIMESTAMP,4
+silver,stg_inventory_snapshots,VIEW,stock_on_hand,BIGINT,5
+silver,stg_inventory_snapshots,VIEW,reserved_stock,BIGINT,6
+silver,stg_inventory_snapshots,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,7
+silver,stg_ops_events,VIEW,event_id,VARCHAR,1
+silver,stg_ops_events,VIEW,event_type,VARCHAR,2
+silver,stg_ops_events,VIEW,event_topic,VARCHAR,3
+silver,stg_ops_events,VIEW,schema_version,INTEGER,4
+silver,stg_ops_events,VIEW,event_timestamp,TIMESTAMP,5
+silver,stg_ops_events,VIEW,created_ts,TIMESTAMP,6
+silver,stg_ops_events,VIEW,producer,VARCHAR,7
+silver,stg_ops_events,VIEW,burst_event_count,INTEGER,8
+silver,stg_ops_events,VIEW,late_event_count,INTEGER,9
+silver,stg_ops_events,VIEW,duplicate_event_count,INTEGER,10
+silver,stg_ops_events,VIEW,payload,"STRUCT(late_event_count BIGINT, allowed_lateness_seconds BIGINT, burst_event_count BIGINT, burst_windows VARCHAR[], old_schema_version BIGINT, new_schema_version BIGINT, changed_fields VARCHAR[], duplicate_event_count BIGINT, dedup_key VARCHAR[], status VARCHAR, topics VARCHAR[])",11
+silver,stg_ops_events,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,12
+silver,stg_order_items,VIEW,order_item_id,VARCHAR,1
+silver,stg_order_items,VIEW,order_id,VARCHAR,2
+silver,stg_order_items,VIEW,product_id,VARCHAR,3
+silver,stg_order_items,VIEW,seller_id,VARCHAR,4
+silver,stg_order_items,VIEW,primary_category,VARCHAR,5
+silver,stg_order_items,VIEW,primary_subcategory,VARCHAR,6
+silver,stg_order_items,VIEW,quantity,BIGINT,7
+silver,stg_order_items,VIEW,unit_price,DOUBLE,8
+silver,stg_order_items,VIEW,gross_amount,DOUBLE,9
+silver,stg_order_items,VIEW,discount_amount,DOUBLE,10
+silver,stg_order_items,VIEW,net_amount,DOUBLE,11
+silver,stg_order_items,VIEW,promotion_id,VARCHAR,12
+silver,stg_order_items,VIEW,created_ts,TIMESTAMP,13
+silver,stg_order_items,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,14
+silver,stg_orders,VIEW,order_id,VARCHAR,1
+silver,stg_orders,VIEW,customer_id,VARCHAR,2
+silver,stg_orders,VIEW,session_id,VARCHAR,3
+silver,stg_orders,VIEW,anonymous_id,VARCHAR,4
+silver,stg_orders,VIEW,order_timestamp,TIMESTAMP,5
+silver,stg_orders,VIEW,created_ts,TIMESTAMP,6
+silver,stg_orders,VIEW,order_date,VARCHAR,7
+silver,stg_orders,VIEW,primary_category,VARCHAR,8
+silver,stg_orders,VIEW,status,VARCHAR,9
+silver,stg_orders,VIEW,shipping_city,VARCHAR,10
+silver,stg_orders,VIEW,shipping_region,VARCHAR,11
+silver,stg_orders,VIEW,shipping_method,VARCHAR,12
+silver,stg_orders,VIEW,fulfillment_channel,VARCHAR,13
+silver,stg_orders,VIEW,promotion_id,VARCHAR,14
+silver,stg_orders,VIEW,coupon_code,VARCHAR,15
+silver,stg_orders,VIEW,item_count,BIGINT,16
+silver,stg_orders,VIEW,order_gross_amount,DOUBLE,17
+silver,stg_orders,VIEW,order_discount_amount,DOUBLE,18
+silver,stg_orders,VIEW,order_net_amount,DOUBLE,19
+silver,stg_orders,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,20
+silver,stg_payments,VIEW,payment_id,VARCHAR,1
+silver,stg_payments,VIEW,order_id,VARCHAR,2
+silver,stg_payments,VIEW,customer_id,VARCHAR,3
+silver,stg_payments,VIEW,payment_timestamp,TIMESTAMP,4
+silver,stg_payments,VIEW,created_ts,TIMESTAMP,5
+silver,stg_payments,VIEW,payment_method,VARCHAR,6
+silver,stg_payments,VIEW,amount,DOUBLE,7
+silver,stg_payments,VIEW,payment_status,VARCHAR,8
+silver,stg_payments,VIEW,failure_reason,VARCHAR,9
+silver,stg_payments,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,10
+silver,stg_product_category_map,VIEW,product_id,VARCHAR,1
+silver,stg_product_category_map,VIEW,category,VARCHAR,2
+silver,stg_product_category_map,VIEW,subcategory,VARCHAR,3
+silver,stg_product_category_map,VIEW,is_primary,BOOLEAN,4
+silver,stg_product_category_map,VIEW,assigned_ts,TIMESTAMP,5
+silver,stg_product_category_map,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,6
+silver,stg_products,VIEW,product_id,VARCHAR,1
+silver,stg_products,VIEW,seller_id,VARCHAR,2
+silver,stg_products,VIEW,primary_category,VARCHAR,3
+silver,stg_products,VIEW,primary_subcategory,VARCHAR,4
+silver,stg_products,VIEW,brand,VARCHAR,5
+silver,stg_products,VIEW,product_name,VARCHAR,6
+silver,stg_products,VIEW,base_price,DOUBLE,7
+silver,stg_products,VIEW,price_band,VARCHAR,8
+silver,stg_products,VIEW,is_active,BOOLEAN,9
+silver,stg_products,VIEW,created_ts,TIMESTAMP,10
+silver,stg_products,VIEW,fulfillment_channel,VARCHAR,11
+silver,stg_products,VIEW,category_attributes,VARCHAR,12
+silver,stg_products,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,13
+silver,stg_promotions,VIEW,promotion_id,VARCHAR,1
+silver,stg_promotions,VIEW,promotion_name,VARCHAR,2
+silver,stg_promotions,VIEW,funding_type,VARCHAR,3
+silver,stg_promotions,VIEW,funding_detail,VARCHAR,4
+silver,stg_promotions,VIEW,seller_id,VARCHAR,5
+silver,stg_promotions,VIEW,category,VARCHAR,6
+silver,stg_promotions,VIEW,discount_rate,DOUBLE,7
+silver,stg_promotions,VIEW,promotion_start_ts,TIMESTAMP,8
+silver,stg_promotions,VIEW,promotion_end_ts,TIMESTAMP,9
+silver,stg_promotions,VIEW,created_ts,TIMESTAMP,10
+silver,stg_promotions,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,11
+silver,stg_promotions,VIEW,platform_funding_share,DOUBLE,12
+silver,stg_promotions,VIEW,seller_funding_share,DOUBLE,13
+silver,stg_sellers,VIEW,seller_id,VARCHAR,1
+silver,stg_sellers,VIEW,seller_name,VARCHAR,2
+silver,stg_sellers,VIEW,seller_tier,VARCHAR,3
+silver,stg_sellers,VIEW,primary_category,VARCHAR,4
+silver,stg_sellers,VIEW,city,VARCHAR,5
+silver,stg_sellers,VIEW,region,VARCHAR,6
+silver,stg_sellers,VIEW,seller_rating,DOUBLE,7
+silver,stg_sellers,VIEW,fulfillment_speed_days,DOUBLE,8
+silver,stg_sellers,VIEW,inventory_reliability,DOUBLE,9
+silver,stg_sellers,VIEW,price_band,VARCHAR,10
+silver,stg_sellers,VIEW,is_official_store,BOOLEAN,11
+silver,stg_sellers,VIEW,created_ts,TIMESTAMP,12
+silver,stg_sellers,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,13
+silver,stg_shipments,VIEW,shipment_id,VARCHAR,1
+silver,stg_shipments,VIEW,order_id,VARCHAR,2
+silver,stg_shipments,VIEW,customer_id,VARCHAR,3
+silver,stg_shipments,VIEW,shipping_city,VARCHAR,4
+silver,stg_shipments,VIEW,shipping_region,VARCHAR,5
+silver,stg_shipments,VIEW,shipping_method,VARCHAR,6
+silver,stg_shipments,VIEW,shipment_status,VARCHAR,7
+silver,stg_shipments,VIEW,handoff_ts,TIMESTAMP,8
+silver,stg_shipments,VIEW,estimated_delivery_ts,TIMESTAMP,9
+silver,stg_shipments,VIEW,created_ts,TIMESTAMP,10
+silver,stg_shipments,VIEW,ingest_ts,TIMESTAMP WITH TIME ZONE,11
