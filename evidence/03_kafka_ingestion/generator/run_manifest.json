@@ -4,7 +4,7 @@
   "mode": "full",
   "random_seed": 101,
   "history_days": 7,
-  "generated_at": "2026-06-01T04:37:54.499505+00:00",
+  "generated_at": "2026-06-01T05:30:11.715406+00:00",
   "raw_root": "data/raw",
   "evidence_root": "evidence/03_kafka_ingestion/generator",
   "row_counts": {
