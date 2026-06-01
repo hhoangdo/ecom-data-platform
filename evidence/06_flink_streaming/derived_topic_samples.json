@@ -1,0 +1,48 @@
+{
+  "realtime_commerce_metrics_1m": {
+    "checkout_conversion_rate": 0.0,
+    "checkout_started_count": 0,
+    "correction_version": 0,
+    "device_type": null,
+    "duplicate_event_count": 0,
+    "emitted_ts": "2026-06-01T11:31:00.868449+00:00",
+    "gmv_proxy_amount": 0,
+    "late_event_count": 0,
+    "metric_key": "commerce|2026-05-31T21:12:00+00:00|4949fd35f4c1",
+    "metric_minute": "2026-05-31T21:12:00+00:00",
+    "order_count": 0,
+    "order_placed_count": 0,
+    "order_status": null,
+    "payment_failure_count": 0,
+    "payment_method": null,
+    "primary_category": null,
+    "revenue_amount": 0,
+    "schema_version": 1,
+    "source": null,
+    "watermark_ts": "2026-06-01T04:37:48.739000+00:00",
+    "window_end_ts": "2026-05-31T21:13:00+00:00",
+    "window_start_ts": "2026-05-31T21:12:00+00:00"
+  },
+  "realtime_metric_corrections": {
+    "sample": null
+  },
+  "realtime_ops_alerts": {
+    "alert_id": "KEVT-CAT-INVENTORY-LOW-STOCK-20260425-0000000001",
+    "alert_type": "inventory_low_stock",
+    "dimensions": {
+      "event_type": "inventory_low_stock",
+      "schema_version": 1
+    },
+    "emitted_ts": "2026-04-25T00:00:00+00:00",
+    "event_time": "2026-04-25T00:00:00+00:00",
+    "metrics": {
+      "stock_on_hand": 41,
+      "threshold": 47.0
+    },
+    "schema_version": 1,
+    "severity": "medium",
+    "source_topic": "catalog_events",
+    "window_end_ts": "2026-04-25T00:00:00+00:00",
+    "window_start_ts": "2026-04-25T00:00:00+00:00"
+  }
+}

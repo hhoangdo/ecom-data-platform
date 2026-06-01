@@ -1,0 +1,2 @@
+[2026-06-01 11:33:08 UTC]  75KiB STANDARD realtime_ops_alerts/2026-06-01--11/part-7311b166-a55a-4439-9b6d-6b85db08240d-0.jsonl
+[2026-06-01 11:32:14 UTC] 452KiB STANDARD realtime_ops_alerts/2026-06-01--11/part-bcde8110-cfc0-42b0-bb89-b11688b184cb-0.jsonl

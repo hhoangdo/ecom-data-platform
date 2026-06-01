@@ -1,0 +1,14 @@
+{
+  "expected_outputs": {
+    "commerce_metrics_topic": "realtime_commerce_metrics_1m",
+    "metric_corrections_topic": "realtime_metric_corrections",
+    "ops_alerts_topic": "realtime_ops_alerts"
+  },
+  "kafka_bootstrap_servers": "localhost:9092",
+  "published_counts": {
+    "catalog_events": 1,
+    "commerce_events": 9,
+    "fulfillment_events": 2,
+    "ops_events": 3
+  }
+}
