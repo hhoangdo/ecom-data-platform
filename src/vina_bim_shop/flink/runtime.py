@@ -22,6 +22,13 @@ class RuntimeSettings:
     curated_output_prefix: str
 
 
+@dataclass(frozen=True)
+class ContainerRuntimeLimit:
+    max_runtime_minutes: int
+    grace_seconds: int
+    disable_auto_stop: bool
+
+
 def load_runtime_settings(config: StreamingConfig) -> RuntimeSettings:
     return RuntimeSettings(
         kafka_bootstrap_servers=os.getenv("VBS_KAFKA_BOOTSTRAP_SERVERS", "kafka:29092"),
@@ -32,6 +39,14 @@ def load_runtime_settings(config: StreamingConfig) -> RuntimeSettings:
         evidence_bucket=os.getenv("VBS_EVIDENCE_BUCKET", config.curated_output_bucket),
         checkpoint_prefix=config.checkpoint_prefix,
         curated_output_prefix=config.curated_output_prefix,
+    )
+
+
+def load_container_runtime_limit() -> ContainerRuntimeLimit:
+    return ContainerRuntimeLimit(
+        max_runtime_minutes=int(os.getenv("VBS_FLINK_MAX_RUNTIME_MINUTES", "45")),
+        grace_seconds=int(os.getenv("VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS", "30")),
+        disable_auto_stop=os.getenv("VBS_FLINK_DISABLE_AUTO_STOP", "false").strip().lower() == "true",
     )
 
 

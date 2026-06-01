@@ -341,7 +341,8 @@ services:
         condition: service_healthy
       minio-init:
         condition: service_completed_successfully
-    command: jobmanager
+    entrypoint: ["/opt/flink/bin/run-with-time-limit.sh"]
+    command: ["/docker-entrypoint.sh", "jobmanager"]
     ports:
       - "8086:8081"
     environment:
@@ -351,6 +352,9 @@ services:
       VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
       VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
       VBS_EVIDENCE_BUCKET: "${VBS_EVIDENCE_BUCKET:-evidence}"
+      VBS_FLINK_MAX_RUNTIME_MINUTES: "${VBS_FLINK_MAX_RUNTIME_MINUTES:-45}"
+      VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS: "${VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS:-30}"
+      VBS_FLINK_DISABLE_AUTO_STOP: "${VBS_FLINK_DISABLE_AUTO_STOP:-false}"
       FLINK_PROPERTIES: |-
         jobmanager.rpc.address: flink-jobmanager
         rest.port: 8081
@@ -375,7 +379,8 @@ services:
     depends_on:
       flink-jobmanager:
         condition: service_healthy
-    command: taskmanager
+    entrypoint: ["/opt/flink/bin/run-with-time-limit.sh"]
+    command: ["/docker-entrypoint.sh", "taskmanager"]
     environment:
       VBS_KAFKA_BOOTSTRAP_SERVERS: "${VBS_KAFKA_BOOTSTRAP_SERVERS:-kafka:29092}"
       VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
@@ -383,6 +388,9 @@ services:
       VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
       VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
       VBS_EVIDENCE_BUCKET: "${VBS_EVIDENCE_BUCKET:-evidence}"
+      VBS_FLINK_MAX_RUNTIME_MINUTES: "${VBS_FLINK_MAX_RUNTIME_MINUTES:-45}"
+      VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS: "${VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS:-30}"
+      VBS_FLINK_DISABLE_AUTO_STOP: "${VBS_FLINK_DISABLE_AUTO_STOP:-false}"
       FLINK_PROPERTIES: |-
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: 4
@@ -409,7 +417,8 @@ services:
         condition: service_healthy
       flink-taskmanager:
         condition: service_healthy
-    entrypoint: ["/opt/flink/bin/submit-jobs.sh"]
+    entrypoint: ["/opt/flink/bin/run-with-time-limit.sh"]
+    command: ["/opt/flink/bin/submit-jobs.sh"]
     environment:
       VBS_FLINK_JOBMANAGER_INTERNAL_URL: "${VBS_FLINK_JOBMANAGER_INTERNAL_URL:-http://flink-jobmanager:8081}"
       VBS_KAFKA_BOOTSTRAP_SERVERS: "${VBS_KAFKA_BOOTSTRAP_SERVERS:-kafka:29092}"
@@ -418,6 +427,9 @@ services:
       VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
       VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
       VBS_EVIDENCE_BUCKET: "${VBS_EVIDENCE_BUCKET:-evidence}"
+      VBS_FLINK_MAX_RUNTIME_MINUTES: "${VBS_FLINK_MAX_RUNTIME_MINUTES:-45}"
+      VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS: "${VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS:-30}"
+      VBS_FLINK_DISABLE_AUTO_STOP: "${VBS_FLINK_DISABLE_AUTO_STOP:-false}"
     volumes:
       - ./:/workspace
 

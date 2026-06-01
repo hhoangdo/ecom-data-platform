@@ -58,6 +58,14 @@ Publish deterministic Flink smoke fixtures if needed:
 uv run python scripts/flink/publish_smoke.py
 ```
 
+For a deterministic downstream correction-path check, prefer the ADR 04 clean-room gate before bootstrapping Pinot:
+
+```powershell
+uv run python scripts/flink/cleanroom_verify.py --phase all --include-pinot
+```
+
+That sequence proves the correction row exists in Kafka and MinIO first, then resets Pinot serving state and verifies that `pinot_realtime_metric_corrections` ingests live rows.
+
 Run the Pinot dashboard and reconciliation examples:
 
 ```powershell

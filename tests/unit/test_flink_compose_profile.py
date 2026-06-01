@@ -36,3 +36,20 @@ def test_env_example_documents_streaming_urls() -> None:
     assert "VBS_FLINK_UI_URL=http://localhost:8086" in env_example
     assert "VBS_FLINK_JOBMANAGER_URL=http://localhost:8086" in env_example
     assert "VBS_FLINK_JOBMANAGER_INTERNAL_URL=http://flink-jobmanager:8081" in env_example
+    assert "VBS_FLINK_MAX_RUNTIME_MINUTES=45" in env_example
+    assert "VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS=30" in env_example
+    assert "VBS_FLINK_DISABLE_AUTO_STOP=false" in env_example
+
+
+def test_streaming_services_use_runtime_limit_wrapper() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    services = compose["services"]
+
+    for service_name in ["flink-jobmanager", "flink-taskmanager", "flink-job-submit"]:
+        service = services[service_name]
+        assert service["entrypoint"] == ["/opt/flink/bin/run-with-time-limit.sh"]
+        environment = service["environment"]
+        assert "VBS_FLINK_MAX_RUNTIME_MINUTES" in environment
+        assert "VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS" in environment
+        assert "VBS_FLINK_DISABLE_AUTO_STOP" in environment

@@ -28,5 +28,6 @@ dbt/dbt_packages/
 dbt/.user.yml
 
 # Final Section 01/02 dataset evidence is intentionally committed.
+evidence/runtime/
 !evidence/final_dataset/
 !evidence/final_dataset/**
