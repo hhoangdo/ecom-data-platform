@@ -1,0 +1,5 @@
+{
+  "pinot_image": "apachepinot/pinot:1.4.0",
+  "pinot_version": "1.4.0",
+  "zookeeper_image": "zookeeper:3.9.3"
+}

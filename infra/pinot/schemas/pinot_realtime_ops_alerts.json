@@ -1,0 +1,32 @@
+{
+  "schemaName": "pinot_realtime_ops_alerts",
+  "dimensionFieldSpecs": [
+    {"name": "alert_id", "dataType": "STRING"},
+    {"name": "alert_type", "dataType": "STRING"},
+    {"name": "source_topic", "dataType": "STRING"},
+    {"name": "severity", "dataType": "STRING"},
+    {"name": "schema_version", "dataType": "INT"},
+    {"name": "primary_category", "dataType": "STRING"},
+    {"name": "source", "dataType": "STRING"},
+    {"name": "device_type", "dataType": "STRING"},
+    {"name": "payment_method", "dataType": "STRING"},
+    {"name": "order_status", "dataType": "STRING"},
+    {"name": "event_time", "dataType": "STRING"},
+    {"name": "window_start_ts", "dataType": "STRING"},
+    {"name": "window_end_ts", "dataType": "STRING"},
+    {"name": "emitted_ts", "dataType": "STRING"},
+    {"name": "dimensions_json", "dataType": "STRING"},
+    {"name": "metrics_json", "dataType": "STRING"}
+  ],
+  "metricFieldSpecs": [
+    {"name": "payment_failure_count", "dataType": "INT"},
+    {"name": "order_count", "dataType": "INT"},
+    {"name": "payment_failure_rate", "dataType": "DOUBLE"},
+    {"name": "late_event_count", "dataType": "INT"},
+    {"name": "duplicate_event_count", "dataType": "INT"},
+    {"name": "burst_event_count", "dataType": "INT"}
+  ],
+  "dateTimeFieldSpecs": [
+    {"name": "event_time_ts", "dataType": "LONG", "format": "1:MILLISECONDS:EPOCH", "granularity": "1:MINUTES"}
+  ]
+}

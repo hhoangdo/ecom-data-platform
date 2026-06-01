@@ -1,0 +1,92 @@
+{
+  "pinot_realtime_commerce_metrics_1m_REALTIME": {
+    "_segmentToConsumingInfoMap": {
+      "pinot_realtime_commerce_metrics_1m__0__0__20260601T1331Z": [
+        {
+          "consumerState": "CONSUMING",
+          "lastConsumedTimestamp": 1780321141565,
+          "partitionOffsetInfo": {
+            "availabilityLagMsMap": {
+              "0": "7621566"
+            },
+            "currentOffsetsMap": {
+              "0": "1693"
+            },
+            "latestUpstreamOffsetMap": {
+              "0": "1693"
+            },
+            "recordsLagMap": {
+              "0": "0"
+            }
+          },
+          "partitionToOffsetMap": {
+            "0": "1693"
+          },
+          "serverName": "Server_172.18.0.13_7050"
+        }
+      ]
+    },
+    "serversFailingToRespond": 0,
+    "serversUnparsableRespond": 0
+  },
+  "pinot_realtime_metric_corrections_REALTIME": {
+    "_segmentToConsumingInfoMap": {
+      "pinot_realtime_metric_corrections__0__0__20260601T1332Z": [
+        {
+          "consumerState": "CONSUMING",
+          "lastConsumedTimestamp": -1,
+          "partitionOffsetInfo": {
+            "availabilityLagMsMap": {
+              "0": "UNKNOWN"
+            },
+            "currentOffsetsMap": {
+              "0": "0"
+            },
+            "latestUpstreamOffsetMap": {
+              "0": "0"
+            },
+            "recordsLagMap": {
+              "0": "0"
+            }
+          },
+          "partitionToOffsetMap": {
+            "0": "0"
+          },
+          "serverName": "Server_172.18.0.13_7050"
+        }
+      ]
+    },
+    "serversFailingToRespond": 0,
+    "serversUnparsableRespond": 0
+  },
+  "pinot_realtime_ops_alerts_REALTIME": {
+    "_segmentToConsumingInfoMap": {
+      "pinot_realtime_ops_alerts__0__0__20260601T1333Z": [
+        {
+          "consumerState": "CONSUMING",
+          "lastConsumedTimestamp": 1780321141956,
+          "partitionOffsetInfo": {
+            "availabilityLagMsMap": {
+              "0": "7621957"
+            },
+            "currentOffsetsMap": {
+              "0": "2139"
+            },
+            "latestUpstreamOffsetMap": {
+              "0": "2139"
+            },
+            "recordsLagMap": {
+              "0": "0"
+            }
+          },
+          "partitionToOffsetMap": {
+            "0": "2139"
+          },
+          "serverName": "Server_172.18.0.13_7050"
+        }
+      ]
+    },
+    "serversFailingToRespond": 0,
+    "serversUnparsableRespond": 0
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "tableName": "pinot_realtime_ops_alerts",
+  "tableType": "REALTIME",
+  "segmentsConfig": {
+    "timeColumnName": "event_time_ts",
+    "timeType": "MILLISECONDS",
+    "replicasPerPartition": "1",
+    "retentionTimeUnit": "DAYS",
+    "retentionTimeValue": "7"
+  },
+  "tableIndexConfig": {
+    "loadMode": "MMAP",
+    "invertedIndexColumns": [
+      "alert_type",
+      "severity",
+      "source_topic",
+      "primary_category",
+      "source",
+      "device_type",
+      "payment_method",
+      "order_status"
+    ]
+  },
+  "fieldConfigList": [
+    {"name": "event_time_ts", "encodingType": "RAW", "indexType": "RANGE"},
+    {"name": "dimensions_json", "encodingType": "RAW"},
+    {"name": "metrics_json", "encodingType": "RAW"}
+  ],
+  "tenants": {},
+  "metadata": {
+    "customConfigs": {
+      "truth_policy": "provisional_pinot_alert_stream"
+    }
+  },
+  "ingestionConfig": {
+    "streamIngestionConfig": {
+      "streamConfigMaps": [
+        {
+          "streamType": "kafka",
+          "stream.kafka.topic.name": "realtime_ops_alerts",
+          "stream.kafka.broker.list": "kafka:29092",
+          "stream.kafka.consumer.type": "lowlevel",
+          "stream.kafka.consumer.prop.auto.offset.reset": "smallest",
+          "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka30.KafkaConsumerFactory",
+          "stream.kafka.decoder.class.name": "org.apache.pinot.plugin.inputformat.json.JSONMessageDecoder",
+          "stream.kafka.decoder.prop.format": "JSON",
+          "realtime.segment.flush.threshold.rows": "0",
+          "realtime.segment.flush.threshold.segment.rows": "50000",
+          "realtime.segment.flush.threshold.time": "1h"
+        }
+      ]
+    },
+    "transformConfigs": [
+      {"columnName": "event_time_ts", "transformFunction": "fromDateTime(event_time, 'yyyy-MM-dd''T''HH:mm:ssXXX')"},
+      {"columnName": "dimensions_json", "transformFunction": "json_format(dimensions)"},
+      {"columnName": "metrics_json", "transformFunction": "json_format(metrics)"},
+      {"columnName": "primary_category", "transformFunction": "JSONPATHSTRING(dimensions, '$.primary_category')"},
+      {"columnName": "source", "transformFunction": "JSONPATHSTRING(dimensions, '$.source')"},
+      {"columnName": "device_type", "transformFunction": "JSONPATHSTRING(dimensions, '$.device_type')"},
+      {"columnName": "payment_method", "transformFunction": "JSONPATHSTRING(dimensions, '$.payment_method')"},
+      {"columnName": "order_status", "transformFunction": "JSONPATHSTRING(dimensions, '$.order_status')"},
+      {"columnName": "payment_failure_count", "transformFunction": "JSONPATHLONG(metrics, '$.payment_failure_count', 0)"},
+      {"columnName": "order_count", "transformFunction": "JSONPATHLONG(metrics, '$.order_count', 0)"},
+      {"columnName": "payment_failure_rate", "transformFunction": "JSONPATHDOUBLE(metrics, '$.payment_failure_rate', 0.0)"},
+      {"columnName": "late_event_count", "transformFunction": "JSONPATHLONG(metrics, '$.late_event_count', 0)"},
+      {"columnName": "duplicate_event_count", "transformFunction": "JSONPATHLONG(metrics, '$.duplicate_event_count', 0)"},
+      {"columnName": "burst_event_count", "transformFunction": "JSONPATHLONG(metrics, '$.burst_event_count', 0)"}
+    ],
+    "continueOnError": true,
+    "rowTimeValueCheck": true,
+    "segmentTimeValueCheck": false
+  },
+  "isDimTable": false
+}

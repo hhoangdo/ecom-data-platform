@@ -1,0 +1,335 @@
+{
+  "correction_audit": {
+    "brokerId": "Broker_172.18.0.14_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 1780321251629,
+    "name": "correction_audit",
+    "numConsumingSegmentsMatched": 0,
+    "numConsumingSegmentsProcessed": 0,
+    "numConsumingSegmentsQueried": 1,
+    "numDocsScanned": 0,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 0,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 0,
+    "numSegmentsMatched": 0,
+    "numSegmentsProcessed": 0,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 1,
+    "numSegmentsPrunedByValue": 0,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 1,
+    "numServersQueried": 1,
+    "numServersResponded": 1,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": false,
+    "pools": [
+      -1
+    ],
+    "query": "select metric_key, correction_version, correction_reason, revenue_amount, gmv_proxy_amount\nfrom pinot_realtime_metric_corrections\norder by correction_version desc, metric_key\nlimit 20",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1159289911000000012",
+    "resultTable": {
+      "dataSchema": {
+        "columnDataTypes": [
+          "STRING",
+          "INT",
+          "STRING",
+          "DOUBLE",
+          "DOUBLE"
+        ],
+        "columnNames": [
+          "metric_key",
+          "correction_version",
+          "correction_reason",
+          "revenue_amount",
+          "gmv_proxy_amount"
+        ]
+      },
+      "rows": []
+    },
+    "rlsFiltersApplied": false,
+    "tablesQueried": [
+      "pinot_realtime_metric_corrections"
+    ],
+    "timeUsedMs": 8,
+    "totalDocs": 0,
+    "traceInfo": {}
+  },
+  "live_ops_alerts": {
+    "brokerId": "Broker_172.18.0.14_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 1780321254082,
+    "name": "live_ops_alerts",
+    "numConsumingSegmentsMatched": 0,
+    "numConsumingSegmentsProcessed": 0,
+    "numConsumingSegmentsQueried": 1,
+    "numDocsScanned": 2139,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 4278,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 8,
+    "numSegmentsMatched": 1,
+    "numSegmentsProcessed": 1,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 0,
+    "numSegmentsPrunedByValue": 0,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 1,
+    "numServersQueried": 1,
+    "numServersResponded": 1,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": false,
+    "pools": [
+      -1
+    ],
+    "query": "select alert_type, severity, count(*) as alert_count\nfrom pinot_realtime_ops_alerts\ngroup by alert_type, severity\norder by alert_count desc, alert_type\nlimit 20",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1159289911000000011",
+    "resultTable": {
+      "dataSchema": {
+        "columnDataTypes": [
+          "STRING",
+          "STRING",
+          "LONG"
+        ],
+        "columnNames": [
+          "alert_type",
+          "severity",
+          "alert_count"
+        ]
+      },
+      "rows": [
+        [
+          "shipment_delayed",
+          "high",
+          783
+        ],
+        [
+          "shipment_blocked_payment_failed",
+          "high",
+          573
+        ],
+        [
+          "inventory_low_stock",
+          "medium",
+          483
+        ],
+        [
+          "payment_failure_spike",
+          "medium",
+          161
+        ],
+        [
+          "payment_failure_spike",
+          "high",
+          100
+        ],
+        [
+          "duplicate_spike",
+          "high",
+          13
+        ],
+        [
+          "late_arrival",
+          "medium",
+          13
+        ],
+        [
+          "traffic_burst",
+          "high",
+          13
+        ]
+      ]
+    },
+    "rlsFiltersApplied": false,
+    "tablesQueried": [
+      "pinot_realtime_ops_alerts"
+    ],
+    "timeUsedMs": 11,
+    "totalDocs": 2139,
+    "traceInfo": {}
+  },
+  "live_payment_failures": {
+    "brokerId": "Broker_172.18.0.14_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 1780321253685,
+    "name": "live_payment_failures",
+    "numConsumingSegmentsMatched": 0,
+    "numConsumingSegmentsProcessed": 0,
+    "numConsumingSegmentsQueried": 1,
+    "numDocsScanned": 0,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 0,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 0,
+    "numSegmentsMatched": 0,
+    "numSegmentsProcessed": 0,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 1,
+    "numSegmentsPrunedByValue": 1,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 1,
+    "numServersQueried": 1,
+    "numServersResponded": 1,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": false,
+    "pools": [
+      -1
+    ],
+    "query": "select metric_minute, payment_method, sum(payment_failure_count) as payment_failure_count\nfrom pinot_realtime_commerce_metrics_1m\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'\ngroup by metric_minute, payment_method\norder by metric_minute, payment_method\nlimit 20",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1159289911000000010",
+    "resultTable": {
+      "dataSchema": {
+        "columnDataTypes": [
+          "STRING",
+          "STRING",
+          "INT"
+        ],
+        "columnNames": [
+          "metric_minute",
+          "payment_method",
+          "payment_failure_count"
+        ]
+      },
+      "rows": []
+    },
+    "rlsFiltersApplied": false,
+    "tablesQueried": [
+      "pinot_realtime_commerce_metrics_1m"
+    ],
+    "timeUsedMs": 9,
+    "totalDocs": 1693,
+    "traceInfo": {}
+  },
+  "live_revenue_by_category": {
+    "brokerId": "Broker_172.18.0.14_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 1780321253685,
+    "name": "live_revenue_by_category",
+    "numConsumingSegmentsMatched": 0,
+    "numConsumingSegmentsProcessed": 0,
+    "numConsumingSegmentsQueried": 1,
+    "numDocsScanned": 0,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 0,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 0,
+    "numSegmentsMatched": 0,
+    "numSegmentsProcessed": 0,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 1,
+    "numSegmentsPrunedByValue": 1,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 1,
+    "numServersQueried": 1,
+    "numServersResponded": 1,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": false,
+    "pools": [
+      -1
+    ],
+    "query": "select metric_minute, primary_category, sum(revenue_amount) as revenue_amount\nfrom pinot_realtime_commerce_metrics_1m\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'\ngroup by metric_minute, primary_category\norder by metric_minute, primary_category\nlimit 20",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1159289911000000009",
+    "resultTable": {
+      "dataSchema": {
+        "columnDataTypes": [
+          "STRING",
+          "STRING",
+          "DOUBLE"
+        ],
+        "columnNames": [
+          "metric_minute",
+          "primary_category",
+          "revenue_amount"
+        ]
+      },
+      "rows": []
+    },
+    "rlsFiltersApplied": false,
+    "tablesQueried": [
+      "pinot_realtime_commerce_metrics_1m"
+    ],
+    "timeUsedMs": 9,
+    "totalDocs": 1693,
+    "traceInfo": {}
+  }
+}

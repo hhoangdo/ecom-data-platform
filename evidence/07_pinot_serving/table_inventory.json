@@ -1,0 +1,7 @@
+{
+  "tables": [
+    "pinot_realtime_commerce_metrics_1m",
+    "pinot_realtime_metric_corrections",
+    "pinot_realtime_ops_alerts"
+  ]
+}
