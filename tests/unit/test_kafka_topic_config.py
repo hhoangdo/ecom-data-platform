@@ -91,6 +91,27 @@ def test_kafka_connect_s3_template_targets_source_topics_only() -> None:
     assert template["config"]["value.converter.schemas.enable"] == "false"
 
 
+def test_kafka_connect_s3_template_uses_bronze_event_prefix_contract() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    template = json.loads((repo_root / "infra" / "kafka" / "connect" / "source-events-s3-sink.template.json").read_text(encoding="utf-8"))
+
+    config = template["config"]
+    assert config["s3.bucket.name"] == "${BRONZE_BUCKET}"
+    assert config["topics.dir"] == "events"
+    assert "ingest_date=" in config["path.format"]
+    assert config["partitioner.class"] != "io.confluent.connect.storage.partitioner.DefaultPartitioner"
+
+
+def test_kafka_connect_s3_template_uses_time_partitioner_compatible_path_format() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    template = json.loads((repo_root / "infra" / "kafka" / "connect" / "source-events-s3-sink.template.json").read_text(encoding="utf-8"))
+
+    config = template["config"]
+    assert config["topics.dir"] == "events"
+    assert config["path.format"] == "'ingest_date='YYYY-MM-dd"
+    assert "${topic}" not in config["path.format"]
+
+
 def test_cleanup_deletes_topics_then_bootstraps_again(tmp_path: Path, monkeypatch) -> None:
     from vina_bim_shop.kafka.cleanup import cleanup_kafka
 

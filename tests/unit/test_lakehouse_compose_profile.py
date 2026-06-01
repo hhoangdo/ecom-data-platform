@@ -58,3 +58,15 @@ def test_hive_metastore_image_includes_postgres_jdbc_driver() -> None:
     dockerfile = (repo_root / "infra" / "lakehouse" / "hive" / "Dockerfile").read_text(encoding="utf-8")
     assert "apache/hive:4.1.0" in dockerfile
     assert "postgresql-42.7.4.jar" in dockerfile
+
+
+def test_root_compose_wires_kafka_connect_to_minio_for_bronze_event_landing() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+
+    environment = compose["services"]["kafka-connect"]["environment"]
+    assert environment["BRONZE_BUCKET"] == "${VBS_BRONZE_BUCKET:-bronze}"
+    assert environment["MINIO_ENDPOINT"] == "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+    assert environment["MINIO_REGION"] == "${VBS_MINIO_REGION:-us-east-1}"
+    assert environment["MINIO_ACCESS_KEY"] == "${VBS_MINIO_ROOT_USER:-vina_minio}"
+    assert environment["MINIO_SECRET_KEY"] == "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"

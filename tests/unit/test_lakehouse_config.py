@@ -94,3 +94,16 @@ def test_lakehouse_evidence_defaults_to_adr02_evidence_path() -> None:
 
     assert DEFAULT_EVIDENCE_ROOT == Path("evidence/04_lakehouse")
     assert REQUIRED_BUCKETS == ("bronze", "silver", "gold", "checkpoints", "evidence")
+
+
+def test_env_example_documents_bronze_raw_landing_defaults() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    env_example = (repo_root / ".env.example").read_text(encoding="utf-8")
+
+    expected_lines = [
+        "VBS_RAW_ROOT=data/raw",
+        "VBS_BRONZE_BATCH_PREFIX=bronze/batch",
+        "VBS_BRONZE_EVENTS_PREFIX=bronze/events",
+    ]
+    for expected_line in expected_lines:
+        assert expected_line in env_example

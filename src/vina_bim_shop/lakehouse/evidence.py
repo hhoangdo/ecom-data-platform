@@ -19,6 +19,13 @@ GetJson = Callable[[str], Any]
 RunCommand = Callable[[list[str]], str]
 
 
+def bronze_layout_examples() -> dict[str, str]:
+    return {
+        "batch": "bronze/batch/customers/snapshot_date=2026-06-01/part-000.parquet",
+        "events": "bronze/events/commerce_events/ingest_date=2026-06-01/000000.jsonl",
+    }
+
+
 def _get_json(url: str) -> Any:
     response = requests.get(url, timeout=30)
     response.raise_for_status()
@@ -54,6 +61,43 @@ def parse_bucket_listing(listing: str) -> list[str]:
         if name:
             buckets.append(name)
     return buckets
+
+
+def capture_bronze_landing_evidence(
+    *,
+    evidence_root: str | Path,
+    listing_text: str | None = None,
+    listing_path: str | Path | None = None,
+    run_command: RunCommand | None = None,
+) -> dict[str, Any]:
+    if listing_text is None:
+        if listing_path is not None:
+            listing_text = Path(listing_path).read_text(encoding="utf-8")
+        elif run_command is not None:
+            listing_text = run_command([])
+        else:
+            raise ValueError("Expected listing_text, listing_path, or run_command.")
+
+    examples = {"batch": [], "events": []}
+    for line in listing_text.splitlines():
+        for prefix in ("bronze/batch/", "bronze/events/", "batch/", "events/"):
+            start = line.find(prefix)
+            if start == -1:
+                continue
+            entry = line[start:].strip()
+            if not entry.startswith("bronze/"):
+                entry = f"bronze/{entry}"
+            if "/batch/" in entry:
+                examples["batch"].append(entry)
+            else:
+                examples["events"].append(entry)
+            break
+
+    evidence_path = Path(evidence_root)
+    evidence_path.mkdir(parents=True, exist_ok=True)
+    artifact_name = "bronze_landing_examples.json"
+    _write_json(evidence_path / artifact_name, examples)
+    return {"artifacts": [artifact_name]}
 
 
 def capture_evidence(

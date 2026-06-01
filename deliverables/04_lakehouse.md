@@ -36,6 +36,27 @@ The one-shot `minio-init` service creates these buckets idempotently:
 
 Bronze raw files remain unregistered by default. Spark may read Bronze by object path later, but Trino should not expose Bronze as normal analyst-facing tables.
 
+## Bronze Raw Landing
+
+Option A raw landing is now split by ownership:
+
+- Kafka Connect lands source-topic event logs into MinIO Bronze.
+- A small Python CLI uploads local batch snapshot exports into MinIO Bronze.
+- Spark remains the future reader of Bronze object paths and the future writer of Silver/Gold.
+
+Bronze raw object layout:
+
+- `bronze/batch/<dataset>/snapshot_date=<date>/*`
+- `bronze/events/<topic>/ingest_date=<date>/*`
+
+Upload the current local raw batch snapshots:
+
+```powershell
+uv run python scripts/lakehouse/land_bronze_batch.py --raw-root data/raw --snapshot-date 2026-06-01 --minio-alias LOCAL
+```
+
+This command expects a MinIO client alias such as `LOCAL` to already be configured against the local MinIO API.
+
 ## Shared Postgres
 
 The `lakehouse-postgres` service initializes isolated databases and users for:
@@ -77,6 +98,14 @@ uv run python scripts/lakehouse/capture_evidence.py
 ```
 
 Evidence is written under `evidence/04_lakehouse/`.
+
+Capture Bronze landing examples after uploads/connectors run:
+
+```powershell
+uv run python scripts/lakehouse/capture_bronze_evidence.py --evidence-root evidence/04_lakehouse --listing-path evidence/04_lakehouse/bronze_listing.txt
+```
+
+The Bronze landing artifact is `evidence/04_lakehouse/bronze_landing_examples.json` and should include example batch and event object keys.
 
 ## Required Screenshots
 

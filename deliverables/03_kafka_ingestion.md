@@ -87,7 +87,23 @@ Evidence is written under `evidence/03_kafka_ingestion/`.
 
 ## Kafka Connect
 
-Kafka Connect runs in ADR 01 so its REST endpoint and UI integration are visible. The future S3 sink template is `infra/kafka/connect/source-events-s3-sink.template.json`, but it is not posted until ADR 02 provides MinIO.
+Kafka Connect runs with a pinned custom local image so the Confluent S3 sink plugin is installed deterministically:
+
+- image: `vina-bim-shop/kafka-connect:7.8.3-s3`
+- Dockerfile: `infra/kafka/connect/Dockerfile`
+- connector template: `infra/kafka/connect/source-events-s3-sink.template.json`
+
+Once the lakehouse profile is running, register the Bronze event sink:
+
+```powershell
+uv run python scripts/kafka/register_bronze_sink.py --connector-name bronze-events-s3-sink --bronze-bucket bronze --minio-endpoint http://minio:9000 --minio-region us-east-1 --minio-access-key vina_minio --minio-secret-key vina_minio_password
+```
+
+The connector lands source-topic events under the Bronze raw prefix contract:
+
+- `bronze/events/<topic>/ingest_date=<date>/*`
+
+The registration response artifact is written to `evidence/03_kafka_ingestion/kafka_connect_bronze_sink_response.json`.
 
 ## Reset
 
