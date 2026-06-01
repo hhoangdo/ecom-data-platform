@@ -1,0 +1,5 @@
+{
+  "body": "",
+  "status_code": 200,
+  "url": "http://localhost:9000/minio/health/ready"
+}

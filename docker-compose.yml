@@ -97,5 +97,116 @@ services:
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: "local-connect"
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: "http://kafka-connect:8083"
 
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    profiles: ["lakehouse", "all"]
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      MINIO_REGION_NAME: "${VBS_MINIO_REGION:-us-east-1}"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+
+  minio-init:
+    image: minio/mc:RELEASE.2025-04-16T18-13-26Z
+    profiles: ["lakehouse", "all"]
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+    volumes:
+      - ./infra/lakehouse/minio/create-buckets.sh:/create-buckets.sh:ro
+    entrypoint: ["/bin/sh", "/create-buckets.sh"]
+
+  lakehouse-postgres:
+    image: postgres:16.4
+    profiles: ["lakehouse", "all"]
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: "${VBS_LAKEHOUSE_POSTGRES_DB:-platform}"
+      POSTGRES_USER: "${VBS_LAKEHOUSE_POSTGRES_USER:-vina_platform}"
+      POSTGRES_PASSWORD: "${VBS_LAKEHOUSE_POSTGRES_PASSWORD:-vina_platform_password}"
+    volumes:
+      - lakehouse_postgres_data:/var/lib/postgresql/data
+      - ./infra/lakehouse/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+
+  hive-metastore:
+    build:
+      context: ./infra/lakehouse/hive
+      dockerfile: Dockerfile
+    image: vina-bim-shop/hive-metastore:4.1.0-postgres
+    profiles: ["lakehouse", "all"]
+    depends_on:
+      lakehouse-postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+    ports:
+      - "9083:9083"
+    environment:
+      SERVICE_NAME: "metastore"
+      DB_DRIVER: "postgres"
+      SERVICE_OPTS: >-
+        -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+        -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://lakehouse-postgres:5432/hive_metastore
+        -Djavax.jdo.option.ConnectionUserName=hive_metastore
+        -Djavax.jdo.option.ConnectionPassword=hive_metastore_password
+        -Dhive.metastore.warehouse.dir=s3a://silver/warehouse
+        -Dfs.s3a.endpoint=http://minio:9000
+        -Dfs.s3a.access.key=${VBS_MINIO_ROOT_USER:-vina_minio}
+        -Dfs.s3a.secret.key=${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}
+        -Dfs.s3a.path.style.access=true
+        -Dfs.s3a.connection.ssl.enabled=false
+    volumes:
+      - ./infra/lakehouse/hive/hive-site.xml:/opt/hive/conf/hive-site.xml:ro
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/9083'"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+
+  trino:
+    image: trinodb/trino:476
+    profiles: ["lakehouse", "all"]
+    depends_on:
+      hive-metastore:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+    volumes:
+      - ./infra/lakehouse/trino/etc/config.properties:/etc/trino/config.properties:ro
+      - ./infra/lakehouse/trino/etc/node.properties:/etc/trino/node.properties:ro
+      - ./infra/lakehouse/trino/catalog:/etc/trino/catalog:ro
+      - ./infra/lakehouse/trino/sql:/etc/trino/sql:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/info"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+
 volumes:
   kafka_kraft_data:
+  minio_data:
+  lakehouse_postgres_data:
