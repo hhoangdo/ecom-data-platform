@@ -1,17 +1,23 @@
 from __future__ import annotations
 
 import json
+import os
+import shutil
 import subprocess
 from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol
 
 import requests
 
 
 GetJson = Callable[[str], Any]
 RunCommand = Callable[[list[str]], str]
+
+
+class ScreenshotCapturer(Protocol):
+    def __call__(self, *, kafka_ui_url: str, screenshots_path: Path) -> dict[str, str]: ...
 
 
 def _get_json(url: str) -> Any:
@@ -25,6 +31,75 @@ def _run_command(command: list[str]) -> str:
     return completed.stdout
 
 
+def _resolve_command(command: str) -> str:
+    candidates = [command]
+    if os.name == "nt":
+        candidates = [f"{command}.cmd", f"{command}.exe", command]
+    for candidate in candidates:
+        resolved = shutil.which(candidate)
+        if resolved:
+            return resolved
+    raise FileNotFoundError(f"Required command not found on PATH: {command}")
+
+
+def _screenshot_jobs(kafka_ui_url: str, screenshots_path: Path) -> list[tuple[str, Path, str]]:
+    base_url = kafka_ui_url.rstrip("/")
+    return [
+        (
+            f"{base_url}/ui/clusters/vina-bim-shop-local/all-topics?perPage=25",
+            screenshots_path / "kafka_ui_topics.png",
+            "text=commerce_events",
+        ),
+        (
+            f"{base_url}/ui/clusters/vina-bim-shop-local/all-topics/commerce_events/messages",
+            screenshots_path / "kafka_ui_message_sample.png",
+            "text=search_performed",
+        ),
+        (
+            f"{base_url}/ui/clusters/vina-bim-shop-local/schemas",
+            screenshots_path / "schema_registry_subjects.png",
+            "text=commerce_events-value",
+        ),
+    ]
+
+
+def _capture_screenshots(kafka_ui_url: str, screenshots_path: Path) -> dict[str, str]:
+    screenshots_path.mkdir(parents=True, exist_ok=True)
+    for filename in ["kafka_ui_topics.png", "kafka_ui_message_sample.png", "schema_registry_subjects.png"]:
+        (screenshots_path / filename).unlink(missing_ok=True)
+    env = os.environ.copy()
+    env.setdefault("PLAYWRIGHT_BROWSERS_PATH", "0")
+    npx = _resolve_command("npx")
+    subprocess.run([npx, "playwright", "install", "chromium"], check=True, env=env)
+
+    for url, destination, selector in _screenshot_jobs(kafka_ui_url, screenshots_path):
+        subprocess.run(
+            [
+                npx,
+                "playwright",
+                "screenshot",
+                "--browser",
+                "chromium",
+                "--full-page",
+                "--viewport-size",
+                "1440,1400",
+                "--timeout",
+                "30000",
+                "--wait-for-selector",
+                selector,
+                url,
+                str(destination.resolve()),
+            ],
+            check=True,
+            env=env,
+        )
+    return {
+        "topics": str((screenshots_path / "kafka_ui_topics.png").resolve()),
+        "message_sample": str((screenshots_path / "kafka_ui_message_sample.png").resolve()),
+        "schema_registry": str((screenshots_path / "schema_registry_subjects.png").resolve()),
+    }
+
+
 def capture_evidence(
     *,
     evidence_root: str | Path = "evidence/03_kafka_ingestion",
@@ -33,6 +108,7 @@ def capture_evidence(
     kafka_ui_url: str = "http://localhost:8084",
     get_json: GetJson = _get_json,
     run_command: RunCommand = _run_command,
+    screenshot_capturer: ScreenshotCapturer = _capture_screenshots,
 ) -> dict[str, Any]:
     evidence_path = Path(evidence_root)
     evidence_path.mkdir(parents=True, exist_ok=True)
@@ -61,6 +137,7 @@ def capture_evidence(
         "Capture required screenshots here: kafka_ui_topics.png, kafka_ui_message_sample.png, schema_registry_subjects.png.\n",
         encoding="utf-8",
     )
+    screenshot_capturer(kafka_ui_url=kafka_ui_url, screenshots_path=screenshots_path)
 
     manifest = {
         "captured_at": datetime.now(timezone.utc).isoformat(),

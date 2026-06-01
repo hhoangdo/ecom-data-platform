@@ -10,7 +10,7 @@
     "screenshots/kafka_ui_message_sample.png",
     "screenshots/schema_registry_subjects.png"
   ],
-  "captured_at": "2026-05-31T21:24:12.300234+00:00",
+  "captured_at": "2026-06-01T04:43:42.949211+00:00",
   "service_urls": {
     "kafka_connect": "http://localhost:8083",
     "kafka_ui": "http://localhost:8084",
