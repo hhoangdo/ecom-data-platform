@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import subprocess
 from pathlib import Path
 
@@ -13,7 +14,7 @@ def render_batch_snapshot_key(dataset: str, snapshot_date: str, filename: str) -
 
 
 def render_event_prefix(topic: str, ingest_date: str) -> str:
-    return f"bronze/events/topic={topic}/ingest_date={ingest_date}/"
+    return f"bronze/events/{topic}/ingest_date={ingest_date}/"
 
 
 def render_event_key(topic: str, ingest_date: str, filename: str) -> str:
@@ -56,6 +57,7 @@ def execute_batch_snapshot_uploads(
         minio_alias=minio_alias,
     )
     raw_root_path = Path(raw_root).resolve()
+    minio_internal_endpoint = os.getenv("VBS_MINIO_INTERNAL_ENDPOINT", "http://minio:9000")
     for command in commands:
         if use_docker_mc:
             source_path = Path(command[2]).resolve().relative_to(raw_root_path).as_posix()
@@ -72,6 +74,7 @@ def execute_batch_snapshot_uploads(
                     "/bin/sh",
                     "minio-init",
                     "-c",
+                    f'mc alias set {minio_alias} {minio_internal_endpoint} "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD" >/dev/null && '
                     f'mc cp "/workdir/{source_path}" "{command[3]}"',
                 ]
             )

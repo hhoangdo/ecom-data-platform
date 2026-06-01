@@ -103,6 +103,11 @@ The connector lands source-topic events under the Bronze raw prefix contract:
 
 - `bronze/events/<topic>/ingest_date=<date>/*`
 
+Important runtime note:
+
+- The supported Confluent S3 sink layout is the direct topic-segment form above.
+- Older `bronze/events/topic=<topic>/...` examples are obsolete and should not be treated as the live contract.
+
 The registration response artifact is written to `evidence/03_kafka_ingestion/kafka_connect_bronze_sink_response.json`.
 
 ## Reset

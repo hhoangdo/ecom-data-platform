@@ -150,6 +150,6 @@ def test_execute_batch_snapshot_uploads_uses_docker_minio_client_fallback_when_r
             "/bin/sh",
             "minio-init",
             "-c",
-            'mc cp "/workdir/customers/part-000.parquet" "LOCAL/bronze/batch/customers/snapshot_date=2026-06-01/part-000.parquet"',
+            'mc alias set LOCAL http://minio:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWORD" >/dev/null && mc cp "/workdir/customers/part-000.parquet" "LOCAL/bronze/batch/customers/snapshot_date=2026-06-01/part-000.parquet"',
         ]
     ]

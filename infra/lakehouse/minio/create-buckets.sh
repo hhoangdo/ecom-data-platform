@@ -9,4 +9,6 @@ mc mb --ignore-existing ALIAS/gold
 mc mb --ignore-existing ALIAS/checkpoints
 mc mb --ignore-existing ALIAS/evidence
 
+mc pipe ALIAS/checkpoints/spark-events/.keep </dev/null
+
 mc ls ALIAS

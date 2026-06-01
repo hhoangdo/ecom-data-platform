@@ -159,7 +159,7 @@ def capture_evidence(
         "minio": "minio/minio:RELEASE.2025-04-22T22-12-26Z",
         "minio_client": "minio/mc:RELEASE.2025-04-16T18-13-26Z",
         "postgres": "postgres:16.4",
-        "hive_metastore": "vina-bim-shop/hive-metastore:4.1.0-postgres",
+        "hive_metastore": "vina-bim-shop/hive-metastore:3.1.3-postgres",
         "trino": "trinodb/trino:476",
     }
     _write_json(evidence_path / "version_matrix.json", version_matrix)

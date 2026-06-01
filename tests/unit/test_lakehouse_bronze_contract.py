@@ -26,10 +26,10 @@ def test_bronze_path_helpers_render_batch_and_event_object_keys() -> None:
         "bronze/batch/customers/snapshot_date=2026-06-01/part-000.parquet"
     )
     assert bronze.render_event_prefix("commerce_events", "2026-06-01") == (
-        "bronze/events/topic=commerce_events/ingest_date=2026-06-01/"
+        "bronze/events/commerce_events/ingest_date=2026-06-01/"
     )
     assert bronze.render_event_key("commerce_events", "2026-06-01", "000000.jsonl") == (
-        "bronze/events/topic=commerce_events/ingest_date=2026-06-01/000000.jsonl"
+        "bronze/events/commerce_events/ingest_date=2026-06-01/000000.jsonl"
     )
 
 

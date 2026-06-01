@@ -1,0 +1,221 @@
+{
+  "comparisons": [
+    {
+      "delta": 0,
+      "duckdb": 800,
+      "name": "dim_customer.row_count",
+      "spark_trino": 800,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 80,
+      "name": "dim_seller.row_count",
+      "spark_trino": 80,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 600,
+      "name": "dim_product.row_count",
+      "spark_trino": 600,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 20,
+      "name": "dim_category.row_count",
+      "spark_trino": 20,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 8,
+      "name": "dim_date.row_count",
+      "spark_trino": 8,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 5,
+      "name": "dim_payment_method.row_count",
+      "spark_trino": 5,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 2,
+      "name": "dim_order_status.row_count",
+      "spark_trino": 2,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 4,
+      "name": "dim_shipment_status.row_count",
+      "spark_trino": 4,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 5,
+      "name": "dim_shipping_method.row_count",
+      "spark_trino": 5,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 17,
+      "name": "dim_promotion.row_count",
+      "spark_trino": 17,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 738,
+      "name": "bridge_product_category.row_count",
+      "spark_trino": 738,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 1800,
+      "name": "fact_order.row_count",
+      "spark_trino": 1800,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 6688,
+      "name": "fact_order_item.row_count",
+      "spark_trino": 6688,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 1800,
+      "name": "fact_payment_attempt.row_count",
+      "spark_trino": 1800,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 1800,
+      "name": "fact_shipment.row_count",
+      "spark_trino": 1800,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 1200,
+      "name": "fact_inventory_snapshot.row_count",
+      "spark_trino": 1200,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 2194,
+      "name": "fact_promotion_application.row_count",
+      "spark_trino": 2194,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 1800,
+      "name": "obt_order_performance.row_count",
+      "spark_trino": 1800,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 159,
+      "name": "agg_hourly_reconciled_kpi.row_count",
+      "spark_trino": 159,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 681,
+      "name": "feat_customer_90d.row_count",
+      "spark_trino": 681,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 4612,
+      "name": "feat_stream_60m.row_count",
+      "spark_trino": 4612,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0,
+      "duckdb": 681,
+      "name": "feat_customer_unified.row_count",
+      "spark_trino": 681,
+      "success": true,
+      "tolerance": 0
+    },
+    {
+      "delta": 0.0,
+      "duckdb": 5305136289.0,
+      "name": "fact_order.official_paid_revenue",
+      "spark_trino": 5305136289.0,
+      "success": true,
+      "tolerance": 0.01
+    },
+    {
+      "delta": 0.0,
+      "duckdb": 5615446000.0,
+      "name": "fact_order.gross_merchandise_value",
+      "spark_trino": 5615446000.0,
+      "success": true,
+      "tolerance": 0.01
+    },
+    {
+      "delta": 0.0,
+      "duckdb": 3967767902.4,
+      "name": "fact_order_item.estimated_cost",
+      "spark_trino": 3967767902.4,
+      "success": true,
+      "tolerance": 0.01
+    },
+    {
+      "delta": 0.0,
+      "duckdb": 1337368386.6,
+      "name": "fact_order_item.estimated_margin",
+      "spark_trino": 1337368386.6,
+      "success": true,
+      "tolerance": 0.01
+    },
+    {
+      "delta": 0.0,
+      "duckdb": 5305136289.0,
+      "name": "agg_hourly_reconciled_kpi.official_paid_revenue",
+      "spark_trino": 5305136289.0,
+      "success": true,
+      "tolerance": 0.01
+    }
+  ],
+  "success": true
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "attempts": [
+      {
+        "appSparkVersion": "4.0.0",
+        "completed": true,
+        "duration": 111443,
+        "endTime": "2026-06-01T08:28:44.743GMT",
+        "endTimeEpoch": 1780302524743,
+        "lastUpdated": "2026-06-01T08:28:44.863GMT",
+        "lastUpdatedEpoch": 1780302524863,
+        "sparkUser": "spark",
+        "startTime": "2026-06-01T08:26:53.300GMT",
+        "startTimeEpoch": 1780302413300
+      }
+    ],
+    "id": "app-20260601082654-0002",
+    "name": "vina-bim-shop-batch"
+  },
+  {
+    "attempts": [
+      {
+        "appSparkVersion": "4.0.0",
+        "completed": true,
+        "duration": 122394,
+        "endTime": "2026-06-01T08:25:01.749GMT",
+        "endTimeEpoch": 1780302301749,
+        "lastUpdated": "2026-06-01T08:25:01.855GMT",
+        "lastUpdatedEpoch": 1780302301855,
+        "sparkUser": "spark",
+        "startTime": "2026-06-01T08:22:59.355GMT",
+        "startTimeEpoch": 1780302179355
+      }
+    ],
+    "id": "app-20260601082301-0001",
+    "name": "vina-bim-shop-batch"
+  },
+  {
+    "attempts": [
+      {
+        "appSparkVersion": "4.0.0",
+        "completed": true,
+        "duration": 129857,
+        "endTime": "2026-06-01T08:22:26.187GMT",
+        "endTimeEpoch": 1780302146187,
+        "lastUpdated": "2026-06-01T08:22:26.297GMT",
+        "lastUpdatedEpoch": 1780302146297,
+        "sparkUser": "spark",
+        "startTime": "2026-06-01T08:20:16.330GMT",
+        "startTimeEpoch": 1780302016330
+      }
+    ],
+    "id": "app-20260601082018-0000",
+    "name": "vina-bim-shop-batch"
+  },
+  {
+    "attempts": [
+      {
+        "appSparkVersion": "4.0.0",
+        "completed": true,
+        "duration": 33868,
+        "endTime": "2026-06-01T07:52:15.465GMT",
+        "endTimeEpoch": 1780300335465,
+        "lastUpdated": "2026-06-01T07:52:15.538GMT",
+        "lastUpdatedEpoch": 1780300335538,
+        "sparkUser": "spark",
+        "startTime": "2026-06-01T07:51:41.597GMT",
+        "startTimeEpoch": 1780300301597
+      }
+    ],
+    "id": "app-20260601075143-0000",
+    "name": "vina-bim-shop-batch"
+  },
+  {
+    "attempts": [
+      {
+        "appSparkVersion": "4.0.0",
+        "completed": true,
+        "duration": 29845,
+        "endTime": "2026-06-01T07:48:11.938GMT",
+        "endTimeEpoch": 1780300091938,
+        "lastUpdated": "2026-06-01T07:48:12.013GMT",
+        "lastUpdatedEpoch": 1780300092013,
+        "sparkUser": "spark",
+        "startTime": "2026-06-01T07:47:42.093GMT",
+        "startTimeEpoch": 1780300062093
+      }
+    ],
+    "id": "app-20260601074743-0000",
+    "name": "vina-bim-shop-batch"
+  }
+]

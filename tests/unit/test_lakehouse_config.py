@@ -31,6 +31,7 @@ def test_minio_bucket_init_creates_exact_required_buckets() -> None:
     for bucket in REQUIRED_BUCKETS:
         assert f"ALIAS/{bucket}" in script
 
+    assert "ALIAS/checkpoints/spark-events/.keep" in script
     assert "raw" not in script
 
 
@@ -56,6 +57,23 @@ def test_trino_iceberg_catalog_uses_hive_metastore_and_minio_only() -> None:
     assert "hive.metastore.uri=thrift://hive-metastore:9083" in catalog
     assert "s3.endpoint=http://minio:9000" in catalog
     assert "bronze" not in catalog.lower()
+
+
+def test_hive_site_config_supports_s3a_minio_for_metastore_locations() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    hive_site = (repo_root / "infra" / "lakehouse" / "hive" / "hive-site.xml").read_text(encoding="utf-8")
+
+    for expected_fragment in [
+        "<name>hive.metastore.warehouse.dir</name>",
+        "<value>s3a://silver/warehouse</value>",
+        "<name>fs.s3a.endpoint</name>",
+        "<value>http://minio:9000</value>",
+        "<name>fs.s3a.impl</name>",
+        "<value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>",
+        "<name>fs.s3a.aws.credentials.provider</name>",
+        "<value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>",
+    ]:
+        assert expected_fragment in hive_site
 
 
 def test_trino_iceberg_catalog_avoids_unsupported_s3_ssl_property() -> None:

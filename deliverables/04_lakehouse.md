@@ -49,6 +49,8 @@ Bronze raw object layout:
 - `bronze/batch/<dataset>/snapshot_date=<date>/*`
 - `bronze/events/<topic>/ingest_date=<date>/*`
 
+The event layout intentionally uses a direct topic path segment. Do not reinterpret it as `bronze/events/topic=<topic>/...`; that older example is not the supported local Kafka Connect output.
+
 Upload the current local raw batch snapshots:
 
 ```powershell

@@ -85,11 +85,17 @@ Spark must use the lakehouse profile services from ADR 02: MinIO, Hive Metastore
 Use a stable command interface that Airflow can call later:
 
 ```powershell
-python scripts/spark/run_batch.py --start-ts 2026-05-01T00:00:00Z --end-ts 2026-05-01T01:00:00Z --mode hourly
-python scripts/spark/run_batch.py --start-ts 2026-05-01T00:00:00Z --end-ts 2026-05-03T00:00:00Z --mode backfill
+uv run python scripts/spark/run_batch.py --start-ts 2026-05-01T00:00:00Z --end-ts 2026-05-01T01:00:00Z --mode hourly
+uv run python scripts/spark/run_batch.py --start-ts 2026-05-01T00:00:00Z --end-ts 2026-05-03T00:00:00Z --mode backfill
 ```
 
 `start-ts` and `end-ts` represent Airflow logical data windows. Backfills support arbitrary date ranges and must be idempotent.
+
+Bronze event inputs follow the live Kafka Connect layout:
+
+- `bronze/events/<topic>/ingest_date=<date>/*`
+
+Spark reads Bronze object paths directly. It does not expect a Hive-style `topic=<topic>` partition prefix.
 
 ## Implementation Steps For Future Session
 
@@ -138,4 +144,3 @@ python scripts/spark/run_batch.py --start-ts 2026-05-01T00:00:00Z --end-ts 2026-
 - Airflow will provide logical windows later, but Spark jobs must also run manually.
 - Spark Gold is the official KPI truth once parity is proven.
 - Full table coverage may be implemented incrementally inside the session, but the plan target is all current Gold tables.
-
