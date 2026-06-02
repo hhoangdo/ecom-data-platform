@@ -1,21 +1,21 @@
 customer_id,anonymous_id,signup_ts,created_ts,country,region,city,city_code,segment,marketing_opt_in,preferred_device,acquisition_channel
-CUS-DNA-00000001,ANON-00000001,2025-06-09 22:08:46,2025-06-09 22:13:07,VN,Southeast,Dong Nai,DNA,loyal_fmcg_repeat_buyer,False,app_android,ads
-CUS-HAN-00000002,ANON-00000002,2025-06-15 13:22:32,2025-06-15 13:49:44,VN,Red River Delta,Ha Noi,HAN,loyal_fmcg_repeat_buyer,False,app_android,ads
-CUS-HUI-00000003,ANON-00000003,2025-12-20 06:00:42,2025-12-20 06:15:50,VN,Central Coast,Hue,HUI,budget_shopper,True,app_android,affiliate
-CUS-BDG-00000004,ANON-00000004,2026-02-08 12:30:40,2026-02-08 13:16:17,VN,Southeast,Binh Duong,BDG,home_improver,True,app_android,organic
-CUS-HCM-00000005,ANON-00000005,2025-10-01 07:23:01,2025-10-01 07:40:18,VN,Southeast,Ho Chi Minh City,HCM,budget_shopper,True,app_android,ads
-CUS-OVN-00000006,ANON-00000006,2025-10-01 03:31:41,2025-10-01 04:03:40,VN,Other,Other VN,OVN,budget_shopper,True,mobile_web,ads
-CUS-DNA-00000007,ANON-00000007,2025-06-04 12:52:48,2025-06-04 13:45:29,VN,Southeast,Dong Nai,DNA,budget_shopper,True,app_android,ads
-CUS-DNA-00000008,ANON-00000008,2025-07-02 01:12:44,2025-07-02 01:39:40,VN,Southeast,Dong Nai,DNA,home_improver,True,app_android,organic
-CUS-HCM-00000009,ANON-00000009,2025-08-19 05:09:46,2025-08-19 05:55:02,VN,Southeast,Ho Chi Minh City,HCM,fashion_browser,True,app_android,organic
-CUS-DAD-00000010,ANON-00000010,2025-09-10 03:10:48,2025-09-10 04:07:58,VN,Central Coast,Da Nang,DAD,loyal_fmcg_repeat_buyer,False,mobile_web,ads
-CUS-HAN-00000011,ANON-00000011,2025-04-25 19:58:38,2025-04-25 20:00:57,VN,Red River Delta,Ha Noi,HAN,home_improver,True,app_android,organic
-CUS-OVN-00000012,ANON-00000012,2025-10-08 18:05:42,2025-10-08 18:18:17,VN,Other,Other VN,OVN,budget_shopper,True,desktop_web,referral
-CUS-CTO-00000013,ANON-00000013,2025-06-09 21:33:33,2025-06-09 22:10:39,VN,Mekong Delta,Can Tho,CTO,home_improver,True,app_ios,affiliate
-CUS-HUI-00000014,ANON-00000014,2025-03-23 23:55:59,2025-03-24 00:44:34,VN,Central Coast,Hue,HUI,budget_shopper,True,app_android,referral
-CUS-HAN-00000015,ANON-00000015,2025-07-13 21:11:13,2025-07-13 21:18:38,VN,Red River Delta,Ha Noi,HAN,loyal_fmcg_repeat_buyer,True,app_ios,ads
-CUS-HCM-00000016,ANON-00000016,2025-07-27 06:12:52,2025-07-27 06:13:07,VN,Southeast,Ho Chi Minh City,HCM,budget_shopper,True,app_ios,referral
-CUS-HPH-00000017,ANON-00000017,2026-02-14 02:23:45,2026-02-14 03:00:23,VN,Red River Delta,Hai Phong,HPH,home_improver,False,app_ios,referral
-CUS-HCM-00000018,ANON-00000018,2026-01-06 06:19:57,2026-01-06 06:43:28,VN,Southeast,Ho Chi Minh City,HCM,home_improver,True,app_android,ads
-CUS-HUI-00000019,ANON-00000019,2025-09-13 21:40:39,2025-09-13 21:43:57,VN,Central Coast,Hue,HUI,occasional_high_value_elha_buyer,False,mobile_web,ads
-CUS-CTO-00000020,ANON-00000020,2025-03-14 09:12:17,2025-03-14 09:23:53,VN,Mekong Delta,Can Tho,CTO,budget_shopper,True,mobile_web,referral
+CUS-DNA-00000001,ANON-00000001,2025-07-22 15:46:34,2025-07-22 16:34:13,VN,Southeast,Dong Nai,DNA,fashion_browser,True,app_android,organic
+CUS-HAN-00000002,ANON-00000002,2025-07-21 03:50:45,2025-07-21 04:28:48,VN,Red River Delta,Ha Noi,HAN,loyal_fmcg_repeat_buyer,True,app_android,organic
+CUS-HUI-00000003,ANON-00000003,2025-08-02 17:27:54,2025-08-02 18:18:59,VN,Central Coast,Hue,HUI,home_improver,False,app_android,affiliate
+CUS-BDG-00000004,ANON-00000004,2025-05-19 06:36:05,2025-05-19 07:27:54,VN,Southeast,Binh Duong,BDG,occasional_high_value_elha_buyer,False,app_android,ads
+CUS-HCM-00000005,ANON-00000005,2025-04-30 13:42:59,2025-04-30 14:04:01,VN,Southeast,Ho Chi Minh City,HCM,budget_shopper,False,desktop_web,organic
+CUS-OVN-00000006,ANON-00000006,2025-08-16 21:05:52,2025-08-16 21:08:20,VN,Other,Other VN,OVN,budget_shopper,False,app_android,affiliate
+CUS-DNA-00000007,ANON-00000007,2025-04-29 15:50:54,2025-04-29 16:11:40,VN,Southeast,Dong Nai,DNA,occasional_high_value_elha_buyer,True,app_android,organic
+CUS-DNA-00000008,ANON-00000008,2025-07-02 11:22:06,2025-07-02 11:30:48,VN,Southeast,Dong Nai,DNA,budget_shopper,False,app_android,organic
+CUS-HCM-00000009,ANON-00000009,2025-10-21 04:32:40,2025-10-21 05:04:39,VN,Southeast,Ho Chi Minh City,HCM,loyal_fmcg_repeat_buyer,True,app_android,organic
+CUS-DAD-00000010,ANON-00000010,2025-12-09 08:10:32,2025-12-09 08:19:19,VN,Central Coast,Da Nang,DAD,home_improver,True,app_android,organic
+CUS-HAN-00000011,ANON-00000011,2025-12-14 20:21:57,2025-12-14 21:17:15,VN,Red River Delta,Ha Noi,HAN,budget_shopper,False,desktop_web,referral
+CUS-OVN-00000012,ANON-00000012,2025-11-10 05:10:12,2025-11-10 05:46:20,VN,Other,Other VN,OVN,budget_shopper,False,app_ios,organic
+CUS-CTO-00000013,ANON-00000013,2025-10-17 15:44:04,2025-10-17 15:59:14,VN,Mekong Delta,Can Tho,CTO,home_improver,False,app_android,ads
+CUS-HUI-00000014,ANON-00000014,2025-07-16 11:37:20,2025-07-16 12:32:36,VN,Central Coast,Hue,HUI,occasional_high_value_elha_buyer,True,app_android,organic
+CUS-HAN-00000015,ANON-00000015,2025-10-03 07:41:03,2025-10-03 08:27:13,VN,Red River Delta,Ha Noi,HAN,budget_shopper,False,app_android,referral
+CUS-HCM-00000016,ANON-00000016,2025-08-12 17:10:59,2025-08-12 17:37:14,VN,Southeast,Ho Chi Minh City,HCM,home_improver,True,app_android,ads
+CUS-HPH-00000017,ANON-00000017,2026-03-30 08:40:28,2026-03-30 08:49:15,VN,Red River Delta,Hai Phong,HPH,fashion_browser,False,app_ios,ads
+CUS-HCM-00000018,ANON-00000018,2025-12-25 06:51:50,2025-12-25 07:12:27,VN,Southeast,Ho Chi Minh City,HCM,loyal_fmcg_repeat_buyer,False,app_android,organic
+CUS-HUI-00000019,ANON-00000019,2025-05-09 12:41:07,2025-05-09 13:16:09,VN,Central Coast,Hue,HUI,occasional_high_value_elha_buyer,True,app_ios,referral
+CUS-CTO-00000020,ANON-00000020,2025-05-24 18:10:06,2025-05-24 18:56:03,VN,Mekong Delta,Can Tho,CTO,budget_shopper,False,mobile_web,ads

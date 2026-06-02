@@ -35,7 +35,16 @@ def parse_args() -> argparse.Namespace:
 
 
 def build_spark_session() -> SparkSession:
-    spark = SparkSession.builder.appName("vina-bim-shop-batch").getOrCreate()
+    spark = (
+        SparkSession.builder.appName("vina-bim-shop-batch")
+        .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions")
+        .config("spark.sql.catalog.iceberg", "org.apache.iceberg.spark.SparkCatalog")
+        .config("spark.sql.catalog.iceberg.type", "hive")
+        .config("spark.sql.catalog.iceberg.uri", "thrift://hive-metastore:9083")
+        .config("spark.sql.catalog.iceberg.writer.mode", "hash")
+        .config("spark.sql.catalog.iceberg.warehouse", "s3a://silver/warehouse")
+        .getOrCreate()
+    )
     spark.sparkContext.setLogLevel("WARN")
     return spark
 
@@ -53,7 +62,7 @@ def _window_dates(window: BatchWindow) -> list[str]:
 def _table_location(layer: str, table_name: str) -> str:
     bucket_env = f"VBS_{layer.upper()}_BUCKET"
     bucket = os.getenv(bucket_env, layer)
-    return f"s3a://{bucket}/warehouse/{table_name}"
+    return f"s3a://{bucket}/warehouse/{layer}/{table_name}"
 
 
 def _path_exists(spark: SparkSession, path_pattern: str) -> bool:
@@ -346,7 +355,6 @@ def _create_table_if_missing(
         f"""
 CREATE TABLE IF NOT EXISTS {full_table_name}
 USING iceberg
-LOCATION '{_table_location(layer, table_name)}'
 {_partition_clause(partition_expressions)}
 TBLPROPERTIES ('format-version'='2')
 AS SELECT * FROM {source_view_name}
@@ -423,7 +431,6 @@ def _replace_gold_table(
         f"""
 CREATE OR REPLACE TABLE iceberg.gold.{table_name}
 USING iceberg
-LOCATION '{_table_location("gold", table_name)}'
 {_partition_clause(GOLD_PARTITIONED_BY.get(table_name, ()))}
 TBLPROPERTIES ('format-version'='2')
 AS
