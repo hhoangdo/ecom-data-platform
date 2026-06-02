@@ -1,17 +1,22 @@
 {
-  "base_query": {
-    "brokerId": "Broker_172.18.0.14_8000",
+  "contract_query": {
+    "brokerId": "Broker_172.18.0.12_8000",
     "brokerReduceTimeMs": 0,
     "clientRequestId": null,
-    "exceptions": [],
+    "exceptions": [
+      {
+        "errorCode": 150,
+        "message": "SQLParsingError: It seems that the query is only supported by the multi-stage query engine, please retry the query using the multi-stage query engine (https://docs.pinot.apache.org/developers/advanced/v2-multi-stage-query-engine)"
+      }
+    ],
     "explainPlanNumEmptyFilterSegments": 0,
     "explainPlanNumMatchAllFilterSegments": 0,
     "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780321253685,
-    "name": "pinot_reconciliation_base",
+    "minConsumingFreshnessTimeMs": 0,
+    "name": "pinot_reconciliation_contract",
     "numConsumingSegmentsMatched": 0,
     "numConsumingSegmentsProcessed": 0,
-    "numConsumingSegmentsQueried": 1,
+    "numConsumingSegmentsQueried": 0,
     "numDocsScanned": 0,
     "numEntriesScannedInFilter": 0,
     "numEntriesScannedPostFilter": 0,
@@ -22,94 +27,12 @@
     "numSegmentsProcessed": 0,
     "numSegmentsPrunedByBroker": 0,
     "numSegmentsPrunedByLimit": 0,
-    "numSegmentsPrunedByServer": 1,
-    "numSegmentsPrunedByValue": 1,
-    "numSegmentsPrunedInvalid": 0,
-    "numSegmentsQueried": 1,
-    "numServersQueried": 1,
-    "numServersResponded": 1,
-    "offlineResponseSerMemAllocatedBytes": 0,
-    "offlineResponseSerializationCpuTimeNs": 0,
-    "offlineSystemActivitiesCpuTimeNs": 0,
-    "offlineThreadCpuTimeNs": 0,
-    "offlineThreadMemAllocatedBytes": 0,
-    "offlineTotalCpuTimeNs": 0,
-    "offlineTotalMemAllocatedBytes": 0,
-    "partialResult": false,
-    "pools": [
-      -1
-    ],
-    "query": "select metric_key, metric_minute, order_count, order_placed_count, checkout_started_count,\n       revenue_amount, gmv_proxy_amount, correction_version\nfrom pinot_realtime_commerce_metrics_1m\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'",
-    "realtimeResponseSerMemAllocatedBytes": 0,
-    "realtimeResponseSerializationCpuTimeNs": 0,
-    "realtimeSystemActivitiesCpuTimeNs": 0,
-    "realtimeThreadCpuTimeNs": 0,
-    "realtimeThreadMemAllocatedBytes": 0,
-    "realtimeTotalCpuTimeNs": 0,
-    "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "1159289911000000013",
-    "resultTable": {
-      "dataSchema": {
-        "columnDataTypes": [
-          "STRING",
-          "STRING",
-          "INT",
-          "INT",
-          "INT",
-          "DOUBLE",
-          "DOUBLE",
-          "INT"
-        ],
-        "columnNames": [
-          "metric_key",
-          "metric_minute",
-          "order_count",
-          "order_placed_count",
-          "checkout_started_count",
-          "revenue_amount",
-          "gmv_proxy_amount",
-          "correction_version"
-        ]
-      },
-      "rows": []
-    },
-    "rlsFiltersApplied": false,
-    "tablesQueried": [
-      "pinot_realtime_commerce_metrics_1m"
-    ],
-    "timeUsedMs": 10,
-    "totalDocs": 1693,
-    "traceInfo": {}
-  },
-  "correction_query": {
-    "brokerId": "Broker_172.18.0.14_8000",
-    "brokerReduceTimeMs": 0,
-    "clientRequestId": null,
-    "exceptions": [],
-    "explainPlanNumEmptyFilterSegments": 0,
-    "explainPlanNumMatchAllFilterSegments": 0,
-    "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780321251629,
-    "name": "pinot_reconciliation_corrections",
-    "numConsumingSegmentsMatched": 0,
-    "numConsumingSegmentsProcessed": 0,
-    "numConsumingSegmentsQueried": 1,
-    "numDocsScanned": 0,
-    "numEntriesScannedInFilter": 0,
-    "numEntriesScannedPostFilter": 0,
-    "numGroupsLimitReached": false,
-    "numGroupsWarningLimitReached": false,
-    "numRowsResultSet": 0,
-    "numSegmentsMatched": 0,
-    "numSegmentsProcessed": 0,
-    "numSegmentsPrunedByBroker": 0,
-    "numSegmentsPrunedByLimit": 0,
-    "numSegmentsPrunedByServer": 1,
+    "numSegmentsPrunedByServer": 0,
     "numSegmentsPrunedByValue": 0,
     "numSegmentsPrunedInvalid": 0,
-    "numSegmentsQueried": 1,
-    "numServersQueried": 1,
-    "numServersResponded": 1,
+    "numSegmentsQueried": 0,
+    "numServersQueried": 0,
+    "numServersResponded": 0,
     "offlineResponseSerMemAllocatedBytes": 0,
     "offlineResponseSerializationCpuTimeNs": 0,
     "offlineSystemActivitiesCpuTimeNs": 0,
@@ -117,11 +40,9 @@
     "offlineThreadMemAllocatedBytes": 0,
     "offlineTotalCpuTimeNs": 0,
     "offlineTotalMemAllocatedBytes": 0,
-    "partialResult": false,
-    "pools": [
-      -1
-    ],
-    "query": "select metric_key, metric_minute, order_count, order_placed_count, checkout_started_count,\n       revenue_amount, gmv_proxy_amount, correction_version\nfrom pinot_realtime_metric_corrections\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'",
+    "partialResult": true,
+    "pools": [],
+    "query": "select *\nfrom (\n-- Pinot-side hourly reconciliation contract.\n-- Use latest correction rows per metric_key so append-only correction records do not double count.\n\nWITH latest_corrections AS (\n  SELECT metric_key, MAX(correction_version) AS correction_version\n  FROM pinot_realtime_metric_corrections\n  GROUP BY metric_key\n),\neffective_commerce_metrics AS (\n  SELECT metric_key, metric_minute, order_count, order_placed_count, checkout_started_count, revenue_amount, gmv_proxy_amount\n  FROM pinot_realtime_commerce_metrics_1m\n  WHERE metric_key NOT IN (SELECT metric_key FROM latest_corrections)\n\n  UNION ALL\n\n  SELECT\n    corr.metric_key,\n    corr.metric_minute,\n    corr.order_count,\n    corr.order_placed_count,\n    corr.checkout_started_count,\n    corr.revenue_amount,\n    corr.gmv_proxy_amount\n  FROM pinot_realtime_metric_corrections AS corr\n  INNER JOIN latest_corrections AS latest\n    ON corr.metric_key = latest.metric_key\n   AND corr.correction_version = latest.correction_version\n)\nSELECT\n  metric_minute,\n  SUM(order_count) AS order_count,\n  SUM(revenue_amount) AS revenue_amount,\n  SUM(gmv_proxy_amount) AS gmv_proxy_amount,\n  SUM(order_placed_count) AS order_placed_count,\n  SUM(checkout_started_count) AS checkout_started_count\nFROM effective_commerce_metrics\nGROUP BY metric_minute\nORDER BY metric_minute\n) as windowed_contract\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'\norder by metric_minute\nlimit 50",
     "realtimeResponseSerMemAllocatedBytes": 0,
     "realtimeResponseSerializationCpuTimeNs": 0,
     "realtimeSystemActivitiesCpuTimeNs": 0,
@@ -129,37 +50,10 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "1159289911000000014",
-    "resultTable": {
-      "dataSchema": {
-        "columnDataTypes": [
-          "STRING",
-          "STRING",
-          "INT",
-          "INT",
-          "INT",
-          "DOUBLE",
-          "DOUBLE",
-          "INT"
-        ],
-        "columnNames": [
-          "metric_key",
-          "metric_minute",
-          "order_count",
-          "order_placed_count",
-          "checkout_started_count",
-          "revenue_amount",
-          "gmv_proxy_amount",
-          "correction_version"
-        ]
-      },
-      "rows": []
-    },
+    "requestId": "1102031609000000010",
     "rlsFiltersApplied": false,
-    "tablesQueried": [
-      "pinot_realtime_metric_corrections"
-    ],
-    "timeUsedMs": 9,
+    "tablesQueried": [],
+    "timeUsedMs": 0,
     "totalDocs": 0,
     "traceInfo": {}
   },
@@ -167,7 +61,7 @@
   "hourly_rollup": {
     "checkout_started_count": 0,
     "gmv_proxy_amount": 0,
-    "metric_keys": 0,
+    "metric_minutes": 0,
     "order_count": 0,
     "order_placed_count": 0,
     "revenue_amount": 0

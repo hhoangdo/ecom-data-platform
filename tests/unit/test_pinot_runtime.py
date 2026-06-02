@@ -154,6 +154,94 @@ def test_query_examples_write_pinot_and_trino_outputs(tmp_path: Path, monkeypatc
     assert "query_outputs/reconciliation_report.md" in manifest["artifacts"]
 
 
+def test_query_examples_use_committed_correction_aware_sql_contracts(tmp_path: Path, monkeypatch) -> None:
+    from vina_bim_shop.pinot.query_examples import run_query_examples
+
+    observed_queries: list[tuple[str, str]] = []
+
+    def fake_execute_pinot_query(name: str, query: str, *, broker_url: str):
+        observed_queries.append((name, query))
+        return {"name": name, "query": query, "broker_url": broker_url, "resultTable": {"rows": [[1, 2, 3]]}}
+
+    def fake_execute_trino_query(query: str, *, trino_url: str, user: str):
+        return {"query": query, "columns": ["metric_hour"], "rows": [["2026-05-01T10:00:00Z"]], "stats": {}}
+
+    monkeypatch.setattr("vina_bim_shop.pinot.query_examples.execute_pinot_query", fake_execute_pinot_query)
+    monkeypatch.setattr("vina_bim_shop.pinot.query_examples.execute_trino_query", fake_execute_trino_query)
+
+    run_query_examples(evidence_root=tmp_path)
+
+    query_texts = [query for _name, query in observed_queries]
+    assert any("effective_commerce_metrics" in query for query in query_texts)
+    assert any("latest_corrections" in query for query in query_texts)
+    assert any("pinot_realtime_metric_corrections" in query for query in query_texts)
+
+
+def test_refresh_evidence_runs_bootstrap_queries_and_capture_in_order(tmp_path: Path, monkeypatch) -> None:
+    from vina_bim_shop.pinot.refresh_evidence import refresh_evidence
+
+    calls: list[tuple[str, str]] = []
+
+    def fake_require_http_json(url: str, service_name: str) -> None:
+        calls.append(("require", service_name))
+
+    def fake_apply_assets(**kwargs):
+        calls.append(("apply", str(kwargs["evidence_root"])))
+        return {"tables": ["pinot_realtime_commerce_metrics_1m"]}
+
+    def fake_run_query_examples(**kwargs):
+        calls.append(("query", str(kwargs["evidence_root"])))
+        return {"artifacts": ["query_outputs/reconciliation_report.md"]}
+
+    def fake_capture_evidence(**kwargs):
+        calls.append(("capture", str(kwargs["evidence_root"])))
+        return {"artifacts": ["run_manifest.json"]}
+
+    monkeypatch.setattr("vina_bim_shop.pinot.refresh_evidence._require_http_json", fake_require_http_json)
+    monkeypatch.setattr("vina_bim_shop.pinot.refresh_evidence.apply_assets", fake_apply_assets)
+    monkeypatch.setattr("vina_bim_shop.pinot.refresh_evidence.run_query_examples", fake_run_query_examples)
+    monkeypatch.setattr("vina_bim_shop.pinot.refresh_evidence.capture_evidence", fake_capture_evidence)
+
+    manifest = refresh_evidence(evidence_root=tmp_path)
+
+    assert calls == [
+        ("require", "Pinot controller"),
+        ("require", "Pinot broker"),
+        ("require", "Trino"),
+        ("apply", str(tmp_path)),
+        ("query", str(tmp_path)),
+        ("capture", str(tmp_path)),
+    ]
+    assert "query_outputs/reconciliation_report.md" in manifest["artifacts"]
+    assert "run_manifest.json" in manifest["artifacts"]
+
+
+def test_refresh_evidence_accepts_plain_text_pinot_health_payloads(monkeypatch) -> None:
+    from vina_bim_shop.pinot.refresh_evidence import _require_http_json
+
+    class _Response:
+        def __init__(self, *, text: str, content_type: str):
+            self.status_code = 200
+            self.text = text
+            self.content = text.encode("utf-8")
+            self.headers = {"content-type": content_type}
+
+        def raise_for_status(self) -> None:
+            return None
+
+        def json(self):
+            raise ValueError("not json")
+
+    monkeypatch.setattr(
+        "vina_bim_shop.pinot.refresh_evidence.requests.get",
+        lambda *_args, **_kwargs: _Response(text="OK", content_type="text/plain"),
+    )
+
+    payload = _require_http_json("http://localhost:9003/health", "Pinot controller")
+
+    assert payload == {"text": "OK"}
+
+
 def test_load_trino_query_strips_terminal_semicolon() -> None:
     from vina_bim_shop.pinot.query_examples import _load_trino_query
 
@@ -202,6 +290,40 @@ def test_capture_evidence_writes_manifest_and_service_artifacts(tmp_path: Path) 
     ]:
         assert (tmp_path / relative_path).is_file()
     assert manifest["service_urls"]["pinot_controller"] == "http://localhost:9003"
+
+
+def test_refresh_evidence_script_parses_args_and_prints_summary(monkeypatch, capsys, tmp_path: Path) -> None:
+    module = _load_script_module("scripts/pinot/refresh_evidence.py", "pinot_refresh_evidence_script")
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "refresh_evidence.py",
+            "--controller-url",
+            "http://localhost:9003",
+            "--broker-url",
+            "http://localhost:8000",
+            "--trino-url",
+            "http://localhost:8080",
+            "--evidence-root",
+            str(tmp_path),
+        ],
+    )
+    args = module.parse_args()
+    assert args.controller_url == "http://localhost:9003"
+    assert args.broker_url == "http://localhost:8000"
+    assert args.trino_url == "http://localhost:8080"
+    assert args.evidence_root == str(tmp_path)
+
+    monkeypatch.setattr(
+        module,
+        "refresh_evidence",
+        lambda **kwargs: {"artifacts": ["query_outputs/reconciliation_report.md", "run_manifest.json"]},
+    )
+    module.main()
+
+    assert capsys.readouterr().out.strip() == "Refreshed 2 official Pinot evidence artifacts."
 
 
 def test_bootstrap_script_parses_args_and_prints_summary(monkeypatch, capsys, tmp_path: Path) -> None:

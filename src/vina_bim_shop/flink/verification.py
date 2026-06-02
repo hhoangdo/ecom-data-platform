@@ -454,8 +454,16 @@ def _run_verify_pinot(*, run_root: Path, run_command: RunCommand) -> dict[str, A
         row_counts=row_counts,
     )
     _write_json(run_root / "adr05_pinot_gate.json", result)
-    apply_assets(evidence_root=Path("evidence/07_pinot_serving"))
-    capture_pinot_evidence(evidence_root=Path("evidence/07_pinot_serving"))
+    _write_json(
+        run_root / "adr05_official_evidence_note.json",
+        {
+            "captured_at": datetime.now(timezone.utc).isoformat(),
+            "message": (
+                "Clean-room Pinot verification writes runtime-only proof under this run root. "
+                "Refresh committed ADR 05 evidence separately with scripts/pinot/refresh_evidence.py."
+            ),
+        },
+    )
     return result
 
 

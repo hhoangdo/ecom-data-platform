@@ -44,6 +44,19 @@ Important boundaries:
 - Correction handling uses the latest correction snapshot per `metric_key`.
 - Do not ingest raw source topics directly into Pinot for v1.
 
+## Proof Modes
+
+There are two proof modes and they serve different purposes:
+
+- Clean-room ingestion proof: proves Kafka -> Flink -> derived topics -> Pinot ingestion works in runtime-only scratch evidence.
+- Official ADR 05 evidence refresh: regenerates the committed Pinot evidence package under `evidence/07_pinot_serving/`.
+
+Think of a late event like a corrected receipt at a store:
+
+- Pinot first receives the original minute-level row for a metric key.
+- If a late commerce event arrives for that same minute, Flink emits a correction snapshot row.
+- Dashboard and reconciliation queries must use the latest correction snapshot for that `metric_key` instead of adding both rows together.
+
 ## Bootstrap And Queries
 
 Apply the committed Pinot schemas and realtime table configs:
@@ -66,7 +79,21 @@ uv run python scripts/flink/cleanroom_verify.py --phase all --include-pinot
 
 That sequence proves the correction row exists in Kafka and MinIO first, then resets Pinot serving state and verifies that `pinot_realtime_metric_corrections` ingests live rows.
 
-Run the Pinot dashboard and reconciliation examples:
+Refresh the official ADR 05 evidence package in one pass after the clean-room proof is green:
+
+```powershell
+docker compose --profile lakehouse up -d
+docker compose --profile serving up -d
+uv run python scripts/pinot/refresh_evidence.py
+```
+
+That command:
+
+- reapplies Pinot schemas and tables
+- regenerates the dashboard and reconciliation query outputs
+- captures the official ADR 05 health, table, row-count, screenshot, and manifest artifacts together
+
+If you want to run the query step by itself:
 
 ```powershell
 uv run python scripts/pinot/query_examples.py
@@ -88,7 +115,18 @@ Capture ADR 05 evidence:
 uv run python scripts/pinot/capture_evidence.py
 ```
 
-Evidence is written under `evidence/07_pinot_serving/`.
+Evidence is written under `evidence/07_pinot_serving/`. The preferred operator flow is `scripts/pinot/refresh_evidence.py`, because it keeps query outputs and evidence manifests in sync.
+
+If Pinot services fail to restart after interrupted local runs, remove only the Pinot runtime state and retry:
+
+```powershell
+docker compose stop pinot-zookeeper pinot-controller pinot-broker pinot-server
+docker compose rm -f -s pinot-zookeeper pinot-controller pinot-broker pinot-server
+docker volume rm vina-bim-shop_pinot_zookeeper_data
+docker compose --profile ingestion --profile lakehouse --profile serving up -d
+```
+
+That reset is limited to Pinot runtime state. It does not touch Kafka topics, MinIO lakehouse data, or committed evidence.
 
 Expected artifacts include:
 
@@ -99,6 +137,7 @@ Expected artifacts include:
 - `consuming_segments.json`
 - `row_counts.json`
 - `version_matrix.json`
+- `refresh_evidence_manifest.json`
 - `query_outputs/pinot_dashboard_results.json`
 - `query_outputs/pinot_reconciliation_results.json`
 - `query_outputs/trino_reconciliation_results.json`

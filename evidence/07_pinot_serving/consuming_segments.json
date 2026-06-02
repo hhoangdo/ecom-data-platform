@@ -1,13 +1,13 @@
 {
   "pinot_realtime_commerce_metrics_1m_REALTIME": {
     "_segmentToConsumingInfoMap": {
-      "pinot_realtime_commerce_metrics_1m__0__0__20260601T2010Z": [
+      "pinot_realtime_commerce_metrics_1m__0__0__20260602T0232Z": [
         {
           "consumerState": "CONSUMING",
-          "lastConsumedTimestamp": 1780344622768,
+          "lastConsumedTimestamp": 1780367569376,
           "partitionOffsetInfo": {
             "availabilityLagMsMap": {
-              "0": "705334"
+              "0": "432767"
             },
             "currentOffsetsMap": {
               "0": "3"
@@ -22,7 +22,7 @@
           "partitionToOffsetMap": {
             "0": "3"
           },
-          "serverName": "Server_172.18.0.8_7050"
+          "serverName": "Server_172.18.0.11_7050"
         }
       ]
     },
@@ -31,13 +31,13 @@
   },
   "pinot_realtime_metric_corrections_REALTIME": {
     "_segmentToConsumingInfoMap": {
-      "pinot_realtime_metric_corrections__0__0__20260601T2010Z": [
+      "pinot_realtime_metric_corrections__0__0__20260602T0232Z": [
         {
           "consumerState": "CONSUMING",
-          "lastConsumedTimestamp": 1780344624231,
+          "lastConsumedTimestamp": 1780367571085,
           "partitionOffsetInfo": {
             "availabilityLagMsMap": {
-              "0": "681193"
+              "0": "424873"
             },
             "currentOffsetsMap": {
               "0": "1"
@@ -52,7 +52,7 @@
           "partitionToOffsetMap": {
             "0": "1"
           },
-          "serverName": "Server_172.18.0.8_7050"
+          "serverName": "Server_172.18.0.11_7050"
         }
       ]
     },
@@ -61,13 +61,13 @@
   },
   "pinot_realtime_ops_alerts_REALTIME": {
     "_segmentToConsumingInfoMap": {
-      "pinot_realtime_ops_alerts__0__0__20260601T2010Z": [
+      "pinot_realtime_ops_alerts__0__0__20260602T0232Z": [
         {
           "consumerState": "CONSUMING",
-          "lastConsumedTimestamp": 1780344626429,
+          "lastConsumedTimestamp": 1780367573286,
           "partitionOffsetInfo": {
             "availabilityLagMsMap": {
-              "0": "708160"
+              "0": "436026"
             },
             "currentOffsetsMap": {
               "0": "7"
@@ -82,7 +82,7 @@
           "partitionToOffsetMap": {
             "0": "7"
           },
-          "serverName": "Server_172.18.0.8_7050"
+          "serverName": "Server_172.18.0.11_7050"
         }
       ]
     },

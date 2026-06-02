@@ -224,6 +224,44 @@ def test_evaluate_pinot_gate_accepts_plain_ok_health_payloads() -> None:
     assert result["passed"] is True
 
 
+def test_run_verify_pinot_keeps_official_adr05_evidence_untouched(tmp_path: Path, monkeypatch) -> None:
+    from vina_bim_shop.flink import verification
+
+    run_root = tmp_path / "cleanroom"
+    run_root.mkdir(parents=True)
+    (run_root / "adr04_cleanroom_assertions.json").write_text('{"passed": true}', encoding="utf-8")
+
+    applied_roots: list[Path] = []
+    captured_roots: list[Path] = []
+
+    def fake_apply_assets(*, evidence_root, **_kwargs):
+        applied_roots.append(Path(evidence_root))
+        return {"tables": ["pinot_realtime_commerce_metrics_1m"]}
+
+    def fake_capture_evidence(*, evidence_root, **_kwargs):
+        evidence_root = Path(evidence_root)
+        captured_roots.append(evidence_root)
+        evidence_root.mkdir(parents=True, exist_ok=True)
+        (evidence_root / "controller_health.json").write_text('{"status":"GOOD"}', encoding="utf-8")
+        (evidence_root / "broker_health.json").write_text('{"status":"GOOD"}', encoding="utf-8")
+        (evidence_root / "row_counts.json").write_text(
+            '{"pinot_realtime_commerce_metrics_1m":{"resultTable":{"rows":[[3]]}},"pinot_realtime_metric_corrections":{"resultTable":{"rows":[[1]]}},"pinot_realtime_ops_alerts":{"resultTable":{"rows":[[7]]}}}',
+            encoding="utf-8",
+        )
+        return {"artifacts": ["row_counts.json"]}
+
+    monkeypatch.setattr(verification, "apply_assets", fake_apply_assets)
+    monkeypatch.setattr(verification, "capture_pinot_evidence", fake_capture_evidence)
+    monkeypatch.setattr(verification, "_wait_for_pinot_runtime", lambda: None)
+    monkeypatch.setattr(verification, "_remove_docker_volumes", lambda **_kwargs: None)
+
+    result = verification._run_verify_pinot(run_root=run_root, run_command=lambda _command: "")
+
+    assert result["passed"] is True
+    assert applied_roots == [run_root / "pinot_bootstrap"]
+    assert captured_roots == [run_root / "pinot_evidence"]
+
+
 def test_cleanup_runtime_state_reclaims_safe_docker_surfaces_only() -> None:
     from vina_bim_shop.flink.verification import cleanup_runtime_state
 

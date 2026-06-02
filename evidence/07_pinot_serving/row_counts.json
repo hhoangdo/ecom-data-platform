@@ -1,13 +1,13 @@
 {
   "pinot_realtime_commerce_metrics_1m": {
-    "brokerId": "Broker_172.18.0.9_8000",
+    "brokerId": "Broker_172.18.0.12_8000",
     "brokerReduceTimeMs": 0,
     "clientRequestId": null,
     "exceptions": [],
     "explainPlanNumEmptyFilterSegments": 0,
     "explainPlanNumMatchAllFilterSegments": 0,
     "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780344643078,
+    "minConsumingFreshnessTimeMs": 1780367707016,
     "numConsumingSegmentsMatched": 0,
     "numConsumingSegmentsProcessed": 0,
     "numConsumingSegmentsQueried": 1,
@@ -45,7 +45,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "97150523000000003",
+    "requestId": "1102031609000000011",
     "resultTable": {
       "dataSchema": {
         "columnDataTypes": [
@@ -65,19 +65,19 @@
     "tablesQueried": [
       "pinot_realtime_commerce_metrics_1m"
     ],
-    "timeUsedMs": 10,
+    "timeUsedMs": 9,
     "totalDocs": 3,
     "traceInfo": {}
   },
   "pinot_realtime_metric_corrections": {
-    "brokerId": "Broker_172.18.0.9_8000",
+    "brokerId": "Broker_172.18.0.12_8000",
     "brokerReduceTimeMs": 0,
     "clientRequestId": null,
     "exceptions": [],
     "explainPlanNumEmptyFilterSegments": 0,
     "explainPlanNumMatchAllFilterSegments": 0,
     "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780344644540,
+    "minConsumingFreshnessTimeMs": 1780367703614,
     "numConsumingSegmentsMatched": 0,
     "numConsumingSegmentsProcessed": 0,
     "numConsumingSegmentsQueried": 1,
@@ -115,7 +115,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "97150523000000004",
+    "requestId": "1102031609000000012",
     "resultTable": {
       "dataSchema": {
         "columnDataTypes": [
@@ -135,19 +135,19 @@
     "tablesQueried": [
       "pinot_realtime_metric_corrections"
     ],
-    "timeUsedMs": 9,
+    "timeUsedMs": 8,
     "totalDocs": 1,
     "traceInfo": {}
   },
   "pinot_realtime_ops_alerts": {
-    "brokerId": "Broker_172.18.0.9_8000",
+    "brokerId": "Broker_172.18.0.12_8000",
     "brokerReduceTimeMs": 0,
     "clientRequestId": null,
     "exceptions": [],
     "explainPlanNumEmptyFilterSegments": 0,
     "explainPlanNumMatchAllFilterSegments": 0,
     "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780344641635,
+    "minConsumingFreshnessTimeMs": 1780367705815,
     "numConsumingSegmentsMatched": 0,
     "numConsumingSegmentsProcessed": 0,
     "numConsumingSegmentsQueried": 1,
@@ -185,7 +185,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "97150523000000005",
+    "requestId": "1102031609000000013",
     "resultTable": {
       "dataSchema": {
         "columnDataTypes": [
@@ -205,7 +205,7 @@
     "tablesQueried": [
       "pinot_realtime_ops_alerts"
     ],
-    "timeUsedMs": 10,
+    "timeUsedMs": 9,
     "totalDocs": 7,
     "traceInfo": {}
   }

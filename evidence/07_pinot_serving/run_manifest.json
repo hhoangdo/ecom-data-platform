@@ -16,7 +16,7 @@
     "query_outputs/reconciliation_report.md",
     "query_outputs/trino_reconciliation_results.json"
   ],
-  "captured_at": "2026-06-01T20:10:54.975135+00:00",
+  "captured_at": "2026-06-02T02:35:16.417722+00:00",
   "service_urls": {
     "pinot_broker": "http://localhost:8000",
     "pinot_controller": "http://localhost:9003"

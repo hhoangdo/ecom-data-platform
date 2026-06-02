@@ -25,28 +25,28 @@
     ]
   ],
   "stats": {
-    "analysisTimeMillis": 2846,
+    "analysisTimeMillis": 64,
     "completedSplits": 11,
-    "cpuTimeMillis": 522,
-    "elapsedTimeMillis": 6121,
-    "finishingTimeMillis": 12,
+    "cpuTimeMillis": 29,
+    "elapsedTimeMillis": 377,
+    "finishingTimeMillis": 4,
     "internalNetworkInputBytes": 596,
     "nodes": 1,
     "peakMemoryBytes": 1284,
     "physicalInputBytes": 8986,
     "physicalInputTimeMillis": 0,
     "physicalWrittenBytes": 0,
-    "planningTimeMillis": 1704,
+    "planningTimeMillis": 146,
     "processedBytes": 8986,
     "processedRows": 23,
     "progressPercentage": 100.0,
     "queued": false,
     "queuedSplits": 0,
-    "queuedTimeMillis": 39,
+    "queuedTimeMillis": 2,
     "rootStage": {
       "completedSplits": 1,
       "coordinatorOnly": false,
-      "cpuTimeMillis": 7,
+      "cpuTimeMillis": 2,
       "done": true,
       "failedTasks": 0,
       "nodes": 1,
@@ -61,7 +61,7 @@
         {
           "completedSplits": 9,
           "coordinatorOnly": false,
-          "cpuTimeMillis": 38,
+          "cpuTimeMillis": 13,
           "done": true,
           "failedTasks": 0,
           "nodes": 1,
@@ -76,7 +76,7 @@
             {
               "completedSplits": 1,
               "coordinatorOnly": false,
-              "cpuTimeMillis": 477,
+              "cpuTimeMillis": 14,
               "done": true,
               "failedTasks": 0,
               "nodes": 1,
@@ -89,15 +89,15 @@
               "state": "FINISHED",
               "subStages": [],
               "totalSplits": 1,
-              "wallTimeMillis": 576
+              "wallTimeMillis": 14
             }
           ],
           "totalSplits": 9,
-          "wallTimeMillis": 93
+          "wallTimeMillis": 23
         }
       ],
       "totalSplits": 1,
-      "wallTimeMillis": 8
+      "wallTimeMillis": 2
     },
     "runningPercentage": 0.0,
     "runningSplits": 0,
@@ -105,6 +105,6 @@
     "spilledBytes": 0,
     "state": "FINISHED",
     "totalSplits": 11,
-    "wallTimeMillis": 677
+    "wallTimeMillis": 39
   }
 }

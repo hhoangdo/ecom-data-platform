@@ -33,24 +33,31 @@ def _default_window() -> tuple[str, str]:
     )
 
 
+def _load_sql_template(filename: str, *, start_ts: str, end_ts: str) -> str:
+    template = (SQL_DIR / filename).read_text(encoding="utf-8").strip()
+    return template.format(start_ts=start_ts, end_ts=end_ts).strip().rstrip(";")
+
+
+def _wrap_windowed_query(base_query: str, *, start_ts: str, end_ts: str) -> str:
+    return f"""
+select *
+from (
+{base_query}
+) as windowed_contract
+where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
+order by metric_minute
+limit 50
+""".strip()
+
+
 def _pinot_dashboard_queries(start_ts: str, end_ts: str) -> dict[str, str]:
+    dashboard_contract = _load_sql_template("dashboard_pinot.sql", start_ts=start_ts, end_ts=end_ts)
     return {
-        "live_revenue_by_category": f"""
-select metric_minute, primary_category, sum(revenue_amount) as revenue_amount
-from pinot_realtime_commerce_metrics_1m
-where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
-group by metric_minute, primary_category
-order by metric_minute, primary_category
-limit 20
-""".strip(),
-        "live_payment_failures": f"""
-select metric_minute, payment_method, sum(payment_failure_count) as payment_failure_count
-from pinot_realtime_commerce_metrics_1m
-where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
-group by metric_minute, payment_method
-order by metric_minute, payment_method
-limit 20
-""".strip(),
+        "dashboard_contract": _wrap_windowed_query(
+            dashboard_contract,
+            start_ts=start_ts,
+            end_ts=end_ts,
+        ),
         "live_ops_alerts": """
 select alert_type, severity, count(*) as alert_count
 from pinot_realtime_ops_alerts
@@ -58,9 +65,10 @@ group by alert_type, severity
 order by alert_count desc, alert_type
 limit 20
 """.strip(),
-        "correction_audit": """
-select metric_key, correction_version, correction_reason, revenue_amount, gmv_proxy_amount
+        "correction_audit": f"""
+select metric_key, metric_minute, correction_version, correction_reason, revenue_amount, gmv_proxy_amount
 from pinot_realtime_metric_corrections
+where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
 order by correction_version desc, metric_key
 limit 20
 """.strip(),
@@ -68,8 +76,7 @@ limit 20
 
 
 def _load_trino_query(start_ts: str, end_ts: str) -> str:
-    template = (SQL_DIR / "reconciliation_trino.sql").read_text(encoding="utf-8")
-    return template.format(start_ts=start_ts, end_ts=end_ts).strip().rstrip(";")
+    return _load_sql_template("reconciliation_trino.sql", start_ts=start_ts, end_ts=end_ts)
 
 
 def _rows_from_pinot(result: dict[str, Any]) -> list[list[Any]]:
@@ -80,42 +87,15 @@ def _row_value(row: list[Any], index: int, default: Any) -> Any:
     return row[index] if len(row) > index else default
 
 
-def _pinot_hourly_rollup(base_result: dict[str, Any], correction_result: dict[str, Any]) -> dict[str, Any]:
-    by_metric_key: dict[str, dict[str, Any]] = {}
-    for row in _rows_from_pinot(base_result):
-        metric_key = str(_row_value(row, 0, f"base-{len(by_metric_key)}"))
-        by_metric_key[metric_key] = {
-            "metric_key": metric_key,
-            "order_count": int(_row_value(row, 2, 0) or 0),
-            "order_placed_count": int(_row_value(row, 3, 0) or 0),
-            "checkout_started_count": int(_row_value(row, 4, 0) or 0),
-            "revenue_amount": float(_row_value(row, 5, 0.0) or 0.0),
-            "gmv_proxy_amount": float(_row_value(row, 6, 0.0) or 0.0),
-            "correction_version": int(_row_value(row, 7, 0) or 0),
-        }
-
-    for row in _rows_from_pinot(correction_result):
-        metric_key = str(_row_value(row, 0, f"correction-{len(by_metric_key)}"))
-        version = int(_row_value(row, 7, 0) or 0)
-        existing = by_metric_key.get(metric_key)
-        if existing is None or version >= int(existing["correction_version"]):
-            by_metric_key[metric_key] = {
-                "metric_key": metric_key,
-                "order_count": int(_row_value(row, 2, 0) or 0),
-                "order_placed_count": int(_row_value(row, 3, 0) or 0),
-                "checkout_started_count": int(_row_value(row, 4, 0) or 0),
-                "revenue_amount": float(_row_value(row, 5, 0.0) or 0.0),
-                "gmv_proxy_amount": float(_row_value(row, 6, 0.0) or 0.0),
-                "correction_version": version,
-            }
-
+def _pinot_hourly_rollup(contract_result: dict[str, Any]) -> dict[str, Any]:
+    rows = _rows_from_pinot(contract_result)
     return {
-        "metric_keys": len(by_metric_key),
-        "order_count": sum(int(row["order_count"]) for row in by_metric_key.values()),
-        "order_placed_count": sum(int(row["order_placed_count"]) for row in by_metric_key.values()),
-        "checkout_started_count": sum(int(row["checkout_started_count"]) for row in by_metric_key.values()),
-        "revenue_amount": round(sum(float(row["revenue_amount"]) for row in by_metric_key.values()), 2),
-        "gmv_proxy_amount": round(sum(float(row["gmv_proxy_amount"]) for row in by_metric_key.values()), 2),
+        "metric_minutes": len(rows),
+        "order_count": sum(int(_row_value(row, 1, 0) or 0) for row in rows),
+        "revenue_amount": round(sum(float(_row_value(row, 2, 0.0) or 0.0) for row in rows), 2),
+        "gmv_proxy_amount": round(sum(float(_row_value(row, 3, 0.0) or 0.0) for row in rows), 2),
+        "order_placed_count": sum(int(_row_value(row, 4, 0) or 0) for row in rows),
+        "checkout_started_count": sum(int(_row_value(row, 5, 0) or 0) for row in rows),
     }
 
 
@@ -144,34 +124,23 @@ def run_query_examples(
         encoding="utf-8",
     )
 
-    pinot_base = execute_pinot_query(
-        "pinot_reconciliation_base",
-        f"""
-select metric_key, metric_minute, order_count, order_placed_count, checkout_started_count,
-       revenue_amount, gmv_proxy_amount, correction_version
-from pinot_realtime_commerce_metrics_1m
-where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
-""".strip(),
+    pinot_reconciliation_query = _wrap_windowed_query(
+        _load_sql_template("reconciliation_pinot.sql", start_ts=start_ts, end_ts=end_ts),
+        start_ts=start_ts,
+        end_ts=end_ts,
+    )
+    pinot_contract = execute_pinot_query(
+        "pinot_reconciliation_contract",
+        pinot_reconciliation_query,
         broker_url=broker_url,
     )
-    pinot_corrections = execute_pinot_query(
-        "pinot_reconciliation_corrections",
-        f"""
-select metric_key, metric_minute, order_count, order_placed_count, checkout_started_count,
-       revenue_amount, gmv_proxy_amount, correction_version
-from pinot_realtime_metric_corrections
-where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
-""".strip(),
-        broker_url=broker_url,
-    )
-    pinot_rollup = _pinot_hourly_rollup(pinot_base, pinot_corrections)
+    pinot_rollup = _pinot_hourly_rollup(pinot_contract)
     (query_output_path / "pinot_reconciliation_results.json").write_text(
         json.dumps(
             {
                 "start_ts": start_ts,
                 "end_ts": end_ts,
-                "base_query": pinot_base,
-                "correction_query": pinot_corrections,
+                "contract_query": pinot_contract,
                 "hourly_rollup": pinot_rollup,
             },
             indent=2,
@@ -197,6 +166,11 @@ where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
         "trino_gross_merchandise_value": trino_row[3] if len(trino_row) > 3 else None,
         "trino_conversion_rate": trino_row[8] if len(trino_row) > 8 else None,
     }
+    comparison_notes = [
+        "- Comparison mode: contract check by default. Do not expect numerical parity unless Pinot and Gold were intentionally rebuilt for the same closed hour."
+    ]
+    if pinot_rollup["metric_minutes"] == 0:
+        comparison_notes.append("- Pinot returned no rows for the selected window, so this is not a like-for-like numerical comparison.")
     (query_output_path / "reconciliation_report.md").write_text(
         "\n".join(
             [
@@ -205,6 +179,7 @@ where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
                 f"- Window: `{start_ts}` -> `{end_ts}`",
                 "- Pinot is fresh and provisional; Spark Gold through Trino is canonical.",
                 "- Correction handling uses the latest correction row per `metric_key` when correction rows exist.",
+                *comparison_notes,
                 "",
                 "## Comparison",
                 "",
@@ -215,6 +190,7 @@ where metric_minute >= '{start_ts}' and metric_minute < '{end_ts}'
                 f"- Trino official_paid_revenue: `{comparison['trino_official_paid_revenue']}`",
                 f"- Trino gross_merchandise_value: `{comparison['trino_gross_merchandise_value']}`",
                 f"- Trino conversion_rate: `{comparison['trino_conversion_rate']}`",
+                f"- Pinot metric minutes returned: `{pinot_rollup['metric_minutes']}`",
             ]
         ),
         encoding="utf-8",
