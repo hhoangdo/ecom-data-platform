@@ -4,7 +4,7 @@
   "mode": "full",
   "random_seed": 42,
   "history_days": 60,
-  "generated_at": "2026-05-31T11:49:33.692880+00:00",
+  "generated_at": "2026-06-02T11:18:36.704193+00:00",
   "raw_root": "data/raw",
   "evidence_root": "evidence/01_data_generator",
   "row_counts": {

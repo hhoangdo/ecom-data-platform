@@ -1581,3 +1581,540 @@
 [2026-06-02T10:07:47.615+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:47.614+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-06-02T10:07:47.652+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:47.652+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
 [2026-06-02T10:07:47.694+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.369 seconds
+[2026-06-02T10:55:13.083+0000] {processor.py:186} INFO - Started process (PID=195) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:55:13.087+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:55:13.093+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:13.092+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:55:15.692+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:55:16.286+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.286+0000] {override.py:1912} INFO - Created Permission View: can edit on DAG:reconciliation_report
+[2026-06-02T10:55:16.305+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.304+0000] {override.py:1912} INFO - Created Permission View: can delete on DAG:reconciliation_report
+[2026-06-02T10:55:16.317+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.316+0000] {override.py:1912} INFO - Created Permission View: can read on DAG:reconciliation_report
+[2026-06-02T10:55:16.330+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.329+0000] {override.py:1912} INFO - Created Permission View: menu access on DAG Run:reconciliation_report
+[2026-06-02T10:55:16.343+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.343+0000] {override.py:1912} INFO - Created Permission View: can delete on DAG Run:reconciliation_report
+[2026-06-02T10:55:16.356+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.356+0000] {override.py:1912} INFO - Created Permission View: can create on DAG Run:reconciliation_report
+[2026-06-02T10:55:16.368+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.368+0000] {override.py:1912} INFO - Created Permission View: can read on DAG Run:reconciliation_report
+[2026-06-02T10:55:16.370+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.369+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:55:16.396+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.395+0000] {dag.py:3262} INFO - Creating ORM DAG for reconciliation_report
+[2026-06-02T10:55:16.438+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:16.438+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:55:16.496+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 3.426 seconds
+[2026-06-02T10:55:46.997+0000] {processor.py:186} INFO - Started process (PID=330) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:55:46.999+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:55:47.016+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:47.007+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:55:49.182+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:55:49.234+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:49.234+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:55:49.276+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:55:49.276+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:55:49.311+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 2.331 seconds
+[2026-06-02T10:56:19.978+0000] {processor.py:186} INFO - Started process (PID=465) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:56:19.981+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:56:19.987+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:56:19.987+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:56:21.168+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:56:21.223+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:56:21.222+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:56:21.261+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:56:21.261+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:56:21.296+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.335 seconds
+[2026-06-02T10:56:52.118+0000] {processor.py:186} INFO - Started process (PID=601) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:56:52.120+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:56:52.124+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:56:52.124+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:56:53.196+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:56:53.230+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:56:53.229+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:56:53.280+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:56:53.279+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:56:53.308+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.201 seconds
+[2026-06-02T10:57:23.917+0000] {processor.py:186} INFO - Started process (PID=735) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:57:23.921+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:57:23.931+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:57:23.929+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:57:25.673+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:57:25.777+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:57:25.773+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:57:25.814+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:57:25.814+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:57:25.843+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.944 seconds
+[2026-06-02T10:57:56.450+0000] {processor.py:186} INFO - Started process (PID=869) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:57:56.451+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:57:56.455+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:57:56.454+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:57:58.994+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:58:01.051+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:58:01.037+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:58:01.104+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:58:01.104+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:58:01.152+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 4.711 seconds
+[2026-06-02T10:58:48.403+0000] {processor.py:186} INFO - Started process (PID=996) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:58:48.405+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:58:48.408+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:58:48.408+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:58:49.955+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:58:50.080+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:58:50.080+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:58:50.122+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:58:50.121+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:58:50.147+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.756 seconds
+[2026-06-02T10:59:22.229+0000] {processor.py:186} INFO - Started process (PID=1131) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:59:22.231+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:59:22.236+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:59:22.235+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:59:23.508+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:59:23.656+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:59:23.652+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:59:23.691+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:59:23.691+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:59:23.722+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.505 seconds
+[2026-06-02T10:59:54.645+0000] {processor.py:186} INFO - Started process (PID=1257) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:59:54.647+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T10:59:54.650+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:59:54.650+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:59:56.579+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T10:59:57.342+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:59:57.316+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:59:57.422+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:59:57.421+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 09:00:00+00:00, run_after=2026-06-02 10:00:00+00:00
+[2026-06-02T10:59:57.473+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 2.842 seconds
+[2026-06-02T11:00:28.838+0000] {processor.py:186} INFO - Started process (PID=1392) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:00:28.840+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:00:28.846+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:00:28.845+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:00:31.716+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:00:35.397+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:00:35.390+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:00:35.446+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:00:35.445+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:00:35.481+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 6.653 seconds
+[2026-06-02T11:01:32.440+0000] {processor.py:186} INFO - Started process (PID=1498) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:01:32.461+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:01:32.545+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:01:32.539+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:01:37.676+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:02:14.610+0000] {processor.py:211} ERROR - Got an exception! Propagating...
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "lakehouse-postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 207, in _run_file_processor
+    _handle_dag_file_processing()
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 188, in _handle_dag_file_processing
+    result: tuple[int, int, int] = dag_file_processor.process_file(
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 942, in process_file
+    serialize_errors = DagFileProcessor.save_dag_to_db(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 982, in save_dag_to_db
+    import_errors = DagBag._sync_to_db(dags=dags, processor_subdir=dag_directory, session=session)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 708, in _sync_to_db
+    for attempt in run_with_db_retries(logger=log):
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 443, in __iter__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 376, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 721, in _sync_to_db
+    _serialize_dag_capturing_errors(dag, session, processor_subdir)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 686, in _serialize_dag_capturing_errors
+    dag_was_updated = SerializedDagModel.write_dag(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/serialized_dag.py", line 160, in write_dag
+    if session.scalar(
+       ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+           ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "lakehouse-postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2026-06-02T11:09:05.925+0000] {processor.py:186} INFO - Started process (PID=1598) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:09:05.927+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:09:05.931+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:09:05.930+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:09:07.444+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:09:07.626+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:09:07.625+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:09:07.658+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:09:07.658+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:09:07.686+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.775 seconds
+[2026-06-02T11:09:38.051+0000] {processor.py:186} INFO - Started process (PID=1733) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:09:38.053+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:09:38.055+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:09:38.054+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:09:39.020+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:09:39.064+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:09:39.063+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:09:39.100+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:09:39.100+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:09:39.132+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.091 seconds
+[2026-06-02T11:10:10.455+0000] {processor.py:186} INFO - Started process (PID=1868) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:10:10.456+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:10:10.459+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:10:10.458+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:10:12.210+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:10:12.410+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:10:12.406+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:10:12.454+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:10:12.454+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:10:12.485+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 2.041 seconds
+[2026-06-02T11:10:42.963+0000] {processor.py:186} INFO - Started process (PID=1995) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:10:42.964+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:10:42.966+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:10:42.966+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:10:44.556+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:10:44.677+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:10:44.677+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:10:44.720+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:10:44.720+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:10:44.747+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.795 seconds
+[2026-06-02T11:14:39.833+0000] {processor.py:186} INFO - Started process (PID=2051) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:14:39.836+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:14:39.868+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:14:39.853+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:14:44.407+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:14:44.776+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:14:44.768+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:14:44.827+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:14:44.826+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:14:44.868+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 5.171 seconds
+[2026-06-02T11:25:47.389+0000] {processor.py:186} INFO - Started process (PID=2181) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:25:47.395+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:25:47.423+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:25:47.410+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:25:50.286+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:25:50.348+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:25:50.348+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:25:50.391+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:25:50.390+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:25:50.422+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 3.077 seconds
+[2026-06-02T11:26:21.242+0000] {processor.py:186} INFO - Started process (PID=2316) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:26:21.243+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:26:21.245+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:26:21.245+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:26:22.128+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:26:22.167+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:26:22.166+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:26:22.208+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:26:22.208+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:26:22.243+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.013 seconds
+[2026-06-02T11:26:52.910+0000] {processor.py:186} INFO - Started process (PID=2451) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:26:52.913+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:26:52.915+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:26:52.914+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:26:53.793+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:26:53.828+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:26:53.827+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:26:53.860+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:26:53.859+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:26:53.885+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.984 seconds
+[2026-06-02T11:27:24.871+0000] {processor.py:186} INFO - Started process (PID=2586) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:27:24.872+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:27:24.874+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:27:24.874+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:27:25.882+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:27:25.930+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:27:25.929+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:27:25.988+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:27:25.988+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:27:26.033+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.174 seconds
+[2026-06-02T11:27:56.607+0000] {processor.py:186} INFO - Started process (PID=2721) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:27:56.608+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:27:56.610+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:27:56.610+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:27:57.459+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:27:57.490+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:27:57.489+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:27:57.524+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:27:57.523+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:27:57.556+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.959 seconds
+[2026-06-02T11:28:28.078+0000] {processor.py:186} INFO - Started process (PID=2856) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:28:28.080+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:28:28.083+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:28:28.082+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:28:29.050+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:28:29.099+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:28:29.099+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T11:28:29.145+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:28:29.144+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 10:00:00+00:00, run_after=2026-06-02 11:00:00+00:00
+[2026-06-02T11:28:29.179+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.111 seconds
+[2026-06-02T11:28:59.687+0000] {processor.py:186} INFO - Started process (PID=2991) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:28:59.689+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T11:28:59.692+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:28:59.691+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:29:01.376+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T11:29:35.596+0000] {processor.py:211} ERROR - Got an exception! Propagating...
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "lakehouse-postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 207, in _run_file_processor
+    _handle_dag_file_processing()
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 188, in _handle_dag_file_processing
+    result: tuple[int, int, int] = dag_file_processor.process_file(
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 942, in process_file
+    serialize_errors = DagFileProcessor.save_dag_to_db(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/processor.py", line 982, in save_dag_to_db
+    import_errors = DagBag._sync_to_db(dags=dags, processor_subdir=dag_directory, session=session)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 708, in _sync_to_db
+    for attempt in run_with_db_retries(logger=log):
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 443, in __iter__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 376, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 721, in _sync_to_db
+    _serialize_dag_capturing_errors(dag, session, processor_subdir)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 686, in _serialize_dag_capturing_errors
+    dag_was_updated = SerializedDagModel.write_dag(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/serialized_dag.py", line 160, in write_dag
+    if session.scalar(
+       ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+           ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "lakehouse-postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
