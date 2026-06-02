@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-06-02T09:30:00Z",
+  "compose_project": "vina-bim-shop",
+  "profiles": {
+    "ingestion": {
+      "kafka": "healthy",
+      "schema_registry": "healthy",
+      "kafka_connect": "healthy",
+      "kafka_ui": "running"
+    },
+    "lakehouse": {
+      "minio": "healthy",
+      "lakehouse_postgres": "healthy",
+      "hive_metastore": "healthy",
+      "trino": "healthy"
+    },
+    "batch": {
+      "spark_master": "healthy",
+      "spark_worker": "healthy",
+      "spark_history_server": "healthy"
+    },
+    "streaming": {
+      "flink_jobmanager": "healthy",
+      "flink_taskmanager": "healthy"
+    },
+    "serving": {
+      "pinot_zookeeper": "healthy",
+      "pinot_controller": "healthy",
+      "pinot_broker": "healthy",
+      "pinot_server": "healthy"
+    },
+    "orchestration": {
+      "airflow_webserver": "healthy",
+      "airflow_scheduler": "healthy",
+      "gx_docs": "healthy"
+    },
+    "governance": {
+      "datahub_opensearch": "healthy",
+      "datahub_gms": "healthy",
+      "datahub_frontend": "running",
+      "datahub_actions": "running"
+    },
+    "all": {
+      "success": true,
+      "resource_note": "All 7 profiles running concurrently. ~20 containers. RAM usage depends on data volume."
+    }
+  },
+  "verified_endpoints": {
+    "schema_registry_subjects": ["catalog_events-value", "commerce_events-value", "dead_letter_events-value", "fulfillment_events-value", "ops_events-value"],
+    "trino_version": "476",
+    "trino_uptime": "13.44m"
+  }
+}

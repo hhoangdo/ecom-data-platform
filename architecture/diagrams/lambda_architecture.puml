@@ -1,5 +1,5 @@
 @startuml
-title Vina Bim Shop Section 01 Lambda Architecture
+title Vina Bim Shop Lambda Architecture — Runnable Services
 
 skinparam componentStyle rectangle
 skinparam shadowing false
@@ -20,18 +20,29 @@ rectangle "Lambda Processing Paths" as Lambda {
   component "Flink Streaming Path\nevent-time watermarks,\nallowed lateness,\nreal-time revenue/issues/anomalies" as Flink
 }
 
-database "MinIO Medallion Lakehouse\nBronze batch: Parquet snapshots\nBronze event: JSONL replay logs\nSilver/Gold: curated tables" as MinIO
+database "MinIO Medallion Lakehouse\nBronze batch: Parquet snapshots\nBronze event: JSONL replay logs\nSilver/Gold: curated Iceberg tables" as MinIO
 database "Hive Metastore\ncatalog only" as Hive
 component "Trino SQL Serving\ncanonical SQL over curated tables" as Trino
-component "Apache Pinot\nRealtime serving sink\nmetrics / alerts / dashboard" as Realtime
-database "DuckDB executive mart\nlocal KPI mart from Gold tables" as DuckDB
+component "Apache Pinot\nRealtime serving sink\nfresh and provisional" as Realtime
+database "DuckDB executive mart\nlocal compatibility path" as DuckDB
+
+rectangle "Control Plane" as Control {
+  component "Airflow\nbatch orchestration\nand scheduling" as Airflow
+  component "Great Expectations\nquality gates\nand validation" as GX
+}
+
+rectangle "Governance" as Gov {
+  component "DataHub\nmetadata, lineage,\nglossary, tags" as DataHub
+}
+
+component "Evidence Package\nhealth, screenshots,\nrow counts, reconciliation" as Evidence
 
 Offline --> MinIO : Parquet snapshots: checkpointed table state
 Producer --> Kafka : JSON envelope events
 Kafka --> Flink : direct real-time consumption
 Kafka --> MinIO : JSONL event log: replayable business events
 MinIO --> Spark : hourly batch reads landed Bronze data
-Spark --> MinIO : curated Silver/Gold tables
+Spark --> MinIO : curated Silver/Gold Iceberg tables
 Flink --> Realtime : event-time live metrics / alerts / dashboard
 Realtime --> BI : live operations
 Flink --> MinIO : curated streaming tables
@@ -41,10 +52,19 @@ Trino --> Executive : canonical hourly SQL dashboards
 MinIO --> DuckDB : hourly export from Gold tables
 DuckDB --> Executive : local KPI mart
 Trino --> BI : reconciled historical SQL
+Airflow --> Spark : orchestrates batch jobs
+Airflow --> GX : triggers quality gates
+GX --> DataHub : publishes quality metadata
+Trino --> DataHub : registers table lineage
+Airflow --> DataHub : ingestion jobs
+Trino --> Evidence : KPI query outputs
+Realtime --> Evidence : dashboard query outputs
+DataHub --> Evidence : lineage evidence
 
 note bottom of MinIO
-Section 01 owns source simulation, raw contracts, event topics, and evidence.
-Section 02 owns runnable Spark/Flink jobs and final Gold schema design.
+Staged compose profiles provide the runnable implementation.
+dbt-DuckDB remains a local compatibility and parity-testing path.
+See architecture/decisions/ for the full ADR roadmap.
 end note
 
 @enduml

@@ -13,9 +13,9 @@ The target architecture remains:
 - Hive Metastore and Trino for canonical SQL over curated lakehouse tables.
 - DuckDB as a local coursework mart generated from curated Gold outputs.
 
-For local implementation, `dbt-DuckDB is the local execution and test harness`. This lets the coursework run schema transformations and data quality tests without standing up the full Spark/Trino/Pinot stack. The dbt models mirror the intended Bronze, Silver, and Gold contracts so the implementation stays aligned with the current Lambda architecture.
+For local implementation, `dbt-DuckDB is the local compatibility and parity-test harness`. Spark, Flink, Apache Pinot, and Trino are now runnable via Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md` and `evidence/05_spark_batch/dbt_parity_report.md` for the Spark vs dbt row-count parity evidence.
 
-Spark, Flink, Apache Pinot, and Trino remain architectural target contracts in this local coursework phase. The runnable implementation for Section `02` is dbt-DuckDB, with evidence generated from the final medium Section `01` raw dataset.
+Spark, Flink, Apache Pinot, and Trino are now runnable services, not just target contracts. The runnable implementation for Section `02` is dbt-DuckDB for fast local iteration, with evidence generated from the final medium Section `01` raw dataset.
 
 ### Central Source Rationale
 
@@ -103,12 +103,13 @@ Feature tables retain `event_timestamp` for point-in-time joins and `created_ts`
 
 ### Realtime Serving Contracts
 
-Pinot artifacts are contracts only in v1, not runnable JSON configs:
+Pinot tables are now runnable via the `serving` profile and ingestion from Flink-derived Kafka topics:
 
 | Pinot table | Grain | Source | Purpose |
 | --- | --- | --- | --- |
 | `pinot_realtime_commerce_metrics_1m` | one event-time minute by category/source/status | Flink from Kafka commerce events | Fresh revenue, GMV proxy, payment failures, checkout/order conversion. |
 | `pinot_realtime_ops_alerts` | one alert event | Flink from Kafka ops and derived stream checks | Traffic bursts, late arrivals, duplicate spikes, anomaly-like operational alerts. |
+| `pinot_realtime_metric_corrections` | one correction update | Flink late-event correction job | Late-data adjustments reconciling streaming and batch views. |
 
 Flink uses simple watermark updates for late events. It does not emit visible correction or retraction records in v1. Product and customer SCD joins stay out of the streaming path unless the needed fields are already present in the event payload.
 

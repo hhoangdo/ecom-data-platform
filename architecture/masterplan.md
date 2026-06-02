@@ -17,6 +17,7 @@ This master plan governs the first implementation phase only:
 
 - Section `01`: data generator design and implementation
 - Section `02`: storage, schema, and pipeline contract design and implementation
+- Phase 2 (ADRs 01-08): The distributed platform is now runnable via staged Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md`.
 
 ### Out of Scope for This Phase
 
@@ -256,9 +257,11 @@ The architecture target for Sections `01` and `02` is:
 - Hive Metastore for table metadata
 - Trino for SQL serving access
 - Apache Pinot for realtime OLAP dashboard serving
-- DuckDB for an hourly local executive KPI mart generated from Gold tables
+- DuckDB for an hourly local executive KPI mart generated from Gold tables (compatibility path)
 - Parquet for offline persisted source snapshots
 - JSON for in-Kafka event envelopes and JSONL for persisted, human-readable event-log examples
+
+All services are now runnable via Docker Compose profiles. dbt-DuckDB is retained as a fast local compatibility and parity-testing path.
 
 ### Layering Model
 
@@ -434,11 +437,26 @@ The following areas are intentionally scaffolded now for later work:
 - `sample_design/` remains reference-only
 - `src/`, `sql/`, `configs/`, and `scripts/` hold implementation assets
 
+## 8.5 Distributed Platform (ADRs 01-08)
+
+Implemented. Runnable services, staged compose profiles, end-to-end evidence. See `evidence/final_integration/` for verification artifacts and `architecture/decisions/` for the full decision record.
+
+| Profile | Services | Evidence |
+|---------|----------|----------|
+| `ingestion` | Kafka, Schema Registry, Connect, Kafka UI | `evidence/03_kafka_ingestion/` |
+| `lakehouse` | MinIO, Hive Metastore, Trino, Postgres | `evidence/04_lakehouse/` |
+| `batch` | Spark master, worker, history server | `evidence/05_spark_batch/` |
+| `streaming` | Flink JobManager, TaskManager | `evidence/06_flink_streaming/` |
+| `serving` | Apache Pinot | `evidence/07_pinot_serving/` |
+| `orchestration` | Airflow, GX Data Docs | `evidence/08_airflow_gx/` |
+| `governance` | DataHub, OpenSearch | `evidence/09_datahub_governance/` |
+| `all` | Everything | `evidence/final_integration/` |
+
 ## 9. Assumptions and Defaults
 
 - Python `3.12` is the default runtime version.
 - `uv` is the package manager of record.
 - Large generated datasets should stay out of Git; only small samples and evidence should be committed.
-- Section `01` remains source-contract-first; runnable Spark, Flink, Kafka, MinIO, Hive Metastore, Trino, Pinot, and DuckDB jobs are deferred to Section `02`.
+- Section `01` remains source-contract-first. Runnable Spark, Flink, Kafka, MinIO, Hive Metastore, Trino, Pinot, Airflow, GX, and DataHub jobs are implemented through the ADR roadmap (`architecture/decisions/`). See `evidence/final_integration/` for end-to-end verification.
 - Spark and Flink references are architectural targets inspired by the EDAI transformation-layer projects, not copied wholesale.
 - The simplified taxonomy is stable once committed unless the coursework requirements change.

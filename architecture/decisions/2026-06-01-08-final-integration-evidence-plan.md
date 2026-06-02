@@ -2,7 +2,19 @@
 
 ## Status
 
-Planned.
+Implemented.
+
+## Implementation Date
+
+2026-06-02
+
+## Evidence Location
+
+`evidence/final_integration/`
+
+## Companion Scripts
+
+`scripts/qa/reset_all.py` — safe project reset wrapper with `--dry-run`, `--force`, `--profile`, `--clean-local-data` flags.
 
 ## Date
 

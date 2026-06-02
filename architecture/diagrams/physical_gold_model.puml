@@ -24,6 +24,8 @@ Bronze and Silver are views; Gold is physically constrained in DuckDB for DBeave
 obt_order_performance is a derived non-canonical OBT.
 agg_hourly_reconciled_kpi is reconciliation evidence for realtime-vs-batch comparison.
 feat_* tables are ML/AI preparation tables and keep customer_id as their feature entity key.
+This model runs on both dbt-DuckDB (local compatibility) and Spark -> Iceberg -> Trino (canonical).
+Row counts match across both paths; see evidence/05_spark_batch/dbt_parity_report.md.
 end note
 
 package "Bronze Views - Source Fidelity" as Bronze {

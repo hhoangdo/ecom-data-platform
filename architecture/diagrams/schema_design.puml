@@ -1,5 +1,5 @@
 @startuml
-title Vina Bim Shop Section 02 Schema Design
+title Vina Bim Shop Schema Design — Runnable Stack
 
 skinparam componentStyle rectangle
 skinparam shadowing false
@@ -22,13 +22,13 @@ package "Gold reconciled SQL: snowflake/star hybrid" as Gold {
   database "Serving and features\nobt_order_performance\nagg_hourly_reconciled_kpi\nfeat_customer_90d\nfeat_stream_60m\nfeat_customer_unified" as Serving
 }
 
-package "Realtime serving contracts" as Realtime {
-  component "Flink event-time metrics\nsimple watermark updates" as FlinkMetrics
-  database "Apache Pinot\npinot_realtime_commerce_metrics_1m\npinot_realtime_ops_alerts" as Pinot
+package "Realtime serving — runnable" as Realtime {
+  component "Flink event-time metrics\nsimple watermark updates\nDerived Kafka topics" as FlinkMetrics
+  database "Apache Pinot\npinot_realtime_commerce_metrics_1m\npinot_realtime_ops_alerts\npinot_realtime_metric_corrections" as Pinot
 }
 
 package "Local coursework mart" as Local {
-  database "DuckDB executive mart\nfrom Gold OBT and aggregates" as DuckDB
+  database "DuckDB executive mart\nfrom Gold OBT and aggregates\n(local compatibility path;\n Spark/Trino is canonical)" as DuckDB
 }
 
 RawSnapshots --> StgSnapshots : standardize, dedupe, type cleanup
@@ -43,17 +43,19 @@ Dims --> Facts : surrogate keys
 Facts --> Serving : OBT, hourly KPIs, features
 
 RawEvents --> FlinkMetrics : realtime Kafka consumption
-FlinkMetrics --> Pinot : fresh operational metrics and alerts
+FlinkMetrics --> Pinot : fresh operational metrics and alerts (live)
 Serving --> DuckDB : local executive export
 
 note right of Pinot
 Apache Pinot is fresh but provisional.
 Gold/Trino hourly SQL is canonical after reconciliation.
+Flink -> Derived Kafka -> Pinot path is live via compose profiles.
 end note
 
 note bottom of Serving
 obt_order_performance is one row per order.
 agg_hourly_reconciled_kpi is the hourly comparison target for Pinot.
+See docker-compose.yml profiles: ingestion, lakehouse, batch, streaming, serving.
 end note
 
 @enduml

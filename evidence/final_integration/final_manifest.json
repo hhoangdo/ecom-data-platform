@@ -1,0 +1,52 @@
+{
+  "run_id": "20260602T093000Z",
+  "generator_scale": "medium",
+  "generator_seed": 42,
+  "profiles_tested": ["ingestion", "lakehouse", "batch", "streaming", "serving", "orchestration", "governance", "all"],
+  "full_profile_success": true,
+  "end_to_end_path": "generator -> Kafka -> MinIO Bronze -> Spark Gold -> Trino -> Flink -> Pinot -> Airflow/GX -> DataHub -> Evidence",
+  "reset_command": "uv run python scripts/qa/reset_all.py --force",
+  "artifacts": [
+    "service_health.json",
+    "final_manifest.json",
+    "ui_screenshots/kafka_ui_topics.png",
+    "ui_screenshots/kafka_ui_message_sample.png",
+    "ui_screenshots/schema_registry_subjects.png",
+    "ui_screenshots/kafka_connect_status.png",
+    "ui_screenshots/minio_buckets.png",
+    "ui_screenshots/trino_query_history.png",
+    "ui_screenshots/trino_sample_query.png",
+    "ui_screenshots/spark_master_ui.png",
+    "ui_screenshots/spark_history_server.png",
+    "ui_screenshots/flink_jobs.png",
+    "ui_screenshots/flink_checkpoints.png",
+    "ui_screenshots/pinot_tables.png",
+    "ui_screenshots/pinot_query_console.png",
+    "ui_screenshots/airflow_dag_graph.png",
+    "ui_screenshots/airflow_dag_run.png",
+    "ui_screenshots/gx_data_docs.png",
+    "ui_screenshots/datahub_lineage.png",
+    "ui_screenshots/datahub_search_result.png",
+    "query_outputs/trino_canonical_kpi.sql",
+    "query_outputs/trino_canonical_kpi.csv",
+    "query_outputs/pinot_dashboard.sql",
+    "query_outputs/pinot_dashboard.csv",
+    "row_counts.csv",
+    "reconciliation_report.md",
+    "datahub_lineage.md"
+  ],
+  "per_session_evidence": {
+    "01_kafka": "evidence/03_kafka_ingestion/",
+    "02_lakehouse": "evidence/04_lakehouse/",
+    "03_spark": "evidence/05_spark_batch/",
+    "04_flink": "evidence/06_flink_streaming/",
+    "05_pinot": "evidence/07_pinot_serving/",
+    "06_airflow_gx": "evidence/08_airflow_gx/",
+    "07_datahub": "evidence/09_datahub_governance/",
+    "08_final": "evidence/final_integration/"
+  },
+  "dbt_parity": {
+    "report": "evidence/05_spark_batch/dbt_parity_report.md",
+    "all_checks_pass": true
+  }
+}
