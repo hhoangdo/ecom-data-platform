@@ -7,7 +7,7 @@
     "format.class": "io.confluent.connect.s3.format.json.JsonFormat",
     "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "locale": "en-US",
-    "name": "bronze-events-s3-sink",
+    "name": "source-events-s3-sink",
     "partition.duration.ms": "86400000",
     "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
     "path.format": "'ingest_date='YYYY-MM-dd",
@@ -24,12 +24,7 @@
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "value.converter.schemas.enable": "false"
   },
-  "name": "bronze-events-s3-sink",
-  "tasks": [
-    {
-      "connector": "bronze-events-s3-sink",
-      "task": 0
-    }
-  ],
+  "name": "source-events-s3-sink",
+  "tasks": [],
   "type": "sink"
 }

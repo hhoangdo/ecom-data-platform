@@ -1,17 +1,17 @@
 {
-  "captured_at": "2026-06-02T02:35:06.475380+00:00",
+  "captured_at": "2026-06-02T16:52:57.265834+00:00",
   "controller_url": "http://localhost:9003",
   "schema_actions": [
     {
-      "action": "updated",
+      "action": "created",
       "schema": "pinot_realtime_commerce_metrics_1m"
     },
     {
-      "action": "updated",
+      "action": "created",
       "schema": "pinot_realtime_metric_corrections"
     },
     {
-      "action": "updated",
+      "action": "created",
       "schema": "pinot_realtime_ops_alerts"
     }
   ],
@@ -22,15 +22,15 @@
   ],
   "table_actions": [
     {
-      "action": "updated",
+      "action": "created",
       "table": "pinot_realtime_commerce_metrics_1m"
     },
     {
-      "action": "updated",
+      "action": "created",
       "table": "pinot_realtime_metric_corrections"
     },
     {
-      "action": "updated",
+      "action": "created",
       "table": "pinot_realtime_ops_alerts"
     }
   ],
