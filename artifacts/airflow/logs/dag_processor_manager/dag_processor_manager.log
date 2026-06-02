@@ -2372,3 +2372,17 @@ File Path                                    PID    Runtime      # DAGs    # Err
 ================================================================================
 [2026-06-02T07:35:07.393+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
 [2026-06-02T07:35:07.918+0000] {manager.py:824} INFO - There are 6 files in /opt/airflow/dags
+[2026-06-02T07:35:32.521+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                    PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/kafka_topic_bootstrap.py                            1           0  1.14s           2026-06-02T07:35:27                      10
+/opt/airflow/dags/hourly_batch_lakehouse.py                           1           0  1.14s           2026-06-02T07:35:21                      12
+/opt/airflow/dags/pinot_bootstrap.py                                  1           0  1.14s           2026-06-02T07:35:26                      10
+/opt/airflow/dags/reconciliation_report.py                            1           0  1.14s           2026-06-02T07:35:22                      12
+/opt/airflow/dags/local_evidence_build.py                             1           0  1.04s           2026-06-02T07:35:25                      10
+/opt/airflow/dags/datahub_ingestion.py                                1           0  1.03s           2026-06-02T07:35:25                      10
+================================================================================
+[2026-06-02T07:35:40.535+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
