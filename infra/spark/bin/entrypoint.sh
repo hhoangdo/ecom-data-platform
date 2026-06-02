@@ -59,8 +59,15 @@ case "${ROLE}" in
       --webui-port 8080
     ;;
   worker)
+    CORES="${SPARK_WORKER_CORES:-}"
+    MEMORY="${SPARK_WORKER_MEMORY:-}"
+    CORES_ARG=""
+    MEMORY_ARG=""
+    [ -n "${CORES}" ] && CORES_ARG="--cores ${CORES}"
+    [ -n "${MEMORY}" ] && MEMORY_ARG="--memory ${MEMORY}"
     exec "${SPARK_HOME}/bin/spark-class" org.apache.spark.deploy.worker.Worker \
       --webui-port 8081 \
+      ${CORES_ARG} ${MEMORY_ARG} \
       spark://spark-master:7077
     ;;
   history)
