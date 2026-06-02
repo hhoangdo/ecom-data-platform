@@ -1,0 +1,26 @@
+source:
+  type: kafka
+  config:
+    connection:
+      bootstrap: "kafka:29092"
+      consumer_config:
+        security.protocol: "PLAINTEXT"
+    schema_registry_url: "http://schema-registry:8081"
+    topic_patterns:
+      allow:
+        - "commerce_events"
+        - "catalog_events"
+        - "fulfillment_events"
+        - "ops_events"
+        - "dead_letter_events"
+        - "realtime_commerce_metrics_1m"
+        - "realtime_ops_alerts"
+        - "realtime_metric_corrections"
+      ignoreCase: true
+    stateful_ingestion:
+      enabled: true
+
+sink:
+  type: datahub-rest
+  config:
+    server: "http://datahub-gms:8080"

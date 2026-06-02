@@ -1,0 +1,15 @@
+source:
+  type: dbt
+  config:
+    manifest_path: /workspace/dbt/target/manifest.json
+    catalog_path: /workspace/dbt/target/catalog.json
+    target_platform: duckdb
+    load_schemas: true
+    write_semantics: patch
+    stateful_ingestion:
+      enabled: true
+
+sink:
+  type: datahub-rest
+  config:
+    server: "http://datahub-gms:8080"

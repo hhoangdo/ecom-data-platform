@@ -12,5 +12,8 @@ COPY src /opt/vina-bim-shop/src
 USER airflow
 
 RUN python -m pip install --no-cache-dir /opt/vina-bim-shop \
-  && python -m pip install --no-cache-dir "great-expectations==1.17.2"
+  && python -m pip install --no-cache-dir "great-expectations==1.17.2" \
+  && python -m pip install --no-cache-dir \
+    "acryl-datahub[datahub-rest,kafka,trino,dbt]==1.6.0" \
+    "acryl-datahub-airflow-plugin==1.6.0"
 

@@ -14,12 +14,12 @@ def _run(**context):
 
 with DAG(
     dag_id="datahub_ingestion",
-    description="ADR 07 placeholder ingestion entrypoint with warn-first semantics until governance assets exist.",
+    description="ADR 07: DataHub metadata and lineage ingestion for Kafka topics, Trino/Iceberg tables, dbt models, and custom Spark/Flink lineage.",
     start_date=datetime(2026, 6, 1),
     schedule=None,
     catchup=False,
-    is_paused_upon_creation=True,
-    tags=["adr06", "orchestration", "datahub"],
+    is_paused_upon_creation=False,
+    tags=["adr07", "governance", "datahub"],
 ) as dag:
     PythonOperator(
         task_id="run_datahub_ingestion",

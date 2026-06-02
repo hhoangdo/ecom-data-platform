@@ -1,0 +1,11 @@
+source:
+  type: file
+  config:
+    filename: /workspace/infra/governance/recipes/minio_container_metadata.json
+    file_format: json
+    platform: s3
+
+sink:
+  type: datahub-rest
+  config:
+    server: "http://datahub-gms:8080"

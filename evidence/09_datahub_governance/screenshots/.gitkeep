@@ -1,0 +1,7 @@
+# Screenshots captured manually or via browser automation during ADR 07 verification.
+# Required shots:
+#   datahub_ui_home.png       - DataHub homepage at localhost:9002
+#   kafka_topics_search.png   - Search showing Kafka topic assets
+#   trino_tables_search.png   - Search showing Trino/Iceberg table assets
+#   tags_glossary.png         - Tags and Glossary terms visible
+#   lineage_graph.png         - Lineage graph for a Gold table
