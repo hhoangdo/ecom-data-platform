@@ -1,0 +1,10 @@
+{
+  "artifacts": [
+    "bootstrap_health.json",
+    "connector_response.json",
+    "topic_list.txt"
+  ],
+  "captured_at": "2026-06-02T06:08:14.155004+00:00",
+  "registered_subject_count": 5,
+  "topics_file": "infra/kafka/topics.yaml"
+}

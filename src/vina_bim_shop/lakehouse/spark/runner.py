@@ -13,6 +13,7 @@ from vina_bim_shop.lakehouse.spark.window import BatchWindow
 
 
 RunCommand = Callable[[list[str]], subprocess.CompletedProcess[str]]
+CaptureEvidence = Callable[..., dict[str, Any]]
 
 
 def _run_command(command: list[str]) -> subprocess.CompletedProcess[str]:
@@ -61,6 +62,7 @@ def run_batch_pipeline(
     mode: str,
     evidence_root: str | Path = "evidence/05_spark_batch",
     run_command: RunCommand = _run_command,
+    capture_evidence_fn: CaptureEvidence = capture_evidence,
 ) -> dict[str, Any]:
     window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode=mode)
     spark_submit = build_spark_submit_command(window, evidence_root=evidence_root)
@@ -70,7 +72,7 @@ def run_batch_pipeline(
     dbt_result = run_command(dbt_command)
     parity_report = run_parity_checks(evidence_root=evidence_root)
     trino_smoke = run_gold_smoke_queries(evidence_root=evidence_root)
-    evidence_manifest = capture_evidence(evidence_root=evidence_root)
+    evidence_manifest = capture_evidence_fn(evidence_root=evidence_root)
 
     summary = {
         "window": {

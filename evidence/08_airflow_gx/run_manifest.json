@@ -1,0 +1,30 @@
+{
+  "airflow_health": {
+    "dag_processor": {
+      "latest_dag_processor_heartbeat": null,
+      "status": null
+    },
+    "metadatabase": {
+      "status": "healthy"
+    },
+    "scheduler": {
+      "latest_scheduler_heartbeat": "2026-06-02T06:43:04.319026+00:00",
+      "status": "healthy"
+    },
+    "triggerer": {
+      "latest_triggerer_heartbeat": null,
+      "status": null
+    }
+  },
+  "artifacts": [
+    "screenshots/README.md",
+    "gx_data_docs/index.html"
+  ],
+  "captured_at": "2026-06-02T06:43:06.959858+00:00",
+  "docs_index_exists": true,
+  "latest_run_manifests": [
+    "evidence/08_airflow_gx/runs/hourly_batch_lakehouse/manual__2026-04-26T01_00_00_00_00/run_manifest.json",
+    "evidence/08_airflow_gx/runs/hourly_batch_lakehouse/manual__2026-04-26T01_00_00_00_00/spark_batch/run_manifest.json",
+    "evidence/08_airflow_gx/runs/kafka_topic_bootstrap/manual__2026-06-02T06_15_00_00_00/run_manifest.json"
+  ]
+}

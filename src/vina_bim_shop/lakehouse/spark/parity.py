@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -25,8 +26,8 @@ def run_parity_checks(
     *,
     evidence_root: str | Path,
     duckdb_path: str | Path = "data/gold/vina_bim_shop.duckdb",
-    trino_url: str = "http://localhost:8080",
-    user: str = "vina_analyst",
+    trino_url: str = os.getenv("VBS_TRINO_URL", "http://localhost:8080"),
+    user: str = os.getenv("VBS_TRINO_USER", "vina_analyst"),
 ) -> dict[str, Any]:
     comparisons: list[dict[str, Any]] = []
     duckdb_connection = duckdb.connect(str(duckdb_path), read_only=True)

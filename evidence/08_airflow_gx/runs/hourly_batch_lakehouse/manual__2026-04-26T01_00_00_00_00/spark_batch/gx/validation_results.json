@@ -1,0 +1,227 @@
+{
+  "success": true,
+  "validations": {
+    "agg_hourly_reconciled_kpi": [
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_agg_hourly-agg_hourly_asset",
+            "column": "metric_hour"
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_not_be_null"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 159,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0
+        },
+        "success": true
+      },
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_agg_hourly-agg_hourly_asset",
+            "column": "official_paid_revenue",
+            "min_value": 0.0
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_be_between"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 159,
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "unexpected_percent_total": 0.0
+        },
+        "success": true
+      }
+    ],
+    "fact_order": [
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_fact_order-fact_order_asset",
+            "column": "order_id"
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_not_be_null"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 1800,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0
+        },
+        "success": true
+      },
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_fact_order-fact_order_asset",
+            "column": "official_paid_revenue",
+            "min_value": 0.0
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_be_between"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 1800,
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "unexpected_percent_total": 0.0
+        },
+        "success": true
+      }
+    ],
+    "fact_order_item": [
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_fact_order_item-fact_order_item_asset",
+            "column": "order_item_id"
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_not_be_null"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 6688,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0
+        },
+        "success": true
+      },
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_fact_order_item-fact_order_item_asset",
+            "column": "estimated_margin"
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_not_be_null"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 6688,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0
+        },
+        "success": true
+      }
+    ],
+    "stg_orders": [
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_stg_orders-stg_orders_asset",
+            "column": "order_id"
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_not_be_null"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 1800,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0
+        },
+        "success": true
+      },
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "spark_runtime_stg_orders-stg_orders_asset",
+            "column": "order_id"
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_be_unique"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 1800,
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "unexpected_percent_total": 0.0
+        },
+        "success": true
+      }
+    ]
+  }
+}

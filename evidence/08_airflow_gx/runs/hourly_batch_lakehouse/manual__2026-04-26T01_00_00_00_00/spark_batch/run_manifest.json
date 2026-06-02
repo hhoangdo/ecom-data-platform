@@ -1,0 +1,22 @@
+{
+  "artifacts": [
+    "spark_master_status.json",
+    "spark_history_applications.json",
+    "spark_job_manifest.json",
+    "spark_table_row_counts.json",
+    "pyspark_validation_report.json",
+    "dbt_parity_report.json",
+    "dbt_parity_report.md",
+    "trino_gold_smoke_results.json",
+    "version_matrix.json",
+    "gx/validation_results.json",
+    "screenshots/README.md",
+    "screenshots/spark_master_ui.png",
+    "screenshots/spark_history_server.png"
+  ],
+  "captured_at": "2026-06-02T06:42:30.666427+00:00",
+  "service_urls": {
+    "spark_history_server": "http://spark-history-server:18080",
+    "spark_master_ui": "http://spark-master:8080"
+  }
+}

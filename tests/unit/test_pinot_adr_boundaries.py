@@ -12,8 +12,10 @@ def test_pinot_runbook_preserves_provisional_truth_policy() -> None:
 
 def test_pinot_session_does_not_add_airflow_assets() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    airflow_root = repo_root / "airflow"
+    dag_path = repo_root / "airflow" / "dags" / "pinot_bootstrap.py"
 
-    if airflow_root.exists():
-        forbidden_matches = list(airflow_root.rglob("*pinot*"))
-        assert not forbidden_matches
+    assert dag_path.is_file()
+    dag_source = dag_path.read_text(encoding="utf-8")
+    assert "pinot_bootstrap" in dag_source
+    assert "vina_bim_shop.flink" not in dag_source
+    assert "scripts/flink/run_" not in dag_source

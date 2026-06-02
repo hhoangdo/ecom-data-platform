@@ -1,0 +1,433 @@
+{
+  "fact_order_count": {
+    "columns": [
+      "fact_order_count"
+    ],
+    "query": "select count(*) as fact_order_count from iceberg.gold.fact_order",
+    "rows": [
+      [
+        1800
+      ]
+    ],
+    "stats": {
+      "analysisTimeMillis": 23,
+      "completedSplits": 16,
+      "cpuTimeMillis": 11,
+      "elapsedTimeMillis": 96,
+      "finishingTimeMillis": 0,
+      "internalNetworkInputBytes": 308,
+      "nodes": 1,
+      "peakMemoryBytes": 1256,
+      "physicalInputBytes": 0,
+      "physicalInputTimeMillis": 0,
+      "physicalWrittenBytes": 0,
+      "planningTimeMillis": 15,
+      "processedBytes": 0,
+      "processedRows": 1800,
+      "progressPercentage": 100.0,
+      "queued": false,
+      "queuedSplits": 0,
+      "queuedTimeMillis": 1,
+      "rootStage": {
+        "completedSplits": 9,
+        "coordinatorOnly": false,
+        "cpuTimeMillis": 4,
+        "done": true,
+        "failedTasks": 0,
+        "nodes": 1,
+        "physicalInputBytes": 0,
+        "processedBytes": 308,
+        "processedRows": 7,
+        "queuedSplits": 0,
+        "runningSplits": 0,
+        "stageId": "0",
+        "state": "FINISHED",
+        "subStages": [
+          {
+            "completedSplits": 7,
+            "coordinatorOnly": false,
+            "cpuTimeMillis": 7,
+            "done": true,
+            "failedTasks": 0,
+            "nodes": 1,
+            "physicalInputBytes": 0,
+            "processedBytes": 0,
+            "processedRows": 1800,
+            "queuedSplits": 0,
+            "runningSplits": 0,
+            "stageId": "1",
+            "state": "FINISHED",
+            "subStages": [],
+            "totalSplits": 7,
+            "wallTimeMillis": 8
+          }
+        ],
+        "totalSplits": 9,
+        "wallTimeMillis": 6
+      },
+      "runningPercentage": 0.0,
+      "runningSplits": 0,
+      "scheduled": true,
+      "spilledBytes": 0,
+      "state": "FINISHED",
+      "totalSplits": 16,
+      "wallTimeMillis": 14
+    }
+  },
+  "fact_order_paid_revenue": {
+    "columns": [
+      "official_paid_revenue"
+    ],
+    "query": "select round(sum(official_paid_revenue), 2) as official_paid_revenue from iceberg.gold.fact_order",
+    "rows": [
+      [
+        5305136289.0
+      ]
+    ],
+    "stats": {
+      "analysisTimeMillis": 25,
+      "completedSplits": 24,
+      "cpuTimeMillis": 34,
+      "elapsedTimeMillis": 123,
+      "finishingTimeMillis": 0,
+      "internalNetworkInputBytes": 308,
+      "nodes": 1,
+      "peakMemoryBytes": 47331,
+      "physicalInputBytes": 146338,
+      "physicalInputTimeMillis": 0,
+      "physicalWrittenBytes": 0,
+      "planningTimeMillis": 28,
+      "processedBytes": 146338,
+      "processedRows": 1800,
+      "progressPercentage": 100.0,
+      "queued": false,
+      "queuedSplits": 0,
+      "queuedTimeMillis": 0,
+      "rootStage": {
+        "completedSplits": 17,
+        "coordinatorOnly": false,
+        "cpuTimeMillis": 7,
+        "done": true,
+        "failedTasks": 0,
+        "nodes": 1,
+        "physicalInputBytes": 0,
+        "processedBytes": 308,
+        "processedRows": 7,
+        "queuedSplits": 0,
+        "runningSplits": 0,
+        "stageId": "0",
+        "state": "FINISHED",
+        "subStages": [
+          {
+            "completedSplits": 7,
+            "coordinatorOnly": false,
+            "cpuTimeMillis": 27,
+            "done": true,
+            "failedTasks": 0,
+            "nodes": 1,
+            "physicalInputBytes": 146338,
+            "processedBytes": 146338,
+            "processedRows": 1800,
+            "queuedSplits": 0,
+            "runningSplits": 0,
+            "stageId": "1",
+            "state": "FINISHED",
+            "subStages": [],
+            "totalSplits": 7,
+            "wallTimeMillis": 52
+          }
+        ],
+        "totalSplits": 17,
+        "wallTimeMillis": 8
+      },
+      "runningPercentage": 0.0,
+      "runningSplits": 0,
+      "scheduled": true,
+      "spilledBytes": 0,
+      "state": "FINISHED",
+      "totalSplits": 24,
+      "wallTimeMillis": 60
+    }
+  },
+  "gold_inventory": {
+    "columns": [
+      "Table"
+    ],
+    "query": "show tables from iceberg.gold",
+    "rows": [
+      [
+        "agg_hourly_reconciled_kpi"
+      ],
+      [
+        "bridge_product_category"
+      ],
+      [
+        "dim_category"
+      ],
+      [
+        "dim_customer"
+      ],
+      [
+        "dim_date"
+      ],
+      [
+        "dim_order_status"
+      ],
+      [
+        "dim_payment_method"
+      ],
+      [
+        "dim_product"
+      ],
+      [
+        "dim_promotion"
+      ],
+      [
+        "dim_seller"
+      ],
+      [
+        "dim_shipment_status"
+      ],
+      [
+        "dim_shipping_method"
+      ],
+      [
+        "fact_inventory_snapshot"
+      ],
+      [
+        "fact_order"
+      ],
+      [
+        "fact_order_item"
+      ],
+      [
+        "fact_payment_attempt"
+      ],
+      [
+        "fact_promotion_application"
+      ],
+      [
+        "fact_shipment"
+      ],
+      [
+        "feat_customer_90d"
+      ],
+      [
+        "feat_customer_unified"
+      ],
+      [
+        "feat_stream_60m"
+      ],
+      [
+        "obt_order_performance"
+      ]
+    ],
+    "stats": {
+      "analysisTimeMillis": 21,
+      "completedSplits": 11,
+      "cpuTimeMillis": 17,
+      "elapsedTimeMillis": 179,
+      "finishingTimeMillis": 4,
+      "internalNetworkInputBytes": 1006,
+      "nodes": 1,
+      "peakMemoryBytes": 1249,
+      "physicalInputBytes": 675,
+      "physicalInputTimeMillis": 0,
+      "physicalWrittenBytes": 0,
+      "planningTimeMillis": 66,
+      "processedBytes": 675,
+      "processedRows": 22,
+      "progressPercentage": 100.0,
+      "queued": false,
+      "queuedSplits": 0,
+      "queuedTimeMillis": 1,
+      "rootStage": {
+        "completedSplits": 1,
+        "coordinatorOnly": false,
+        "cpuTimeMillis": 2,
+        "done": true,
+        "failedTasks": 0,
+        "nodes": 1,
+        "physicalInputBytes": 0,
+        "processedBytes": 503,
+        "processedRows": 22,
+        "queuedSplits": 0,
+        "runningSplits": 0,
+        "stageId": "0",
+        "state": "FINISHED",
+        "subStages": [
+          {
+            "completedSplits": 9,
+            "coordinatorOnly": false,
+            "cpuTimeMillis": 7,
+            "done": true,
+            "failedTasks": 0,
+            "nodes": 1,
+            "physicalInputBytes": 0,
+            "processedBytes": 503,
+            "processedRows": 22,
+            "queuedSplits": 0,
+            "runningSplits": 0,
+            "stageId": "1",
+            "state": "FINISHED",
+            "subStages": [
+              {
+                "completedSplits": 1,
+                "coordinatorOnly": false,
+                "cpuTimeMillis": 8,
+                "done": true,
+                "failedTasks": 0,
+                "nodes": 1,
+                "physicalInputBytes": 675,
+                "processedBytes": 675,
+                "processedRows": 22,
+                "queuedSplits": 0,
+                "runningSplits": 0,
+                "stageId": "2",
+                "state": "FINISHED",
+                "subStages": [],
+                "totalSplits": 1,
+                "wallTimeMillis": 37
+              }
+            ],
+            "totalSplits": 9,
+            "wallTimeMillis": 11
+          }
+        ],
+        "totalSplits": 1,
+        "wallTimeMillis": 2
+      },
+      "runningPercentage": 0.0,
+      "runningSplits": 0,
+      "scheduled": true,
+      "spilledBytes": 0,
+      "state": "FINISHED",
+      "totalSplits": 11,
+      "wallTimeMillis": 50
+    }
+  },
+  "hourly_kpi_sample": {
+    "columns": [
+      "metric_hour",
+      "order_count",
+      "official_paid_revenue"
+    ],
+    "query": "select metric_hour, order_count, official_paid_revenue\nfrom iceberg.gold.agg_hourly_reconciled_kpi\norder by metric_hour\nlimit 10",
+    "rows": [
+      [
+        "2026-04-26 00:00:00.000 UTC",
+        6,
+        14538000.0
+      ],
+      [
+        "2026-04-26 01:00:00.000 UTC",
+        4,
+        8225000.0
+      ],
+      [
+        "2026-04-26 02:00:00.000 UTC",
+        4,
+        3697000.0
+      ],
+      [
+        "2026-04-26 03:00:00.000 UTC",
+        1,
+        687000.0
+      ],
+      [
+        "2026-04-26 06:00:00.000 UTC",
+        9,
+        14766000.0
+      ],
+      [
+        "2026-04-26 07:00:00.000 UTC",
+        6,
+        13464000.0
+      ],
+      [
+        "2026-04-26 08:00:00.000 UTC",
+        10,
+        34415000.0
+      ],
+      [
+        "2026-04-26 09:00:00.000 UTC",
+        12,
+        25998000.0
+      ],
+      [
+        "2026-04-26 10:00:00.000 UTC",
+        10,
+        58467000.0
+      ],
+      [
+        "2026-04-26 11:00:00.000 UTC",
+        12,
+        46595000.0
+      ]
+    ],
+    "stats": {
+      "analysisTimeMillis": 24,
+      "completedSplits": 25,
+      "cpuTimeMillis": 71,
+      "elapsedTimeMillis": 135,
+      "finishingTimeMillis": 4,
+      "internalNetworkInputBytes": 351,
+      "nodes": 1,
+      "peakMemoryBytes": 652897,
+      "physicalInputBytes": 62450,
+      "physicalInputTimeMillis": 0,
+      "physicalWrittenBytes": 0,
+      "planningTimeMillis": 22,
+      "processedBytes": 62450,
+      "processedRows": 159,
+      "progressPercentage": 100.0,
+      "queued": false,
+      "queuedSplits": 0,
+      "queuedTimeMillis": 1,
+      "rootStage": {
+        "completedSplits": 9,
+        "coordinatorOnly": false,
+        "cpuTimeMillis": 8,
+        "done": true,
+        "failedTasks": 0,
+        "nodes": 1,
+        "physicalInputBytes": 0,
+        "processedBytes": 351,
+        "processedRows": 10,
+        "queuedSplits": 0,
+        "runningSplits": 0,
+        "stageId": "0",
+        "state": "FINISHED",
+        "subStages": [
+          {
+            "completedSplits": 16,
+            "coordinatorOnly": false,
+            "cpuTimeMillis": 63,
+            "done": true,
+            "failedTasks": 0,
+            "nodes": 1,
+            "physicalInputBytes": 62450,
+            "processedBytes": 62450,
+            "processedRows": 159,
+            "queuedSplits": 0,
+            "runningSplits": 0,
+            "stageId": "1",
+            "state": "FINISHED",
+            "subStages": [],
+            "totalSplits": 16,
+            "wallTimeMillis": 97
+          }
+        ],
+        "totalSplits": 9,
+        "wallTimeMillis": 9
+      },
+      "runningPercentage": 0.0,
+      "runningSplits": 0,
+      "scheduled": true,
+      "spilledBytes": 0,
+      "state": "FINISHED",
+      "totalSplits": 25,
+      "wallTimeMillis": 106
+    }
+  }
+}

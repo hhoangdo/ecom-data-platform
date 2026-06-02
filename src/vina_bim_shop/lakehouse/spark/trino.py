@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -10,8 +11,8 @@ import requests
 def execute_trino_query(
     query: str,
     *,
-    trino_url: str = "http://localhost:8080",
-    user: str = "vina_analyst",
+    trino_url: str = os.getenv("VBS_TRINO_URL", "http://localhost:8080"),
+    user: str = os.getenv("VBS_TRINO_USER", "vina_analyst"),
     post=requests.post,
     get=requests.get,
 ) -> dict[str, Any]:
@@ -48,8 +49,8 @@ def execute_trino_query(
 def run_gold_smoke_queries(
     *,
     evidence_root: str | Path,
-    trino_url: str = "http://localhost:8080",
-    user: str = "vina_analyst",
+    trino_url: str = os.getenv("VBS_TRINO_URL", "http://localhost:8080"),
+    user: str = os.getenv("VBS_TRINO_USER", "vina_analyst"),
 ) -> dict[str, Any]:
     queries = {
         "gold_inventory": "show tables from iceberg.gold",

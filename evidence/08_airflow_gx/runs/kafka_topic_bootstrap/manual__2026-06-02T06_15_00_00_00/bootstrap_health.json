@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-06-02T06:08:12.371404+00:00",
+  "kafka_connect": [
+    "bronze-events-s3-sink",
+    "source-events-s3-sink"
+  ],
+  "schema_registry": {
+    "text": "[\"catalog_events-value\",\"commerce_events-value\",\"dead_letter_events-value\",\"fulfillment_events-value\",\"ops_events-value\"]"
+  }
+}

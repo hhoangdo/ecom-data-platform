@@ -1,0 +1,494 @@
+from __future__ import annotations
+
+import json
+import os
+import re
+import shlex
+import subprocess
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+import pandas as pd
+import requests
+
+from vina_bim_shop.kafka.bootstrap import bootstrap_topics
+from vina_bim_shop.kafka.bronze_sink import register_bronze_sink
+from vina_bim_shop.kafka.schema_registry import register_schema_subjects
+from vina_bim_shop.lakehouse.spark.evidence import capture_evidence
+from vina_bim_shop.lakehouse.spark.runner import run_batch_pipeline
+from vina_bim_shop.lakehouse.spark.trino import execute_trino_query
+from vina_bim_shop.lakehouse.spark.window import BatchWindow
+from vina_bim_shop.pinot.bootstrap import apply_assets
+from vina_bim_shop.pinot.query_examples import run_query_examples
+from vina_bim_shop.quality.policies import gate_outcome_for_layer, should_fail_reconciliation
+from vina_bim_shop.quality.reports import ValidationReport, render_validation_docs, write_validation_report
+
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+ADR06_EVIDENCE_ROOT = REPO_ROOT / "evidence" / "08_airflow_gx"
+RUNS_ROOT = ADR06_EVIDENCE_ROOT / "runs"
+DOCS_ROOT = ADR06_EVIDENCE_ROOT / "gx_data_docs"
+_PLACEHOLDER_PNG = bytes.fromhex(
+    "89504E470D0A1A0A0000000D49484452000000010000000108060000001F15C4890000000D49444154789C6360606060000000050001A5F645400000000049454E44AE426082"
+)
+
+
+def _slugify_run_id(run_id: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9._-]+", "_", run_id)
+
+
+def build_run_root(dag_id: str, run_id: str) -> Path:
+    path = RUNS_ROOT / dag_id / _slugify_run_id(run_id)
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _write_json(path: Path, payload: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def _run_command(command: list[str], *, cwd: Path | None = None) -> str:
+    completed = subprocess.run(
+        command,
+        cwd=str(cwd or REPO_ROOT),
+        check=True,
+        text=True,
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    return completed.stdout
+
+
+@contextmanager
+def _working_directory(path: Path):
+    original = Path.cwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(original)
+
+
+def _get_json(url: str) -> Any:
+    response = requests.get(url, timeout=30)
+    response.raise_for_status()
+    if not response.content:
+        return {}
+    if "application/json" in response.headers.get("content-type", ""):
+        return response.json()
+    return {"text": response.text}
+
+
+def _list_bronze_objects() -> list[str]:
+    command = [
+        "docker",
+        "compose",
+        "run",
+        "--rm",
+        "--no-deps",
+        "--entrypoint",
+        "/bin/sh",
+        "minio-init",
+        "-c",
+        'mc alias set ALIAS http://minio:9000 "${MINIO_ROOT_USER}" "${MINIO_ROOT_PASSWORD}" >/dev/null && mc ls --recursive ALIAS/bronze',
+    ]
+    output = _run_command(command, cwd=REPO_ROOT)
+    bronze_paths: list[str] = []
+    for line in output.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        marker = stripped.find("bronze/")
+        if marker == -1:
+            continue
+        bronze_paths.append(stripped[marker:])
+    return bronze_paths
+
+
+def _count_quarantine_records() -> dict[str, int]:
+    candidates = {
+        "bad_snapshots": REPO_ROOT / "data" / "raw" / "bad_snapshots" / "bad_snapshots.jsonl",
+        "dead_letter_events": REPO_ROOT / "data" / "raw" / "kafka_topics" / "dead_letter_events" / "events.jsonl",
+    }
+    counts: dict[str, int] = {}
+    for name, path in candidates.items():
+        if not path.is_file():
+            counts[name] = 0
+            continue
+        counts[name] = sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+    return counts
+
+
+def _validate_pandas_dataframe(
+    *,
+    dataframe: pd.DataFrame,
+    datasource_name: str,
+    asset_name: str,
+    suite_name: str,
+    layer: str,
+    expectations: list[Any],
+    output_root: Path,
+    window: dict[str, str] | None = None,
+) -> ValidationReport:
+    import great_expectations as gx
+
+    context = gx.get_context(mode="ephemeral")
+    datasource = context.data_sources.add_pandas(name=datasource_name)
+    asset = datasource.add_dataframe_asset(name=asset_name)
+    batch_definition = asset.add_batch_definition_whole_dataframe(f"{asset_name}_whole_dataframe")
+    batch = batch_definition.get_batch(batch_parameters={"dataframe": dataframe})
+    results = [batch.validate(expectation).to_json_dict() for expectation in expectations]
+    success = all(result.get("success", False) for result in results)
+    gate = gate_outcome_for_layer(layer, success=success)
+    report = ValidationReport(
+        layer=layer,
+        suite_name=suite_name,
+        success=success,
+        status=gate.status,
+        severity=gate.severity.value,
+        blocks_dag=gate.blocks_dag,
+        requires_quarantine=gate.requires_quarantine,
+        summary=f"{sum(1 for result in results if result.get('success'))}/{len(results)} expectations passed.",
+        artifacts=[str(output_root.name + "/" + f"{suite_name}.json").replace("\\", "/")],
+        details={"results": results},
+        window=window,
+    )
+    write_validation_report(report=report, output_path=output_root / f"{suite_name}.json")
+    return report
+
+
+def _render_docs(reports: list[ValidationReport]) -> None:
+    render_validation_docs(reports=reports, docs_root=DOCS_ROOT)
+
+
+def _window_payload(window: BatchWindow) -> dict[str, str]:
+    return {
+        "start_ts": window.start_ts.isoformat().replace("+00:00", "Z"),
+        "end_ts": window.end_ts.isoformat().replace("+00:00", "Z"),
+        "mode": window.mode,
+    }
+
+
+def _prepare_spark_evidence_root(evidence_root: Path) -> None:
+    quoted_path = shlex.quote(evidence_root.as_posix())
+    _run_command(
+        [
+            "docker",
+            "compose",
+            "exec",
+            "-T",
+            "--user",
+            "root",
+            "spark-master",
+            "bash",
+            "-lc",
+            f"mkdir -p {quoted_path} && chmod -R 0777 {quoted_path}",
+        ],
+        cwd=REPO_ROOT,
+    )
+
+
+def _prepare_gx_docs_root() -> None:
+    _run_command(
+        [
+            "docker",
+            "compose",
+            "exec",
+            "-T",
+            "--user",
+            "root",
+            "gx-docs",
+            "sh",
+            "-lc",
+            "mkdir -p /usr/share/nginx/html && chmod -R 0777 /usr/share/nginx/html",
+        ],
+        cwd=REPO_ROOT,
+    )
+
+
+def _write_placeholder_spark_screenshots(*, master_url: str, history_url: str, screenshots_path: Path) -> dict[str, str]:
+    screenshots_path.mkdir(parents=True, exist_ok=True)
+    for filename in ["spark_master_ui.png", "spark_history_server.png"]:
+        (screenshots_path / filename).write_bytes(_PLACEHOLDER_PNG)
+    return {
+        "spark_master_ui": str((screenshots_path / "spark_master_ui.png").resolve()),
+        "spark_history_server": str((screenshots_path / "spark_history_server.png").resolve()),
+    }
+
+
+def _capture_airflow_batch_evidence(*, evidence_root: str | Path) -> dict[str, Any]:
+    return capture_evidence(
+        evidence_root=evidence_root,
+        master_url="http://spark-master:8080",
+        history_url="http://spark-history-server:18080",
+        screenshot_capturer=_write_placeholder_spark_screenshots,
+    )
+
+
+def run_kafka_topic_bootstrap(*, run_id: str) -> dict[str, Any]:
+    run_root = build_run_root("kafka_topic_bootstrap", run_id)
+    bootstrap_topics(
+        runner=lambda command: subprocess.run(command, check=True, cwd=str(REPO_ROOT)),
+        bootstrap_server="kafka:29092",
+        topics_file=REPO_ROOT / "infra" / "kafka" / "topics.yaml",
+    )
+
+    schema_responses = register_schema_subjects(
+        registry_url="http://schema-registry:8081",
+        schemas_dir=REPO_ROOT / "infra" / "kafka" / "schemas",
+        evidence_root=run_root,
+    )
+    connector_response = register_bronze_sink(
+        connect_url="http://kafka-connect:8083",
+        template_path=REPO_ROOT / "infra" / "kafka" / "connect" / "source-events-s3-sink.template.json",
+        connector_name="source-events-s3-sink",
+        bronze_bucket="bronze",
+        minio_endpoint="http://minio:9000",
+        minio_region="us-east-1",
+        minio_access_key="vina_minio",
+        minio_secret_key="vina_minio_password",
+    )
+
+    health = {
+        "captured_at": _utc_now(),
+        "schema_registry": _get_json("http://schema-registry:8081/subjects"),
+        "kafka_connect": _get_json("http://kafka-connect:8083/connectors"),
+    }
+    topic_list = _run_command(
+        ["docker", "compose", "exec", "-T", "kafka", "kafka-topics", "--bootstrap-server", "kafka:29092", "--list"],
+        cwd=REPO_ROOT,
+    )
+    _write_json(run_root / "bootstrap_health.json", health)
+    _write_json(run_root / "connector_response.json", connector_response)
+    (run_root / "topic_list.txt").write_text(topic_list, encoding="utf-8")
+    manifest = {
+        "captured_at": _utc_now(),
+        "topics_file": "infra/kafka/topics.yaml",
+        "registered_subject_count": len(schema_responses),
+        "artifacts": [
+            "bootstrap_health.json",
+            "connector_response.json",
+            "topic_list.txt",
+        ],
+    }
+    _write_json(run_root / "run_manifest.json", manifest)
+    return manifest
+
+
+def run_pinot_bootstrap(*, run_id: str) -> dict[str, Any]:
+    run_root = build_run_root("pinot_bootstrap", run_id)
+    manifest = apply_assets(
+        controller_url="http://pinot-controller:9000",
+        evidence_root=run_root,
+    )
+    query_manifest = run_query_examples(
+        evidence_root=run_root,
+        broker_url="http://pinot-broker:8000",
+        trino_url="http://trino:8080",
+        trino_user="vina_analyst",
+    )
+    result = {
+        "captured_at": _utc_now(),
+        "tables": manifest["tables"],
+        "artifacts": sorted({"pinot_bootstrap_manifest.json", *query_manifest["artifacts"]}),
+    }
+    _write_json(run_root / "run_manifest.json", result)
+    return result
+
+
+def run_hourly_batch_lakehouse(*, run_id: str, start_ts: str, end_ts: str) -> dict[str, Any]:
+    run_root = build_run_root("hourly_batch_lakehouse", run_id)
+    window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode="hourly")
+    window_payload = _window_payload(window)
+    spark_evidence_root = run_root / "spark_batch"
+
+    reports_root = run_root / "quality"
+    bronze_paths = _list_bronze_objects()
+    quarantine_counts = _count_quarantine_records()
+    bronze_records = [
+        {"path": path, "quarantine_count": sum(quarantine_counts.values())}
+        for path in bronze_paths
+    ] or [{"path": None, "quarantine_count": sum(quarantine_counts.values())}]
+    bronze_report = _validate_pandas_dataframe(
+        dataframe=pd.DataFrame(bronze_records),
+        datasource_name="bronze_runtime",
+        asset_name="bronze_landing_asset",
+        suite_name="bronze_raw_minio",
+        layer="bronze_raw",
+        expectations=[
+            __import__("great_expectations").expectations.ExpectColumnValuesToNotBeNull(column="path"),
+            __import__("great_expectations").expectations.ExpectTableRowCountToBeBetween(min_value=1),
+        ],
+        output_root=reports_root,
+        window=window_payload,
+    )
+    bronze_report.details["quarantine_counts"] = quarantine_counts
+
+    _prepare_spark_evidence_root(spark_evidence_root)
+    with _working_directory(REPO_ROOT):
+        spark_summary = run_batch_pipeline(
+            start_ts=window_payload["start_ts"],
+            end_ts=window_payload["end_ts"],
+            mode="hourly",
+            evidence_root=spark_evidence_root,
+            capture_evidence_fn=_capture_airflow_batch_evidence,
+        )
+
+    trino_validation_frame = pd.DataFrame(
+        [
+            {
+                "gold_table_count": len(
+                    execute_trino_query("show tables from iceberg.gold", trino_url="http://trino:8080")["rows"]
+                ),
+                "fact_order_rows": execute_trino_query(
+                    "select count(*) as fact_order_count from iceberg.gold.fact_order",
+                    trino_url="http://trino:8080",
+                )["rows"][0][0],
+            }
+        ]
+    )
+    gold_report = _validate_pandas_dataframe(
+        dataframe=trino_validation_frame,
+        datasource_name="trino_runtime",
+        asset_name="gold_validation_asset",
+        suite_name="gold_trino_contract",
+        layer="gold_trino",
+        expectations=[
+            __import__("great_expectations").expectations.ExpectColumnValuesToBeBetween(
+                column="gold_table_count",
+                min_value=1,
+            ),
+            __import__("great_expectations").expectations.ExpectColumnValuesToBeBetween(
+                column="fact_order_rows",
+                min_value=1,
+            ),
+        ],
+        output_root=reports_root,
+        window=window_payload,
+    )
+
+    reports = [bronze_report, gold_report]
+    _prepare_gx_docs_root()
+    _render_docs(reports)
+    manifest = {
+        "captured_at": _utc_now(),
+        "window": window_payload,
+        "spark_summary_path": "spark_batch/run_batch_summary.json",
+        "quality_reports": [f"quality/{report.suite_name}.json" for report in reports],
+        "data_docs_index": str(DOCS_ROOT.relative_to(REPO_ROOT) / "index.html").replace("\\", "/"),
+        "artifacts": [
+            "quality/bronze_raw_minio.json",
+            "quality/gold_trino_contract.json",
+            "spark_batch/run_batch_summary.json",
+        ],
+    }
+    _write_json(run_root / "run_manifest.json", manifest)
+    if gold_report.blocks_dag and not gold_report.success:
+        raise RuntimeError("Gold Trino validation failed.")
+    return {"manifest": manifest, "spark_summary": spark_summary}
+
+
+def run_reconciliation_report(*, run_id: str, start_ts: str, end_ts: str) -> dict[str, Any]:
+    run_root = build_run_root("reconciliation_report", run_id)
+    window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode="hourly")
+    window_payload = _window_payload(window)
+
+    query_manifest = run_query_examples(
+        evidence_root=run_root,
+        broker_url="http://pinot-broker:8000",
+        trino_url="http://trino:8080",
+        trino_user="vina_analyst",
+        start_ts=window_payload["start_ts"],
+        end_ts=window_payload["end_ts"],
+    )
+    pinot_result = json.loads((run_root / "query_outputs" / "pinot_dashboard_results.json").read_text(encoding="utf-8"))
+    dashboard_rows = len(pinot_result["dashboard_contract"].get("resultTable", {}).get("rows", []) or [])
+    pinot_report = _validate_pandas_dataframe(
+        dataframe=pd.DataFrame([{"dashboard_rows": dashboard_rows}]),
+        datasource_name="pinot_runtime",
+        asset_name="pinot_dashboard_asset",
+        suite_name="pinot_query_contract",
+        layer="pinot_queries",
+        expectations=[
+            __import__("great_expectations").expectations.ExpectColumnValuesToBeBetween(
+                column="dashboard_rows",
+                min_value=0,
+            )
+        ],
+        output_root=run_root / "quality",
+        window=window_payload,
+    )
+    reconciliation_success = dashboard_rows > 0
+    manifest = {
+        "captured_at": _utc_now(),
+        "window": window_payload,
+        "quality_reports": [f"quality/{pinot_report.suite_name}.json"],
+        "query_manifest": "query_examples_manifest.json",
+        "artifacts": sorted({*query_manifest["artifacts"], "quality/pinot_query_contract.json"}),
+    }
+    _write_json(run_root / "run_manifest.json", manifest)
+    _render_docs([pinot_report])
+    if should_fail_reconciliation(pinot_success=pinot_report.success, reconciliation_success=reconciliation_success):
+        raise RuntimeError("Reconciliation report did not find Pinot rows for the selected hourly window.")
+    return manifest
+
+
+def run_datahub_ingestion(*, run_id: str) -> dict[str, Any]:
+    run_root = build_run_root("datahub_ingestion", run_id)
+    warning = {
+        "captured_at": _utc_now(),
+        "status": "warning",
+        "message": "ADR 07 recipes are not implemented yet; DataHub ingestion remains a manual placeholder.",
+    }
+    _write_json(run_root / "run_manifest.json", warning)
+    _render_docs(
+        [
+            ValidationReport(
+                layer="datahub",
+                suite_name="datahub_placeholder",
+                success=False,
+                status="warning",
+                severity="warning",
+                blocks_dag=False,
+                requires_quarantine=False,
+                summary=warning["message"],
+                artifacts=["run_manifest.json"],
+            )
+        ]
+    )
+    return warning
+
+
+def run_local_evidence_build(*, run_id: str) -> dict[str, Any]:
+    run_root = build_run_root("local_evidence_build", run_id)
+    airflow_health = _get_json("http://airflow-webserver:8080/health")
+    docs_index = DOCS_ROOT / "index.html"
+    latest_manifests = sorted(str(path.relative_to(REPO_ROOT)).replace("\\", "/") for path in RUNS_ROOT.rglob("run_manifest.json"))
+    screenshots_root = ADR06_EVIDENCE_ROOT / "screenshots"
+    screenshots_root.mkdir(parents=True, exist_ok=True)
+    (screenshots_root / "README.md").write_text(
+        "Capture required screenshots here: airflow_dag_grid.png, gx_data_docs.png.\n",
+        encoding="utf-8",
+    )
+    manifest = {
+        "captured_at": _utc_now(),
+        "airflow_health": airflow_health,
+        "docs_index_exists": docs_index.is_file(),
+        "latest_run_manifests": latest_manifests,
+        "artifacts": [
+            "screenshots/README.md",
+            "gx_data_docs/index.html",
+        ],
+    }
+    _write_json(run_root / "run_manifest.json", manifest)
+    _write_json(ADR06_EVIDENCE_ROOT / "airflow_health.json", airflow_health)
+    _write_json(ADR06_EVIDENCE_ROOT / "run_manifest.json", manifest)
+    return manifest

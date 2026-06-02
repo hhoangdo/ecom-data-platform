@@ -47,3 +47,4 @@ def test_serving_profile_declares_persistent_state_volume() -> None:
     compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
 
     assert "pinot_zookeeper_data" in compose["volumes"]
+    assert "pinot_zookeeper_datalog" in compose["volumes"]

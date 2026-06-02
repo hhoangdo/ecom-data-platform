@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GX Data Docs</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; background: #f6f4ef; color: #1f2933; }
+      h1 { margin-bottom: 0.5rem; }
+      table { width: 100%; border-collapse: collapse; background: white; }
+      th, td { border: 1px solid #d7dfe7; padding: 0.65rem; text-align: left; vertical-align: top; }
+      th { background: #e8eef5; }
+      .note { color: #52606d; margin-bottom: 1.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>GX Data Docs</h1>
+    <p class="note">Static validation summary for local ADR 06 orchestration runs.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Suite</th>
+          <th>Status</th>
+          <th>Severity</th>
+          <th>Blocks DAG</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>bronze_raw</td><td>bronze_raw_minio</td><td>warning</td><td>warning</td><td>no</td><td>1/2 expectations passed.</td></tr>
+<tr><td>gold_trino</td><td>gold_trino_contract</td><td>success</td><td>error</td><td>no</td><td>2/2 expectations passed.</td></tr>
+      </tbody>
+    </table>
+  </body>
+</html>

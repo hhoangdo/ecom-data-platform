@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import sys
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
@@ -363,3 +364,42 @@ def test_run_batch_script_parses_args_and_prints_summary(monkeypatch, capsys, tm
     assert capsys.readouterr().out.strip() == (
         "Spark batch completed for 2026-06-01T00:00:00Z -> 2026-06-01T01:00:00Z (hourly)."
     )
+
+
+def test_run_batch_pipeline_accepts_custom_capture_evidence_function(monkeypatch, tmp_path: Path) -> None:
+    from vina_bim_shop.lakehouse.spark.runner import run_batch_pipeline
+
+    commands = []
+    captured = {}
+
+    def fake_run_command(command):
+        commands.append(command)
+        return SimpleNamespace(stdout="ok")
+
+    def fake_run_parity_checks(*, evidence_root):
+        assert Path(evidence_root) == tmp_path
+        return {"success": True}
+
+    def fake_run_gold_smoke_queries(*, evidence_root):
+        assert Path(evidence_root) == tmp_path
+        return {"fact_order_count": {"rows": [[1]]}}
+
+    def fake_capture_evidence_fn(*, evidence_root):
+        captured["evidence_root"] = Path(evidence_root)
+        return {"artifacts": ["screenshots/README.md"]}
+
+    monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.run_parity_checks", fake_run_parity_checks)
+    monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.run_gold_smoke_queries", fake_run_gold_smoke_queries)
+
+    summary = run_batch_pipeline(
+        start_ts="2026-06-01T00:00:00Z",
+        end_ts="2026-06-01T01:00:00Z",
+        mode="hourly",
+        evidence_root=tmp_path,
+        run_command=fake_run_command,
+        capture_evidence_fn=fake_capture_evidence_fn,
+    )
+
+    assert len(commands) == 2
+    assert captured["evidence_root"] == tmp_path
+    assert summary["evidence_artifact_count"] == 1

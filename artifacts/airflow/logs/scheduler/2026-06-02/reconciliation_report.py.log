@@ -1,0 +1,1226 @@
+[2026-06-02T06:03:58.286+0000] {processor.py:186} INFO - Started process (PID=235) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:03:58.288+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:03:58.293+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:58.292+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:03:59.688+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:03:59.883+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.882+0000] {override.py:1912} INFO - Created Permission View: can delete on DAG:reconciliation_report
+[2026-06-02T06:03:59.905+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.904+0000] {override.py:1912} INFO - Created Permission View: can read on DAG:reconciliation_report
+[2026-06-02T06:03:59.922+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.922+0000] {override.py:1912} INFO - Created Permission View: can edit on DAG:reconciliation_report
+[2026-06-02T06:03:59.940+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.939+0000] {override.py:1912} INFO - Created Permission View: can delete on DAG Run:reconciliation_report
+[2026-06-02T06:03:59.951+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.951+0000] {override.py:1912} INFO - Created Permission View: menu access on DAG Run:reconciliation_report
+[2026-06-02T06:03:59.964+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.964+0000] {override.py:1912} INFO - Created Permission View: can read on DAG Run:reconciliation_report
+[2026-06-02T06:03:59.978+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.978+0000] {override.py:1912} INFO - Created Permission View: can create on DAG Run:reconciliation_report
+[2026-06-02T06:03:59.989+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:03:59.984+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:04:00.027+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:04:00.022+0000] {dag.py:3262} INFO - Creating ORM DAG for reconciliation_report
+[2026-06-02T06:04:00.067+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:04:00.067+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:04:00.128+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.862 seconds
+[2026-06-02T06:04:30.647+0000] {processor.py:186} INFO - Started process (PID=370) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:04:30.649+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:04:30.653+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:04:30.653+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:04:31.570+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:04:31.602+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:04:31.601+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:04:31.634+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:04:31.634+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:04:31.661+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.023 seconds
+[2026-06-02T06:05:02.852+0000] {processor.py:186} INFO - Started process (PID=506) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:05:02.853+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:05:02.861+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:05:02.860+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:05:04.093+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:05:04.129+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:05:04.129+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:05:04.157+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:05:04.157+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:05:04.184+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.347 seconds
+[2026-06-02T06:05:34.384+0000] {processor.py:186} INFO - Started process (PID=640) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:05:34.386+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:05:34.390+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:05:34.390+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:05:35.447+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:05:35.480+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:05:35.480+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:05:35.509+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:05:35.508+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:05:35.536+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.164 seconds
+[2026-06-02T06:06:06.291+0000] {processor.py:186} INFO - Started process (PID=767) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:06:06.293+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:06:06.298+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:06:06.297+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:06:07.379+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:06:07.429+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:06:07.428+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:06:07.466+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:06:07.466+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:06:07.499+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.223 seconds
+[2026-06-02T06:06:37.732+0000] {processor.py:186} INFO - Started process (PID=902) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:06:37.734+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:06:37.738+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:06:37.738+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:06:41.577+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:06:41.610+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:06:41.609+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:06:41.638+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:06:41.638+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:06:41.669+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 3.951 seconds
+[2026-06-02T06:07:11.938+0000] {processor.py:186} INFO - Started process (PID=1037) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:07:11.941+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:07:11.947+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:07:11.946+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:07:13.125+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:07:13.163+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:07:13.162+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:07:13.203+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:07:13.202+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:07:13.235+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.309 seconds
+[2026-06-02T06:07:43.623+0000] {processor.py:186} INFO - Started process (PID=1172) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:07:43.625+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:07:43.629+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:07:43.628+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:07:44.490+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:07:44.523+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:07:44.523+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:07:44.552+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:07:44.552+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:07:44.582+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.970 seconds
+[2026-06-02T06:08:15.288+0000] {processor.py:186} INFO - Started process (PID=1307) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:08:15.290+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:08:15.294+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:08:15.294+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:08:16.219+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:08:16.251+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:08:16.251+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:08:16.278+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:08:16.278+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:08:16.303+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.028 seconds
+[2026-06-02T06:08:46.978+0000] {processor.py:186} INFO - Started process (PID=1442) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:08:46.980+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:08:46.984+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:08:46.983+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:08:48.567+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:08:48.606+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:08:48.605+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:08:48.640+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:08:48.640+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:08:48.672+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.708 seconds
+[2026-06-02T06:09:19.099+0000] {processor.py:186} INFO - Started process (PID=1577) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:09:19.101+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:09:19.108+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:09:19.107+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:09:20.738+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:09:20.776+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:09:20.775+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:09:20.811+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:09:20.811+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:09:20.839+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.755 seconds
+[2026-06-02T06:09:50.920+0000] {processor.py:186} INFO - Started process (PID=1712) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:09:50.921+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:09:50.926+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:09:50.926+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:09:51.898+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:09:51.933+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:09:51.932+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:09:51.964+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:09:51.964+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:09:51.997+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.090 seconds
+[2026-06-02T06:10:22.549+0000] {processor.py:186} INFO - Started process (PID=1847) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:10:22.555+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:10:22.562+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:10:22.560+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:10:23.617+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:10:23.650+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:10:23.650+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:10:23.680+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:10:23.679+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:10:23.709+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.180 seconds
+[2026-06-02T06:10:54.287+0000] {processor.py:186} INFO - Started process (PID=1982) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:10:54.289+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:10:54.294+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:10:54.293+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:10:55.254+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:10:55.288+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:10:55.287+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:10:55.320+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:10:55.320+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:10:55.433+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.160 seconds
+[2026-06-02T06:11:25.903+0000] {processor.py:186} INFO - Started process (PID=2116) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:11:25.905+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:11:25.909+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:11:25.908+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:11:26.982+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:11:27.016+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:11:27.016+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:11:27.045+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:11:27.044+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:11:27.074+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.181 seconds
+[2026-06-02T06:11:58.434+0000] {processor.py:186} INFO - Started process (PID=2243) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:11:58.439+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:11:58.460+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:11:58.458+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:12:00.993+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:12:01.068+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:12:01.065+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:12:01.137+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:12:01.137+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:12:01.188+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 2.807 seconds
+[2026-06-02T06:12:32.062+0000] {processor.py:186} INFO - Started process (PID=2378) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:12:32.076+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:12:32.093+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:12:32.092+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:12:34.717+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:12:34.772+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:12:34.771+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:12:34.826+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:12:34.825+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:12:34.876+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 2.834 seconds
+[2026-06-02T06:13:05.274+0000] {processor.py:186} INFO - Started process (PID=2513) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:13:05.276+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:13:05.280+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:13:05.280+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:13:06.290+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:13:06.325+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:13:06.324+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:13:06.357+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:13:06.357+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:13:06.385+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.120 seconds
+[2026-06-02T06:13:37.129+0000] {processor.py:186} INFO - Started process (PID=2648) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:13:37.132+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:13:37.139+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:13:37.138+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:13:38.495+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:13:38.528+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:13:38.527+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:13:38.565+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:13:38.564+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:13:38.594+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.480 seconds
+[2026-06-02T06:14:08.933+0000] {processor.py:186} INFO - Started process (PID=2783) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:14:08.935+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:14:08.940+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:14:08.939+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:14:10.204+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:14:10.249+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:14:10.248+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:14:10.293+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:14:10.293+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:14:10.328+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.413 seconds
+[2026-06-02T06:14:43.508+0000] {processor.py:186} INFO - Started process (PID=2922) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:14:43.510+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:14:43.516+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:14:43.514+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:14:44.920+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:14:44.960+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:14:44.960+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:14:44.990+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:14:44.990+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:14:45.036+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.549 seconds
+[2026-06-02T06:15:16.223+0000] {processor.py:186} INFO - Started process (PID=3057) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:15:16.230+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:15:16.236+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:15:16.236+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:15:17.504+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:15:17.556+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:15:17.555+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:15:17.594+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:15:17.594+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:15:17.630+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.424 seconds
+[2026-06-02T06:15:47.826+0000] {processor.py:186} INFO - Started process (PID=3192) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:15:47.828+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:15:47.834+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:15:47.833+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:15:49.144+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:15:49.189+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:15:49.188+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:15:49.228+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:15:49.228+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:15:49.262+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.447 seconds
+[2026-06-02T06:16:19.475+0000] {processor.py:186} INFO - Started process (PID=3326) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:16:19.477+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:16:19.482+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:16:19.482+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:16:20.513+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:16:20.546+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:16:20.545+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:16:20.577+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:16:20.577+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:16:20.606+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.142 seconds
+[2026-06-02T06:16:51.209+0000] {processor.py:186} INFO - Started process (PID=3458) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:16:51.210+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:16:51.215+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:16:51.214+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:16:52.168+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:16:52.205+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:16:52.204+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:16:52.234+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:16:52.234+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:16:52.266+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.070 seconds
+[2026-06-02T06:17:22.562+0000] {processor.py:186} INFO - Started process (PID=3592) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:17:22.563+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:17:22.568+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:17:22.567+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:17:23.726+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:17:23.764+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:17:23.764+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:17:23.802+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:17:23.802+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:17:23.837+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.286 seconds
+[2026-06-02T06:17:53.974+0000] {processor.py:186} INFO - Started process (PID=3719) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:17:53.975+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:17:53.980+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:17:53.979+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:17:54.951+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:17:54.987+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:17:54.987+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:17:55.021+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:17:55.021+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:17:55.052+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.089 seconds
+[2026-06-02T06:18:25.787+0000] {processor.py:186} INFO - Started process (PID=3854) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:18:25.790+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:18:25.794+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:18:25.794+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:18:26.745+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:18:26.777+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:18:26.777+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:18:26.807+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:18:26.806+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:18:26.836+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.064 seconds
+[2026-06-02T06:18:28.866+0000] {processor.py:186} INFO - Started process (PID=3896) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:18:28.868+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:18:28.872+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:18:28.871+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:18:29.752+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:18:29.986+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:18:29.986+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:18:30.017+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:18:30.017+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:18:30.047+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.192 seconds
+[2026-06-02T06:19:00.201+0000] {processor.py:186} INFO - Started process (PID=4031) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:19:00.202+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:19:00.207+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:19:00.206+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:19:01.210+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:19:01.241+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:19:01.241+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:19:01.269+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:19:01.269+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:19:01.299+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.110 seconds
+[2026-06-02T06:20:01.438+0000] {processor.py:186} INFO - Started process (PID=194) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:20:01.440+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:20:01.444+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:20:01.444+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:20:02.565+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:20:02.745+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:20:02.744+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:20:02.778+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:20:02.777+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:20:02.830+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.402 seconds
+[2026-06-02T06:20:32.968+0000] {processor.py:186} INFO - Started process (PID=329) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:20:32.970+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:20:32.974+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:20:32.973+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:20:33.894+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:20:33.929+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:20:33.929+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:20:33.957+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:20:33.957+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:20:33.995+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.036 seconds
+[2026-06-02T06:21:04.908+0000] {processor.py:186} INFO - Started process (PID=464) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:21:04.910+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:21:04.915+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:21:04.914+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:21:05.934+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:21:05.971+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:21:05.971+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:21:06.000+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:21:05.999+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:21:06.026+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.130 seconds
+[2026-06-02T06:21:36.941+0000] {processor.py:186} INFO - Started process (PID=599) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:21:36.942+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:21:36.946+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:21:36.946+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:21:37.793+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:21:37.829+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:21:37.828+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:21:37.859+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:21:37.859+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:21:37.895+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.964 seconds
+[2026-06-02T06:22:08.738+0000] {processor.py:186} INFO - Started process (PID=734) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:22:08.746+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:22:08.754+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:22:08.753+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:22:10.103+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:22:10.142+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:22:10.141+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:22:10.173+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:22:10.173+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:22:10.207+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.499 seconds
+[2026-06-02T06:22:40.451+0000] {processor.py:186} INFO - Started process (PID=872) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:22:40.453+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:22:40.457+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:22:40.457+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:22:41.934+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:22:42.001+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:22:42.000+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:22:42.036+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:22:42.035+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:22:42.085+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.648 seconds
+[2026-06-02T06:23:12.508+0000] {processor.py:186} INFO - Started process (PID=1004) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:23:12.510+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:23:12.522+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:23:12.522+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:23:14.978+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:23:15.129+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:23:15.128+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:23:15.172+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:23:15.171+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:23:15.211+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 2.717 seconds
+[2026-06-02T06:23:45.970+0000] {processor.py:186} INFO - Started process (PID=1139) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:23:45.973+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:23:45.981+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:23:45.979+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:23:47.216+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:23:47.266+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:23:47.265+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:23:47.315+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:23:47.315+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:23:47.351+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.394 seconds
+[2026-06-02T06:24:18.089+0000] {processor.py:186} INFO - Started process (PID=1274) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:24:18.091+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:24:18.095+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:24:18.095+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:24:19.059+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:24:19.093+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:24:19.093+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:24:19.125+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:24:19.124+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:24:19.152+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.075 seconds
+[2026-06-02T06:24:49.851+0000] {processor.py:186} INFO - Started process (PID=1408) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:24:49.853+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:24:49.857+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:24:49.856+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:24:50.874+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:24:50.912+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:24:50.911+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:24:50.969+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:24:50.968+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:24:51.022+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.184 seconds
+[2026-06-02T06:25:21.283+0000] {processor.py:186} INFO - Started process (PID=1535) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:25:21.285+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:25:21.288+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:25:21.288+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:25:22.655+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:25:22.699+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:25:22.699+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:25:22.741+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:25:22.741+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:25:22.776+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.507 seconds
+[2026-06-02T06:25:53.524+0000] {processor.py:186} INFO - Started process (PID=1670) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:25:53.527+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:25:53.533+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:25:53.533+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:25:54.725+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:25:54.782+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:25:54.782+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:25:54.826+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:25:54.826+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:25:54.860+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.348 seconds
+[2026-06-02T06:26:25.620+0000] {processor.py:186} INFO - Started process (PID=1805) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:26:25.622+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:26:25.627+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:26:25.627+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:26:26.566+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:26:26.608+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:26:26.608+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:26:26.634+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:26:26.634+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:26:26.659+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.051 seconds
+[2026-06-02T06:26:57.148+0000] {processor.py:186} INFO - Started process (PID=1940) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:26:57.149+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:26:57.153+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:26:57.153+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:26:58.215+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:26:58.247+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:26:58.247+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:26:58.277+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:26:58.277+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:26:58.304+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.167 seconds
+[2026-06-02T06:27:28.775+0000] {processor.py:186} INFO - Started process (PID=2075) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:27:28.776+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:27:28.780+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:27:28.780+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:27:29.740+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:27:29.802+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:27:29.801+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:27:29.840+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:27:29.839+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:27:29.871+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.107 seconds
+[2026-06-02T06:28:00.415+0000] {processor.py:186} INFO - Started process (PID=2210) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:28:00.417+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:28:00.423+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:28:00.422+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:28:01.631+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:28:01.668+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:28:01.667+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:28:01.700+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:28:01.700+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:28:01.732+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.328 seconds
+[2026-06-02T06:28:32.341+0000] {processor.py:186} INFO - Started process (PID=2345) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:28:32.343+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:28:32.347+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:28:32.346+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:28:33.279+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:28:33.314+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:28:33.314+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:28:33.350+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:28:33.350+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:28:33.386+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.058 seconds
+[2026-06-02T06:29:04.238+0000] {processor.py:186} INFO - Started process (PID=2480) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:29:04.239+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:29:04.243+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:29:04.243+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:29:05.128+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:29:05.163+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:29:05.162+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:29:05.194+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:29:05.194+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:29:05.222+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.994 seconds
+[2026-06-02T06:29:36.247+0000] {processor.py:186} INFO - Started process (PID=2615) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:29:36.249+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:29:36.255+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:29:36.254+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:29:37.525+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:29:37.569+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:29:37.569+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:29:37.607+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:29:37.607+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:29:37.638+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.418 seconds
+[2026-06-02T06:30:07.786+0000] {processor.py:186} INFO - Started process (PID=2749) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:30:07.788+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:30:07.795+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:30:07.794+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:30:09.189+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:30:09.239+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:30:09.239+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:30:09.274+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:30:09.273+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:30:09.308+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.539 seconds
+[2026-06-02T06:30:39.963+0000] {processor.py:186} INFO - Started process (PID=2876) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:30:39.965+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:30:39.970+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:30:39.969+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:30:41.453+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:30:41.502+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:30:41.502+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:30:41.547+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:30:41.547+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:30:41.586+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.635 seconds
+[2026-06-02T06:31:12.225+0000] {processor.py:186} INFO - Started process (PID=3011) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:31:12.226+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:31:12.232+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:31:12.232+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:31:13.276+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:31:13.311+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:31:13.310+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:31:13.346+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:31:13.346+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:31:13.372+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.160 seconds
+[2026-06-02T06:31:43.983+0000] {processor.py:186} INFO - Started process (PID=3146) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:31:43.985+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:31:43.989+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:31:43.988+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:31:44.849+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:31:44.881+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:31:44.880+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:31:44.910+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:31:44.909+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:31:44.936+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.966 seconds
+[2026-06-02T06:32:15.120+0000] {processor.py:186} INFO - Started process (PID=3281) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:32:15.122+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:32:15.126+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:32:15.125+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:32:16.193+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:32:16.237+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:32:16.237+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:32:16.269+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:32:16.269+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:32:16.313+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.203 seconds
+[2026-06-02T06:32:46.823+0000] {processor.py:186} INFO - Started process (PID=3416) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:32:46.825+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:32:46.830+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:32:46.829+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:32:47.981+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:32:48.021+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:32:48.020+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:32:48.053+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:32:48.053+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:32:48.083+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.273 seconds
+[2026-06-02T06:33:18.905+0000] {processor.py:186} INFO - Started process (PID=3551) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:33:18.908+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:33:18.914+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:33:18.913+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:33:20.222+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:33:20.257+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:33:20.256+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:33:20.288+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:33:20.288+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:33:20.317+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.434 seconds
+[2026-06-02T06:33:50.965+0000] {processor.py:186} INFO - Started process (PID=3686) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:33:50.967+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:33:50.971+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:33:50.971+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:33:51.924+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:33:51.959+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:33:51.959+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:33:51.990+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:33:51.990+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:33:52.024+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.072 seconds
+[2026-06-02T06:34:22.644+0000] {processor.py:186} INFO - Started process (PID=3821) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:34:22.645+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:34:22.649+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:34:22.649+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:34:23.576+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:34:23.609+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:34:23.608+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:34:23.638+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:34:23.637+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:34:23.674+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.041 seconds
+[2026-06-02T06:34:54.227+0000] {processor.py:186} INFO - Started process (PID=3956) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:34:54.229+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:34:54.234+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:34:54.233+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:34:55.194+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:34:55.227+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:34:55.227+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:34:55.258+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:34:55.257+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:34:55.285+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.075 seconds
+[2026-06-02T06:35:25.887+0000] {processor.py:186} INFO - Started process (PID=4091) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:35:25.889+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:35:25.895+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:35:25.895+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:35:26.900+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:35:26.948+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:35:26.947+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:35:27.002+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:35:27.001+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:35:27.057+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.181 seconds
+[2026-06-02T06:35:57.628+0000] {processor.py:186} INFO - Started process (PID=4225) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:35:57.631+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:35:57.640+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:35:57.639+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:35:58.690+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:35:58.723+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:35:58.722+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:35:58.751+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:35:58.751+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:35:58.778+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.166 seconds
+[2026-06-02T06:36:29.406+0000] {processor.py:186} INFO - Started process (PID=4352) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:36:29.411+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:36:29.417+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:36:29.416+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:36:30.842+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:36:30.891+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:36:30.890+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:36:30.930+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:36:30.929+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:36:30.960+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.568 seconds
+[2026-06-02T06:37:01.137+0000] {processor.py:186} INFO - Started process (PID=4488) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:37:01.139+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:37:01.143+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:37:01.143+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:37:02.386+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:37:02.428+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:37:02.427+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:37:02.466+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:37:02.465+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:37:02.499+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.373 seconds
+[2026-06-02T06:37:33.233+0000] {processor.py:186} INFO - Started process (PID=4623) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:37:33.234+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:37:33.239+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:37:33.239+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:37:34.603+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:37:34.680+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:37:34.680+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:37:34.728+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:37:34.727+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:37:34.757+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.537 seconds
+[2026-06-02T06:38:05.770+0000] {processor.py:186} INFO - Started process (PID=4758) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:38:05.771+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:38:05.777+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:38:05.776+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:38:06.686+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:38:06.721+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:38:06.721+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:38:06.748+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:38:06.748+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:38:06.777+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.018 seconds
+[2026-06-02T06:38:37.312+0000] {processor.py:186} INFO - Started process (PID=4893) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:38:37.314+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:38:37.319+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:38:37.318+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:38:38.178+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:38:38.211+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:38:38.210+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:38:38.238+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:38:38.238+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:38:38.263+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.961 seconds
+[2026-06-02T06:39:08.935+0000] {processor.py:186} INFO - Started process (PID=5028) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:39:08.937+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:39:08.942+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:39:08.941+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:39:09.882+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:39:09.913+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:39:09.913+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:39:09.940+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:39:09.939+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:39:09.965+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.042 seconds
+[2026-06-02T06:39:40.427+0000] {processor.py:186} INFO - Started process (PID=5164) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:39:40.429+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:39:40.433+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:39:40.432+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:39:41.303+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:39:41.342+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:39:41.342+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:39:41.372+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:39:41.372+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:39:41.402+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.986 seconds
+[2026-06-02T06:40:12.103+0000] {processor.py:186} INFO - Started process (PID=5299) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:40:12.105+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:40:12.110+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:40:12.109+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:40:13.046+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:40:13.096+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:40:13.095+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:40:13.138+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:40:13.137+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:40:13.171+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.079 seconds
+[2026-06-02T06:40:43.927+0000] {processor.py:186} INFO - Started process (PID=5433) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:40:43.929+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:40:43.938+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:40:43.938+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:40:45.444+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:40:45.503+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:40:45.503+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:40:45.535+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:40:45.535+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:40:45.564+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.653 seconds
+[2026-06-02T06:41:16.447+0000] {processor.py:186} INFO - Started process (PID=5568) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:41:16.454+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:41:16.462+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:41:16.461+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:41:17.804+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:41:17.865+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:41:17.864+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:41:17.898+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:41:17.897+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:41:17.931+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.501 seconds
+[2026-06-02T06:41:48.155+0000] {processor.py:186} INFO - Started process (PID=5695) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:41:48.157+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:41:48.161+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:41:48.160+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:41:49.480+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:41:49.576+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:41:49.575+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:41:49.623+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:41:49.623+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:41:49.656+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.515 seconds
+[2026-06-02T06:42:20.609+0000] {processor.py:186} INFO - Started process (PID=5830) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:42:20.610+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:42:20.617+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:42:20.616+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:42:21.549+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:42:21.580+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:42:21.579+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:42:21.607+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:42:21.607+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:42:21.633+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.039 seconds
+[2026-06-02T06:42:52.076+0000] {processor.py:186} INFO - Started process (PID=5965) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:42:52.078+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:42:52.082+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:42:52.082+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:42:52.915+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:42:52.949+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:42:52.948+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:42:52.978+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:42:52.978+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:42:53.005+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.939 seconds
+[2026-06-02T06:43:23.238+0000] {processor.py:186} INFO - Started process (PID=6100) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:43:23.240+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:43:23.244+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:43:23.243+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:43:24.186+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:43:24.223+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:43:24.222+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:43:24.252+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:43:24.252+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:43:24.284+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.057 seconds
+[2026-06-02T06:43:54.915+0000] {processor.py:186} INFO - Started process (PID=6236) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:43:54.917+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:43:54.921+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:43:54.920+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:43:55.913+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:43:55.958+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:43:55.958+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:43:55.989+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:43:55.989+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:43:56.019+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.113 seconds
+[2026-06-02T06:44:26.622+0000] {processor.py:186} INFO - Started process (PID=6371) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:44:26.624+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:44:26.627+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:44:26.627+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:44:27.565+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:44:27.602+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:44:27.601+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:44:27.634+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:44:27.634+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:44:27.665+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.052 seconds
+[2026-06-02T06:44:58.484+0000] {processor.py:186} INFO - Started process (PID=6506) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:44:58.486+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:44:58.491+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:44:58.490+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:44:59.378+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:44:59.417+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:44:59.416+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:44:59.448+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:44:59.447+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:44:59.482+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.008 seconds
+[2026-06-02T06:45:30.225+0000] {processor.py:186} INFO - Started process (PID=6641) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:45:30.227+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:45:30.232+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:45:30.231+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:45:31.398+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:45:31.444+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:45:31.443+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:45:31.483+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:45:31.483+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:45:31.515+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.299 seconds
+[2026-06-02T06:46:02.424+0000] {processor.py:186} INFO - Started process (PID=6775) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:46:02.426+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:46:02.431+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:46:02.430+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:46:03.333+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:46:03.366+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:46:03.366+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:46:03.398+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:46:03.398+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:46:03.426+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.013 seconds
+[2026-06-02T06:46:34.050+0000] {processor.py:186} INFO - Started process (PID=6910) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:46:34.052+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:46:34.057+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:46:34.056+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:46:35.108+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:46:35.150+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:46:35.150+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:46:35.192+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:46:35.191+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:46:35.225+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.188 seconds
+[2026-06-02T06:47:05.805+0000] {processor.py:186} INFO - Started process (PID=7037) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:47:05.808+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:47:05.812+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:47:05.811+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:47:06.724+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:47:06.767+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:47:06.766+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:47:06.794+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:47:06.794+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:47:06.819+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.025 seconds
+[2026-06-02T06:47:37.441+0000] {processor.py:186} INFO - Started process (PID=7172) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:47:37.443+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:47:37.449+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:47:37.448+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:47:38.325+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:47:38.359+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:47:38.358+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:47:38.385+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:47:38.385+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:47:38.411+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.985 seconds
+[2026-06-02T06:48:08.619+0000] {processor.py:186} INFO - Started process (PID=7307) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:48:08.621+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:48:08.625+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:48:08.624+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:48:09.409+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:48:09.440+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:48:09.440+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:48:09.466+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:48:09.466+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:48:09.496+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.887 seconds
+[2026-06-02T06:48:39.639+0000] {processor.py:186} INFO - Started process (PID=7442) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:48:39.640+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:48:39.644+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:48:39.643+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:48:40.512+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:48:40.549+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:48:40.548+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:48:40.578+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:48:40.578+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:48:40.605+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.975 seconds
+[2026-06-02T06:49:11.221+0000] {processor.py:186} INFO - Started process (PID=7577) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:49:11.223+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:49:11.227+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:49:11.226+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:49:12.035+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:49:12.065+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:49:12.064+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:49:12.094+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:49:12.094+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:49:12.126+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.914 seconds
+[2026-06-02T06:49:42.769+0000] {processor.py:186} INFO - Started process (PID=7712) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:49:42.770+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:49:42.774+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:49:42.773+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:49:43.574+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:49:43.605+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:49:43.605+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:49:43.630+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:49:43.630+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:49:43.660+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.901 seconds
+[2026-06-02T06:50:14.228+0000] {processor.py:186} INFO - Started process (PID=7847) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:50:14.230+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:50:14.233+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:50:14.233+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:50:15.079+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:50:15.116+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:50:15.116+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:50:15.148+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:50:15.148+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:50:15.174+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.955 seconds
+[2026-06-02T06:50:45.669+0000] {processor.py:186} INFO - Started process (PID=7982) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:50:45.671+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:50:45.676+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:50:45.675+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:50:46.526+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:50:46.575+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:50:46.574+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:50:46.609+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:50:46.609+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:50:46.641+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.981 seconds
+[2026-06-02T06:51:17.050+0000] {processor.py:186} INFO - Started process (PID=8117) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:51:17.052+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:51:17.062+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:51:17.062+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:51:17.925+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:51:17.956+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:51:17.956+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:51:17.986+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:51:17.985+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:51:18.011+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.971 seconds
+[2026-06-02T06:51:48.617+0000] {processor.py:186} INFO - Started process (PID=8252) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:51:48.619+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:51:48.622+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:51:48.622+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:51:49.382+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:51:49.421+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:51:49.420+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:51:49.456+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:51:49.456+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:51:49.484+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.876 seconds
+[2026-06-02T06:52:20.071+0000] {processor.py:186} INFO - Started process (PID=8387) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:52:20.072+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:52:20.075+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:52:20.075+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:52:20.888+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:52:20.922+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:52:20.922+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:52:20.949+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:52:20.949+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:52:20.974+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.913 seconds
+[2026-06-02T06:52:51.449+0000] {processor.py:186} INFO - Started process (PID=8521) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:52:51.450+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:52:51.454+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:52:51.454+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:52:52.327+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:52:52.366+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:52:52.366+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:52:52.399+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:52:52.399+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:52:52.423+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.985 seconds
+[2026-06-02T06:53:22.843+0000] {processor.py:186} INFO - Started process (PID=8648) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:53:22.845+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:53:22.849+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:53:22.849+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:53:23.585+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:53:23.613+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:53:23.613+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:53:23.641+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:53:23.640+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:53:23.670+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.836 seconds
+[2026-06-02T06:53:54.061+0000] {processor.py:186} INFO - Started process (PID=8783) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:53:54.062+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:53:54.066+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:53:54.066+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:53:54.859+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:53:54.889+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:53:54.888+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:53:54.915+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:53:54.915+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:53:54.940+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.888 seconds
+[2026-06-02T06:54:25.407+0000] {processor.py:186} INFO - Started process (PID=8918) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:54:25.408+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:54:25.411+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:54:25.411+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:54:26.195+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:54:26.225+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:54:26.225+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:54:26.251+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:54:26.251+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:54:26.274+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.877 seconds
+[2026-06-02T06:54:56.713+0000] {processor.py:186} INFO - Started process (PID=9053) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:54:56.714+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:54:56.718+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:54:56.717+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:54:57.541+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:54:57.573+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:54:57.573+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:54:57.600+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:54:57.600+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:54:57.625+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.921 seconds
+[2026-06-02T06:55:28.084+0000] {processor.py:186} INFO - Started process (PID=9188) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:55:28.086+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:55:28.089+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:55:28.089+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:55:28.910+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:55:28.943+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:55:28.942+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:55:28.969+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:55:28.969+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:55:28.995+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.920 seconds
+[2026-06-02T06:55:59.411+0000] {processor.py:186} INFO - Started process (PID=9323) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:55:59.412+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:55:59.418+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:55:59.417+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:56:00.286+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:56:00.321+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:56:00.321+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:56:00.349+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:56:00.349+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:56:00.381+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.980 seconds
+[2026-06-02T06:56:30.747+0000] {processor.py:186} INFO - Started process (PID=9458) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:56:30.749+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:56:30.755+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:56:30.755+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:56:31.566+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:56:31.600+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:56:31.599+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:56:31.625+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:56:31.625+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:56:31.651+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.913 seconds
+[2026-06-02T06:57:02.092+0000] {processor.py:186} INFO - Started process (PID=9593) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:57:02.094+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:57:02.097+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:57:02.096+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:57:02.931+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:57:02.964+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:57:02.963+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:57:02.994+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:57:02.994+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:57:03.019+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.935 seconds
+[2026-06-02T06:57:33.443+0000] {processor.py:186} INFO - Started process (PID=9728) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:57:33.446+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:57:33.450+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:57:33.449+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:57:34.262+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:57:34.293+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:57:34.292+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:57:34.322+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:57:34.322+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:57:34.348+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.915 seconds
+[2026-06-02T06:58:04.829+0000] {processor.py:186} INFO - Started process (PID=9863) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:58:04.830+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:58:04.834+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:58:04.833+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:58:05.678+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:58:05.713+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:58:05.712+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:58:05.742+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:58:05.742+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:58:05.768+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.948 seconds
+[2026-06-02T06:58:36.148+0000] {processor.py:186} INFO - Started process (PID=9998) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:58:36.149+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:58:36.152+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:58:36.152+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:58:37.003+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:58:37.040+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:58:37.040+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:58:37.068+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:58:37.068+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:58:37.094+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.955 seconds
+[2026-06-02T06:59:07.637+0000] {processor.py:186} INFO - Started process (PID=10133) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:59:07.639+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:59:07.643+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:59:07.643+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:59:08.485+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:59:08.517+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:59:08.517+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:59:08.544+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:59:08.544+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:59:08.571+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.944 seconds
+[2026-06-02T06:59:39.122+0000] {processor.py:186} INFO - Started process (PID=10267) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:59:39.124+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T06:59:39.129+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:59:39.128+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:59:39.962+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T06:59:39.991+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:59:39.990+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T06:59:40.014+0000] {logging_mixin.py:190} INFO - [2026-06-02T06:59:40.014+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 05:00:00+00:00, run_after=2026-06-02 06:00:00+00:00
+[2026-06-02T06:59:40.040+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.929 seconds
+[2026-06-02T07:00:10.546+0000] {processor.py:186} INFO - Started process (PID=10394) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:00:10.548+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:00:10.551+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:00:10.551+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:00:11.334+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:00:11.373+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:00:11.372+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:00:11.403+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:00:11.403+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:00:11.433+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.896 seconds
+[2026-06-02T07:00:41.956+0000] {processor.py:186} INFO - Started process (PID=10529) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:00:41.957+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:00:41.961+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:00:41.960+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:00:42.848+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:00:42.882+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:00:42.882+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:00:42.912+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:00:42.912+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:00:42.941+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.995 seconds
+[2026-06-02T07:01:13.333+0000] {processor.py:186} INFO - Started process (PID=10664) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:01:13.334+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:01:13.338+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:01:13.337+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:01:14.187+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:01:14.224+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:01:14.223+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:01:14.254+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:01:14.254+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:01:14.281+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.957 seconds
+[2026-06-02T07:01:44.792+0000] {processor.py:186} INFO - Started process (PID=10799) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:01:44.794+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:01:44.800+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:01:44.799+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:01:45.870+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:01:45.906+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:01:45.905+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:01:45.939+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:01:45.939+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:01:45.969+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.188 seconds
+[2026-06-02T07:02:16.204+0000] {processor.py:186} INFO - Started process (PID=10934) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:02:16.206+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:02:16.210+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:02:16.209+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:02:17.040+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:02:17.081+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:02:17.081+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:02:17.116+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:02:17.115+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:02:17.143+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.948 seconds
+[2026-06-02T07:02:47.520+0000] {processor.py:186} INFO - Started process (PID=11069) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:02:47.521+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:02:47.525+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:02:47.524+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:02:48.408+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:02:48.439+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:02:48.439+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:02:48.467+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:02:48.466+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:02:48.498+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.988 seconds
+[2026-06-02T07:03:19.028+0000] {processor.py:186} INFO - Started process (PID=11204) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:03:19.030+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:03:19.033+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:03:19.033+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:03:19.837+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:03:19.866+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:03:19.865+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:03:19.891+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:03:19.891+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:03:19.913+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.895 seconds
+[2026-06-02T07:03:50.491+0000] {processor.py:186} INFO - Started process (PID=11339) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:03:50.493+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:03:50.497+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:03:50.497+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:03:51.305+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:03:51.339+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:03:51.339+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:03:51.367+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:03:51.367+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:03:51.391+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.911 seconds
+[2026-06-02T07:04:24.651+0000] {processor.py:186} INFO - Started process (PID=11474) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:04:24.730+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:04:24.788+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:04:24.788+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:04:26.716+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:04:26.752+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:04:26.752+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:04:26.783+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:04:26.783+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:04:28.331+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 3.738 seconds
+[2026-06-02T07:04:58.471+0000] {processor.py:186} INFO - Started process (PID=11628) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:04:58.473+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:04:58.477+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:04:58.476+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:04:59.457+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:04:59.488+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:04:59.488+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:04:59.515+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:04:59.515+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:04:59.548+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.086 seconds
+[2026-06-02T07:05:30.150+0000] {processor.py:186} INFO - Started process (PID=11763) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:05:30.152+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:05:30.155+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:05:30.154+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:05:31.034+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:05:31.061+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:05:31.060+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:05:31.087+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:05:31.087+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:05:31.113+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.972 seconds
+[2026-06-02T07:06:01.566+0000] {processor.py:186} INFO - Started process (PID=11898) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:06:01.568+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:06:01.572+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:06:01.572+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:06:02.503+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:06:02.534+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:06:02.533+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:06:02.562+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:06:02.561+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:06:02.587+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.030 seconds
+[2026-06-02T07:06:33.001+0000] {processor.py:186} INFO - Started process (PID=12033) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:06:33.002+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:06:33.006+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:06:33.006+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:06:33.914+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:06:33.943+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:06:33.942+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:06:33.968+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:06:33.968+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:06:33.992+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.000 seconds
+[2026-06-02T07:07:04.409+0000] {processor.py:186} INFO - Started process (PID=12168) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:07:04.410+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:07:04.414+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:07:04.414+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:07:05.285+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:07:05.315+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:07:05.314+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:07:05.339+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:07:05.339+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:07:05.363+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.965 seconds
+[2026-06-02T07:07:35.789+0000] {processor.py:186} INFO - Started process (PID=12303) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:07:35.791+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:07:35.795+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:07:35.794+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:07:36.728+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:07:36.761+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:07:36.760+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:07:36.786+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:07:36.786+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:07:36.807+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.031 seconds
+[2026-06-02T07:08:07.056+0000] {processor.py:186} INFO - Started process (PID=12437) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:08:07.057+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:08:07.060+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:08:07.060+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:08:07.972+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:08:08.006+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:08:08.005+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:08:08.046+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:08:08.046+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:08:08.075+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.028 seconds
+[2026-06-02T07:08:38.405+0000] {processor.py:186} INFO - Started process (PID=12572) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:08:38.406+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:08:38.410+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:08:38.409+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:08:39.279+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:08:39.311+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:08:39.311+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:08:39.339+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:08:39.339+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:08:39.364+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.970 seconds
+[2026-06-02T07:09:09.826+0000] {processor.py:186} INFO - Started process (PID=12699) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:09:09.827+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:09:09.831+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:09:09.831+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:09:10.741+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:09:10.772+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:09:10.771+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:09:10.801+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:09:10.801+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:09:10.824+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.009 seconds
+[2026-06-02T07:09:41.162+0000] {processor.py:186} INFO - Started process (PID=12834) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:09:41.164+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:09:41.168+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:09:41.168+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:09:42.106+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:09:42.139+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:09:42.139+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:09:42.167+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:09:42.167+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:09:42.194+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.044 seconds
+[2026-06-02T07:10:12.593+0000] {processor.py:186} INFO - Started process (PID=12969) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:10:12.594+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:10:12.599+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:10:12.599+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:10:13.760+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:10:13.792+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:10:13.791+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:10:13.816+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:10:13.816+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:10:13.840+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.259 seconds
+[2026-06-02T07:10:44.208+0000] {processor.py:186} INFO - Started process (PID=13106) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:10:44.210+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:10:44.213+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:10:44.213+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:10:45.138+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:10:45.165+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:10:45.165+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:10:45.189+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:10:45.189+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:10:45.213+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.013 seconds
+[2026-06-02T07:11:15.579+0000] {processor.py:186} INFO - Started process (PID=13224) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:11:15.581+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:11:15.585+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:11:15.584+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:11:16.523+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:11:16.552+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:11:16.552+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:11:16.577+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:11:16.577+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:11:16.603+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.033 seconds
+[2026-06-02T07:11:47.032+0000] {processor.py:186} INFO - Started process (PID=13374) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:11:47.034+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:11:47.038+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:11:47.038+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:11:47.893+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:11:47.922+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:11:47.922+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:11:47.949+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:11:47.948+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:11:47.972+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.952 seconds
+[2026-06-02T07:12:18.448+0000] {processor.py:186} INFO - Started process (PID=13509) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:12:18.450+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:12:18.454+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:12:18.454+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:12:19.385+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:12:19.417+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:12:19.416+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:12:19.443+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:12:19.442+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:12:19.465+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.027 seconds
+[2026-06-02T07:12:49.933+0000] {processor.py:186} INFO - Started process (PID=13644) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:12:49.935+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:12:49.940+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:12:49.939+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:12:50.862+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:12:50.895+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:12:50.895+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:12:50.927+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:12:50.927+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:12:50.953+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.033 seconds
+[2026-06-02T07:13:21.202+0000] {processor.py:186} INFO - Started process (PID=13779) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:13:21.206+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:13:21.211+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:13:21.210+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:13:22.144+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:13:22.172+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:13:22.172+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:13:22.197+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:13:22.196+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:13:22.220+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.030 seconds
+[2026-06-02T07:13:52.529+0000] {processor.py:186} INFO - Started process (PID=13915) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:13:52.531+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:13:52.534+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:13:52.533+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:13:53.412+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:13:53.442+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:13:53.442+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:13:53.469+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:13:53.469+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:13:53.496+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.976 seconds
+[2026-06-02T07:14:24.104+0000] {processor.py:186} INFO - Started process (PID=14052) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:14:24.106+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:14:24.109+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:14:24.108+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:14:24.982+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:14:25.013+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:14:25.012+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:14:25.041+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:14:25.041+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:14:25.064+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.969 seconds
+[2026-06-02T07:14:55.407+0000] {processor.py:186} INFO - Started process (PID=14185) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:14:55.408+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:14:55.411+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:14:55.411+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:14:56.417+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:14:56.446+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:14:56.446+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:14:56.472+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:14:56.472+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:14:56.496+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.099 seconds
+[2026-06-02T07:15:26.934+0000] {processor.py:186} INFO - Started process (PID=14319) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:15:26.935+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:15:26.940+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:15:26.940+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:15:27.889+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:15:27.921+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:15:27.920+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:15:27.947+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:15:27.947+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:15:27.978+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.056 seconds
+[2026-06-02T07:15:58.379+0000] {processor.py:186} INFO - Started process (PID=14454) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:15:58.381+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:15:58.385+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:15:58.384+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:15:59.327+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:15:59.357+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:15:59.356+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:15:59.387+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:15:59.387+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:15:59.412+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.046 seconds
+[2026-06-02T07:16:29.821+0000] {processor.py:186} INFO - Started process (PID=14581) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:16:29.822+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:16:29.825+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:16:29.825+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:16:30.752+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:16:30.780+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:16:30.780+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:16:30.804+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:16:30.804+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:16:30.829+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.019 seconds
+[2026-06-02T07:17:01.287+0000] {processor.py:186} INFO - Started process (PID=14716) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:17:01.289+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:17:01.294+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:17:01.293+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:17:02.194+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:17:02.228+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:17:02.227+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:17:02.252+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:17:02.252+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:17:02.274+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.999 seconds
+[2026-06-02T07:17:32.807+0000] {processor.py:186} INFO - Started process (PID=14851) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:17:32.809+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:17:32.813+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:17:32.812+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:17:33.732+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:17:33.761+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:17:33.760+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:17:33.787+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:17:33.787+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:17:33.816+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.019 seconds
+[2026-06-02T07:18:04.253+0000] {processor.py:186} INFO - Started process (PID=14986) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:18:04.255+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:18:04.259+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:18:04.258+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:18:05.130+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:18:05.159+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:18:05.158+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:18:05.183+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:18:05.183+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:18:05.206+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.962 seconds
+[2026-06-02T07:18:35.607+0000] {processor.py:186} INFO - Started process (PID=15123) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:18:35.609+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:18:35.613+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:18:35.612+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:18:36.561+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:18:36.590+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:18:36.590+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:18:36.614+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:18:36.614+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:18:36.634+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.036 seconds
+[2026-06-02T07:19:06.953+0000] {processor.py:186} INFO - Started process (PID=15256) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:19:06.956+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:19:06.961+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:19:06.961+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:19:07.849+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:19:07.880+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:19:07.879+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:19:07.906+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:19:07.906+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:19:07.931+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.990 seconds
+[2026-06-02T07:19:38.215+0000] {processor.py:186} INFO - Started process (PID=15391) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:19:38.216+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:19:38.220+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:19:38.219+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:19:39.110+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:19:39.139+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:19:39.138+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:19:39.167+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:19:39.167+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:19:39.190+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.985 seconds
+[2026-06-02T07:20:09.533+0000] {processor.py:186} INFO - Started process (PID=15526) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:20:09.535+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:20:09.538+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:20:09.537+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:20:10.356+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:20:10.384+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:20:10.384+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:20:10.409+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:20:10.409+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:20:10.432+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.908 seconds
+[2026-06-02T07:20:40.878+0000] {processor.py:186} INFO - Started process (PID=15661) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:20:40.880+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:20:40.885+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:20:40.884+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:20:41.793+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:20:41.821+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:20:41.821+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:20:41.846+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:20:41.846+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:20:41.867+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.001 seconds
+[2026-06-02T07:21:12.202+0000] {processor.py:186} INFO - Started process (PID=15796) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:21:12.203+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:21:12.207+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:21:12.207+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:21:13.109+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:21:13.139+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:21:13.138+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:21:13.163+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:21:13.163+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:21:13.198+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.006 seconds
+[2026-06-02T07:21:43.569+0000] {processor.py:186} INFO - Started process (PID=15933) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:21:43.570+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:21:43.574+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:21:43.574+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:21:44.427+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:21:44.456+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:21:44.456+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:21:44.481+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:21:44.481+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:21:44.508+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.948 seconds
+[2026-06-02T07:22:14.876+0000] {processor.py:186} INFO - Started process (PID=16066) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:22:14.878+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:22:14.882+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:22:14.881+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:22:15.840+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:22:15.872+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:22:15.872+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:22:15.897+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:22:15.897+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:22:15.920+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.053 seconds
+[2026-06-02T07:22:46.268+0000] {processor.py:186} INFO - Started process (PID=16200) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:22:46.270+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:22:46.274+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:22:46.274+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:22:47.333+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:22:47.365+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:22:47.365+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:22:47.392+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:22:47.392+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:22:47.419+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.163 seconds
+[2026-06-02T07:23:17.715+0000] {processor.py:186} INFO - Started process (PID=16327) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:23:17.717+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:23:17.721+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:23:17.720+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:23:18.641+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:23:18.669+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:23:18.668+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:23:18.695+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:23:18.694+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:23:18.715+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.012 seconds
+[2026-06-02T07:23:49.217+0000] {processor.py:186} INFO - Started process (PID=16462) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:23:49.219+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:23:49.223+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:23:49.222+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:23:50.127+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:23:50.155+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:23:50.155+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:23:50.181+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:23:50.181+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:23:50.203+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.996 seconds
+[2026-06-02T07:24:20.570+0000] {processor.py:186} INFO - Started process (PID=16597) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:24:20.572+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:24:20.577+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:24:20.576+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:24:21.611+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:24:21.649+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:24:21.648+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:24:21.675+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:24:21.675+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:24:21.696+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.143 seconds
+[2026-06-02T07:24:51.955+0000] {processor.py:186} INFO - Started process (PID=16732) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:24:51.958+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:24:51.961+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:24:51.961+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:24:52.879+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:24:52.909+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:24:52.909+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:24:52.934+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:24:52.934+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:24:52.958+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.015 seconds
+[2026-06-02T07:25:23.344+0000] {processor.py:186} INFO - Started process (PID=16867) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:25:23.348+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:25:23.353+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:25:23.352+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:25:24.260+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:25:24.287+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:25:24.286+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:25:24.311+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:25:24.311+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:25:24.333+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.999 seconds
+[2026-06-02T07:25:54.895+0000] {processor.py:186} INFO - Started process (PID=17002) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:25:54.896+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:25:54.899+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:25:54.899+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:25:55.943+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:25:55.974+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:25:55.974+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:25:56.001+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:25:56.001+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:25:56.025+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.142 seconds
+[2026-06-02T07:26:26.302+0000] {processor.py:186} INFO - Started process (PID=17137) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:26:26.304+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:26:26.309+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:26:26.308+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:26:27.221+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:26:27.249+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:26:27.248+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:26:27.273+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:26:27.273+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:26:27.296+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.005 seconds
+[2026-06-02T07:26:57.717+0000] {processor.py:186} INFO - Started process (PID=17272) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:26:57.719+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:26:57.724+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:26:57.723+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:26:58.615+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:26:58.644+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:26:58.643+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:26:58.668+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:26:58.668+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:26:58.693+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.987 seconds
+[2026-06-02T07:27:29.118+0000] {processor.py:186} INFO - Started process (PID=17407) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:27:29.120+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:27:29.124+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:27:29.124+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:27:30.007+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:27:30.037+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:27:30.037+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:27:30.064+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:27:30.063+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:27:30.090+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.983 seconds
+[2026-06-02T07:28:00.532+0000] {processor.py:186} INFO - Started process (PID=17542) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:28:00.534+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:28:00.537+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:28:00.537+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:28:01.596+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:28:01.634+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:28:01.633+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:28:01.663+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:28:01.662+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:28:01.692+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.177 seconds
+[2026-06-02T07:28:32.013+0000] {processor.py:186} INFO - Started process (PID=17677) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:28:32.017+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:28:32.022+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:28:32.021+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:28:32.921+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:28:32.949+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:28:32.948+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:28:32.973+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:28:32.973+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:28:32.999+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.997 seconds
+[2026-06-02T07:29:03.387+0000] {processor.py:186} INFO - Started process (PID=17812) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:29:03.389+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:29:03.393+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:29:03.393+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:29:04.362+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:29:04.391+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:29:04.391+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:29:04.416+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:29:04.416+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:29:04.440+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.064 seconds
+[2026-06-02T07:29:34.923+0000] {processor.py:186} INFO - Started process (PID=17947) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:29:34.924+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:29:34.929+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:29:34.928+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:29:35.856+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:29:35.883+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:29:35.883+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:29:35.908+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:29:35.908+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:29:35.941+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.028 seconds
+[2026-06-02T07:30:06.290+0000] {processor.py:186} INFO - Started process (PID=18081) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:30:06.292+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:30:06.296+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:30:06.296+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:30:07.261+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:30:07.291+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:30:07.291+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:30:07.318+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:30:07.318+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:30:07.342+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.063 seconds
+[2026-06-02T07:30:37.798+0000] {processor.py:186} INFO - Started process (PID=18208) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:30:37.800+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:30:37.804+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:30:37.804+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:30:38.708+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:30:38.737+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:30:38.736+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:30:38.764+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:30:38.763+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:30:38.788+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.000 seconds
+[2026-06-02T07:31:09.390+0000] {processor.py:186} INFO - Started process (PID=18343) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:31:09.392+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:31:09.396+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:31:09.395+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:31:10.357+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:31:10.384+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:31:10.383+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:31:10.413+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:31:10.413+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:31:10.440+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.061 seconds
+[2026-06-02T07:31:40.686+0000] {processor.py:186} INFO - Started process (PID=18478) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:31:40.688+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:31:40.691+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:31:40.690+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:31:41.638+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:31:41.671+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:31:41.670+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:31:41.699+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:31:41.699+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:31:41.725+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.048 seconds
+[2026-06-02T07:32:12.086+0000] {processor.py:186} INFO - Started process (PID=18613) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:32:12.088+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:32:12.093+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:32:12.092+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:32:13.005+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:32:13.035+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:32:13.034+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:32:13.060+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:32:13.060+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:32:13.083+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.009 seconds
+[2026-06-02T07:32:43.510+0000] {processor.py:186} INFO - Started process (PID=18748) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:32:43.511+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:32:43.515+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:32:43.515+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:32:44.411+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:32:44.444+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:32:44.443+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:32:44.468+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:32:44.468+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:32:44.492+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.991 seconds
+[2026-06-02T07:33:14.943+0000] {processor.py:186} INFO - Started process (PID=18883) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:33:14.945+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:33:14.949+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:33:14.948+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:33:15.833+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:33:15.862+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:33:15.861+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:33:15.885+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:33:15.885+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:33:15.908+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 0.977 seconds
+[2026-06-02T07:33:46.241+0000] {processor.py:186} INFO - Started process (PID=19018) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:33:46.242+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:33:46.246+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:33:46.246+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:33:47.301+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:33:47.329+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:33:47.329+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:33:47.353+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:33:47.353+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:33:47.375+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.146 seconds
+[2026-06-02T07:34:17.948+0000] {processor.py:186} INFO - Started process (PID=19138) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:34:17.950+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:34:17.955+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:34:17.954+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:34:19.250+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:34:19.286+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:34:19.285+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:34:19.313+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:34:19.312+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:34:19.358+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.424 seconds
+[2026-06-02T07:34:49.831+0000] {processor.py:186} INFO - Started process (PID=19288) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:34:49.833+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:34:49.836+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:34:49.836+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:34:50.757+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:34:50.786+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:34:50.786+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:34:50.818+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:34:50.817+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:34:50.842+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.020 seconds
+[2026-06-02T07:35:21.272+0000] {processor.py:186} INFO - Started process (PID=19423) to work on /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:35:21.274+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/reconciliation_report.py for tasks to queue
+[2026-06-02T07:35:21.278+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:35:21.278+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:35:22.265+0000] {processor.py:925} INFO - DAG(s) 'reconciliation_report' retrieved from /opt/airflow/dags/reconciliation_report.py
+[2026-06-02T07:35:22.297+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:35:22.296+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T07:35:22.327+0000] {logging_mixin.py:190} INFO - [2026-06-02T07:35:22.327+0000] {dag.py:4180} INFO - Setting next_dagrun for reconciliation_report to 2026-06-02 06:00:00+00:00, run_after=2026-06-02 07:00:00+00:00
+[2026-06-02T07:35:22.349+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/reconciliation_report.py took 1.089 seconds

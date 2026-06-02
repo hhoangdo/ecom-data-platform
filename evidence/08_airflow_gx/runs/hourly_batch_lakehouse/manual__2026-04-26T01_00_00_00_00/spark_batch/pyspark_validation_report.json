@@ -1,0 +1,301 @@
+{
+  "results": [
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "stg_orders.order_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "stg_orders.order_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "stg_order_items.order_item_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "stg_order_items.order_item_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "stg_payments.payment_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "stg_payments.payment_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "stg_shipments.shipment_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "stg_shipments.shipment_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "stg_commerce_events.event_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "stg_commerce_events.event_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "fact_order.order_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "fact_order.order_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "fact_order_item.order_item_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "fact_order_item.order_item_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "fact_payment_attempt.payment_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "fact_payment_attempt.payment_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "fact_shipment.shipment_id.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "fact_shipment.shipment_id.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "null_count": 0
+      },
+      "name": "agg_hourly_reconciled_kpi.metric_hour.not_null",
+      "success": true
+    },
+    {
+      "detail": {
+        "duplicate_key_count": 0
+      },
+      "name": "agg_hourly_reconciled_kpi.metric_hour.unique",
+      "success": true
+    },
+    {
+      "detail": {
+        "accepted_values": [
+          "paid",
+          "payment_failed"
+        ],
+        "invalid_count": 0
+      },
+      "name": "stg_orders.status.accepted_values",
+      "success": true
+    },
+    {
+      "detail": {
+        "accepted_values": [
+          "success",
+          "failed"
+        ],
+        "invalid_count": 0
+      },
+      "name": "stg_payments.payment_status.accepted_values",
+      "success": true
+    },
+    {
+      "detail": {
+        "accepted_values": [
+          "commerce_events"
+        ],
+        "invalid_count": 0
+      },
+      "name": "stg_commerce_events.event_topic.accepted_values",
+      "success": true
+    },
+    {
+      "detail": {
+        "accepted_values": [
+          "catalog_events"
+        ],
+        "invalid_count": 0
+      },
+      "name": "stg_catalog_events.event_topic.accepted_values",
+      "success": true
+    },
+    {
+      "detail": {
+        "accepted_values": [
+          "fulfillment_events"
+        ],
+        "invalid_count": 0
+      },
+      "name": "stg_fulfillment_events.event_topic.accepted_values",
+      "success": true
+    },
+    {
+      "detail": {
+        "accepted_values": [
+          "ops_events"
+        ],
+        "invalid_count": 0
+      },
+      "name": "stg_ops_events.event_topic.accepted_values",
+      "success": true
+    },
+    {
+      "detail": {
+        "missing_count": 0
+      },
+      "name": "fact_order.customer_key.relationships",
+      "success": true
+    },
+    {
+      "detail": {
+        "missing_count": 0
+      },
+      "name": "fact_order.order_status_key.relationships",
+      "success": true
+    },
+    {
+      "detail": {
+        "missing_count": 0
+      },
+      "name": "fact_order_item.product_key.relationships",
+      "success": true
+    },
+    {
+      "detail": {
+        "missing_count": 0
+      },
+      "name": "fact_payment_attempt.payment_method_key.relationships",
+      "success": true
+    },
+    {
+      "detail": {
+        "failure_count": 0
+      },
+      "name": "fact_order.official_paid_revenue.expression_check",
+      "success": true
+    },
+    {
+      "detail": {
+        "failure_count": 0
+      },
+      "name": "fact_order_item.estimated_cost.expression_check",
+      "success": true
+    },
+    {
+      "detail": {
+        "failure_count": 0
+      },
+      "name": "fact_order_item.estimated_margin.expression_check",
+      "success": true
+    },
+    {
+      "detail": {
+        "absolute_delta": 0.0
+      },
+      "name": "fact_order.reconciles_to_stg_orders",
+      "success": true
+    },
+    {
+      "detail": {
+        "mismatched_order_count": 0
+      },
+      "name": "order_item_totals_reconcile",
+      "success": true
+    },
+    {
+      "detail": {
+        "missing_tables": [],
+        "observed_tables": [
+          "agg_hourly_reconciled_kpi",
+          "bridge_product_category",
+          "dim_category",
+          "dim_customer",
+          "dim_date",
+          "dim_order_status",
+          "dim_payment_method",
+          "dim_product",
+          "dim_promotion",
+          "dim_seller",
+          "dim_shipment_status",
+          "dim_shipping_method",
+          "fact_inventory_snapshot",
+          "fact_order",
+          "fact_order_item",
+          "fact_payment_attempt",
+          "fact_promotion_application",
+          "fact_shipment",
+          "feat_customer_90d",
+          "feat_customer_unified",
+          "feat_stream_60m",
+          "obt_order_performance"
+        ]
+      },
+      "name": "required_gold_inventory",
+      "success": true
+    }
+  ],
+  "success": true
+}
