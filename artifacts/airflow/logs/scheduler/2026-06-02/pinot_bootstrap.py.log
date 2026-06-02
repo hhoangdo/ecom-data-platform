@@ -1761,3 +1761,30 @@ Please take a look at these docs to improve your DAG import time:
 [2026-06-02T11:32:14.721+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
 [2026-06-02T11:32:14.751+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:32:14.736+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
 [2026-06-02T11:32:59.866+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:32:45.655+0000] {timeout.py:68} ERROR - Process timed out, PID: 3049
+[2026-06-02T11:38:57.842+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:33:28.071+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/pinot_bootstrap.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/pinot_bootstrap.py", line 8, in <module>
+    from vina_bim_shop.orchestration.runtime import run_pinot_bootstrap
+  File "/workspace/src/vina_bim_shop/orchestration/runtime.py", line 13, in <module>
+    import pandas as pd
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/__init__.py", line 46, in <module>
+    from pandas.core.api import (
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/api.py", line 27, in <module>
+    from pandas.core.arrays import Categorical
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/__init__.py", line 19, in <module>
+    from pandas.core.arrays.sparse import SparseArray
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/sparse/__init__.py", line 1, in <module>
+    from pandas.core.arrays.sparse.accessor import (
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1256, in _find_spec
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: DagBag import timeout for /opt/airflow/dags/pinot_bootstrap.py after 30.0s.
+Please take a look at these docs to improve your DAG import time:
+* https://airflow.apache.org/docs/apache-airflow/2.10.5/best-practices.html#top-level-python-code
+* https://airflow.apache.org/docs/apache-airflow/2.10.5/best-practices.html#reducing-dag-complexity, PID: 3049

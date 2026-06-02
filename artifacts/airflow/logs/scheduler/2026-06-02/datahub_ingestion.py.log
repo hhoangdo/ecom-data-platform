@@ -2111,3 +2111,6 @@ Traceback (most recent call last):
 sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "lakehouse-postgres" to address: Temporary failure in name resolution
 
 (Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2026-06-02T11:38:58.520+0000] {processor.py:186} INFO - Started process (PID=3055) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T11:38:58.523+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T11:38:58.554+0000] {logging_mixin.py:190} INFO - [2026-06-02T11:38:58.539+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
