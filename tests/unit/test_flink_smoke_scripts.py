@@ -42,6 +42,46 @@ def test_publish_smoke_writes_summary_and_uses_existing_topic_contract(tmp_path:
     assert (tmp_path / "flink_smoke_publish_summary.json").is_file()
 
 
+def test_build_cleanroom_smoke_phases_stage_initial_control_and_late_events() -> None:
+    from vina_bim_shop.flink.smoke import build_cleanroom_smoke_phases
+
+    phases = build_cleanroom_smoke_phases()
+
+    assert [phase["name"] for phase in phases] == [
+        "initial_business_events",
+        "watermark_control_event",
+        "late_correction_event",
+    ]
+
+    phase1 = phases[0]["topic_events"]
+    phase2 = phases[1]["topic_events"]
+    phase3 = phases[2]["topic_events"]
+
+    assert [record["event_id"] for record in phase1["commerce_events"].to_dict("records")] == [
+        "evt-1",
+        "evt-2",
+        "evt-3",
+        "evt-3",
+        "evt-4",
+        "evt-5",
+        "evt-6",
+        "evt-7",
+    ]
+    assert [record["event_id"] for record in phase2["commerce_events"].to_dict("records")] == ["ctrl-1"]
+    assert [record["event_id"] for record in phase3["commerce_events"].to_dict("records")] == ["evt-8"]
+
+    control_event = phase2["commerce_events"].to_dict("records")[0]
+    assert control_event["payload"]["primary_category"] == "CONTROL"
+    assert control_event["event_timestamp"] == "2026-05-01T10:01:10"
+
+    late_event = phase3["commerce_events"].to_dict("records")[0]
+    assert late_event["created_ts"] == "2026-05-01T10:06:10"
+    assert late_event["event_timestamp"] == "2026-05-01T10:00:40"
+    assert set(phase1) == {"catalog_events", "commerce_events", "fulfillment_events", "ops_events"}
+    assert set(phase2) == {"commerce_events"}
+    assert set(phase3) == {"commerce_events"}
+
+
 def test_capture_evidence_writes_streaming_manifest_and_artifacts(tmp_path: Path) -> None:
     from vina_bim_shop.flink.evidence import capture_evidence
 

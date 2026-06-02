@@ -19,7 +19,7 @@ def run() -> None:
     config = load_streaming_config()
     runtime = load_runtime_settings(config)
 
-    from pyflink.common import Types
+    from pyflink.common import Types, WatermarkStrategy
     from pyflink.datastream import StreamExecutionEnvironment
 
     env = StreamExecutionEnvironment.get_execution_environment()
@@ -38,8 +38,10 @@ def run() -> None:
                 topic=config.source_topics[source_name],
                 bootstrap_servers=runtime.kafka_bootstrap_servers,
                 group_id=f"vina-bim-shop-{source_name}-alerts",
-                watermark_strategy=event_timestamp_assigner(),
-            ).map(lambda raw: json.loads(raw), output_type=Types.PICKLED_BYTE_ARRAY())
+                watermark_strategy=WatermarkStrategy.no_watermarks(),
+            ).map(lambda raw: json.loads(raw), output_type=Types.PICKLED_BYTE_ARRAY()).assign_timestamps_and_watermarks(
+                event_timestamp_assigner(out_of_orderness_seconds=config.out_of_orderness_seconds)
+            )
         )
 
     union_stream = sources[0].union(*sources[1:])
@@ -57,7 +59,7 @@ def run() -> None:
         output_type=Types.STRING(),
     )
 
-    alert_stream.sink_to(kafka_sink(topic=config.derived_topics["ops_alerts"], bootstrap_servers=runtime.kafka_bootstrap_servers))
+    alert_stream.add_sink(kafka_sink(topic=config.derived_topics["ops_alerts"], bootstrap_servers=runtime.kafka_bootstrap_servers))
     alert_stream.sink_to(
         jsonl_file_sink(
             bucket=runtime.evidence_bucket,

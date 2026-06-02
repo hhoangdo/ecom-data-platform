@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from copy import deepcopy
 
 
@@ -135,6 +136,17 @@ def test_build_correction_record_emits_full_snapshot_with_incremented_version() 
         "schema_version": 1,
     }
     assert record["metric_snapshot"] == snapshot
+
+
+def test_event_timestamp_millis_accepts_raw_json_and_parsed_dict() -> None:
+    from vina_bim_shop.flink.runtime import event_timestamp_millis
+
+    event = _commerce_event(event_timestamp="2026-05-01T10:00:15")
+
+    parsed_millis = event_timestamp_millis(event)
+    raw_millis = event_timestamp_millis(json.dumps(event))
+
+    assert parsed_millis == raw_millis == 1777629615000
 
 
 def test_normalize_ops_and_payment_failure_alerts_share_one_contract() -> None:

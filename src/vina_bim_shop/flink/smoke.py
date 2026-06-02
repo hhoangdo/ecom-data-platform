@@ -19,13 +19,7 @@ def run_streaming_smoke_publish(
     evidence_root: str | Path = "evidence/06_flink_streaming",
     publish_topic_events: PublishTopicEvents = _publish_topic_events,
 ) -> dict[str, Any]:
-    base = datetime(2026, 5, 1, 10, 0, 0, tzinfo=timezone.utc)
-    topic_events = {
-        "commerce_events": pd.DataFrame(_commerce_events(base)),
-        "catalog_events": pd.DataFrame(_catalog_events(base)),
-        "fulfillment_events": pd.DataFrame(_fulfillment_events(base)),
-        "ops_events": pd.DataFrame(_ops_events(base)),
-    }
+    topic_events = build_streaming_smoke_topic_events()
     published_counts = publish_topic_events(
         topic_events=topic_events,
         bootstrap_servers=bootstrap_servers,
@@ -45,6 +39,47 @@ def run_streaming_smoke_publish(
     return summary
 
 
+def build_streaming_smoke_topic_events(*, base: datetime | None = None) -> dict[str, pd.DataFrame]:
+    base_time = base or datetime(2026, 5, 1, 10, 0, 0, tzinfo=timezone.utc)
+    return {
+        "commerce_events": pd.DataFrame(_commerce_events(base_time)),
+        "catalog_events": pd.DataFrame(_catalog_events(base_time)),
+        "fulfillment_events": pd.DataFrame(_fulfillment_events(base_time)),
+        "ops_events": pd.DataFrame(_ops_events(base_time)),
+    }
+
+
+def build_cleanroom_smoke_phases(*, base: datetime | None = None) -> list[dict[str, Any]]:
+    topic_events = build_streaming_smoke_topic_events(base=base)
+    commerce_records = topic_events["commerce_events"].to_dict("records")
+    initial_records = [record for record in commerce_records if record["event_id"] != "evt-8"]
+    late_records = [record for record in commerce_records if record["event_id"] == "evt-8"]
+
+    return [
+        {
+            "name": "initial_business_events",
+            "topic_events": {
+                "commerce_events": pd.DataFrame(initial_records),
+                "catalog_events": topic_events["catalog_events"],
+                "fulfillment_events": topic_events["fulfillment_events"],
+                "ops_events": topic_events["ops_events"],
+            },
+        },
+        {
+            "name": "watermark_control_event",
+            "topic_events": {
+                "commerce_events": pd.DataFrame([_control_commerce_event(base or datetime(2026, 5, 1, 10, 0, 0, tzinfo=timezone.utc))]),
+            },
+        },
+        {
+            "name": "late_correction_event",
+            "topic_events": {
+                "commerce_events": pd.DataFrame(late_records),
+            },
+        },
+    ]
+
+
 def _commerce_events(base: datetime) -> list[dict[str, Any]]:
     late_base = base + timedelta(minutes=6)
     duplicate_payload = _commerce_payload(order_status="paid", payment_method="wallet", order_net_amount=125000.0, amount=125000.0)
@@ -60,6 +95,25 @@ def _commerce_events(base: datetime) -> list[dict[str, Any]]:
         _commerce_envelope("evt-7", "payment_failed", base + timedelta(seconds=33), base + timedelta(seconds=33), _commerce_payload(order_status="payment_failed", payment_method="wallet", amount=0.0)),
         _commerce_envelope("evt-8", "order_placed", base + timedelta(seconds=40), late_base + timedelta(seconds=10), _commerce_payload(order_net_amount=30000.0)),
     ]
+
+
+def _control_commerce_event(base: datetime) -> dict[str, Any]:
+    control_event_ts = base + timedelta(minutes=1, seconds=10)
+    return _commerce_envelope(
+        "ctrl-1",
+        "checkout_started",
+        control_event_ts,
+        control_event_ts,
+        _commerce_payload(
+            primary_category="CONTROL",
+            source="cleanroom",
+            device_type="control_device",
+            payment_method=None,
+            order_status="checkout_started",
+            order_net_amount=0.0,
+            amount=0.0,
+        ),
+    )
 
 
 def _catalog_events(base: datetime) -> list[dict[str, Any]]:

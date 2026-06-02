@@ -11,8 +11,9 @@ from typing import Any, Callable
 import requests
 
 from vina_bim_shop.flink.runtime import load_container_runtime_limit
-from vina_bim_shop.flink.smoke import run_streaming_smoke_publish
+from vina_bim_shop.flink.smoke import build_cleanroom_smoke_phases
 from vina_bim_shop.kafka.cleanup import cleanup_kafka
+from vina_bim_shop.kafka.publisher import publish_topic_events
 from vina_bim_shop.pinot.bootstrap import apply_assets
 from vina_bim_shop.pinot.evidence import capture_evidence as capture_pinot_evidence
 
@@ -21,6 +22,7 @@ RunCommand = Callable[[list[str]], str]
 DeleteObjectPrefix = Callable[[str, str], None]
 
 DEFAULT_BASE_EVIDENCE_ROOT = Path("evidence/runtime/cleanroom/adr04")
+COMPOSE_PROJECT_NAME = "vina-bim-shop"
 DERIVED_TOPICS = (
     "realtime_commerce_metrics_1m",
     "realtime_metric_corrections",
@@ -51,6 +53,24 @@ EXPECTED_ADR04_COUNTS = {
     "realtime_metric_corrections": 1,
     "realtime_ops_alerts": 7,
 }
+INITIAL_ADR04_COUNTS = {
+    "realtime_commerce_metrics_1m": 3,
+    "realtime_metric_corrections": 0,
+    "realtime_ops_alerts": 7,
+}
+
+
+class TopicProbeError(RuntimeError):
+    def __init__(self, *, topic: str, command: list[str], stderr: str = "", stdout: str = ""):
+        message = f"Kafka offset probe failed for {topic} using {' '.join(command)}"
+        details = stderr.strip() or stdout.strip()
+        if details:
+            message = f"{message}: {details}"
+        super().__init__(message)
+        self.topic = topic
+        self.command = command
+        self.stderr = stderr
+        self.stdout = stdout
 
 
 def _run_command(command: list[str]) -> str:
@@ -225,7 +245,7 @@ def evaluate_adr04_assertions(
         if snapshot.get(field) != expected_value:
             raise ValueError(f"Correction metric_snapshot.{field} must equal {expected_value!r}.")
 
-    if "checkpoints/flink/commerce_metrics/" not in checkpoint_listing:
+    if not _has_checkpoint_metadata(checkpoint_listing, job_prefix="commerce_metrics"):
         raise ValueError("At least one checkpoint object must exist under checkpoints/flink/commerce_metrics/.")
     if not curated_listings.get("realtime_metric_corrections", "").strip():
         raise ValueError("Curated realtime_metric_corrections JSONL output must exist in MinIO.")
@@ -246,11 +266,9 @@ def evaluate_pinot_gate(
     broker_health: dict[str, Any],
     row_counts: dict[str, int],
 ) -> dict[str, Any]:
-    controller_status = str(controller_health.get("status", "")).upper()
-    broker_status = str(broker_health.get("status", "")).upper()
-    if controller_status not in {"GOOD", "HEALTHY", "OK"}:
+    if not _health_is_good(controller_health):
         raise ValueError("Pinot controller health is not GOOD.")
-    if broker_status not in {"GOOD", "HEALTHY", "OK"}:
+    if not _health_is_good(broker_health):
         raise ValueError("Pinot broker health is not GOOD.")
     for table_name in [
         "pinot_realtime_commerce_metrics_1m",
@@ -330,7 +348,11 @@ def run_cleanroom_verification(
 
 def _run_verify_adr04(*, run_root: Path, poll_timeout_seconds: int, run_command: RunCommand) -> dict[str, Any]:
     pre_publish_state = build_pre_publish_state(
-        topic_counts=_topic_counts(run_command=run_command),
+        topic_counts=_topic_counts_with_artifact(
+            run_command=run_command,
+            run_root=run_root,
+            phase_name="pre_publish_state",
+        ),
         checkpoint_listing=_list_minio_prefix("checkpoints", "flink", run_command=run_command),
         curated_listings={
             "realtime_metric_corrections": _list_minio_prefix(
@@ -360,10 +382,37 @@ def _run_verify_adr04(*, run_root: Path, poll_timeout_seconds: int, run_command:
     }
     _write_json(run_root / "container_runtime_limit.json", runtime_limit)
 
-    smoke_summary = run_streaming_smoke_publish(bootstrap_servers="localhost:9092", evidence_root=run_root)
-    _write_json(run_root / "smoke_publish_summary.json", smoke_summary)
+    phases = build_cleanroom_smoke_phases()
+    _publish_cleanroom_phase(phases[0], run_root=run_root)
+    _publish_cleanroom_phase(phases[1], run_root=run_root)
 
-    counts, checkpoint_listing, curated_listings = _wait_for_expected_outputs(run_command=run_command, timeout_seconds=poll_timeout_seconds)
+    initial_counts, initial_checkpoint_listing, initial_curated_listings = _wait_for_output_state(
+        expected_counts=INITIAL_ADR04_COUNTS,
+        required_curated_topics=("realtime_ops_alerts",),
+        run_command=run_command,
+        timeout_seconds=poll_timeout_seconds,
+        run_root=run_root,
+        phase_name="initial_window_close",
+    )
+    _write_json(
+        run_root / "phase_initial_window_close_state.json",
+        {
+            "captured_at": datetime.now(timezone.utc).isoformat(),
+            "topic_counts": initial_counts,
+            "checkpoint_listing": initial_checkpoint_listing,
+            "curated_listings": initial_curated_listings,
+        },
+    )
+
+    _publish_cleanroom_phase(phases[2], run_root=run_root)
+    counts, checkpoint_listing, curated_listings = _wait_for_output_state(
+        expected_counts=EXPECTED_ADR04_COUNTS,
+        required_curated_topics=("realtime_metric_corrections", "realtime_ops_alerts"),
+        run_command=run_command,
+        timeout_seconds=poll_timeout_seconds,
+        run_root=run_root,
+        phase_name="late_correction_emission",
+    )
     metric_rows = _consume_topic_rows("realtime_commerce_metrics_1m", counts["realtime_commerce_metrics_1m"], run_command=run_command)
     correction_rows = _consume_topic_rows("realtime_metric_corrections", counts["realtime_metric_corrections"], run_command=run_command)
     assertions = evaluate_adr04_assertions(
@@ -385,7 +434,9 @@ def _run_verify_pinot(*, run_root: Path, run_command: RunCommand) -> dict[str, A
     if not adr04_gate.get("passed"):
         raise ValueError("ADR 04 clean-room assertions did not pass, so the Pinot gate is blocked.")
 
-    run_command(["docker", "compose", "--profile", "serving", "down", "-v"])
+    run_command(["docker", "compose", "stop", *SERVING_SERVICES])
+    run_command(["docker", "compose", "rm", "-f", "-s", *SERVING_SERVICES])
+    _remove_docker_volumes(volume_suffixes=("pinot_zookeeper_data",), run_command=run_command)
     run_command(["docker", "compose", "up", "-d", *SERVING_SERVICES])
     _wait_for_pinot_runtime()
 
@@ -403,12 +454,22 @@ def _run_verify_pinot(*, run_root: Path, run_command: RunCommand) -> dict[str, A
         row_counts=row_counts,
     )
     _write_json(run_root / "adr05_pinot_gate.json", result)
+    apply_assets(evidence_root=Path("evidence/07_pinot_serving"))
+    capture_pinot_evidence(evidence_root=Path("evidence/07_pinot_serving"))
     return result
 
 
-def _wait_for_expected_outputs(*, run_command: RunCommand, timeout_seconds: int) -> tuple[dict[str, int], str, dict[str, str]]:
+def _wait_for_output_state(
+    *,
+    expected_counts: dict[str, int],
+    required_curated_topics: tuple[str, ...],
+    run_command: RunCommand,
+    timeout_seconds: int,
+    run_root: Path | None = None,
+    phase_name: str = "verification",
+) -> tuple[dict[str, int], str, dict[str, str]]:
     deadline = time.time() + timeout_seconds
-    last_counts = _topic_counts(run_command=run_command)
+    last_counts = {topic: 0 for topic in DERIVED_TOPICS}
     last_checkpoint_listing = ""
     last_curated = {
         "realtime_metric_corrections": "",
@@ -416,7 +477,11 @@ def _wait_for_expected_outputs(*, run_command: RunCommand, timeout_seconds: int)
     }
 
     while time.time() < deadline:
-        last_counts = _topic_counts(run_command=run_command)
+        last_counts = _topic_counts_with_artifact(
+            run_command=run_command,
+            run_root=run_root,
+            phase_name=phase_name,
+        )
         last_checkpoint_listing = _list_minio_prefix("checkpoints", "flink", run_command=run_command)
         last_curated = {
             "realtime_metric_corrections": _list_minio_prefix(
@@ -430,11 +495,22 @@ def _wait_for_expected_outputs(*, run_command: RunCommand, timeout_seconds: int)
                 run_command=run_command,
             ),
         }
-        if last_counts == EXPECTED_ADR04_COUNTS and "checkpoints/flink/commerce_metrics/" in last_checkpoint_listing and all(
-            listing.strip() for listing in last_curated.values()
+        if last_counts == expected_counts and _has_checkpoint_metadata(last_checkpoint_listing, job_prefix="commerce_metrics") and all(
+            last_curated[topic].strip() for topic in required_curated_topics
         ):
             return last_counts, last_checkpoint_listing, last_curated
         time.sleep(5)
+    if run_root is not None:
+        _write_json(
+            run_root / f"phase_{phase_name}_timeout_state.json",
+            {
+                "captured_at": datetime.now(timezone.utc).isoformat(),
+                "expected_counts": expected_counts,
+                "topic_counts": last_counts,
+                "checkpoint_listing": last_checkpoint_listing,
+                "curated_listings": last_curated,
+            },
+        )
     return last_counts, last_checkpoint_listing, last_curated
 
 
@@ -449,21 +525,43 @@ def _wait_for_flink_runtime(*, timeout_seconds: int) -> None:
 
 
 def _wait_for_pinot_runtime(*, timeout_seconds: int = 180) -> None:
-    _wait_for_json("http://localhost:9003/health", lambda payload: str(payload.get("status", "")).upper() in {"GOOD", "HEALTHY"}, timeout_seconds=timeout_seconds)
-    _wait_for_json("http://localhost:8000/health", lambda payload: str(payload.get("status", "")).upper() in {"GOOD", "HEALTHY"}, timeout_seconds=timeout_seconds)
+    _wait_for_json("http://localhost:9003/health", _health_is_good, timeout_seconds=timeout_seconds)
+    _wait_for_json("http://localhost:8000/health", _health_is_good, timeout_seconds=timeout_seconds)
 
 
 def _wait_for_json(url: str, predicate: Callable[[dict[str, Any]], bool], *, timeout_seconds: int) -> dict[str, Any]:
     deadline = time.time() + timeout_seconds
     last_payload: dict[str, Any] = {}
     while time.time() < deadline:
-        response = requests.get(url, timeout=30)
+        try:
+            response = requests.get(url, timeout=30)
+        except requests.RequestException as exc:
+            last_payload = {"request_error": str(exc)}
+            time.sleep(5)
+            continue
+
+        try:
+            last_payload = response.json()
+        except ValueError:
+            last_payload = {"status_code": response.status_code, "body": response.text}
+
+        if response.status_code >= 500:
+            time.sleep(5)
+            continue
         response.raise_for_status()
-        last_payload = response.json()
         if predicate(last_payload):
             return last_payload
         time.sleep(5)
     raise TimeoutError(f"Timed out waiting for {url}. Last payload: {last_payload}")
+
+
+def _health_is_good(payload: dict[str, Any]) -> bool:
+    status_candidates = [
+        payload.get("status", ""),
+        payload.get("text", ""),
+        payload.get("body", ""),
+    ]
+    return any(str(candidate).strip().upper() in {"GOOD", "HEALTHY", "OK"} for candidate in status_candidates)
 
 
 def _topic_counts(*, run_command: RunCommand) -> dict[str, int]:
@@ -478,29 +576,60 @@ def _safe_topic_counts(*, run_command: RunCommand) -> dict[str, Any]:
 
 
 def _topic_message_count(topic: str, *, run_command: RunCommand) -> int:
-    output = run_command(
-        [
-            "docker",
-            "compose",
-            "exec",
-            "-T",
-            "kafka",
-            "kafka-run-class",
-            "kafka.tools.GetOffsetShell",
-            "--broker-list",
-            "kafka:29092",
-            "--topic",
-            topic,
-            "--time",
-            "-1",
-        ]
-    ).strip()
+    command = [
+        "docker",
+        "compose",
+        "exec",
+        "-T",
+        "kafka",
+        "kafka-get-offsets",
+        "--bootstrap-server",
+        "kafka:29092",
+        "--topic",
+        topic,
+        "--time",
+        "-1",
+    ]
+    try:
+        output = run_command(command).strip()
+    except subprocess.CalledProcessError as exc:
+        raise TopicProbeError(
+            topic=topic,
+            command=command,
+            stderr=getattr(exc, "stderr", "") or "",
+            stdout=getattr(exc, "stdout", "") or "",
+        ) from exc
     if not output:
         return 0
     total = 0
     for line in output.splitlines():
         total += int(line.rsplit(":", 1)[-1])
     return total
+
+
+def _topic_counts_with_artifact(
+    *,
+    run_command: RunCommand,
+    run_root: Path | None,
+    phase_name: str,
+) -> dict[str, int]:
+    try:
+        return _topic_counts(run_command=run_command)
+    except TopicProbeError as exc:
+        if run_root is not None:
+            _write_json(
+                run_root / f"topic_probe_failure_{phase_name}.json",
+                {
+                    "captured_at": datetime.now(timezone.utc).isoformat(),
+                    "phase": phase_name,
+                    "topic": exc.topic,
+                    "command": exc.command,
+                    "stderr": exc.stderr,
+                    "stdout": exc.stdout,
+                    "message": str(exc),
+                },
+            )
+        raise
 
 
 def _consume_topic_rows(topic: str, count: int, *, run_command: RunCommand) -> list[dict[str, Any]]:
@@ -562,6 +691,21 @@ def _safe_minio_listing(bucket: str, prefix: str, *, run_command: RunCommand) ->
         return {"bucket": bucket, "prefix": prefix, "error": str(exc)}
 
 
+def _has_checkpoint_metadata(checkpoint_listing: str, *, job_prefix: str) -> bool:
+    lines = [line.strip() for line in checkpoint_listing.splitlines() if line.strip()]
+    return any(f"{job_prefix}/" in line and "/chk-" in line for line in lines)
+
+
+def _remove_docker_volumes(*, volume_suffixes: tuple[str, ...], run_command: RunCommand) -> None:
+    output = run_command(["docker", "volume", "ls", "--format", "{{.Name}}"]).strip()
+    if not output:
+        return
+    volumes = [line.strip() for line in output.splitlines() if line.strip()]
+    matches = [f"{COMPOSE_PROJECT_NAME}_{suffix}" for suffix in volume_suffixes if f"{COMPOSE_PROJECT_NAME}_{suffix}" in volumes]
+    if matches:
+        run_command(["docker", "volume", "rm", *matches])
+
+
 def _delete_minio_prefix(bucket: str, prefix: str, *, run_command: RunCommand) -> None:
     run_command(
         [
@@ -602,3 +746,18 @@ def _extract_pinot_row_count(payload: Any) -> int:
     if not rows:
         return 0
     return int(rows[0][0])
+
+
+def _publish_cleanroom_phase(phase: dict[str, Any], *, run_root: Path) -> dict[str, Any]:
+    published_counts = publish_topic_events(
+        topic_events=phase["topic_events"],
+        bootstrap_servers="localhost:9092",
+    )
+    summary = {
+        "captured_at": datetime.now(timezone.utc).isoformat(),
+        "phase": phase["name"],
+        "published_counts": published_counts,
+        "topics": sorted(phase["topic_events"]),
+    }
+    _write_json(run_root / f"phase_{phase['name']}_publish_summary.json", summary)
+    return summary

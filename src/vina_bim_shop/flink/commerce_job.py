@@ -76,7 +76,7 @@ def run() -> None:
     config = load_streaming_config()
     runtime = load_runtime_settings(config)
 
-    from pyflink.common import Types
+    from pyflink.common import Types, WatermarkStrategy
     from pyflink.datastream import StreamExecutionEnvironment
     from pyflink.datastream.functions import ProcessWindowFunction
     from pyflink.datastream.window import Time, TumblingEventTimeWindows
@@ -94,8 +94,10 @@ def run() -> None:
         topic=config.source_topics["commerce"],
         bootstrap_servers=runtime.kafka_bootstrap_servers,
         group_id="vina-bim-shop-commerce-metrics",
-        watermark_strategy=event_timestamp_assigner(),
-    ).map(lambda raw: json.loads(raw), output_type=Types.PICKLED_BYTE_ARRAY())
+        watermark_strategy=WatermarkStrategy.no_watermarks(),
+    ).map(lambda raw: json.loads(raw), output_type=Types.PICKLED_BYTE_ARRAY()).assign_timestamps_and_watermarks(
+        event_timestamp_assigner(out_of_orderness_seconds=config.out_of_orderness_seconds)
+    )
 
     processor = CommerceWindowProcessor(
         correction_topic=config.derived_topics["metric_corrections"],
@@ -131,9 +133,9 @@ def run() -> None:
         lambda row: row["target_topic"] == config.derived_topics["ops_alerts"],
     ).map(lambda row: json.dumps(row["value"], separators=(",", ":")), output_type=Types.STRING())
 
-    metrics_stream.sink_to(kafka_sink(topic=config.derived_topics["commerce_metrics"], bootstrap_servers=runtime.kafka_bootstrap_servers))
-    corrections_stream.sink_to(kafka_sink(topic=config.derived_topics["metric_corrections"], bootstrap_servers=runtime.kafka_bootstrap_servers))
-    alerts_stream.sink_to(kafka_sink(topic=config.derived_topics["ops_alerts"], bootstrap_servers=runtime.kafka_bootstrap_servers))
+    metrics_stream.add_sink(kafka_sink(topic=config.derived_topics["commerce_metrics"], bootstrap_servers=runtime.kafka_bootstrap_servers))
+    corrections_stream.add_sink(kafka_sink(topic=config.derived_topics["metric_corrections"], bootstrap_servers=runtime.kafka_bootstrap_servers))
+    alerts_stream.add_sink(kafka_sink(topic=config.derived_topics["ops_alerts"], bootstrap_servers=runtime.kafka_bootstrap_servers))
     corrections_stream.sink_to(
         jsonl_file_sink(
             bucket=runtime.evidence_bucket,

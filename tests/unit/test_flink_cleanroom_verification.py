@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import subprocess
 import sys
 from pathlib import Path
 
@@ -149,7 +150,7 @@ def test_evaluate_adr04_assertions_requires_exact_counts_and_corrected_snapshot_
                 },
             }
         ],
-        checkpoint_listing="checkpoints/flink/commerce_metrics/chk-1",
+        checkpoint_listing="[2026-06-01 19:53:21 UTC]  18KiB STANDARD commerce_metrics/run-1/chk-17/_metadata",
         curated_listings={
             "realtime_metric_corrections": "evidence/streaming_curated/realtime_metric_corrections/event_date=2026-05-01/part-00001.jsonl",
             "realtime_ops_alerts": "evidence/streaming_curated/realtime_ops_alerts/event_date=2026-05-01/part-00001.jsonl",
@@ -207,6 +208,22 @@ def test_evaluate_pinot_gate_requires_live_corrections_rows() -> None:
         )
 
 
+def test_evaluate_pinot_gate_accepts_plain_ok_health_payloads() -> None:
+    from vina_bim_shop.flink.verification import evaluate_pinot_gate
+
+    result = evaluate_pinot_gate(
+        controller_health={"text": "OK"},
+        broker_health={"body": "OK"},
+        row_counts={
+            "pinot_realtime_commerce_metrics_1m": 3,
+            "pinot_realtime_metric_corrections": 1,
+            "pinot_realtime_ops_alerts": 7,
+        },
+    )
+
+    assert result["passed"] is True
+
+
 def test_cleanup_runtime_state_reclaims_safe_docker_surfaces_only() -> None:
     from vina_bim_shop.flink.verification import cleanup_runtime_state
 
@@ -253,3 +270,197 @@ def test_gitignore_excludes_runtime_cleanroom_artifacts() -> None:
     gitignore = (_repo_root() / ".gitignore").read_text(encoding="utf-8")
 
     assert "evidence/runtime/" in gitignore
+
+
+def test_topic_message_count_uses_kafka_get_offsets_output() -> None:
+    from vina_bim_shop.flink.verification import _topic_message_count
+
+    count = _topic_message_count(
+        "realtime_commerce_metrics_1m",
+        run_command=lambda _command: "realtime_commerce_metrics_1m:0:3\nrealtime_commerce_metrics_1m:1:4\n",
+    )
+
+    assert count == 7
+
+
+def test_has_checkpoint_metadata_accepts_recursive_minio_listing() -> None:
+    from vina_bim_shop.flink.verification import _has_checkpoint_metadata
+
+    listing = """
+[2026-06-01 19:53:21 UTC]  18KiB STANDARD commerce_metrics/run-1/chk-17/_metadata
+[2026-06-01 19:53:24 UTC] 4.9KiB STANDARD ops_alerts/run-2/chk-16/_metadata
+""".strip()
+
+    assert _has_checkpoint_metadata(listing, job_prefix="commerce_metrics") is True
+    assert _has_checkpoint_metadata(listing, job_prefix="metric_corrections") is False
+
+
+def test_remove_docker_volumes_only_removes_matching_suffixes() -> None:
+    from vina_bim_shop.flink.verification import _remove_docker_volumes
+
+    commands: list[list[str]] = []
+
+    def run_command(command: list[str]) -> str:
+        commands.append(command)
+        if command[:4] == ["docker", "volume", "ls", "--format"]:
+            return "\n".join(
+                [
+                    "vina-bim-shop_pinot_zookeeper_data",
+                    "other-project_pinot_zookeeper_data",
+                    "vina-bim-shop_unrelated_data",
+                ]
+            )
+        return ""
+
+    _remove_docker_volumes(volume_suffixes=("pinot_zookeeper_data",), run_command=run_command)
+
+    assert commands[0] == ["docker", "volume", "ls", "--format", "{{.Name}}"]
+    assert commands[1] == [
+        "docker",
+        "volume",
+        "rm",
+        "vina-bim-shop_pinot_zookeeper_data",
+    ]
+
+
+def test_topic_message_count_treats_empty_probe_output_as_zero() -> None:
+    from vina_bim_shop.flink.verification import _topic_message_count
+
+    assert _topic_message_count("realtime_metric_corrections", run_command=lambda _command: "") == 0
+
+
+def test_topic_message_count_surfaces_probe_failures_with_command_context() -> None:
+    from vina_bim_shop.flink.verification import _topic_message_count
+
+    def failing_probe(command):
+        raise subprocess.CalledProcessError(1, command, stderr="boom")
+
+    with pytest.raises(RuntimeError, match="kafka-get-offsets"):
+        _topic_message_count("realtime_metric_corrections", run_command=failing_probe)
+
+
+def test_wait_for_output_state_accepts_initial_close_phase(monkeypatch) -> None:
+    from vina_bim_shop.flink import verification
+
+    observed_counts = iter(
+        [
+            {
+                "realtime_commerce_metrics_1m": 0,
+                "realtime_metric_corrections": 0,
+                "realtime_ops_alerts": 0,
+            },
+            {
+                "realtime_commerce_metrics_1m": 3,
+                "realtime_metric_corrections": 0,
+                "realtime_ops_alerts": 7,
+            },
+        ]
+    )
+    monkeypatch.setattr(verification, "_topic_counts", lambda *, run_command: next(observed_counts))
+    monkeypatch.setattr(
+        verification,
+        "_list_minio_prefix",
+        lambda bucket, prefix, *, run_command: (
+            "checkpoints/flink/commerce_metrics/chk-1"
+            if bucket == "checkpoints"
+            else (
+                "evidence/streaming_curated/realtime_ops_alerts/event_date=2026-05-01/part-00001.jsonl"
+                if prefix.endswith("realtime_ops_alerts")
+                else ""
+            )
+        ),
+    )
+    monkeypatch.setattr("vina_bim_shop.flink.verification.time.sleep", lambda _seconds: None)
+
+    counts, checkpoint_listing, curated = verification._wait_for_output_state(
+        expected_counts={
+            "realtime_commerce_metrics_1m": 3,
+            "realtime_metric_corrections": 0,
+            "realtime_ops_alerts": 7,
+        },
+        required_curated_topics=("realtime_ops_alerts",),
+        run_command=lambda _command: "",
+        timeout_seconds=1,
+    )
+
+    assert counts["realtime_commerce_metrics_1m"] == 3
+    assert "commerce_metrics" in checkpoint_listing
+    assert curated["realtime_metric_corrections"] == ""
+
+
+def test_wait_for_output_state_accepts_late_correction_phase(monkeypatch) -> None:
+    from vina_bim_shop.flink import verification
+
+    observed_counts = iter(
+        [
+            {
+                "realtime_commerce_metrics_1m": 3,
+                "realtime_metric_corrections": 0,
+                "realtime_ops_alerts": 7,
+            },
+            {
+                "realtime_commerce_metrics_1m": 3,
+                "realtime_metric_corrections": 1,
+                "realtime_ops_alerts": 7,
+            },
+        ]
+    )
+    monkeypatch.setattr(verification, "_topic_counts", lambda *, run_command: next(observed_counts))
+    monkeypatch.setattr(
+        verification,
+        "_list_minio_prefix",
+        lambda bucket, prefix, *, run_command: (
+            "checkpoints/flink/commerce_metrics/chk-2"
+            if bucket == "checkpoints"
+            else f"evidence/{prefix}/event_date=2026-05-01/part-00001.jsonl"
+        ),
+    )
+    monkeypatch.setattr("vina_bim_shop.flink.verification.time.sleep", lambda _seconds: None)
+
+    counts, _checkpoint_listing, curated = verification._wait_for_output_state(
+        expected_counts={
+            "realtime_commerce_metrics_1m": 3,
+            "realtime_metric_corrections": 1,
+            "realtime_ops_alerts": 7,
+        },
+        required_curated_topics=("realtime_metric_corrections", "realtime_ops_alerts"),
+        run_command=lambda _command: "",
+        timeout_seconds=1,
+    )
+
+    assert counts["realtime_metric_corrections"] == 1
+    assert curated["realtime_metric_corrections"]
+
+
+def test_wait_for_json_retries_transient_503_until_payload_is_healthy(monkeypatch) -> None:
+    from vina_bim_shop.flink import verification
+
+    class _Response:
+        def __init__(self, status_code: int, payload: dict[str, object]):
+            self.status_code = status_code
+            self._payload = payload
+            self.text = str(payload)
+
+        def json(self):
+            return self._payload
+
+        def raise_for_status(self) -> None:
+            if self.status_code >= 400:
+                raise RuntimeError(f"http {self.status_code}")
+
+    responses = iter(
+        [
+            _Response(503, {"status": "STARTING"}),
+            _Response(200, {"status": "GOOD"}),
+        ]
+    )
+    monkeypatch.setattr(verification.requests, "get", lambda *_args, **_kwargs: next(responses))
+    monkeypatch.setattr("vina_bim_shop.flink.verification.time.sleep", lambda _seconds: None)
+
+    payload = verification._wait_for_json(
+        "http://localhost:9003/health",
+        lambda body: str(body.get("status", "")).upper() == "GOOD",
+        timeout_seconds=1,
+    )
+
+    assert payload["status"] == "GOOD"

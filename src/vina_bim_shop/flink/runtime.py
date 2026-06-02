@@ -87,32 +87,30 @@ def kafka_source(*, env: Any, topic: str, bootstrap_servers: str, group_id: str,
 
 def kafka_sink(*, topic: str, bootstrap_servers: str) -> Any:
     from pyflink.common.serialization import SimpleStringSchema
-    from pyflink.datastream.connectors.kafka import KafkaRecordSerializationSchema, KafkaSink
+    from pyflink.datastream.connectors.kafka import FlinkKafkaProducer
 
-    return (
-        KafkaSink.builder()
-        .set_bootstrap_servers(bootstrap_servers)
-        .set_record_serializer(
-            KafkaRecordSerializationSchema.builder()
-            .set_topic(topic)
-            .set_value_serialization_schema(SimpleStringSchema())
-            .build()
-        )
-        .build()
+    return FlinkKafkaProducer(
+        topic=topic,
+        serialization_schema=SimpleStringSchema(),
+        producer_config={"bootstrap.servers": bootstrap_servers},
     )
 
 
-def event_timestamp_assigner() -> Any:
+def event_timestamp_assigner(*, out_of_orderness_seconds: int = 5) -> Any:
     from pyflink.common import Duration, WatermarkStrategy
     from pyflink.common.watermark_strategy import TimestampAssigner
 
     class EventTimestampAssigner(TimestampAssigner):
-        def extract_timestamp(self, value: str, record_timestamp: int) -> int:
-            event = json.loads(value)
-            event_ts = normalize_ts(str(event["event_timestamp"]))
-            return int(datetime.fromisoformat(event_ts).timestamp() * 1000)
+        def extract_timestamp(self, value: str | dict[str, Any], record_timestamp: int) -> int:
+            return event_timestamp_millis(value)
 
-    return WatermarkStrategy.for_bounded_out_of_orderness(Duration.of_seconds(5)).with_timestamp_assigner(EventTimestampAssigner())
+    return WatermarkStrategy.for_bounded_out_of_orderness(Duration.of_seconds(out_of_orderness_seconds)).with_timestamp_assigner(EventTimestampAssigner())
+
+
+def event_timestamp_millis(value: str | dict[str, Any]) -> int:
+    event = _coerce_event_record(value)
+    event_ts = normalize_ts(str(event["event_timestamp"]))
+    return int(datetime.fromisoformat(event_ts).timestamp() * 1000)
 
 
 def jsonl_file_sink(*, bucket: str, prefix: str, topic: str) -> Any:
@@ -140,3 +138,12 @@ def normalize_ts(value: str) -> str:
     if parsed.tzinfo is None:
         parsed = parsed.replace(tzinfo=timezone.utc)
     return parsed.astimezone(timezone.utc).isoformat()
+
+
+def _coerce_event_record(value: str | dict[str, Any]) -> dict[str, Any]:
+    if isinstance(value, str):
+        parsed = json.loads(value)
+        if not isinstance(parsed, dict):
+            raise TypeError("Expected JSON object payload for Flink event timestamp extraction.")
+        return parsed
+    return value
