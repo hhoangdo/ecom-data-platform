@@ -37,3 +37,6 @@ artifacts/airflow/logs/
 
 # Playwright test artifacts (screenshots, videos, traces)
 .playwright-mcp
+
+# Temporary files
+tmp/
