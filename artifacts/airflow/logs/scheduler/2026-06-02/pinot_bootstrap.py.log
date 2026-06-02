@@ -1518,3 +1518,59 @@
 [2026-06-02T10:03:30.238+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:30.237+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-06-02T10:03:30.256+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:30.256+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
 [2026-06-02T10:03:30.284+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 0.981 seconds
+[2026-06-02T10:04:01.330+0000] {processor.py:186} INFO - Started process (PID=8317) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:04:01.333+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:04:01.336+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:01.335+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:04:02.738+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:04:02.773+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:02.772+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:04:02.788+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:02.787+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:04:02.811+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 1.493 seconds
+[2026-06-02T10:04:33.698+0000] {processor.py:186} INFO - Started process (PID=8452) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:04:33.700+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:04:33.702+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:33.701+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:04:34.558+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:04:34.596+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:34.595+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:04:34.616+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:34.616+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:04:34.641+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 0.952 seconds
+[2026-06-02T10:05:05.209+0000] {processor.py:186} INFO - Started process (PID=8579) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:05:05.210+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:05:05.212+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:05.212+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:05:06.038+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:05:06.067+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:06.066+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:05:06.082+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:06.081+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:05:06.108+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 0.909 seconds
+[2026-06-02T10:05:36.720+0000] {processor.py:186} INFO - Started process (PID=8714) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:05:36.721+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:05:36.724+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:36.723+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:05:37.600+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:05:37.630+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:37.630+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:05:37.645+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:37.645+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:05:37.667+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 0.959 seconds
+[2026-06-02T10:06:08.329+0000] {processor.py:186} INFO - Started process (PID=8849) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:06:08.331+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:06:08.339+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:08.337+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:06:09.636+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:06:09.672+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:09.671+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:06:09.688+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:09.687+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:06:09.714+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 1.409 seconds
+[2026-06-02T10:06:40.158+0000] {processor.py:186} INFO - Started process (PID=8984) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:06:40.160+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:06:40.165+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:40.165+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:06:41.066+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:06:41.100+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:41.099+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:06:41.115+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:41.114+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:06:41.155+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 1.008 seconds
+[2026-06-02T10:07:11.356+0000] {processor.py:186} INFO - Started process (PID=9119) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:07:11.358+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:07:11.360+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:11.359+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:07:13.225+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:07:13.254+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:13.254+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:07:13.270+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:13.270+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:07:13.296+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 1.958 seconds
+[2026-06-02T10:07:44.284+0000] {processor.py:186} INFO - Started process (PID=9254) to work on /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:07:44.285+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/pinot_bootstrap.py for tasks to queue
+[2026-06-02T10:07:44.288+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:44.287+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:07:45.138+0000] {processor.py:925} INFO - DAG(s) 'pinot_bootstrap' retrieved from /opt/airflow/dags/pinot_bootstrap.py
+[2026-06-02T10:07:45.171+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:45.170+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:07:45.188+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:45.188+0000] {dag.py:4180} INFO - Setting next_dagrun for pinot_bootstrap to None, run_after=None
+[2026-06-02T10:07:45.214+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/pinot_bootstrap.py took 0.940 seconds

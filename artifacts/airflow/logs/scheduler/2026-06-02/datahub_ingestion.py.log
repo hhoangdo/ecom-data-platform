@@ -1511,3 +1511,66 @@
 [2026-06-02T10:02:59.729+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:02:59.728+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-06-02T10:02:59.746+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:02:59.745+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
 [2026-06-02T10:02:59.771+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.120 seconds
+[2026-06-02T10:03:30.360+0000] {processor.py:186} INFO - Started process (PID=8222) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:03:30.362+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:03:30.364+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:30.364+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:03:31.564+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:03:31.604+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:31.604+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:03:31.623+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:31.622+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:03:31.653+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.304 seconds
+[2026-06-02T10:04:02.911+0000] {processor.py:186} INFO - Started process (PID=8357) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:04:02.912+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:04:02.914+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:02.914+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:04:04.136+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:04:04.169+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:04.168+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:04:04.188+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:04.187+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:04:04.214+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.314 seconds
+[2026-06-02T10:04:34.718+0000] {processor.py:186} INFO - Started process (PID=8491) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:04:34.719+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:04:34.722+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:34.721+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:04:35.587+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:04:35.621+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:35.620+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:04:35.636+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:35.636+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:04:35.663+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 0.954 seconds
+[2026-06-02T10:05:06.190+0000] {processor.py:186} INFO - Started process (PID=8618) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:05:06.191+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:05:06.193+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:06.193+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:05:07.193+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:05:07.222+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:07.221+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:05:07.237+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:07.237+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:05:07.259+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.078 seconds
+[2026-06-02T10:05:37.752+0000] {processor.py:186} INFO - Started process (PID=8753) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:05:37.754+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:05:37.756+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:37.755+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:05:38.584+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:05:38.613+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:38.613+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:05:38.629+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:38.629+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:05:38.652+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 0.910 seconds
+[2026-06-02T10:06:09.813+0000] {processor.py:186} INFO - Started process (PID=8888) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:06:09.816+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:06:09.819+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:09.818+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:06:10.740+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:06:10.782+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:10.782+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:06:10.798+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:10.798+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:06:10.824+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.025 seconds
+[2026-06-02T10:06:41.237+0000] {processor.py:186} INFO - Started process (PID=9023) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:06:41.239+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:06:41.241+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:41.241+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:06:42.283+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:06:42.320+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:42.319+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:06:42.336+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:42.336+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:06:42.359+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.134 seconds
+[2026-06-02T10:07:13.387+0000] {processor.py:186} INFO - Started process (PID=9158) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:07:13.389+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:07:13.391+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:13.391+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:07:14.480+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:07:14.512+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:14.511+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:07:14.527+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:14.527+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:07:14.554+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.176 seconds
+[2026-06-02T10:07:45.298+0000] {processor.py:186} INFO - Started process (PID=9293) to work on /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:07:45.299+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/datahub_ingestion.py for tasks to queue
+[2026-06-02T10:07:45.301+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:45.301+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:07:46.374+0000] {processor.py:925} INFO - DAG(s) 'datahub_ingestion' retrieved from /opt/airflow/dags/datahub_ingestion.py
+[2026-06-02T10:07:46.406+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:46.405+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:07:46.422+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:46.422+0000] {dag.py:4180} INFO - Setting next_dagrun for datahub_ingestion to None, run_after=None
+[2026-06-02T10:07:46.452+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/datahub_ingestion.py took 1.164 seconds

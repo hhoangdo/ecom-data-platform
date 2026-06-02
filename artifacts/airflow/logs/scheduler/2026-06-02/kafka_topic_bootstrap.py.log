@@ -1518,3 +1518,59 @@
 [2026-06-02T10:03:30.237+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:30.237+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-06-02T10:03:30.256+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:03:30.255+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
 [2026-06-02T10:03:30.283+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 0.988 seconds
+[2026-06-02T10:04:01.329+0000] {processor.py:186} INFO - Started process (PID=8314) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:04:01.332+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:04:01.336+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:01.334+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:04:02.738+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:04:02.773+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:02.772+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:04:02.788+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:02.787+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:04:02.811+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 1.504 seconds
+[2026-06-02T10:04:33.691+0000] {processor.py:186} INFO - Started process (PID=8449) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:04:33.693+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:04:33.695+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:33.694+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:04:34.562+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:04:34.603+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:34.602+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:04:34.620+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:04:34.620+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:04:34.643+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 0.961 seconds
+[2026-06-02T10:05:05.198+0000] {processor.py:186} INFO - Started process (PID=8576) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:05:05.200+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:05:05.202+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:05.201+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:05:06.037+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:05:06.067+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:06.066+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:05:06.082+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:06.081+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:05:06.106+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 0.921 seconds
+[2026-06-02T10:05:36.714+0000] {processor.py:186} INFO - Started process (PID=8711) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:05:36.716+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:05:36.720+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:36.719+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:05:37.600+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:05:37.630+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:37.629+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:05:37.646+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:05:37.645+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:05:37.669+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 0.966 seconds
+[2026-06-02T10:06:08.324+0000] {processor.py:186} INFO - Started process (PID=8846) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:06:08.331+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:06:08.339+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:08.338+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:06:09.637+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:06:09.671+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:09.671+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:06:09.687+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:09.687+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:06:09.713+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 1.412 seconds
+[2026-06-02T10:06:40.151+0000] {processor.py:186} INFO - Started process (PID=8981) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:06:40.153+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:06:40.155+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:40.155+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:06:41.066+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:06:41.099+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:41.098+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:06:41.115+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:06:41.115+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:06:41.164+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 1.024 seconds
+[2026-06-02T10:07:11.345+0000] {processor.py:186} INFO - Started process (PID=9116) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:07:11.347+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:07:11.350+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:11.349+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:07:13.225+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:07:13.254+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:13.254+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:07:13.270+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:13.270+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:07:13.297+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 1.972 seconds
+[2026-06-02T10:07:44.276+0000] {processor.py:186} INFO - Started process (PID=9251) to work on /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:07:44.277+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/kafka_topic_bootstrap.py for tasks to queue
+[2026-06-02T10:07:44.280+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:44.280+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:07:45.137+0000] {processor.py:925} INFO - DAG(s) 'kafka_topic_bootstrap' retrieved from /opt/airflow/dags/kafka_topic_bootstrap.py
+[2026-06-02T10:07:45.171+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:45.171+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-06-02T10:07:45.189+0000] {logging_mixin.py:190} INFO - [2026-06-02T10:07:45.188+0000] {dag.py:4180} INFO - Setting next_dagrun for kafka_topic_bootstrap to None, run_after=None
+[2026-06-02T10:07:45.216+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/kafka_topic_bootstrap.py took 0.952 seconds
