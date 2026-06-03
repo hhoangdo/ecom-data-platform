@@ -28,7 +28,7 @@
 | S9 | 09_pinot_ui.png | Pinot cluster with 3 tables and healthy nodes | GOOD |
 | S10 | 10_airflow_ui.png | Airflow `datahub_ingestion` grid after login | GOOD |
 | S11 | 11_gx_data_docs.png | GX Data Docs index | GOOD |
-| S12 | 12_datahub_ui.png | DataHub dataset page for `vina_bim_shop.fact_order` | GOOD |
+| S12 | 12_datahub_ui.png | DataHub lineage workspace for `vina_bim_shop.fact_order` with the summary panel open | GOOD |
 
 ## Root Fixes Applied
 

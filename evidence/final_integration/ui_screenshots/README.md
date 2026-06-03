@@ -10,7 +10,7 @@ Final ADR 08 screenshots live in this directory.
 | 5 | `05_trino_ui.png` | Trino cluster overview with 1 active worker |
 | 7 | `07_spark_history_server.png` | Spark History completed applications |
 | 10 | `10_airflow_ui.png` | Airflow `datahub_ingestion` grid after login |
-| 12 | `12_datahub_ui.png` | DataHub dataset page for `vina_bim_shop.fact_order` |
+| 12 | `12_datahub_ui.png` | DataHub lineage workspace for `vina_bim_shop.fact_order` with the summary panel open |
 
 ## Capture Method
 
