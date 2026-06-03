@@ -1,0 +1,31 @@
+{
+  "failed_tags": [],
+  "status": "success",
+  "verified_tag_count": 6,
+  "verified_tags": [
+    {
+      "name": "bronze",
+      "urn": "urn:li:tag:bronze"
+    },
+    {
+      "name": "silver",
+      "urn": "urn:li:tag:silver"
+    },
+    {
+      "name": "gold",
+      "urn": "urn:li:tag:gold"
+    },
+    {
+      "name": "official",
+      "urn": "urn:li:tag:official"
+    },
+    {
+      "name": "provisional",
+      "urn": "urn:li:tag:provisional"
+    },
+    {
+      "name": "quality_gate",
+      "urn": "urn:li:tag:quality_gate"
+    }
+  ]
+}

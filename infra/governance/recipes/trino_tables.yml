@@ -12,8 +12,6 @@ source:
         - ".*"
     include_views: false
     include_tables: true
-    stateful_ingestion:
-      enabled: true
 
 sink:
   type: datahub-rest

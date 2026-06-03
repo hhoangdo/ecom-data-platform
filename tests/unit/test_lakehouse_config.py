@@ -107,6 +107,33 @@ def test_trino_node_environment_is_valid_identifier() -> None:
     assert "node.environment=vina-bim-shop-local" not in node_properties
 
 
+def test_trino_self_discovery_uses_container_hostname() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    config_properties = (
+        repo_root / "infra" / "lakehouse" / "trino" / "etc" / "config.properties"
+    ).read_text(encoding="utf-8")
+
+    assert "coordinator=true" in config_properties
+    assert "node-scheduler.include-coordinator=true" in config_properties
+    assert "discovery.uri=http://trino:8080" in config_properties
+    assert "discovery.uri=http://localhost:8080" not in config_properties
+
+
+def test_trino_worker_config_uses_non_coordinator_role() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    worker_config = (
+        repo_root / "infra" / "lakehouse" / "trino" / "etc" / "worker-config.properties"
+    ).read_text(encoding="utf-8")
+    worker_node = (
+        repo_root / "infra" / "lakehouse" / "trino" / "etc" / "worker-node.properties"
+    ).read_text(encoding="utf-8")
+
+    assert "coordinator=false" in worker_config
+    assert "discovery.uri=http://trino:8080" in worker_config
+    assert "node.environment=vina_bim_shop_local" in worker_node
+    assert "node.id=vina-bim-shop-trino-worker-1" in worker_node
+
+
 def test_lakehouse_evidence_defaults_to_adr02_evidence_path() -> None:
     from vina_bim_shop.lakehouse.evidence import DEFAULT_EVIDENCE_ROOT, REQUIRED_BUCKETS
 

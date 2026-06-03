@@ -34,9 +34,9 @@
     },
     {
       "delta": 0,
-      "duckdb": 8,
+      "duckdb": 9,
       "name": "dim_date.row_count",
-      "spark_trino": 8,
+      "spark_trino": 9,
       "success": true,
       "tolerance": 0
     },
@@ -82,9 +82,9 @@
     },
     {
       "delta": 0,
-      "duckdb": 738,
+      "duckdb": 729,
       "name": "bridge_product_category.row_count",
-      "spark_trino": 738,
+      "spark_trino": 729,
       "success": true,
       "tolerance": 0
     },
@@ -98,9 +98,9 @@
     },
     {
       "delta": 0,
-      "duckdb": 6688,
+      "duckdb": 6756,
       "name": "fact_order_item.row_count",
-      "spark_trino": 6688,
+      "spark_trino": 6756,
       "success": true,
       "tolerance": 0
     },
@@ -130,9 +130,9 @@
     },
     {
       "delta": 0,
-      "duckdb": 2194,
+      "duckdb": 2233,
       "name": "fact_promotion_application.row_count",
-      "spark_trino": 2194,
+      "spark_trino": 2233,
       "success": true,
       "tolerance": 0
     },
@@ -146,73 +146,73 @@
     },
     {
       "delta": 0,
-      "duckdb": 159,
+      "duckdb": 164,
       "name": "agg_hourly_reconciled_kpi.row_count",
-      "spark_trino": 159,
+      "spark_trino": 164,
       "success": true,
       "tolerance": 0
     },
     {
       "delta": 0,
-      "duckdb": 681,
+      "duckdb": 688,
       "name": "feat_customer_90d.row_count",
-      "spark_trino": 681,
+      "spark_trino": 688,
       "success": true,
       "tolerance": 0
     },
     {
       "delta": 0,
-      "duckdb": 4612,
+      "duckdb": 4652,
       "name": "feat_stream_60m.row_count",
-      "spark_trino": 4612,
+      "spark_trino": 4652,
       "success": true,
       "tolerance": 0
     },
     {
       "delta": 0,
-      "duckdb": 681,
+      "duckdb": 688,
       "name": "feat_customer_unified.row_count",
-      "spark_trino": 681,
+      "spark_trino": 688,
       "success": true,
       "tolerance": 0
     },
     {
       "delta": 0.0,
-      "duckdb": 5305136289.0,
+      "duckdb": 5488980096.0,
       "name": "fact_order.official_paid_revenue",
-      "spark_trino": 5305136289.0,
+      "spark_trino": 5488980096.0,
       "success": true,
       "tolerance": 0.01
     },
     {
       "delta": 0.0,
-      "duckdb": 5615446000.0,
+      "duckdb": 5737896000.0,
       "name": "fact_order.gross_merchandise_value",
-      "spark_trino": 5615446000.0,
+      "spark_trino": 5737896000.0,
       "success": true,
       "tolerance": 0.01
     },
     {
       "delta": 0.0,
-      "duckdb": 3967767902.4,
+      "duckdb": 4068563658.33,
       "name": "fact_order_item.estimated_cost",
-      "spark_trino": 3967767902.4,
+      "spark_trino": 4068563658.33,
       "success": true,
       "tolerance": 0.01
     },
     {
       "delta": 0.0,
-      "duckdb": 1337368386.6,
+      "duckdb": 1420416437.67,
       "name": "fact_order_item.estimated_margin",
-      "spark_trino": 1337368386.6,
+      "spark_trino": 1420416437.67,
       "success": true,
       "tolerance": 0.01
     },
     {
       "delta": 0.0,
-      "duckdb": 5305136289.0,
+      "duckdb": 5488980096.0,
       "name": "agg_hourly_reconciled_kpi.official_paid_revenue",
-      "spark_trino": 5305136289.0,
+      "spark_trino": 5488980096.0,
       "success": true,
       "tolerance": 0.01
     }

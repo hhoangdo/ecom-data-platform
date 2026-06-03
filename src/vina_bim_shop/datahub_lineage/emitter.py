@@ -7,6 +7,7 @@ from datahub.emitter.mcp import MetadataChangeProposalWrapper
 from datahub.emitter.rest_emitter import DataHubRestEmitter
 from datahub.metadata.schema_classes import (
     AuditStampClass,
+    DatasetLineageTypeClass,
     OwnershipClass,
     OwnerClass,
     OwnershipTypeClass,
@@ -52,6 +53,7 @@ class DataHubLineageEmitter:
                     upstreams=[
                         UpstreamClass(
                             dataset=parent,
+                            type=DatasetLineageTypeClass.TRANSFORMED,
                             auditStamp=AuditStampClass(
                                 time=now,
                                 actor="urn:li:corpuser:data_engineer",

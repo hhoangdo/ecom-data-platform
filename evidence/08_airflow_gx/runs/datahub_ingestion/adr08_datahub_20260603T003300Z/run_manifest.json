@@ -1,0 +1,56 @@
+{
+  "captured_at": "2026-06-02T18:34:05.936760+00:00",
+  "ingestion_results": {
+    "custom_lineage": {
+      "flink": {
+        "realtime_commerce_metrics_1m": "success",
+        "realtime_metric_corrections": "success",
+        "realtime_ops_alerts": "success"
+      },
+      "gx_assertions": {
+        "assertions_emitted": 8,
+        "files_found": 1
+      },
+      "spark": {
+        "agg_hourly_reconciled_kpi": "success",
+        "dim_category": "success",
+        "dim_customer": "success",
+        "dim_order_status": "success",
+        "dim_payment_method": "success",
+        "dim_product": "success",
+        "dim_promotion": "success",
+        "dim_seller": "success",
+        "dim_shipment_status": "success",
+        "dim_shipping_method": "success",
+        "fact_inventory_snapshot": "success",
+        "fact_order": "success",
+        "fact_order_item": "success",
+        "fact_payment_attempt": "success",
+        "fact_promotion_application": "success",
+        "fact_shipment": "success",
+        "feat_customer_90d": "success",
+        "feat_customer_unified": "success",
+        "feat_stream_60m": "success",
+        "obt_order_performance": "success"
+      },
+      "vocabulary": "success"
+    },
+    "dbt_legacy": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '211.54 MB',\n 'peak_memory_usage': '211.54 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '55.04 GB', 'used_initally': '55.02 GB', 'free': '971.07 GB'},\n 'peak_disk_usage': '55.04 GB',\n 'thread_count': 4,\n 'peak_thread_count': 9}\nSource (dbt) report:\n{'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'assertion': {'dataPlatformInstance': 72, 'assertionInfo': 72, 'assertionRunEvent': 72, 'status': 72},\n             'dataProcessInstance': {'dataProcessInstanceProperties': 53,\n                                     'dataProcessInstanceRelationships': 53,\n                                     'dataProcessInstanceInput': 36,\n                                     'dataProcessInstanceOutput': 53,\n                                     'dataProcessInstanceRunEvent': 106,\n                                     'status': 53},\n             'dataset': {'subTypes': 52,\n                         'dataPlatformInstance': 52,\n                         'datasetProperties': 52,\n                         'status': 52,\n                         'schemaMetadata': 52,\n                         'upstreamLineage': 88,\n                         'fineGrainedLineages': 26,\n                         'viewProperties': 52}},\n 'aspects_by_subtypes_full_count': {'assertion': {'unknown': {'dataPlatformInstance': 72,\n                                                              'assertionInfo': 72,\n                                                              'assertionRunEvent': 72,\n                                                              'status': 72}},\n                                    'da",
+      "status": "success"
+    },
+    "kafka_topics": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '165.54 MB',\n 'peak_memory_usage': '165.54 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '54.84 GB', 'used_initally': '54.83 GB', 'free': '971.27 GB'},\n 'peak_disk_usage': '54.84 GB',\n 'thread_count': 4,\n 'peak_thread_count': 5}\nSource (kafka) report:\n{'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'dataset': {'status': 8, 'dataPlatformInstance': 8, 'datasetProperties': 8, 'subTypes': 8, 'browsePathsV2': 8, 'schemaMetadata': 5}},\n 'aspects_by_subtypes_full_count': {'dataset': {'Topic': {'status': 8,\n                                                          'dataPlatformInstance': 8,\n                                                          'datasetProperties': 8,\n                                                          'subTypes': 8,\n                                                          'browsePathsV2': 8,\n                                                          'schemaMetadata': 5}}},\n 'samples': {},\n 'compute_stats_time_seconds': 0.001887,\n 'event_not_produced_warn': True,\n 'events_produced': 45,\n 'events_produced_per_sec': 26,\n 'num_input_fields_filtered': 0,\n 'soft_deleted_stale_entities': [],\n 'last_state_non_deletable_entities': [],\n 'entity_type_deletion_summary': {},\n 'topics_scanned': 20,\n 'filtered': ['FailedMetadataChangeProposal_v1',\n              '_schemas',\n              'MetadataChangeLog_Timeseries_v1',\n              'MetadataChangeProposal_v1',\n              'DataHubUpgradeHistory_v1',\n              'PlatformEvent_v1',\n              '_connect_configs',\n              '_connect_status',\n              '_connect_offsets',\n     ",
+      "status": "success"
+    },
+    "minio_storage": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '141.56 MB',\n 'peak_memory_usage': '141.56 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '54.84 GB', 'used_initally': '54.84 GB', 'free': '971.27 GB'},\n 'peak_disk_usage': '54.84 GB',\n 'thread_count': 4,\n 'peak_thread_count': 5}\nSource (file) report:\n{'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'dataset': {'datasetProperties': 4, 'status': 4}},\n 'aspects_by_subtypes_full_count': {'dataset': {'unknown': {'datasetProperties': 4, 'status': 4}}},\n 'samples': {},\n 'compute_stats_time_seconds': 0.000789,\n 'event_not_produced_warn': True,\n 'events_produced': 8,\n 'events_produced_per_sec': 12,\n 'num_input_fields_filtered': 0,\n 'soft_deleted_stale_entities': [],\n 'last_state_non_deletable_entities': [],\n 'entity_type_deletion_summary': {},\n 'total_num_files': 1,\n 'num_files_completed': 1,\n 'files_completed': ['/workspace/infra/governance/recipes/minio_container_metadata.json'],\n 'percentage_completion': '100.00%',\n 'estimated_time_to_completion_in_minutes': 0,\n 'total_bytes_on_disk': 2813,\n 'total_bytes_read_completed_files': 2813,\n 'current_file_size': 2813,\n 'total_parse_time_in_seconds': 0,\n 'total_count_time_in_seconds': 0,\n 'total_deserialize_time_in_seconds': 0.0,\n 'platform': 'metadata-file',\n 'start_time': '2026-06-02 18:33:25.257919 (now)',\n 'running_time': '0.64 seconds',\n 'failures': [],\n 'warnings': [],\n 'infos': []}\n\nAspects by Subtypes:\n+-------------------+---------------------+\n| Aspect            |   dataset (unknown) |\n+===================+=====================+\n| datasetProperties |                   4 |\n+-------------------+--------",
+      "status": "success"
+    },
+    "trino_tables": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '295.78 MB',\n 'peak_memory_usage': '295.78 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '54.93 GB', 'used_initally': '54.91 GB', 'free': '971.18 GB'},\n 'peak_disk_usage': '54.93 GB',\n 'thread_count': 4,\n 'peak_thread_count': 6}\nSource (trino) report:\n{'profiling_skipped_not_updated': {},\n 'profiling_skipped_size_limit': {},\n 'profiling_skipped_row_limit': {},\n 'profiling_skipped_table_profile_pattern': {},\n 'profiling_skipped_other': {},\n 'num_tables_not_eligible_profiling': {},\n 'num_tables_fetch_sample_values_failed': 0,\n 'num_tables_classification_attempted': 0,\n 'num_tables_classification_failed': 0,\n 'num_tables_classification_found': 0,\n 'info_types_detected': {},\n 'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'container': {'containerProperties': 6, 'status': 6, 'dataPlatformInstance': 6, 'subTypes': 6, 'browsePathsV2': 6, 'container': 5},\n             'dataset': {'container': 45,\n                         'status': 90,\n                         'datasetProperties': 45,\n                         'schemaMetadata': 45,\n                         'subTypes': 45,\n                         'siblings': 90,\n                         'browsePathsV2': 45,\n                         'upstreamLineage': 45,\n                         'fineGrainedLineages': 45}},\n 'aspects_by_subtypes_full_count': {'container': {'Database': {'containerProperties': 1,\n                                                               'status': 1,\n                                                               'dataPlatformInstance': 1,\n                                                 ",
+      "status": "success"
+    }
+  },
+  "status": "success"
+}

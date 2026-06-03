@@ -8,7 +8,15 @@ def test_root_compose_declares_lakehouse_services_and_ports() -> None:
     compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
 
     services = compose["services"]
-    expected_services = {"minio", "minio-init", "lakehouse-postgres", "hive-metastore-init", "hive-metastore", "trino"}
+    expected_services = {
+        "minio",
+        "minio-init",
+        "lakehouse-postgres",
+        "hive-metastore-init",
+        "hive-metastore",
+        "trino",
+        "trino-worker",
+    }
     assert expected_services.issubset(services)
 
     for service_name in expected_services:
@@ -19,6 +27,7 @@ def test_root_compose_declares_lakehouse_services_and_ports() -> None:
     assert "5433:5432" in services["lakehouse-postgres"]["ports"]
     assert "9083:9083" in services["hive-metastore"]["ports"]
     assert "8080:8080" in services["trino"]["ports"]
+    assert "ports" not in services["trino-worker"]
 
 
 def test_lakehouse_service_dependencies_preserve_catalog_boundaries() -> None:
@@ -27,6 +36,7 @@ def test_lakehouse_service_dependencies_preserve_catalog_boundaries() -> None:
     services = compose["services"]
 
     assert "hive-metastore" in services["trino"]["depends_on"]
+    assert "trino" in services["trino-worker"]["depends_on"]
     assert "hive-metastore-init" in services["hive-metastore"]["depends_on"]
     assert "lakehouse-postgres" in services["hive-metastore-init"]["depends_on"]
     assert "minio-init" in services["hive-metastore-init"]["depends_on"]
@@ -92,5 +102,5 @@ def test_batch_profile_can_activate_required_lakehouse_dependencies() -> None:
     compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
     services = compose["services"]
 
-    for service_name in ["minio", "minio-init", "lakehouse-postgres", "hive-metastore", "trino"]:
+    for service_name in ["minio", "minio-init", "lakehouse-postgres", "hive-metastore", "trino", "trino-worker"]:
         assert "batch" in services[service_name]["profiles"]

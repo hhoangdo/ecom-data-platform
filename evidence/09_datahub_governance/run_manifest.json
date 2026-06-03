@@ -1,44 +1,10 @@
-# ADR 08 Final Integration — DataHub Governance Evidence
-
-## Run Date: 2026-06-02
-## Run ID: 20260602T144200Z
-
-## DataHub Services Verified
-- **datahub-gms**: Healthy (port 8087)
-- **datahub-frontend**: Accessible (port 9002), serves login page
-- **datahub-actions**: Healthy  
-- **datahub-opensearch**: Healthy
-- **datahub-system-update**: Completed (exited)
-
-## Ingestion Recipes
-Recipes located at: `infra/governance/recipes/`
-
-Airflow DAG for automated ingestion: `airflow/dags/datahub_ingestion.py`
-
-## Lineage Path (End-to-End)
-```
-run_generator.py (smoke, seed=42)
-  → Kafka (8 topics, 5 schemas)
-  → MinIO Bronze (batch/ + events/ paths)
-  → Spark 4.0.0 + Iceberg 1.10.1 (Hive catalog, 2 cores)
-  → Hive Metastore (table catalog)
-  → Trino 476 (canonical SQL serving)
-  → Flink 1.19.2 (streaming: commerce-metrics, ops-alerts)
-  → Apache Pinot 1.4.0 (provisional serving)
-  → Airflow 2.10.5 + GX (orchestration, quality gates)
-  → DataHub v1.5.0.6 (governance, metadata)
-```
-
-## Version Matrix
-| Component | Version | Status |
-|-----------|---------|--------|
-| Kafka | 3.8-IV0 | 8 topics, 5 schemas |
-| MinIO | RELEASE.2025-04 | 5 buckets, Bronze uploaded |
-| Trino | 476 | 22 gold tables visible |
-| Spark | 4.0.0 | Iceberg 1.10.1, 2 cores |
-| Flink | 1.19.2 | 2 jobs RUNNING |
-| Pinot | 1.4.0 | Cluster healthy |
-| Airflow | 2.10.5 | 6 DAGs loaded |
-| GX | 1.17.2 | Validations passing |
-| DataHub | v1.5.0.6 | All services healthy |
-| dbt | 1.11.11 | DuckDB 1.10.1, 119/119 PASS |
+{
+  "artifacts": [
+    "datahub_health.json",
+    "dataset_count.json",
+    "tag_count.json"
+  ],
+  "captured_at": "2026-06-02T19:00:00.976996+00:00",
+  "gms_url": "http://localhost:8087",
+  "latest_successful_datahub_ingestion_run": "adr08_datahub_20260603T003300Z"
+}

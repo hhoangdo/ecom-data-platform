@@ -247,6 +247,28 @@ services:
       timeout: 10s
       retries: 12
 
+  trino-worker:
+    image: trinodb/trino:476
+    profiles: ["lakehouse", "batch", "all"]
+    depends_on:
+      hive-metastore:
+        condition: service_healthy
+      trino:
+        condition: service_healthy
+    environment:
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+    volumes:
+      - ./infra/lakehouse/trino/etc/worker-config.properties:/etc/trino/config.properties:ro
+      - ./infra/lakehouse/trino/etc/worker-node.properties:/etc/trino/node.properties:ro
+      - ./infra/lakehouse/trino/catalog:/etc/trino/catalog:ro
+      - ./infra/lakehouse/trino/sql:/etc/trino/sql:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/info"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+
   spark-master:
     build:
       context: .

@@ -2,53 +2,65 @@
 
 ## Service Status
 
-DataHub was successfully started via the `governance` profile:
-- GMS (port 8087): healthy
-- Frontend (port 9002): running (login page captured in screenshot)
+DataHub is healthy in the repaired ADR 08 stack:
+
+- GMS (`http://localhost:8087/health`): `200 OK`
+- Frontend (`http://localhost:9002`): login and dataset pages working
 - Actions: running
 - OpenSearch: healthy
 
-## Ingestion Recipes
+## Latest Successful Ingestion
 
-Available ingestion recipes in `infra/governance/recipes/`:
-- `kafka_topics.yml` — registers Kafka topics as DataHub datasets
-- `minio_storage.yml` — registers MinIO buckets/containers
-- `trino_tables.yml` — registers Iceberg tables via Trino catalog
-- `dbt_legacy.yml` — registers dbt-DuckDB models for lineage parity
+Airflow run `adr08_datahub_20260603T003300Z` completed successfully and emitted:
 
-## Execution Status
+- 8 Kafka topic datasets
+- 4 MinIO/S3 prefix datasets
+- 45 Trino datasets
+- 52 dbt datasets
+- 20 Spark lineage entities
+- 3 Flink lineage entities
+- 8 GX assertions
 
-DataHub ingestion recipes are available but require explicit execution. To run:
+These counts are recorded in `evidence/09_datahub_governance/dataset_count.json`.
 
-```powershell
-# From within the datahub-actions container or via CLI:
-datahub ingest -c infra/governance/recipes/kafka_topics.yml
-datahub ingest -c infra/governance/recipes/minio_storage.yml
-datahub ingest -c infra/governance/recipes/trino_tables.yml
-datahub ingest -c infra/governance/recipes/dbt_legacy.yml
-```
+## Representative Entity Verification
+
+Representative assets were verified directly against GMS GraphQL:
+
+- `urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)`
+- `urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)`
+- `urn:li:dataset:(urn:li:dataPlatform:pinot,realtime_commerce_metrics_1m,PROD)`
+- `urn:li:dataset:(urn:li:dataPlatform:s3,checkpoints.spark-events,PROD)`
+
+Representative governance tags were also verified directly:
+
+- `bronze`
+- `silver`
+- `gold`
+- `official`
+- `provisional`
+- `quality_gate`
+
+This evidence pass uses direct entity lookups instead of relying on local search-index timing.
 
 ## Lineage Path
 
-The complete data lineage from source to consumption:
-
 ```
-Generator → Kafka (raw events) → Kafka Connect S3 → MinIO Bronze
-                                  ↓
-                       Flink (streaming) → Derived Kafka topics → Pinot (provisional)
-                                  ↓
-Generator → MinIO Bronze (batch) → Spark → Iceberg Silver/Gold → Trino (canonical)
-                                                                  ↓
-                                                         DataHub (governance)
-                                                                  ↓
-                                                    dbt-DuckDB (parity)
+Generator -> Kafka raw topics -> Kafka Connect S3 sink -> MinIO Bronze
+                                      |
+                                      +-> Flink -> derived Kafka topics -> Pinot
+                                      |
+Generator batch files -> Spark -> Iceberg Silver/Gold -> Trino -> DataHub
+                                                             |
+                                                             +-> dbt-DuckDB parity + GX assertions
 ```
 
 ## Screenshot
 
-DataHub UI screenshot captured at `evidence/final_integration/ui_screenshots/datahub_ui.png` (login page, proves service is running).
+The repaired DataHub screenshot is `evidence/final_integration/ui_screenshots/12_datahub_ui.png` and shows the `vina_bim_shop.fact_order` dataset page after login.
 
 ## Evidence Location
 
-- DataHub evidence directory: `evidence/09_datahub_governance/`
-- DataHub screenshot: `evidence/final_integration/ui_screenshots/datahub_ui.png`
+- Governance evidence: `evidence/09_datahub_governance/`
+- Airflow run manifest: `evidence/08_airflow_gx/runs/datahub_ingestion/adr08_datahub_20260603T003300Z/run_manifest.json`
+- Screenshot set: `evidence/final_integration/ui_screenshots/`

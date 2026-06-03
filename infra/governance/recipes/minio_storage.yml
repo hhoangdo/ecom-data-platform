@@ -1,9 +1,7 @@
 source:
   type: file
   config:
-    filename: /workspace/infra/governance/recipes/minio_container_metadata.json
-    file_format: json
-    platform: s3
+    path: /workspace/infra/governance/recipes/minio_container_metadata.json
 
 sink:
   type: datahub-rest

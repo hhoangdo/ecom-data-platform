@@ -128,3 +128,30 @@ def test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount(monkeypatch) 
     assert "mkdir -p /usr/share/nginx/html" in command[9]
     assert "chmod -R 0777 /usr/share/nginx/html" in command[9]
     assert captured["cwd"] == runtime.REPO_ROOT
+
+
+def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) -> None:
+    calls: list[list[str]] = []
+
+    def fake_build_run_root(_dag_id: str, _run_id: str):
+        return tmp_path
+
+    def fake_run_command(command: list[str], *, cwd: Path | None = None) -> str:
+        calls.append(command)
+        return "ok"
+
+    monkeypatch.setattr(runtime, "build_run_root", fake_build_run_root)
+    monkeypatch.setattr(runtime, "_run_command", fake_run_command)
+    monkeypatch.setattr(runtime, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
+    monkeypatch.setattr(runtime, "_render_docs", lambda reports: reports)
+
+    manifest = runtime.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
+
+    recipe_names = [Path(command[-1]).name for command in calls if command[:3] == ["datahub", "ingest", "run"]]
+    assert recipe_names == [
+        "kafka_topics.yml",
+        "minio_storage.yml",
+        "trino_tables.yml",
+        "dbt_legacy.yml",
+    ]
+    assert manifest["status"] == "success"

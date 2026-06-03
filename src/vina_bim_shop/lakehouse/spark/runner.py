@@ -37,6 +37,8 @@ def build_spark_submit_command(window: BatchWindow, *, evidence_root: str | Path
         "PYTHONPATH=/workspace/src spark-submit "
         "--master spark://spark-master:7077 "
         "--deploy-mode client "
+        "--conf spark.eventLog.enabled=true "
+        "--conf spark.eventLog.dir=s3a://checkpoints/spark-events "
         "scripts/spark/job.py "
         + " ".join(window.to_cli_args())
         + f" --evidence-root {container_evidence_root}",

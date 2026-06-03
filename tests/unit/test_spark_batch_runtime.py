@@ -141,6 +141,8 @@ def test_build_spark_submit_command_uses_containerized_workspace_paths() -> None
     assert "cd /workspace" in command_text
     assert "PYTHONPATH=/workspace/src spark-submit" in command_text
     assert "scripts/spark/job.py" in command_text
+    assert "--conf spark.eventLog.enabled=true" in command_text
+    assert "--conf spark.eventLog.dir=s3a://checkpoints/spark-events" in command_text
     assert "--start-ts 2026-06-01T00:00:00Z" in command_text
     assert "--end-ts 2026-06-01T01:00:00Z" in command_text
     assert "--mode hourly" in command_text

@@ -444,8 +444,11 @@ def run_reconciliation_report(*, run_id: str, start_ts: str, end_ts: str) -> dic
 def run_datahub_ingestion(*, run_id: str) -> dict[str, Any]:
     run_root = build_run_root("datahub_ingestion", run_id)
     recipes_dir = Path("/opt/airflow/recipes")
+    if not recipes_dir.exists():
+        recipes_dir = REPO_ROOT / "infra" / "governance" / "recipes"
     recipes = [
         ("kafka_topics", recipes_dir / "kafka_topics.yml"),
+        ("minio_storage", recipes_dir / "minio_storage.yml"),
         ("trino_tables", recipes_dir / "trino_tables.yml"),
         ("dbt_legacy", recipes_dir / "dbt_legacy.yml"),
     ]

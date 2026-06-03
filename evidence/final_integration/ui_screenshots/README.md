@@ -1,20 +1,17 @@
 # UI Screenshots
 
-Browser MCP tool unavailable in this session. Capture screenshots manually:
+Final ADR 08 screenshots live in this directory.
 
-| # | Service | URL | What to capture |
-|---|---|---|---|
-| 1 | Kafka UI | http://localhost:8084 | Topic list + drill into commerce_events message |
-| 2 | Schema Registry | http://localhost:8081/subjects | JSON response (or use curl) |
-| 3 | Kafka Connect | http://localhost:8083/connectors | Connector status |
-| 4 | MinIO Console | http://localhost:9001 | Bucket list (buckets: bronze, silver, gold, checkpoints, evidence) |
-| 5 | Trino UI | http://localhost:8080 | Query history + run: SELECT count(*) FROM iceberg.gold.fact_order |
-| 6 | Spark Master | http://localhost:8085 | Active workers + running app |
-| 7 | Spark History | http://localhost:18080 | Completed applications |
-| 8 | Flink UI | http://localhost:8086 | Running jobs list + checkpoint stats |
-| 9 | Pinot UI | http://localhost:9003 | (controller) or query via: SELECT count(*) FROM pinot_realtime_commerce_metrics_1m |
-| 10 | Airflow UI | http://localhost:8082 | DAG list + graph view of bootstrap_topics |
-| 11 | GX Data Docs | http://localhost:8088 | Validation results page |
-| 12 | DataHub UI | http://localhost:9002 | Search for 'fact_order' + lineage graph |
+## Replaced During Repair
 
-All 7 profiles started successfully on 2026-06-02. See `../service_health.json`.
+| # | File | Captured State |
+|---|------|----------------|
+| 4 | `04_minio_console.png` | MinIO bucket browser after login |
+| 5 | `05_trino_ui.png` | Trino cluster overview with 1 active worker |
+| 7 | `07_spark_history_server.png` | Spark History completed applications |
+| 10 | `10_airflow_ui.png` | Airflow `datahub_ingestion` grid after login |
+| 12 | `12_datahub_ui.png` | DataHub dataset page for `vina_bim_shop.fact_order` |
+
+## Capture Method
+
+These screenshots were refreshed with the native Playwright MCP flow after the runtime fixes were applied and verified.

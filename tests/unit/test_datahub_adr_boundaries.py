@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -68,8 +69,41 @@ def test_datahub_ingestion_recipes_exist() -> None:
     recipes_dir = repo_root / "infra" / "governance" / "recipes"
 
     assert (recipes_dir / "kafka_topics.yml").is_file()
+    assert (recipes_dir / "minio_storage.yml").is_file()
     assert (recipes_dir / "trino_tables.yml").is_file()
     assert (recipes_dir / "dbt_legacy.yml").is_file()
+
+
+def test_datahub_recipes_match_current_cli_contract() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    recipes_dir = repo_root / "infra" / "governance" / "recipes"
+
+    kafka_recipe = yaml.safe_load((recipes_dir / "kafka_topics.yml").read_text(encoding="utf-8"))
+    kafka_config = kafka_recipe["source"]["config"]
+    assert kafka_config["connection"]["schema_registry_url"] == "http://schema-registry:8081"
+    assert "schema_registry_url" not in kafka_config
+    assert "stateful_ingestion" not in kafka_config
+
+    trino_recipe = yaml.safe_load((recipes_dir / "trino_tables.yml").read_text(encoding="utf-8"))
+    assert "stateful_ingestion" not in trino_recipe["source"]["config"]
+
+    dbt_recipe = yaml.safe_load((recipes_dir / "dbt_legacy.yml").read_text(encoding="utf-8"))
+    dbt_config = dbt_recipe["source"]["config"]
+    assert dbt_config["manifest_path"] == "/workspace/dbt/target/manifest.json"
+    assert dbt_config["run_results_paths"] == ["/workspace/dbt/target/run_results.json"]
+    assert "catalog_path" not in dbt_config
+    assert "load_schemas" not in dbt_config
+    assert "stateful_ingestion" not in dbt_config
+
+
+def test_minio_container_metadata_seed_exists() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    metadata_path = repo_root / "infra" / "governance" / "recipes" / "minio_container_metadata.json"
+
+    payload = json.loads(metadata_path.read_text(encoding="utf-8"))
+    assert isinstance(payload, list)
+    assert len(payload) >= 4
+    assert any(item["entityUrn"].startswith("urn:li:dataset:(urn:li:dataPlatform:s3,bronze") for item in payload)
 
 
 def test_datahub_lineage_package_exports_correctly():
@@ -94,6 +128,15 @@ def test_datahub_airflow_plugin_config_declares_correct_cluster() -> None:
     assert plugin_file.is_file()
     content = plugin_file.read_text(encoding="utf-8")
     assert "vina-bim-shop-local" in content
+
+
+def test_custom_datahub_lineage_uses_explicit_upstream_type() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    emitter_file = repo_root / "src" / "vina_bim_shop" / "datahub_lineage" / "emitter.py"
+
+    contents = emitter_file.read_text(encoding="utf-8")
+    assert "DatasetLineageTypeClass" in contents
+    assert "type=DatasetLineageTypeClass.TRANSFORMED" in contents
 
 
 def test_datahub_gms_port_does_not_conflict_with_trino() -> None:

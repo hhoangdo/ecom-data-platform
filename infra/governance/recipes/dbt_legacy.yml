@@ -2,12 +2,10 @@ source:
   type: dbt
   config:
     manifest_path: /workspace/dbt/target/manifest.json
-    catalog_path: /workspace/dbt/target/catalog.json
+    run_results_paths:
+      - /workspace/dbt/target/run_results.json
     target_platform: duckdb
-    load_schemas: true
     write_semantics: patch
-    stateful_ingestion:
-      enabled: true
 
 sink:
   type: datahub-rest

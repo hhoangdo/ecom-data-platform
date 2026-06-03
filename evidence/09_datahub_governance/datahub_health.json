@@ -1,0 +1,6 @@
+{
+  "body": "",
+  "healthy": true,
+  "status_code": 200,
+  "url": "http://localhost:8087/health"
+}

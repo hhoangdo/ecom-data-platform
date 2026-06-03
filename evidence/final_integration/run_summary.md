@@ -1,49 +1,49 @@
-# ADR 08 Final Integration Run — 2026-06-02
+# ADR 08 Final Integration Repair - 2026-06-03
 
 ## Stage Status
 
 | Stage | Profile(s) | Key Result |
-|-------|-----------|------------|
+|-------|------------|------------|
 | 0 | none | Generated 10 parquet files (800 customers, 1,800 orders, 6,891 items) |
-| 1 | ingestion+lakehouse | 5 schemas, 8 topics, S3 sink registered, 24,859 events → Kafka, bronze uploaded |
-| 2 | lakehouse+batch | Spark backfill FINISHED (1.7 min), 22 Gold tables via HMS |
+| 1 | ingestion+lakehouse | 5 schemas, 8 topic datasets in Kafka/DataHub, S3 sink registered, 24,859 events published, bronze uploaded |
+| 2 | lakehouse+batch | Spark backfill completed; 22 Gold tables visible in Trino; Spark History now shows 4 completed applications |
 | 3 | ingestion+lakehouse+streaming | Flink: 2 RUNNING jobs (commerce-metrics, ops-alerts) |
-| 4 | ingestion+serving | Pinot: 3 tables bootstrapped, 1 Ctrl/Broker/Server all Alive |
-| 5 | lakehouse+orchestration | Airflow + GX Data Docs running |
-| 6 | ingestion+lakehouse+governance | DataHub frontend healthy |
-| 7 | none | dbt-DuckDB: 119/119 PASS |
+| 4 | ingestion+serving | Pinot: 3 tables bootstrapped, controller/broker/server all Alive |
+| 5 | lakehouse+orchestration | Airflow healthy; GX Data Docs served; latest `datahub_ingestion` run succeeded |
+| 6 | ingestion+lakehouse+governance | DataHub GMS/frontend healthy; 4 recipes plus custom lineage emitted successfully |
+| 7 | none | dbt-DuckDB parity: 119/119 PASS |
 
 ## Screenshot Audit
 
 | # | File | Content | Quality |
 |---|------|---------|---------|
-| S1 | 01_kafka_ui.png | Kafka Dashboard (13 topics, 90 partitions) | GOOD — topics confirmed with messages |
+| S1 | 01_kafka_ui.png | Kafka Dashboard with populated topics | GOOD |
 | S2 | 02_schema_registry.png | 5 JSON Schema subjects | GOOD |
-| S3 | 03_kafka_connect.png | source-events-s3-sink registered | GOOD |
-| S4 | 04_minio_console.png | MinIO login (API confirmed 10 batch + 5 event dirs) | ADEQUATE — login UI issue |
-| S5 | 05_trino_ui.png | Trino login (API confirmed ACTIVE, 0 workers) | ADEQUATE — login UI issue |
-| S6 | 06_spark_master_ui.png | 1 Completed app (FINISHED, 1.7 min) | GOOD |
-| S7 | 07_spark_history_server.png | No completed applications found (event log path issue) | KNOWN ISSUE |
-| S8 | 08_flink_ui.png | 2 RUNNING jobs, 4 task slots | GOOD |
-| S9 | 09_pinot_ui.png | 3 tables, 1 Ctrl/Broker/Server Alive | GOOD |
-| S10 | 10_airflow_ui.png | Airflow login page | ADEQUATE — login attempt failed |
+| S3 | 03_kafka_connect.png | `source-events-s3-sink` registered | GOOD |
+| S4 | 04_minio_console.png | MinIO bucket browser after login | GOOD |
+| S5 | 05_trino_ui.png | Trino cluster overview with 1 active worker | GOOD |
+| S6 | 06_spark_master_ui.png | Spark Master with completed batch app | GOOD |
+| S7 | 07_spark_history_server.png | Spark History completed applications list | GOOD |
+| S8 | 08_flink_ui.png | 2 RUNNING Flink jobs | GOOD |
+| S9 | 09_pinot_ui.png | Pinot cluster with 3 tables and healthy nodes | GOOD |
+| S10 | 10_airflow_ui.png | Airflow `datahub_ingestion` grid after login | GOOD |
 | S11 | 11_gx_data_docs.png | GX Data Docs index | GOOD |
-| S12 | 12_datahub_ui.png | DataHub login page | ADEQUATE — login attempt failed |
+| S12 | 12_datahub_ui.png | DataHub dataset page for `vina_bim_shop.fact_order` | GOOD |
 
 ## Root Fixes Applied
 
-1. **Screenshots AFTER data** — Re-sequenced: data ops → verify → screenshot for every stage
-2. **--publish-kafka** — Generator run with `--publish-kafka --kafka-bootstrap-servers localhost:9092`. Verified: 24,859 messages across 5 topics
-3. **Pinot bootstrap** — `scripts/pinot/bootstrap.py` executed in Stage 4, 3 tables applied
+1. Trino repaired with container-host discovery (`trino`) plus a dedicated `trino-worker` service.
+2. Spark batch event logging forced to `s3a://checkpoints/spark-events`, which restored Spark History evidence.
+3. Airflow rebuilt with the DataHub CLI/plugin, then the governance recipes were corrected and rerun successfully.
+4. Login-only screenshots were replaced with live content using the native Playwright MCP flow.
 
-## Known Issues
+## Verification Highlights
 
-- Trino: 0 worker nodes registered (queries stuck QUEUED) — coordinator self-registration issue with Trino 476
-- MinIO Console: 403 on session API — web UI login broken, API confirmed data exists
-- Airflow: Login failed with airflow/airflow — may need admin user creation
-- DataHub: Login failed with datahub/datahub — may need default admin reset
-- Spark History: Event log directory s3a://checkpoints/spark-events not written by client-mode job
+- Trino: `SHOW TABLES FROM iceberg.gold` returned 22 tables, `fact_order` returned 1,800 rows, `agg_hourly_reconciled_kpi` returned 164 rows, and `feat_stream_60m` returned 4,652 rows.
+- Spark History: `http://localhost:18080/api/v1/applications` returned 4 completed `vina-bim-shop-batch` applications.
+- Airflow: latest successful governance run is `adr08_datahub_20260603T003300Z`.
+- DataHub: recipe outputs emitted 109 datasets total (8 Kafka, 4 S3, 45 Trino, 52 dbt), plus 20 Spark lineage entities, 3 Flink lineage entities, and 8 GX assertions.
 
 ## dbt Parity
 
-119/119 PASS (52 models, 66 tests, 1 hook) — 12.55 seconds
+119/119 PASS (52 models, 66 tests, 1 hook). Spark/Iceberg/Trino matches dbt-DuckDB for all audited row counts and KPIs.

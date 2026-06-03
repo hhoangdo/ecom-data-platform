@@ -15,7 +15,15 @@
     "product_category_map": 729,
     "kafka_events": 24859
   },
-  "profiles_tested": ["ingestion", "lakehouse", "batch", "streaming", "serving", "orchestration", "governance"],
+  "profiles_tested": [
+    "ingestion",
+    "lakehouse",
+    "batch",
+    "streaming",
+    "serving",
+    "orchestration",
+    "governance"
+  ],
   "all_profile_started": false,
   "staged_execution": true,
   "max_containers": 11,
@@ -25,19 +33,27 @@
   "spark_job": {
     "catalog": "hive (via Hive Metastore)",
     "mode": "backfill",
-    "window": "2026-05-01T00:00:00Z to 2026-05-02T00:00:00Z",
+    "window": "2026-04-21T00:00:00Z to 2026-05-04T00:00:00Z",
     "silver_tables": 14,
     "gold_tables": 22,
-    "status": "completed (GX validations run)"
+    "status": "completed; Spark History event logs verified"
   },
   "trino_verification": {
     "gold_tables_visible": 22,
     "fact_order_rows": 1800,
-    "status": "canonical truth verified"
+    "fact_order_item_rows": 6756,
+    "agg_hourly_reconciled_kpi_rows": 164,
+    "feat_stream_60m_rows": 4652,
+    "active_workers": 1,
+    "dedicated_worker_service": true,
+    "status": "canonical truth verified after Trino worker repair"
   },
   "flink_verification": {
     "running_jobs": 2,
-    "jobs": ["vina-bim-shop-commerce-metrics", "vina-bim-shop-ops-alerts"],
+    "jobs": [
+      "vina-bim-shop-commerce-metrics",
+      "vina-bim-shop-ops-alerts"
+    ],
     "status": "both RUNNING"
   },
   "pinot_verification": {
@@ -45,14 +61,15 @@
     "brokers": 1,
     "servers": 1,
     "all_alive": true,
-    "tables_bootstrapped": false,
-    "status": "cluster healthy, tables require bootstrap"
+    "tables_bootstrapped": true,
+    "status": "cluster healthy, tables bootstrapped"
   },
   "airflow_verification": {
     "dags": 6,
     "active": 1,
     "paused": 5,
-    "status": "DAGs loaded, hourly_batch_lakehouse active"
+    "latest_datahub_ingestion_run": "adr08_datahub_20260603T003300Z",
+    "status": "DAGs loaded; datahub_ingestion repair run succeeded"
   },
   "gx_verification": {
     "bronze_raw": "1/2 passed (warning)",
@@ -62,13 +79,20 @@
   "datahub_verification": {
     "gms": "healthy",
     "frontend": "accessible (:9002)",
-    "status": "UI accessible, ingestion pending"
+    "latest_successful_run": "adr08_datahub_20260603T003300Z",
+    "datasets_emitted": 109,
+    "verified_representative_datasets": 4,
+    "verified_tags": 6,
+    "status": "ingestion and representative entity verification completed"
   },
   "dbt_parity": {
     "result": "119/119 PASS (0 errors, 0 warnings)",
     "models": 52,
     "tests": 66,
-    "custom_tests": ["assert_order_item_totals_reconcile", "assert_fact_order_reconciles_to_stg_orders"],
+    "custom_tests": [
+      "assert_order_item_totals_reconcile",
+      "assert_fact_order_reconciles_to_stg_orders"
+    ],
     "all_checks_pass": true
   },
   "screenshots": {
@@ -89,20 +113,35 @@
       "12_datahub_ui.png"
     ],
     "verified": true,
-    "capture_method": "native Playwright MCP (verify: wait-for-text → snapshot → screenshot)"
+    "capture_method": "native Playwright MCP (authenticated content captured after repair verification)"
   },
   "issues_encountered": {
-    "spark_catalog_class": "Fixed: changed catalog class from org.apache.iceberg.spark.sql.catalog.IcebergCatalog to org.apache.iceberg.spark.SparkCatalog",
-    "spark_hadoop_warehouse": "Fixed: changed from hadoop catalog with removed LOCATION to hive catalog via HMS",
-    "spark_catalog_type": "Fixed: added Iceberg catalog configuration to build_spark_session()",
-    "spark_table_location": "Fixed: removed explicit LOCATION clause, let HMS manage paths"
+    "trino_worker_registration": "Fixed: discovery.uri now uses the trino container hostname and a dedicated trino-worker service is present.",
+    "spark_history_event_logs": "Fixed: spark-submit now always sets spark.eventLog.enabled=true and spark.eventLog.dir=s3a://checkpoints/spark-events.",
+    "airflow_datahub_cli": "Fixed: the Airflow image was rebuilt with the DataHub CLI and Airflow plugin so the governance DAG can execute recipes.",
+    "datahub_recipe_compatibility": "Fixed: Kafka, MinIO, Trino, and dbt recipes were updated to match the current DataHub CLI contract.",
+    "datahub_custom_lineage": "Fixed: custom upstream lineage MCPs now set DatasetLineageTypeClass.TRANSFORMED."
   },
   "code_changes": {
-    "src/vina_bim_shop/lakehouse/spark/job.py": [
-      "Added Iceberg catalog config (extensions + catalog + HMS URI) to build_spark_session()",
-      "Removed explicit LOCATION from _create_table_if_missing()",
-      "Removed explicit LOCATION from _replace_gold_table()",
-      "Updated _table_location() to include layer in path"
+    "docker-compose.yml": [
+      "Added a dedicated trino-worker service for Trino 476."
+    ],
+    "infra/lakehouse/trino/etc/": [
+      "Switched discovery.uri to http://trino:8080.",
+      "Added worker-specific Trino config and node properties."
+    ],
+    "src/vina_bim_shop/lakehouse/spark/runner.py": [
+      "Added explicit Spark event-log configuration to every spark-submit command."
+    ],
+    "src/vina_bim_shop/orchestration/runtime.py": [
+      "Extended DataHub ingestion to include MinIO metadata and repo-mounted recipe fallbacks."
+    ],
+    "infra/governance/recipes/": [
+      "Updated Kafka, MinIO, Trino, and dbt recipes for the current DataHub CLI.",
+      "Added minio_container_metadata.json for S3/MinIO asset seeding."
+    ],
+    "src/vina_bim_shop/datahub_lineage/emitter.py": [
+      "Added explicit upstream lineage types for custom lineage MCPs."
     ]
   },
   "artifacts": [
@@ -116,5 +155,7 @@
     "query_outputs/trino_canonical_kpi.sql",
     "scripts/qa/reset_all.py",
     "scripts/qa/upload_bronze.sh"
-  ]
+  ],
+  "repair_completed_at": "2026-06-02T19:10:24.8340823Z",
+  "evidence_basis": "Staged integration evidence from 2026-06-02 plus targeted repair verification on 2026-06-03."
 }
