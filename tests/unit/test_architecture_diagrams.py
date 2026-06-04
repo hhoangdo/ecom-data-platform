@@ -102,7 +102,7 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "realtime_ops_alerts",
         "realtime_metric_corrections",
         "checkpoints and audit JSONL",
-        "hourly export from",
+        "optional local export from Gold",
         "metrics / alerts",
         "reconciled",
         "historical SQL",
@@ -236,4 +236,200 @@ def test_excalidraw_architecture_elements_include_required_fields() -> None:
                 "startArrowhead",
                 "endArrowhead",
                 "elbowed",
+            }.issubset(element.keys())
+
+
+def test_detailed_excalidraw_architecture_is_logo_backed_lifecycle_view() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "detailed-architecture.excalidraw"
+
+    data = json.loads(diagram.read_text(encoding="utf-8"))
+    labels = json.dumps(data)
+
+    assert data["type"] == "excalidraw"
+    assert data["files"], "detailed diagram should embed logo assets"
+
+    for expected in [
+        "Vina Bim Shop Detailed Data Platform Architecture",
+        "Data lifecycle view",
+        "Sources and Contracts",
+        "Ingestion and Event Log",
+        "Realtime Speed Path",
+        "Lakehouse Batch Truth",
+        "Serving and Consumers",
+        "Control, Governance, Quality, Evidence",
+        "Runtime Surface",
+        "Python Generator",
+        "JSON Event Envelopes",
+        "Parquet Table Snapshots",
+        "Kafka KRaft",
+        "Schema Registry",
+        "Kafka Connect S3 Sink",
+        "Kafka UI",
+        "Apache Flink",
+        "Derived Kafka Topics",
+        "Apache Pinot",
+        "MinIO Lakehouse",
+        "Apache Spark Batch",
+        "Apache Iceberg Tables",
+        "Hive Metastore",
+        "Postgres Metastore DB",
+        "Trino SQL Serving",
+        "dbt-DuckDB Parity Oracle",
+        "DuckDB Executive Mart",
+        "BI / Livestreaming Teams",
+        "Executive Teams",
+        "Apache Airflow",
+        "Great Expectations",
+        "DataHub",
+        "Evidence Package",
+        "Docker Compose Profiles",
+        "Operational Endpoints",
+        "Truth Policy",
+        "Line Legend",
+        "Product cards represent deployed Compose service groups",
+        "Pinot includes Zookeeper, controller, broker, and server",
+        "DataHub includes GMS, frontend, actions, OpenSearch",
+    ]:
+        assert expected in labels
+
+    image_elements = [
+        element for element in data["elements"] if element["type"] == "image"
+    ]
+    assert len(image_elements) >= 20
+
+    file_ids = set(data["files"])
+    for element in image_elements:
+        assert element["fileId"] in file_ids
+        assert {"fileId", "status", "scale", "crop"}.issubset(element.keys())
+
+    for file in data["files"].values():
+        assert file["mimeType"] == "image/svg+xml"
+        assert file["dataURL"].startswith("data:image/svg+xml;base64,")
+
+
+def test_detailed_excalidraw_architecture_line_taxonomy_is_encoded() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "detailed-architecture.excalidraw"
+
+    data = json.loads(diagram.read_text(encoding="utf-8"))
+    arrows = {
+        element["id"]: element
+        for element in data["elements"]
+        if element["type"] == "arrow"
+    }
+
+    for arrow_id in [
+        "flow_events_to_kafka",
+        "flow_snapshots_to_minio",
+        "flow_kafka_to_connect",
+        "flow_connect_to_minio",
+        "flow_kafka_to_flink",
+        "flow_flink_to_derived",
+        "flow_derived_to_pinot",
+        "flow_pinot_to_bi",
+        "flow_minio_to_spark",
+        "flow_spark_to_iceberg",
+        "flow_hive_to_trino",
+        "flow_trino_to_exec",
+    ]:
+        assert arrows[arrow_id]["strokeStyle"] == "solid"
+        assert arrows[arrow_id]["strokeColor"] == "#111827"
+
+    expected_dashed_colors = {
+        "flow_schema_to_kafka": "#2e7d32",
+        "flow_iceberg_to_hive": "#7e3ff2",
+        "flow_postgres_to_hive": "#7e3ff2",
+        "flow_trino_to_datahub": "#7e3ff2",
+        "flow_airflow_to_spark": "#c77800",
+        "flow_airflow_to_gx": "#c77800",
+        "flow_airflow_to_datahub": "#c77800",
+        "flow_gx_to_datahub": "#2e7d32",
+        "flow_flink_to_minio_audit": "#00838f",
+        "flow_pinot_to_evidence": "#00838f",
+        "flow_trino_to_evidence": "#00838f",
+        "flow_datahub_to_evidence": "#00838f",
+        "flow_gold_to_dbt": "#2e7d32",
+        "flow_gold_to_duckdb_mart": "#1565c0",
+        "flow_duckdb_to_exec": "#1565c0",
+        "flow_trino_to_bi": "#6d6875",
+    }
+
+    for arrow_id, color in expected_dashed_colors.items():
+        assert arrows[arrow_id]["strokeStyle"] == "dashed"
+        assert arrows[arrow_id]["strokeColor"] == color
+
+
+def test_detailed_excalidraw_architecture_elements_include_required_fields() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "detailed-architecture.excalidraw"
+
+    data = json.loads(diagram.read_text(encoding="utf-8"))
+    elements = data["elements"]
+
+    assert elements, "detailed-architecture.excalidraw should contain elements"
+
+    base_required = {
+        "id",
+        "type",
+        "x",
+        "y",
+        "width",
+        "height",
+        "angle",
+        "strokeColor",
+        "backgroundColor",
+        "fillStyle",
+        "strokeWidth",
+        "strokeStyle",
+        "roughness",
+        "opacity",
+        "groupIds",
+        "frameId",
+        "roundness",
+        "seed",
+        "version",
+        "versionNonce",
+        "isDeleted",
+        "boundElements",
+        "updated",
+        "link",
+        "locked",
+        "index",
+    }
+
+    for element in elements:
+        assert base_required.issubset(element.keys()), f"missing base keys for {element.get('id')}"
+
+        if element["type"] == "text":
+            assert {
+                "text",
+                "fontSize",
+                "fontFamily",
+                "textAlign",
+                "verticalAlign",
+                "containerId",
+                "originalText",
+                "autoResize",
+                "lineHeight",
+                "baseline",
+            }.issubset(element.keys())
+
+        if element["type"] == "arrow":
+            assert {
+                "points",
+                "lastCommittedPoint",
+                "startBinding",
+                "endBinding",
+                "startArrowhead",
+                "endArrowhead",
+                "elbowed",
+            }.issubset(element.keys())
+
+        if element["type"] == "image":
+            assert {
+                "fileId",
+                "status",
+                "scale",
+                "crop",
             }.issubset(element.keys())
