@@ -19,6 +19,11 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
         "DuckDB executive mart",
         "Executive Teams",
         "BI/Livestreaming Teams",
+        "Schema Registry",
+        "Kafka Connect",
+        "Airflow",
+        "Great Expectations",
+        "DataHub",
     ]:
         assert expected in content
     assert "Parquet snapshots: checkpointed table state" in content
@@ -32,19 +37,22 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
     assert "DuckDB executive mart" in content
     assert "local KPI mart" in content
     assert "canonical hourly SQL" in content
-    assert "Flink --> Realtime" in content
+    assert "Flink --> DerivedKafka" in content
+    assert "DerivedKafka --> Realtime" in content
     assert "Realtime --> BI : live operations" in content
     assert "MinIO --> DuckDB" in content
     assert "DuckDB --> Executive" in content
-    assert "curated streaming tables" in content
+    assert "checkpoints and audit JSONL" in content
     assert "canonical hourly SQL dashboards" in content
     assert "reconciled historical SQL" in content
     assert "table registration for curated lakehouse tables" in content
     assert "hourly batch inputs" not in content
     assert "Spark --> Executive" not in content
     assert "Flink --> BI" not in content
+    assert "Flink --> Realtime" not in content
     assert "landed replayable event log (JSON)" not in content
     assert "Hive Metastore + Trino" not in content
+    assert "curated streaming tables" not in content
 
 
 def test_excalidraw_architecture_file_is_json_and_names_major_components() -> None:
@@ -66,6 +74,11 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "DuckDB executive mart",
         "Executive Teams",
         "BI/Livestreaming Teams",
+        "Schema Registry",
+        "Kafka Connect",
+        "Airflow",
+        "Great Expectations",
+        "DataHub",
     ]:
         assert expected in labels
     for expected in [
@@ -84,12 +97,20 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "DuckDB executive mart",
         "local KPI mart",
         "canonical hourly SQL",
-        "curated streaming tables",
+        "Derived Kafka",
+        "realtime_commerce_metrics_1m",
+        "realtime_ops_alerts",
+        "realtime_metric_corrections",
+        "checkpoints and audit JSONL",
         "hourly export from",
         "metrics / alerts",
         "reconciled",
         "historical SQL",
         "table registration\\nfor curated lakehouse tables",
+        "dbt-DuckDB",
+        "local parity",
+        "metadata, lineage, tags",
+        "Evidence package",
     ]:
         assert expected in labels
     assert "landed replayable event log (JSON)" not in labels
@@ -97,6 +118,8 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
     assert "spark_to_exec" not in labels
     assert "Hive Metastore + Trino" not in labels
     assert "curated streaming sink outputs" not in labels
+    assert "curated streaming tables" not in labels
+    assert "Vina Bim Shop Section 01 Lambda Architecture" not in labels
 
 
 def test_excalidraw_architecture_elements_include_required_fields() -> None:
