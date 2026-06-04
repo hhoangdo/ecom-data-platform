@@ -111,6 +111,14 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "local parity",
         "metadata, lineage, tags",
         "Evidence package",
+        "Legend",
+        "Solid black = primary business data / primary serving",
+        "Dashed purple = metadata / lineage",
+        "Dashed amber = orchestration / control",
+        "Dashed green = validation / quality",
+        "Dashed cyan = evidence / audit",
+        "Dashed blue = optional local export",
+        "Dashed gray = secondary historical support",
     ]:
         assert expected in labels
     assert "landed replayable event log (JSON)" not in labels
@@ -120,6 +128,48 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
     assert "curated streaming sink outputs" not in labels
     assert "curated streaming tables" not in labels
     assert "Vina Bim Shop Section 01 Lambda Architecture" not in labels
+
+
+def test_excalidraw_architecture_arrow_colors_encode_line_taxonomy() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "architecture.excalidraw"
+
+    data = json.loads(diagram.read_text(encoding="utf-8"))
+    arrows = {
+        element["id"]: element
+        for element in data["elements"]
+        if element["type"] == "arrow"
+    }
+
+    for arrow_id in [
+        "generator_to_offline",
+        "producer_to_kafka",
+        "kafka_to_flink",
+        "derived_kafka_to_pinot",
+        "trino_to_exec",
+    ]:
+        assert arrows[arrow_id]["strokeStyle"] == "solid"
+        assert arrows[arrow_id]["strokeColor"] == "#1e1e1e"
+
+    expected_dashed_colors = {
+        "trino_to_datahub": "#6d28d9",
+        "airflow_to_spark": "#9a5a00",
+        "airflow_to_gx": "#9a5a00",
+        "airflow_to_datahub": "#9a5a00",
+        "minio_to_dbt": "#15803d",
+        "gx_to_datahub": "#15803d",
+        "flink_to_minio_audit": "#0e7490",
+        "pinot_to_evidence": "#0e7490",
+        "trino_to_evidence": "#0e7490",
+        "datahub_to_evidence": "#0e7490",
+        "minio_to_duckdb": "#2563eb",
+        "duckdb_to_exec": "#2563eb",
+        "trino_to_bi": "#757575",
+    }
+
+    for arrow_id, color in expected_dashed_colors.items():
+        assert arrows[arrow_id]["strokeStyle"] == "dashed"
+        assert arrows[arrow_id]["strokeColor"] == color
 
 
 def test_excalidraw_architecture_elements_include_required_fields() -> None:
