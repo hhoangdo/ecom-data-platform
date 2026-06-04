@@ -134,7 +134,7 @@ def raw_files(raw_root: Path) -> list[Path]:
     return sorted(
         path
         for path in raw_root.rglob("*")
-        if path.is_file() and path.name != ".gitkeep"
+        if path.is_file() and path.name not in {".gitkeep", ".gitignore"}
     )
 
 

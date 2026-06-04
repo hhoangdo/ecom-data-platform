@@ -11,19 +11,11 @@ htmlcov/
 # Deferred coursework workspaces
 /ai/
 /notebooks/
-sql/
-infra/ci/
-infra/local/
+/sql/
+/infra/ci/
+/infra/local/
 
-# Data files (keep .gitkeep to maintain directory structure)
-data/raw/*
-!data/raw/.gitkeep
-data/bronze/*
-!data/bronze/.gitkeep
-data/silver/*
-!data/silver/.gitkeep
-data/gold/*
-!data/gold/.gitkeep
+# Local generated data is ignored by nested .gitignore files in data/raw/ and data/gold/
 
 # DuckDB database files and dbt artifacts
 *.duckdb

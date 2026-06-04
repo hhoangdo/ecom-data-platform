@@ -22,7 +22,7 @@ def test_final_dataset_archive_packages_raw_files_only(tmp_path: Path) -> None:
     raw_file = raw_root / "orders" / "part-000.parquet"
     raw_file.parent.mkdir(parents=True)
     raw_file.write_bytes(b"orders")
-    (raw_root / ".gitkeep").write_text("\n", encoding="utf-8")
+    (raw_root / ".gitignore").write_text("*\n!.gitignore\n", encoding="utf-8")
     duckdb_file = tmp_path / "data" / "gold" / "vina_bim_shop.duckdb"
     duckdb_file.parent.mkdir(parents=True)
     duckdb_file.write_bytes(b"not archived")

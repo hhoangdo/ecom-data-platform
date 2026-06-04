@@ -50,10 +50,14 @@ def test_datahub_does_not_change_canonical_truth_policy() -> None:
     assert "Do not let DataHub change the canonical truth policy" in adr07
 
 
-def test_datahub_ingestion_evidence_scaffold_exists() -> None:
+def test_datahub_ingestion_evidence_artifacts_exist() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    assert (repo_root / "evidence" / "09_datahub_governance" / ".gitkeep").is_file()
-    assert (repo_root / "evidence" / "09_datahub_governance" / "screenshots" / ".gitkeep").is_file()
+    evidence_root = repo_root / "evidence" / "09_datahub_governance"
+
+    assert (evidence_root / "run_manifest.json").is_file()
+    assert (evidence_root / "datahub_health.json").is_file()
+    assert (evidence_root / "dataset_count.json").is_file()
+    assert (evidence_root / "tag_count.json").is_file()
 
 
 def test_governance_vocabulary_covers_medallion_layers() -> None:

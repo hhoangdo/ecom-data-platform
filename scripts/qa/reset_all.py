@@ -51,8 +51,6 @@ ALL_VOLUMES = [
 
 GIT_IGNORED_PATHS = [
     "data/raw",
-    "data/bronze",
-    "data/silver",
     "data/gold",
     "dbt/target",
     "dbt/logs",
@@ -60,11 +58,9 @@ GIT_IGNORED_PATHS = [
     "evidence/runtime",
 ]
 
-GITKEEP_FILES = {
-    "data/raw/.gitkeep",
-    "data/bronze/.gitkeep",
-    "data/silver/.gitkeep",
-    "data/gold/.gitkeep",
+PRESERVED_LOCAL_FILES = {
+    "data/raw/.gitignore",
+    "data/gold/.gitignore",
 }
 
 RESET_LOG_DIR = PROJECT_ROOT / "evidence" / "runtime" / "reset_logs"
@@ -184,8 +180,8 @@ def _clean_local_paths(paths: list[str]) -> None:
         if target.is_dir():
             for item in target.iterdir():
                 item_path = rel.replace("\\", "/") + "/" + item.name
-                gitkeep_key = item_path.rstrip("/")
-                if gitkeep_key in GITKEEP_FILES:
+                preserved_key = item_path.rstrip("/")
+                if preserved_key in PRESERVED_LOCAL_FILES:
                     continue
                 if item.is_dir():
                     shutil.rmtree(item, ignore_errors=True)

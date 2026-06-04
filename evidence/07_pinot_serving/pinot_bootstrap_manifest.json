@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-06-02T16:52:57.265834+00:00",
+  "captured_at": "2026-06-04T03:06:00.830529+00:00",
   "controller_url": "http://localhost:9003",
   "schema_actions": [
     {
@@ -36,67 +36,16 @@
   ],
   "table_status": {
     "pinot_realtime_commerce_metrics_1m": {
-      "table_debug": [
-        {
-          "brokerDebugInfos": [],
-          "ingestionStatus": {
-            "errorMessage": "",
-            "ingestionState": "HEALTHY"
-          },
-          "numBrokers": 1,
-          "numSegments": 1,
-          "numServers": 1,
-          "segmentDebugInfos": [],
-          "serverDebugInfos": [],
-          "tableName": "pinot_realtime_commerce_metrics_1m_REALTIME",
-          "tableSize": {
-            "estimatedSize": "-1 bytes",
-            "reportedSize": "-1 bytes"
-          }
-        }
-      ]
+      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
+      "status": "unverified"
     },
     "pinot_realtime_metric_corrections": {
-      "table_debug": [
-        {
-          "brokerDebugInfos": [],
-          "ingestionStatus": {
-            "errorMessage": "",
-            "ingestionState": "HEALTHY"
-          },
-          "numBrokers": 1,
-          "numSegments": 1,
-          "numServers": 1,
-          "segmentDebugInfos": [],
-          "serverDebugInfos": [],
-          "tableName": "pinot_realtime_metric_corrections_REALTIME",
-          "tableSize": {
-            "estimatedSize": "-1 bytes",
-            "reportedSize": "-1 bytes"
-          }
-        }
-      ]
+      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
+      "status": "unverified"
     },
     "pinot_realtime_ops_alerts": {
-      "table_debug": [
-        {
-          "brokerDebugInfos": [],
-          "ingestionStatus": {
-            "errorMessage": "",
-            "ingestionState": "HEALTHY"
-          },
-          "numBrokers": 1,
-          "numSegments": 1,
-          "numServers": 1,
-          "segmentDebugInfos": [],
-          "serverDebugInfos": [],
-          "tableName": "pinot_realtime_ops_alerts_REALTIME",
-          "tableSize": {
-            "estimatedSize": "-1 bytes",
-            "reportedSize": "-1 bytes"
-          }
-        }
-      ]
+      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
+      "status": "unverified"
     }
   },
   "tables": [

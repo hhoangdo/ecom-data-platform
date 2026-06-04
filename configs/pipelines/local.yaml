@@ -8,8 +8,6 @@ local_transform_tool: dbt-duckdb
 
 storage:
   raw_root: data/raw
-  bronze_root: data/bronze
-  silver_root: data/silver
   gold_root: data/gold
   duckdb_mart_path: data/gold/vina_bim_shop.duckdb
 

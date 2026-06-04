@@ -13,7 +13,7 @@ The target architecture remains:
 - Hive Metastore and Trino for canonical SQL over curated lakehouse tables.
 - DuckDB as a local coursework mart generated from curated Gold outputs.
 
-For local implementation, `dbt-DuckDB is the local compatibility and parity-test harness`. Spark, Flink, Apache Pinot, and Trino are now runnable via Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md` and `evidence/05_spark_batch/dbt_parity_report.md` for the Spark vs dbt row-count parity evidence.
+For local implementation, `dbt-DuckDB is the local execution and test harness`. It also serves as the local compatibility and parity-test harness. Spark, Flink, Apache Pinot, and Trino are now runnable via Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md` and `evidence/05_spark_batch/dbt_parity_report.md` for the Spark vs dbt row-count parity evidence.
 
 Spark, Flink, Apache Pinot, and Trino are now runnable services, not just target contracts. The runnable implementation for Section `02` is dbt-DuckDB for fast local iteration, with evidence generated from the final medium Section `01` raw dataset.
 

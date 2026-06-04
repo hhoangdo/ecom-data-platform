@@ -12,6 +12,6 @@ def test_orchestration_runbook_documents_adr06_failure_policies() -> None:
     assert "GX Data Docs" in runbook
 
 
-def test_orchestration_evidence_scaffold_exists() -> None:
+def test_orchestration_evidence_artifacts_exist() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    assert (repo_root / "evidence" / "08_airflow_gx" / "gx_data_docs" / ".gitkeep").is_file()
+    assert (repo_root / "evidence" / "08_airflow_gx" / "gx_data_docs" / "index.html").is_file()

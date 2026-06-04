@@ -23,7 +23,6 @@ class GeneratorConfig:
     end_date: str
     entities: dict[str, int]
     raw_root: Path
-    samples_root: Path
     evidence_root: Path
     taxonomy: Taxonomy
     category_weights: dict[str, float]
@@ -106,7 +105,6 @@ def load_generator_config(
         end_date=str(data["end_date"]),
         entities={str(key): int(value) for key, value in profile["entities"].items()},
         raw_root=_resolve_path(repo_root, raw_root or outputs["raw_root"]),
-        samples_root=_resolve_path(repo_root, outputs.get("samples_root", "data/samples")),
         evidence_root=_resolve_path(repo_root, evidence_root or outputs["evidence_root"]),
         taxonomy=_load_taxonomy(taxonomy_path),
         category_weights=_normalise_weights(data["category_weights"]),

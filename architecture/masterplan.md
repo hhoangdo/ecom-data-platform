@@ -226,7 +226,7 @@ The generator should be controlled by external config under `configs/generator/`
 - duplicate rates
 - late-arrival rates and delays
 - schema evolution cutoff dates
-- output paths for offline and streaming assets
+- output paths for raw data and evidence assets
 
 ### Intentional Data Challenges
 
@@ -417,7 +417,11 @@ Then expand:
 
 - `configs/pipelines/`
 - `sql/`
-- `src/vina_bim_shop/pipelines/`
+- `src/vina_bim_shop/kafka/`
+- `src/vina_bim_shop/lakehouse/`
+- `src/vina_bim_shop/flink/`
+- `src/vina_bim_shop/pinot/`
+- `src/vina_bim_shop/orchestration/`
 - `src/vina_bim_shop/quality/`
 - `deliverables/02_schema_design.md`
 - `evidence/02_schema_design/`

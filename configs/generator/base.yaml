@@ -34,7 +34,6 @@ scale_profiles:
 
 outputs:
   raw_root: data/raw
-  samples_root: data/samples
   evidence_root: evidence/01_data_generator
 
 quality_scenarios:

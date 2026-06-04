@@ -2,6 +2,30 @@
 
 `vina-bim-shop` is a staged, runnable local data engineering platform for a Shopee-inspired Vietnamese marketplace. All services — Kafka, Spark, Flink, Apache Pinot, Trino, Airflow, Great Expectations, and DataHub — are runnable via Docker Compose profiles. dbt-DuckDB is retained as a fast local compatibility and parity-testing path.
 
+## Mini-Coursework Status
+
+Sections 01 and 02 are fulfilled for the mini-coursework phase.
+
+For the original Sections 01/02 submission boundary, Spark, Flink, Apache Pinot, and Trino are architectural target contracts, while dbt-DuckDB is the runnable local implementation. The broader repository now also includes the later runnable ADR 01-08 platform implementation.
+
+| View | Meaning |
+|------|---------|
+| `Runnable locally` | `dbt-DuckDB`, the final dataset package, and the documented evidence artifacts can be reproduced on one machine. |
+| `Architectural contract` | The staged Kafka, Spark, Flink, Pinot, Trino, Airflow, and DataHub stack documents the full target platform and is implemented in the later ADRs. |
+
+Mini-coursework artifacts and evidence:
+
+- `uv run python scripts/qa/finalize_sections_01_02.py`
+- `evidence/final_dataset/vina_bim_shop_medium_raw.zip`
+- `evidence/final_dataset/final_dataset_manifest.json`
+- `data/gold/vina_bim_shop.duckdb`
+- `deliverables/01_data_generator.md`
+- `deliverables/02_schema_design.md`
+- `architecture/diagrams/physical_gold_model.puml`
+- `architecture/diagrams/physical_gold_model.png`
+- `evidence/01_data_generator/quality_report.md`
+- `evidence/02_schema_design/dbt_build_report.md`
+
 ## Quickstart: Staged Profiles
 
 Start each profile in order. All services share one Docker network.
@@ -83,6 +107,23 @@ All Gold row counts and KPI values match between dbt-DuckDB and Spark/Iceberg/Tr
 ```powershell
 uv run python scripts/qa/finalize_sections_01_02.py
 ```
+
+### Script entrypoints
+
+Use the stage-specific script folders below as the canonical execution surface:
+
+| Folder | Purpose |
+|--------|---------|
+| `scripts/generate/` | Section 01 synthetic source generation |
+| `scripts/kafka/` | Kafka bootstrap, schemas, smoke tests, and ingestion evidence |
+| `scripts/lakehouse/` | Bronze landing, Trino smoke queries, and lakehouse evidence |
+| `scripts/spark/` | Spark batch submission and Spark evidence capture |
+| `scripts/flink/` | Flink job entrypoints, smoke publishing, and streaming evidence |
+| `scripts/pinot/` | Pinot bootstrap, query examples, and serving evidence |
+| `scripts/datahub/` | DataHub governance evidence capture |
+| `scripts/qa/` | Reset, final packaging, and grading-oriented evidence helpers |
+
+`data/raw/` and `data/gold/` are intentionally kept as local output directories. Their generated contents stay ignored, while the folder intent is preserved by nested `.gitignore` files.
 
 ## Reset / Fresh Start
 

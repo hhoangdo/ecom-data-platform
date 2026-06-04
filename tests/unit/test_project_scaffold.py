@@ -40,4 +40,8 @@ def test_dbt_duckdb_section02_scaffold_is_configured() -> None:
     assert pipeline_config["catalog"] == "hive_metastore"
     assert pipeline_config["object_store"] == "minio"
     assert pipeline_config["local_transform_tool"] == "dbt-duckdb"
+    assert pipeline_config["storage"]["raw_root"] == "data/raw"
+    assert pipeline_config["storage"]["gold_root"] == "data/gold"
     assert pipeline_config["storage"]["duckdb_mart_path"] == "data/gold/vina_bim_shop.duckdb"
+    assert "bronze_root" not in pipeline_config["storage"]
+    assert "silver_root" not in pipeline_config["storage"]
