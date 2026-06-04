@@ -11,7 +11,11 @@ htmlcov/
 # Deferred coursework workspaces
 /ai/
 /notebooks/
+sql/
+infra/ci/
+infra/local/
 
+# Data files (keep .gitkeep to maintain directory structure)
 data/raw/*
 !data/raw/.gitkeep
 data/bronze/*
@@ -21,11 +25,16 @@ data/silver/*
 data/gold/*
 !data/gold/.gitkeep
 
+# DuckDB database files and dbt artifacts
 *.duckdb
 dbt/target/
 dbt/logs/
 dbt/dbt_packages/
 dbt/.user.yml
+
+# Test data and fixtures
+tests/data_quality/
+tests/fixtures/
 
 # Final Section 01/02 dataset evidence is intentionally committed.
 evidence/runtime/
