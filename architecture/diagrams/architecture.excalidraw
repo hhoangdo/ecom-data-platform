@@ -3395,8 +3395,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9161,
-      "version": 923,
-      "versionNonce": 1319549137,
+      "version": 928,
+      "versionNonce": 1222139665,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3404,7 +3404,7 @@
           "id": "minio_to_duckdb_label"
         }
       ],
-      "updated": 1780579363341,
+      "updated": 1780597629957,
       "link": null,
       "locked": false,
       "index": "a0162",
@@ -3440,9 +3440,9 @@
     {
       "id": "minio_to_duckdb_label",
       "type": "text",
-      "x": 920.9606894153831,
-      "y": 909.3831624194548,
-      "width": 226.6948699951172,
+      "x": 906.9105450417754,
+      "y": 754.4282883646856,
+      "width": 228.49490356445312,
       "height": 18.75,
       "angle": 0,
       "strokeColor": "#2563eb",
@@ -3456,8 +3456,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9163,
-      "version": 5,
-      "versionNonce": 59585343,
+      "version": 11,
+      "versionNonce": 380475007,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3465,17 +3465,17 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780579313472,
+      "updated": 1780597629957,
       "link": null,
       "locked": false,
       "index": "a0164",
-      "text": "hourly export from Gold tables",
+      "text": "optional local export from Gold",
       "fontSize": 15,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": "minio_to_duckdb",
-      "originalText": "hourly export from Gold tables",
+      "originalText": "optional local export from Gold",
       "autoResize": true,
       "lineHeight": 1.25,
       "baseline": 12
@@ -5319,8 +5319,8 @@
         "type": 3
       },
       "seed": 9301,
-      "version": 1115,
-      "versionNonce": 96379473,
+      "version": 1117,
+      "versionNonce": 1089053151,
       "isDeleted": false,
       "boundElements": [
         {
@@ -5328,7 +5328,7 @@
           "id": "legend_text"
         }
       ],
-      "updated": 1780596472763,
+      "updated": 1780597627229,
       "link": null,
       "locked": false,
       "index": "aB"
@@ -5352,21 +5352,21 @@
       "frameId": null,
       "roundness": null,
       "seed": 9302,
-      "version": 1112,
-      "versionNonce": 1261973553,
+      "version": 1124,
+      "versionNonce": 614513183,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780596472763,
+      "updated": 1780598177841,
       "link": null,
       "locked": false,
       "index": "aC",
-      "text": "Legend\n\nSolid black = primary business data / primary serving\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = optional local export\nDashed gray = secondary historical support",
+      "text": "Legend\n\nSolid black = primary business data / primary serving\nDashed gray = secondary historical support\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = optional local export",
       "fontSize": 15,
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "legend_box",
-      "originalText": "Legend\n\nSolid black = primary business data / primary serving\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = optional local export\nDashed gray = secondary historical support",
+      "originalText": "Legend\n\nSolid black = primary business data / primary serving\nDashed gray = secondary historical support\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = optional local export",
       "autoResize": true,
       "lineHeight": 1.25,
       "baseline": 12
