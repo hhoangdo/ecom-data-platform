@@ -449,11 +449,11 @@
         "type": 3
       },
       "seed": 9025,
-      "version": 633,
-      "versionNonce": 795859455,
+      "version": 635,
+      "versionNonce": 1819637770,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780579235591,
+      "updated": 1780595018651,
       "link": null,
       "locked": false,
       "index": "a0026"
@@ -2369,8 +2369,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9109,
-      "version": 3416,
-      "versionNonce": 1602011263,
+      "version": 3419,
+      "versionNonce": 621836042,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2378,7 +2378,7 @@
           "id": "minio_to_dbt_label"
         }
       ],
-      "updated": 1780578910772,
+      "updated": 1780594879418,
       "link": null,
       "locked": false,
       "index": "a0110",
@@ -2395,12 +2395,12 @@
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "minio_box",
-        "focus": 0.3897861251855297,
-        "gap": 4.154741196967507
+        "focus": 0.3840109129879027,
+        "gap": 2.1582120525985147
       },
       "endBinding": {
         "elementId": "dbt_box",
-        "focus": 0.16069708612982017,
+        "focus": 0.1622636590078449,
         "gap": 1
       },
       "startArrowhead": null,
@@ -2410,10 +2410,10 @@
     {
       "id": "minio_to_dbt_label",
       "type": "text",
-      "x": 881.6450500488281,
-      "y": 488.75,
-      "width": 136.70989990234375,
-      "height": 37.5,
+      "x": 273.7446361437153,
+      "y": 983.8163729739579,
+      "width": 127.45492553710938,
+      "height": 56.25,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -2426,8 +2426,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9111,
-      "version": 18,
-      "versionNonce": 228336145,
+      "version": 21,
+      "versionNonce": 1050895382,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2435,17 +2435,17 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780578898472,
+      "updated": 1780594877702,
       "link": null,
       "locked": false,
       "index": "a0112",
-      "text": "hourly export from\nGold tables",
+      "text": "local dbt build /\nparity comparison\nagainst Gold",
       "fontSize": 15,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": "minio_to_dbt",
-      "originalText": "hourly export from Gold tables",
+      "originalText": "local dbt build / parity comparison against Gold",
       "autoResize": true,
       "lineHeight": 1.25,
       "baseline": 12
@@ -4244,15 +4244,15 @@
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
-      "strokeStyle": "solid",
+      "strokeStyle": "dashed",
       "roughness": 1,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
       "seed": 9201,
-      "version": 1040,
-      "versionNonce": 1634828433,
+      "version": 1043,
+      "versionNonce": 1992041226,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4260,7 +4260,7 @@
           "id": "airflow_to_gx_label"
         }
       ],
-      "updated": 1780579235776,
+      "updated": 1780595022776,
       "link": null,
       "locked": false,
       "index": "a0202",
@@ -4292,8 +4292,8 @@
     {
       "id": "airflow_to_gx_label",
       "type": "text",
-      "x": 152.92505645751953,
-      "y": 1100.625,
+      "x": -270.0149319056799,
+      "y": 1502.3443353644616,
       "width": 159.14988708496094,
       "height": 18.75,
       "angle": 0,
@@ -4308,8 +4308,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9203,
-      "version": 2,
-      "versionNonce": 1931096921,
+      "version": 3,
+      "versionNonce": 594951242,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4317,7 +4317,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780576666986,
+      "updated": 1780595021574,
       "link": null,
       "locked": false,
       "index": "a0204",
@@ -4344,15 +4344,15 @@
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
-      "strokeStyle": "solid",
+      "strokeStyle": "dashed",
       "roughness": 1,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
       "seed": 9205,
-      "version": 1174,
-      "versionNonce": 1963087106,
+      "version": 1175,
+      "versionNonce": 863878422,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4360,7 +4360,7 @@
           "id": "gx_to_datahub_label"
         }
       ],
-      "updated": 1780584656254,
+      "updated": 1780595033632,
       "link": null,
       "locked": false,
       "index": "a0206",
@@ -4648,15 +4648,15 @@
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
-      "strokeStyle": "solid",
+      "strokeStyle": "dashed",
       "roughness": 1,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
       "seed": 9217,
-      "version": 1209,
-      "versionNonce": 1102341314,
+      "version": 1210,
+      "versionNonce": 1316351894,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4664,7 +4664,7 @@
           "id": "datahub_to_evidence_label"
         }
       ],
-      "updated": 1780584656254,
+      "updated": 1780595051654,
       "link": null,
       "locked": false,
       "index": "a0218",
