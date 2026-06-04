@@ -1,0 +1,131 @@
+@startuml
+title Vina Bim Shop Detailed Data Platform Architecture - PlantUML View
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam wrapWidth 180
+left to right direction
+
+actor "Executive Teams\nhourly KPI consumption" as Executive
+actor "BI / Livestreaming Teams\nlive operations and reconciliation" as BI
+
+rectangle "Sources and Contracts" as Sources {
+  component "Python Generator\nscenario data, synthetic metric events,\nbusiness envelopes" as Generator
+  component "JSON Event Envelopes\nevent-time business events\nfor Kafka topics" as JsonEvents
+  component "Parquet Table Snapshots\ncheckpointed table state\nfor Bronze batch" as Snapshots
+}
+
+rectangle "Ingestion and Event Log" as Ingestion {
+  component "Schema Registry\nJSON Schema subjects and\ncompatibility contracts" as SchemaRegistry
+  component "Kafka UI\noperator visibility for topics,\npayloads, partitions" as KafkaUI
+  queue "Kafka KRaft\ncommerce_events\ncatalog_events\nfulfillment_events\nops_events\ndeal_events" as Kafka
+  component "Kafka Connect S3 Sink\nlands replayable JSONL logs\ninto MinIO Bronze" as KafkaConnect
+}
+
+rectangle "Realtime Speed Path" as RealtimePath {
+  component "Apache Flink\nevent-time enrichment,\nrolling metrics,\nalert candidates" as Flink
+  queue "Derived Kafka Topics\nrealtime_commerce_metrics_1m\nrealtime_ops_alerts\nmetric_corrections" as DerivedKafka
+}
+
+rectangle "Lakehouse Batch Truth" as BatchTruth {
+  database "MinIO Lakehouse\nBronze Parquet snapshots\nBronze JSONL replay logs\nIceberg files and evidence" as MinIO
+  component "Apache Spark Batch\nhourly validation,\ndeduplication,\nSilver/Gold writers" as Spark
+  database "Apache Iceberg Tables\nSilver/Gold analytical tables\nstored on MinIO object storage" as Iceberg
+  database "Postgres Metastore DB\nrelational backing store for\nHive Metastore service" as Postgres
+  database "Hive Metastore\ncatalog metadata and table locations,\nnot table data" as Hive
+  component "Trino SQL Serving\ncanonical hourly SQL\nover Gold through Hive/Iceberg" as Trino
+  database "dbt-DuckDB Parity Oracle\nlocal regression checks\nfor model parity and row counts" as Dbt
+}
+
+rectangle "Serving and Consumers" as Serving {
+  component "Apache Pinot\nfresh provisional realtime serving\nfor metrics, alerts, dashboards" as Pinot
+  database "DuckDB Executive Mart\noptional local KPI mart\nfor offline review" as DuckDB
+}
+
+rectangle "Control, Governance, Quality, Evidence" as Governance {
+  component "Apache Airflow\nDAG orchestration for batch,\nquality, and metadata ingestion" as Airflow
+  component "Great Expectations\nBronze warnings,\nSilver/Gold blocking gates,\nData Docs" as GX
+  component "DataHub\nmetadata, table lineage,\ntags, glossary,\nquality metadata" as DataHub
+  component "Evidence Package\nhealth, screenshots,\nrow counts, reconciliations,\nlineage proof" as Evidence
+}
+
+rectangle "Runtime Surface" as Runtime {
+  component "Docker Compose Profiles\ningestion, lakehouse, batch,\nstreaming, serving,\norchestration, governance" as Compose
+}
+
+Generator --> JsonEvents : event structs
+JsonEvents --> Kafka : JSON envelope events
+Generator --> Snapshots : batch snapshots
+Snapshots --> MinIO : Bronze table state
+Kafka --> KafkaConnect : source topics
+KafkaConnect --> MinIO : JSONL replay logs
+Kafka --> Flink : raw event stream
+Flink --> DerivedKafka : metrics / alerts / corrections
+DerivedKafka --> Pinot : consume derived topics
+Pinot --> BI : live operations
+MinIO --> Spark : read Bronze + replay
+Spark --> Iceberg : write Silver/Gold
+Hive --> Trino : catalog lookup
+Trino --> Executive : official hourly KPIs
+
+SchemaRegistry -[#2e7d32,dashed]-> Kafka : schema contracts
+Iceberg -[#7e3ff2,dashed]-> Hive : table registration
+Postgres -[#7e3ff2,dashed]-> Hive : metastore DB
+Trino -[#7e3ff2,dashed]-> DataHub : table lineage
+Airflow -[#c77800,dashed]-> Spark : batch DAG
+Airflow -[#c77800,dashed]-> GX : quality DAG
+Airflow -[#c77800,dashed]-> DataHub : metadata ingestion DAG
+GX -[#2e7d32,dashed]-> DataHub : quality metadata
+Flink -[#00838f,dashed]-> MinIO : checkpoints + audit JSONL
+Pinot -[#00838f,dashed]-> Evidence : dashboard query outputs
+Trino -[#00838f,dashed]-> Evidence : KPI query outputs
+DataHub -[#00838f,dashed]-> Evidence : lineage evidence
+Iceberg -[#2e7d32,dashed]-> Dbt : row counts + parity
+Iceberg -[#1565c0,dashed]-> DuckDB : optional Gold export
+DuckDB -[#1565c0,dashed]-> Executive : offline KPI mart
+Trino -[#6d6875,dashed]-> BI : historical reconciliation
+Compose -[#c77800,dashed]-> KafkaUI : profile runtime
+
+note right of Compose
+Operational Endpoints
+--
+Kafka UI :8084
+MinIO Console :9001
+Trino :8080
+Spark :8085 / :18080
+Flink :8086
+Pinot :9003 / :8000
+Airflow :8082
+GX Docs :8088
+DataHub :9002
+end note
+
+note bottom of Trino
+Truth Policy
+--
+Spark + Iceberg + Trino Gold is official hourly truth.
+Pinot is fresh and provisional.
+dbt-DuckDB is compatibility evidence.
+DuckDB mart is optional local consumption.
+end note
+
+note bottom of DataHub
+Detailed Coverage
+--
+Product cards represent deployed Compose service groups.
+Example: Pinot includes Zookeeper, controller, broker, and server;
+DataHub includes GMS, frontend, actions, OpenSearch, and system update jobs.
+end note
+
+legend right
+|= Line Type |= Meaning |
+| Solid black | primary business data / query serving |
+| Dashed purple | metadata / lineage |
+| Dashed amber | orchestration / control |
+| Dashed green | validation / quality |
+| Dashed cyan | evidence / audit |
+| Dashed blue | optional local export |
+| Dashed gray | secondary historical support |
+endlegend
+
+@enduml

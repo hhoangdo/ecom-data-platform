@@ -433,3 +433,92 @@ def test_detailed_excalidraw_architecture_elements_include_required_fields() -> 
                 "scale",
                 "crop",
             }.issubset(element.keys())
+
+
+def test_detailed_lambda_architecture_plantuml_matches_detailed_excalidraw() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "detailed-lambda_architecture.puml"
+
+    content = diagram.read_text(encoding="utf-8")
+
+    for expected in [
+        "Vina Bim Shop Detailed Data Platform Architecture - PlantUML View",
+        "Sources and Contracts",
+        "Ingestion and Event Log",
+        "Realtime Speed Path",
+        "Lakehouse Batch Truth",
+        "Serving and Consumers",
+        "Control, Governance, Quality, Evidence",
+        "Runtime Surface",
+        "Python Generator",
+        "JSON Event Envelopes",
+        "Parquet Table Snapshots",
+        "Schema Registry",
+        "Kafka UI",
+        "Kafka KRaft",
+        "Kafka Connect S3 Sink",
+        "Apache Flink",
+        "Derived Kafka Topics",
+        "MinIO Lakehouse",
+        "Apache Spark Batch",
+        "Apache Iceberg Tables",
+        "Postgres Metastore DB",
+        "Hive Metastore",
+        "Trino SQL Serving",
+        "dbt-DuckDB Parity Oracle",
+        "Apache Pinot",
+        "DuckDB Executive Mart",
+        "BI / Livestreaming Teams",
+        "Executive Teams",
+        "Apache Airflow",
+        "Great Expectations",
+        "DataHub",
+        "Evidence Package",
+        "Docker Compose Profiles",
+        "Operational Endpoints",
+        "Truth Policy",
+        "Detailed Coverage",
+    ]:
+        assert expected in content
+
+    for expected in [
+        "Kafka --> Flink",
+        "Flink --> DerivedKafka",
+        "DerivedKafka --> Pinot",
+        "Trino --> Executive",
+        "SchemaRegistry",
+        "DataHub",
+        "Evidence",
+        "DuckDB",
+        "Airflow",
+        "Hive",
+        "primary business data / query serving",
+        "metadata / lineage",
+        "orchestration / control",
+        "validation / quality",
+        "evidence / audit",
+        "optional local export",
+        "secondary historical support",
+        "Kafka UI :8084",
+        "MinIO Console :9001",
+        "Trino :8080",
+        "Spark :8085 / :18080",
+        "Flink :8086",
+        "Pinot :9003 / :8000",
+        "Airflow :8082",
+        "GX Docs :8088",
+        "DataHub :9002",
+        "Spark + Iceberg + Trino Gold is official hourly truth.",
+        "Pinot is fresh and provisional.",
+        "dbt-DuckDB is compatibility evidence.",
+        "DuckDB mart is optional local consumption.",
+        "Product cards represent deployed Compose service groups.",
+        "Pinot includes Zookeeper, controller, broker, and server;",
+        "DataHub includes GMS, frontend, actions, OpenSearch, and system update jobs.",
+    ]:
+        assert expected in content
+
+    assert "Hive Metastore + Trino" not in content
+    assert "curated streaming tables" not in content
+    assert "Spark --> Executive" not in content
+    assert "Flink --> BI" not in content
