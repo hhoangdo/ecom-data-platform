@@ -23,7 +23,8 @@ package "Gold reconciled SQL: snowflake/star hybrid" as Gold {
 }
 
 package "Realtime serving — runnable" as Realtime {
-  component "Flink event-time metrics\nsimple watermark updates\nDerived Kafka topics" as FlinkMetrics
+  component "Flink event-time metrics\nsimple watermark updates" as FlinkMetrics
+  queue "Derived Kafka topics" as DerivedKafka
   database "Apache Pinot\npinot_realtime_commerce_metrics_1m\npinot_realtime_ops_alerts\npinot_realtime_metric_corrections" as Pinot
 }
 
@@ -43,7 +44,8 @@ Dims --> Facts : surrogate keys
 Facts --> Serving : OBT, hourly KPIs, features
 
 RawEvents --> FlinkMetrics : realtime Kafka consumption
-FlinkMetrics --> Pinot : fresh operational metrics and alerts (live)
+FlinkMetrics --> DerivedKafka : derived realtime metrics and alerts
+DerivedKafka --> Pinot : fresh operational metrics and alerts (live)
 Serving --> DuckDB : local executive export
 
 note right of Pinot

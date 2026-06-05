@@ -19,6 +19,11 @@ legend right
   <<SCD2>> SCD Type 2 support column
 endlegend
 
+note right of physical_pdm_anchor
+PK/FK lines are physically enforced/represented in the local DuckDB artifact for ERD and validation.
+Spark/Iceberg/Trino follows the same logical model and parity checks, but the lakehouse does not rely on database-enforced FK constraints.
+end note
+
 note top
 Bronze and Silver are views; Gold is physically constrained in DuckDB for DBeaver ERD lines.
 obt_order_performance is a derived non-canonical OBT.
