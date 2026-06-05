@@ -26,16 +26,18 @@
 | S7 | 07_spark_history_server.png | Spark History completed applications list | GOOD |
 | S8 | 08_flink_ui.png | 2 RUNNING Flink jobs | GOOD |
 | S9 | 09_pinot_ui.png | Pinot cluster with 3 tables and healthy nodes | GOOD |
-| S10 | 10_airflow_ui.png | Airflow `datahub_ingestion` grid after login | GOOD |
-| S11 | 11_gx_data_docs.png | GX Data Docs index | GOOD |
-| S12 | 12_datahub_ui.png | DataHub lineage workspace for `vina_bim_shop.fact_order` with the summary panel open | GOOD |
+| S10 | 10_airflow_ui.png | Airflow DAG overview with all 6 required DAGs and `datahub_ingestion` history | GOOD |
+| S11 | 11_gx_data_docs.png | GX Data Docs `bronze_raw_minio` expectation detail page | GOOD |
+| S12 | 12_datahub_ui.png | DataHub `fact_order` lineage tab plus supplemental GraphQL evidence table | GOOD |
 
 ## Root Fixes Applied
 
 1. Trino repaired with container-host discovery (`trino`) plus a dedicated `trino-worker` service.
 2. Spark batch event logging forced to `s3a://checkpoints/spark-events`, which restored Spark History evidence.
 3. Airflow rebuilt with the DataHub CLI/plugin, then the governance recipes were corrected and rerun successfully.
-4. Login-only screenshots were replaced with live content using the native Playwright MCP flow.
+4. Login-only screenshots were replaced with live content using a local `npx` Playwright capture flow.
+5. GX Data Docs now render expectation-level detail pages and preserve quality reports when DataHub ingestion docs are refreshed.
+6. Airflow webserver startup timeouts were raised for the heavy local DataHub-plugin image.
 
 ## Verification Highlights
 

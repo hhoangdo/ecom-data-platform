@@ -169,6 +169,40 @@ def _render_docs(reports: list[ValidationReport]) -> None:
     render_validation_docs(reports=reports, docs_root=DOCS_ROOT)
 
 
+def _latest_quality_reports() -> list[ValidationReport]:
+    reports_by_suite: dict[str, tuple[float, ValidationReport]] = {}
+    for path in RUNS_ROOT.rglob("quality/*.json"):
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            report = ValidationReport(**payload)
+        except (OSError, TypeError, ValueError):
+            continue
+        current = reports_by_suite.get(report.suite_name)
+        modified_at = path.stat().st_mtime
+        if current is None or modified_at > current[0]:
+            reports_by_suite[report.suite_name] = (modified_at, report)
+    return [report for _, report in sorted(reports_by_suite.values(), key=lambda item: item[1].suite_name)]
+
+
+def _docs_reports_with(extra_reports: list[ValidationReport]) -> list[ValidationReport]:
+    reports = {report.suite_name: report for report in _latest_quality_reports()}
+    for report in extra_reports:
+        reports[report.suite_name] = report
+    preferred_order = [
+        "bronze_raw_minio",
+        "gold_trino_contract",
+        "pinot_query_contract",
+        "datahub_ingestion",
+    ]
+    return sorted(
+        reports.values(),
+        key=lambda report: (
+            preferred_order.index(report.suite_name) if report.suite_name in preferred_order else len(preferred_order),
+            report.suite_name,
+        ),
+    )
+
+
 def _window_payload(window: BatchWindow) -> dict[str, str]:
     return {
         "start_ts": window.start_ts.isoformat().replace("+00:00", "Z"),
@@ -474,21 +508,18 @@ def run_datahub_ingestion(*, run_id: str) -> dict[str, Any]:
         "ingestion_results": recipe_results,
     }
     _write_json(run_root / "run_manifest.json", manifest)
-    _render_docs(
-        [
-            ValidationReport(
-                layer="datahub",
-                suite_name="datahub_ingestion",
-                success=all_success,
-                status="success" if all_success else "warning",
-                severity="warning",
-                blocks_dag=False,
-                requires_quarantine=False,
-                summary="ADR 07 ingestion completed." if all_success else "Some recipes emitted warnings.",
-                artifacts=["run_manifest.json"],
-            )
-        ]
+    datahub_report = ValidationReport(
+        layer="datahub",
+        suite_name="datahub_ingestion",
+        success=all_success,
+        status="success" if all_success else "warning",
+        severity="warning",
+        blocks_dag=False,
+        requires_quarantine=False,
+        summary="ADR 07 ingestion completed." if all_success else "Some recipes emitted warnings.",
+        artifacts=["run_manifest.json"],
     )
+    _render_docs(_docs_reports_with([datahub_report]))
     return manifest
 
 

@@ -130,6 +130,17 @@ def test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount(monkeypatch) 
     assert captured["cwd"] == runtime.REPO_ROOT
 
 
+def test_airflow_webserver_allows_slow_local_plugin_startup() -> None:
+    import yaml
+
+    repo_root = Path(__file__).resolve().parents[2]
+    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    env_vars = compose["services"]["airflow-webserver"]["environment"]
+
+    assert int(env_vars["AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT"]) >= 300
+    assert int(env_vars["AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT"]) >= 300
+
+
 def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) -> None:
     calls: list[list[str]] = []
 
@@ -155,3 +166,50 @@ def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) 
         "dbt_legacy.yml",
     ]
     assert manifest["status"] == "success"
+
+
+def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, tmp_path) -> None:
+    existing_report = runtime.ValidationReport(
+        layer="bronze_raw",
+        suite_name="bronze_raw_minio",
+        success=False,
+        status="warning",
+        severity="warning",
+        blocks_dag=False,
+        requires_quarantine=True,
+        summary="1/2 expectations passed.",
+        artifacts=["quality/bronze_raw_minio.json"],
+        details={
+            "results": [
+                {
+                    "success": False,
+                    "expectation_config": {
+                        "type": "expect_column_values_to_not_be_null",
+                        "kwargs": {"column": "path"},
+                    },
+                    "result": {"unexpected_count": 1},
+                }
+            ]
+        },
+    )
+    quality_dir = tmp_path / "runs" / "hourly_batch_lakehouse" / "manual__2026" / "quality"
+    quality_dir.mkdir(parents=True)
+    (quality_dir / "bronze_raw_minio.json").write_text(
+        runtime.json.dumps(existing_report.to_dict()),
+        encoding="utf-8",
+    )
+
+    captured_reports: list[runtime.ValidationReport] = []
+
+    def fake_render_docs(reports: list[runtime.ValidationReport]) -> None:
+        captured_reports.extend(reports)
+
+    monkeypatch.setattr(runtime, "RUNS_ROOT", tmp_path / "runs")
+    monkeypatch.setattr(runtime, "_run_command", lambda command, cwd=None: "ok")
+    monkeypatch.setattr(runtime, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
+    monkeypatch.setattr(runtime, "_render_docs", fake_render_docs)
+
+    runtime.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
+
+    rendered_suites = {report.suite_name for report in captured_reports}
+    assert rendered_suites == {"bronze_raw_minio", "datahub_ingestion"}

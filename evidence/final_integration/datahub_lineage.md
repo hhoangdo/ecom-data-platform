@@ -57,9 +57,19 @@ Generator batch files -> Spark -> Iceberg Silver/Gold -> Trino -> DataHub
 
 ## Screenshot
 
-The refreshed DataHub screenshot is `evidence/final_integration/ui_screenshots/12_datahub_ui.png` and shows the lineage workspace centered on `vina_bim_shop.fact_order` with the summary panel open.
+The refreshed DataHub screenshot is `evidence/final_integration/ui_screenshots/12_datahub_ui.png`. It was captured on 2026-06-05 from the direct entity URL for `vina_bim_shop.fact_order` and shows the Lineage workspace with the dataset summary panel open.
 
-This view was chosen to replace the earlier columns view that showed an empty center panel. In the current cold-start UI state, the lineage canvas centers the dataset correctly but does not surface upstream edges even after the existing lineage metadata is re-emitted, so the summary panel is kept open to show entity context directly in the same screenshot.
+This view replaces the earlier columns view that showed an empty center panel. In the current cold-start UI state, the lineage canvas centers the dataset correctly but does not surface upstream edges, assertion cards, or search results reliably even after the existing lineage metadata is re-emitted. The screenshot is therefore paired with direct GMS/GraphQL evidence as the authoritative proof of catalog, lineage, assertion, and tag coverage.
+
+| Evidence Source | Value | What It Proves |
+|---|---:|---|
+| `datahub_health.json.status_code` | 200 | DataHub GMS was reachable during the refresh. |
+| `dataset_count.json.total_datasets_emitted` | 109 | Kafka, S3/MinIO, Trino, and dbt datasets were emitted. |
+| `dataset_count.json.custom_lineage.spark_entities` | 20 | Spark Silver/Gold lineage metadata was emitted. |
+| `dataset_count.json.custom_lineage.flink_entities` | 3 | Flink real-time lineage metadata was emitted. |
+| `dataset_count.json.custom_lineage.gx_assertions_emitted` | 8 | GX assertion metadata was emitted. |
+| `dataset_count.json.verified_representative_datasets` | 4/4 | Representative Iceberg, Kafka, Pinot, and S3 entities resolve through GraphQL. |
+| `tag_count.json.verified_tag_count` | 6 | Governance vocabulary tags resolve through GraphQL. |
 
 ## Evidence Location
 

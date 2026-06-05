@@ -69,12 +69,12 @@
     "active": 1,
     "paused": 5,
     "latest_datahub_ingestion_run": "adr08_datahub_20260603T003300Z",
-    "status": "DAGs loaded; datahub_ingestion repair run succeeded"
+    "status": "DAG overview verified with all required DAGs loaded; datahub_ingestion repair run succeeded"
   },
   "gx_verification": {
     "bronze_raw": "1/2 passed (warning)",
     "gold_trino_contract": "2/2 passed (success)",
-    "status": "validation docs served"
+    "status": "validation docs served with expectation-level detail pages"
   },
   "datahub_verification": {
     "gms": "healthy",
@@ -83,7 +83,7 @@
     "datasets_emitted": 109,
     "verified_representative_datasets": 4,
     "verified_tags": 6,
-    "status": "ingestion and representative entity verification completed"
+    "status": "direct dataset UI verified; GraphQL evidence confirms catalog, lineage, assertion, and tag coverage despite local search/lineage UI cold-start limitations"
   },
   "dbt_parity": {
     "result": "119/119 PASS (0 errors, 0 warnings)",
@@ -113,18 +113,20 @@
       "12_datahub_ui.png"
     ],
     "verified": true,
-    "capture_method": "native Playwright MCP (authenticated content captured after repair verification)"
+    "capture_method": "local npx Playwright flow (authenticated content captured after repair verification)"
   },
   "issues_encountered": {
     "trino_worker_registration": "Fixed: discovery.uri now uses the trino container hostname and a dedicated trino-worker service is present.",
     "spark_history_event_logs": "Fixed: spark-submit now always sets spark.eventLog.enabled=true and spark.eventLog.dir=s3a://checkpoints/spark-events.",
     "airflow_datahub_cli": "Fixed: the Airflow image was rebuilt with the DataHub CLI and Airflow plugin so the governance DAG can execute recipes.",
+    "airflow_webserver_startup_timeout": "Fixed: the Airflow webserver master and worker timeouts were raised to 300 seconds for the heavy local DataHub-plugin image.",
     "datahub_recipe_compatibility": "Fixed: Kafka, MinIO, Trino, and dbt recipes were updated to match the current DataHub CLI contract.",
     "datahub_custom_lineage": "Fixed: custom upstream lineage MCPs now set DatasetLineageTypeClass.TRANSFORMED."
   },
   "code_changes": {
     "docker-compose.yml": [
-      "Added a dedicated trino-worker service for Trino 476."
+      "Added a dedicated trino-worker service for Trino 476.",
+      "Raised Airflow webserver master and worker timeouts to 300 seconds for the heavy local plugin image."
     ],
     "infra/lakehouse/trino/etc/": [
       "Switched discovery.uri to http://trino:8080.",
@@ -134,7 +136,11 @@
       "Added explicit Spark event-log configuration to every spark-submit command."
     ],
     "src/vina_bim_shop/orchestration/runtime.py": [
-      "Extended DataHub ingestion to include MinIO metadata and repo-mounted recipe fallbacks."
+      "Extended DataHub ingestion to include MinIO metadata and repo-mounted recipe fallbacks.",
+      "Preserved latest GX quality reports when rendering DataHub ingestion docs."
+    ],
+    "src/vina_bim_shop/quality/reports.py": [
+      "Added expectation-level GX Data Docs detail pages."
     ],
     "infra/governance/recipes/": [
       "Updated Kafka, MinIO, Trino, and dbt recipes for the current DataHub CLI.",
@@ -156,6 +162,6 @@
     "scripts/qa/reset_all.py",
     "scripts/qa/upload_bronze.sh"
   ],
-  "repair_completed_at": "2026-06-02T19:10:24.8340823Z",
-  "evidence_basis": "Staged integration evidence from 2026-06-02 plus targeted repair verification on 2026-06-03."
+  "repair_completed_at": "2026-06-05T12:59:39.6138525Z",
+  "evidence_basis": "Staged integration evidence from 2026-06-02 plus targeted repair verification on 2026-06-03 and screenshot/evidence refresh on 2026-06-05."
 }

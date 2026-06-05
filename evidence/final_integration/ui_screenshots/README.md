@@ -15,9 +15,9 @@ This directory contains the canonical UI screenshot set for the final integratio
 | `07_spark_history_server.png` | Spark History Server | Historical batch executions and downloadable event logs are retained for inspection. |
 | `08_flink_ui.png` | Flink Dashboard | Streaming jobs are active and task execution capacity is available. |
 | `09_pinot_ui.png` | Pinot Cluster Manager | The real-time serving cluster is online with its controller, broker, server, and registered tables. |
-| `10_airflow_ui.png` | Airflow | The `datahub_ingestion` DAG has recorded runs with visible success and failure history. |
-| `11_gx_data_docs.png` | GX Data Docs | Validation results are published for both bronze and gold quality checkpoints. |
-| `12_datahub_ui.png` | DataHub | The governed dataset view for `vina_bim_shop.fact_order` is available in the metadata workspace. |
+| `10_airflow_ui.png` | Airflow | The DAG overview lists all six required orchestration DAGs and shows `datahub_ingestion` run history. |
+| `11_gx_data_docs.png` | GX Data Docs | The bronze validation detail page shows expectation-level results, severity, DAG blocking, and quarantine behavior. |
+| `12_datahub_ui.png` | DataHub | The governed `vina_bim_shop.fact_order` dataset opens on the Lineage tab, supplemented by GraphQL evidence below. |
 
 ## Screenshot Catalog
 
@@ -59,12 +59,26 @@ This screenshot shows the Pinot cluster manager home view for `vina-bim-shop-pin
 
 ### `10_airflow_ui.png`
 
-This image captures the Airflow details page for the `datahub_ingestion` DAG. The run summary shows three displayed runs, including two successful runs and one failed run, which provides operational evidence that the metadata ingestion workflow was executed and that its recent history is visible from the orchestrator.
+This image captures the Airflow DAG overview. The page lists all six required orchestration DAGs: `datahub_ingestion`, `hourly_batch_lakehouse`, `kafka_topic_bootstrap`, `local_evidence_build`, `pinot_bootstrap`, and `reconciliation_report`. The visible `datahub_ingestion` run history also shows that metadata ingestion is wired into the orchestrator rather than documented only as a standalone command.
 
 ### `11_gx_data_docs.png`
 
-This screenshot records the GX Data Docs summary page for local orchestration validations. The page shows a `warning` result for `bronze_raw_minio` with `1/2 expectations passed` and a `success` result for `gold_trino_contract` with `2/2 expectations passed`, documenting both a non-blocking bronze quality signal and a successful gold contract check.
+This screenshot records the GX Data Docs detail page for the `bronze_raw_minio` validation suite. The page shows a `warning` result with `1/2 expectations passed`, including the failed not-null path expectation, the passing row-count expectation, `Blocks DAG: no`, and `Requires quarantine: yes`. The Data Docs index also links to `gold_trino_contract`, which passes `2/2` expectations.
 
 ### `12_datahub_ui.png`
 
-This image shows the DataHub dataset workspace centered on `vina_bim_shop.fact_order`. The visible summary panel identifies the dataset, its platform grouping, and the currently attached `silver` tag, demonstrating that the governed dataset is discoverable in the metadata catalog and has associated classification metadata.
+This image shows the DataHub dataset workspace centered on `vina_bim_shop.fact_order` with the Lineage tab open. The visible summary panel identifies the dataset, its Iceberg platform grouping, and the attached `silver` tag. In this local cold-start state, the UI opens the governed entity but does not reliably render search results, assertion cards, or upstream lineage edges, so the screenshot is paired with direct GMS/GraphQL evidence.
+
+| Evidence Source | Value | What It Proves |
+|---|---:|---|
+| `datahub_health.json.status_code` | 200 | GMS was reachable during the refresh. |
+| `dataset_count.json.total_datasets_emitted` | 109 | Kafka, S3/MinIO, Trino, and dbt assets were emitted. |
+| `dataset_count.json.counts_by_recipe.kafka_topics` | 8 | Kafka topic catalog coverage is present. |
+| `dataset_count.json.counts_by_recipe.minio_storage` | 4 | MinIO/S3 storage-prefix coverage is present. |
+| `dataset_count.json.counts_by_recipe.trino_tables` | 45 | Trino/Iceberg table catalog coverage is present. |
+| `dataset_count.json.counts_by_recipe.dbt_legacy` | 52 | dbt-DuckDB parity model coverage is present. |
+| `dataset_count.json.custom_lineage.spark_entities` | 20 | Spark Silver/Gold lineage metadata was emitted. |
+| `dataset_count.json.custom_lineage.flink_entities` | 3 | Flink real-time lineage metadata was emitted. |
+| `dataset_count.json.custom_lineage.gx_assertions_emitted` | 8 | GX assertion metadata was emitted. |
+| `dataset_count.json.verified_representative_datasets` | 4/4 | Representative Iceberg, Kafka, Pinot, and S3 entities resolve through GraphQL. |
+| `tag_count.json.verified_tag_count` | 6 | Governance vocabulary tags resolve through GraphQL. |
