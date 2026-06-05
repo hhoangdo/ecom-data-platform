@@ -28,6 +28,66 @@ def test_physical_gold_model_puml_documents_all_layers_and_purposes() -> None:
         assert purpose_label in content
 
 
+def test_gold_layer_erd_dbml_focuses_on_gold_tables_and_dbml_relationships() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    diagram = repo_root / "architecture" / "diagrams" / "gold_layer_ERD.dbml"
+
+    content = diagram.read_text(encoding="utf-8")
+
+    expected_gold_tables = [
+        "agg_hourly_reconciled_kpi",
+        "bridge_product_category",
+        "dim_category",
+        "dim_customer",
+        "dim_date",
+        "dim_order_status",
+        "dim_payment_method",
+        "dim_product",
+        "dim_promotion",
+        "dim_seller",
+        "dim_shipment_status",
+        "dim_shipping_method",
+        "fact_inventory_snapshot",
+        "fact_order",
+        "fact_order_item",
+        "fact_payment_attempt",
+        "fact_promotion_application",
+        "fact_shipment",
+        "feat_customer_90d",
+        "feat_customer_unified",
+        "feat_stream_60m",
+        "obt_order_performance",
+    ]
+    for table_name in expected_gold_tables:
+        assert table_name in content
+
+    for required_dbml_construct in [
+        "Project gold_layer_erd",
+        "TableGroup dimensions",
+        "TableGroup facts",
+        "TableGroup serving_features",
+        "[pk]",
+        "ref: >",
+        "[unique]",
+    ]:
+        assert required_dbml_construct in content
+
+    for relationship in [
+        "customer_key bigint [not null, ref: > dim_customer.customer_key]",
+        "order_key bigint [not null, ref: > fact_order.order_key]",
+        "product_key bigint [not null, ref: > dim_product.product_key]",
+        "payment_method_key bigint [not null, ref: > dim_payment_method.payment_method_key]",
+        "customer_id varchar [not null, ref: > dim_customer.customer_id]",
+    ]:
+        assert relationship in content
+
+    for non_gold_label in ["raw_orders", "stg_orders", "logical view lineage", "dbt transform lineage"]:
+        assert non_gold_label not in content
+
+    for removed_plantuml_construct in ["@startuml", "skinparam", "<<PK>>", "<<FK>>", "||--o{"]:
+        assert removed_plantuml_construct not in content
+
+
 def test_duckdb_gold_tables_have_physical_constraints_for_dbeaver_erd() -> None:
     import duckdb
 

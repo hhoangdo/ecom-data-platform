@@ -43,3 +43,7 @@ output/playwright/
 
 # Temporary files
 tmp/
+architecture/diagrams/gold_layer_ERD.dbdiagram
+
+# Local development logs
+dbml-error.log

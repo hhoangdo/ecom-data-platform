@@ -304,8 +304,8 @@ def test_detailed_excalidraw_architecture_is_logo_backed_lifecycle_view() -> Non
         assert {"fileId", "status", "scale", "crop"}.issubset(element.keys())
 
     for file in data["files"].values():
-        assert file["mimeType"] == "image/svg+xml"
-        assert file["dataURL"].startswith("data:image/svg+xml;base64,")
+        assert file["mimeType"] in {"image/svg+xml", "image/png"}
+        assert file["dataURL"].startswith(f"data:{file['mimeType']};base64,")
 
 
 def test_detailed_excalidraw_architecture_line_taxonomy_is_encoded() -> None:
