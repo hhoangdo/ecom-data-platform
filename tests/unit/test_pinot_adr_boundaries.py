@@ -12,7 +12,7 @@ def test_pinot_runbook_preserves_provisional_truth_policy() -> None:
 
 def test_pinot_session_does_not_add_airflow_assets() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    dag_path = repo_root / "airflow" / "dags" / "pinot_bootstrap.py"
+    dag_path = repo_root / "infra" / "orchestration" / "airflow" / "dags" / "pinot_bootstrap.py"
 
     assert dag_path.is_file()
     dag_source = dag_path.read_text(encoding="utf-8")

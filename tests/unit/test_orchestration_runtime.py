@@ -77,7 +77,7 @@ def test_reconciliation_is_the_only_pinot_path_that_escalates_to_failure() -> No
 
 def test_pinot_bootstrap_dag_exists_without_flink_control_logic() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    dag_path = repo_root / "airflow" / "dags" / "pinot_bootstrap.py"
+    dag_path = repo_root / "infra" / "orchestration" / "airflow" / "dags" / "pinot_bootstrap.py"
     dag_source = dag_path.read_text(encoding="utf-8")
 
     assert "pinot_bootstrap" in dag_source

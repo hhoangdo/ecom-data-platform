@@ -572,7 +572,7 @@ services:
       VBS_TRINO_USER: "vina_analyst"
     volumes:
       - ./:/workspace
-      - ./airflow/dags:/opt/airflow/dags:ro
+      - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
       - ./src:/workspace/src:ro
       - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
       - ./infra/governance/recipes:/opt/airflow/recipes:ro
@@ -610,7 +610,7 @@ services:
       VBS_TRINO_USER: "vina_analyst"
     volumes:
       - ./:/workspace
-      - ./airflow/dags:/opt/airflow/dags:ro
+      - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
       - ./src:/workspace/src:ro
       - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
       - ./infra/governance/recipes:/opt/airflow/recipes:ro
@@ -651,7 +651,7 @@ services:
       VBS_TRINO_USER: "vina_analyst"
     volumes:
       - ./:/workspace
-      - ./airflow/dags:/opt/airflow/dags:ro
+      - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
       - ./src:/workspace/src:ro
       - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
       - ./infra/governance/recipes:/opt/airflow/recipes:ro

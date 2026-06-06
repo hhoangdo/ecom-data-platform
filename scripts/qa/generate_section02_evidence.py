@@ -15,10 +15,11 @@ from typing import Any
 
 
 RAW_INPUT_HINT = "uv run python scripts/generate/run_generator.py --scale smoke --mode full --clean"
-DBT_BUILD_COMMAND = ["dbt", "build", "--project-dir", "dbt", "--profiles-dir", "dbt"]
-DBT_DOCS_COMMAND = ["dbt", "docs", "generate", "--project-dir", "dbt", "--profiles-dir", "dbt"]
+DBT_PROJECT_DIR = "infra/analytics/dbt"
+DBT_BUILD_COMMAND = ["dbt", "build", "--project-dir", DBT_PROJECT_DIR, "--profiles-dir", DBT_PROJECT_DIR]
+DBT_DOCS_COMMAND = ["dbt", "docs", "generate", "--project-dir", DBT_PROJECT_DIR, "--profiles-dir", DBT_PROJECT_DIR]
 EVIDENCE_ROOT = Path("evidence/02_schema_design")
-DBT_TARGET = Path("dbt/target")
+DBT_TARGET = Path(DBT_PROJECT_DIR) / "target"
 DUCKDB_PATH = Path("data/gold/vina_bim_shop.duckdb")
 
 REQUIRED_RAW_INPUTS = [
@@ -457,8 +458,8 @@ def build_report_markdown(
             "",
             "## Command Summary",
             "",
-            "- `dbt build --project-dir dbt --profiles-dir dbt` completed before artifact extraction.",
-            "- `dbt docs generate --project-dir dbt --profiles-dir dbt` produced `manifest.json` and `catalog.json` for summarized evidence.",
+            "- `dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt` completed before artifact extraction.",
+            "- `dbt docs generate --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt` produced `manifest.json` and `catalog.json` for summarized evidence.",
             "",
             "## dbt Results",
             "",

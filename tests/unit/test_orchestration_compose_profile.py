@@ -35,7 +35,7 @@ def test_orchestration_services_reuse_shared_postgres_and_repo_workspace() -> No
             "context": ".",
             "dockerfile": "./infra/orchestration/airflow/Dockerfile",
         }
-        assert "./airflow/dags:/opt/airflow/dags:ro" in service["volumes"]
+        assert "./infra/orchestration/airflow/dags:/opt/airflow/dags:ro" in service["volumes"]
         assert "./src:/workspace/src:ro" in service["volumes"]
         assert "/var/run/docker.sock:/var/run/docker.sock" in service["volumes"]
 
@@ -55,4 +55,4 @@ def test_env_example_documents_orchestration_urls_and_credentials() -> None:
 def test_airflow_runtime_assets_exist() -> None:
     repo_root = _repo_root()
     assert (repo_root / "infra" / "orchestration" / "airflow" / "Dockerfile").is_file()
-    assert (repo_root / "airflow" / "dags").is_dir()
+    assert (repo_root / "infra" / "orchestration" / "airflow" / "dags").is_dir()

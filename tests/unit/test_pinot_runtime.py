@@ -77,7 +77,7 @@ def test_pinot_dashboard_sql_uses_correction_contract() -> None:
     assert "pinot_realtime_commerce_metrics_1m" in dashboard_sql
 
 
-def test_bootstrap_helpers_apply_schemas_then_tables() -> None:
+def test_bootstrap_helpers_apply_schemas_then_tables(tmp_path: Path) -> None:
     from vina_bim_shop.pinot.bootstrap import apply_assets
 
     calls = []
@@ -94,7 +94,7 @@ def test_bootstrap_helpers_apply_schemas_then_tables() -> None:
             return {"status": "ONLINE"}
         return {"status": "ok"}
 
-    manifest = apply_assets(request=fake_request)
+    manifest = apply_assets(request=fake_request, evidence_root=tmp_path)
 
     schema_posts = [call for call in calls if call[0] == "POST" and call[1] == "/schemas"]
     table_posts = [call for call in calls if call[0] == "POST" and call[1] == "/tables"]
@@ -108,7 +108,7 @@ def test_bootstrap_helpers_apply_schemas_then_tables() -> None:
     ]
 
 
-def test_bootstrap_tolerates_flaky_controller_status_endpoints(monkeypatch) -> None:
+def test_bootstrap_tolerates_flaky_controller_status_endpoints(monkeypatch, tmp_path: Path) -> None:
     from requests import HTTPError
 
     from vina_bim_shop.pinot.bootstrap import apply_assets
@@ -128,7 +128,7 @@ def test_bootstrap_tolerates_flaky_controller_status_endpoints(monkeypatch) -> N
         return {"status": "ok"}
 
     monkeypatch.setattr("vina_bim_shop.pinot.bootstrap.time.sleep", lambda _seconds: None)
-    manifest = apply_assets(request=fake_request)
+    manifest = apply_assets(request=fake_request, evidence_root=tmp_path)
 
     assert manifest["table_status"]["pinot_realtime_commerce_metrics_1m"]["status"] == "unverified"
     assert any(path.startswith("/debug/tables/") for _method, path in calls)

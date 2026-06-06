@@ -52,9 +52,9 @@ ALL_VOLUMES = [
 GIT_IGNORED_PATHS = [
     "data/raw",
     "data/gold",
-    "dbt/target",
-    "dbt/logs",
-    "dbt/dbt_packages",
+    "infra/analytics/dbt/target",
+    "infra/analytics/dbt/logs",
+    "infra/analytics/dbt/dbt_packages",
     "evidence/runtime",
 ]
 
@@ -90,7 +90,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--clean-local-data",
         action="store_true",
-        help="Also remove git-ignored local data (data/raw, data/gold, dbt/target, etc.).",
+        help="Also remove git-ignored local data (data/raw, data/gold, infra/analytics/dbt/target, etc.).",
     )
     parser.add_argument(
         "--keep-volumes",

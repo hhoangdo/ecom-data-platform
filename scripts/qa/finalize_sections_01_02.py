@@ -115,7 +115,7 @@ def build_final_dataset_manifest(
         "archive_sha256": sha256_file(archive_path),
         "duckdb_reproduction_path": DUCKDB_REPRODUCTION_PATH,
         "duckdb_executive_mart_path": DUCKDB_EXECUTIVE_MART_PATH,
-        "duckdb_reproduction_command": "uv run dbt build --project-dir dbt --profiles-dir dbt",
+        "duckdb_reproduction_command": "uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt",
         "duckdb_executive_mart_command": (
             "uv run python scripts/spark/export_executive_mart.py "
             "--duckdb-path data/gold/vina_bim_shop_executive.duckdb"

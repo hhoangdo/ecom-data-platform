@@ -252,14 +252,12 @@ Key docs:
 
 ```text
 coursework/
-|-- airflow/                  # Airflow DAGs for bootstrap, batch, quality, serving, and governance runs
 |-- architecture/             # Domain contracts, PlantUML, DBML, and Excalidraw architecture assets
 |-- configs/                  # Generator, scenario, and pipeline configuration
 |-- data/                     # Gitignored local raw and Gold outputs, with folder-intent .gitignore files
-|-- dbt/                      # dbt-DuckDB Bronze, Silver, Gold models, tests, macros, and profile
 |-- deliverables/             # Official coursework writeups and service-level documentation
 |-- evidence/                 # Committed evidence packages, screenshots, manifests, reports, and query outputs
-|-- infra/                    # Docker images and service config for Kafka, lakehouse, Spark, Flink, Pinot, governance
+|-- infra/                    # Docker images, service config, Airflow DAGs, and dbt project assets
 |-- scripts/                  # CLI entrypoints for generation, bootstrap, smoke tests, evidence, reset, and exports
 |-- src/vina_bim_shop/        # Python packages for generation, Kafka, lakehouse, Flink, Pinot, quality, and governance
 |-- tests/                    # Unit and integration checks for contracts, runtime helpers, evidence, and docs
@@ -301,7 +299,7 @@ Use this path when you want reproducible Section 01/02 evidence without starting
 
 ```powershell
 uv run python scripts/generate/run_generator.py --scale medium --mode full --clean --seed 42
-uv run dbt build --project-dir dbt --profiles-dir dbt
+uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt
 uv run pytest
 ```
 
@@ -351,7 +349,7 @@ uv run python scripts/qa/reset_all.py --force
 uv run python scripts/qa/reset_all.py --clean-local-data
 ```
 
-The reset script stops services, removes Docker volumes, and optionally cleans gitignored local data such as `data/raw/`, `dbt/target/`, and `evidence/runtime/`. It does not remove committed source files or committed evidence.
+The reset script stops services, removes Docker volumes, and optionally cleans gitignored local data such as `data/raw/`, `infra/analytics/dbt/target/`, and `evidence/runtime/`. It does not remove committed source files or committed evidence.
 
 ---
 
@@ -379,7 +377,7 @@ Local defaults are documented in [.env.example](.env.example). Most scripts work
 - A broad full-stack startup attempt is known to cause Docker instability and API inspection failures on constrained machines; staged profiles are the normal workflow for this evidence pass.
 - The full `all` profile is high-resource and best-effort, not the primary acceptance path.
 - dbt-DuckDB is a local compatibility path; Spark/Iceberg/Trino is canonical for reconciled truth in the full platform evidence.
-- The DuckDB Executive Mart is a local snapshot exported from Trino Gold; regenerate it after each Spark Gold refresh.
+- The DuckDB Executive Mart is a Trino Gold snapshot export; regenerate it after each Spark Gold refresh.
 - Pinot is fresh and provisional; Trino-served Gold tables are the official KPI source.
 - Airflow orchestrates batch and control-plane work; it does not supervise long-running Flink jobs in v1.
 - DataHub requires separate ingestion recipe runs after platform services are healthy.

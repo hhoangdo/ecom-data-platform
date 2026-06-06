@@ -93,8 +93,8 @@ def test_datahub_recipes_match_current_cli_contract() -> None:
 
     dbt_recipe = yaml.safe_load((recipes_dir / "dbt_legacy.yml").read_text(encoding="utf-8"))
     dbt_config = dbt_recipe["source"]["config"]
-    assert dbt_config["manifest_path"] == "/workspace/dbt/target/manifest.json"
-    assert dbt_config["run_results_paths"] == ["/workspace/dbt/target/run_results.json"]
+    assert dbt_config["manifest_path"] == "/workspace/infra/analytics/dbt/target/manifest.json"
+    assert dbt_config["run_results_paths"] == ["/workspace/infra/analytics/dbt/target/run_results.json"]
     assert "catalog_path" not in dbt_config
     assert "load_schemas" not in dbt_config
     assert "stateful_ingestion" not in dbt_config

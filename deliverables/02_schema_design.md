@@ -244,10 +244,10 @@ Evidence artifacts:
 
 | File | Responsibility |
 | --- | --- |
-| [dbt/models/bronze](../dbt/models/bronze) | Source-fidelity views and quarantine models. |
-| [dbt/models/silver](../dbt/models/silver) | Standardized and deduplicated staging models. |
-| [dbt/models/gold](../dbt/models/gold) | Constrained dimensions, facts, OBT, aggregate, and feature tables. |
-| [dbt/models/gold/schema.yml](../dbt/models/gold/schema.yml) | Gold contracts, keys, relationships, types, and tests. |
-| [dbt/macros/business_logic.sql](../dbt/macros/business_logic.sql) | Shared business formulas. |
+| [infra/analytics/dbt/models/bronze](../infra/analytics/dbt/models/bronze) | Source-fidelity views and quarantine models. |
+| [infra/analytics/dbt/models/silver](../infra/analytics/dbt/models/silver) | Standardized and deduplicated staging models. |
+| [infra/analytics/dbt/models/gold](../infra/analytics/dbt/models/gold) | Constrained dimensions, facts, OBT, aggregate, and feature tables. |
+| [infra/analytics/dbt/models/gold/schema.yml](../infra/analytics/dbt/models/gold/schema.yml) | Gold contracts, keys, relationships, types, and tests. |
+| [infra/analytics/dbt/macros/business_logic.sql](../infra/analytics/dbt/macros/business_logic.sql) | Shared business formulas. |
 | [architecture/diagrams/gold_layer_ERD.dbml](../architecture/diagrams/gold_layer_ERD.dbml) | Gold-only ERD for DBML/dbdiagram preview. |
 | [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) | Full physical model across Bronze, Silver, and Gold. |

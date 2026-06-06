@@ -13,7 +13,7 @@ def test_physical_gold_model_puml_documents_all_layers_and_purposes() -> None:
 
     dbt_model_names = [
         path.stem
-        for path in (repo_root / "dbt" / "models").rglob("*.sql")
+        for path in (repo_root / "infra" / "analytics" / "dbt" / "models").rglob("*.sql")
         if path.stem != ".gitkeep"
     ]
     for model_name in dbt_model_names:
@@ -214,7 +214,7 @@ def test_schema_design_puml_shows_storage_and_serving_contracts() -> None:
 
 def test_dbt_project_declares_expected_model_layers_and_tests() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    dbt_root = repo_root / "dbt"
+    dbt_root = repo_root / "infra" / "analytics" / "dbt"
 
     expected_models = [
         "models/bronze/raw_orders.sql",
@@ -238,10 +238,11 @@ def test_dbt_project_declares_expected_model_layers_and_tests() -> None:
 
 def test_quarantine_models_read_generated_bad_record_sources() -> None:
     repo_root = Path(__file__).resolve().parents[2]
+    dbt_root = repo_root / "infra" / "analytics" / "dbt"
 
-    raw_bad_events = (repo_root / "dbt" / "models" / "bronze" / "raw_bad_events.sql").read_text(encoding="utf-8")
-    raw_bad_snapshots = (repo_root / "dbt" / "models" / "bronze" / "raw_bad_snapshots.sql").read_text(encoding="utf-8")
-    bronze_schema = (repo_root / "dbt" / "models" / "bronze" / "schema.yml").read_text(encoding="utf-8")
+    raw_bad_events = dbt_root.joinpath("models", "bronze", "raw_bad_events.sql").read_text(encoding="utf-8")
+    raw_bad_snapshots = dbt_root.joinpath("models", "bronze", "raw_bad_snapshots.sql").read_text(encoding="utf-8")
+    bronze_schema = dbt_root.joinpath("models", "bronze", "schema.yml").read_text(encoding="utf-8")
 
     assert "kafka_topics/dead_letter_events/events.jsonl" in raw_bad_events
     assert "bad_snapshots/bad_snapshots.jsonl" in raw_bad_snapshots

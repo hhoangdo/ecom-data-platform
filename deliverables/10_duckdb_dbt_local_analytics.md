@@ -51,7 +51,7 @@ schema: main
 The local build command is:
 
 ```powershell
-uv run dbt build --project-dir dbt --profiles-dir dbt
+uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt
 ```
 
 The parity oracle is used to compare local dbt output with Spark-written Gold tables queried through Trino. Evidence in `evidence/05_spark_batch/dbt_parity_report.md` records matching row counts and KPI values for dimensions, facts, OBT tables, aggregates, and feature tables.

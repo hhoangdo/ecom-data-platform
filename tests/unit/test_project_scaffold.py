@@ -19,6 +19,7 @@ def test_project_scaffold_artifacts_exist() -> None:
 
 def test_dbt_duckdb_section02_scaffold_is_configured() -> None:
     repo_root = Path(__file__).resolve().parents[2]
+    dbt_root = repo_root / "infra" / "analytics" / "dbt"
 
     pyproject = tomllib.loads((repo_root / "pyproject.toml").read_text(encoding="utf-8"))
     dependencies = [dependency.lower() for dependency in pyproject["project"]["dependencies"]]
@@ -26,9 +27,9 @@ def test_dbt_duckdb_section02_scaffold_is_configured() -> None:
     assert any(dependency.startswith("dbt-core") for dependency in dependencies)
     assert any(dependency.startswith("dbt-duckdb") for dependency in dependencies)
     assert any(dependency.startswith("duckdb") for dependency in dependencies)
-    assert (repo_root / "dbt" / "dbt_project.yml").is_file()
-    assert (repo_root / "dbt" / "profiles.yml").is_file()
-    assert (repo_root / "dbt" / "models" / "gold" / "obt_order_performance.sql").is_file()
+    assert dbt_root.joinpath("dbt_project.yml").is_file()
+    assert dbt_root.joinpath("profiles.yml").is_file()
+    assert dbt_root.joinpath("models", "gold", "obt_order_performance.sql").is_file()
 
     pipeline_config = yaml.safe_load(
         (repo_root / "configs" / "pipelines" / "local.yaml").read_text(encoding="utf-8")

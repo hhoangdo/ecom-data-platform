@@ -1,9 +1,9 @@
 source:
   type: dbt
   config:
-    manifest_path: /workspace/dbt/target/manifest.json
+    manifest_path: /workspace/infra/analytics/dbt/target/manifest.json
     run_results_paths:
-      - /workspace/dbt/target/run_results.json
+      - /workspace/infra/analytics/dbt/target/run_results.json
     target_platform: duckdb
     write_semantics: patch
 

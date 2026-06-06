@@ -19,10 +19,10 @@ htmlcov/
 
 # DuckDB database files and dbt artifacts
 *.duckdb
-dbt/target/
-dbt/logs/
-dbt/dbt_packages/
-dbt/.user.yml
+infra/analytics/dbt/target/
+infra/analytics/dbt/logs/
+infra/analytics/dbt/dbt_packages/
+infra/analytics/dbt/.user.yml
 
 # Test data and fixtures
 tests/data_quality/
