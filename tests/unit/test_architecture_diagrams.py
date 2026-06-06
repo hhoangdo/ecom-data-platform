@@ -118,7 +118,7 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "Dashed amber = orchestration / control",
         "Dashed green = validation / quality",
         "Dashed cyan = evidence / audit",
-        "Dashed blue = optional local export",
+        "Dashed blue = Trino Gold snapshot export",
         "Dashed gray = secondary historical support",
     ]:
         assert expected in labels
@@ -163,7 +163,7 @@ def test_excalidraw_architecture_arrow_colors_encode_line_taxonomy() -> None:
         "pinot_to_evidence": "#0e7490",
         "trino_to_evidence": "#0e7490",
         "datahub_to_evidence": "#0e7490",
-        "minio_to_duckdb": "#2563eb",
+        "trino_to_duckdb": "#2563eb",
         "duckdb_to_exec": "#2563eb",
         "trino_to_bi": "#757575",
     }
@@ -171,6 +171,10 @@ def test_excalidraw_architecture_arrow_colors_encode_line_taxonomy() -> None:
     for arrow_id, color in expected_dashed_colors.items():
         assert arrows[arrow_id]["strokeStyle"] == "dashed"
         assert arrows[arrow_id]["strokeColor"] == color
+
+    assert arrows["trino_to_duckdb"]["startBinding"]["elementId"] == "trino_box"
+    assert arrows["trino_to_duckdb"]["endBinding"]["elementId"] == "duckdb_box"
+    assert "minio_to_duckdb" not in arrows
 
 
 def test_excalidraw_architecture_elements_include_required_fields() -> None:
@@ -352,7 +356,7 @@ def test_detailed_excalidraw_architecture_line_taxonomy_is_encoded() -> None:
         "flow_trino_to_evidence": "#00838f",
         "flow_datahub_to_evidence": "#00838f",
         "flow_gold_to_dbt": "#2e7d32",
-        "flow_gold_to_duckdb_mart": "#1565c0",
+        "flow_trino_to_duckdb_mart": "#1565c0",
         "flow_duckdb_to_exec": "#1565c0",
         "flow_trino_to_bi": "#6d6875",
     }
@@ -360,6 +364,10 @@ def test_detailed_excalidraw_architecture_line_taxonomy_is_encoded() -> None:
     for arrow_id, color in expected_dashed_colors.items():
         assert arrows[arrow_id]["strokeStyle"] == "dashed"
         assert arrows[arrow_id]["strokeColor"] == color
+
+    assert arrows["flow_trino_to_duckdb_mart"]["startBinding"]["elementId"] == "trino_box"
+    assert arrows["flow_trino_to_duckdb_mart"]["endBinding"]["elementId"] == "duckdb_mart_box"
+    assert "flow_gold_to_duckdb_mart" not in arrows
 
 
 def test_detailed_excalidraw_architecture_elements_include_required_fields() -> None:

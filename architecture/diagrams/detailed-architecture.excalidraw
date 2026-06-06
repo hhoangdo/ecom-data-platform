@@ -1276,7 +1276,7 @@
           "type": "arrow"
         },
         {
-          "id": "flow_gold_to_duckdb_mart",
+          "id": "flow_trino_to_duckdb_mart",
           "type": "arrow"
         }
       ],
@@ -4219,7 +4219,7 @@
       "baseline": 9
     },
     {
-      "id": "flow_gold_to_duckdb_mart",
+      "id": "flow_trino_to_duckdb_mart",
       "type": "arrow",
       "x": 2830.315119332071,
       "y": 1338.757212576964,
@@ -4245,7 +4245,7 @@
       "boundElements": [
         {
           "type": "text",
-          "id": "flow_gold_to_duckdb_mart_label"
+          "id": "flow_trino_to_duckdb_mart_label"
         }
       ],
       "updated": 1780761606870,
@@ -4282,7 +4282,7 @@
       "elbowed": false
     },
     {
-      "id": "flow_gold_to_duckdb_mart_label",
+      "id": "flow_trino_to_duckdb_mart_label",
       "type": "text",
       "x": 2651.2166104067346,
       "y": 1219.8416080650486,
@@ -4315,7 +4315,7 @@
       "text": "Trino Gold snapshot\nexport",
       "textAlign": "center",
       "verticalAlign": "middle",
-      "containerId": "flow_gold_to_duckdb_mart",
+      "containerId": "flow_trino_to_duckdb_mart",
       "originalText": "Trino Gold snapshot export",
       "autoResize": false,
       "lineHeight": 1.25,
@@ -5632,7 +5632,7 @@
           "type": "arrow"
         },
         {
-          "id": "flow_gold_to_duckdb_mart",
+          "id": "flow_trino_to_duckdb_mart",
           "type": "arrow"
         }
       ],
@@ -5795,7 +5795,7 @@
       "isDeleted": false,
       "boundElements": [
         {
-          "id": "flow_gold_to_duckdb_mart",
+          "id": "flow_trino_to_duckdb_mart",
           "type": "arrow"
         },
         {
@@ -5883,11 +5883,11 @@
       "index": "aH",
       "fontSize": 13.498534570026887,
       "fontFamily": 1,
-      "text": "optional local KPI mart exported\nfrom Gold for offline review",
+      "text": "optional local KPI mart exported\nthrough Trino Gold for offline review",
       "textAlign": "left",
       "verticalAlign": "middle",
       "containerId": null,
-      "originalText": "optional local KPI mart exported from Gold for offline review",
+      "originalText": "optional local KPI mart exported through Trino Gold for offline review",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 10

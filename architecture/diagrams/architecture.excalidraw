@@ -386,7 +386,7 @@
       "isDeleted": false,
       "boundElements": [
         {
-          "id": "minio_to_duckdb",
+          "id": "trino_to_duckdb",
           "type": "arrow"
         }
       ],
@@ -1630,7 +1630,7 @@
           "type": "arrow"
         },
         {
-          "id": "minio_to_duckdb",
+          "id": "trino_to_duckdb",
           "type": "arrow"
         },
         {
@@ -2879,7 +2879,7 @@
           "type": "arrow"
         },
         {
-          "id": "minio_to_duckdb",
+          "id": "trino_to_duckdb",
           "type": "arrow"
         }
       ],
@@ -2964,7 +2964,7 @@
           "type": "arrow"
         },
         {
-          "id": "minio_to_duckdb",
+          "id": "trino_to_duckdb",
           "type": "arrow"
         }
       ],
@@ -3386,7 +3386,7 @@
       "baseline": 12
     },
     {
-      "id": "minio_to_duckdb",
+      "id": "trino_to_duckdb",
       "type": "arrow",
       "x": 1481.6506397512776,
       "y": 940.7498443193626,
@@ -3412,7 +3412,7 @@
       "boundElements": [
         {
           "type": "text",
-          "id": "minio_to_duckdb_label"
+          "id": "trino_to_duckdb_label"
         }
       ],
       "updated": 1780761733826,
@@ -3449,7 +3449,7 @@
       "elbowed": false
     },
     {
-      "id": "minio_to_duckdb_label",
+      "id": "trino_to_duckdb_label",
       "type": "text",
       "x": 1353.0208522964947,
       "y": 828.986125018657,
@@ -3472,7 +3472,7 @@
       "isDeleted": false,
       "boundElements": [
         {
-          "id": "minio_to_duckdb",
+          "id": "trino_to_duckdb",
           "type": "arrow"
         }
       ],
@@ -3485,7 +3485,7 @@
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
-      "containerId": "minio_to_duckdb",
+      "containerId": "trino_to_duckdb",
       "originalText": "Trino Gold snapshot export",
       "autoResize": true,
       "lineHeight": 1.25,
@@ -5371,13 +5371,13 @@
       "link": null,
       "locked": false,
       "index": "aC",
-      "text": "Legend\n\nSolid black = primary business data / primary serving\nDashed gray = secondary historical support\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = optional local export",
+      "text": "Legend\n\nSolid black = primary business data / primary serving\nDashed gray = secondary historical support\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = Trino Gold snapshot export",
       "fontSize": 15,
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "legend_box",
-      "originalText": "Legend\n\nSolid black = primary business data / primary serving\nDashed gray = secondary historical support\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = optional local export",
+      "originalText": "Legend\n\nSolid black = primary business data / primary serving\nDashed gray = secondary historical support\n\nDashed purple = metadata / lineage\nDashed amber = orchestration / control\nDashed green = validation / quality\nDashed cyan = evidence / audit\nDashed blue = Trino Gold snapshot export",
       "autoResize": true,
       "lineHeight": 1.25,
       "baseline": 12
