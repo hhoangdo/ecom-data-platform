@@ -1,6 +1,28 @@
-# ADR 02 Lakehouse Runbook
+# 04 Lakehouse
 
-This runbook implements `architecture/decisions/2026-06-01-02-minio-hive-trino-lakehouse-plan.md` without changing later-session ownership.
+## Purpose
+
+The lakehouse is the shared storage and SQL foundation for the platform. In this project, "lakehouse" means:
+
+- MinIO for local object storage
+- Hive Metastore for table catalog metadata
+- Postgres as the metastore backing database
+- Apache Iceberg for Silver and Gold table format
+- Trino for SQL access over curated lakehouse tables
+
+The lakehouse is responsible for preserving raw Bronze data, supporting Spark-written Silver/Gold Iceberg tables, and exposing canonical historical SQL through Trino.
+
+## Why The Project Needs A Lakehouse
+
+Kafka is excellent for event transport, but it is not a complete analytical storage layer. The platform also needs a place to keep replayable files, curated tables, checkpoints, and evidence.
+
+| Pain point | Lakehouse solution |
+| --- | --- |
+| Raw files and event logs need durable storage | MinIO stores batch snapshots, Kafka replay logs, checkpoints, and evidence objects. |
+| Batch and SQL tools need a shared table catalog | Hive Metastore records Iceberg table metadata for Spark and Trino. |
+| Historical analytics need table semantics | Iceberg gives Silver/Gold tables schemas, snapshots, and partitioning. |
+| Reviewers need SQL access | Trino exposes `iceberg.silver` and `iceberg.gold` without opening Spark internals. |
+| Local evidence must be reproducible | MinIO paths and DuckDB exports make the platform inspectable on one machine. |
 
 ## Services
 
@@ -10,139 +32,157 @@ Start the lakehouse profile:
 docker compose --profile lakehouse up -d
 ```
 
-Local service URLs:
+| Service | Local URL | Responsibility |
+| --- | --- | --- |
+| MinIO S3 API | `http://localhost:9000` | Object storage for Bronze, Silver, Gold, checkpoints, and evidence. |
+| MinIO Console | `http://localhost:9001` | Browser inspection of buckets and objects. |
+| Shared Postgres | `localhost:5433` | Backing database for Hive Metastore, Airflow, and DataHub. |
+| Hive Metastore | `thrift://localhost:9083` | Catalog metadata for Iceberg tables. |
+| Trino | `http://localhost:8080` | SQL query surface for Iceberg tables. |
 
-| Service | URL |
-| --- | --- |
-| MinIO S3 API | `http://localhost:9000` |
-| MinIO Console | `http://localhost:9001` |
-| Shared Postgres | `localhost:5433` |
-| Hive Metastore Thrift | `thrift://localhost:9083` |
-| Trino UI and API | `http://localhost:8080` |
+Local credentials are development defaults in [.env.example](../.env.example).
 
-Local credentials are fixed development defaults in `.env.example`. They are not production secrets.
+## Bucket Design
 
-## Buckets
+The `minio-init` service creates these buckets idempotently:
 
-The one-shot `minio-init` service creates these buckets idempotently:
+| Bucket | Written by | Read by | Purpose |
+| --- | --- | --- | --- |
+| `bronze` | Generator upload scripts, Kafka Connect | Spark, evidence scripts | Raw Parquet snapshots and raw Kafka replay logs. |
+| `silver` | Spark | Spark, Trino | Standardized Iceberg tables. |
+| `gold` | Spark | Trino, DataHub, DuckDB exporter | Business-ready Iceberg tables. |
+| `checkpoints` | Spark, Flink | Spark History, Flink recovery, DataHub metadata | Job state and Spark event logs. |
+| `evidence` | Flink audit sinks, evidence scripts | Reviewers, evidence capture scripts | Runtime proof artifacts and curated streaming audit outputs. |
 
-| Bucket | Purpose |
-| --- | --- |
-| `bronze` | Raw Parquet snapshots and raw Kafka JSON/JSONL replay logs. |
-| `silver` | Future Spark-owned cleaned Iceberg tables. |
-| `gold` | Future Spark-owned business-ready Iceberg tables. |
-| `checkpoints` | Future Spark/Flink checkpoint and job state. |
-| `evidence` | Coursework screenshots, health JSON, and exported reports. |
+## Bronze To Silver To Gold Lifecycle
 
-Bronze raw files remain unregistered by default. Spark may read Bronze by object path later, but Trino should not expose Bronze as normal analyst-facing tables.
+```text
+Generator Parquet snapshots
+  -> data/raw/<dataset>/
+  -> MinIO bronze/batch/<dataset>/snapshot_date=<date>/*
+  -> Spark raw temp views
+  -> Iceberg Silver stg_* tables
+  -> Iceberg Gold dimensions/facts/serving tables
+  -> Trino SQL and DuckDB exports
 
-## Bronze Raw Landing
-
-Option A raw landing is now split by ownership:
-
-- Kafka Connect lands source-topic event logs into MinIO Bronze.
-- A small Python CLI uploads local batch snapshot exports into MinIO Bronze.
-- Spark remains the future reader of Bronze object paths and the future writer of Silver/Gold.
-
-Bronze raw object layout:
-
-- `bronze/batch/<dataset>/snapshot_date=<date>/*`
-- `bronze/events/<topic>/ingest_date=<date>/*`
-
-The event layout intentionally uses a direct topic path segment. Do not reinterpret it as `bronze/events/topic=<topic>/...`; that older example is not the supported local Kafka Connect output.
-
-Upload the current local raw batch snapshots:
-
-```powershell
-uv run python scripts/lakehouse/land_bronze_batch.py --raw-root data/raw --snapshot-date 2026-06-01 --minio-alias LOCAL
+Kafka source topics
+  -> Kafka Connect S3 sink
+  -> MinIO bronze/events/<topic>/ingest_date=<date>/*
+  -> Spark raw_kafka_* temp views
+  -> Iceberg Silver event tables
+  -> Gold aggregates/features and reconciliation evidence
 ```
 
-This command expects a MinIO client alias such as `LOCAL` to already be configured against the local MinIO API.
+### Bronze
 
-## Shared Postgres
+Bronze stores source-fidelity data. It preserves raw columns, event envelopes, nested payloads, schema versions, and malformed-record wrappers.
 
-The `lakehouse-postgres` service initializes isolated databases and users for:
+| Bronze input | Format | Why this type |
+| --- | --- | --- |
+| Batch snapshots | Parquet | Columnar, compact, efficient for Spark/dbt scans, and typed enough for batch source-state exports. |
+| Kafka replay logs | JSON/JSONL objects from Kafka Connect | Keeps event envelopes human-readable and replayable; preserves nested payloads and schema drift. |
+| Bad snapshots and DLQ records | JSONL wrappers | Lets malformed examples be audited without breaking file readers. |
 
-| Database | Used by |
+Bronze files are not registered as normal analyst-facing tables. They are raw inputs for Spark and quality inspection.
+
+### Silver
+
+Silver is where source data becomes standardized and typed.
+
+| Silver behavior | Example |
 | --- | --- |
-| `hive_metastore` | Hive Metastore in ADR 02. |
-| `airflow` | Airflow in ADR 06. |
-| `datahub` | DataHub in ADR 07. |
+| Deduplicate by stable key | `stg_order_items` dedupes intentional duplicate `order_item_id` payloads. |
+| Cast timestamps | `event_timestamp`, `created_ts`, `snapshot_ts`, `payment_timestamp`, and shipment times become timestamp values. |
+| Flatten envelopes | `stg_commerce_events` extracts session, customer, product, order, payment, category, device, source, and amount fields. |
+| Preserve schema drift | `schema_version` remains available and optional newer fields stay nullable. |
+| Partition event-heavy tables | Event tables are partitioned by `days(event_timestamp)` in Spark/Iceberg. |
 
-ADR 02 uses only `hive_metastore`; the others exist so later services reuse this shared Postgres instead of adding separate quickstart databases.
+Silver tables are stored as Iceberg tables in the distributed path and as dbt views in the local DuckDB path.
+
+### Gold
+
+Gold is business-ready and modeled for reporting.
+
+| Gold family | Examples | Purpose |
+| --- | --- | --- |
+| Dimensions | `dim_customer`, `dim_seller`, `dim_product`, `dim_category`, `dim_date` | Reusable descriptive entities. |
+| Facts | `fact_order`, `fact_order_item`, `fact_payment_attempt`, `fact_shipment`, `fact_inventory_snapshot` | Reconciled business events and measures. |
+| Bridge | `bridge_product_category` | Many-to-many product taxonomy. |
+| Serving tables | `obt_order_performance`, `agg_hourly_reconciled_kpi` | Executive BI and canonical KPI comparison. |
+| Feature tables | `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified` | Local ML/AI preparation surfaces. |
+
+Gold uses surrogate keys for joins, natural IDs for auditability, double/decimal numeric metrics for financial calculations, timestamps for time logic, and booleans for business flags.
+
+## Data Type Choices Across Layers
+
+| Layer | Type strategy | Rationale |
+| --- | --- | --- |
+| Bronze snapshots | Preserve source Parquet types and add ingestion metadata. | Minimizes early transformation and keeps source-state evidence intact. |
+| Bronze events | Preserve JSON envelope fields and nested payloads. | Supports schema drift, replay, and event-contract inspection. |
+| Silver | Cast to explicit timestamps, numeric fields, booleans, and strings. | Provides stable input for joins, windows, tests, and Gold formulas. |
+| Gold | Enforce table contracts, keys, relationships, and business metric types. | Makes DBeaver ERDs, dbt tests, Trino SQL, and DuckDB exports consistent. |
+| Pinot serving | Flink-derived realtime schema optimized for OLAP dimensions and measures. | Keeps live queries fast while leaving official truth in Gold. |
 
 ## Trino Catalog
 
-Trino exposes only the `iceberg` catalog configured in `infra/lakehouse/trino/catalog/iceberg.properties`.
+Trino exposes the `iceberg` catalog configured in [infra/lakehouse/trino/catalog/iceberg.properties](../infra/lakehouse/trino/catalog/iceberg.properties).
 
 The catalog uses:
 
 - Hive Metastore: `thrift://hive-metastore:9083`
 - MinIO internal endpoint: `http://minio:9000`
-- Iceberg table format for future Silver/Gold tables
+- Iceberg table format for curated Silver/Gold tables
 
-Trino may create a temporary smoke table to prove connectivity. Spark remains the normal owner for Silver/Gold writes in ADR 03.
+Trino is the canonical SQL surface over Spark-written Gold. It does not normally write Silver/Gold tables in this project.
 
-## Smoke Tests
+## Service Interactions
 
-Run the Trino smoke SQL:
+| Service | Relationship |
+| --- | --- |
+| Generator | Produces local raw snapshots that are uploaded to Bronze. |
+| Kafka Connect | Lands source-topic event logs into `bronze/events/<topic>/...`. |
+| Spark | Reads Bronze, writes Silver/Gold Iceberg tables, and stores Spark event logs/checkpoints. |
+| Flink | Writes checkpoints to `checkpoints/flink` and JSONL audit outputs under the `evidence` bucket. |
+| Trino | Queries Iceberg Silver/Gold tables through Hive Metastore. |
+| DuckDB Executive Mart | Exports Trino Gold snapshots into `data/gold/vina_bim_shop_executive.duckdb`. |
+| Airflow/GX | Orchestrates lakehouse batch runs and serves validation evidence. |
+| DataHub | Ingests MinIO/S3 prefix metadata and Trino/Iceberg datasets. |
+
+## Run And Evidence
+
+Upload current local raw batch snapshots:
+
+```powershell
+uv run python scripts/lakehouse/land_bronze_batch.py --raw-root data/raw --snapshot-date 2026-06-01 --minio-alias LOCAL
+```
+
+Run Trino smoke SQL:
 
 ```powershell
 uv run python scripts/lakehouse/smoke_sql.py
 ```
 
-The smoke SQL verifies the catalog, schemas, and a read-only metadata-table query through `iceberg.information_schema.schemata`. It does not create Silver/Gold tables because Spark remains the normal Silver/Gold write owner in ADR 03.
-
-Capture service evidence:
+Capture evidence:
 
 ```powershell
 uv run python scripts/lakehouse/capture_evidence.py
-```
-
-Evidence is written under `evidence/04_lakehouse/`.
-
-Capture Bronze landing examples after uploads/connectors run:
-
-```powershell
 uv run python scripts/lakehouse/capture_bronze_evidence.py --evidence-root evidence/04_lakehouse --listing-path evidence/04_lakehouse/bronze_listing.txt
 ```
 
-The Bronze landing artifact is `evidence/04_lakehouse/bronze_landing_examples.json` and should include example batch and event object keys.
+Key evidence files:
 
-## Required Screenshots
+- [minio_health.json](../evidence/04_lakehouse/minio_health.json)
+- [minio_buckets.json](../evidence/04_lakehouse/minio_buckets.json)
+- [hive_metastore_health.txt](../evidence/04_lakehouse/hive_metastore_health.txt)
+- [trino_catalogs.txt](../evidence/04_lakehouse/trino_catalogs.txt)
+- [trino_schemas.txt](../evidence/04_lakehouse/trino_schemas.txt)
+- [bronze_listing.txt](../evidence/04_lakehouse/bronze_listing.txt)
+- [bronze_landing_examples.json](../evidence/04_lakehouse/bronze_landing_examples.json)
+- [run_manifest.json](../evidence/04_lakehouse/run_manifest.json)
 
-Capture these files under `evidence/04_lakehouse/screenshots/`:
+## Limitations
 
-- `minio_buckets.png`: MinIO Console showing `bronze`, `silver`, `gold`, `checkpoints`, and `evidence`.
-- `trino_query_history.png`: Trino UI showing the smoke query history.
-- `trino_sample_query.png`: Trino UI or terminal evidence showing the smoke query result.
-
-## Reset
-
-Stop lakehouse services:
-
-```powershell
-docker compose --profile lakehouse down
-```
-
-Stop services and remove lakehouse volumes:
-
-```powershell
-uv run python scripts/lakehouse/cleanup_lakehouse.py --volumes
-```
-
-Remove ADR 02 evidence as well:
-
-```powershell
-uv run python scripts/lakehouse/cleanup_lakehouse.py --volumes --clean-evidence
-```
-
-Lakehouse Docker volumes are operational state, not committed coursework evidence.
-
-## Do Not Do
-
-- Do not register raw Bronze files as normal analyst-facing tables.
-- Do not let Trino become the normal Silver/Gold writer.
-- Do not add Spark transformations in this session.
-- Do not add DataHub ingestion in this session.
-- Do not introduce separate Postgres services for Airflow or DataHub later.
+- The local lakehouse is not secured for production use.
+- Raw Bronze files are intentionally not the normal analyst-facing SQL surface.
+- Spark owns Silver/Gold writes; Trino is used for query serving.
+- Local reproducibility favors staged profiles over a single full-stack startup.

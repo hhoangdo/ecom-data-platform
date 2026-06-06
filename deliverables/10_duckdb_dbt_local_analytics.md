@@ -1,0 +1,127 @@
+# DuckDB, dbt, And Local Analytics
+
+## Purpose
+
+DuckDB provides the portable local analytics layer for the Vina Bim Shop platform. It is used in two distinct ways:
+
+| Local asset | Path | Role |
+| --- | --- | --- |
+| dbt-DuckDB parity oracle | `data/gold/vina_bim_shop.duckdb` | Rebuilds the Bronze/Silver/Gold modeling path locally through dbt for fast regression checks and Section 01/02 reproducibility. |
+| DuckDB Executive Mart | `data/gold/vina_bim_shop_executive.duckdb` | Stores a local snapshot exported from Trino-served Spark Gold tables for offline inspection and evidence packaging. |
+
+These files are gitignored local outputs. They are meant to be rebuilt, inspected in DBeaver or the DuckDB CLI, and packaged as evidence when needed.
+
+## What DuckDB And dbt Do In This Project
+
+DuckDB is an embedded analytical database. It runs locally as a single file and is well suited for coursework evidence because it does not require a separate database server.
+
+dbt is the SQL transformation and testing framework used with DuckDB for the local compatibility path. The dbt project defines Bronze views, Silver views, Gold tables, tests, macros, and documentation-friendly model structure.
+
+Together, dbt-DuckDB gives the project an independent local implementation of the core schema design:
+
+| Responsibility | dbt-DuckDB behavior |
+| --- | --- |
+| Rebuild local Gold models | Reads generated local raw data and materializes modeled tables into DuckDB. |
+| Validate modeling contracts | Runs dbt tests and produces build/test evidence. |
+| Support Section 01/02 reproducibility | Works without starting Kafka, Spark, Trino, Pinot, or Airflow. |
+| Provide parity comparison | Row counts and key KPIs are compared against Spark/Trino Gold evidence. |
+
+## Why DuckDB/dbt Is Needed
+
+The full distributed platform is useful, but it is not always the right tool for fast local verification. DuckDB/dbt solves several practical pain points:
+
+| Pain point | DuckDB/dbt value |
+| --- | --- |
+| Distributed services are expensive to start on a laptop. | dbt-DuckDB can rebuild the local model path with no Docker services. |
+| Coursework evidence needs a portable artifact. | A single `.duckdb` file can be opened in DBeaver and shared as evidence. |
+| Spark changes need regression checks. | dbt-DuckDB acts as an independent parity oracle for row counts and KPI values. |
+| Instructors may want to inspect tables without running the stack. | The Executive Mart exports canonical Trino Gold into a local file. |
+
+DuckDB is not a replacement for Spark in the full platform. It is the local reproducibility and inspection layer.
+
+## dbt-DuckDB Parity Oracle
+
+The dbt profile points to:
+
+```yaml
+path: data/gold/vina_bim_shop.duckdb
+schema: main
+```
+
+The local build command is:
+
+```powershell
+uv run dbt build --project-dir dbt --profiles-dir dbt
+```
+
+The parity oracle is used to compare local dbt output with Spark-written Gold tables queried through Trino. Evidence in `evidence/05_spark_batch/dbt_parity_report.md` records matching row counts and KPI values for dimensions, facts, OBT tables, aggregates, and feature tables.
+
+Examples of compared outputs include:
+
+| Output | Validation role |
+| --- | --- |
+| `dim_customer`, `dim_product`, `dim_seller` | Dimension row-count parity. |
+| `fact_order`, `fact_order_item`, `fact_payment_attempt` | Core fact row-count parity. |
+| `obt_order_performance` | Denormalized order analysis parity. |
+| `agg_hourly_reconciled_kpi` | Reconciled aggregate parity. |
+| `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified` | Feature-table parity. |
+| `official_paid_revenue`, `gross_merchandise_value`, `estimated_cost`, `estimated_margin` | KPI value parity. |
+
+## DuckDB Executive Mart
+
+The DuckDB Executive Mart is different from the dbt-DuckDB parity oracle.
+
+| Aspect | dbt-DuckDB parity oracle | DuckDB Executive Mart |
+| --- | --- | --- |
+| Source | Local generated raw inputs. | Trino query results over `iceberg.gold.*`. |
+| Transformation ownership | dbt local models. | No second transformation layer; exported snapshot only. |
+| Truth role | Independent parity check. | Portable copy of canonical Spark Gold. |
+| Typical user | Data engineer or reviewer checking model consistency. | Instructor, analyst, or reviewer inspecting final Gold tables locally. |
+| Output path | `data/gold/vina_bim_shop.duckdb` | `data/gold/vina_bim_shop_executive.duckdb` |
+
+Export command:
+
+```powershell
+uv run python scripts/spark/export_executive_mart.py --duckdb-path data/gold/vina_bim_shop_executive.duckdb --evidence-root evidence/05_spark_batch
+```
+
+The export reads each required Gold table from Trino as `iceberg.gold.<table>`, creates matching DuckDB tables under the `gold` schema, and writes metadata tables under `mart_metadata`.
+
+When run, the export writes:
+
+| Output | Purpose |
+| --- | --- |
+| `mart_metadata.export_manifest` | Stores export timestamp, source, destination path, table count, and total row count. |
+| `mart_metadata.table_manifest` | Stores table-level source relation, row count, column count, and export timestamp. |
+| `evidence/05_spark_batch/executive_mart_export_manifest.json` | Machine-readable export evidence. |
+| `evidence/05_spark_batch/executive_mart_export_report.md` | Human-readable export summary. |
+
+## Service Interactions
+
+| Service or asset | Relationship |
+| --- | --- |
+| Data generator | Produces local raw data consumed by the dbt-DuckDB path. |
+| dbt | Defines local SQL models and tests against DuckDB. |
+| Spark | Produces the distributed Gold tables used for parity comparison and executive mart export. |
+| Trino | Serves Spark-written Iceberg Gold tables to the executive mart export script. |
+| DBeaver or DuckDB CLI | Opens local `.duckdb` files for inspection. |
+| Evidence folders | Store dbt build reports, parity reports, and export manifests. |
+| README and schema deliverable | Point reviewers to the data dictionary and truth-policy explanation. |
+
+## Evidence And Limitations
+
+Important evidence paths:
+
+| Path | Role |
+| --- | --- |
+| `evidence/02_schema_design/dbt_build_report.md` | dbt build/test evidence for the local schema path. |
+| `evidence/02_schema_design/dbt_test_results.csv` | Tabular dbt test results. |
+| `evidence/05_spark_batch/dbt_parity_report.md` | Human-readable DuckDB vs Spark/Trino parity report. |
+| `evidence/05_spark_batch/dbt_parity_report.json` | Machine-readable parity report. |
+
+Known boundaries:
+
+- `data/gold/vina_bim_shop.duckdb` is rebuilt from local raw data and represents the dbt parity path.
+- `data/gold/vina_bim_shop_executive.duckdb` is a snapshot exported from Trino Gold and is stale until regenerated.
+- DuckDB files are local evidence artifacts, not shared production databases.
+- The canonical full-platform truth remains Spark Gold served through Trino.

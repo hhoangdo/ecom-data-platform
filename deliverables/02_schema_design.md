@@ -1,129 +1,152 @@
-# 02 Schema Design
+# 02 Schema Design And Data Dictionary
 
-## 1. Goal And Architecture Fit
+## Purpose
 
-Section `02` turns the Section `01` source contracts into a local, runnable schema design for `vina-bim-shop`.
+This document defines the canonical data model for `vina-bim-shop`. It explains how raw marketplace snapshots and Kafka event envelopes become Bronze, Silver, and Gold analytical datasets, and it serves as the main Data Dictionary referenced by the root README.
 
-The target architecture remains:
+The schema design supports two truth surfaces:
 
-- Kafka JSON event envelopes for realtime ingestion.
-- Flink for low-latency operational metrics.
-- Apache Pinot for realtime dashboard serving.
-- MinIO medallion storage with Spark for reconciled batch processing.
-- Hive Metastore and Trino for canonical SQL over curated lakehouse tables.
-- DuckDB as two local artifacts: dbt-DuckDB for parity and a DuckDB Executive Mart exported from Trino-served Gold.
+- `Apache Pinot is fresh but provisional` for live operational metrics.
+- `Trino-served Gold tables are the canonical reconciled truth` for official historical reporting.
 
-For local implementation, `dbt-DuckDB is the local execution and test harness`. It also serves as the local compatibility and parity-test harness. Spark, Flink, Apache Pinot, and Trino are now runnable via Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md` and `evidence/05_spark_batch/dbt_parity_report.md` for the Spark vs dbt row-count parity evidence.
+`dbt-DuckDB is the local execution and test harness` for fast local rebuilds and physical ERD evidence. Spark/Iceberg/Trino provides the distributed implementation path for the same Gold logic, with row-count and KPI parity evidence in [evidence/05_spark_batch/dbt_parity_report.md](../evidence/05_spark_batch/dbt_parity_report.md).
 
-The two DuckDB files have different provenance even when their Gold rows match: `data/gold/vina_bim_shop.duckdb` is rebuilt independently by dbt for data engineering parity checks, while `data/gold/vina_bim_shop_executive.duckdb` is a Trino Gold snapshot export for local executive analysis.
+## Architecture Fit
 
-Spark, Flink, Apache Pinot, and Trino are now runnable services, not just target contracts. The runnable implementation for Section `02` is dbt-DuckDB for fast local iteration, with evidence generated from the final medium Section `01` raw dataset.
+`JSON event envelopes answer what happened now`. They preserve producer intent, event time, creation time, correlation IDs, payload details, and schema version. They are best for immediate operational visibility, replay, and timing analysis.
 
-### Central Source Rationale
-
-`JSON event envelopes answer what happened now`. They preserve producer intent, event time, creation time, correlation IDs, and payload details. They are best for immediate operational visibility, replay, and timing analysis.
-
-`Periodic table-state exports answer what state is reliable at checkpoint`. They are checkpointed source-of-record extracts for customers, products, orders, payments, shipments, and related entities. They are better for reconciliation because order status, payment status, shipment state, and financial totals can change after the first event is emitted.
-
-This means overlap is intentional:
+`Periodic table-state exports answer what state is reliable at checkpoint`. They are source-of-record extracts for customers, products, orders, payments, shipments, and related entities. They are better for reconciliation because order status, payment status, shipment state, and financial totals can change after the first event is emitted.
 
 | Pair | Why both exist | Truth policy |
 | --- | --- | --- |
-| Event envelopes vs table-state exports | Events capture the timeline; snapshots capture reconciled state at an export checkpoint. | Batch snapshots override overlapping order, payment, and shipment events for official historical reporting. |
-| Streaming path vs batch path | Streaming keeps simple metrics fresh; batch supports heavier joins, deduplication, business logic, and dimensional modeling. | Streaming is fresh and provisional; batch is reconciled truth. |
-| Pinot vs historical SQL | Pinot serves low-latency operational metrics; Trino-served Gold tables provide governed history. | `Apache Pinot is fresh but provisional`; `Trino-served Gold tables are the canonical reconciled truth`. |
+| Event envelopes vs table-state exports | Events capture the timeline; snapshots capture reliable checkpointed state. | Batch snapshots override overlapping order, payment, and shipment events for official historical reporting. |
+| Streaming path vs batch path | Streaming keeps simple metrics fresh; batch supports heavier joins, deduplication, and dimensional modeling. | Streaming is fresh and provisional; batch is reconciled truth. |
+| Pinot vs Trino Gold | Pinot serves low-latency operational metrics; Trino serves governed history over Gold. | Pinot is not used as the official financial source. |
+| dbt-DuckDB vs DuckDB Executive Mart | dbt-DuckDB rebuilds from raw local inputs; Executive Mart is exported from Trino Gold. | Parity oracle and executive snapshot have different provenance. |
 
-The older flat stream helper output is removed from the public contract. Kafka-topic-shaped JSONL files under `data/raw/kafka_topics/<topic>/events.jsonl` are the only streaming raw source for Section `02`.
+The older flat stream helper output is not part of the public contract. Kafka-topic-shaped JSONL files under `data/raw/kafka_topics/<topic>/events.jsonl` are the streaming raw source.
 
-## 2. Bronze And Silver Design
+## Layer Overview
 
-Bronze preserves source fidelity and adds ingestion metadata. Silver standardizes types, deduplicates records, flattens event envelopes, and keeps fields needed for late-arrival and schema-evolution reasoning.
+| Layer | Storage/modeling shape | Responsibility |
+| --- | --- | --- |
+| Bronze | Source-fidelity views or raw objects | Preserve snapshots, event envelopes, schema versions, payloads, and quarantine records. |
+| Silver | Standardized typed views/tables | Deduplicate by business keys, flatten event envelopes, cast timestamps/numerics, and normalize nullable drift fields. |
+| Gold | Constrained analytical tables | Provide dimensions, facts, OBTs, aggregates, and feature tables for reporting and downstream AI work. |
+| Serving | Trino, DuckDB, Pinot | Split canonical historical SQL from portable local analysis and fresh realtime dashboards. |
 
-| Source type | Bronze tables | Silver tables | Notes |
+Gold DuckDB tables enforce primary-key and foreign-key constraints through dbt contracts so DBeaver can render physical ERD relationship lines from database metadata. Bronze and Silver remain views in dbt-DuckDB, but they are included in the physical model for lineage context. The physical model is committed at [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) with a rendered PNG at [architecture/diagrams/physical_gold_model.png](../architecture/diagrams/physical_gold_model.png).
+
+## Data Type Rationale
+
+| Type family | Used for | Rationale |
+| --- | --- | --- |
+| `varchar` | Natural IDs, names, categories, statuses, raw JSON strings | IDs are business identifiers, not arithmetic values; strings preserve source fidelity. |
+| `timestamp` | Event time, source creation time, shipment/order/payment timestamps, feature timestamps | Required for event-time windows, point-in-time features, batch filtering, and freshness checks. |
+| `date` / `integer date_key` | Calendar dimension and fact foreign keys | Supports BI grouping and stable joins to `dim_date`. |
+| `bigint` / `hugeint` | Surrogate keys and counts | Handles generated row counts and aggregated counts without overflow risk in DuckDB/Spark. |
+| `double` | Revenue, GMV, cost, margin, rates | Sufficient for coursework metrics and compatible across Spark, Trino, DuckDB, and Pinot. |
+| `decimal(3,2)` | `category_cost_rate` | Cost rates are bounded percentages and benefit from fixed precision. |
+| `boolean` | Flags such as paid order, payment success, delayed shipment, current dimension row | Keeps business conditions explicit and easy to filter. |
+| JSON stored as `varchar` | Bronze/Silver payloads and optional attributes | Preserves schema drift while allowing downstream extraction. |
+
+## Bronze Data Dictionary
+
+Bronze preserves raw data with minimal interpretation.
+
+| Bronze object/table | Grain | Important fields | Source | Notes |
+| --- | --- | --- | --- | --- |
+| `raw_customers` | one customer snapshot | `customer_id`, `anonymous_id`, `signup_ts`, `segment`, `city`, `created_ts` | `customers` Parquet | Customer profile and segmentation. |
+| `raw_sellers` | one seller snapshot | `seller_id`, `seller_tier`, `primary_category`, `seller_rating`, `created_ts` | `sellers` Parquet | Seller operational attributes. |
+| `raw_products` | one product snapshot | `product_id`, `seller_id`, `primary_category`, `brand`, `fulfillment_channel`, `category_attributes` | `products` Parquet | Includes nullable schema-evolution fields. |
+| `raw_product_category_map` | one product-category assignment | `product_id`, `category`, `subcategory`, `is_primary`, `assigned_ts` | `product_category_map` Parquet | Many-to-many taxonomy source. |
+| `raw_inventory_snapshots` | one product inventory snapshot | `snapshot_id`, `product_id`, `snapshot_ts`, `stock_on_hand`, `reserved_stock` | `inventory_snapshots` Parquet | Batch inventory state. |
+| `raw_promotions` | one promotion | `promotion_id`, `funding_type`, `funding_detail`, `discount_rate` | `promotions` Parquet | Funding detail can be JSON text. |
+| `raw_orders` | one order header | `order_id`, `customer_id`, `order_timestamp`, `status`, `shipping_method`, `order_net_amount` | `orders` Parquet | Official order state source. |
+| `raw_order_items` | one order line before deduplication | `order_item_id`, `order_id`, `product_id`, `quantity`, `net_amount` | `order_items` Parquet | Contains intentional duplicates. |
+| `raw_payments` | one payment attempt | `payment_id`, `order_id`, `payment_timestamp`, `payment_status`, `amount` | `payments` Parquet | Payment success/failure source. |
+| `raw_shipments` | one shipment | `shipment_id`, `order_id`, `shipment_status`, `handoff_ts`, `estimated_delivery_ts` | `shipments` Parquet | Fulfillment state source. |
+| `raw_kafka_commerce_events` | one commerce event envelope | `event_id`, `event_type`, `schema_version`, `event_timestamp`, `created_ts`, `correlation_ids`, `payload` | `commerce_events` | Behavior and payment events. |
+| `raw_kafka_catalog_events` | one catalog event envelope | `event_id`, `event_type`, `schema_version`, `event_timestamp`, `payload` | `catalog_events` | Product, price, inventory, promotion changes. |
+| `raw_kafka_fulfillment_events` | one fulfillment event envelope | `event_id`, `event_type`, `shipment_id`, `order_id`, `payload` | `fulfillment_events` | Shipment lifecycle events. |
+| `raw_kafka_ops_events` | one ops event envelope | `event_id`, `event_type`, `late_event_count`, `duplicate_event_count`, `burst_event_count` | `ops_events` | Source observability events. |
+| `raw_bad_events` | one malformed event wrapper | `source_topic`, `raw_payload`, `error_reason`, `schema_version` | `dead_letter_events` | Quarantine/DLQ contract. |
+| `raw_bad_snapshots` | one malformed snapshot wrapper | `source_dataset`, `raw_record`, `error_reason`, `ingest_ts` | `bad_snapshots` | Batch quarantine contract. |
+
+## Silver Data Dictionary
+
+Silver standardizes data for analytics and downstream transformations.
+
+| Silver table | Grain | Key columns | Important type changes and rules |
 | --- | --- | --- | --- |
-| Periodic table-state exports | `raw_customers`, `raw_sellers`, `raw_products`, `raw_product_category_map`, `raw_inventory_snapshots`, `raw_promotions`, `raw_orders`, `raw_order_items`, `raw_payments`, `raw_shipments` | matching `stg_` tables | Parquet snapshots are compact and efficient for batch joins and reconciliation. |
-| Kafka event envelopes | `raw_kafka_commerce_events`, `raw_kafka_catalog_events`, `raw_kafka_fulfillment_events`, `raw_kafka_ops_events` | `stg_commerce_events`, `stg_catalog_events`, `stg_fulfillment_events`, `stg_ops_events` | Bronze preserves nested `correlation_ids`, `payload`, `schema_version`, `event_timestamp`, and `created_ts`; Silver flattens common fields. |
-| Bad records | `raw_bad_events`, `raw_bad_snapshots`, Kafka DLQ topic `dead_letter_events` | inspection only | Generated malformed examples are quarantined instead of silently dropped. |
+| `stg_customers` | one customer | `customer_id` | Keeps geography, segment, opt-in, device, and acquisition fields; dedupes by latest `created_ts`. |
+| `stg_sellers` | one seller | `seller_id` | Preserves seller tier, rating, fulfillment speed, inventory reliability, and price band. |
+| `stg_products` | one product | `product_id` | Keeps nullable `brand`, `fulfillment_channel`, and `category_attributes` for schema drift. |
+| `stg_product_category_map` | one product-category assignment | `product_id`, `category`, `subcategory` | Dedupes assignment records and keeps `is_primary`. |
+| `stg_inventory_snapshots` | one inventory snapshot | `snapshot_id` | Casts `snapshot_ts`; preserves stock counts as integer-like measures. |
+| `stg_promotions` | one promotion | `promotion_id` | Derives `platform_funding_share` and `seller_funding_share` from funding type/detail. |
+| `stg_orders` | one order | `order_id` | Dedupes by latest `created_ts`; accepted statuses are `paid` and `payment_failed`. |
+| `stg_order_items` | one order line | `order_item_id` | Removes intentional duplicate payloads by stable item key. |
+| `stg_payments` | one payment attempt | `payment_id` | Accepted payment statuses are `success` and `failed`. |
+| `stg_shipments` | one shipment | `shipment_id` | Normalizes shipment status and shipping method values. |
+| `stg_commerce_events` | one commerce event | `event_id` | Flattens common `correlation_ids` and payload fields; filters by batch window in Spark. |
+| `stg_catalog_events` | one catalog event | `event_id` | Extracts product, seller, promotion, category, stock, and discount fields from payloads. |
+| `stg_fulfillment_events` | one fulfillment event | `event_id` | Extracts shipment/order/customer IDs and fulfillment fields. |
+| `stg_ops_events` | one ops event | `event_id` | Extracts burst, late-event, and duplicate counts for operational evidence. |
 
-Silver deduplication uses stable business keys plus latest `created_ts`. Event Silver tables deduplicate by `event_id`, keeping the latest created copy. New optional columns from schema evolution remain nullable, and event `schema_version` is retained.
+Silver deduplication uses stable business keys plus latest source creation time. Event Silver tables deduplicate by `event_id`, keep `schema_version`, and preserve enough payload data for late-arrival and schema-evolution reasoning.
 
-## 3. Gold Snowflake, OBT, And Serving Contracts
+## Gold Data Dictionary
 
-The reconciled analytical model is a snowflake/star hybrid. Normalized dimensions keep business entities reusable, fact tables preserve grains, and one OBT reduces join overhead for the most common executive BI workflow.
-
-Gold DuckDB tables enforce primary-key and foreign-key constraints through dbt contracts so DBeaver can render physical ERD relationship lines from database metadata. Bronze and Silver remain views, but they are included in the physical model for lineage context. The physical data model is committed as `architecture/diagrams/physical_gold_model.puml` with a white-background rendered PNG at `architecture/diagrams/physical_gold_model.png`.
-
-Physical key policy:
-
-- Surrogate keys such as `customer_key`, `product_key`, and `order_key` are the main dimensional join path.
-- Natural/source IDs such as `customer_id`, `product_id`, `order_id`, `payment_id`, `shipment_id`, and `snapshot_id` are retained for auditability and declared as alternate keys where they are unique.
-- `dim_promotion` includes a single `NO_PROMOTION` sentinel row so `fact_order_item.promotion_key` is never null; source `promotion_id` remains nullable for non-promoted order items.
-- Current v1 dimensions include SCD Type 2 support columns (`valid_from_ts`, `valid_to_ts`, `is_current`) but still contain one current row per natural entity.
+Gold is the business-ready model. Dimensions and facts are physically constrained in DuckDB and represented in the committed ERD.
 
 ### Dimensions And Bridge
 
-| Table | Grain | Purpose |
-| --- | --- | --- |
-| `dim_customer` | one customer | Customer profile, segment, geography, acquisition context. |
-| `dim_seller` | one seller | Seller tier, location, rating, and fulfillment traits. |
-| `dim_product` | one product | Product attributes with seller link. |
-| `dim_category` | one category and subcategory | Normalized taxonomy with `category_cost_rate`. |
-| `bridge_product_category` | one product-category assignment | Supports many-to-many taxonomy assignments. |
-| `dim_date` | one calendar date | Date filters and calendar grouping. |
-| `dim_payment_method` | one payment method | Payment method normalization. |
-| `dim_order_status` | one order status | Order lifecycle normalization. |
-| `dim_shipment_status` | one shipment status | Fulfillment status normalization. |
-| `dim_shipping_method` | one shipping method | Shipping method normalization, including `unknown`. |
-| `dim_promotion` | one promotion | Funding type, discount rate, funding split, active period. |
+| Table | Grain | Primary key | Important columns and types | Truth role |
+| --- | --- | --- | --- | --- |
+| `dim_customer` | one customer | `customer_key bigint` | `customer_id varchar`, `signup_ts timestamp`, `segment varchar`, `city varchar`, `marketing_opt_in boolean`, `valid_from_ts timestamp`, `is_current boolean` | Customer profile dimension. |
+| `dim_seller` | one seller | `seller_key bigint` | `seller_id varchar`, `seller_tier varchar`, `seller_rating double`, `fulfillment_speed_days double`, `is_official_store boolean` | Seller and marketplace operations dimension. |
+| `dim_product` | one product | `product_key bigint` | `product_id varchar`, `seller_key bigint`, `brand varchar`, `base_price double`, `fulfillment_channel varchar`, `category_attributes varchar` | Product dimension with seller relationship. |
+| `dim_category` | one category/subcategory | `category_key bigint` | `category varchar`, `subcategory varchar`, `category_cost_rate decimal(3,2)` | Normalized taxonomy and cost-rate lookup. |
+| `dim_date` | one calendar date | `date_key integer` | `calendar_date date`, `day_of_week integer`, `month integer`, `year integer`, `is_weekend boolean` | Shared calendar dimension. |
+| `dim_payment_method` | one method | `payment_method_key bigint` | `payment_method varchar` | Payment normalization. |
+| `dim_order_status` | one status | `order_status_key bigint` | `order_status varchar` | Order lifecycle normalization. |
+| `dim_shipment_status` | one status | `shipment_status_key bigint` | `shipment_status varchar` | Shipment status normalization. |
+| `dim_shipping_method` | one method | `shipping_method_key bigint` | `shipping_method varchar` | Shipping method normalization including unknown values. |
+| `dim_promotion` | one promotion | `promotion_key bigint` | `promotion_id varchar`, `funding_type varchar`, `discount_rate double`, `platform_funding_share double`, `seller_funding_share double` | Promotion and discount funding dimension. |
+| `bridge_product_category` | one product-category assignment | `product_key`, `category_key` | `product_id varchar`, `category varchar`, `subcategory varchar`, `is_primary boolean` | Supports many-to-many category assignments. |
+
+Physical key policy:
+
+- Surrogate keys such as `customer_key`, `product_key`, and `order_key` are the primary dimensional join path.
+- Natural/source IDs such as `customer_id`, `product_id`, `order_id`, `payment_id`, `shipment_id`, and `snapshot_id` remain available for auditability.
+- `dim_promotion` includes a `NO_PROMOTION` sentinel row so `fact_order_item.promotion_key` is never null.
+- Current dimensions include SCD Type 2 support columns (`valid_from_ts`, `valid_to_ts`, `is_current`) while containing one current row per natural entity.
 
 ### Facts
 
-| Table | Grain | Core measures |
-| --- | --- | --- |
-| `fact_order` | one order | gross amount, discount, net amount, official paid revenue, GMV, payment attempt count. |
-| `fact_order_item` | one order item | quantity, gross amount, discount, net amount, estimated cost, estimated margin. |
-| `fact_payment_attempt` | one payment attempt | amount, success flag, failed flag, failure reason. |
-| `fact_shipment` | one shipment | delayed flag, payment-blocked flag, handoff and estimated delivery timestamps. |
-| `fact_inventory_snapshot` | one product snapshot | stock on hand, reserved stock, available stock. |
-| `fact_promotion_application` | one promoted order item | discount amount, platform discount, seller discount. |
+| Table | Grain | Primary key | Important measures and types | Truth role |
+| --- | --- | --- | --- | --- |
+| `fact_order` | one order | `order_key bigint` | `order_gross_amount double`, `order_discount_amount double`, `order_net_amount double`, `official_paid_revenue double`, `gross_merchandise_value double`, `payment_attempt_count bigint` | Official order-level revenue and GMV truth. |
+| `fact_order_item` | one order line | `order_item_key bigint` | `quantity bigint`, `gross_amount double`, `discount_amount double`, `net_amount double`, `category_cost_rate decimal(3,2)`, `estimated_cost double`, `estimated_margin double` | Item-level revenue, cost, and margin. |
+| `fact_payment_attempt` | one payment attempt | `payment_attempt_key bigint` | `amount double`, `is_payment_success boolean`, `is_payment_failed boolean`, `failure_reason varchar` | Payment success/failure analysis. |
+| `fact_shipment` | one shipment | `shipment_key bigint` | `is_delivery_delayed boolean`, `is_payment_blocked boolean`, `handoff_ts timestamp`, `estimated_delivery_ts timestamp` | Fulfillment and delay analysis. |
+| `fact_inventory_snapshot` | one product/seller/date snapshot | composite product/seller/date key | `snapshot_id varchar`, `stock_on_hand bigint`, `reserved_stock bigint`, `available_stock bigint` | Inventory availability analysis. |
+| `fact_promotion_application` | one promoted order item | `promotion_application_key bigint` | `discount_amount double`, `platform_discount_amount double`, `seller_discount_amount double` | Promotion funding attribution. |
 
-### OBT And Aggregates
+### OBT, Aggregates, And Features
 
-`obt_order_performance` is one row per order. It joins order, customer, payment, shipment, item rollups, discount, revenue, estimated cost, and margin fields for executive BI. It intentionally avoids item-level grain so dashboard queries do not multiply orders.
-
-`agg_hourly_reconciled_kpi` is the canonical hourly KPI aggregate built from Gold. It is the comparison target for Pinot realtime metrics.
-
-### Feature Tables
-
-| Table | Grain | Purpose |
-| --- | --- | --- |
-| `feat_customer_90d` | one customer at feature timestamp | Simple customer order and paid revenue history. |
-| `feat_stream_60m` | one customer-hour | Simple streaming activity counters from commerce events. |
-| `feat_customer_unified` | one customer at latest available feature timestamp | Joins offline and streaming features for later ML sections. |
-
-Feature tables retain `event_timestamp` for point-in-time joins and `created_ts` for deduplication.
-
-### Realtime Serving Contracts
-
-Pinot tables are now runnable via the `serving` profile and ingestion from Flink-derived Kafka topics:
-
-| Pinot table | Grain | Source | Purpose |
+| Table | Grain | Key columns | Purpose |
 | --- | --- | --- | --- |
-| `pinot_realtime_commerce_metrics_1m` | one event-time minute by category/source/status | Flink from Kafka commerce events | Fresh revenue, GMV proxy, payment failures, checkout/order conversion. |
-| `pinot_realtime_ops_alerts` | one alert event | Flink from Kafka ops and derived stream checks | Traffic bursts, late arrivals, duplicate spikes, anomaly-like operational alerts. |
-| `pinot_realtime_metric_corrections` | one correction update | Flink late-event correction job | Late-data adjustments reconciling streaming and batch views. |
+| `obt_order_performance` | one row per order | `order_id` | Joins order, customer, payment, shipment, item rollups, discount, revenue, estimated cost, and margin for executive BI. It intentionally avoids item-level grain so dashboards do not multiply orders. |
+| `agg_hourly_reconciled_kpi` | one row per hour | `metric_hour timestamp` | Canonical hourly KPI aggregate and comparison target for Pinot realtime metrics. |
+| `feat_customer_90d` | one customer at feature timestamp | `customer_id`, `event_timestamp` | Offline customer order and paid revenue history. |
+| `feat_stream_60m` | one customer-hour | `customer_id`, `event_timestamp` | Streaming activity counters from commerce events. |
+| `feat_customer_unified` | one customer at latest feature timestamp | `customer_id`, `event_timestamp` | Combines offline and streaming features for model-ready analysis. |
 
-Flink uses simple watermark updates for late events. It does not emit visible correction or retraction records in v1. Product and customer SCD joins stay out of the streaming path unless the needed fields are already present in the event payload.
+Feature tables retain `event_timestamp` for point-in-time joins and `created_ts` for auditability.
 
-DuckDB has two local roles. The dbt-DuckDB file is the independent parity oracle used by data engineers. The DuckDB Executive Mart is exported from `iceberg.gold.*` through Trino after Spark writes Gold, so it is a portable local copy of canonical Gold rather than a second transformation layer.
-
-| Surface | Audience | Source | Freshness and truth role |
-| --- | --- | --- | --- |
-| Trino SQL Serving | Shared SQL consumers | Current Iceberg Gold through Hive Metastore | Canonical online query interface after Spark Gold refresh |
-| DuckDB Executive Mart | Executives and local analysts | Trino Gold snapshot export | Fast local/offline copy; stale until regenerated |
-| dbt-DuckDB Parity Oracle | Data engineers | dbt rebuild from raw local inputs | Regression oracle; not the official serving surface |
-
-## 4. Business Logic Formulas
+## Business Logic Formulas
 
 All official financial formulas are batch-reconciled formulas from Gold, not Pinot-only formulas.
 
@@ -131,72 +154,92 @@ All official financial formulas are batch-reconciled formulas from Gold, not Pin
 | --- | --- | --- |
 | Gross order amount | `sum(order_gross_amount)` | Pre-discount order amount. |
 | Net order amount | `sum(order_net_amount)` | After discounts, before truth filtering. |
-| Official paid revenue | `sum(order_net_amount where order_status = 'paid' and payment_status = 'success')` | This is the official revenue definition. |
-| GMV | `sum(order_gross_amount where order_status = 'paid' and payment_status = 'success')` | Failed-payment and cancelled orders are excluded. |
-| Discount amount | `sum(gross_amount - net_amount)` or source `discount_amount` | Uses order/item source totals after Silver deduplication. |
-| Platform discount | `discount_amount * platform_funding_share` | Platform-funded uses 1.0, seller-funded uses 0.0, mixed uses `funding_detail` or 0.5 fallback. |
-| Seller discount | `discount_amount * seller_funding_share` | Seller-funded uses 1.0, platform-funded uses 0.0, mixed uses `funding_detail` or 0.5 fallback. |
+| official paid revenue | `sum(order_net_amount where order_status = 'paid' and payment_status = 'success')` | Official revenue definition. |
+| GMV | `sum(order_gross_amount where order_status = 'paid' and payment_status = 'success')` | Failed-payment orders are excluded. |
+| Discount amount | `sum(gross_amount - net_amount)` or source `discount_amount` | Uses source totals after Silver deduplication. |
+| Platform discount | `discount_amount * platform_funding_share` | Platform-funded uses `1.0`, seller-funded uses `0.0`, mixed uses `funding_detail` or `0.5` fallback. |
+| Seller discount | `discount_amount * seller_funding_share` | Complement to platform funding share. |
 | AOV | `official_paid_revenue / paid_order_count` | Uses paid successful orders only. |
 | Payment success rate | `successful_payment_attempts / payment_attempts` | Attempt-level payment metric. |
-| Cancellation or failed-order rate | `payment_failed_order_count / order_count` | Current source has `payment_failed` as the failed order status. |
+| Cancellation or failed-order rate | `payment_failed_order_count / order_count` | Current source uses `payment_failed` as failed order status. |
 | Delivery delay rate | `delayed_shipments / shipments` | Uses shipment status `delayed`. |
 | Conversion rate | `order_placed_events / checkout_started_events` | Streaming-derived behavior metric; reconciled batch can compare it hourly. |
 | Estimated cost | `line_net_amount * category_cost_rate` | Category rates: FMCG `0.72`, ELHA `0.82`, Fashion `0.55`, Home & Living `0.62`. |
 | Estimated margin | `official paid revenue - estimated cost` | Item-level margin is summed to order/hourly aggregates. |
 
-These formulas are intentionally clear rather than over-complex. The project does not currently generate true cost of goods, returns, refunds, tax, or seller finance data.
+The project does not generate true cost of goods, returns, refunds, tax, or seller finance data, so margin is an estimated coursework metric.
 
-## 5. Data Quality, Reconciliation, And Tests
+## Serving Contracts
 
-dbt tests cover:
+| Surface | Audience | Source | Freshness and truth role |
+| --- | --- | --- | --- |
+| Trino SQL Serving | Analysts and shared SQL consumers | Current Iceberg Gold through Hive Metastore | Canonical online query interface after Spark Gold refresh. |
+| DuckDB Executive Mart | Executives and local reviewers | Trino Gold snapshot export | Fast local/offline copy; stale until regenerated. |
+| dbt-DuckDB Parity Oracle | Data engineers | dbt rebuild from raw local inputs | Regression oracle; not the official serving surface. |
+| Pinot realtime tables | BI/livestreaming and operations | Flink-derived Kafka topics | Fresh provisional view for live metrics and alerts. |
 
-- uniqueness for business keys such as `order_id`, `order_item_id`, `payment_id`, `shipment_id`, and `event_id`.
-- not-null checks on required keys and timestamps.
-- accepted values for order, payment, and event topic fields.
-- relationships from facts to dimensions.
-- expression checks for non-negative revenue, cost, and margin fields.
-- reconciliation between `stg_orders` and `fact_order`.
-- reconciliation between item net totals and order net totals.
+Pinot realtime contracts:
 
-Operational quality rules:
+| Pinot table | Grain | Source | Purpose |
+| --- | --- | --- | --- |
+| `pinot_realtime_commerce_metrics_1m` | one event-time minute by category/source/status | Flink from Kafka commerce events | Fresh revenue proxy, GMV proxy, payment failures, checkout/order conversion. |
+| `pinot_realtime_ops_alerts` | one alert event | Flink from ops/catalog/fulfillment signals | Traffic bursts, late arrivals, duplicate spikes, inventory/fulfillment alerts. |
+| `pinot_realtime_metric_corrections` | one correction snapshot | Flink late-event correction path | Late-data adjustments for realtime metric keys. |
 
-- Bronze keeps raw records and reads generated malformed examples into `raw_bad_events`, `raw_bad_snapshots`, or Kafka `dead_letter_events`.
+Flink uses watermarking and allowed lateness for late events. Product and customer SCD joins stay out of the streaming path unless the needed fields are already present in the event payload.
+
+## Service Interactions
+
+| Service or layer | How it uses the schema design |
+| --- | --- |
+| Data generator | Produces the source snapshots and event envelopes that populate Bronze and provide intentional drift examples. |
+| Kafka ingestion | Registers event contracts and lands raw event streams for Bronze replay and DLQ handling. |
+| Lakehouse | Stores Bronze, Silver, and Gold objects with the medallion naming and typing conventions documented here. |
+| Spark batch | Implements the distributed Bronze-to-Silver-to-Gold transformation path and writes canonical Iceberg tables. |
+| dbt-DuckDB | Rebuilds the same model locally as a parity oracle and evidence-friendly DuckDB file. |
+| Trino | Serves Spark-written Gold tables for canonical SQL inspection and executive mart export. |
+| Flink and Pinot | Use the event and realtime serving contracts for fresh provisional metrics and alerts. |
+| Airflow and GX | Apply quality policy to Bronze, Silver, Gold, Pinot query, and reconciliation checks. |
+| DataHub | Publishes dataset, tag, assertion, and lineage metadata for the model layers. |
+
+## Data Quality And Evidence
+
+Quality policy:
+
+- Bronze keeps raw records and reads malformed examples into `raw_bad_events`, `raw_bad_snapshots`, or Kafka `dead_letter_events`.
+- Bronze failures warn and require quarantine rather than blocking the whole pipeline.
 - Silver normalizes nullable schema-evolution fields and keeps `schema_version`.
-- Gold facts and OBTs are rebuilt idempotently in local dbt-DuckDB. In the target Spark lakehouse, these would map to partition replacement or merge jobs.
-- Pinot metrics are compared against `agg_hourly_reconciled_kpi` using hourly windows and a small tolerance for late events and event-time watermarking.
+- Silver and Gold failures block orchestration because these layers feed official reporting.
+- Pinot metrics are compared against `agg_hourly_reconciled_kpi` using hourly windows and a tolerance-aware contract check.
 - When Pinot and Gold differ, Gold wins for official historical reporting.
 
-## 6. Local Run And Evidence Boundary
-
-The local Section `02` flow is:
-
-```powershell
-uv sync
-uv run python scripts/generate/run_generator.py --scale smoke --mode full --clean
-uv run dbt build --project-dir dbt --profiles-dir dbt
-uv run pytest
-```
-
-The smoke generator run produces ignored raw files under `data/raw/` and Section `01` evidence. The dbt build writes the parity DuckDB database to `data/gold/vina_bim_shop.duckdb`, which is ignored by Git. The distributed Spark/Trino path can also export the DuckDB Executive Mart to `data/gold/vina_bim_shop_executive.duckdb`.
-
-Section `02` evidence is generated with:
+Local evidence command:
 
 ```powershell
 uv run python scripts/qa/generate_section02_evidence.py
 ```
 
-The evidence package is written under `evidence/02_schema_design/` and includes:
+Evidence artifacts:
 
-- `evidence/02_schema_design/dbt_build_report.md`
-- `evidence/02_schema_design/dbt_test_results.csv`
-- `evidence/02_schema_design/dbt_model_results.csv`
-- `evidence/02_schema_design/dbt_catalog_summary.csv`
-- `evidence/02_schema_design/schema_inventory.csv`
-- `evidence/02_schema_design/table_row_counts.csv`
-- `evidence/02_schema_design/run_manifest.json`
-- `evidence/02_schema_design/screenshots/schema_design.png`
-- `evidence/02_schema_design/screenshots/gold_schema_inventory.png`
-- `evidence/02_schema_design/screenshots/dbt_test_summary.png`
-- `evidence/final_dataset/final_dataset_manifest.json`
+- [evidence/02_schema_design/dbt_build_report.md](../evidence/02_schema_design/dbt_build_report.md)
+- [evidence/02_schema_design/dbt_test_results.csv](../evidence/02_schema_design/dbt_test_results.csv)
+- [evidence/02_schema_design/dbt_model_results.csv](../evidence/02_schema_design/dbt_model_results.csv)
+- [evidence/02_schema_design/dbt_catalog_summary.csv](../evidence/02_schema_design/dbt_catalog_summary.csv)
+- [evidence/02_schema_design/schema_inventory.csv](../evidence/02_schema_design/schema_inventory.csv)
+- [evidence/02_schema_design/table_row_counts.csv](../evidence/02_schema_design/table_row_counts.csv)
+- [evidence/02_schema_design/run_manifest.json](../evidence/02_schema_design/run_manifest.json)
+- [evidence/02_schema_design/screenshots/schema_design.png](../evidence/02_schema_design/screenshots/schema_design.png)
+- [evidence/02_schema_design/screenshots/gold_schema_inventory.png](../evidence/02_schema_design/screenshots/gold_schema_inventory.png)
+- [evidence/02_schema_design/screenshots/dbt_test_summary.png](../evidence/02_schema_design/screenshots/dbt_test_summary.png)
 
-The full dbt docs site in `dbt/target/` remains a transient local artifact and is not committed.
+## Implementation Files
+
+| File | Responsibility |
+| --- | --- |
+| [dbt/models/bronze](../dbt/models/bronze) | Source-fidelity views and quarantine models. |
+| [dbt/models/silver](../dbt/models/silver) | Standardized and deduplicated staging models. |
+| [dbt/models/gold](../dbt/models/gold) | Constrained dimensions, facts, OBT, aggregate, and feature tables. |
+| [dbt/models/gold/schema.yml](../dbt/models/gold/schema.yml) | Gold contracts, keys, relationships, types, and tests. |
+| [dbt/macros/business_logic.sql](../dbt/macros/business_logic.sql) | Shared business formulas. |
+| [architecture/diagrams/gold_layer_ERD.dbml](../architecture/diagrams/gold_layer_ERD.dbml) | Gold-only ERD for DBML/dbdiagram preview. |
+| [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) | Full physical model across Bronze, Silver, and Gold. |

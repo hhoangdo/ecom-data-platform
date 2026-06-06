@@ -96,12 +96,12 @@ The generator also injects intentional data errors and contract drift so the pla
 
 Sections 01 and 02 are fulfilled for the mini-coursework phase.
 
-For the original Sections 01/02 submission boundary, Spark, Flink, Apache Pinot, and Trino are architectural target contracts, while dbt-DuckDB is the runnable local implementation. The broader repository now also includes the later runnable ADR 01-08 platform implementation.
+For the original Sections 01/02 submission boundary, Spark, Flink, Apache Pinot, and Trino are architectural target contracts, while dbt-DuckDB is the runnable local implementation. The broader repository now also includes the staged runnable platform implementation for ingestion, lakehouse, batch, streaming, serving, orchestration, and governance.
 
 | View | Meaning |
 | --- | --- |
 | `Runnable locally` | `dbt-DuckDB`, the final dataset package, and the documented evidence artifacts can be reproduced on one machine. |
-| `Architectural contract` | The staged Kafka, Spark, Flink, Pinot, Trino, Airflow, and DataHub stack documents the full target platform and is implemented in the later ADRs. |
+| `Architectural contract` | The staged Kafka, Spark, Flink, Pinot, Trino, Airflow, and DataHub stack documents the full target platform through service-level deliverables and evidence. |
 
 Mini-coursework artifacts and evidence:
 
@@ -111,7 +111,7 @@ Mini-coursework artifacts and evidence:
 - `data/gold/vina_bim_shop.duckdb`
 - `data/gold/vina_bim_shop_executive.duckdb`
 - [Data generator deliverable](deliverables/01_data_generator.md)
-- [Schema design deliverable](deliverables/02_schema_design.md)
+- [Schema design deliverable and Data Dictionary](deliverables/02_schema_design.md)
 - [Physical Gold model PlantUML](architecture/diagrams/physical_gold_model.puml)
 - [Physical Gold model PNG](architecture/diagrams/physical_gold_model.png)
 - [Generator quality report](evidence/01_data_generator/quality_report.md)
@@ -129,10 +129,11 @@ The root README is the entrypoint. The deeper service-by-service explanations li
 | Ingestion | `ingestion` | Kafka KRaft, Schema Registry, Kafka Connect, Kafka UI. | [03 Kafka ingestion](deliverables/03_kafka_ingestion.md) |
 | Lakehouse | `lakehouse` | MinIO, Hive Metastore, Trino, shared Postgres. | [04 lakehouse](deliverables/04_lakehouse.md) |
 | Batch | `batch` plus dbt-DuckDB | Spark master, worker, history server, Iceberg Gold, dbt parity. | [05 Spark batch](deliverables/05_spark_batch.md) |
+| Local analytics | local DuckDB files plus dbt | dbt-DuckDB parity oracle and DuckDB Executive Mart export. | [10 DuckDB/dbt local analytics](deliverables/10_duckdb_dbt_local_analytics.md) |
 | Streaming | `streaming` | Flink JobManager, TaskManager, job submitter, derived Kafka topics. | [06 Flink streaming](deliverables/06_flink_streaming.md) |
 | Serving | `serving` plus Trino/DuckDB | Apache Pinot realtime OLAP, Trino canonical SQL, DuckDB local marts. | [07 Pinot serving](deliverables/07_pinot_serving.md) |
 | Orchestration | `orchestration` | Airflow webserver, scheduler, init, GX Data Docs. | [08 Airflow + GX](deliverables/08_airflow_gx_orchestration.md) |
-| Governance | `governance` | DataHub GMS, frontend, actions, OpenSearch, metadata recipes. | [ADR 07](architecture/decisions/2026-06-01-07-datahub-governance-plan.md), [DataHub evidence](evidence/final_integration/datahub_lineage.md) |
+| Governance | `governance` | DataHub GMS, frontend, actions, OpenSearch, metadata recipes. | [09 DataHub governance](deliverables/09_datahub_governance.md), [DataHub evidence](evidence/final_integration/datahub_lineage.md) |
 
 ### Data Generation
 
@@ -155,7 +156,7 @@ Key docs:
 
 ### Lakehouse
 
-The lakehouse profile provides MinIO object storage, a Hive Metastore backed by Postgres, and Trino SQL access. Bronze contains source-fidelity snapshots and event logs; Spark later writes curated Iceberg Silver and Gold tables into the same object-store ecosystem.
+The lakehouse profile provides MinIO object storage, a Hive Metastore backed by Postgres, and Trino SQL access. Bronze contains source-fidelity snapshots and event logs; Spark writes curated Iceberg Silver and Gold tables into the same object-store ecosystem.
 
 | Note | Implementation | Why it matters |
 | --- | --- | --- |
@@ -185,6 +186,7 @@ Key docs:
 - [Spark batch deliverable](deliverables/05_spark_batch.md)
 - [Spark batch evidence](evidence/05_spark_batch/)
 - [dbt parity report](evidence/05_spark_batch/dbt_parity_report.md)
+- [DuckDB/dbt local analytics deliverable](deliverables/10_duckdb_dbt_local_analytics.md)
 
 ### Streaming
 
@@ -210,7 +212,7 @@ Schema design is part of the serving implementation, not just documentation. The
 - [Physical Bronze/Silver/Gold model](architecture/diagrams/physical_gold_model.puml)
 - [Rendered physical Gold model](architecture/diagrams/physical_gold_model.png)
 - [Gold layer ERD DBML](architecture/diagrams/gold_layer_ERD.dbml)
-- [Schema design deliverable](deliverables/02_schema_design.md)
+- [Schema design deliverable and Data Dictionary](deliverables/02_schema_design.md)
 
 Key docs:
 
@@ -234,7 +236,7 @@ Known limitation: local DataHub frontend did not render the fuller graph view du
 
 Key docs:
 
-- [DataHub governance ADR](architecture/decisions/2026-06-01-07-datahub-governance-plan.md)
+- [DataHub governance deliverable](deliverables/09_datahub_governance.md)
 - [DataHub evidence summary](evidence/final_integration/datahub_lineage.md)
 - [Governance evidence folder](evidence/09_datahub_governance/)
 
@@ -245,11 +247,11 @@ Key docs:
 ```text
 coursework/
 |-- airflow/                  # Airflow DAGs for bootstrap, batch, quality, serving, and governance runs
-|-- architecture/             # ADRs, domain contracts, PlantUML, DBML, and Excalidraw architecture assets
+|-- architecture/             # Domain contracts, PlantUML, DBML, and Excalidraw architecture assets
 |-- configs/                  # Generator, scenario, and pipeline configuration
 |-- data/                     # Gitignored local raw and Gold outputs, with folder-intent .gitignore files
 |-- dbt/                      # dbt-DuckDB Bronze, Silver, Gold models, tests, macros, and profile
-|-- deliverables/             # Coursework writeups and service-level runbooks
+|-- deliverables/             # Official coursework writeups and service-level documentation
 |-- evidence/                 # Committed evidence packages, screenshots, manifests, reports, and query outputs
 |-- infra/                    # Docker images and service config for Kafka, lakehouse, Spark, Flink, Pinot, governance
 |-- scripts/                  # CLI entrypoints for generation, bootstrap, smoke tests, evidence, reset, and exports
@@ -376,7 +378,7 @@ Local defaults are documented in [.env.example](.env.example). Most scripts work
 - Airflow orchestrates batch and control-plane work; it does not supervise long-running Flink jobs in v1.
 - DataHub requires separate ingestion recipe runs after platform services are healthy.
 - Local DataHub UI capture did not render the fuller graph view, even though GMS/GraphQL evidence supports metadata, lineage, tag, and assertion emission.
-- Observability hardening, production security, CI/CD, and later Section 03 drift scenarios are outside the current evidence boundary.
+- Observability hardening, production security, CI/CD, and Section 03 drift scenarios are outside the current evidence boundary.
 
 ---
 
