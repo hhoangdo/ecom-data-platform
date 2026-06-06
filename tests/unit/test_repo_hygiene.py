@@ -43,7 +43,12 @@ def test_generator_and_pipeline_configs_keep_only_active_local_output_paths() ->
     )
 
     assert "samples_root" not in generator_config["outputs"]
-    assert set(pipeline_config["storage"]) == {"raw_root", "gold_root", "duckdb_mart_path"}
+    assert set(pipeline_config["storage"]) == {
+        "raw_root",
+        "gold_root",
+        "duckdb_parity_path",
+        "duckdb_executive_mart_path",
+    }
 
 
 def test_data_output_dirs_use_nested_gitignore_files_instead_of_gitkeep_placeholders() -> None:

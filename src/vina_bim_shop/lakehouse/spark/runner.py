@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from vina_bim_shop.lakehouse.spark.evidence import capture_evidence
+from vina_bim_shop.lakehouse.spark.executive_mart import export_executive_mart
 from vina_bim_shop.lakehouse.spark.parity import run_parity_checks
 from vina_bim_shop.lakehouse.spark.trino import run_gold_smoke_queries
 from vina_bim_shop.lakehouse.spark.window import BatchWindow
@@ -74,6 +75,7 @@ def run_batch_pipeline(
     dbt_result = run_command(dbt_command)
     parity_report = run_parity_checks(evidence_root=evidence_root)
     trino_smoke = run_gold_smoke_queries(evidence_root=evidence_root)
+    executive_mart = export_executive_mart(evidence_root=evidence_root)
     evidence_manifest = capture_evidence_fn(evidence_root=evidence_root)
 
     summary = {
@@ -88,6 +90,11 @@ def run_batch_pipeline(
         "dbt_stdout": dbt_result.stdout,
         "parity_success": parity_report["success"],
         "trino_smoke_queries": list(trino_smoke),
+        "executive_mart": {
+            "duckdb_path": executive_mart["duckdb_path"],
+            "table_count": executive_mart["table_count"],
+            "total_row_count": executive_mart["total_row_count"],
+        },
         "evidence_artifact_count": len(evidence_manifest["artifacts"]),
     }
     persist_run_summary(evidence_root=evidence_root, summary=summary)

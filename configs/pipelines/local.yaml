@@ -9,7 +9,8 @@ local_transform_tool: dbt-duckdb
 storage:
   raw_root: data/raw
   gold_root: data/gold
-  duckdb_mart_path: data/gold/vina_bim_shop.duckdb
+  duckdb_parity_path: data/gold/vina_bim_shop.duckdb
+  duckdb_executive_mart_path: data/gold/vina_bim_shop_executive.duckdb
 
 scheduling:
   bronze_interval_minutes: 10

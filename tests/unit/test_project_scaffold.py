@@ -42,6 +42,8 @@ def test_dbt_duckdb_section02_scaffold_is_configured() -> None:
     assert pipeline_config["local_transform_tool"] == "dbt-duckdb"
     assert pipeline_config["storage"]["raw_root"] == "data/raw"
     assert pipeline_config["storage"]["gold_root"] == "data/gold"
-    assert pipeline_config["storage"]["duckdb_mart_path"] == "data/gold/vina_bim_shop.duckdb"
+    assert pipeline_config["storage"]["duckdb_parity_path"] == "data/gold/vina_bim_shop.duckdb"
+    assert pipeline_config["storage"]["duckdb_executive_mart_path"] == "data/gold/vina_bim_shop_executive.duckdb"
+    assert "duckdb_mart_path" not in pipeline_config["storage"]
     assert "bronze_root" not in pipeline_config["storage"]
     assert "silver_root" not in pipeline_config["storage"]

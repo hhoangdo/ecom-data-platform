@@ -54,6 +54,7 @@ The interface uses half-open UTC windows: `[start_ts, end_ts)`. `hourly` require
 - Runs Great Expectations checks.
 - Runs Trino Gold smoke queries.
 - Runs dbt-DuckDB parity checks.
+- Exports the DuckDB Executive Mart from Trino Gold into `data/gold/vina_bim_shop_executive.duckdb`.
 - Captures Spark master and History Server evidence.
 
 ## Evidence
@@ -71,9 +72,20 @@ Expected artifacts include:
 - `trino_gold_smoke_results.json`
 - `dbt_parity_report.json`
 - `dbt_parity_report.md`
+- `executive_mart_export_manifest.json`
+- `executive_mart_export_report.md`
 - `run_manifest.json`
 - `screenshots/spark_master_ui.png`
 - `screenshots/spark_history_server.png`
+
+## DuckDB Outputs
+
+| Artifact | Built by | Purpose |
+| --- | --- | --- |
+| `data/gold/vina_bim_shop.duckdb` | `dbt build` | dbt-DuckDB parity oracle for data engineering regression checks. |
+| `data/gold/vina_bim_shop_executive.duckdb` | `scripts/spark/export_executive_mart.py` through Trino | DuckDB Executive Mart, a Trino Gold snapshot export for local/offline executive analysis. |
+
+The executive mart is not a second source of truth. Spark/Iceberg/Trino remains canonical; the DuckDB file is a regenerated local snapshot.
 
 ## Reset
 

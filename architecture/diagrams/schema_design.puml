@@ -29,7 +29,7 @@ package "Realtime serving — runnable" as Realtime {
 }
 
 package "Local coursework mart" as Local {
-  database "DuckDB executive mart\nfrom Gold OBT and aggregates\n(local compatibility path;\n Spark/Trino is canonical)" as DuckDB
+  database "DuckDB executive mart\nTrino Gold snapshot export\n(local portability path;\n Spark/Trino is canonical)" as DuckDB
 }
 
 RawSnapshots --> StgSnapshots : standardize, dedupe, type cleanup

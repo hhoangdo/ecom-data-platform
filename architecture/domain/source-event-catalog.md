@@ -87,7 +87,7 @@ Source observability and pipeline-readiness events.
 
 | Consumer | Path | Target Freshness |
 | --- | --- | --- |
-| Executive teams | Spark Gold -> Trino canonical SQL + DuckDB local mart | 1 hour |
+| Executive teams | Spark Gold -> Trino canonical SQL + DuckDB Executive Mart snapshot | 1 hour |
 | BI/livestreaming teams | Flink -> Apache Pinot realtime OLAP serving, with Trino for reconciled historical SQL | real-time, target under 30 seconds in local design |
 
 ## Section Boundary

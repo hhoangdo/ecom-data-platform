@@ -11,9 +11,11 @@ The target architecture remains:
 - Apache Pinot for realtime dashboard serving.
 - MinIO medallion storage with Spark for reconciled batch processing.
 - Hive Metastore and Trino for canonical SQL over curated lakehouse tables.
-- DuckDB as a local coursework mart generated from curated Gold outputs.
+- DuckDB as two local artifacts: dbt-DuckDB for parity and a DuckDB Executive Mart exported from Trino-served Gold.
 
 For local implementation, `dbt-DuckDB is the local execution and test harness`. It also serves as the local compatibility and parity-test harness. Spark, Flink, Apache Pinot, and Trino are now runnable via Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md` and `evidence/05_spark_batch/dbt_parity_report.md` for the Spark vs dbt row-count parity evidence.
+
+The two DuckDB files have different provenance even when their Gold rows match: `data/gold/vina_bim_shop.duckdb` is rebuilt independently by dbt for data engineering parity checks, while `data/gold/vina_bim_shop_executive.duckdb` is a Trino Gold snapshot export for local executive analysis.
 
 Spark, Flink, Apache Pinot, and Trino are now runnable services, not just target contracts. The runnable implementation for Section `02` is dbt-DuckDB for fast local iteration, with evidence generated from the final medium Section `01` raw dataset.
 
@@ -113,7 +115,13 @@ Pinot tables are now runnable via the `serving` profile and ingestion from Flink
 
 Flink uses simple watermark updates for late events. It does not emit visible correction or retraction records in v1. Product and customer SCD joins stay out of the streaming path unless the needed fields are already present in the event payload.
 
-DuckDB receives a small executive mart from Gold tables and aggregates. It is a local demo surface, not the canonical multi-user warehouse.
+DuckDB has two local roles. The dbt-DuckDB file is the independent parity oracle used by data engineers. The DuckDB Executive Mart is exported from `iceberg.gold.*` through Trino after Spark writes Gold, so it is a portable local copy of canonical Gold rather than a second transformation layer.
+
+| Surface | Audience | Source | Freshness and truth role |
+| --- | --- | --- | --- |
+| Trino SQL Serving | Shared SQL consumers | Current Iceberg Gold through Hive Metastore | Canonical online query interface after Spark Gold refresh |
+| DuckDB Executive Mart | Executives and local analysts | Trino Gold snapshot export | Fast local/offline copy; stale until regenerated |
+| dbt-DuckDB Parity Oracle | Data engineers | dbt rebuild from raw local inputs | Regression oracle; not the official serving surface |
 
 ## 4. Business Logic Formulas
 
@@ -169,7 +177,7 @@ uv run dbt build --project-dir dbt --profiles-dir dbt
 uv run pytest
 ```
 
-The smoke generator run produces ignored raw files under `data/raw/` and Section `01` evidence. The dbt build writes a local DuckDB database to `data/gold/vina_bim_shop.duckdb`, which is ignored by Git.
+The smoke generator run produces ignored raw files under `data/raw/` and Section `01` evidence. The dbt build writes the parity DuckDB database to `data/gold/vina_bim_shop.duckdb`, which is ignored by Git. The distributed Spark/Trino path can also export the DuckDB Executive Mart to `data/gold/vina_bim_shop_executive.duckdb`.
 
 Section `02` evidence is generated with:
 

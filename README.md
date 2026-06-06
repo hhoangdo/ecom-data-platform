@@ -1,6 +1,6 @@
 # Vina Bim Shop Coursework
 
-`vina-bim-shop` is a staged, runnable local data engineering platform for a Shopee-inspired Vietnamese marketplace. All services — Kafka, Spark, Flink, Apache Pinot, Trino, Airflow, Great Expectations, and DataHub — are runnable via Docker Compose profiles. dbt-DuckDB is retained as a fast local compatibility and parity-testing path.
+`vina-bim-shop` is a staged, runnable local data engineering platform for a Shopee-inspired Vietnamese marketplace. All services — Kafka, Spark, Flink, Apache Pinot, Trino, Airflow, Great Expectations, and DataHub — are runnable via Docker Compose profiles. dbt-DuckDB is retained as a fast local compatibility and parity-testing path, while the DuckDB Executive Mart is a Trino Gold snapshot export for portable local analysis.
 
 ## Mini-Coursework Status
 
@@ -19,6 +19,7 @@ Mini-coursework artifacts and evidence:
 - `evidence/final_dataset/vina_bim_shop_medium_raw.zip`
 - `evidence/final_dataset/final_dataset_manifest.json`
 - `data/gold/vina_bim_shop.duckdb`
+- `data/gold/vina_bim_shop_executive.duckdb`
 - `deliverables/01_data_generator.md`
 - `deliverables/02_schema_design.md`
 - `architecture/diagrams/physical_gold_model.puml`
@@ -56,6 +57,7 @@ flowchart LR
   Spark --> Gold["Iceberg Gold on MinIO"]
   Gold --> HMS["Hive Metastore"]
   HMS --> Trino["Trino canonical SQL"]
+  Trino --> ExecDuck["DuckDB Executive Mart"]
   Kafka --> Flink["Flink streaming"]
   Flink --> Derived["Derived Kafka topics"]
   Derived --> Pinot["Apache Pinot provisional serving"]
@@ -101,6 +103,22 @@ uv run pytest
 ```
 
 All Gold row counts and KPI values match between dbt-DuckDB and Spark/Iceberg/Trino. See `evidence/05_spark_batch/dbt_parity_report.md`.
+
+### DuckDB Executive Mart
+
+For local executive exploration after Spark Gold is available through Trino:
+
+```powershell
+uv run python scripts/spark/export_executive_mart.py --duckdb-path data/gold/vina_bim_shop_executive.duckdb --evidence-root evidence/05_spark_batch
+```
+
+| Surface | Best for | Truth role | Storage |
+| --- | --- | --- | --- |
+| Trino SQL Serving | Shared SQL over current Iceberg Gold tables | Canonical online query surface | Service-backed; reads MinIO/Iceberg through Hive |
+| DuckDB Executive Mart | Fast local slicing, offline demos, spreadsheet-style investigation | Portable copy of canonical Gold; stale until regenerated | `data/gold/vina_bim_shop_executive.duckdb` |
+| dbt-DuckDB Parity Oracle | Data engineering regression checks | Independent local rebuild used to compare row counts and KPIs | `data/gold/vina_bim_shop.duckdb` |
+
+The executive file is a Trino Gold snapshot export, not a second transformation layer.
 
 ### Final evidence packaging
 
@@ -160,6 +178,7 @@ The reset script stops services, removes Docker volumes, and optionally cleans g
 | Airflow + GX orchestration | Runnable | Profile `orchestration`. DAGs, validation gates, Data Docs. |
 | DataHub governance | Runnable | Profile `governance`. Metadata, lineage, tags, glossary. |
 | dbt-DuckDB parity | Runnable | Local compatibility path; matches Spark Gold on all row counts. |
+| DuckDB Executive Mart | Runnable | Trino Gold snapshot export for local/offline executive analysis. |
 
 ## Evidence Map
 
@@ -172,7 +191,7 @@ The reset script stops services, removes Docker volumes, and optionally cleans g
 | `architecture/diagrams/physical_gold_model.puml` | Physical data model (dbt-DuckDB and Spark/Iceberg/Trino). |
 | `evidence/03_kafka_ingestion/` | Kafka topics, schemas, Connect evidence. |
 | `evidence/04_lakehouse/` | MinIO, Hive Metastore, Trino evidence. |
-| `evidence/05_spark_batch/` | Spark batch, Iceberg Gold, dbt parity report. |
+| `evidence/05_spark_batch/` | Spark batch, Iceberg Gold, dbt parity report, DuckDB Executive Mart export. |
 | `evidence/06_flink_streaming/` | Flink jobs, checkpoint state, derived topics. |
 | `evidence/07_pinot_serving/` | Pinot tables, dashboard results, reconciliation. |
 | `evidence/08_airflow_gx/` | Airflow DAGs, GX validation results. |
@@ -183,6 +202,7 @@ The reset script stops services, removes Docker volumes, and optionally cleans g
 
 - The full `all` profile runs ~20 containers. Staged profiles run under ~4 GB RAM.
 - dbt-DuckDB is a local compatibility path; Spark/Iceberg/Trino is canonical for reconciled truth.
+- DuckDB Executive Mart is a local snapshot exported from Trino Gold; regenerate it after each Spark Gold refresh.
 - Pinot is fresh and provisional; Trino-served Gold tables are the official KPI source.
 - Airflow orchestrates batch and control-plane work; it does not supervise long-running Flink jobs in v1.
 - DataHub requires separate ingestion recipe runs after platform services are healthy.

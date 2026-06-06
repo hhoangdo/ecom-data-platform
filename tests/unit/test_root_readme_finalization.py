@@ -13,6 +13,9 @@ def test_root_readme_documents_section01_and_section02_finalization() -> None:
         "evidence/final_dataset/vina_bim_shop_medium_raw.zip",
         "evidence/final_dataset/final_dataset_manifest.json",
         "data/gold/vina_bim_shop.duckdb",
+        "data/gold/vina_bim_shop_executive.duckdb",
+        "DuckDB Executive Mart",
+        "Trino Gold snapshot export",
         "Runnable locally",
         "Architectural contract",
     ]

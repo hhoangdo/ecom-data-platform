@@ -1516,11 +1516,11 @@
       "index": "a0122",
       "fontSize": 14.516583506256381,
       "fontFamily": 1,
-      "text": "Spark + Iceberg + Trino Gold is official\nhourly truth.\n\nPinot is fresh and provisional.\n\ndbt-DuckDB is compatibility evidence.\n\nDuckDB mart is optional local consumption.",
+      "text": "Spark + Iceberg + Trino Gold is official\nhourly truth.\n\nPinot is fresh and provisional.\n\ndbt-DuckDB is compatibility evidence.\n\nDuckDB mart is a Trino Gold snapshot.",
       "textAlign": "left",
       "verticalAlign": "middle",
       "containerId": null,
-      "originalText": "Spark + Iceberg + Trino Gold is official hourly truth.\n\nPinot is fresh and provisional.\n\ndbt-DuckDB is compatibility evidence.\n\nDuckDB mart is optional local consumption.",
+      "originalText": "Spark + Iceberg + Trino Gold is official hourly truth.\n\nPinot is fresh and provisional.\n\ndbt-DuckDB is compatibility evidence.\n\nDuckDB mart is a Trino Gold snapshot.",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 11
@@ -4235,8 +4235,8 @@
         "type": 2
       },
       "seed": 1234579593,
-      "version": 954,
-      "versionNonce": 1613245372,
+      "version": 955,
+      "versionNonce": 1450561937,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4244,7 +4244,7 @@
           "id": "flow_gold_to_duckdb_mart_label"
         }
       ],
-      "updated": 1780635465392,
+      "updated": 1780744138696,
       "link": null,
       "locked": false,
       "index": "a0177",
@@ -4276,9 +4276,9 @@
     {
       "id": "flow_gold_to_duckdb_mart_label",
       "type": "text",
-      "x": 2293.8633910038056,
-      "y": 1080.0912783057133,
-      "width": 111.1878662109375,
+      "x": 2254.4573241092744,
+      "y": 1080.212246229674,
+      "width": 190,
       "height": 13.75,
       "angle": 0,
       "strokeColor": "#1565c0",
@@ -4294,21 +4294,21 @@
         "type": 3
       },
       "seed": 1044669399,
-      "version": 3,
-      "versionNonce": 1593748156,
+      "version": 4,
+      "versionNonce": 1131762129,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780635465391,
+      "updated": 1780744134271,
       "link": null,
       "locked": false,
       "index": "a0178",
       "fontSize": 11,
       "fontFamily": 1,
-      "text": "optional Gold export",
+      "text": "Trino Gold snapshot export",
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "flow_gold_to_duckdb_mart",
-      "originalText": "optional Gold export",
+      "originalText": "Trino Gold snapshot export",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 9
@@ -8095,12 +8095,7 @@
       "version": 535,
       "versionNonce": 954554044,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "flow_kafka_ui_to_docker",
-          "type": "arrow"
-        }
-      ],
+      "boundElements": [],
       "updated": 1780634498483,
       "link": null,
       "locked": false,
@@ -8723,12 +8718,7 @@
       "version": 804,
       "versionNonce": 1700506812,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "flow_kafka_ui_to_docker",
-          "type": "arrow"
-        }
-      ],
+      "boundElements": [],
       "updated": 1780659424300,
       "link": null,
       "locked": false,

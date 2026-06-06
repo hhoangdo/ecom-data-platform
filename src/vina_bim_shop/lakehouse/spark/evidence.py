@@ -146,6 +146,8 @@ def capture_evidence(
             "dbt_parity_report.json",
             "dbt_parity_report.md",
             "trino_gold_smoke_results.json",
+            "executive_mart_export_manifest.json",
+            "executive_mart_export_report.md",
             "version_matrix.json",
             "gx/validation_results.json",
             "screenshots/README.md",

@@ -26,13 +26,15 @@ def execute_trino_query(
     response.raise_for_status()
     payload = response.json()
 
-    columns = [column["name"] for column in payload.get("columns", [])]
+    column_metadata = payload.get("columns", []) or []
+    columns = [column["name"] for column in column_metadata]
     rows = payload.get("data", []) or []
 
     while payload.get("nextUri"):
         payload = get(payload["nextUri"], headers=headers, timeout=30).json()
-        if not columns and payload.get("columns"):
-            columns = [column["name"] for column in payload.get("columns", [])]
+        if not column_metadata and payload.get("columns"):
+            column_metadata = payload.get("columns", []) or []
+            columns = [column["name"] for column in column_metadata]
         rows.extend(payload.get("data", []) or [])
 
     if payload.get("error"):
@@ -41,6 +43,7 @@ def execute_trino_query(
     return {
         "query": query,
         "columns": columns,
+        "column_metadata": column_metadata,
         "rows": rows,
         "stats": payload.get("stats", {}),
     }

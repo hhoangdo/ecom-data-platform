@@ -60,6 +60,7 @@ def test_final_dataset_manifest_includes_checksums_and_reproduction_paths(tmp_pa
     assert manifest["archive_path"] == "archive.zip"
     assert manifest["archive_sha256"] == hashlib.sha256(b"archive").hexdigest()
     assert manifest["duckdb_reproduction_path"] == "data/gold/vina_bim_shop.duckdb"
+    assert manifest["duckdb_executive_mart_path"] == "data/gold/vina_bim_shop_executive.duckdb"
     assert manifest["row_counts"] == {"kafka_topics": 1}
     assert manifest["raw_files"] == [
         {

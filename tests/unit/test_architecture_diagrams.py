@@ -40,7 +40,8 @@ def test_lambda_architecture_plantuml_names_major_components() -> None:
     assert "Flink --> DerivedKafka" in content
     assert "DerivedKafka --> Realtime" in content
     assert "Realtime --> BI : live operations" in content
-    assert "MinIO --> DuckDB" in content
+    assert "Trino --> DuckDB" in content
+    assert "MinIO --> DuckDB" not in content
     assert "DuckDB --> Executive" in content
     assert "checkpoints and audit JSONL" in content
     assert "canonical hourly SQL dashboards" in content
@@ -102,7 +103,7 @@ def test_excalidraw_architecture_file_is_json_and_names_major_components() -> No
         "realtime_ops_alerts",
         "realtime_metric_corrections",
         "checkpoints and audit JSONL",
-        "optional local export from Gold",
+        "Trino Gold snapshot export",
         "metrics / alerts",
         "reconciled",
         "historical SQL",
@@ -290,6 +291,7 @@ def test_detailed_excalidraw_architecture_is_logo_backed_lifecycle_view() -> Non
         "Product cards represent deployed Compose service groups",
         "Pinot includes Zookeeper, controller, broker, and server",
         "DataHub includes GMS, frontend, actions, OpenSearch",
+        "Trino Gold snapshot export",
     ]:
         assert expected in labels
 
@@ -497,7 +499,7 @@ def test_detailed_lambda_architecture_plantuml_matches_detailed_excalidraw() -> 
         "orchestration / control",
         "validation / quality",
         "evidence / audit",
-        "optional local export",
+        "Trino Gold snapshot export",
         "secondary historical support",
         "Kafka UI :8084",
         "MinIO Console :9001",
@@ -511,7 +513,7 @@ def test_detailed_lambda_architecture_plantuml_matches_detailed_excalidraw() -> 
         "Spark + Iceberg + Trino Gold is official hourly truth.",
         "Pinot is fresh and provisional.",
         "dbt-DuckDB is compatibility evidence.",
-        "DuckDB mart is optional local consumption.",
+        "DuckDB mart is a local snapshot exported from Trino Gold.",
         "Product cards represent deployed Compose service groups.",
         "Pinot includes Zookeeper, controller, broker, and server;",
         "DataHub includes GMS, frontend, actions, OpenSearch, and system update jobs.",
@@ -522,3 +524,4 @@ def test_detailed_lambda_architecture_plantuml_matches_detailed_excalidraw() -> 
     assert "curated streaming tables" not in content
     assert "Spark --> Executive" not in content
     assert "Flink --> BI" not in content
+    assert "Iceberg -[#1565c0,dashed]-> DuckDB" not in content

@@ -61,7 +61,7 @@ MinIO --> Spark : hourly batch reads landed Bronze data
 Spark --> MinIO : curated Silver/Gold tables
 MinIO --> Hive : table registration for curated lakehouse tables
 Hive --> Trino : catalog metadata
-MinIO --> DuckDB : hourly export from Gold tables
+Trino --> DuckDB : Trino Gold snapshot export
 DuckDB --> Executive : local KPI mart
 Trino --> Executive : canonical hourly SQL dashboards
 Trino --> BI : reconciled historical SQL

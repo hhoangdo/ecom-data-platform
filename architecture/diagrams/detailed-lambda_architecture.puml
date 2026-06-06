@@ -81,7 +81,7 @@ Pinot -[#00838f,dashed]-> Evidence : dashboard query outputs
 Trino -[#00838f,dashed]-> Evidence : KPI query outputs
 DataHub -[#00838f,dashed]-> Evidence : lineage evidence
 Iceberg -[#2e7d32,dashed]-> Dbt : row counts + parity
-Iceberg -[#1565c0,dashed]-> DuckDB : optional Gold export
+Trino -[#1565c0,dashed]-> DuckDB : Trino Gold snapshot export
 DuckDB -[#1565c0,dashed]-> Executive : offline KPI mart
 Trino -[#6d6875,dashed]-> BI : historical reconciliation
 Compose -[#c77800,dashed]-> KafkaUI : profile runtime
@@ -106,7 +106,7 @@ Truth Policy
 Spark + Iceberg + Trino Gold is official hourly truth.
 Pinot is fresh and provisional.
 dbt-DuckDB is compatibility evidence.
-DuckDB mart is optional local consumption.
+DuckDB mart is a local snapshot exported from Trino Gold.
 end note
 
 note bottom of DataHub
@@ -124,7 +124,7 @@ legend right
 | Dashed amber | orchestration / control |
 | Dashed green | validation / quality |
 | Dashed cyan | evidence / audit |
-| Dashed blue | optional local export |
+| Dashed blue | Trino Gold snapshot export |
 | Dashed gray | secondary historical support |
 endlegend
 

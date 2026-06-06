@@ -13,7 +13,7 @@ The Section `01` generator produces:
 
 The generator is optimized for a balanced DE and AI foundation. It is realistic enough for downstream Bronze/Silver/Gold pipelines and structured enough for later ML/LLM experiments.
 
-Section `01` now explicitly follows a Lambda architecture source design with two consumption serving planes. Kafka is the ingestion layer, Spark is the hourly batch path for reconciled executive KPIs, and Flink is the real-time path for BI/livestreaming teams. Apache Pinot is the planned realtime OLAP serving sink for low-latency live dashboards, Trino is the canonical SQL interface over curated lakehouse tables, and DuckDB is a coursework-friendly local executive mart generated from Gold tables. Runnable Spark/Flink/Pinot/DuckDB jobs and final Gold schemas are intentionally deferred to Section `02`.
+Section `01` now explicitly follows a Lambda architecture source design with two consumption serving planes. Kafka is the ingestion layer, Spark is the hourly batch path for reconciled executive KPIs, and Flink is the real-time path for BI/livestreaming teams. Apache Pinot is the planned realtime OLAP serving sink for low-latency live dashboards, Trino is the canonical SQL interface over curated lakehouse tables, and DuckDB provides local artifacts for parity and executive snapshots. Runnable Spark/Flink/Pinot/DuckDB jobs and final Gold schemas are intentionally deferred to Section `02`.
 
 ## 2. How to Run
 

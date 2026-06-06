@@ -238,6 +238,130 @@ def test_run_gold_smoke_queries_writes_results_artifact(tmp_path: Path, monkeypa
     assert json.loads((tmp_path / "trino_gold_smoke_results.json").read_text(encoding="utf-8"))["fact_order_count"]["rows"] == [[1]]
 
 
+def test_execute_trino_query_preserves_column_metadata() -> None:
+    from vina_bim_shop.lakehouse.spark.trino import execute_trino_query
+
+    class FakeResponse:
+        def raise_for_status(self) -> None:
+            return None
+
+        def json(self) -> dict:
+            return {
+                "columns": [
+                    {"name": "table_name", "type": "varchar"},
+                    {"name": "row_count", "type": "bigint"},
+                ],
+                "data": [["fact_order", 1800]],
+                "stats": {"state": "FINISHED"},
+            }
+
+    result = execute_trino_query(
+        "select * from iceberg.gold.fact_order",
+        trino_url="http://localhost:8080",
+        user="vina_analyst",
+        post=lambda *args, **kwargs: FakeResponse(),
+    )
+
+    assert result["columns"] == ["table_name", "row_count"]
+    assert result["column_metadata"] == [
+        {"name": "table_name", "type": "varchar"},
+        {"name": "row_count", "type": "bigint"},
+    ]
+
+
+def test_export_executive_mart_copies_all_gold_tables_from_trino(tmp_path: Path) -> None:
+    import duckdb
+
+    from vina_bim_shop.lakehouse.spark.executive_mart import export_executive_mart
+
+    duckdb_path = tmp_path / "vina_bim_shop_executive.duckdb"
+    evidence_root = tmp_path / "evidence"
+    calls = []
+
+    def fake_execute_query(query: str, *, trino_url: str, user: str):
+        table_name = query.rsplit("iceberg.gold.", 1)[1].strip()
+        calls.append((table_name, trino_url, user))
+        return {
+            "query": query,
+            "columns": ["table_name", "row_number"],
+            "column_metadata": [
+                {"name": "table_name", "type": "varchar"},
+                {"name": "row_number", "type": "bigint"},
+            ],
+            "rows": [[table_name, 1]],
+            "stats": {"state": "FINISHED"},
+        }
+
+    manifest = export_executive_mart(
+        duckdb_path=duckdb_path,
+        evidence_root=evidence_root,
+        trino_url="http://trino:8080",
+        user="vina_analyst",
+        execute_query=fake_execute_query,
+        exported_at="2026-06-06T00:00:00+00:00",
+    )
+
+    assert duckdb_path.is_file()
+    assert manifest["duckdb_path"] == str(duckdb_path)
+    assert manifest["table_count"] == len(REQUIRED_GOLD_TABLES)
+    assert manifest["total_row_count"] == len(REQUIRED_GOLD_TABLES)
+    assert [call[0] for call in calls] == list(REQUIRED_GOLD_TABLES)
+
+    with duckdb.connect(str(duckdb_path), read_only=True) as connection:
+        gold_table_count = connection.execute(
+            """
+            select count(*)
+            from information_schema.tables
+            where table_schema = 'gold'
+            """
+        ).fetchone()[0]
+        metadata_table_count = connection.execute("select count(*) from mart_metadata.table_manifest").fetchone()[0]
+        fact_order_rows = connection.execute("select table_name, row_number from gold.fact_order").fetchall()
+
+    assert gold_table_count == len(REQUIRED_GOLD_TABLES)
+    assert metadata_table_count == len(REQUIRED_GOLD_TABLES)
+    assert fact_order_rows == [("fact_order", 1)]
+    assert (evidence_root / "executive_mart_export_manifest.json").is_file()
+    assert "DuckDB Executive Mart Export Report" in (
+        evidence_root / "executive_mart_export_report.md"
+    ).read_text(encoding="utf-8")
+
+
+def test_export_executive_mart_script_parses_args_and_prints_summary(monkeypatch, capsys, tmp_path: Path) -> None:
+    module = _load_script_module("scripts/spark/export_executive_mart.py", "export_executive_mart_script")
+
+    duckdb_path = tmp_path / "executive.duckdb"
+    evidence_root = tmp_path / "evidence"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "export_executive_mart.py",
+            "--duckdb-path",
+            str(duckdb_path),
+            "--evidence-root",
+            str(evidence_root),
+        ],
+    )
+    args = module.parse_args()
+    assert args.duckdb_path == str(duckdb_path)
+    assert args.evidence_root == str(evidence_root)
+
+    calls = []
+
+    def fake_export_executive_mart(**kwargs):
+        calls.append(kwargs)
+        return {"duckdb_path": str(duckdb_path), "table_count": 22, "total_row_count": 123}
+
+    monkeypatch.setattr(module, "export_executive_mart", fake_export_executive_mart)
+    module.main()
+
+    assert calls == [{"duckdb_path": str(duckdb_path), "evidence_root": str(evidence_root)}]
+    assert capsys.readouterr().out.strip() == (
+        f"Exported 22 Gold tables and 123 rows to {duckdb_path}."
+    )
+
+
 def test_run_parity_checks_writes_json_and_markdown_reports(tmp_path: Path, monkeypatch) -> None:
     duckdb_path = tmp_path / "vina_bim_shop.duckdb"
     import duckdb
@@ -386,12 +510,21 @@ def test_run_batch_pipeline_accepts_custom_capture_evidence_function(monkeypatch
         assert Path(evidence_root) == tmp_path
         return {"fact_order_count": {"rows": [[1]]}}
 
+    def fake_export_executive_mart(*, evidence_root):
+        assert Path(evidence_root) == tmp_path
+        return {
+            "duckdb_path": "data/gold/vina_bim_shop_executive.duckdb",
+            "table_count": len(REQUIRED_GOLD_TABLES),
+            "total_row_count": 123,
+        }
+
     def fake_capture_evidence_fn(*, evidence_root):
         captured["evidence_root"] = Path(evidence_root)
         return {"artifacts": ["screenshots/README.md"]}
 
     monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.run_parity_checks", fake_run_parity_checks)
     monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.run_gold_smoke_queries", fake_run_gold_smoke_queries)
+    monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.export_executive_mart", fake_export_executive_mart)
 
     summary = run_batch_pipeline(
         start_ts="2026-06-01T00:00:00Z",
@@ -405,3 +538,8 @@ def test_run_batch_pipeline_accepts_custom_capture_evidence_function(monkeypatch
     assert len(commands) == 2
     assert captured["evidence_root"] == tmp_path
     assert summary["evidence_artifact_count"] == 1
+    assert summary["executive_mart"] == {
+        "duckdb_path": "data/gold/vina_bim_shop_executive.duckdb",
+        "table_count": len(REQUIRED_GOLD_TABLES),
+        "total_row_count": 123,
+    }

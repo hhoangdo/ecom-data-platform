@@ -18,6 +18,7 @@ FINAL_EVIDENCE_ROOT = Path("evidence/final_dataset")
 FINAL_ARCHIVE = FINAL_EVIDENCE_ROOT / "vina_bim_shop_medium_raw.zip"
 FINAL_MANIFEST = FINAL_EVIDENCE_ROOT / "final_dataset_manifest.json"
 DUCKDB_REPRODUCTION_PATH = "data/gold/vina_bim_shop.duckdb"
+DUCKDB_EXECUTIVE_MART_PATH = "data/gold/vina_bim_shop_executive.duckdb"
 
 
 def main() -> int:
@@ -113,7 +114,12 @@ def build_final_dataset_manifest(
         "archive_path": portable_path(archive_path, repo_root),
         "archive_sha256": sha256_file(archive_path),
         "duckdb_reproduction_path": DUCKDB_REPRODUCTION_PATH,
+        "duckdb_executive_mart_path": DUCKDB_EXECUTIVE_MART_PATH,
         "duckdb_reproduction_command": "uv run dbt build --project-dir dbt --profiles-dir dbt",
+        "duckdb_executive_mart_command": (
+            "uv run python scripts/spark/export_executive_mart.py "
+            "--duckdb-path data/gold/vina_bim_shop_executive.duckdb"
+        ),
         "row_counts": row_counts,
         "raw_files": raw_file_manifest(raw_root),
     }

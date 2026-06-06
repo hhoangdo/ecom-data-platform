@@ -56,7 +56,7 @@ Teaching note: Spark is the batch compute engine, Iceberg is the table format, M
 | Bronze | Generator, Kafka Connect, landing jobs | Spark | Raw files are preserved and not normalized in place. |
 | Silver | Spark | Spark, Trino, GX, DataHub | Cleaned and deduplicated Iceberg tables. |
 | Gold | Spark | Trino, GX, DataHub, dbt parity scripts | Canonical business truth. |
-| DuckDB mart | dbt-DuckDB or export job | Local demo and parity evidence | Compatibility path, not canonical serving. |
+| DuckDB local artifacts | dbt-DuckDB and Trino Gold export job | Local demo, executive snapshot, and parity evidence | Compatibility and portability paths, not canonical serving. |
 
 ## Required Table Coverage
 
