@@ -2,13 +2,13 @@
 
 ## Taxonomy Policy
 
-This taxonomy is Shopee-inspired but project-owned. It is intentionally simplified so that the coursework can keep a stable category snapshot across all sections.
+This taxonomy is Shopee-inspired but project-owned. It is intentionally stable so generated source data, Gold dimensions, feature tables, and evidence reports use the same category vocabulary across local runs.
 
 The machine-readable companion file is:
 
-- `data/reference/taxonomy/taxonomy_snapshot.yaml`
+- `../../data/reference/taxonomy/taxonomy_snapshot.yaml`
 
-## Level-1 Categories and Subcategories
+## Level-1 Categories And Subcategories
 
 ### FMCG
 
@@ -20,7 +20,7 @@ The machine-readable companion file is:
 
 ### ELHA
 
-`ELHA` is treated as `Electronics and Home Appliances`.
+`ELHA` means `Electronics and Home Appliances`.
 
 - `Mobile & Gadgets`
 - `Computers & Accessories`
@@ -44,8 +44,13 @@ The machine-readable companion file is:
 - `Home Decor`
 - `Storage & Organization`
 
-## Modeling Notes
+## Implementation Notes
 
-- Products belong to one primary subcategory in the base generator.
-- A separate `product_category_map` dataset is still reserved so the design can later support many-to-many taxonomy assignments if needed.
-- Category identifiers should stay stable once generated so that Gold dimensions and future feature tables do not churn unnecessarily.
+| Asset | Role |
+| --- | --- |
+| `products.primary_category` and `products.primary_subcategory` | Main product taxonomy assignment used by product dimensions and order facts. |
+| `product_category_map` | Implemented category bridge source with primary and secondary product-category assignments. |
+| `dim_category` | Gold category/subcategory dimension with `category_cost_rate` for estimated margin logic. |
+| `bridge_product_category` | Gold many-to-many bridge between products and categories. |
+
+Category identifiers and names should stay stable once generated because they feed revenue rollups, margin estimates, product features, DataHub metadata, and reviewer-facing evidence.

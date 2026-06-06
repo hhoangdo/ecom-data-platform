@@ -2,33 +2,29 @@
 
 ## Purpose
 
-This catalog defines the Section `01` Kafka-shaped source event contracts for `vina-bim-shop`.
-The generator writes human-readable JSONL files that mirror Kafka domain topics; a real Kafka
-producer is deferred until the Section `02` pipeline implementation.
-Each Kafka message is modeled as a JSON envelope. When those messages are persisted to local
-files or object storage, they are stored one envelope per line as a JSONL event log.
+This catalog defines the implemented Kafka-shaped source event contracts for `vina-bim-shop`. The generator writes human-readable JSONL files that mirror Kafka topic messages, and the same events can optionally be published to Kafka with `--publish-kafka`.
+
+Every normal source event is modeled as a JSON envelope. When persisted to local files or object storage, each envelope is written as one JSONL row so the event log remains readable and replayable.
 
 ## Common JSON Envelope
 
-Every source event uses the same envelope:
-
 | Field | Required | Description |
 | --- | --- | --- |
-| `event_id` | yes | Globally unique event identifier before intentional duplicates. |
+| `event_id` | yes | Globally unique event identifier before intentional duplicate scenarios. |
 | `event_type` | yes | Event name inside the domain topic. |
 | `event_topic` | yes | Kafka domain topic name. |
-| `schema_version` | yes | Integer schema version from `configs/generator/base.yaml`. |
-| `event_timestamp` | yes | Business event time used for watermarks and point-in-time logic. |
-| `created_ts` | yes | Producer emit time; always greater than or equal to `event_timestamp`. |
+| `schema_version` | yes | Integer schema version used by generator evidence and Schema Registry contracts. |
+| `event_timestamp` | yes | Business event time used for Flink watermarks, late-data handling, and point-in-time logic. |
+| `created_ts` | yes | Producer emit time used to measure late arrivals and deduplicate repeated events. |
 | `producer` | yes | Source producer name, currently `vina_bim_shop.synthetic_source`. |
-| `correlation_ids` | yes | Context IDs such as `session_id`, `customer_id`, `order_id`, or `product_id`. |
+| `correlation_ids` | yes | Context IDs such as `session_id`, `customer_id`, `order_id`, `payment_id`, `shipment_id`, or `product_id`. |
 | `payload` | yes | Event-specific JSON object. |
 
-## Kafka Topics
+## Source Topics
 
 ### `commerce_events`
 
-Customer session, cart, checkout, order, and payment events.
+Customer session, cart, checkout, order, cancellation, and payment events.
 
 | Event | Meaning |
 | --- | --- |
@@ -40,7 +36,7 @@ Customer session, cart, checkout, order, and payment events.
 | `checkout_started` | The user starts checkout. |
 | `checkout_abandoned` | Checkout starts but no order is completed for that session. |
 | `coupon_applied` | A coupon or promotion is applied during checkout. |
-| `order_placed` | An order is submitted; generated from the offline `orders` source for consistency. |
+| `order_placed` | An order is submitted and correlated to offline order state. |
 | `order_cancelled` | An order is cancelled or blocked after placement. |
 | `payment_succeeded` | A payment attempt succeeds. |
 | `payment_failed` | A payment attempt fails. |
@@ -83,16 +79,33 @@ Source observability and pipeline-readiness events.
 | `duplicate_event_observed` | The source observes intentional duplicate event IDs. |
 | `schema_version_changed` | The source records a schema evolution boundary. |
 
-## Consumer Freshness Targets
+### `dead_letter_events`
 
-| Consumer | Path | Target Freshness |
+`dead_letter_events` contains wrapper rows for malformed event examples. These rows are valid JSONL records that preserve invalid source payloads and error reasons without breaking normal readers.
+
+Implemented examples include:
+
+| Error reason | Purpose |
+| --- | --- |
+| `missing_required_key` | Demonstrates an event missing a required envelope field. |
+| `invalid_json` | Demonstrates malformed source payload capture. |
+| `invalid_timestamp` | Demonstrates timestamp contract failure handling. |
+| `unknown_schema_version` | Demonstrates schema-version drift and quarantine handling. |
+
+## Downstream Derived Topics
+
+Flink consumes source topics and emits derived Kafka topics for realtime serving. These are not generator source topics; they are streaming outputs.
+
+| Derived topic | Produced by | Consumed by |
 | --- | --- | --- |
-| Executive teams | Spark Gold -> Trino canonical SQL + DuckDB Executive Mart snapshot | 1 hour |
-| BI/livestreaming teams | Flink -> Apache Pinot realtime OLAP serving, with Trino for reconciled historical SQL | real-time, target under 30 seconds in local design |
+| `realtime_commerce_metrics_1m` | Flink commerce metrics job | Apache Pinot realtime commerce table and reconciliation evidence. |
+| `realtime_ops_alerts` | Flink ops-alert job | Apache Pinot alert table and streaming audit evidence. |
+| `realtime_metric_corrections` | Flink late-event correction path | Apache Pinot correction table and reconciliation evidence. |
 
-## Section Boundary
+## Freshness And Truth Policy
 
-Section `01` owns synthetic source contracts, topic-shaped JSONL event-log outputs, and evidence.
-Section `02` will own the runnable Kafka, Spark, Flink, MinIO, Hive Metastore, Trino, Apache Pinot,
-DuckDB, and Bronze/Silver/Gold pipeline implementation details. Derived serving outputs such as
-`realtime_metrics` are Section `02` products, not Section `01` source topics.
+| Consumer | Path | Truth role |
+| --- | --- | --- |
+| BI/livestreaming teams | Kafka -> Flink -> derived Kafka topics -> Apache Pinot | Fresh provisional operations. |
+| Executive teams | Bronze -> Spark Gold Iceberg -> Trino -> DuckDB Executive Mart snapshot | Reconciled historical truth. |
+| Data engineering and governance | Kafka, MinIO/S3, Trino/Iceberg, dbt, Spark, Flink, GX -> DataHub | Metadata, lineage, and quality evidence. |

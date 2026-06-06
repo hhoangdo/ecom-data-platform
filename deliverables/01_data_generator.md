@@ -38,12 +38,17 @@ Common options:
 
 | Option | Purpose |
 | --- | --- |
-| `--scale smoke|medium|coursework` | Select entity counts and history length. |
-| `--mode offline|streaming|full` | Choose snapshots, Kafka-shaped events, or both. |
+| `--scale smoke` | Generate a small, fast dataset for smoke tests and local contract checks. |
+| `--scale medium` | Generate the submitted evidence-scale dataset used by the final coursework package. |
+| `--scale coursework` | Generate the largest configured local coursework profile. |
+| `--mode offline` | Write only Parquet table-state snapshots and bad snapshot examples. |
+| `--mode streaming` | Write only Kafka-shaped JSONL topic events and dead-letter examples. |
+| `--mode full` | Write both offline snapshots and streaming topic files. |
 | `--seed <int>` | Override the deterministic random seed. |
 | `--clean` | Remove generator-managed outputs before writing new data. |
 | `--raw-root <path>` | Override the local raw output directory. |
 | `--evidence-root <path>` | Override the evidence output directory. |
+| `--publish-kafka` | Publish generated topic events to Kafka after writing JSONL files. |
 
 Generated output families:
 

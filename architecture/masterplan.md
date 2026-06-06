@@ -1,466 +1,174 @@
 # Vina Bim Shop Master Plan
 
-## 1. Project Overview
+## Purpose
 
-### Objective
+This master plan summarizes the implemented Vina Bim Shop data platform and keeps the architecture folder aligned with the official coursework deliverables. The project models a Shopee-inspired Vietnamese marketplace and demonstrates a staged local Lambda-style data platform for both realtime operations and reconciled batch analytics.
 
-This repository is the implementation and design workspace for an end-to-end Data and AI coursework project in the e-commerce domain. The working product is a Shopee-inspired marketplace called `vina-bim-shop`.
+The root README is the entrypoint for setup and submission context. The official service documentation lives in `../deliverables/`, while this file gives the architecture-level view of how the pieces fit together.
 
-The coursework requires both:
+## Current Evidence Boundary
 
-- design documents in Markdown
-- runnable implementation artifacts with evidence
+The submitted platform evidence covers:
 
-### Current Phase Scope
-
-This master plan governs the first implementation phase only:
-
-- Section `01`: data generator design and implementation
-- Section `02`: storage, schema, and pipeline contract design and implementation
-- Phase 2 (ADRs 01-08): The distributed platform is now runnable via staged Docker Compose profiles. See `architecture/decisions/2026-06-01-00-full-stack-platform-roadmap.md`.
-
-### Out of Scope for This Phase
-
-The following sections are intentionally deferred, but the repo is structured to support them later:
-
-- Section `03`: data generator improvement and drift scenarios
-- Section `04.1`: ML design and implementation
-- Section `04.2`: LLM design and implementation
-
-### Success Criteria for the Current Phase
-
-- Offline and streaming source datasets both exist.
-- Dataset contracts, grains, timestamps, and controls are documented.
-- Lambda architecture expectations are documented: Kafka ingestion, Spark batch, Flink streaming, and a MinIO-backed medallion lakehouse.
-- Bronze, Silver, Gold, and feature-serving expectations are documented, while final Gold schemas remain a Section `02` task.
-- The repo cleanly separates architecture docs, coursework deliverables, code, SQL, data, and evidence.
-- The scaffold is reproducible with `uv sync` and executable later with `uv run`.
-
-## 2. Business and Domain Definition
-
-### Product Definition
-
-`vina-bim-shop` is a Shopee-like e-commerce platform focused on consumer retail behavior, order lifecycles, and marketplace operations. The design is intentionally simplified for coursework, but realistic enough to support data engineering and downstream AI scenarios.
-
-### Business Actors
-
-- `customer`: browses products, places orders, pays, and receives shipments
-- `seller`: lists products, manages price and inventory, and fulfills orders
-- `platform`: owns catalog structure, promotions, data pipelines, and business reporting
-- `logistics_provider`: ships orders and updates delivery milestones
-- `payment_provider`: processes payment attempts and payment outcomes
-
-### Key Business Questions
-
-The data foundation in Sections `01` and `02` should answer or support:
-
-- Which categories, sellers, and products drive GMV, order volume, and repeat purchases?
-- How do browse and cart behaviors convert into purchases by device, source, and category?
-- Which operational bottlenecks cause delayed delivery, failed payments, or abandoned checkouts?
-- Which customer and product features should be available later for ML or LLM-powered use cases?
-
-### Scope Boundaries
-
-- This project models a single platform, not multiple marketplaces.
-- International tax, returns, refunds, and seller finance workflows are out of scope in the first phase.
-- Sensitive personal data is not required; synthetic identifiers and coarse location fields are sufficient.
-
-## 3. Product Taxonomy Snapshot
-
-### Taxonomy Policy
-
-The taxonomy is Shopee-inspired, but project-owned and stable for the coursework. It is not a live mirror of Shopee and should not depend on external taxonomy changes after this phase starts.
-
-The human-readable taxonomy lives in:
-
-- `architecture/domain/category-taxonomy.md`
-
-The machine-readable snapshot lives in:
-
-- `data/reference/taxonomy/taxonomy_snapshot.yaml`
-
-### Level-1 Categories
-
-- `FMCG`
-- `ELHA`
-- `Fashion`
-- `Home & Living`
-
-### Fixed FMCG Subcategories
-
-- `Health & Beauty`
-- `Mom & Baby`
-- `Household Goods`
-- `Groceries`
-- `Pet Care`
-
-### Assumption for ELHA
-
-For this coursework, `ELHA` means `Electronics and Home Appliances`. This keeps the category label close to the user's wording while making the business meaning explicit in documentation and future schemas.
-
-## 4. Section 01 Source Data Design
-
-### Section Goal
-
-Build a configurable synthetic data generator that produces realistic e-commerce source data for both offline and streaming paths.
-
-### Offline Datasets
-
-The offline generator should produce the following domain tables as Parquet files:
-
-| Dataset | Grain | Core Keys | Purpose |
-| --- | --- | --- | --- |
-| `customers` | one row per customer | `customer_id` | customer profile and segmentation |
-| `sellers` | one row per seller | `seller_id` | seller reference and fulfillment traits |
-| `products` | one row per product | `product_id`, `seller_id` | catalog, pricing, and active status |
-| `product_category_map` | one row per product-category assignment | `product_id`, `subcategory_id` | taxonomy link |
-| `inventory_snapshots` | one row per product snapshot per time | `product_id`, `snapshot_ts` | stock level history |
-| `orders` | one row per order | `order_id`, `customer_id` | order header lifecycle |
-| `order_items` | one row per order line | `order_item_id`, `order_id`, `product_id` | order detail and quantities |
-| `payments` | one row per payment attempt | `payment_id`, `order_id` | payment outcomes |
-| `shipments` | one row per shipment | `shipment_id`, `order_id` | logistics milestones |
-| `promotions` | one row per promotion definition | `promotion_id` | campaign context and discounts |
-
-### Streaming Datasets
-
-The streaming generator produces human-readable JSON event payloads that are shaped like Kafka topic messages. In Section `01`, these are written as JSONL files rather than published to a running Kafka cluster.
-
-The event catalog lives in:
-
-- `architecture/domain/source-event-catalog.md`
-
-Approved Kafka domain topics:
-
-| Topic | Event Families |
+| Area | Implemented evidence |
 | --- | --- |
-| `commerce_events` | sessions, search, product views, cart, checkout, order, and payment outcomes |
-| `catalog_events` | product, price, inventory, and promotion source changes |
-| `fulfillment_events` | shipment lifecycle and payment-blocked fulfillment events |
-| `ops_events` | heartbeat, burst, lateness, duplicate, and schema-version observability events |
+| Data generation | Synthetic marketplace snapshots, Kafka-shaped event logs, bad records, issue manifests, and final raw dataset package. |
+| Ingestion | Kafka KRaft, Schema Registry, Kafka Connect, Kafka UI, topic contracts, and Bronze event landing evidence. |
+| Lakehouse | MinIO object storage, Hive Metastore, shared Postgres, Trino, Bronze/Silver/Gold layout, and Iceberg catalog evidence. |
+| Batch | Spark batch transformation from Bronze to Silver/Gold, Trino smoke checks, dbt-DuckDB parity, and executive mart export. |
+| Streaming | Flink event-time jobs, one-minute commerce metrics, operational alerts, late-event correction snapshots, checkpoints, and audit JSONL. |
+| Serving | Trino canonical Gold SQL, Apache Pinot realtime OLAP, and DuckDB local evidence files. |
+| Orchestration and quality | Airflow DAGs, Great Expectations validation policy, GX Data Docs, and evidence manifests. |
+| Governance | DataHub metadata emission, lineage, tags, assertions, representative entity checks, and known local UI limitation. |
 
-Kafka-topic-shaped JSONL outputs are the authoritative streaming source contract for Lambda architecture. The older flat stream helper output is removed so Section `02` has one clear streaming contract.
+The current evidence excludes production deployment hardening, CI/CD rollout, security/RBAC enforcement beyond local defaults, drift scenario implementation, ML model training/serving, and LLM application design.
 
-### Lambda Architecture Contract
+## Business Context
 
-Section `01` models the source side of a Lambda architecture:
+`vina-bim-shop` is a synthetic multi-seller e-commerce platform with customers, sellers, products, promotions, orders, payments, shipments, inventory, and behavior events. The domain is intentionally simplified enough for coursework but realistic enough to test common data engineering concerns.
 
-- Kafka is the ingestion layer for domain-grouped JSON events.
-- Spark is the hourly batch compute path that prepares curated Silver/Gold tables for consumers who accept 1-hour freshness.
-- Flink is the real-time streaming compute path for BI/livestreaming use cases that need revenue, payment issue, traffic burst, and anomaly visibility.
-- Apache Pinot is the realtime OLAP serving sink for low-latency live dashboard queries over Flink-derived operational metrics.
-- MinIO stores medallion lakehouse files; Hive Metastore stores table metadata; Trino provides the canonical SQL serving access for curated Gold tables.
-- DuckDB has two local roles: dbt-DuckDB is the parity oracle, and the DuckDB Executive Mart is a Trino Gold snapshot export for local executive analysis. Neither replaces the canonical multi-user Trino surface.
-- Runnable Kafka/Spark/Flink/MinIO/Hive Metastore/Trino/Pinot/DuckDB jobs are deferred to Section `02`; Section `01` only owns source contracts and generated raw payloads.
+Core actors:
 
-Architecture note:
+| Actor | Role |
+| --- | --- |
+| Customer | Browses, searches, adds to cart, checks out, pays, and receives shipments. |
+| Seller | Lists products, manages prices and inventory, and fulfills orders. |
+| Platform | Owns taxonomy, promotions, reporting standards, pipeline contracts, and governance. |
+| Logistics provider | Emits shipment lifecycle updates and delivery outcomes. |
+| Payment provider | Emits payment attempts, successes, failures, and payment-blocked fulfillment conditions. |
 
-- Offline source snapshots are table-state extracts such as hourly `orders`, `payments`, and `customers` Parquet dumps landed into the MinIO Bronze/raw layer.
-- Replayable event logs are append-only Kafka event histories, such as `order_placed` or `payment_failed`, landed into the MinIO Bronze/raw layer as JSONL.
-- Spark batch inputs come from landed Bronze data in MinIO, not directly from operational source systems.
-- Flink reads Kafka directly for real-time processing, while Kafka-to-MinIO landing preserves replayable event history for later Spark recomputation.
-- Raw Bronze files are not the normal business consumption interface. Executive teams consume Trino-accessible curated tables after Spark writes Silver/Gold outputs, with a DuckDB Executive Mart available as a regenerated local snapshot for coursework dashboards. BI/livestreaming teams consume low-latency Apache Pinot serving outputs and use Trino for reconciled historical SQL.
+The platform supports questions such as category and seller contribution to GMV, payment-failure patterns, delayed shipment risk, conversion behavior, inventory availability, and customer feature readiness.
 
-Consumption serving planes:
+## Source Contracts
 
-The consumption layer has two serving planes. The real-time plane uses Flink to compute event-time-correct operational metrics and publishes them to Apache Pinot for low-latency dashboard queries over recent streaming data. The reconciled analytical plane uses Spark to build hourly Gold tables in the MinIO lakehouse, served through Trino as the canonical SQL interface. For coursework portability, a DuckDB Executive Mart is exported from Trino Gold so executive KPI dashboards can run locally without a full multi-user warehouse.
+The generator produces two complementary source streams.
 
-The durable decision record lives in `architecture/decisions/2026-05-30-consumption-serving-planes.md`.
-
-| Plane | Consumers | Compute path | Serving interface | Truth role |
-| --- | --- | --- | --- | --- |
-| Real-time operational serving | BI/livestreaming teams | Kafka source events -> Flink event-time metrics and alerts | Apache Pinot realtime OLAP serving sink | Fresh operational view, subject to later reconciliation |
-| Reconciled analytical serving | Executive teams and historical BI | MinIO Bronze -> Spark Silver/Gold | Trino canonical SQL over Gold tables, plus a DuckDB Executive Mart exported from Trino Gold | Reconciled KPI truth |
-
-Consumption-layer contract:
-
-| Need | Serving path | Hive Metastore needed? |
+| Source stream | Format | Purpose |
 | --- | --- | --- |
-| Executive hourly KPIs | Spark writes Gold tables to MinIO; Trino serves canonical hourly SQL dashboards; DuckDB Executive Mart provides a local snapshot exported from Trino Gold | Yes for Trino table metadata; no for the DuckDB file export |
-| BI live operations | Flink writes metrics, alerts, or dashboard-ready values to an Apache Pinot realtime OLAP serving sink | No |
-| BI reconciled history | Flink/Spark writes curated tables to MinIO; Trino queries them | Yes |
-| Data engineering inspection | Direct file or object inspection when debugging | Optional |
+| Periodic table-state snapshots | Parquet | Checkpointed source-of-record state for batch reconciliation. |
+| Kafka-shaped event envelopes | JSON messages persisted as JSONL | Replayable event history for realtime metrics, event timing, and source observability. |
 
-Hive Metastore is catalog metadata only: it records table names, schemas, partitions, and object-store locations. Consumers query Trino, and Trino uses Hive Metastore to find and interpret the curated files in MinIO.
+The overlap between snapshots and events is intentional. Snapshots answer what state is reliable at an export checkpoint; events answer what happened now and in what order.
 
-Apache Pinot and DuckDB do not replace the lakehouse truth layer. Pinot serves recent operational metrics for low-latency dashboards, while the DuckDB Executive Mart is a regenerated local snapshot for coursework-friendly executive KPI consumption. Reconciled business truth comes from Spark-produced Gold tables served through Trino.
+Implemented snapshot datasets include `customers`, `sellers`, `products`, `product_category_map`, `inventory_snapshots`, `promotions`, `orders`, `order_items`, `payments`, `shipments`, and `bad_snapshots`.
 
-Snapshot and event-log distinction:
+Implemented source topics include `commerce_events`, `catalog_events`, `fulfillment_events`, `ops_events`, and `dead_letter_events`.
 
-| Concept | Parquet snapshots | JSONL event log |
+## Platform Architecture
+
+The platform is split into a speed path and a batch truth path.
+
+| Path | Flow | Truth role |
 | --- | --- | --- |
-| Core question | What did the source tables look like at this checkpoint? | What happened, when, and in what order? |
-| Data shape | Tabular state such as `orders`, `payments`, `shipments`, and `customers` | Event envelopes such as `order_placed`, `payment_failed`, and `shipment_delivered` |
-| Landing path | Source systems export files into MinIO Bronze batch landing | Kafka messages are persisted into MinIO Bronze event landing |
-| Format rationale | Parquet is compact, columnar, and efficient for Spark batch scans | JSONL preserves the raw message shape and remains readable/replayable |
-| Main value | Batch truth, joins, reconciliation, reference state, and backfills | Real-time monitoring, event replay, sequence analysis, and timing analysis |
-
-The overlap between `orders`, `payments`, and `shipments` snapshots and similarly named events is intentional: snapshots provide checkpointed system-of-record state for reconciliation, while events provide the immediate business timeline.
-
-Beginner-friendly examples:
-
-- Offline example: at `11:00`, source systems export hourly `orders`, `payments`, and `customers` Parquet snapshots into MinIO Bronze; Spark reads those landed files on the next batch run and writes cleaned Silver outputs.
-- Streaming example: an `order_placed` event enters Kafka at `10:07`; Flink consumes it immediately for real-time revenue monitoring, and a Kafka sink also lands the raw event as JSONL into MinIO Bronze so Spark can replay it later during the hourly batch cycle.
-
-### Required Timestamps and Event-Time Semantics
-
-All generated datasets must define timestamps consistently:
-
-- `event_timestamp`: the business event time
-- `created_ts`: the row creation or emit time
-- `ingest_ts`: the pipeline ingestion time, added later in Bronze
-
-Rules:
-
-- Offline entities use business timestamps such as `signup_ts`, `order_timestamp`, `payment_timestamp`, and `snapshot_ts`.
-- Streaming events must preserve both `event_timestamp` and `created_ts` so late-arrival and dedup logic can be tested.
-- Point-in-time joins later must use `event_timestamp`, not load order.
-
-### Generator Controls
-
-The generator should be controlled by external config under `configs/generator/`, including:
-
-- random seed
-- history window and start date
-- row-volume parameters by entity
-- category and geography skew ratios
-- duplicate rates
-- late-arrival rates and delays
-- schema evolution cutoff dates
-- output paths for raw data and evidence assets
-
-### Intentional Data Challenges
-
-Sections `01` and `02` must be able to exercise realistic data engineering problems:
-
-- skew in cities, sellers, or categories
-- high-cardinality identifiers
-- duplicate records in offline or streaming paths
-- missing values in selected optional fields
-- late and out-of-order streaming events
-- schema evolution between older and newer partitions
-
-### Drift-Ready Extension
-
-The scaffolding should keep a placeholder for later drift scenarios in Section `03`. The first reserved scenario is a category-mix and order-frequency shift in FMCG behavior, but the actual demonstration is deferred to the later phase.
-
-## 5. Section 02 Storage and Schema Design
-
-### Local Implementation Stack
-
-The architecture target for Sections `01` and `02` is:
-
-- Python for source generation and orchestration
-- Kafka for JSON event ingestion
-- Spark for hourly batch processing
-- Flink for event-time streaming processing
-- MinIO for medallion lakehouse object storage
-- Hive Metastore for table metadata
-- Trino for SQL serving access
-- Apache Pinot for realtime OLAP dashboard serving
-- DuckDB for two local artifacts: dbt parity and a Trino Gold snapshot export for executive analysis
-- Parquet for offline persisted source snapshots
-- JSON for in-Kafka event envelopes and JSONL for persisted, human-readable event-log examples
-
-All services are now runnable via Docker Compose profiles. dbt-DuckDB is retained as a fast local compatibility and parity-testing path; DuckDB Executive Mart is exported separately from Trino Gold for local consumption.
-
-### Layering Model
-
-The repository and logical storage follow a medallion pattern:
-
-- `raw`: generator outputs and raw source payloads
-- `bronze`: append-oriented ingestion with Kafka metadata, file lineage, and ingest timestamps
-- `silver`: cleaned, standardized, deduplicated records from both Spark and Flink paths
-- `gold`: business-ready dimensions, facts, OBTs, and feature tables designed in Section `02`
-
-### Naming Conventions
-
-- raw/source assets use source-oriented names such as `orders`, `payments`, and `kafka_topics/<topic>`
-- Bronze tables use `raw_` prefixes when represented as tables or SQL models
-- Silver tables use `stg_` prefixes
-- Gold dimension tables use `dim_`
-- Gold fact tables use `fact_`
-- Gold denormalized serving tables use `obt_`
-- Gold feature-ready outputs use `feat_`
-
-### Serving Models for Gold
-
-Planned Gold entities include:
-
-- dimensions: `dim_customer`, `dim_seller`, `dim_product`, `dim_date`, `dim_payment_method`, `dim_order_status`
-- facts: `fact_order`, `fact_order_item`, `fact_payment_attempt`, `fact_shipment`
-- OBT: `obt_order_performance`
-- feature tables: `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified`
-
-Consumer-facing dashboards and extracts should use the appropriate serving plane. Executive and historical BI dashboards use curated Silver/Gold tables through Trino, with DuckDB Executive Mart exported from Trino Gold as a local coursework snapshot. BI/livestreaming dashboards use Apache Pinot for low-latency operational metrics produced by Flink. Flink outputs that become durable analytical tables are registered through Hive Metastore and served through Trino; live metrics and alerts in Pinot bypass Hive Metastore because they are operational serving values, not lakehouse tables. Raw/Bronze files remain available for data engineering inspection, replay, and lineage checks, but they are not the normal interface for executive or livestreaming consumers.
-
-### Update Policy
-
-- Raw and Bronze are append-oriented.
-- Silver is incrementally rebuilt or merged using stable business keys plus event-time logic.
-- Gold facts and dimensions are updated via idempotent merges or replace-partition strategies suitable for lakehouse table workflows.
-- Feature tables retain the latest `created_ts` for each entity and `event_timestamp` pair.
-
-### Backfill Policy
-
-- Default backfill scope is the last one day for reruns during coursework implementation.
-- Full history reload is allowed only for explicit local rebuild workflows.
-- Reprocessing should be idempotent and should not multiply duplicates.
-
-### Point-in-Time Correctness
-
-- Feature generation must use timestamps that would have been available at prediction time.
-- Late-arriving events should update the affected rolling windows without leaking future information into historical states.
-
-### Schema Evolution Rules
-
-- New optional fields may appear after a cutoff date.
-- Older partitions may legitimately miss those fields.
-- Silver normalization should standardize missing columns and preserve evolution metadata where useful.
-
-## 6. Data Quality and Operations
-
-### Data Contracts
-
-Every source and modeled dataset should explicitly define:
-
-- grain
-- business keys
-- timestamp columns
-- nullable versus required columns
-- expected update behavior
-
-### Required Quality Checks
-
-- uniqueness checks for primary business keys where applicable
-- duplicate-rate monitoring for intentionally noisy datasets
-- nullability checks on required columns
-- referential integrity from facts to dimensions
-- freshness checks for generated outputs and pipeline layers
-- volume anomaly checks against simple historical baselines
-
-### SLA Targets for the Local Coursework Stack
-
-- Raw/Bronze freshness for generated source files: within 10 minutes of a generator run
-- Spark batch path freshness for executive teams: within 1 hour
-- Flink streaming path freshness for BI/livestreaming teams: target under 30 seconds in local design
-- Silver freshness: within 30 minutes for batch-derived tables, near real-time for stream-derived monitoring views
-- Gold freshness: Section `02` will define final targets by serving table
-- Feature freshness: between 5 and 60 minutes depending on the feature table
-- Scheduled pipeline success target: at least 99 percent weekly in design intent
-
-These are design targets, not cloud production guarantees.
-
-### Failure Handling and Recovery
-
-- malformed records should be quarantined or logged for inspection
-- retries should be supported for transient local job failures
-- reruns should be safe for the last processed window
-- late arrivals should trigger reprocessing of the affected time windows
-
-### Observability and Evidence
-
-The implementation should later emit:
-
-- structured logs for generator and pipeline jobs
-- run metadata such as row counts, status, timing, and output paths
-- simple metrics for duplicates, lateness, freshness, and null rates
-- evidence artifacts under `evidence/01_data_generator/` and `evidence/02_schema_design/`
-
-## 7. Security and Delivery Basics
-
-### Secrets and Configuration
-
-- Local environment variables live in `.env` and are never committed.
-- Example non-secret values live in `.env.example`.
-- Runtime configuration lives in `configs/`.
-
-### RBAC Assumptions
-
-The first phase is local-only, but the design should assume future role separation:
-
-- developer/engineer can run generators and local pipelines
-- analyst can query published Gold outputs
-- platform owner can change configs, schemas, and release flows
-
-### CI/CD Expectations
-
-The implementation should later be easy to validate in CI using:
-
-- `uv sync --frozen`
-- `uv run pytest`
-- `uv run` commands for generator smoke tests and pipeline smoke tests
-
-### Reproducibility
-
-The repo standard is:
-
-- install and lock dependencies with `uv`
-- run Python entry points with `uv run`
-- keep documentation, configs, SQL, and sample evidence under version control
-
-## 8. Implementation Roadmap
-
-### First Populate for Section 01
-
-Focus first on:
-
-- `configs/generator/`
-- `src/vina_bim_shop/domain/`
-- `src/vina_bim_shop/generators/`
-- `data/reference/taxonomy/`
-- `deliverables/01_data_generator.md`
-- `evidence/01_data_generator/`
-
-### Next Populate for Section 02
-
-Then expand:
-
-- `configs/pipelines/`
-- `sql/`
-- `src/vina_bim_shop/kafka/`
-- `src/vina_bim_shop/lakehouse/`
-- `src/vina_bim_shop/flink/`
-- `src/vina_bim_shop/pinot/`
-- `src/vina_bim_shop/orchestration/`
-- `src/vina_bim_shop/quality/`
-- `deliverables/02_schema_design.md`
-- `evidence/02_schema_design/`
-
-### Reserved Extensions
-
-The following areas are intentionally scaffolded now for later work:
-
-- `configs/scenarios/` and `src/vina_bim_shop/domain/scenarios/` for Section `03`
-- `ai/ml/` for Section `04.1`
-- `ai/llm/` for Section `04.2`
-
-### Repo Ownership Model
-
-- `architecture/` holds working design and PRD documents
-- `deliverables/` holds polished coursework submission documents
-- `sample_design/` remains reference-only
-- `src/`, `sql/`, `configs/`, and `scripts/` hold implementation assets
-
-## 8.5 Distributed Platform (ADRs 01-08)
-
-Implemented. Runnable services, staged compose profiles, end-to-end evidence. See `evidence/final_integration/` for verification artifacts and `architecture/decisions/` for the full decision record.
-
-| Profile | Services | Evidence |
-|---------|----------|----------|
-| `ingestion` | Kafka, Schema Registry, Connect, Kafka UI | `evidence/03_kafka_ingestion/` |
-| `lakehouse` | MinIO, Hive Metastore, Trino, Postgres | `evidence/04_lakehouse/` |
-| `batch` | Spark master, worker, history server | `evidence/05_spark_batch/` |
-| `streaming` | Flink JobManager, TaskManager | `evidence/06_flink_streaming/` |
-| `serving` | Apache Pinot | `evidence/07_pinot_serving/` |
-| `orchestration` | Airflow, GX Data Docs | `evidence/08_airflow_gx/` |
-| `governance` | DataHub, OpenSearch | `evidence/09_datahub_governance/` |
-| `all` | Everything | `evidence/final_integration/` |
-
-## 9. Assumptions and Defaults
-
-- Python `3.12` is the default runtime version.
-- `uv` is the package manager of record.
-- Large generated datasets should stay out of Git; only small samples and evidence should be committed.
-- Section `01` remains source-contract-first. Runnable Spark, Flink, Kafka, MinIO, Hive Metastore, Trino, Pinot, Airflow, GX, and DataHub jobs are implemented through the ADR roadmap (`architecture/decisions/`). See `evidence/final_integration/` for end-to-end verification.
-- Spark and Flink references are architectural targets inspired by the EDAI transformation-layer projects, not copied wholesale.
-- The simplified taxonomy is stable once committed unless the coursework requirements change.
+| Realtime speed path | Generator events -> Kafka -> Flink -> derived Kafka topics -> Pinot | Fresh and provisional operational view. |
+| Batch truth path | Generator snapshots/events -> Bronze -> Spark Silver/Gold Iceberg -> Trino | Canonical reconciled reporting truth. |
+| Local evidence path | Raw files or Trino Gold -> DuckDB | Portable parity and executive review artifacts. |
+
+Truth policy:
+
+- Spark Gold through Trino is canonical for official historical reporting.
+- Pinot is fresh and provisional for live metrics, alerts, and correction-aware dashboards.
+- dbt-DuckDB is a local parity oracle, not the distributed serving surface.
+- DuckDB Executive Mart is a local snapshot exported from Trino Gold and is stale until regenerated.
+
+## Layering Model
+
+| Layer | Storage shape | Responsibility |
+| --- | --- | --- |
+| Raw | Local generated Parquet and JSONL under `../data/raw/` | Source simulation and reproducible local evidence. |
+| Bronze | Source-fidelity object data and raw SQL models | Preserve snapshots, event envelopes, schema versions, payloads, ingest metadata, and quarantine records. |
+| Silver | Standardized views/tables | Deduplicate, cast, normalize nullable drift fields, and flatten event envelopes. |
+| Gold | Iceberg tables and dbt-DuckDB Gold models | Provide business-ready dimensions, facts, OBT, aggregates, and feature tables. |
+| Serving | Trino, Pinot, DuckDB | Expose canonical SQL, realtime OLAP, and portable local review files. |
+| Governance | DataHub metadata graph | Catalog datasets, tags, lineage, and quality assertions. |
+
+## Implemented Service Profiles
+
+Docker Compose profiles are operated in stages rather than as one broad full-stack startup.
+
+| Profile | Services | Official documentation |
+| --- | --- | --- |
+| `ingestion` | Kafka KRaft, Schema Registry, Kafka Connect, Kafka UI | [Kafka ingestion](../deliverables/03_kafka_ingestion.md) |
+| `lakehouse` | MinIO, Hive Metastore, Trino, shared Postgres | [Lakehouse](../deliverables/04_lakehouse.md) |
+| `batch` | Spark master, worker, history server | [Spark batch](../deliverables/05_spark_batch.md) |
+| `streaming` | Flink JobManager, TaskManager, job submitter | [Flink streaming](../deliverables/06_flink_streaming.md) |
+| `serving` | Pinot Zookeeper, controller, broker, server | [Pinot serving](../deliverables/07_pinot_serving.md) |
+| `orchestration` | Airflow webserver, scheduler, init, GX Data Docs | [Airflow + GX](../deliverables/08_airflow_gx_orchestration.md) |
+| `governance` | DataHub GMS, frontend, actions, OpenSearch | [DataHub governance](../deliverables/09_datahub_governance.md) |
+| local analytics | dbt-DuckDB and DuckDB Executive Mart files | [DuckDB/dbt local analytics](../deliverables/10_duckdb_dbt_local_analytics.md) |
+
+## Data Formats
+
+| Format | Used by | Rationale |
+| --- | --- | --- |
+| Parquet | Offline source snapshots and batch raw package | Compact columnar source-state format for Spark/dbt reads. |
+| JSON | Kafka event messages | Flexible event envelopes with schema versions, timestamps, correlation IDs, and payloads. |
+| JSONL | Local topic files, DLQ examples, audit outputs | One message per line keeps streams replayable, readable, and packageable. |
+| Iceberg | Silver/Gold distributed lakehouse tables | Durable table format for Spark writes and Trino reads through Hive Metastore. |
+| Pinot realtime segments | Flink-derived serving topics | Low-latency OLAP format for fresh dashboard and alert queries. |
+| DuckDB files | Parity oracle and executive mart | Single-file local analytics artifacts for DBeaver and evidence packaging. |
+
+## Data Model
+
+The Gold model contains:
+
+| Family | Implemented tables |
+| --- | --- |
+| Dimensions | `dim_customer`, `dim_seller`, `dim_product`, `dim_category`, `dim_date`, `dim_payment_method`, `dim_order_status`, `dim_shipment_status`, `dim_shipping_method`, `dim_promotion` |
+| Bridge | `bridge_product_category` |
+| Facts | `fact_order`, `fact_order_item`, `fact_payment_attempt`, `fact_shipment`, `fact_inventory_snapshot`, `fact_promotion_application` |
+| OBT and aggregate | `obt_order_performance`, `agg_hourly_reconciled_kpi` |
+| Features | `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified` |
+
+Detailed schema documentation is in [Schema Design and Data Dictionary](../deliverables/02_schema_design.md). ERD assets live in `diagrams/physical_gold_model.puml` and `diagrams/gold_layer_ERD.dbml`.
+
+## Quality And Governance
+
+Quality policy:
+
+- Bronze warnings quarantine malformed source records without hiding source drift.
+- Silver and Gold failures block orchestration because those layers feed official reporting.
+- Pinot query issues warn unless reconciliation fails.
+- DataHub ingestion is verified through GMS health, entity checks, tag checks, lineage counts, and assertion counts.
+
+Governance evidence includes Kafka datasets, MinIO/S3 prefixes, Trino/Iceberg tables, dbt datasets, Spark lineage, Flink lineage, GX assertions, and representative tags such as `bronze`, `silver`, `gold`, `official`, `provisional`, and `quality_gate`.
+
+Known DataHub limitation: the local frontend did not render the fuller graph view during capture, even though GMS/GraphQL evidence supports metadata emission.
+
+## Evidence Map
+
+| Evidence area | Path |
+| --- | --- |
+| Data generator | `../evidence/01_data_generator/` |
+| Schema design | `../evidence/02_schema_design/` |
+| Kafka ingestion | `../evidence/03_kafka_ingestion/` |
+| Lakehouse | `../evidence/04_lakehouse/` |
+| Spark batch | `../evidence/05_spark_batch/` |
+| Flink streaming | `../evidence/06_flink_streaming/` |
+| Pinot serving | `../evidence/07_pinot_serving/` |
+| Airflow + GX | `../evidence/08_airflow_gx/` |
+| DataHub governance | `../evidence/09_datahub_governance/` |
+| Final integration | `../evidence/final_integration/` |
+| Final raw dataset | `../evidence/final_dataset/` |
+
+## Repository Ownership
+
+| Area | Responsibility |
+| --- | --- |
+| `domain/` | Business context, taxonomy, event catalog, and source-to-target mapping. |
+| `diagrams/` | PlantUML, DBML, Excalidraw, and rendered architecture assets. |
+| `../deliverables/` | Official coursework documentation. |
+| `../configs/` | Generator, pipeline, service, and scenario configuration. |
+| `../src/vina_bim_shop/` | Python implementation packages. |
+| `../scripts/` | CLI entrypoints for generation, bootstrap, evidence, batch, streaming, serving, and governance. |
+| `../evidence/` | Committed manifests, reports, screenshots, query outputs, and verification artifacts. |
+
+## Assumptions And Defaults
+
+- Python `3.12` and `uv` are the local runtime defaults.
+- Large generated datasets remain gitignored under `../data/`; committed evidence packages are stored under `../evidence/`.
+- Staged Docker Compose profile startup is the supported local operating model.
+- Spark/Iceberg/Trino Gold is the canonical reporting path.
+- Pinot is the realtime operational serving path.
+- DuckDB files are local reproducibility and evidence artifacts.
+- Drift scenarios, ML implementation, and LLM implementation remain outside the current platform evidence.

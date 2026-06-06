@@ -37,18 +37,26 @@ The older flat stream helper output is not part of the public contract. Kafka-to
 
 Gold DuckDB tables enforce primary-key and foreign-key constraints through dbt contracts so DBeaver can render physical ERD relationship lines from database metadata. Bronze and Silver remain views in dbt-DuckDB, but they are included in the physical model for lineage context. The physical model is committed at [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) with a rendered PNG at [architecture/diagrams/physical_gold_model.png](../architecture/diagrams/physical_gold_model.png).
 
-## Data Type Rationale
+## Data Format Rationale
 
-| Type family | Used for | Rationale |
+The platform uses different data formats at different points because the work changes from source simulation, to replayable ingestion, to governed analytical storage, to low-latency serving.
+
+| Stage | Format | Why this format is used |
 | --- | --- | --- |
-| `varchar` | Natural IDs, names, categories, statuses, raw JSON strings | IDs are business identifiers, not arithmetic values; strings preserve source fidelity. |
-| `timestamp` | Event time, source creation time, shipment/order/payment timestamps, feature timestamps | Required for event-time windows, point-in-time features, batch filtering, and freshness checks. |
-| `date` / `integer date_key` | Calendar dimension and fact foreign keys | Supports BI grouping and stable joins to `dim_date`. |
-| `bigint` / `hugeint` | Surrogate keys and counts | Handles generated row counts and aggregated counts without overflow risk in DuckDB/Spark. |
-| `double` | Revenue, GMV, cost, margin, rates | Sufficient for coursework metrics and compatible across Spark, Trino, DuckDB, and Pinot. |
-| `decimal(3,2)` | `category_cost_rate` | Cost rates are bounded percentages and benefit from fixed precision. |
-| `boolean` | Flags such as paid order, payment success, delayed shipment, current dimension row | Keeps business conditions explicit and easy to filter. |
-| JSON stored as `varchar` | Bronze/Silver payloads and optional attributes | Preserves schema drift while allowing downstream extraction. |
+| Offline source snapshots | Parquet | Batch extracts are tabular, columnar, compact, and efficient for Spark and dbt-DuckDB reads. Parquet is a good fit for checkpointed source-of-record state such as orders, payments, shipments, and product snapshots. |
+| Source event envelopes | JSON messages | Kafka source events need flexible envelopes with `event_id`, `event_type`, `schema_version`, timestamps, correlation IDs, and event-specific payloads. JSON preserves producer intent and makes schema drift visible. |
+| Local event-log files | JSONL | The generator writes one JSON envelope per line so event streams remain human-readable, replayable, and easy to package as local evidence before or after Kafka is running. |
+| Kafka ingestion | JSON governed by Schema Registry | Kafka keeps the realtime event log, while Schema Registry gives the JSON payloads explicit contracts for source topics and dead-letter handling. |
+| Bronze lakehouse | Source-fidelity Parquet and JSONL/object data | Bronze preserves what arrived, plus ingestion metadata and quarantine records. This keeps bad rows inspectable instead of silently coercing them too early. |
+| Silver lakehouse | Standardized Iceberg tables/views | Silver changes the data from source-shaped records into typed, deduplicated, normalized analytical records while retaining enough source metadata for audit. |
+| Gold lakehouse | Apache Iceberg tables | Gold is the canonical analytical model. Iceberg provides durable lakehouse tables that Spark can write, Hive Metastore can catalog, and Trino can query consistently. |
+| Trino serving | SQL over Iceberg Gold | Trino does not create a new truth layer; it exposes current Spark-written Gold tables as the canonical shared SQL surface. |
+| Pinot realtime serving | Pinot realtime segments from Flink-derived Kafka topics | Pinot is optimized for low-latency OLAP over fresh derived streams such as metrics, alerts, and correction snapshots. It complements the lakehouse instead of replacing it. |
+| DuckDB local analytics | Local `.duckdb` files | `data/gold/vina_bim_shop.duckdb` supports dbt parity, while `data/gold/vina_bim_shop_executive.duckdb` packages a Trino Gold snapshot for DBeaver/offline evidence review. |
+
+The format evolution is therefore intentional: generated Parquet snapshots and JSON/JSONL events preserve source reality; Kafka and Bronze keep replayability; Silver standardizes and deduplicates; Gold Iceberg tables become the canonical batch truth; Trino, Pinot, and DuckDB expose fit-for-purpose serving surfaces.
+
+Physical data types are still standardized in Silver and Gold. For example, timestamps are cast for event-time logic, surrogate keys use integer-like types, financial measures use numeric types, and JSON payload fragments are preserved where schema drift must remain inspectable.
 
 ## Bronze Data Dictionary
 
