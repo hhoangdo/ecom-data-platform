@@ -15,6 +15,23 @@
   - `"plantuml.server": "https://www.plantuml.com/plantuml"`
 - Use PlantUML for system and architecture diagrams such as `lambda_architecture.puml`, `detailed-lambda_architecture.puml`, `schema_design.puml`, and `physical_gold_model.puml`.
 
+## Mermaid
+
+- Primary folder for README-ready platform overview diagrams: `mermaid/`
+- Each platform overview asset is stored as Mermaid source plus a rendered PNG sibling:
+  - `01-data-generation.mmd` -> `01-data-generation.png`
+  - `02-ingestion.mmd` -> `02-ingestion.png`
+  - `03-lakehouse.mmd` -> `03-lakehouse.png`
+  - `04-batch.mmd` -> `04-batch.png`
+  - `05-streaming.mmd` -> `05-streaming.png`
+  - `06-serving.mmd` -> `06-serving.png`
+  - `07-local-analytics.mmd` -> `07-local-analytics.png`
+  - `08-orchestration.mmd` -> `08-orchestration.png`
+  - `09-governance.mmd` -> `09-governance.png`
+- Render any one diagram with Mermaid CLI from the repo root:
+  - `npx -y @mermaid-js/mermaid-cli -i architecture/diagrams/mermaid/01-data-generation.mmd -o architecture/diagrams/mermaid/01-data-generation.png -b white -w 1800`
+- Keep the Mermaid source files as the editable truth and the PNGs as the README/GitHub embed targets.
+
 ## DBML
 
 - Primary file for the readable Gold-only ERD: `gold_layer_ERD.dbml`

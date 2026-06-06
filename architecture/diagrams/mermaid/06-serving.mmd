@@ -1,0 +1,21 @@
+%%{init: {"theme":"base","themeVariables":{"background":"#ffffff","primaryColor":"#f8fbff","primaryTextColor":"#16324f","primaryBorderColor":"#2d6cdf","lineColor":"#5b6b7a","secondaryColor":"#eef6ff","tertiaryColor":"#f7f9fc","fontFamily":"Arial","fontSize":"16px"}}}%%
+flowchart LR
+    classDef source fill:#e8f1ff,stroke:#2d6cdf,color:#16324f,stroke-width:1.5px;
+    classDef compute fill:#eef7ee,stroke:#2f855a,color:#1f4d36,stroke-width:1.5px;
+    classDef store fill:#fff7e8,stroke:#c2871a,color:#6c4a00,stroke-width:1.5px;
+    classDef serve fill:#f3ecff,stroke:#7a4dd8,color:#4b2d91,stroke-width:1.5px;
+    classDef evidence fill:#fff0f3,stroke:#d14b73,color:#7f1d3d,stroke-width:1.5px;
+
+    rt["Flink-derived topics<br/>fresh serving contracts"]:::source
+    pinot["Apache Pinot<br/>provisional realtime OLAP"]:::serve
+    gold["Spark Gold / Iceberg<br/>reconciled batch truth"]:::store
+    trino["Trino SQL<br/>canonical query surface"]:::serve
+    duck["DuckDB local marts<br/>portable review copies"]:::serve
+    noteRt["Speed layer<br/>fresh, provisional"]:::evidence
+    noteBatch["Batch layer<br/>canonical, reconciled"]:::evidence
+
+    rt --> pinot
+    gold --> trino
+    trino --> duck
+    pinot --> noteRt
+    trino --> noteBatch

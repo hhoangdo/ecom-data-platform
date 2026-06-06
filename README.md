@@ -129,15 +129,17 @@ The root README is the entrypoint. The deeper service-by-service explanations li
 | Ingestion | `ingestion` | Kafka KRaft, Schema Registry, Kafka Connect, Kafka UI. | [03 Kafka ingestion](deliverables/03_kafka_ingestion.md) |
 | Lakehouse | `lakehouse` | MinIO, Hive Metastore, Trino, shared Postgres. | [04 lakehouse](deliverables/04_lakehouse.md) |
 | Batch | `batch` plus dbt-DuckDB | Spark master, worker, history server, Iceberg Gold, dbt parity. | [05 Spark batch](deliverables/05_spark_batch.md) |
-| Local analytics | local DuckDB files plus dbt | dbt-DuckDB parity oracle and DuckDB Executive Mart export. | [10 DuckDB/dbt local analytics](deliverables/10_duckdb_dbt_local_analytics.md) |
 | Streaming | `streaming` | Flink JobManager, TaskManager, job submitter, derived Kafka topics. | [06 Flink streaming](deliverables/06_flink_streaming.md) |
 | Serving | `serving` plus Trino/DuckDB | Apache Pinot realtime OLAP, Trino canonical SQL, DuckDB local marts. | [07 Pinot serving](deliverables/07_pinot_serving.md) |
+| Local analytics | local DuckDB files plus dbt | dbt-DuckDB parity oracle and DuckDB Executive Mart export. | [10 DuckDB/dbt local analytics](deliverables/10_duckdb_dbt_local_analytics.md) |
 | Orchestration | `orchestration` | Airflow webserver, scheduler, init, GX Data Docs. | [08 Airflow + GX](deliverables/08_airflow_gx_orchestration.md) |
 | Governance | `governance` | DataHub GMS, frontend, actions, OpenSearch, metadata recipes. | [09 DataHub governance](deliverables/09_datahub_governance.md), [DataHub evidence](evidence/final_integration/datahub_lineage.md) |
 
 ### Data Generation
 
-The generator creates offline Parquet snapshots and Kafka-topic-shaped JSONL files under `data/raw/`, plus committed evidence under `evidence/01_data_generator/`. It produces source entities such as customers, sellers, products, promotions, orders, payments, shipments, inventory snapshots, commerce events, catalog events, fulfillment events, ops events, and quarantine examples.
+Data generation is the source-system simulator for the platform. It produces offline Parquet snapshots, Kafka-shaped JSONL topics, bad-record fixtures, and committed evidence that feed the batch, streaming, and local analytics paths.
+
+![Data generation overview](architecture/diagrams/mermaid/01-data-generation.png)
 
 Key docs:
 
@@ -147,7 +149,9 @@ Key docs:
 
 ### Ingestion
 
-The ingestion profile turns the generated event contracts into a real Kafka surface. Topics are bootstrapped from `infra/kafka/topics.yaml`, JSON Schemas are registered from `infra/kafka/schemas/`, and Kafka Connect lands replayable source-topic events into MinIO Bronze.
+The ingestion profile turns the generated event contracts into a real Kafka surface. Kafka topics, Schema Registry subjects, Kafka UI inspection, and Kafka Connect Bronze landing together make the source-event path replayable.
+
+![Ingestion overview](architecture/diagrams/mermaid/02-ingestion.png)
 
 Key docs:
 
@@ -156,11 +160,9 @@ Key docs:
 
 ### Lakehouse
 
-The lakehouse profile provides MinIO object storage, a Hive Metastore backed by Postgres, and Trino SQL access. Bronze contains source-fidelity snapshots and event logs; Spark writes curated Iceberg Silver and Gold tables into the same object-store ecosystem.
+The lakehouse profile is the shared storage and SQL foundation for the platform. MinIO, Hive Metastore, shared Postgres, Iceberg, and Trino give Spark and Kafka Connect a common Bronze-to-Gold boundary.
 
-| Note | Implementation | Why it matters |
-| --- | --- | --- |
-| Local reproducibility | `data/gold/vina_bim_shop.duckdb` can be rebuilt locally without relying on all runtime services. | A single local DuckDB file is easy to inspect in DBeaver and package as evidence. |
+![Lakehouse overview](architecture/diagrams/mermaid/03-lakehouse.png)
 
 Key docs:
 
@@ -169,17 +171,9 @@ Key docs:
 
 ### Batch
 
-Spark is the distributed batch implementation for Bronze-to-Silver-to-Gold processing over MinIO/Iceberg. dbt-DuckDB remains the local compatibility and parity-testing path. All Gold row counts and KPI values match between dbt-DuckDB and Spark/Iceberg/Trino in the audited evidence.
+Spark owns the reconciled Bronze-to-Silver-to-Gold batch path over MinIO and Iceberg. Trino serves Spark Gold as the canonical SQL surface, while dbt-DuckDB parity and Executive Mart exports provide local verification and packaging.
 
-Serving truth policy:
-
-| Surface | Best for | Truth role | Storage |
-| --- | --- | --- | --- |
-| Trino SQL Serving | Shared SQL over current Iceberg Gold tables | Canonical online query surface | Service-backed; reads MinIO/Iceberg through Hive. |
-| DuckDB Executive Mart | Fast local slicing, offline demos, spreadsheet-style investigation | Portable copy of canonical Gold; stale until regenerated. | `data/gold/vina_bim_shop_executive.duckdb` |
-| dbt-DuckDB Parity Oracle | Data engineering regression checks | Independent local rebuild used to compare row counts and KPIs. | `data/gold/vina_bim_shop.duckdb` |
-
-The DuckDB Executive Mart is a Trino Gold snapshot export, not a second transformation layer.
+![Batch overview](architecture/diagrams/mermaid/04-batch.png)
 
 Key docs:
 
@@ -190,13 +184,9 @@ Key docs:
 
 ### Streaming
 
-Flink consumes Kafka source topics, applies event-time logic, and emits derived topics for realtime serving. The streaming path is intentionally fresh and provisional; it supports operations and live dashboarding, not final financial reporting.
+Flink consumes Kafka source topics with event-time logic and emits narrow serving contracts for metrics, corrections, and operational alerts. The streaming layer is intentionally fresh and provisional, not the final financial truth.
 
-Derived topic contracts:
-
-- `realtime_commerce_metrics_1m`
-- `realtime_ops_alerts`
-- `realtime_metric_corrections`
+![Streaming overview](architecture/diagrams/mermaid/05-streaming.png)
 
 Key docs:
 
@@ -205,7 +195,9 @@ Key docs:
 
 ### Serving
 
-Serving is split by freshness and truth role. Trino serves canonical SQL over Spark-written Gold tables. Pinot serves low-latency realtime OLAP over Flink-derived topics. DuckDB provides portable local files for parity checks and executive review.
+Serving is split by freshness and truth role. Pinot answers low-latency questions over Flink-derived topics, while Trino answers canonical SQL over Spark-written Gold tables and can export portable DuckDB copies.
+
+![Serving overview](architecture/diagrams/mermaid/06-serving.png)
 
 Schema design is part of the serving implementation, not just documentation. The committed model artifacts are:
 
@@ -219,9 +211,23 @@ Key docs:
 - [Pinot serving deliverable](deliverables/07_pinot_serving.md)
 - [Pinot evidence](evidence/07_pinot_serving/)
 
+### Local Analytics
+
+DuckDB provides the portable local analytics layer in two forms: the dbt-DuckDB parity oracle rebuilt from generated raw data, and the Executive Mart exported from Trino Gold. These files support regression checks, offline inspection, and coursework evidence without requiring the full distributed stack to stay online.
+
+![Local analytics overview](architecture/diagrams/mermaid/07-local-analytics.png)
+
+Key docs:
+
+- [DuckDB/dbt local analytics deliverable](deliverables/10_duckdb_dbt_local_analytics.md)
+- [dbt parity report](evidence/05_spark_batch/dbt_parity_report.md)
+- [Schema design deliverable and Data Dictionary](deliverables/02_schema_design.md)
+
 ### Orchestration
 
-Airflow owns the control-plane workflow for local evidence runs: topic bootstrap, hourly batch lakehouse processing, Pinot bootstrap, reconciliation reporting, local evidence generation, and DataHub ingestion. Great Expectations publishes validation reports through the GX Data Docs static server.
+Airflow owns the control-plane workflows for staged local runs: bootstrap, batch windows, reconciliation, evidence packaging, and DataHub ingestion. Great Expectations applies the project quality policy and publishes GX Data Docs, while Flink runtime remains outside Airflow supervision in v1.
+
+![Orchestration overview](architecture/diagrams/mermaid/08-orchestration.png)
 
 Key docs:
 
@@ -230,9 +236,9 @@ Key docs:
 
 ### Governance
 
-DataHub is used as the local governance layer after meaningful platform assets exist. The evidence records metadata emission for Kafka, MinIO/S3 prefixes, Trino/Iceberg, dbt, Spark lineage, Flink lineage, GX assertions, tags, and representative dataset verification.
+DataHub catalogs the same assets the platform actually produces: Kafka topics, MinIO prefixes, Trino/Iceberg tables, dbt models, Spark and Flink lineage, and GX assertions. Governance proof relies on GMS and GraphQL verification plus committed evidence artifacts, not only the frontend UI.
 
-Known limitation: local DataHub frontend did not render the fuller graph view during capture, even though the repo evidence supports that metadata emission occurred. The authoritative proof is paired from GMS health, GraphQL/entity verification, dataset counts, tag counts, and the final DataHub evidence summary.
+![Governance overview](architecture/diagrams/mermaid/09-governance.png)
 
 Key docs:
 
