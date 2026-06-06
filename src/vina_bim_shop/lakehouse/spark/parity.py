@@ -1,17 +1,23 @@
 from __future__ import annotations
 
+import importlib
 import json
 import os
 from pathlib import Path
 from typing import Any
 
-import duckdb
-
 from vina_bim_shop.lakehouse.spark.constants import REQUIRED_GOLD_TABLES
 from vina_bim_shop.lakehouse.spark.trino import execute_trino_query
 
 
-def _duckdb_scalar(connection: duckdb.DuckDBPyConnection, query: str) -> Any:
+def _load_duckdb() -> Any:
+    try:
+        return importlib.import_module("duckdb")
+    except ModuleNotFoundError as exc:
+        raise RuntimeError("DuckDB parity checks require project dependencies; run via `uv run`.") from exc
+
+
+def _duckdb_scalar(connection: Any, query: str) -> Any:
     return connection.execute(query).fetchone()[0]
 
 
@@ -30,6 +36,7 @@ def run_parity_checks(
     user: str = os.getenv("VBS_TRINO_USER", "vina_analyst"),
 ) -> dict[str, Any]:
     comparisons: list[dict[str, Any]] = []
+    duckdb = _load_duckdb()
     duckdb_connection = duckdb.connect(str(duckdb_path), read_only=True)
     try:
         for table_name in REQUIRED_GOLD_TABLES:
