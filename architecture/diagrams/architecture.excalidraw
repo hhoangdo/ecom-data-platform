@@ -381,11 +381,16 @@
         "type": 3
       },
       "seed": 9021,
-      "version": 1225,
-      "versionNonce": 2139865073,
+      "version": 1226,
+      "versionNonce": 1068264535,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1780579729764,
+      "boundElements": [
+        {
+          "id": "minio_to_duckdb",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1780761691499,
       "link": null,
       "locked": false,
       "index": "a0022"
@@ -2845,8 +2850,8 @@
         "type": 3
       },
       "seed": 9137,
-      "version": 1370,
-      "versionNonce": 1757770270,
+      "version": 1379,
+      "versionNonce": 2002406551,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2872,9 +2877,13 @@
         {
           "id": "trino_to_datahub",
           "type": "arrow"
+        },
+        {
+          "id": "minio_to_duckdb",
+          "type": "arrow"
         }
       ],
-      "updated": 1780584656249,
+      "updated": 1780761733823,
       "link": null,
       "locked": false,
       "index": "a0138"
@@ -2920,8 +2929,8 @@
     {
       "id": "duckdb_box",
       "type": "rectangle",
-      "x": 1403.9047555964669,
-      "y": 631.9446235292652,
+      "x": 1405.4046945613106,
+      "y": 667.9446082704761,
       "width": 255,
       "height": 85,
       "angle": 0,
@@ -2938,8 +2947,8 @@
         "type": 3
       },
       "seed": 9141,
-      "version": 1316,
-      "versionNonce": 2105986626,
+      "version": 1352,
+      "versionNonce": 2075110489,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2959,7 +2968,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780584641353,
+      "updated": 1780761733823,
       "link": null,
       "locked": false,
       "index": "a0142"
@@ -2967,9 +2976,9 @@
     {
       "id": "duckdb_box_text",
       "type": "text",
-      "x": 1433.2297555964672,
-      "y": 653.1946235292652,
-      "width": 196.35000000000002,
+      "x": 1435.0187692683419,
+      "y": 689.1946082704761,
+      "width": 195.7718505859375,
       "height": 42.5,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -2983,11 +2992,11 @@
       "frameId": null,
       "roundness": null,
       "seed": 9143,
-      "version": 1310,
-      "versionNonce": 1934929663,
+      "version": 1339,
+      "versionNonce": 849444983,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1780579345398,
+      "updated": 1780761694788,
       "link": null,
       "locked": false,
       "index": "a0144",
@@ -3176,9 +3185,9 @@
       "id": "hive_to_trino",
       "type": "arrow",
       "x": 886.5326787528771,
-      "y": 1141.3399948086287,
+      "y": 1141.339994808629,
       "width": 504.5081118752149,
-      "height": 146.55245543894148,
+      "height": 146.5524554389417,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -3191,8 +3200,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9153,
-      "version": 694,
-      "versionNonce": 1875145502,
+      "version": 698,
+      "versionNonce": 177635065,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3200,7 +3209,7 @@
           "id": "hive_to_trino_label"
         }
       ],
-      "updated": 1780584656252,
+      "updated": 1780761733825,
       "link": null,
       "locked": false,
       "index": "a0154",
@@ -3211,11 +3220,11 @@
         ],
         [
           131.89047418170196,
-          -30.93436578362457
+          -30.9343657836248
         ],
         [
           504.5081118752149,
-          -146.55245543894148
+          -146.5524554389417
         ]
       ],
       "lastCommittedPoint": null,
@@ -3279,10 +3288,10 @@
     {
       "id": "trino_to_exec",
       "type": "arrow",
-      "x": 1656.8867342395242,
-      "y": 982.0818089121577,
+      "x": 1656.8867342395245,
+      "y": 982.3653244346705,
       "width": 298.00071699775003,
-      "height": 122.61297994926076,
+      "height": 122.77676892460852,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -3295,8 +3304,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9157,
-      "version": 3498,
-      "versionNonce": 580606110,
+      "version": 3502,
+      "versionNonce": 160086329,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3304,7 +3313,7 @@
           "id": "trino_to_exec_label"
         }
       ],
-      "updated": 1780584757305,
+      "updated": 1780761733824,
       "link": null,
       "locked": false,
       "index": "a0158",
@@ -3315,7 +3324,7 @@
         ],
         [
           298.00071699775003,
-          -122.61297994926076
+          -122.77676892460852
         ]
       ],
       "lastCommittedPoint": null,
@@ -3379,10 +3388,10 @@
     {
       "id": "minio_to_duckdb",
       "type": "arrow",
-      "x": 694.4790870719235,
-      "y": 830.3709702296452,
-      "width": 701.3725994155677,
-      "height": 153.90531468374434,
+      "x": 1481.6506397512776,
+      "y": 940.7498443193626,
+      "width": 71.3825098362604,
+      "height": 184.60255582519574,
       "angle": 0,
       "strokeColor": "#2563eb",
       "backgroundColor": "transparent",
@@ -3393,10 +3402,12 @@
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "roundness": null,
+      "roundness": {
+        "type": 2
+      },
       "seed": 9161,
-      "version": 928,
-      "versionNonce": 1222139665,
+      "version": 1419,
+      "versionNonce": 1013122455,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3404,7 +3415,7 @@
           "id": "minio_to_duckdb_label"
         }
       ],
-      "updated": 1780597629957,
+      "updated": 1780761733826,
       "link": null,
       "locked": false,
       "index": "a0162",
@@ -3414,24 +3425,24 @@
           0
         ],
         [
-          326.67890975207854,
-          -66.56768186495958
+          -53.374820718943056,
+          -93.01371930070559
         ],
         [
-          701.3725994155677,
-          -153.90531468374434
+          18.00768911731734,
+          -184.60255582519574
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
-        "elementId": "minio_box",
-        "focus": 0.3108748138796043,
-        "gap": 3.320042043213334
+        "elementId": "trino_box",
+        "focus": -0.09530252468509291,
+        "gap": 1
       },
       "endBinding": {
         "elementId": "duckdb_box",
-        "focus": 0.40951973209442705,
-        "gap": 8.053069108975706
+        "focus": -0.014776095636375964,
+        "gap": 9.066366974211519
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -3440,10 +3451,10 @@
     {
       "id": "minio_to_duckdb_label",
       "type": "text",
-      "x": 906.9105450417754,
-      "y": 754.4282883646856,
-      "width": 228.49490356445312,
-      "height": 18.75,
+      "x": 1353.0208522964947,
+      "y": 828.986125018657,
+      "width": 150.5099334716797,
+      "height": 37.5,
       "angle": 0,
       "strokeColor": "#2563eb",
       "backgroundColor": "transparent",
@@ -3456,8 +3467,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9163,
-      "version": 11,
-      "versionNonce": 380475007,
+      "version": 20,
+      "versionNonce": 431137207,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3465,11 +3476,11 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780597629957,
+      "updated": 1780761733824,
       "link": null,
       "locked": false,
       "index": "a0164",
-      "text": "Trino Gold snapshot export",
+      "text": "Trino Gold snapshot\nexport",
       "fontSize": 15,
       "fontFamily": 5,
       "textAlign": "left",
@@ -3483,10 +3494,10 @@
     {
       "id": "duckdb_to_exec",
       "type": "arrow",
-      "x": 1667.4833202183854,
-      "y": 677.9421618219407,
-      "width": 287.63730469273105,
-      "height": 138.40834095309992,
+      "x": 1667.9300681982556,
+      "y": 698.7230070023899,
+      "width": 287.4158917625075,
+      "height": 117.72800932354505,
       "angle": 0,
       "strokeColor": "#2563eb",
       "backgroundColor": "transparent",
@@ -3499,8 +3510,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9165,
-      "version": 3646,
-      "versionNonce": 1208984258,
+      "version": 3705,
+      "versionNonce": 172076151,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3508,7 +3519,7 @@
           "id": "duckdb_to_exec_label"
         }
       ],
-      "updated": 1780584767704,
+      "updated": 1780761733826,
       "link": null,
       "locked": false,
       "index": "a0166",
@@ -3518,24 +3529,24 @@
           0
         ],
         [
-          83.98326200465317,
-          40.186636986709004
+          94.03639195447045,
+          38.905761288681674
         ],
         [
-          287.63730469273105,
-          138.40834095309992
+          287.4158917625075,
+          117.72800932354505
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "duckdb_box",
-        "focus": -0.5952783496334119,
-        "gap": 8.578564621918531
+        "focus": -0.7095567591569488,
+        "gap": 8.031407164972734
       },
       "endBinding": {
         "elementId": "exec_box",
-        "focus": -0.3224961272133041,
-        "gap": 2.6497983611463916
+        "focus": -0.2561172369744477,
+        "gap": 2.5309309651310667
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -3544,8 +3555,8 @@
     {
       "id": "duckdb_to_exec_label",
       "type": "text",
-      "x": 1340,
-      "y": 435,
+      "x": 1698.8166112147378,
+      "y": 708.7537988086497,
       "width": 105.29994201660156,
       "height": 18.75,
       "angle": 0,
@@ -3560,8 +3571,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9167,
-      "version": 2,
-      "versionNonce": 66168492,
+      "version": 3,
+      "versionNonce": 15600887,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3569,7 +3580,7 @@
           "type": "arrow"
         }
       ],
-      "updated": 1780577486285,
+      "updated": 1780761697293,
       "link": null,
       "locked": false,
       "index": "a0168",
@@ -3687,10 +3698,10 @@
     {
       "id": "trino_to_bi",
       "type": "arrow",
-      "x": 1608.6924913493242,
-      "y": 939.3951890870472,
-      "width": 389.6135473903921,
-      "height": 313.336791369077,
+      "x": 1607.0240568039367,
+      "y": 940.7498443193626,
+      "width": 392.46024247667106,
+      "height": 315.6359277168367,
       "angle": 0,
       "strokeColor": "#757575",
       "backgroundColor": "transparent",
@@ -3703,8 +3714,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9177,
-      "version": 3631,
-      "versionNonce": 1074377794,
+      "version": 3661,
+      "versionNonce": 1177627161,
       "isDeleted": false,
       "boundElements": [
         {
@@ -3712,7 +3723,7 @@
           "id": "trino_to_bi_label"
         }
       ],
-      "updated": 1780584771393,
+      "updated": 1780761733825,
       "link": null,
       "locked": false,
       "index": "a0178",
@@ -3722,24 +3733,24 @@
           0
         ],
         [
-          113.13380627846686,
-          -91.56692239611812
+          98.30214927112002,
+          -80.92160814601164
         ],
         [
-          389.6135473903921,
-          -313.336791369077
+          392.46024247667106,
+          -315.6359277168367
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "trino_box",
-        "focus": 0.1290922656155574,
-        "gap": 1.7077726088016334
+        "focus": 0.13516895344657323,
+        "gap": 1
       },
       "endBinding": {
         "elementId": "bi_box",
-        "focus": 0.15518792007174437,
-        "gap": 1.3156858700154999
+        "focus": 0.15316761966843812,
+        "gap": 1
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -4535,10 +4546,10 @@
     {
       "id": "trino_to_datahub",
       "type": "arrow",
-      "x": 1412.9137012508418,
-      "y": 1036.1721274486029,
-      "width": 767.7561109012454,
-      "height": 356.5650823590099,
+      "x": 1413.2268643589514,
+      "y": 1036.0283296181342,
+      "width": 768.0692740093548,
+      "height": 356.70888018947835,
       "angle": 0,
       "strokeColor": "#6d28d9",
       "backgroundColor": "transparent",
@@ -4551,8 +4562,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9213,
-      "version": 1320,
-      "versionNonce": 1913349214,
+      "version": 1324,
+      "versionNonce": 1211880633,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4560,7 +4571,7 @@
           "id": "trino_to_datahub_label"
         }
       ],
-      "updated": 1780584665864,
+      "updated": 1780761733825,
       "link": null,
       "locked": false,
       "index": "a0214",
@@ -4570,12 +4581,12 @@
           0
         ],
         [
-          -573.2285478627358,
-          263.1810149369485
+          -573.5417109708454,
+          263.32481276741714
         ],
         [
-          -767.7561109012454,
-          356.5650823590099
+          -768.0692740093548,
+          356.70888018947835
         ]
       ],
       "lastCommittedPoint": null,
@@ -4740,9 +4751,9 @@
       "id": "trino_to_evidence",
       "type": "arrow",
       "x": 1531.5261699048442,
-      "y": 1038.6924265560492,
-      "width": 290.2974198913123,
-      "height": 407.30905015628855,
+      "y": 1038.692426556049,
+      "width": 290.29741989131253,
+      "height": 407.309050156289,
       "angle": 0,
       "strokeColor": "#0e7490",
       "backgroundColor": "transparent",
@@ -4755,8 +4766,8 @@
       "frameId": null,
       "roundness": null,
       "seed": 9221,
-      "version": 423,
-      "versionNonce": 1262772062,
+      "version": 427,
+      "versionNonce": 1161705433,
       "isDeleted": false,
       "boundElements": [
         {
@@ -4764,7 +4775,7 @@
           "id": "trino_to_evidence_label"
         }
       ],
-      "updated": 1780584656253,
+      "updated": 1780761733825,
       "link": null,
       "locked": false,
       "index": "a0222",
@@ -4774,8 +4785,8 @@
           0
         ],
         [
-          -290.2974198913123,
-          407.30905015628855
+          -290.29741989131253,
+          407.309050156289
         ]
       ],
       "lastCommittedPoint": null,
