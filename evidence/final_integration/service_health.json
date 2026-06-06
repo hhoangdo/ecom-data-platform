@@ -1,0 +1,61 @@
+{
+  "captured_at": "2026-06-02T19:10:24.8340823Z",
+  "compose_project": "vina-bim-shop",
+  "evidence_basis": "Staged integration evidence from 2026-06-02 plus targeted repair verification on 2026-06-03.",
+  "profiles": {
+    "ingestion": {
+      "kafka": "healthy",
+      "schema_registry": "healthy",
+      "kafka_connect": "healthy",
+      "kafka_ui": "running"
+    },
+    "lakehouse": {
+      "minio": "healthy",
+      "lakehouse_postgres": "healthy",
+      "hive_metastore": "healthy",
+      "trino": "healthy",
+      "trino_worker": "healthy"
+    },
+    "batch": {
+      "spark_master": "healthy",
+      "spark_worker": "healthy",
+      "spark_history_server": "healthy"
+    },
+    "streaming": {
+      "flink_jobmanager": "healthy",
+      "flink_taskmanager": "healthy",
+      "flink_job_submit": "completed"
+    },
+    "serving": {
+      "pinot_zookeeper": "healthy",
+      "pinot_controller": "healthy",
+      "pinot_broker": "healthy",
+      "pinot_server": "healthy"
+    },
+    "orchestration": {
+      "airflow_webserver": "healthy",
+      "airflow_scheduler": "healthy",
+      "gx_docs": "healthy"
+    },
+    "governance": {
+      "datahub_opensearch": "healthy",
+      "datahub_gms": "healthy",
+      "datahub_frontend": "healthy",
+      "datahub_actions": "running"
+    }
+  },
+  "verified_endpoints": {
+    "schema_registry_subjects": [
+      "catalog_events-value",
+      "commerce_events-value",
+      "dead_letter_events-value",
+      "fulfillment_events-value",
+      "ops_events-value"
+    ],
+    "spark_history_completed_applications": 4,
+    "spark_history_latest_app_id": "app-20260602180618-0003",
+    "latest_datahub_ingestion_run": "adr08_datahub_20260603T003300Z",
+    "datahub_gms_health_status_code": 200,
+    "trino_version": "476"
+  }
+}

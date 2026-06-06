@@ -1,0 +1,84 @@
+{
+  "artifacts": [
+    "quality/gold_trino_contract.json"
+  ],
+  "blocks_dag": false,
+  "details": {
+    "results": [
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "trino_runtime-gold_validation_asset",
+            "column": "gold_table_count",
+            "min_value": 1.0
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_be_between"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 1,
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_index_list": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "unexpected_percent_total": 0.0
+        },
+        "success": true
+      },
+      {
+        "exception_info": {
+          "exception_message": null,
+          "exception_traceback": null,
+          "raised_exception": false
+        },
+        "expectation_config": {
+          "kwargs": {
+            "batch_id": "trino_runtime-gold_validation_asset",
+            "column": "fact_order_rows",
+            "min_value": 1.0
+          },
+          "meta": {},
+          "severity": "critical",
+          "type": "expect_column_values_to_be_between"
+        },
+        "meta": {},
+        "result": {
+          "element_count": 1,
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "partial_unexpected_counts": [],
+          "partial_unexpected_index_list": [],
+          "partial_unexpected_list": [],
+          "unexpected_count": 0,
+          "unexpected_percent": 0.0,
+          "unexpected_percent_nonmissing": 0.0,
+          "unexpected_percent_total": 0.0
+        },
+        "success": true
+      }
+    ]
+  },
+  "layer": "gold_trino",
+  "requires_quarantine": false,
+  "severity": "error",
+  "status": "success",
+  "success": true,
+  "suite_name": "gold_trino_contract",
+  "summary": "2/2 expectations passed.",
+  "window": {
+    "end_ts": "2026-04-26T01:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T00:00:00Z"
+  }
+}

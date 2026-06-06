@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vina-bim-shop.local/schemas/commerce_events-value.schema.json",
+  "title": "commerce_events value",
+  "type": "object",
+  "required": ["event_id", "event_type", "event_topic", "schema_version", "event_timestamp", "created_ts", "producer", "correlation_ids", "payload"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "event_type": {"type": "string", "minLength": 1},
+    "event_topic": {"const": "commerce_events"},
+    "schema_version": {"type": "integer", "minimum": 1},
+    "event_timestamp": {"type": "string", "minLength": 1},
+    "created_ts": {"type": "string", "minLength": 1},
+    "producer": {"type": "string", "minLength": 1},
+    "correlation_ids": {"type": "object"},
+    "payload": {"type": "object"}
+  },
+  "additionalProperties": true
+}

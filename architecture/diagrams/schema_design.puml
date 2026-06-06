@@ -1,0 +1,63 @@
+@startuml
+title Vina Bim Shop Schema Design — Runnable Stack
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam wrapWidth 180
+
+package "Bronze: source fidelity" as Bronze {
+  database "Periodic table-state exports\nraw_customers\nraw_sellers\nraw_products\nraw_product_category_map\nraw_inventory_snapshots\nraw_promotions\nraw_orders\nraw_order_items\nraw_payments\nraw_shipments" as RawSnapshots
+  database "Kafka JSON envelopes\nraw_kafka_commerce_events\nraw_kafka_catalog_events\nraw_kafka_fulfillment_events\nraw_kafka_ops_events" as RawEvents
+  database "Quarantine and DLQ\nraw_bad_events\nraw_bad_snapshots\ndead_letter_events" as RawBad
+}
+
+package "Silver: cleaned and flattened" as Silver {
+  database "Snapshot staging\nstg_customers\nstg_sellers\nstg_products\nstg_product_category_map\nstg_inventory_snapshots\nstg_promotions\nstg_orders\nstg_order_items\nstg_payments\nstg_shipments" as StgSnapshots
+  database "Event staging\nstg_commerce_events\nstg_catalog_events\nstg_fulfillment_events\nstg_ops_events" as StgEvents
+}
+
+package "Gold reconciled SQL: snowflake/star hybrid" as Gold {
+  database "Dimensions\ndim_customer\ndim_seller\ndim_product\ndim_category\ndim_date\ndim_payment_method\ndim_order_status\ndim_shipment_status\ndim_shipping_method\ndim_promotion\nbridge_product_category" as Dims
+  database "Facts\nfact_order\nfact_order_item\nfact_payment_attempt\nfact_shipment\nfact_inventory_snapshot\nfact_promotion_application" as Facts
+  database "Serving and features\nobt_order_performance\nagg_hourly_reconciled_kpi\nfeat_customer_90d\nfeat_stream_60m\nfeat_customer_unified" as Serving
+}
+
+package "Realtime serving — runnable" as Realtime {
+  component "Flink event-time metrics\nsimple watermark updates" as FlinkMetrics
+  queue "Derived Kafka topics" as DerivedKafka
+  database "Apache Pinot\npinot_realtime_commerce_metrics_1m\npinot_realtime_ops_alerts\npinot_realtime_metric_corrections" as Pinot
+}
+
+package "Local coursework mart" as Local {
+  database "DuckDB executive mart\nTrino Gold snapshot export\n(local portability path;\n Spark/Trino is canonical)" as DuckDB
+}
+
+RawSnapshots --> StgSnapshots : standardize, dedupe, type cleanup
+RawEvents --> StgEvents : flatten envelopes, preserve schema_version
+RawEvents --> RawBad : malformed envelope quarantine
+RawSnapshots --> RawBad : malformed snapshot quarantine
+
+StgSnapshots --> Dims : normalized dimensions and bridge
+StgSnapshots --> Facts : reconciled facts
+StgEvents --> Serving : streaming features and conversion signals
+Dims --> Facts : surrogate keys
+Facts --> Serving : OBT, hourly KPIs, features
+
+RawEvents --> FlinkMetrics : realtime Kafka consumption
+FlinkMetrics --> DerivedKafka : derived realtime metrics and alerts
+DerivedKafka --> Pinot : fresh operational metrics and alerts (live)
+Serving --> DuckDB : local executive export
+
+note right of Pinot
+Apache Pinot is fresh but provisional.
+Gold/Trino hourly SQL is canonical after reconciliation.
+Flink -> Derived Kafka -> Pinot path is live via compose profiles.
+end note
+
+note bottom of Serving
+obt_order_performance is one row per order.
+agg_hourly_reconciled_kpi is the hourly comparison target for Pinot.
+See docker-compose.yml profiles: ingestion, lakehouse, batch, streaming, serving.
+end note
+
+@enduml

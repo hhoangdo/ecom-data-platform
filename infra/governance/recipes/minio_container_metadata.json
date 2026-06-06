@@ -1,0 +1,82 @@
+[
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "datasetProperties",
+    "aspect": {
+      "value": "{\"customProperties\": {}, \"name\": \"bronze.batch\", \"description\": \"MinIO Bronze batch landing prefix for source snapshots.\", \"tags\": []}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "status",
+    "aspect": {
+      "value": "{\"removed\": false}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "datasetProperties",
+    "aspect": {
+      "value": "{\"customProperties\": {}, \"name\": \"bronze.events\", \"description\": \"MinIO Bronze event landing prefix for Kafka topic payloads.\", \"tags\": []}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "status",
+    "aspect": {
+      "value": "{\"removed\": false}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,silver.warehouse,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "datasetProperties",
+    "aspect": {
+      "value": "{\"customProperties\": {}, \"name\": \"silver.warehouse\", \"description\": \"MinIO Iceberg warehouse prefix backing shared Silver and Gold tables.\", \"tags\": []}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,silver.warehouse,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "status",
+    "aspect": {
+      "value": "{\"removed\": false}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,checkpoints.spark-events,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "datasetProperties",
+    "aspect": {
+      "value": "{\"customProperties\": {}, \"name\": \"checkpoints.spark-events\", \"description\": \"MinIO checkpoint prefix for Spark event logs and recovery state.\", \"tags\": []}",
+      "contentType": "application/json"
+    }
+  },
+  {
+    "entityType": "dataset",
+    "entityUrn": "urn:li:dataset:(urn:li:dataPlatform:s3,checkpoints.spark-events,PROD)",
+    "changeType": "UPSERT",
+    "aspectName": "status",
+    "aspect": {
+      "value": "{\"removed\": false}",
+      "contentType": "application/json"
+    }
+  }
+]

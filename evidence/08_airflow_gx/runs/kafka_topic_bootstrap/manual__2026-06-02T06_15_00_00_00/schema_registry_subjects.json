@@ -1,0 +1,17 @@
+{
+  "catalog_events-value": {
+    "id": 2
+  },
+  "commerce_events-value": {
+    "id": 1
+  },
+  "dead_letter_events-value": {
+    "id": 5
+  },
+  "fulfillment_events-value": {
+    "id": 3
+  },
+  "ops_events-value": {
+    "id": 4
+  }
+}

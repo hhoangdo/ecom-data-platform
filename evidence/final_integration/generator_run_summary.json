@@ -1,0 +1,22 @@
+{
+  "scale": "medium",
+  "seed": 42,
+  "mode": "full",
+  "row_counts": {
+    "customers": 12000,
+    "sellers": 600,
+    "products": 6000,
+    "product_category_map": 7340,
+    "inventory_snapshots": 60000,
+    "promotions": 80,
+    "orders": 45000,
+    "order_items": 168496,
+    "payments": 45000,
+    "shipments": 45000,
+    "bad_snapshots": 4,
+    "kafka_events_total": 639541
+  },
+  "kafka_topics": ["commerce_events", "catalog_events", "fulfillment_events", "ops_events", "dead_letter_events"],
+  "schema_registry_subjects": ["catalog_events-value", "commerce_events-value", "dead_letter_events-value", "fulfillment_events-value", "ops_events-value"],
+  "generated_at": "2026-06-02T11:14:00Z"
+}

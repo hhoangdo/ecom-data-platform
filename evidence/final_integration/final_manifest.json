@@ -1,0 +1,167 @@
+{
+  "run_id": "20260602T144200Z",
+  "generator_scale": "smoke",
+  "generator_seed": 42,
+  "generator_stats": {
+    "customers": 800,
+    "orders": 1800,
+    "order_items": 6891,
+    "inventory_snapshots": 1200,
+    "products": 600,
+    "sellers": 80,
+    "shipments": 1800,
+    "payments": 1800,
+    "promotions": 16,
+    "product_category_map": 729,
+    "kafka_events": 24859
+  },
+  "profiles_tested": [
+    "ingestion",
+    "lakehouse",
+    "batch",
+    "streaming",
+    "serving",
+    "orchestration",
+    "governance"
+  ],
+  "all_profile_started": false,
+  "staged_execution": true,
+  "max_containers": 11,
+  "spark_worker_config": "2 cores, 2.0 GiB RAM",
+  "end_to_end_path": "generator -> Kafka -> MinIO Bronze -> Spark -> Iceberg Gold -> Trino -> Flink -> Pinot -> Airflow/GX -> DataHub -> Evidence",
+  "end_to_end_verified": true,
+  "spark_job": {
+    "catalog": "hive (via Hive Metastore)",
+    "mode": "backfill",
+    "window": "2026-04-21T00:00:00Z to 2026-05-04T00:00:00Z",
+    "silver_tables": 14,
+    "gold_tables": 22,
+    "status": "completed; Spark History event logs verified"
+  },
+  "trino_verification": {
+    "gold_tables_visible": 22,
+    "fact_order_rows": 1800,
+    "fact_order_item_rows": 6756,
+    "agg_hourly_reconciled_kpi_rows": 164,
+    "feat_stream_60m_rows": 4652,
+    "active_workers": 1,
+    "dedicated_worker_service": true,
+    "status": "canonical truth verified after Trino worker repair"
+  },
+  "flink_verification": {
+    "running_jobs": 2,
+    "jobs": [
+      "vina-bim-shop-commerce-metrics",
+      "vina-bim-shop-ops-alerts"
+    ],
+    "status": "both RUNNING"
+  },
+  "pinot_verification": {
+    "controllers": 1,
+    "brokers": 1,
+    "servers": 1,
+    "all_alive": true,
+    "tables_bootstrapped": true,
+    "status": "cluster healthy, tables bootstrapped"
+  },
+  "airflow_verification": {
+    "dags": 6,
+    "active": 1,
+    "paused": 5,
+    "latest_datahub_ingestion_run": "adr08_datahub_20260603T003300Z",
+    "status": "DAG overview verified with all required DAGs loaded; datahub_ingestion repair run succeeded"
+  },
+  "gx_verification": {
+    "bronze_raw": "1/2 passed (warning)",
+    "gold_trino_contract": "2/2 passed (success)",
+    "status": "validation docs served with expectation-level detail pages"
+  },
+  "datahub_verification": {
+    "gms": "healthy",
+    "frontend": "accessible (:9002)",
+    "latest_successful_run": "adr08_datahub_20260603T003300Z",
+    "datasets_emitted": 109,
+    "verified_representative_datasets": 4,
+    "verified_tags": 6,
+    "status": "direct dataset UI verified; GraphQL evidence confirms catalog, lineage, assertion, and tag coverage despite local search/lineage UI cold-start limitations"
+  },
+  "dbt_parity": {
+    "result": "119/119 PASS (0 errors, 0 warnings)",
+    "models": 52,
+    "tests": 66,
+    "custom_tests": [
+      "assert_order_item_totals_reconcile",
+      "assert_fact_order_reconciles_to_stg_orders"
+    ],
+    "all_checks_pass": true
+  },
+  "screenshots": {
+    "captured": 12,
+    "location": "evidence/final_integration/ui_screenshots/",
+    "files": [
+      "01_kafka_ui.png",
+      "02_schema_registry.png",
+      "03_kafka_connect.png",
+      "04_minio_console.png",
+      "05_trino_ui.png",
+      "06_spark_master_ui.png",
+      "07_spark_history_server.png",
+      "08_flink_ui.png",
+      "09_pinot_ui.png",
+      "10_airflow_ui.png",
+      "11_gx_data_docs.png",
+      "12_datahub_ui.png"
+    ],
+    "verified": true,
+    "capture_method": "local npx Playwright flow (authenticated content captured after repair verification)"
+  },
+  "issues_encountered": {
+    "trino_worker_registration": "Fixed: discovery.uri now uses the trino container hostname and a dedicated trino-worker service is present.",
+    "spark_history_event_logs": "Fixed: spark-submit now always sets spark.eventLog.enabled=true and spark.eventLog.dir=s3a://checkpoints/spark-events.",
+    "airflow_datahub_cli": "Fixed: the Airflow image was rebuilt with the DataHub CLI and Airflow plugin so the governance DAG can execute recipes.",
+    "airflow_webserver_startup_timeout": "Fixed: the Airflow webserver master and worker timeouts were raised to 300 seconds for the heavy local DataHub-plugin image.",
+    "datahub_recipe_compatibility": "Fixed: Kafka, MinIO, Trino, and dbt recipes were updated to match the current DataHub CLI contract.",
+    "datahub_custom_lineage": "Fixed: custom upstream lineage MCPs now set DatasetLineageTypeClass.TRANSFORMED."
+  },
+  "code_changes": {
+    "docker-compose.yml": [
+      "Added a dedicated trino-worker service for Trino 476.",
+      "Raised Airflow webserver master and worker timeouts to 300 seconds for the heavy local plugin image."
+    ],
+    "infra/lakehouse/trino/etc/": [
+      "Switched discovery.uri to http://trino:8080.",
+      "Added worker-specific Trino config and node properties."
+    ],
+    "src/vina_bim_shop/lakehouse/spark/runner.py": [
+      "Added explicit Spark event-log configuration to every spark-submit command."
+    ],
+    "src/vina_bim_shop/orchestration/runtime.py": [
+      "Extended DataHub ingestion to include MinIO metadata and repo-mounted recipe fallbacks.",
+      "Preserved latest GX quality reports when rendering DataHub ingestion docs."
+    ],
+    "src/vina_bim_shop/quality/reports.py": [
+      "Added expectation-level GX Data Docs detail pages."
+    ],
+    "infra/governance/recipes/": [
+      "Updated Kafka, MinIO, Trino, and dbt recipes for the current DataHub CLI.",
+      "Added minio_container_metadata.json for S3/MinIO asset seeding."
+    ],
+    "src/vina_bim_shop/datahub_lineage/emitter.py": [
+      "Added explicit upstream lineage types for custom lineage MCPs."
+    ]
+  },
+  "artifacts": [
+    "service_health.json",
+    "final_manifest.json",
+    "generator_run_summary.json",
+    "row_counts.csv",
+    "reconciliation_report.md",
+    "datahub_lineage.md",
+    "ui_screenshots/ (12 files)",
+    "query_outputs/trino_canonical_kpi.sql",
+    "scripts/qa/reset_all.py",
+    "scripts/qa/upload_bronze.sh"
+  ],
+  "repair_completed_at": "2026-06-05T12:59:39.6138525Z",
+  "evidence_basis": "Staged integration evidence from 2026-06-02 plus targeted repair verification on 2026-06-03 and screenshot/evidence refresh on 2026-06-05."
+}

@@ -1,0 +1,36 @@
+version: 1
+platform_name: vina-bim-shop
+taxonomy_policy: shopee-inspired-but-project-owned
+level_1_categories:
+  - category_code: FMCG
+    category_name: FMCG
+    subcategories:
+      - Health & Beauty
+      - Mom & Baby
+      - Household Goods
+      - Groceries
+      - Pet Care
+  - category_code: ELHA
+    category_name: Electronics and Home Appliances
+    subcategories:
+      - Mobile & Gadgets
+      - Computers & Accessories
+      - TVs & Audio
+      - Home Appliances
+      - Smart Devices & Cameras
+  - category_code: Fashion
+    category_name: Fashion
+    subcategories:
+      - Women's Fashion
+      - Men's Fashion
+      - Footwear
+      - Bags & Luggage
+      - Fashion Accessories
+  - category_code: Home & Living
+    category_name: Home & Living
+    subcategories:
+      - Kitchen & Dining
+      - Bedding & Bath
+      - Furniture
+      - Home Decor
+      - Storage & Organization

@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["paid", "payment_failed"]
+  - name: stg_order_items
+    columns:
+      - name: order_item_id
+        tests: [not_null, unique]
+  - name: stg_payments
+    columns:
+      - name: payment_id
+        tests: [not_null, unique]
+      - name: payment_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["success", "failed"]
+  - name: stg_shipments
+    columns:
+      - name: shipment_id
+        tests: [not_null, unique]
+  - name: stg_commerce_events
+    columns:
+      - name: event_id
+        tests: [not_null, unique]
+      - name: event_type
+        tests: [not_null]

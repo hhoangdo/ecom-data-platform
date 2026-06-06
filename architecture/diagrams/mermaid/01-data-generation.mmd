@@ -1,0 +1,24 @@
+%%{init: {"theme":"base","themeVariables":{"background":"#ffffff","primaryColor":"#f8fbff","primaryTextColor":"#16324f","primaryBorderColor":"#2d6cdf","lineColor":"#5b6b7a","secondaryColor":"#eef6ff","tertiaryColor":"#f7f9fc","fontFamily":"Arial","fontSize":"16px"}}}%%
+flowchart LR
+    classDef source fill:#e8f1ff,stroke:#2d6cdf,color:#16324f,stroke-width:1.5px;
+    classDef compute fill:#eef7ee,stroke:#2f855a,color:#1f4d36,stroke-width:1.5px;
+    classDef store fill:#fff7e8,stroke:#c2871a,color:#6c4a00,stroke-width:1.5px;
+    classDef serve fill:#f3ecff,stroke:#7a4dd8,color:#4b2d91,stroke-width:1.5px;
+    classDef evidence fill:#fff0f3,stroke:#d14b73,color:#7f1d3d,stroke-width:1.5px;
+
+    cfg["Generator config<br/>base.yaml + taxonomy"]:::source
+    gen["Python generator<br/>snapshots + event streams"]:::compute
+    raw["Offline snapshots<br/>data/raw/&lt;dataset&gt;"]:::store
+    topics["Kafka-shaped JSONL<br/>data/raw/kafka_topics"]:::store
+    bad["Bad records<br/>DLQ + bad snapshots"]:::evidence
+    ev["Generator evidence<br/>manifests + quality reports"]:::evidence
+    down["Downstream platform<br/>Kafka / Spark / Flink / dbt"]:::serve
+
+    cfg --> gen
+    gen --> raw
+    gen --> topics
+    gen --> bad
+    gen --> ev
+    raw --> down
+    topics --> down
+    bad --> down

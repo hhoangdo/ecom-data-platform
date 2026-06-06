@@ -1,0 +1,432 @@
+Project gold_layer_erd {
+  database_type: 'DuckDB'
+  Note: 'Readable Gold-only ERD derived from physical_gold_model.puml. Use dbdiagram preview for the visual layout; keep physical_gold_model.puml as the exhaustive physical/logical reference.'
+}
+
+TableGroup dimensions [color: #D7EAF7, note: 'Core conformed dimensions. SCD2 behavior is captured in table notes instead of inline key markers.'] {
+  dim_customer
+  dim_seller
+  dim_product
+  dim_category
+  dim_date
+  dim_payment_method
+  dim_order_status
+  dim_shipment_status
+  dim_shipping_method
+  dim_promotion
+}
+
+TableGroup bridge [color: #E4F4DE, note: 'Association tables that connect core dimensions.'] {
+  bridge_product_category
+}
+
+TableGroup facts [color: #FDE9D5, note: 'Core transactional facts keyed by surrogate identifiers and linked through surrogate foreign keys.'] {
+  fact_order
+  fact_order_item
+  fact_payment_attempt
+  fact_shipment
+  fact_inventory_snapshot
+  fact_promotion_application
+}
+
+TableGroup serving_features [color: #EEE7F8, note: 'Derived aggregate, OBT, and feature tables kept visible for consumers but grouped away from the core star schema.'] {
+  obt_order_performance
+  agg_hourly_reconciled_kpi
+  feat_customer_90d
+  feat_stream_60m
+  feat_customer_unified
+}
+
+Table dim_customer [headercolor: #4F81BD] {
+  customer_key bigint [pk]
+  customer_id varchar [not null, unique]
+  anonymous_id varchar
+  signup_ts timestamp
+  country varchar
+  region varchar
+  city varchar
+  city_code varchar
+  segment varchar
+  marketing_opt_in boolean
+  preferred_device varchar
+  acquisition_channel varchar
+  created_ts timestamp
+  valid_from_ts timestamp
+  valid_to_ts timestamp
+  is_current boolean
+
+  Note: 'Natural key: customer_id. SCD2 columns: valid_from_ts, valid_to_ts, is_current.'
+}
+
+Table dim_seller [headercolor: #4F81BD] {
+  seller_key bigint [pk]
+  seller_id varchar [not null, unique]
+  seller_name varchar
+  seller_tier varchar
+  primary_category varchar
+  city varchar
+  region varchar
+  seller_rating double
+  fulfillment_speed_days double
+  inventory_reliability double
+  price_band varchar
+  is_official_store boolean
+  created_ts timestamp
+  valid_from_ts timestamp
+  valid_to_ts timestamp
+  is_current boolean
+
+  Note: 'Natural key: seller_id. SCD2 columns: valid_from_ts, valid_to_ts, is_current.'
+}
+
+Table dim_product [headercolor: #4F81BD] {
+  product_key bigint [pk]
+  product_id varchar [not null, unique]
+  seller_key bigint [not null, ref: > dim_seller.seller_key]
+  seller_id varchar
+  primary_category varchar
+  primary_subcategory varchar
+  brand varchar
+  product_name varchar
+  base_price double
+  price_band varchar
+  is_active boolean
+  fulfillment_channel varchar
+  category_attributes varchar
+  created_ts timestamp
+  valid_from_ts timestamp
+  valid_to_ts timestamp
+  is_current boolean
+
+  Note: 'Natural key: product_id. SCD2 columns: valid_from_ts, valid_to_ts, is_current.'
+}
+
+Table dim_category [headercolor: #4F81BD] {
+  category_key bigint [pk]
+  category varchar [not null]
+  subcategory varchar [not null]
+  category_cost_rate decimal(3,2)
+
+  indexes {
+    (category, subcategory) [unique]
+  }
+
+  Note: 'Business key: category + subcategory.'
+}
+
+Table dim_date [headercolor: #4F81BD] {
+  date_key int [pk]
+  calendar_date date [not null, unique]
+  day_of_week int
+  month int
+  year int
+  is_weekend boolean
+
+  Note: 'Business key: calendar_date.'
+}
+
+Table dim_payment_method [headercolor: #4F81BD] {
+  payment_method_key bigint [pk]
+  payment_method varchar [not null, unique]
+}
+
+Table dim_order_status [headercolor: #4F81BD] {
+  order_status_key bigint [pk]
+  order_status varchar [not null, unique]
+}
+
+Table dim_shipment_status [headercolor: #4F81BD] {
+  shipment_status_key bigint [pk]
+  shipment_status varchar [not null, unique]
+}
+
+Table dim_shipping_method [headercolor: #4F81BD] {
+  shipping_method_key bigint [pk]
+  shipping_method varchar [not null, unique]
+}
+
+Table dim_promotion [headercolor: #4F81BD] {
+  promotion_key bigint [pk]
+  promotion_id varchar [not null, unique]
+  promotion_name varchar
+  funding_type varchar
+  funding_detail varchar
+  seller_id varchar
+  category varchar
+  discount_rate double
+  platform_funding_share double
+  seller_funding_share double
+  promotion_start_ts timestamp
+  promotion_end_ts timestamp
+  created_ts timestamp
+
+  Note: 'Natural key: promotion_id.'
+}
+
+Table bridge_product_category [headercolor: #7CB342] {
+  product_key bigint [not null, ref: > dim_product.product_key]
+  product_id varchar [not null]
+  category_key bigint [not null, ref: > dim_category.category_key]
+  category varchar
+  subcategory varchar
+  is_primary boolean
+  assigned_ts timestamp
+
+  indexes {
+    (product_key, category_key) [pk]
+  }
+
+  Note: 'Bridge keyed by product_key + category_key.'
+}
+
+Table fact_order [headercolor: #F39C12] {
+  order_key bigint [pk]
+  order_id varchar [not null, unique]
+  customer_key bigint [not null, ref: > dim_customer.customer_key]
+  order_date_key int [not null, ref: > dim_date.date_key]
+  order_status_key bigint [not null, ref: > dim_order_status.order_status_key]
+  customer_id varchar
+  session_id varchar
+  anonymous_id varchar
+  order_timestamp timestamp
+  created_ts timestamp
+  primary_category varchar
+  order_status varchar
+  shipping_city varchar
+  shipping_region varchar
+  shipping_method varchar
+  fulfillment_channel varchar
+  promotion_id varchar
+  coupon_code varchar
+  item_count bigint
+  order_gross_amount double
+  order_discount_amount double
+  order_net_amount double
+  has_successful_payment boolean
+  is_paid_order boolean
+  official_paid_revenue double
+  gross_merchandise_value double
+  payment_attempt_count bigint
+}
+
+Table fact_order_item [headercolor: #F39C12] {
+  order_item_key bigint [pk]
+  order_item_id varchar [not null, unique]
+  order_id varchar [not null]
+  order_key bigint [not null, ref: > fact_order.order_key]
+  customer_key bigint [not null, ref: > dim_customer.customer_key]
+  product_key bigint [not null, ref: > dim_product.product_key]
+  category_key bigint [not null, ref: > dim_category.category_key]
+  promotion_key bigint [not null, ref: > dim_promotion.promotion_key]
+  order_date_key int [not null, ref: > dim_date.date_key]
+  product_id varchar [not null]
+  seller_id varchar [not null]
+  primary_category varchar
+  primary_subcategory varchar
+  quantity bigint
+  unit_price double
+  gross_amount double
+  discount_amount double
+  net_amount double
+  category_cost_rate decimal(3,2)
+  line_paid_revenue double
+  line_gmv double
+  estimated_cost double
+  estimated_margin double
+  promotion_id varchar
+  created_ts timestamp
+}
+
+Table fact_payment_attempt [headercolor: #F39C12] {
+  payment_attempt_key bigint [pk]
+  payment_id varchar [not null, unique]
+  order_id varchar [not null]
+  order_key bigint [not null, ref: > fact_order.order_key]
+  customer_key bigint [not null, ref: > dim_customer.customer_key]
+  payment_date_key int [not null, ref: > dim_date.date_key]
+  payment_method_key bigint [not null, ref: > dim_payment_method.payment_method_key]
+  customer_id varchar
+  payment_timestamp timestamp
+  created_ts timestamp
+  payment_method varchar
+  amount double
+  payment_status varchar
+  is_payment_success boolean
+  is_payment_failed boolean
+  failure_reason varchar
+}
+
+Table fact_shipment [headercolor: #F39C12] {
+  shipment_key bigint [pk]
+  shipment_id varchar [not null, unique]
+  order_id varchar [not null]
+  order_key bigint [not null, ref: > fact_order.order_key]
+  customer_key bigint [not null, ref: > dim_customer.customer_key]
+  shipment_status_key bigint [not null, ref: > dim_shipment_status.shipment_status_key]
+  shipping_method_key bigint [not null, ref: > dim_shipping_method.shipping_method_key]
+  shipment_created_date_key int [not null, ref: > dim_date.date_key]
+  customer_id varchar
+  shipping_city varchar
+  shipping_region varchar
+  shipping_method varchar
+  shipment_status varchar
+  is_delivery_delayed boolean
+  is_payment_blocked boolean
+  handoff_ts timestamp
+  estimated_delivery_ts timestamp
+  created_ts timestamp
+}
+
+Table fact_inventory_snapshot [headercolor: #F39C12] {
+  inventory_snapshot_key bigint [unique]
+  snapshot_id varchar [not null, unique]
+  product_key bigint [not null, ref: > dim_product.product_key]
+  seller_key bigint [not null, ref: > dim_seller.seller_key]
+  snapshot_date_key int [not null, ref: > dim_date.date_key]
+  product_id varchar [not null]
+  seller_id varchar [not null]
+  snapshot_ts timestamp
+  stock_on_hand bigint
+  reserved_stock bigint
+  available_stock bigint
+
+  indexes {
+    (product_key, seller_key, snapshot_date_key) [pk]
+  }
+
+  Note: 'Snapshot fact keyed by product, seller, and snapshot date.'
+}
+
+Table fact_promotion_application [headercolor: #F39C12] {
+  promotion_application_key bigint [pk]
+  order_item_id varchar [not null, unique]
+  order_id varchar [not null]
+  order_key bigint [not null, ref: > fact_order.order_key]
+  customer_key bigint [not null, ref: > dim_customer.customer_key]
+  promotion_key bigint [not null, ref: > dim_promotion.promotion_key]
+  promotion_id varchar [not null]
+  gross_amount double
+  discount_amount double
+  platform_discount_amount double
+  seller_discount_amount double
+  funding_type varchar
+  platform_funding_share double
+  seller_funding_share double
+}
+
+Table obt_order_performance [headercolor: #8E7CC3] {
+  order_id varchar [pk, ref: > fact_order.order_id]
+  order_timestamp timestamp
+  customer_id varchar [not null, ref: > dim_customer.customer_id]
+  segment varchar
+  customer_city varchar
+  primary_category varchar
+  order_status varchar
+  shipping_city varchar
+  shipping_region varchar
+  shipping_method varchar
+  promotion_id varchar
+  coupon_code varchar
+  item_count bigint
+  total_quantity hugeint
+  distinct_products bigint
+  distinct_sellers bigint
+  order_gross_amount double
+  order_discount_amount double
+  order_net_amount double
+  official_paid_revenue double
+  gross_merchandise_value double
+  estimated_cost double
+  estimated_margin double
+  has_successful_payment boolean
+  is_paid_order boolean
+  payment_attempts bigint
+  successful_payment_attempts hugeint
+  successful_payment_method varchar
+  last_payment_ts timestamp
+  shipment_status varchar
+  is_delivery_delayed boolean
+  is_payment_blocked boolean
+
+  Note: 'Derived non-canonical OBT for wide analytics and executive readouts.'
+}
+
+Table agg_hourly_reconciled_kpi [headercolor: #8E7CC3] {
+  metric_hour timestamp [pk]
+  order_count bigint
+  paid_order_count hugeint
+  gross_order_amount double
+  discount_amount double
+  official_paid_revenue double
+  gross_merchandise_value double
+  estimated_cost double
+  estimated_margin double
+  average_order_value double
+  cancelled_or_failed_order_count hugeint
+  cancellation_rate double
+  payment_attempt_count bigint
+  payment_success_count hugeint
+  payment_success_rate double
+  shipment_count bigint
+  delayed_shipment_count hugeint
+  delivery_delay_rate double
+  checkout_started_count hugeint
+  order_placed_event_count hugeint
+  conversion_rate double
+
+  Note: 'Standalone hourly reconciliation aggregate; no forced FK edges in the readable ERD.'
+}
+
+Table feat_customer_90d [headercolor: #8E7CC3] {
+  customer_id varchar [not null, ref: > dim_customer.customer_id]
+  event_timestamp timestamp [not null]
+  f_customer_total_orders_90d bigint
+  f_customer_paid_revenue_90d double
+  f_customer_avg_order_value_90d double
+  f_customer_distinct_categories_90d bigint
+  created_ts timestamp
+
+  indexes {
+    (customer_id, event_timestamp) [pk]
+  }
+
+  Note: 'Feature table keyed by customer_id + event_timestamp.'
+}
+
+Table feat_stream_60m [headercolor: #8E7CC3] {
+  customer_id varchar [not null, ref: > dim_customer.customer_id]
+  event_timestamp timestamp [not null]
+  f_stream_views_60m hugeint
+  f_stream_add_to_cart_60m hugeint
+  f_stream_checkout_started_60m hugeint
+  f_stream_order_placed_60m hugeint
+  f_stream_cart_to_purchase_ratio_60m double
+  created_ts timestamp
+
+  indexes {
+    (customer_id, event_timestamp) [pk]
+  }
+
+  Note: 'Streaming feature table keyed by customer_id + event_timestamp.'
+}
+
+Table feat_customer_unified [headercolor: #8E7CC3] {
+  customer_id varchar [not null, ref: > dim_customer.customer_id]
+  event_timestamp timestamp [not null]
+  f_customer_total_orders_90d bigint
+  f_customer_paid_revenue_90d double
+  f_customer_avg_order_value_90d double
+  f_customer_distinct_categories_90d bigint
+  f_stream_views_60m hugeint
+  f_stream_add_to_cart_60m hugeint
+  f_stream_checkout_started_60m hugeint
+  f_stream_order_placed_60m hugeint
+  f_stream_cart_to_purchase_ratio_60m double
+  created_ts timestamp
+
+  indexes {
+    (customer_id, event_timestamp) [pk]
+  }
+
+  Note: 'Unified customer feature table keyed by customer_id + event_timestamp.'
+}

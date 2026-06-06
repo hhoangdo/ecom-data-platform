@@ -1,0 +1,8 @@
+vina_bim_shop:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: data/gold/vina_bim_shop.duckdb
+      schema: main
+      threads: 1

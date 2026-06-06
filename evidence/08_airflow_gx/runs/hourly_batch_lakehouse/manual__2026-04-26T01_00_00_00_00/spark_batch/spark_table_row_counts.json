@@ -1,0 +1,42 @@
+{
+  "gold": {
+    "agg_hourly_reconciled_kpi": 159,
+    "bridge_product_category": 738,
+    "dim_category": 20,
+    "dim_customer": 800,
+    "dim_date": 8,
+    "dim_order_status": 2,
+    "dim_payment_method": 5,
+    "dim_product": 600,
+    "dim_promotion": 17,
+    "dim_seller": 80,
+    "dim_shipment_status": 4,
+    "dim_shipping_method": 5,
+    "fact_inventory_snapshot": 1200,
+    "fact_order": 1800,
+    "fact_order_item": 6688,
+    "fact_payment_attempt": 1800,
+    "fact_promotion_application": 2194,
+    "fact_shipment": 1800,
+    "feat_customer_90d": 681,
+    "feat_customer_unified": 681,
+    "feat_stream_60m": 4612,
+    "obt_order_performance": 1800
+  },
+  "silver": {
+    "stg_catalog_events": 1940,
+    "stg_commerce_events": 17504,
+    "stg_customers": 800,
+    "stg_fulfillment_events": 4273,
+    "stg_inventory_snapshots": 1200,
+    "stg_ops_events": 5,
+    "stg_order_items": 6688,
+    "stg_orders": 1800,
+    "stg_payments": 1800,
+    "stg_product_category_map": 738,
+    "stg_products": 600,
+    "stg_promotions": 16,
+    "stg_sellers": 80,
+    "stg_shipments": 1800
+  }
+}

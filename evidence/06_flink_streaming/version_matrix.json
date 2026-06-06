@@ -1,0 +1,6 @@
+{
+  "flink": "flink:1.19.2-scala_2.12-java17",
+  "kafka_connector": "flink-sql-connector-kafka-3.2.0-1.19",
+  "pyflink": "1.19.2",
+  "python": "3.11"
+}

@@ -1,0 +1,11 @@
+{
+  "artifacts": [
+    "query_outputs/pinot_dashboard_results.json",
+    "query_outputs/pinot_reconciliation_results.json",
+    "query_outputs/trino_reconciliation_results.json",
+    "query_outputs/reconciliation_report.md"
+  ],
+  "captured_at": "2026-06-02T02:35:07.179732+00:00",
+  "end_ts": "2026-05-01T11:00:00+00:00",
+  "start_ts": "2026-05-01T10:00:00+00:00"
+}

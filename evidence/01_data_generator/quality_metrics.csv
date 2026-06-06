@@ -1,0 +1,12 @@
+metric,value
+issue_order_items_exact_duplicate_payload,0.01959
+issue_products_missing_brand,0.02833
+issue_orders_missing_shipping_method,0.02889
+issue_products_schema_evolution_category_attributes,0.425
+issue_commerce_events_exact_duplicate_event_payload,0.01475
+issue_commerce_events_missing_device_type,0.03921
+issue_commerce_events_late_arrival,0.12536
+issue_dead_letter_events_invalid_json,0.25
+issue_dead_letter_events_invalid_timestamp,0.25
+issue_dead_letter_events_missing_required_key,0.25
+issue_dead_letter_events_unknown_schema_version,0.25

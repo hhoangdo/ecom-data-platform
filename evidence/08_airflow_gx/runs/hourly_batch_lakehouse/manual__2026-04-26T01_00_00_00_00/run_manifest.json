@@ -1,0 +1,19 @@
+{
+  "artifacts": [
+    "quality/bronze_raw_minio.json",
+    "quality/gold_trino_contract.json",
+    "spark_batch/run_batch_summary.json"
+  ],
+  "captured_at": "2026-06-02T06:42:31.609090+00:00",
+  "data_docs_index": "evidence/08_airflow_gx/gx_data_docs/index.html",
+  "quality_reports": [
+    "quality/bronze_raw_minio.json",
+    "quality/gold_trino_contract.json"
+  ],
+  "spark_summary_path": "spark_batch/run_batch_summary.json",
+  "window": {
+    "end_ts": "2026-04-26T01:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T00:00:00Z"
+  }
+}

@@ -1,0 +1,18 @@
+runtime: local
+batch_engine: spark
+stream_engine: flink
+sql_engine: trino
+catalog: hive_metastore
+object_store: minio
+local_transform_tool: dbt-duckdb
+
+storage:
+  raw_root: data/raw
+  gold_root: data/gold
+  duckdb_parity_path: data/gold/vina_bim_shop.duckdb
+  duckdb_executive_mart_path: data/gold/vina_bim_shop_executive.duckdb
+
+scheduling:
+  bronze_interval_minutes: 10
+  silver_interval_minutes: 30
+  gold_interval_minutes: 30

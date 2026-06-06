@@ -1,0 +1,32 @@
+{
+  "artifacts": [
+    "broker_health.json",
+    "consuming_segments.json",
+    "controller_health.json",
+    "query_outputs/pinot_dashboard_results.json",
+    "query_outputs/pinot_reconciliation_results.json",
+    "query_outputs/reconciliation_report.md",
+    "query_outputs/trino_reconciliation_results.json",
+    "refresh_evidence_manifest.json",
+    "row_counts.json",
+    "run_manifest.json",
+    "screenshots/README.md",
+    "screenshots/pinot_query_console.png",
+    "screenshots/pinot_tables.png",
+    "table_inventory.json",
+    "table_status.json",
+    "version_matrix.json"
+  ],
+  "bootstrap_manifest": "pinot_bootstrap_manifest.json",
+  "broker_url": "http://localhost:8000",
+  "captured_at": "2026-06-02T02:35:16.418734+00:00",
+  "controller_url": "http://localhost:9003",
+  "query_manifest": "query_examples_manifest.json",
+  "run_manifest": "run_manifest.json",
+  "tables": [
+    "pinot_realtime_commerce_metrics_1m",
+    "pinot_realtime_metric_corrections",
+    "pinot_realtime_ops_alerts"
+  ],
+  "trino_url": "http://localhost:8080"
+}

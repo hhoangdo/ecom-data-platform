@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    "minio_health.json",
+    "minio_buckets.json",
+    "postgres_health.txt",
+    "hive_metastore_health.txt",
+    "trino_info.json",
+    "trino_catalogs.txt",
+    "trino_schemas.txt",
+    "trino_smoke_query.txt",
+    "version_matrix.json",
+    "screenshots/README.md",
+    "screenshots/minio_buckets.png",
+    "screenshots/trino_query_history.png",
+    "screenshots/trino_sample_query.png"
+  ],
+  "captured_at": "2026-05-31T22:22:10.417151+00:00",
+  "service_urls": {
+    "minio": "http://localhost:9000",
+    "minio_console": "http://localhost:9001",
+    "trino": "http://localhost:8080"
+  }
+}

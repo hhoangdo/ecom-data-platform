@@ -1,0 +1,6 @@
+﻿ catalog_name |    schema_name     
+--------------+--------------------
+ iceberg      | default            
+ iceberg      | information_schema 
+ iceberg      | system             
+(3 rows)

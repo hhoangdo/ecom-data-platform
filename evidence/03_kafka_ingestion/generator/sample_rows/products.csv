@@ -1,0 +1,21 @@
+product_id,seller_id,primary_category,primary_subcategory,brand,product_name,base_price,price_band,is_active,created_ts,fulfillment_channel,category_attributes
+PRD-ELHA-00000001,SEL-HCM-STA-00000016,ELHA,Computers & Accessories,VinaTech,Computers & Accessories Item 000001,966000.0,value,True,2026-04-26 20:53:58,,
+PRD-FMCG-00000002,SEL-HPH-STA-00000026,FMCG,Groceries,GlowVina,Groceries Item 000002,32000.0,value,True,2026-05-01 21:21:48,platform_fulfilled,"{""pack_size"": ""family_pack"", ""shelf_life_days"": 459, ""subcategory"": ""Groceries"", ""variant"": ""premium""}"
+PRD-FMCG-00000003,SEL-HCM-PRE-00000030,FMCG,Mom & Baby,BimCare,Mom & Baby Item 000003,43000.0,mid,True,2026-05-02 12:59:00,platform_fulfilled,"{""pack_size"": ""family_pack"", ""shelf_life_days"": 661, ""subcategory"": ""Mom & Baby"", ""variant"": ""premium""}"
+PRD-FMCG-00000004,SEL-BDG-STA-00000005,FMCG,Mom & Baby,GlowVina,Mom & Baby Item 000004,84000.0,value,True,2026-04-28 18:29:11,,
+PRD-FMCG-00000005,SEL-HCM-OFF-00000075,FMCG,Health & Beauty,Mekong Pantry,Health & Beauty Item 000005,128000.0,premium,True,2026-04-26 16:40:03,,
+PRD-FMCG-00000006,SEL-HUI-NEW-00000036,FMCG,Mom & Baby,BimCare,Mom & Baby Item 000006,29000.0,budget,True,2026-04-30 15:05:37,seller_fulfilled,"{""pack_size"": ""single"", ""shelf_life_days"": 387, ""subcategory"": ""Mom & Baby"", ""variant"": ""premium""}"
+PRD-FMCG-00000007,SEL-DNA-PRE-00000049,FMCG,Household Goods,PawJoy,Household Goods Item 000007,104000.0,mid,True,2026-05-02 22:06:50,seller_fulfilled,"{""pack_size"": ""bundle_3"", ""shelf_life_days"": 500, ""subcategory"": ""Household Goods"", ""variant"": ""sensitive""}"
+PRD-FMCG-00000008,SEL-DNA-STA-00000071,FMCG,Groceries,BimCare,Groceries Item 000008,88000.0,value,True,2026-04-26 23:09:29,,
+PRD-FMCG-00000009,SEL-HAN-STA-00000054,FMCG,Pet Care,PawJoy,Pet Care Item 000009,15000.0,value,False,2026-04-26 16:50:37,,
+PRD-FASHION-00000010,SEL-CTO-NEW-00000070,Fashion,Bags & Luggage,VinaWear,Bags & Luggage Item 000010,140000.0,budget,True,2026-05-01 05:13:42,seller_fulfilled,"{""material"": ""synthetic_leather"", ""size_family"": ""free_size"", ""style"": ""streetwear"", ""subcategory"": ""Bags & Luggage""}"
+PRD-FASHION-00000011,SEL-DAD-PRE-00000023,Fashion,Bags & Luggage,ModaBim,Bags & Luggage Item 000011,434000.0,mid,True,2026-05-02 12:55:44,seller_fulfilled,"{""material"": ""polyester"", ""size_family"": ""free_size"", ""style"": ""office"", ""subcategory"": ""Bags & Luggage""}"
+PRD-FASHION-00000012,SEL-NTR-PRE-00000058,Fashion,Bags & Luggage,StreetLotus,Bags & Luggage Item 000012,505000.0,mid,True,2026-04-27 20:35:58,,
+PRD-ELHA-00000013,SEL-DAD-PRE-00000023,ELHA,Mobile & Gadgets,SmartHue,Mobile & Gadgets Item 000013,2861000.0,mid,True,2026-04-28 23:02:28,,
+PRD-HOME-LIVING-00000014,SEL-HCM-PRE-00000055,Home & Living,Kitchen & Dining,BepNha,Kitchen & Dining Item 000014,1459000.0,mid,True,2026-04-30 03:33:34,seller_fulfilled,"{""assembly_required"": false, ""material"": ""fabric"", ""room_type"": ""bathroom"", ""subcategory"": ""Kitchen & Dining""}"
+PRD-FMCG-00000015,SEL-HCM-OFF-00000079,FMCG,Health & Beauty,Mekong Pantry,Health & Beauty Item 000015,46000.0,premium,True,2026-05-02 16:55:10,platform_fulfilled,"{""pack_size"": ""family_pack"", ""shelf_life_days"": 320, ""subcategory"": ""Health & Beauty"", ""variant"": ""standard""}"
+PRD-FMCG-00000016,SEL-HAN-PRE-00000009,FMCG,Groceries,Saigon Fresh,Groceries Item 000016,80000.0,mid,True,2026-04-30 17:58:53,platform_fulfilled,"{""pack_size"": ""bundle_3"", ""shelf_life_days"": 516, ""subcategory"": ""Groceries"", ""variant"": ""premium""}"
+PRD-ELHA-00000017,SEL-HCM-OFF-00000079,ELHA,TVs & Audio,LotusHome,TVs & Audio Item 000017,14952000.0,premium,True,2026-04-30 23:04:30,seller_fulfilled,"{""energy_rating"": ""A++"", ""spec_tier"": ""flagship"", ""subcategory"": ""TVs & Audio"", ""warranty_months"": 6}"
+PRD-ELHA-00000018,SEL-CTO-NEW-00000070,ELHA,TVs & Audio,BimDigital,TVs & Audio Item 000018,3012000.0,budget,True,2026-04-27 12:31:44,,
+PRD-FASHION-00000019,SEL-HCM-STA-00000039,Fashion,Women's Fashion,VinaWear,Women's Fashion Item 000019,348000.0,value,True,2026-04-27 22:07:47,,
+PRD-FASHION-00000020,SEL-HAN-PRE-00000076,Fashion,Footwear,DenimSaigon,Footwear Item 000020,298000.0,mid,True,2026-04-26 02:40:46,,

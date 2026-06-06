@@ -1,0 +1,21 @@
+{
+  "platform_name": "vina-bim-shop",
+  "scale": "smoke",
+  "mode": "streaming",
+  "random_seed": 42,
+  "history_days": 7,
+  "generated_at": "2026-06-02T16:28:41.279795+00:00",
+  "raw_root": "data/raw",
+  "evidence_root": "evidence/01_data_generator",
+  "row_counts": {
+    "kafka_topics": 24859
+  },
+  "kafka_topics": {
+    "catalog_events": 1940,
+    "commerce_events": 17810,
+    "dead_letter_events": 4,
+    "fulfillment_events": 5100,
+    "ops_events": 5
+  },
+  "config_path": "configs/generator/base.yaml"
+}

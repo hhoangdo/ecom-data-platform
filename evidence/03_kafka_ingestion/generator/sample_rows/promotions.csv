@@ -1,0 +1,17 @@
+promotion_id,promotion_name,funding_type,funding_detail,seller_id,category,discount_rate,promotion_start_ts,promotion_end_ts,created_ts
+PRM-FMCG-00000001,Platform FMCG Campaign,platform,"{""platform_share"": 1.0, ""seller_share"": 0.0}",,FMCG,0.246,2026-04-30 10:52:10,2026-05-13 10:52:10,2026-04-27 10:52:10
+PRM-HOME-LIVING-00000002,Platform Home & Living Campaign,platform,,,Home & Living,0.23,2026-04-27 18:52:10,2026-05-01 18:52:10,2026-04-22 18:52:10
+PRM-HOME-LIVING-00000003,Seller Home & Living Campaign,seller,,SEL-DNA-PRE-00000064,Home & Living,0.107,2026-04-28 18:57:04,2026-05-03 18:57:04,2026-04-26 18:57:04
+PRM-FMCG-00000004,Seller FMCG Campaign,seller,,SEL-HCM-STA-00000022,FMCG,0.13,2026-04-26 14:19:09,2026-05-05 14:19:09,2026-04-23 14:19:09
+PRM-FASHION-00000005,Seller Fashion Campaign,seller,"{""platform_share"": 0.0, ""seller_share"": 1.0}",SEL-CTO-STA-00000078,Fashion,0.272,2026-04-30 03:31:50,2026-05-13 03:31:50,2026-04-26 03:31:50
+PRM-FMCG-00000006,Platform FMCG Campaign,platform,,,FMCG,0.063,2026-04-28 10:09:07,2026-04-30 10:09:07,2026-04-22 10:09:07
+PRM-ELHA-00000007,Platform ELHA Campaign,platform,"{""platform_share"": 1.0, ""seller_share"": 0.0}",,ELHA,0.098,2026-04-29 13:11:37,2026-05-07 13:11:37,2026-04-26 13:11:37
+PRM-FMCG-00000008,Platform FMCG Campaign,platform,,,FMCG,0.272,2026-04-28 17:53:50,2026-05-03 17:53:50,2026-04-24 17:53:50
+PRM-FMCG-00000009,Platform FMCG Campaign,platform,"{""platform_share"": 1.0, ""seller_share"": 0.0}",,FMCG,0.132,2026-04-30 09:29:56,2026-05-03 09:29:56,2026-04-25 09:29:56
+PRM-FASHION-00000010,Seller Fashion Campaign,seller,"{""platform_share"": 0.0, ""seller_share"": 1.0}",SEL-HAN-PRE-00000037,Fashion,0.119,2026-04-30 07:32:56,2026-05-02 07:32:56,2026-04-26 07:32:56
+PRM-ELHA-00000011,Platform ELHA Campaign,platform,,,ELHA,0.068,2026-04-28 17:24:43,2026-05-08 17:24:43,2026-04-25 17:24:43
+PRM-HOME-LIVING-00000012,Platform Home & Living Campaign,platform,,,Home & Living,0.269,2026-04-27 01:13:33,2026-05-01 01:13:33,2026-04-25 01:13:33
+PRM-ELHA-00000013,Mixed ELHA Campaign,mixed,,SEL-OVN-PRE-00000007,ELHA,0.256,2026-04-26 18:54:40,2026-05-01 18:54:40,2026-04-21 18:54:40
+PRM-FMCG-00000014,Platform FMCG Campaign,platform,"{""platform_share"": 1.0, ""seller_share"": 0.0}",,FMCG,0.082,2026-04-30 09:35:54,2026-05-10 09:35:54,2026-04-26 09:35:54
+PRM-ELHA-00000015,Platform ELHA Campaign,platform,,,ELHA,0.272,2026-04-27 20:14:32,2026-05-07 20:14:32,2026-04-25 20:14:32
+PRM-FMCG-00000016,Mixed FMCG Campaign,mixed,,SEL-OVN-STA-00000020,FMCG,0.26,2026-04-27 20:37:56,2026-05-02 20:37:56,2026-04-21 20:37:56

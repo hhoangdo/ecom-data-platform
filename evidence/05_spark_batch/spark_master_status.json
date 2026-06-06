@@ -1,0 +1,95 @@
+{
+  "activeapps": [],
+  "activedrivers": [],
+  "aliveworkers": 1,
+  "completedapps": [
+    {
+      "cores": 2,
+      "duration": 100126,
+      "id": "app-20260602175737-0000",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780423057936,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 17:57:37 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 2,
+      "duration": 93233,
+      "id": "app-20260602180105-0001",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780423265186,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 18:01:05 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 2,
+      "duration": 92143,
+      "id": "app-20260602180316-0002",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780423396173,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 18:03:16 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 2,
+      "duration": 97635,
+      "id": "app-20260602180618-0003",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780423578081,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 18:06:18 UTC 2026",
+      "user": "spark"
+    }
+  ],
+  "completeddrivers": [],
+  "cores": 2,
+  "coresused": 0,
+  "memory": 2048,
+  "memoryused": 0,
+  "resources": [
+    {}
+  ],
+  "resourcesused": [
+    {}
+  ],
+  "status": "ALIVE",
+  "url": "spark://spark-master:7077",
+  "workers": [
+    {
+      "cores": 2,
+      "coresfree": 2,
+      "coresused": 0,
+      "host": "172.18.0.9",
+      "id": "worker-20260602175710-172.18.0.9-38889",
+      "lastheartbeat": 1780423691653,
+      "memory": 2048,
+      "memoryfree": 2048,
+      "memoryused": 0,
+      "port": 38889,
+      "resources": {},
+      "resourcesfree": {},
+      "resourcesused": {},
+      "state": "ALIVE",
+      "webuiaddress": "http://172.18.0.9:8081"
+    }
+  ]
+}

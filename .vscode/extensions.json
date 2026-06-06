@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "jebbs.plantuml",
+    "dbdiagram.dbdiagram-vscode",
+    "pomdtr.excalidraw-editor",
+    "davidanson.vscode-markdownlint"
+  ]
+}

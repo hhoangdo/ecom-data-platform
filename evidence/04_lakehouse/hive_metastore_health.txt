@@ -1,0 +1,2 @@
+NAME                             IMAGE                                         COMMAND                  SERVICE          CREATED          STATUS                    PORTS
+vina-bim-shop-hive-metastore-1   vina-bim-shop/hive-metastore:4.1.0-postgres   "sh -c /entrypoint.sh"   hive-metastore   24 minutes ago   Up 24 minutes (healthy)   0.0.0.0:9083->9083/tcp, [::]:9083->9083/tcp

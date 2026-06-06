@@ -1,0 +1,25 @@
+%%{init: {"theme":"base","themeVariables":{"background":"#ffffff","primaryColor":"#f8fbff","primaryTextColor":"#16324f","primaryBorderColor":"#2d6cdf","lineColor":"#5b6b7a","secondaryColor":"#eef6ff","tertiaryColor":"#f7f9fc","fontFamily":"Arial","fontSize":"16px"}}}%%
+flowchart LR
+    classDef source fill:#e8f1ff,stroke:#2d6cdf,color:#16324f,stroke-width:1.5px;
+    classDef compute fill:#eef7ee,stroke:#2f855a,color:#1f4d36,stroke-width:1.5px;
+    classDef store fill:#fff7e8,stroke:#c2871a,color:#6c4a00,stroke-width:1.5px;
+    classDef serve fill:#f3ecff,stroke:#7a4dd8,color:#4b2d91,stroke-width:1.5px;
+    classDef evidence fill:#fff0f3,stroke:#d14b73,color:#7f1d3d,stroke-width:1.5px;
+
+    src["Kafka source topics<br/>commerce / catalog / fulfillment / ops"]:::source
+    metrics["Flink commerce job<br/>1-minute metrics + late-data handling"]:::compute
+    alerts["Flink ops job<br/>normalized alert stream"]:::compute
+    derived["Derived Kafka topics<br/>metrics / corrections / alerts"]:::store
+    pinot["Pinot serving path<br/>low-latency downstream consumer"]:::serve
+    state["MinIO checkpoints<br/>state recovery"]:::store
+    audit["Curated audit outputs<br/>streaming evidence JSONL"]:::evidence
+
+    src --> metrics
+    src --> alerts
+    metrics --> derived
+    alerts --> derived
+    metrics --> state
+    alerts --> state
+    metrics --> audit
+    alerts --> audit
+    derived --> pinot

@@ -1,0 +1,10 @@
+{
+  "artifacts": [
+    "datahub_health.json",
+    "dataset_count.json",
+    "tag_count.json"
+  ],
+  "captured_at": "2026-06-05T12:49:21.614561+00:00",
+  "gms_url": "http://localhost:8087",
+  "latest_successful_datahub_ingestion_run": "adr08_datahub_20260603T003300Z"
+}

@@ -1,0 +1,13 @@
+source:
+  type: dbt
+  config:
+    manifest_path: /workspace/infra/analytics/dbt/target/manifest.json
+    run_results_paths:
+      - /workspace/infra/analytics/dbt/target/run_results.json
+    target_platform: duckdb
+    write_semantics: patch
+
+sink:
+  type: datahub-rest
+  config:
+    server: "http://datahub-gms:8080"

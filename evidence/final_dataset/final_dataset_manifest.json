@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-05-31T11:50:10.584694+00:00",
+  "scale": "medium",
+  "seed": 42,
+  "raw_root": "data/raw",
+  "archive_path": "evidence/final_dataset/vina_bim_shop_medium_raw.zip",
+  "archive_sha256": "c9546a579fd3c2d65597dbc64baa18577eca79a6d6402ec5e4ea1dd2861b1603",
+  "duckdb_reproduction_path": "data/gold/vina_bim_shop.duckdb",
+  "duckdb_reproduction_command": "uv run dbt build --project-dir dbt --profiles-dir dbt",
+  "row_counts": {
+    "bad_snapshots": 4,
+    "customers": 12000,
+    "inventory_snapshots": 60000,
+    "order_items": 168496,
+    "orders": 45000,
+    "payments": 45000,
+    "product_category_map": 7340,
+    "products": 6000,
+    "promotions": 80,
+    "sellers": 600,
+    "shipments": 45000,
+    "kafka_topics": 639541
+  },
+  "raw_files": [
+    {
+      "path": "bad_snapshots/bad_snapshots.jsonl",
+      "size_bytes": 1037,
+      "sha256": "84a90fa1df303ed0174c207ed209e5185574bcf30136231ce6b1a134e1a357ec"
+    },
+    {
+      "path": "customers/part-000.parquet",
+      "size_bytes": 409549,
+      "sha256": "16693716c48f9e767b4d5b7b28fed8b5a4b5e7adb0117b7d108be96b41843421"
+    },
+    {
+      "path": "inventory_snapshots/part-000.parquet",
+      "size_bytes": 680810,
+      "sha256": "aa73540e0f8fd73dc5a395b8e31fd1988b7eed7cf8cbc3b037c4c0a81b888cfa"
+    },
+    {
+      "path": "kafka_topics/catalog_events/events.jsonl",
+      "size_bytes": 31605239,
+      "sha256": "1700d878f7fe4e627c0733f6a7e9b5f0c009fff86b3de145307d19ce45e4a937"
+    },
+    {
+      "path": "kafka_topics/commerce_events/events.jsonl",
+      "size_bytes": 257886061,
+      "sha256": "b14285d16ec14cf9e039bfca8859211b53c28bb96fd822bffe2543ca764b6da5"
+    },
+    {
+      "path": "kafka_topics/dead_letter_events/events.jsonl",
+      "size_bytes": 1856,
+      "sha256": "b378a4fb808c28d35c97eccf14457287bda427d348b541d51ae8617c3abe0c25"
+    },
+    {
+      "path": "kafka_topics/fulfillment_events/events.jsonl",
+      "size_bytes": 58055197,
+      "sha256": "40badd60c6bff51a0e45f3c772cddd65b72133a4bc88a30c91839b94dc354f5e"
+    },
+    {
+      "path": "kafka_topics/ops_events/events.jsonl",
+      "size_bytes": 1990,
+      "sha256": "354cabe57f74742d37c4007f01e6d94818ae183300001137a7bbf52efa53f792"
+    },
+    {
+      "path": "order_items/part-000.parquet",
+      "size_bytes": 4283807,
+      "sha256": "1402b6f4a08263f833d3e14e8fd6ed8aa9f36b35d5beff5ca87e7a521a4240ee"
+    },
+    {
+      "path": "orders/part-000.parquet",
+      "size_bytes": 2617067,
+      "sha256": "0c5b1236cd7a343f4c8f758b65b0cf2227eeeaf2cf694a3b77fb6a12412db7d6"
+    },
+    {
+      "path": "payments/part-000.parquet",
+      "size_bytes": 2071948,
+      "sha256": "17fe2dc973ec6cdeb5bb2474fae7e2237aa123d316654fb8982e3c2ca867bcb3"
+    },
+    {
+      "path": "product_category_map/part-000.parquet",
+      "size_bytes": 57959,
+      "sha256": "4aab59b60874fc6c0e1680cf81e218a34b9b9bf13e2ce014785e18a1c13a80bb"
+    },
+    {
+      "path": "products/part-000.parquet",
+      "size_bytes": 228319,
+      "sha256": "5d8ccb18e85372d36bcaf1c994bccd8e35e02757fcabbb3bf3acba18694c1b34"
+    },
+    {
+      "path": "promotions/part-000.parquet",
+      "size_bytes": 10806,
+      "sha256": "e20bebdc80c91ba643f76d872cd67dad1fd066d9663d478c589b6cbae4c5b10f"
+    },
+    {
+      "path": "sellers/part-000.parquet",
+      "size_bytes": 25592,
+      "sha256": "97e5bad09bc784bf71144b9e38da113210149cf2ca1aec9f0e25116ad4e73b8a"
+    },
+    {
+      "path": "shipments/part-000.parquet",
+      "size_bytes": 2311782,
+      "sha256": "8687bd5aedee73cfe746a403c48cdbed8497073d4ccc4baa1598fdecdc3a335b"
+    }
+  ],
+  "commands": [
+    {
+      "command": "uv run python scripts/generate/run_generator.py --scale medium --mode full --clean --seed 42",
+      "return_code": 0,
+      "elapsed_seconds": 241.74
+    },
+    {
+      "command": "uv run python scripts/qa/generate_section02_evidence.py",
+      "return_code": 0,
+      "elapsed_seconds": 28.948
+    },
+    {
+      "command": "uv run pytest",
+      "return_code": 0,
+      "elapsed_seconds": 33.18
+    }
+  ]
+}

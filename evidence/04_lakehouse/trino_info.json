@@ -1,0 +1,9 @@
+{
+  "coordinator": true,
+  "environment": "vina_bim_shop_local",
+  "nodeVersion": {
+    "version": "476"
+  },
+  "starting": false,
+  "uptime": "22.76m"
+}

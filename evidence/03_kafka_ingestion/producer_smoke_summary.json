@@ -1,0 +1,33 @@
+{
+  "generator_evidence_root": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\evidence\\03_kafka_ingestion\\generator",
+  "jsonl_files": {
+    "catalog_events": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\data\\raw\\kafka_topics\\catalog_events\\events.jsonl",
+    "commerce_events": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\data\\raw\\kafka_topics\\commerce_events\\events.jsonl",
+    "dead_letter_events": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\data\\raw\\kafka_topics\\dead_letter_events\\events.jsonl",
+    "fulfillment_events": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\data\\raw\\kafka_topics\\fulfillment_events\\events.jsonl",
+    "ops_events": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\data\\raw\\kafka_topics\\ops_events\\events.jsonl"
+  },
+  "kafka_bootstrap_servers": "localhost:9092",
+  "raw_root": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework\\data\\raw",
+  "row_counts": {
+    "bad_snapshots": 4,
+    "customers": 800,
+    "inventory_snapshots": 1200,
+    "kafka_topics": 24770,
+    "order_items": 6821,
+    "orders": 1800,
+    "payments": 1800,
+    "product_category_map": 738,
+    "products": 600,
+    "promotions": 16,
+    "sellers": 80,
+    "shipments": 1800
+  },
+  "source_topics": [
+    "commerce_events",
+    "catalog_events",
+    "fulfillment_events",
+    "ops_events",
+    "dead_letter_events"
+  ]
+}

@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: raw_orders
+    description: Bronze table-state export for order headers.
+    columns:
+      - name: order_id
+        tests: [not_null]
+  - name: raw_order_items
+    description: Bronze table-state export for order lines, before duplicate cleanup.
+    columns:
+      - name: order_item_id
+        tests: [not_null]
+  - name: raw_payments
+    description: Bronze table-state export for payment attempts.
+    columns:
+      - name: payment_id
+        tests: [not_null]
+  - name: raw_shipments
+    description: Bronze table-state export for shipment states.
+    columns:
+      - name: shipment_id
+        tests: [not_null]
+  - name: raw_kafka_commerce_events
+    description: Raw Kafka commerce event envelopes preserved before flattening.
+    columns:
+      - name: event_id
+        tests: [not_null]
+      - name: event_topic
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["commerce_events"]
+  - name: raw_bad_events
+    description: Quarantine contract for malformed Kafka envelopes and Kafka DLQ payloads.
+    columns:
+      - name: source_topic
+        tests: [not_null]
+      - name: raw_payload
+        tests: [not_null]
+      - name: error_reason
+        tests: [not_null]
+  - name: raw_bad_snapshots
+    description: Quarantine contract for malformed periodic table-state export records.
+    columns:
+      - name: source_dataset
+        tests: [not_null]
+      - name: raw_record
+        tests: [not_null]
+      - name: error_reason
+        tests: [not_null]

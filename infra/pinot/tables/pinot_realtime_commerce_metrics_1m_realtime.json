@@ -1,0 +1,62 @@
+{
+  "tableName": "pinot_realtime_commerce_metrics_1m",
+  "tableType": "REALTIME",
+  "segmentsConfig": {
+    "timeColumnName": "metric_minute_ts",
+    "timeType": "MILLISECONDS",
+    "replicasPerPartition": "1",
+    "retentionTimeUnit": "DAYS",
+    "retentionTimeValue": "7"
+  },
+  "tableIndexConfig": {
+    "loadMode": "MMAP",
+    "invertedIndexColumns": [
+      "primary_category",
+      "source",
+      "device_type",
+      "payment_method",
+      "order_status",
+      "schema_version"
+    ]
+  },
+  "fieldConfigList": [
+    {"name": "metric_minute_ts", "encodingType": "RAW", "indexType": "RANGE"},
+    {"name": "revenue_amount", "encodingType": "RAW"},
+    {"name": "gmv_proxy_amount", "encodingType": "RAW"}
+  ],
+  "tenants": {},
+  "metadata": {
+    "customConfigs": {
+      "truth_policy": "provisional_pinot_live_metrics"
+    }
+  },
+  "ingestionConfig": {
+    "streamIngestionConfig": {
+      "streamConfigMaps": [
+        {
+          "streamType": "kafka",
+          "stream.kafka.topic.name": "realtime_commerce_metrics_1m",
+          "stream.kafka.broker.list": "kafka:29092",
+          "stream.kafka.consumer.type": "lowlevel",
+          "stream.kafka.consumer.prop.auto.offset.reset": "smallest",
+          "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka30.KafkaConsumerFactory",
+          "stream.kafka.decoder.class.name": "org.apache.pinot.plugin.inputformat.json.JSONMessageDecoder",
+          "stream.kafka.decoder.prop.format": "JSON",
+          "realtime.segment.flush.threshold.rows": "0",
+          "realtime.segment.flush.threshold.segment.rows": "50000",
+          "realtime.segment.flush.threshold.time": "1h"
+        }
+      ]
+    },
+    "transformConfigs": [
+      {
+        "columnName": "metric_minute_ts",
+        "transformFunction": "fromDateTime(metric_minute, 'yyyy-MM-dd''T''HH:mm:ssXXX')"
+      }
+    ],
+    "continueOnError": true,
+    "rowTimeValueCheck": true,
+    "segmentTimeValueCheck": false
+  },
+  "isDimTable": false
+}

@@ -1,0 +1,6 @@
+event_topic,schema_version,row_count
+catalog_events,1,1940
+commerce_events,1,17810
+dead_letter_events,1,4
+fulfillment_events,1,5100
+ops_events,1,5

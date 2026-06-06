@@ -1,0 +1,56 @@
+{
+  "captured_at": "2026-06-04T03:06:00.830529+00:00",
+  "controller_url": "http://localhost:9003",
+  "schema_actions": [
+    {
+      "action": "created",
+      "schema": "pinot_realtime_commerce_metrics_1m"
+    },
+    {
+      "action": "created",
+      "schema": "pinot_realtime_metric_corrections"
+    },
+    {
+      "action": "created",
+      "schema": "pinot_realtime_ops_alerts"
+    }
+  ],
+  "schemas": [
+    "pinot_realtime_commerce_metrics_1m",
+    "pinot_realtime_metric_corrections",
+    "pinot_realtime_ops_alerts"
+  ],
+  "table_actions": [
+    {
+      "action": "created",
+      "table": "pinot_realtime_commerce_metrics_1m"
+    },
+    {
+      "action": "created",
+      "table": "pinot_realtime_metric_corrections"
+    },
+    {
+      "action": "created",
+      "table": "pinot_realtime_ops_alerts"
+    }
+  ],
+  "table_status": {
+    "pinot_realtime_commerce_metrics_1m": {
+      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
+      "status": "unverified"
+    },
+    "pinot_realtime_metric_corrections": {
+      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
+      "status": "unverified"
+    },
+    "pinot_realtime_ops_alerts": {
+      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
+      "status": "unverified"
+    }
+  },
+  "tables": [
+    "pinot_realtime_commerce_metrics_1m",
+    "pinot_realtime_metric_corrections",
+    "pinot_realtime_ops_alerts"
+  ]
+}

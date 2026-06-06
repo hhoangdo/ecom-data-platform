@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    "flink_overview.json",
+    "flink_jobs.json",
+    "flink_taskmanagers.json",
+    "derived_topic_samples.json",
+    "checkpoint_listing.txt",
+    "curated_output_listing.txt",
+    "version_matrix.json",
+    "run_manifest.json",
+    "screenshots/README.md",
+    "screenshots/flink_jobs.png",
+    "screenshots/flink_checkpoints.png"
+  ],
+  "captured_at": "2026-06-01T11:36:44.698512+00:00",
+  "service_urls": {
+    "flink_api": "http://localhost:8086",
+    "flink_ui": "http://localhost:8086"
+  }
+}

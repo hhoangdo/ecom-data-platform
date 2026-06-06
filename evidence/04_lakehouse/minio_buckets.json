@@ -1,0 +1,18 @@
+{
+  "missing_buckets": [],
+  "observed_buckets": [
+    "bronze",
+    "checkpoints",
+    "evidence",
+    "gold",
+    "silver"
+  ],
+  "raw_listing": "[2026-05-31 21:56:14 UTC]     0B bronze/\n[2026-05-31 21:56:14 UTC]     0B checkpoints/\n[2026-05-31 21:56:14 UTC]     0B evidence/\n[2026-05-31 21:56:14 UTC]     0B gold/\n[2026-05-31 21:56:14 UTC]     0B silver/\n",
+  "required_buckets": [
+    "bronze",
+    "silver",
+    "gold",
+    "checkpoints",
+    "evidence"
+  ]
+}

@@ -1,0 +1,21 @@
+seller_id,seller_name,seller_tier,primary_category,city,region,seller_rating,fulfillment_speed_days,inventory_reliability,price_band,is_official_store,created_ts
+SEL-HCM-STA-00000001,Seller 00001,standard,ELHA,Ho Chi Minh City,Southeast,4.21,3.61,0.962,value,False,2026-02-13 23:59:00
+SEL-HCM-PRE-00000002,Seller 00002,preferred,Fashion,Ho Chi Minh City,Southeast,4.4,2.06,0.942,mid,False,2025-06-06 23:59:00
+SEL-HAN-STA-00000003,Seller 00003,standard,ELHA,Ha Noi,Red River Delta,4.42,3.11,0.798,value,False,2025-10-16 23:59:00
+SEL-HAN-STA-00000004,Seller 00004,standard,Home & Living,Ha Noi,Red River Delta,3.68,3.78,0.858,value,False,2026-02-25 23:59:00
+SEL-BDG-STA-00000005,Seller 00005,standard,FMCG,Binh Duong,Southeast,4.15,2.98,0.807,value,False,2025-04-30 23:59:00
+SEL-BDG-PRE-00000006,Seller 00006,preferred,FMCG,Binh Duong,Southeast,4.53,2.4,0.908,mid,False,2025-02-13 23:59:00
+SEL-OVN-PRE-00000007,Seller 00007,preferred,ELHA,Other VN,Other,4.62,2.75,0.901,mid,False,2025-10-01 23:59:00
+SEL-HCM-OFF-00000008,Seller 00008,official,Home & Living,Ho Chi Minh City,Southeast,4.45,1.0,0.995,premium,True,2025-01-15 23:59:00
+SEL-HAN-PRE-00000009,Seller 00009,preferred,Fashion,Ha Noi,Red River Delta,4.42,2.8,0.869,mid,False,2024-12-01 23:59:00
+SEL-HPH-STA-00000010,Seller 00010,standard,Home & Living,Hai Phong,Red River Delta,3.84,3.38,0.825,value,False,2025-03-22 23:59:00
+SEL-CTO-PRE-00000011,Seller 00011,preferred,Home & Living,Can Tho,Mekong Delta,4.41,2.91,0.941,mid,False,2025-04-13 23:59:00
+SEL-OVN-PRE-00000012,Seller 00012,preferred,Home & Living,Other VN,Other,4.6,2.07,0.943,mid,False,2024-11-02 23:59:00
+SEL-OVN-STA-00000013,Seller 00013,standard,Fashion,Other VN,Other,4.09,3.1,0.852,value,False,2025-05-29 23:59:00
+SEL-DNA-STA-00000014,Seller 00014,standard,Fashion,Dong Nai,Southeast,4.31,2.56,0.926,value,False,2025-09-19 23:59:00
+SEL-DNA-OFF-00000015,Seller 00015,official,FMCG,Dong Nai,Southeast,4.43,2.06,0.968,premium,True,2025-05-28 23:59:00
+SEL-HCM-STA-00000016,Seller 00016,standard,FMCG,Ho Chi Minh City,Southeast,3.84,2.77,0.852,value,False,2026-03-18 23:59:00
+SEL-HUI-PRE-00000017,Seller 00017,preferred,FMCG,Hue,Central Coast,4.4,2.39,0.919,mid,False,2025-06-08 23:59:00
+SEL-HCM-NEW-00000018,Seller 00018,new_seller,ELHA,Ho Chi Minh City,Southeast,3.82,4.65,0.783,budget,False,2025-11-26 23:59:00
+SEL-HCM-STA-00000019,Seller 00019,standard,ELHA,Ho Chi Minh City,Southeast,4.12,3.65,0.849,value,False,2025-12-05 23:59:00
+SEL-OVN-STA-00000020,Seller 00020,standard,Fashion,Other VN,Other,4.18,3.58,0.859,value,False,2025-08-17 23:59:00

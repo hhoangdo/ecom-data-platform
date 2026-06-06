@@ -1,0 +1,47 @@
+{
+  "taskmanagers": [
+    {
+      "dataPort": 33495,
+      "freeResource": {
+        "cpuCores": 2.0,
+        "extendedResources": {},
+        "managedMemory": 256,
+        "networkMemory": 64,
+        "taskHeapMemory": 191,
+        "taskOffHeapMemory": 0
+      },
+      "freeSlots": 2,
+      "hardware": {
+        "cpuCores": 16,
+        "freeMemory": 536870912,
+        "managedMemory": 536870920,
+        "physicalMemory": 16569782272
+      },
+      "id": "172.18.0.5:46713-d1fc10",
+      "jmxPort": -1,
+      "memoryConfiguration": {
+        "frameworkHeap": 134217728,
+        "frameworkOffHeap": 134217728,
+        "jvmMetaspace": 268435456,
+        "jvmOverhead": 201326592,
+        "managedMemory": 536870920,
+        "networkMemory": 134217730,
+        "taskHeap": 402653174,
+        "taskOffHeap": 0,
+        "totalFlinkMemory": 1342177280,
+        "totalProcessMemory": 1811939328
+      },
+      "path": "pekko.tcp://flink@172.18.0.5:46713/user/rpc/taskmanager_0",
+      "slotsNumber": 4,
+      "timeSinceLastHeartbeat": 1780313740989,
+      "totalResource": {
+        "cpuCores": 4.0,
+        "extendedResources": {},
+        "managedMemory": 512,
+        "networkMemory": 128,
+        "taskHeapMemory": 383,
+        "taskOffHeapMemory": 0
+      }
+    }
+  ]
+}

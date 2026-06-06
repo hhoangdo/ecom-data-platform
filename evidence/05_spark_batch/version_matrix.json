@@ -1,0 +1,8 @@
+{
+  "aws_bundle": "2.24.6",
+  "great_expectations": "1.17.2",
+  "hadoop_aws": "3.4.1",
+  "iceberg_runtime": "1.10.1",
+  "spark": "4.0.0",
+  "spark_image": "vina-bim-shop/spark:4.0.0-iceberg-1.10.1"
+}

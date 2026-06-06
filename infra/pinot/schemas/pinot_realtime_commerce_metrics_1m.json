@@ -1,0 +1,32 @@
+{
+  "schemaName": "pinot_realtime_commerce_metrics_1m",
+  "dimensionFieldSpecs": [
+    {"name": "metric_key", "dataType": "STRING"},
+    {"name": "metric_minute", "dataType": "STRING"},
+    {"name": "window_start_ts", "dataType": "STRING"},
+    {"name": "window_end_ts", "dataType": "STRING"},
+    {"name": "primary_category", "dataType": "STRING"},
+    {"name": "source", "dataType": "STRING"},
+    {"name": "device_type", "dataType": "STRING"},
+    {"name": "payment_method", "dataType": "STRING"},
+    {"name": "order_status", "dataType": "STRING"},
+    {"name": "schema_version", "dataType": "INT"},
+    {"name": "watermark_ts", "dataType": "STRING"},
+    {"name": "emitted_ts", "dataType": "STRING"}
+  ],
+  "metricFieldSpecs": [
+    {"name": "order_count", "dataType": "INT"},
+    {"name": "order_placed_count", "dataType": "INT"},
+    {"name": "checkout_started_count", "dataType": "INT"},
+    {"name": "payment_failure_count", "dataType": "INT"},
+    {"name": "revenue_amount", "dataType": "DOUBLE"},
+    {"name": "gmv_proxy_amount", "dataType": "DOUBLE"},
+    {"name": "checkout_conversion_rate", "dataType": "DOUBLE"},
+    {"name": "late_event_count", "dataType": "INT"},
+    {"name": "duplicate_event_count", "dataType": "INT"},
+    {"name": "correction_version", "dataType": "INT"}
+  ],
+  "dateTimeFieldSpecs": [
+    {"name": "metric_minute_ts", "dataType": "LONG", "format": "1:MILLISECONDS:EPOCH", "granularity": "1:MINUTES"}
+  ]
+}

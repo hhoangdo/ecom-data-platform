@@ -1,0 +1,255 @@
+{
+  "correction_audit": {
+    "brokerId": "Broker_172.18.0.12_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 1780367703614,
+    "name": "correction_audit",
+    "numConsumingSegmentsMatched": 1,
+    "numConsumingSegmentsProcessed": 1,
+    "numConsumingSegmentsQueried": 1,
+    "numDocsScanned": 1,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 6,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 1,
+    "numSegmentsMatched": 1,
+    "numSegmentsProcessed": 1,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 0,
+    "numSegmentsPrunedByValue": 0,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 1,
+    "numServersQueried": 1,
+    "numServersResponded": 1,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": false,
+    "pools": [
+      -1
+    ],
+    "query": "select metric_key, metric_minute, correction_version, correction_reason, revenue_amount, gmv_proxy_amount\nfrom pinot_realtime_metric_corrections\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'\norder by correction_version desc, metric_key\nlimit 20",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1102031609000000009",
+    "resultTable": {
+      "dataSchema": {
+        "columnDataTypes": [
+          "STRING",
+          "STRING",
+          "INT",
+          "STRING",
+          "DOUBLE",
+          "DOUBLE"
+        ],
+        "columnNames": [
+          "metric_key",
+          "metric_minute",
+          "correction_version",
+          "correction_reason",
+          "revenue_amount",
+          "gmv_proxy_amount"
+        ]
+      },
+      "rows": [
+        [
+          "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+          "2026-05-01T10:00:00+00:00",
+          1,
+          "late_event",
+          125000.0,
+          155000.0
+        ]
+      ]
+    },
+    "rlsFiltersApplied": false,
+    "tablesQueried": [
+      "pinot_realtime_metric_corrections"
+    ],
+    "timeUsedMs": 12,
+    "totalDocs": 1,
+    "traceInfo": {}
+  },
+  "dashboard_contract": {
+    "brokerId": "Broker_172.18.0.12_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [
+      {
+        "errorCode": 150,
+        "message": "SQLParsingError: It seems that the query is only supported by the multi-stage query engine, please retry the query using the multi-stage query engine (https://docs.pinot.apache.org/developers/advanced/v2-multi-stage-query-engine)"
+      }
+    ],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 0,
+    "name": "dashboard_contract",
+    "numConsumingSegmentsMatched": 0,
+    "numConsumingSegmentsProcessed": 0,
+    "numConsumingSegmentsQueried": 0,
+    "numDocsScanned": 0,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 0,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 0,
+    "numSegmentsMatched": 0,
+    "numSegmentsProcessed": 0,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 0,
+    "numSegmentsPrunedByValue": 0,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 0,
+    "numServersQueried": 0,
+    "numServersResponded": 0,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": true,
+    "pools": [],
+    "query": "select *\nfrom (\n-- Dashboard SQL for Pinot live operational serving.\n-- Pinot is fresh and provisional; Spark Gold through Trino is canonical.\n\nWITH latest_corrections AS (\n  SELECT metric_key, MAX(correction_version) AS correction_version\n  FROM pinot_realtime_metric_corrections\n  GROUP BY metric_key\n),\neffective_commerce_metrics AS (\n  SELECT\n    metric_key,\n    metric_minute,\n    primary_category,\n    source,\n    device_type,\n    payment_method,\n    order_status,\n    order_count,\n    order_placed_count,\n    checkout_started_count,\n    payment_failure_count,\n    revenue_amount,\n    gmv_proxy_amount,\n    checkout_conversion_rate,\n    late_event_count,\n    duplicate_event_count,\n    correction_version\n  FROM pinot_realtime_commerce_metrics_1m\n  WHERE metric_key NOT IN (SELECT metric_key FROM latest_corrections)\n\n  UNION ALL\n\n  SELECT\n    corr.metric_key,\n    corr.metric_minute,\n    corr.primary_category,\n    corr.source,\n    corr.device_type,\n    corr.payment_method,\n    corr.order_status,\n    corr.order_count,\n    corr.order_placed_count,\n    corr.checkout_started_count,\n    corr.payment_failure_count,\n    corr.revenue_amount,\n    corr.gmv_proxy_amount,\n    corr.checkout_conversion_rate,\n    corr.late_event_count,\n    corr.duplicate_event_count,\n    corr.correction_version\n  FROM pinot_realtime_metric_corrections AS corr\n  INNER JOIN latest_corrections AS latest\n    ON corr.metric_key = latest.metric_key\n   AND corr.correction_version = latest.correction_version\n)\nSELECT\n  metric_minute,\n  primary_category,\n  SUM(revenue_amount) AS revenue_amount,\n  SUM(gmv_proxy_amount) AS gmv_proxy_amount,\n  SUM(payment_failure_count) AS payment_failure_count,\n  SUM(order_placed_count) AS order_placed_count,\n  SUM(checkout_started_count) AS checkout_started_count\nFROM effective_commerce_metrics\nGROUP BY metric_minute, primary_category\nORDER BY metric_minute, primary_category\n) as windowed_contract\nwhere metric_minute >= '2026-05-01T10:00:00+00:00' and metric_minute < '2026-05-01T11:00:00+00:00'\norder by metric_minute\nlimit 50",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1102031609000000007",
+    "rlsFiltersApplied": false,
+    "tablesQueried": [],
+    "timeUsedMs": 0,
+    "totalDocs": 0,
+    "traceInfo": {}
+  },
+  "live_ops_alerts": {
+    "brokerId": "Broker_172.18.0.12_8000",
+    "brokerReduceTimeMs": 0,
+    "clientRequestId": null,
+    "exceptions": [],
+    "explainPlanNumEmptyFilterSegments": 0,
+    "explainPlanNumMatchAllFilterSegments": 0,
+    "groupsTrimmed": false,
+    "minConsumingFreshnessTimeMs": 1780367705815,
+    "name": "live_ops_alerts",
+    "numConsumingSegmentsMatched": 0,
+    "numConsumingSegmentsProcessed": 0,
+    "numConsumingSegmentsQueried": 1,
+    "numDocsScanned": 7,
+    "numEntriesScannedInFilter": 0,
+    "numEntriesScannedPostFilter": 14,
+    "numGroupsLimitReached": false,
+    "numGroupsWarningLimitReached": false,
+    "numRowsResultSet": 7,
+    "numSegmentsMatched": 1,
+    "numSegmentsProcessed": 1,
+    "numSegmentsPrunedByBroker": 0,
+    "numSegmentsPrunedByLimit": 0,
+    "numSegmentsPrunedByServer": 0,
+    "numSegmentsPrunedByValue": 0,
+    "numSegmentsPrunedInvalid": 0,
+    "numSegmentsQueried": 1,
+    "numServersQueried": 1,
+    "numServersResponded": 1,
+    "offlineResponseSerMemAllocatedBytes": 0,
+    "offlineResponseSerializationCpuTimeNs": 0,
+    "offlineSystemActivitiesCpuTimeNs": 0,
+    "offlineThreadCpuTimeNs": 0,
+    "offlineThreadMemAllocatedBytes": 0,
+    "offlineTotalCpuTimeNs": 0,
+    "offlineTotalMemAllocatedBytes": 0,
+    "partialResult": false,
+    "pools": [
+      -1
+    ],
+    "query": "select alert_type, severity, count(*) as alert_count\nfrom pinot_realtime_ops_alerts\ngroup by alert_type, severity\norder by alert_count desc, alert_type\nlimit 20",
+    "realtimeResponseSerMemAllocatedBytes": 0,
+    "realtimeResponseSerializationCpuTimeNs": 0,
+    "realtimeSystemActivitiesCpuTimeNs": 0,
+    "realtimeThreadCpuTimeNs": 0,
+    "realtimeThreadMemAllocatedBytes": 0,
+    "realtimeTotalCpuTimeNs": 0,
+    "realtimeTotalMemAllocatedBytes": 0,
+    "requestId": "1102031609000000008",
+    "resultTable": {
+      "dataSchema": {
+        "columnDataTypes": [
+          "STRING",
+          "STRING",
+          "LONG"
+        ],
+        "columnNames": [
+          "alert_type",
+          "severity",
+          "alert_count"
+        ]
+      },
+      "rows": [
+        [
+          "duplicate_spike",
+          "high",
+          1
+        ],
+        [
+          "inventory_low_stock",
+          "medium",
+          1
+        ],
+        [
+          "late_arrival",
+          "medium",
+          1
+        ],
+        [
+          "payment_failure_spike",
+          "medium",
+          1
+        ],
+        [
+          "shipment_blocked_payment_failed",
+          "high",
+          1
+        ],
+        [
+          "shipment_delayed",
+          "high",
+          1
+        ],
+        [
+          "traffic_burst",
+          "high",
+          1
+        ]
+      ]
+    },
+    "rlsFiltersApplied": false,
+    "tablesQueried": [
+      "pinot_realtime_ops_alerts"
+    ],
+    "timeUsedMs": 13,
+    "totalDocs": 7,
+    "traceInfo": {}
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "artifacts": [
+    "pyspark_validation_report.json",
+    "spark_table_row_counts.json",
+    "spark_job_manifest.json",
+    "gx/validation_results.json"
+  ],
+  "gx_validation_success": true,
+  "pyspark_validation_success": true,
+  "required_gold_tables": [
+    "dim_customer",
+    "dim_seller",
+    "dim_product",
+    "dim_category",
+    "dim_date",
+    "dim_payment_method",
+    "dim_order_status",
+    "dim_shipment_status",
+    "dim_shipping_method",
+    "dim_promotion",
+    "bridge_product_category",
+    "fact_order",
+    "fact_order_item",
+    "fact_payment_attempt",
+    "fact_shipment",
+    "fact_inventory_snapshot",
+    "fact_promotion_application",
+    "obt_order_performance",
+    "agg_hourly_reconciled_kpi",
+    "feat_customer_90d",
+    "feat_stream_60m",
+    "feat_customer_unified"
+  ],
+  "row_counts": {
+    "gold": {
+      "agg_hourly_reconciled_kpi": 164,
+      "bridge_product_category": 729,
+      "dim_category": 20,
+      "dim_customer": 800,
+      "dim_date": 9,
+      "dim_order_status": 2,
+      "dim_payment_method": 5,
+      "dim_product": 600,
+      "dim_promotion": 17,
+      "dim_seller": 80,
+      "dim_shipment_status": 4,
+      "dim_shipping_method": 5,
+      "fact_inventory_snapshot": 1200,
+      "fact_order": 1800,
+      "fact_order_item": 6756,
+      "fact_payment_attempt": 1800,
+      "fact_promotion_application": 2233,
+      "fact_shipment": 1800,
+      "feat_customer_90d": 688,
+      "feat_customer_unified": 688,
+      "feat_stream_60m": 4652,
+      "obt_order_performance": 1800
+    },
+    "silver": {
+      "stg_catalog_events": 1940,
+      "stg_commerce_events": 17623,
+      "stg_customers": 800,
+      "stg_fulfillment_events": 4215,
+      "stg_inventory_snapshots": 1200,
+      "stg_ops_events": 5,
+      "stg_order_items": 6756,
+      "stg_orders": 1800,
+      "stg_payments": 1800,
+      "stg_product_category_map": 729,
+      "stg_products": 600,
+      "stg_promotions": 16,
+      "stg_sellers": 80,
+      "stg_shipments": 1800
+    }
+  },
+  "window": {
+    "end_ts": "2026-05-04T00:00:00Z",
+    "mode": "backfill",
+    "start_ts": "2026-04-21T00:00:00Z"
+  }
+}

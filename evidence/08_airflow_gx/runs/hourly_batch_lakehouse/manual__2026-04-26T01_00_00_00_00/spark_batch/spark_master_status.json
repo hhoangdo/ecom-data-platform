@@ -1,0 +1,151 @@
+{
+  "activeapps": [],
+  "activedrivers": [],
+  "aliveworkers": 1,
+  "completedapps": [
+    {
+      "cores": 16,
+      "duration": 6884,
+      "id": "app-20260602060930-0000",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780380570821,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:09:30 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 5779,
+      "id": "app-20260602061140-0001",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780380700842,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:11:40 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 112655,
+      "id": "app-20260602061341-0002",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780380821528,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:13:41 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 107975,
+      "id": "app-20260602062215-0003",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780381335107,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:22:15 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 89899,
+      "id": "app-20260602062440-0004",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780381480550,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:24:40 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 96162,
+      "id": "app-20260602062934-0005",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780381774899,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:29:34 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 96197,
+      "id": "app-20260602063607-0006",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780382167173,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:36:07 UTC 2026",
+      "user": "spark"
+    },
+    {
+      "cores": 16,
+      "duration": 98415,
+      "id": "app-20260602064014-0007",
+      "memoryperexecutor": 1024,
+      "memoryperslave": 1024,
+      "name": "vina-bim-shop-batch",
+      "resourcesperexecutor": [],
+      "resourcesperslave": [],
+      "starttime": 1780382414680,
+      "state": "FINISHED",
+      "submitdate": "Tue Jun 02 06:40:14 UTC 2026",
+      "user": "spark"
+    }
+  ],
+  "completeddrivers": [],
+  "cores": 16,
+  "coresused": 0,
+  "memory": 14778,
+  "memoryused": 0,
+  "resources": [
+    {}
+  ],
+  "resourcesused": [
+    {}
+  ],
+  "status": "ALIVE",
+  "url": "spark://spark-master:7077",
+  "workers": [
+    {
+      "cores": 16,
+      "coresfree": 16,
+      "coresused": 0,
+      "host": "172.18.0.14",
+      "id": "worker-20260602060339-172.18.0.14-33505",
+      "lastheartbeat": 1780382545899,
+      "memory": 14778,
+      "memoryfree": 14778,
+      "memoryused": 0,
+      "port": 33505,
+      "resources": {},
+      "resourcesfree": {},
+      "resourcesused": {},
+      "state": "ALIVE",
+      "webuiaddress": "http://172.18.0.14:8081"
+    }
+  ]
+}

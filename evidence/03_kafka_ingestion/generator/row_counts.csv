@@ -1,0 +1,13 @@
+dataset,row_count
+bad_snapshots,4
+customers,800
+inventory_snapshots,1200
+order_items,6821
+orders,1800
+payments,1800
+product_category_map,738
+products,600
+promotions,16
+sellers,80
+shipments,1800
+kafka_topics,24770

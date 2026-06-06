@@ -1,0 +1,28 @@
+source_topics:
+  commerce: commerce_events
+  catalog: catalog_events
+  fulfillment: fulfillment_events
+  ops: ops_events
+
+derived_topics:
+  commerce_metrics: realtime_commerce_metrics_1m
+  ops_alerts: realtime_ops_alerts
+  metric_corrections: realtime_metric_corrections
+
+window_minutes: 1
+out_of_orderness_seconds: 5
+
+allowed_lateness_seconds:
+  commerce_events: 300
+  catalog_events: 600
+  fulfillment_events: 900
+  ops_events: 120
+
+payment_failure_alert_threshold:
+  count: 3
+  rate: 0.05
+
+checkpoint_bucket: checkpoints
+checkpoint_prefix: flink
+curated_output_bucket: evidence
+curated_output_prefix: streaming_curated

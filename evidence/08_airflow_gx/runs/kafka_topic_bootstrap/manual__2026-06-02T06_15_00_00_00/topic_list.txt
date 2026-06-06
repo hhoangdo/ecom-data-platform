@@ -1,0 +1,13 @@
+__consumer_offsets
+_connect_configs
+_connect_offsets
+_connect_status
+_schemas
+catalog_events
+commerce_events
+dead_letter_events
+fulfillment_events
+ops_events
+realtime_commerce_metrics_1m
+realtime_metric_corrections
+realtime_ops_alerts
