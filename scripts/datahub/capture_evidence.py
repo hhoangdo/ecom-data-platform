@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -41,6 +42,41 @@ query GetTag($urn: String!) {
 }
 """.strip()
 
+GRAPHQL_DATAJOB_INPUTOUTPUT_QUERY = """
+query GetDataJobInputOutput($urn: String!) {
+  dataJob(urn: $urn) {
+    urn
+    properties {
+      name
+    }
+    inputOutput {
+      inputDatasets {
+        urn
+      }
+      outputDatasets {
+        urn
+      }
+    }
+  }
+}
+""".strip()
+
+GRAPHQL_LINEAGE_QUERY = """
+query SearchLineage($urn: String!, $direction: LineageDirection!) {
+  searchAcrossLineage(
+    input: {urn: $urn, direction: $direction, start: 0, count: 50, types: [DATASET, DATA_JOB]}
+  ) {
+    searchResults {
+      entity {
+        urn
+        type
+      }
+      degree
+    }
+  }
+}
+""".strip()
+
 REPRESENTATIVE_DATASET_URNS = {
     "iceberg_fact_order": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
     "kafka_commerce_events": "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
@@ -65,6 +101,38 @@ DATASET_COUNT_RECIPES = (
 )
 
 DATASET_COUNT_PATTERN = re.compile(r"'datasetProperties':\s*(\d+)")
+
+SPARK_DATAFLOW_URN = "urn:li:dataFlow:(spark,vina-bim-shop-batch,local)"
+FLINK_DATAFLOW_URN = "urn:li:dataFlow:(flink,vina-bim-shop-streaming,local)"
+
+SPARK_GOLD_TABLES = (
+    "dim_customer",
+    "dim_seller",
+    "dim_product",
+    "dim_category",
+    "dim_order_status",
+    "dim_shipment_status",
+    "dim_shipping_method",
+    "dim_payment_method",
+    "dim_promotion",
+    "fact_order",
+    "fact_order_item",
+    "fact_payment_attempt",
+    "fact_shipment",
+    "fact_inventory_snapshot",
+    "fact_promotion_application",
+    "obt_order_performance",
+    "agg_hourly_reconciled_kpi",
+    "feat_customer_90d",
+    "feat_stream_60m",
+    "feat_customer_unified",
+)
+
+FLINK_DERIVED_TOPICS = (
+    "realtime_commerce_metrics_1m",
+    "realtime_ops_alerts",
+    "realtime_metric_corrections",
+)
 
 
 def _utc_now() -> str:
@@ -150,6 +218,59 @@ def _capture_representative_datasets() -> dict[str, dict]:
     return verified
 
 
+def _expected_datajob_urns() -> list[str]:
+    spark_urns = [
+        f"urn:li:dataJob:({SPARK_DATAFLOW_URN},iceberg_transform_{t})"
+        for t in SPARK_GOLD_TABLES
+    ]
+    flink_urns = [
+        f"urn:li:dataJob:({FLINK_DATAFLOW_URN},flink_derive_{t})"
+        for t in FLINK_DERIVED_TOPICS
+    ]
+    return spark_urns + flink_urns
+
+
+def _wait_for_datajob_verified(urn: str, *, timeout_s: float = 60.0, poll_interval_s: float = 5.0) -> bool:
+    """Poll GMS until a DataJob URN is queryable and exposes non-empty inputOutput."""
+    deadline = time.monotonic() + timeout_s
+    while time.monotonic() < deadline:
+        try:
+            payload = _graphql(GRAPHQL_DATAJOB_INPUTOUTPUT_QUERY, {"urn": urn})
+            datajob = payload.get("data", {}).get("dataJob")
+            if datajob is None:
+                time.sleep(poll_interval_s)
+                continue
+            input_output = datajob.get("inputOutput") or {}
+            input_datasets = input_output.get("inputDatasets") or []
+            output_datasets = input_output.get("outputDatasets") or []
+            if input_datasets and output_datasets:
+                return True
+        except Exception:
+            pass
+        time.sleep(poll_interval_s)
+    return False
+
+
+def capture_datajob_lineage_evidence() -> dict:
+    """Verify v2 DataJobInputOutput lineage is indexed and queryable in GMS."""
+    expected = _expected_datajob_urns()
+    verified_urns: list[str] = []
+    failed_urns: list[dict[str, str]] = []
+    for urn in expected:
+        if _wait_for_datajob_verified(urn, timeout_s=60.0, poll_interval_s=5.0):
+            verified_urns.append(urn)
+        else:
+            failed_urns.append({"urn": urn, "reason": "dataJob entity or inputOutput not queryable within 60s"})
+
+    return {
+        "status": "success" if not failed_urns else "partial",
+        "expected_datajob_urns": len(expected),
+        "verified_datajob_count": len(verified_urns),
+        "verified_datajob_urns_sample": verified_urns[:5],
+        "failed_datajob_urns": failed_urns,
+    }
+
+
 def capture_dataset_evidence() -> dict:
     latest_manifest = _load_latest_successful_ingestion_manifest()
     if latest_manifest is None:
@@ -162,6 +283,8 @@ def capture_dataset_evidence() -> dict:
     flink_results = custom_lineage.get("flink", {})
     gx_results = custom_lineage.get("gx_assertions", {})
 
+    datajob_evidence = capture_datajob_lineage_evidence()
+
     return {
         "status": "success",
         "latest_successful_run_id": run_id,
@@ -172,9 +295,11 @@ def capture_dataset_evidence() -> dict:
             "spark_entities": len(spark_results),
             "flink_entities": len(flink_results),
             "gx_assertions_emitted": gx_results.get("assertions_emitted", 0),
+            "datajob_entities": datajob_evidence.get("verified_datajob_count", 0),
         },
+        "datajob_lineage_index_readiness": datajob_evidence,
         "verified_representative_datasets": _capture_representative_datasets(),
-        "note": "Representative entities are verified directly via GMS GraphQL lookups; search indexing is not required for this evidence pass.",
+        "note": "Representative entities and DataJob lineage are verified directly via GMS GraphQL lookups; search indexing is not required for this evidence pass.",
     }
 
 
@@ -227,3 +352,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

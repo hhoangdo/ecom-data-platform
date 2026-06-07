@@ -213,3 +213,107 @@ def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, t
 
     rendered_suites = {report.suite_name for report in captured_reports}
     assert rendered_suites == {"bronze_raw_minio", "datahub_ingestion"}
+
+
+def test_emit_datajob_lineage_emits_datajob_info_and_input_output(monkeypatch) -> None:
+    """v2 DataJob lineage must emit DataJobInfoClass + DataJobInputOutputClass per job."""
+    pytest = __import__("pytest")
+    datahub = pytest.importorskip("datahub")
+
+    from datahub.metadata.schema_classes import DataJobInfoClass, DataJobInputOutputClass
+
+    from vina_bim_shop.datahub_lineage import datajob_lineage
+
+    captured: list = []
+
+    class MockRestEmitter:
+        def emit(self, mcp) -> None:
+            captured.append(mcp)
+
+    monkeypatch.setattr(datajob_lineage, "DataHubRestEmitter", MockRestEmitter)
+
+    results = datajob_lineage.emit_datajob_lineage("http://fake-gms:8080")
+
+    info_aspects = [mcp.aspect for mcp in captured if isinstance(mcp.aspect, DataJobInfoClass)]
+    io_aspects = [mcp.aspect for mcp in captured if isinstance(mcp.aspect, DataJobInputOutputClass)]
+
+    assert info_aspects, "Expected at least one DataJobInfoClass"
+    assert io_aspects, "Expected at least one DataJobInputOutputClass"
+
+    fact_order_jobs = [
+        mcp
+        for mcp in captured
+        if isinstance(mcp.aspect, DataJobInputOutputClass)
+        and mcp.aspect.outputDatasets
+        and "fact_order" in mcp.aspect.outputDatasets[0]
+    ]
+    assert len(fact_order_jobs) == 1
+    assert len(fact_order_jobs[0].aspect.inputDatasets) > 0
+    assert any("stg_orders" in urn for urn in fact_order_jobs[0].aspect.inputDatasets)
+
+    job_urns = [mcp.entityUrn for mcp in captured]
+    assert all(urn.startswith("urn:li:dataJob:(urn:li:dataFlow:") for urn in job_urns)
+    assert all(urn.endswith("success") for urn in results.values()) or all(
+        v == "success" or v.startswith("warning:") for v in results.values()
+    )
+    assert all(v == "success" for v in results.values())
+
+
+def test_emit_datajob_lineage_swallows_per_job_errors(monkeypatch) -> None:
+    """A failure on one job must not abort emission of the others."""
+    pytest = __import__("pytest")
+    pytest.importorskip("datahub")
+
+    from vina_bim_shop.datahub_lineage import datajob_lineage
+
+    call_count = {"n": 0}
+
+    class FlakyEmitter:
+        def emit(self, mcp) -> None:
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                raise RuntimeError("simulated GMS outage")
+
+    monkeypatch.setattr(datajob_lineage, "DataHubRestEmitter", FlakyEmitter)
+
+    results = datajob_lineage.emit_datajob_lineage("http://fake-gms:8080")
+
+    assert any(v.startswith("warning:") for v in results.values())
+    assert any(v == "success" for v in results.values())
+    assert call_count["n"] > 1
+
+
+def test_run_custom_lineage_emission_includes_datajob_block(monkeypatch) -> None:
+    """_run_custom_lineage_emission must invoke the v2 emitter and surface its result."""
+    pytest = __import__("pytest")
+    pytest.importorskip("datahub")
+
+    from vina_bim_shop.datahub_lineage import (
+        datajob_lineage,
+        flink_lineage,
+        gx_assertions,
+        spark_lineage,
+    )
+    from vina_bim_shop.orchestration import runtime
+
+    captured: dict[str, object] = {}
+
+    def fake_emit_datajob_lineage(gms_url: str) -> dict[str, str]:
+        captured["gms_url"] = gms_url
+        return {
+            "urn:li:dataJob:(urn:li:dataFlow:(spark,vina-bim-shop-batch,local),iceberg_transform_fact_order)": "success"
+        }
+
+    monkeypatch.setattr(datajob_lineage, "emit_datajob_lineage", fake_emit_datajob_lineage)
+    monkeypatch.setattr(spark_lineage, "emit_spark_batch_lineage", lambda gms_url: {"fact_order": "success"})
+    monkeypatch.setattr(flink_lineage, "emit_flink_streaming_lineage", lambda gms_url: {"realtime_commerce_metrics_1m": "success"})
+    monkeypatch.setattr(gx_assertions, "emit_gx_assertions_to_datahub", lambda gms_url: {"assertions_emitted": 8})
+
+    results = runtime._run_custom_lineage_emission()
+
+    assert "datajob" in results
+    assert captured["gms_url"] == "http://datahub-gms:8080"
+    assert "fact_order" in next(iter(results["datajob"].keys()))
+    assert "spark" in results
+    assert "flink" in results
+    assert "gx_assertions" in results

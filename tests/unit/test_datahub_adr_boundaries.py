@@ -118,9 +118,15 @@ def test_datahub_lineage_package_exports_correctly():
     except ImportError:
         pytest.skip("acryl-datahub not installed in local venv (Docker-only dependency)")
 
-    from vina_bim_shop.datahub_lineage import DataHubLineageEmitter, emit_spark_batch_lineage, emit_flink_streaming_lineage
+    from vina_bim_shop.datahub_lineage import (
+        DataHubLineageEmitter,
+        emit_datajob_lineage,
+        emit_flink_streaming_lineage,
+        emit_spark_batch_lineage,
+    )
 
     assert DataHubLineageEmitter is not None
+    assert emit_datajob_lineage is not None
     assert emit_spark_batch_lineage is not None
     assert emit_flink_streaming_lineage is not None
 

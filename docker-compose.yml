@@ -690,6 +690,8 @@ services:
       DISABLE_SECURITY_PLUGIN: "true"
       ES_JAVA_OPTS: "-Xms256m -Xmx512m"
       OPENSEARCH_JAVA_OPTS: "-Xms768m -Xmx1024m"
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
     healthcheck:
       test: ["CMD-SHELL", "curl -sS --fail http://localhost:9200/_cluster/health?wait_for_status=yellow"]
       interval: 10s
@@ -855,3 +857,4 @@ volumes:
   lakehouse_postgres_data:
   pinot_zookeeper_data:
   pinot_zookeeper_datalog:
+  opensearch_data:

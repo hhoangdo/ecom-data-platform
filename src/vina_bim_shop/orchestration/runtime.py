@@ -558,6 +558,13 @@ def _run_custom_lineage_emission() -> dict[str, Any]:
     except Exception as exc:
         results["gx_assertions"] = {"status": "warning", "reason": str(exc)}
 
+    try:
+        from vina_bim_shop.datahub_lineage.datajob_lineage import emit_datajob_lineage
+
+        results["datajob"] = emit_datajob_lineage(gms_url)
+    except Exception as exc:
+        results["datajob"] = {"status": "warning", "reason": str(exc)}
+
     return results
 
 

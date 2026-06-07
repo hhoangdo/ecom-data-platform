@@ -7,12 +7,26 @@
     "trino_tables": 45
   },
   "custom_lineage": {
+    "datajob_entities": 23,
     "flink_entities": 3,
     "gx_assertions_emitted": 8,
     "spark_entities": 20
   },
+  "datajob_lineage_index_readiness": {
+    "expected_datajob_urns": 23,
+    "failed_datajob_urns": [],
+    "status": "success",
+    "verified_datajob_count": 23,
+    "verified_datajob_urns_sample": [
+      "urn:li:dataJob:(urn:li:dataFlow:(spark,vina-bim-shop-batch,local),iceberg_transform_dim_customer)",
+      "urn:li:dataJob:(urn:li:dataFlow:(spark,vina-bim-shop-batch,local),iceberg_transform_dim_seller)",
+      "urn:li:dataJob:(urn:li:dataFlow:(spark,vina-bim-shop-batch,local),iceberg_transform_dim_product)",
+      "urn:li:dataJob:(urn:li:dataFlow:(spark,vina-bim-shop-batch,local),iceberg_transform_dim_category)",
+      "urn:li:dataJob:(urn:li:dataFlow:(spark,vina-bim-shop-batch,local),iceberg_transform_dim_order_status)"
+    ]
+  },
   "latest_successful_run_id": "adr08_datahub_20260603T003300Z",
-  "note": "Representative entities are verified directly via GMS GraphQL lookups; search indexing is not required for this evidence pass.",
+  "note": "Representative entities and DataJob lineage are verified directly via GMS GraphQL lookups; search indexing is not required for this evidence pass.",
   "status": "success",
   "total_datasets_emitted": 109,
   "verified_representative_datasets": {
