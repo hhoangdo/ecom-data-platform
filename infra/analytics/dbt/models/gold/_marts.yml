@@ -1,0 +1,138 @@
+version: 2
+
+models:
+  - name: obt_order_performance
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: order_id
+      data_type: varchar
+      constraints:
+      - type: primary_key
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_id
+      tests:
+      - not_null
+      - unique
+    - name: order_timestamp
+      data_type: timestamp
+    - name: customer_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_id
+    - name: segment
+      data_type: varchar
+    - name: customer_city
+      data_type: varchar
+    - name: primary_category
+      data_type: varchar
+    - name: order_status
+      data_type: varchar
+    - name: shipping_city
+      data_type: varchar
+    - name: shipping_region
+      data_type: varchar
+    - name: shipping_method
+      data_type: varchar
+    - name: promotion_id
+      data_type: varchar
+    - name: coupon_code
+      data_type: varchar
+    - name: item_count
+      data_type: bigint
+    - name: total_quantity
+      data_type: hugeint
+    - name: distinct_products
+      data_type: bigint
+    - name: distinct_sellers
+      data_type: bigint
+    - name: order_gross_amount
+      data_type: double
+    - name: order_discount_amount
+      data_type: double
+    - name: order_net_amount
+      data_type: double
+    - name: official_paid_revenue
+      data_type: double
+    - name: gross_merchandise_value
+      data_type: double
+    - name: estimated_cost
+      data_type: double
+    - name: estimated_margin
+      data_type: double
+    - name: has_successful_payment
+      data_type: boolean
+    - name: is_paid_order
+      data_type: boolean
+    - name: payment_attempts
+      data_type: bigint
+    - name: successful_payment_attempts
+      data_type: hugeint
+    - name: successful_payment_method
+      data_type: varchar
+    - name: last_payment_ts
+      data_type: timestamp
+    - name: shipment_status
+      data_type: varchar
+    - name: is_delivery_delayed
+      data_type: boolean
+    - name: is_payment_blocked
+      data_type: boolean
+  - name: agg_hourly_reconciled_kpi
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: metric_hour
+      data_type: timestamp
+      constraints:
+      - type: primary_key
+      tests:
+      - not_null
+    - name: order_count
+      data_type: bigint
+    - name: paid_order_count
+      data_type: hugeint
+    - name: gross_order_amount
+      data_type: double
+    - name: discount_amount
+      data_type: double
+    - name: official_paid_revenue
+      data_type: double
+    - name: gross_merchandise_value
+      data_type: double
+    - name: estimated_cost
+      data_type: double
+    - name: estimated_margin
+      data_type: double
+    - name: average_order_value
+      data_type: double
+    - name: cancelled_or_failed_order_count
+      data_type: hugeint
+    - name: cancellation_rate
+      data_type: double
+    - name: payment_attempt_count
+      data_type: bigint
+    - name: payment_success_count
+      data_type: hugeint
+    - name: payment_success_rate
+      data_type: double
+    - name: shipment_count
+      data_type: bigint
+    - name: delayed_shipment_count
+      data_type: hugeint
+    - name: delivery_delay_rate
+      data_type: double
+    - name: checkout_started_count
+      data_type: hugeint
+    - name: order_placed_event_count
+      data_type: hugeint
+    - name: conversion_rate
+      data_type: double
