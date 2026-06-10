@@ -247,7 +247,10 @@ Evidence artifacts:
 | [infra/analytics/dbt/models/bronze](../infra/analytics/dbt/models/bronze) | Source-fidelity views and quarantine models. |
 | [infra/analytics/dbt/models/silver](../infra/analytics/dbt/models/silver) | Standardized and deduplicated staging models. |
 | [infra/analytics/dbt/models/gold](../infra/analytics/dbt/models/gold) | Constrained dimensions, facts, OBT, aggregate, and feature tables. |
-| [infra/analytics/dbt/models/gold/schema.yml](../infra/analytics/dbt/models/gold/schema.yml) | Gold contracts, keys, relationships, types, and tests. |
+| [infra/analytics/dbt/models/gold/_dimensions.yml](../infra/analytics/dbt/models/gold/_dimensions.yml) | Gold dimension and bridge contracts, keys, types, and tests. |
+| [infra/analytics/dbt/models/gold/_facts.yml](../infra/analytics/dbt/models/gold/_facts.yml) | Gold fact contracts, relationships, expression tests, and types. |
+| [infra/analytics/dbt/models/gold/_marts.yml](../infra/analytics/dbt/models/gold/_marts.yml) | Gold OBT and aggregate contracts, keys, and types. |
+| [infra/analytics/dbt/models/gold/_features.yml](../infra/analytics/dbt/models/gold/_features.yml) | Gold feature contracts, composite keys, and types. |
 | [infra/analytics/dbt/macros/business_logic.sql](../infra/analytics/dbt/macros/business_logic.sql) | Shared business formulas. |
 | [architecture/diagrams/gold_layer_ERD.dbml](../architecture/diagrams/gold_layer_ERD.dbml) | Gold-only ERD for DBML/dbdiagram preview. |
 | [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) | Full physical model across Bronze, Silver, and Gold. |
