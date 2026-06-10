@@ -1,11 +1,11 @@
 from pathlib import Path
 
-import yaml
+from compose_model import load_compose_model
 
 
 def test_root_compose_declares_lakehouse_services_and_ports() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     services = compose["services"]
     expected_services = {
@@ -32,7 +32,7 @@ def test_root_compose_declares_lakehouse_services_and_ports() -> None:
 
 def test_lakehouse_service_dependencies_preserve_catalog_boundaries() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     services = compose["services"]
 
     assert "hive-metastore" in services["trino"]["depends_on"]
@@ -56,7 +56,7 @@ def test_lakehouse_service_dependencies_preserve_catalog_boundaries() -> None:
 
 def test_lakehouse_compose_declares_persistent_state_volumes() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     volumes = compose["volumes"]
     assert "minio_data" in volumes
@@ -65,7 +65,7 @@ def test_lakehouse_compose_declares_persistent_state_volumes() -> None:
 
 def test_hive_metastore_image_includes_postgres_and_s3a_runtime_jars() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     hive_service = compose["services"]["hive-metastore"]
 
     assert hive_service["build"] == {
@@ -87,7 +87,7 @@ def test_hive_metastore_image_includes_postgres_and_s3a_runtime_jars() -> None:
 
 def test_root_compose_wires_kafka_connect_to_minio_for_bronze_event_landing() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     environment = compose["services"]["kafka-connect"]["environment"]
     assert environment["BRONZE_BUCKET"] == "${VBS_BRONZE_BUCKET:-bronze}"
@@ -99,7 +99,7 @@ def test_root_compose_wires_kafka_connect_to_minio_for_bronze_event_landing() ->
 
 def test_batch_profile_can_activate_required_lakehouse_dependencies() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     services = compose["services"]
 
     for service_name in ["minio", "minio-init", "lakehouse-postgres", "hive-metastore", "trino", "trino-worker"]:

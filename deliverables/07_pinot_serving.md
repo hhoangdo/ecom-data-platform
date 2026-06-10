@@ -88,8 +88,8 @@ Start Pinot after ingestion, lakehouse, and streaming services are available:
 ```powershell
 docker compose --profile ingestion up -d
 docker compose --profile lakehouse up -d
-docker compose --profile streaming up -d
-docker compose --profile serving up -d
+docker compose --profile ingestion --profile lakehouse --profile streaming up -d
+docker compose --profile ingestion --profile lakehouse --profile streaming --profile serving up -d
 ```
 
 The `serving` profile starts:
@@ -141,7 +141,7 @@ Committed evidence is stored under `evidence/07_pinot_serving/`.
 | `query_outputs/trino_reconciliation_results.json` | Captures canonical comparison output from Trino. |
 | `query_outputs/reconciliation_report.md` | Summarizes the realtime-vs-canonical comparison. |
 | `refresh_evidence_manifest.json` and `run_manifest.json` | Record evidence generation context. |
-| `screenshots/` | Provides UI inspection evidence. |
+| `screenshots/` | Historical UI inspection evidence; official refresh commands generate machine-verifiable JSON/query artifacts. |
 
 The clean-room verification path can be run with:
 

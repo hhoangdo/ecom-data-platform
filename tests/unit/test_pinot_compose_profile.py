@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import yaml
+from compose_model import load_compose_model
 
 
 def _repo_root() -> Path:
@@ -8,7 +8,7 @@ def _repo_root() -> Path:
 
 
 def test_root_compose_declares_serving_services_and_ports() -> None:
-    compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(_repo_root())
 
     services = compose["services"]
     expected = {"pinot-zookeeper", "pinot-controller", "pinot-broker", "pinot-server"}
@@ -22,7 +22,7 @@ def test_root_compose_declares_serving_services_and_ports() -> None:
 
 
 def test_serving_services_depend_on_kafka_and_pinot_cluster_primitives() -> None:
-    compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(_repo_root())
     services = compose["services"]
 
     assert "pinot-zookeeper" in services["pinot-controller"]["depends_on"]
@@ -44,7 +44,7 @@ def test_env_example_documents_pinot_urls() -> None:
 
 
 def test_serving_profile_declares_persistent_state_volume() -> None:
-    compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(_repo_root())
 
     assert "pinot_zookeeper_data" in compose["volumes"]
     assert "pinot_zookeeper_datalog" in compose["volumes"]

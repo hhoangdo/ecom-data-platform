@@ -1,11 +1,11 @@
 from pathlib import Path
 
-import yaml
+from compose_model import load_compose_model
 
 
 def test_root_compose_declares_ingestion_services_and_ports() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     services = compose["services"]
     assert {"kafka", "schema-registry", "kafka-connect", "kafka-ui"}.issubset(services)
@@ -20,7 +20,7 @@ def test_root_compose_declares_ingestion_services_and_ports() -> None:
 
 def test_kafka_compose_uses_single_broker_kraft() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     kafka_environment = compose["services"]["kafka"]["environment"]
 
     assert kafka_environment["KAFKA_PROCESS_ROLES"] == "broker,controller"

@@ -30,9 +30,6 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 ADR06_EVIDENCE_ROOT = REPO_ROOT / "evidence" / "08_airflow_gx"
 RUNS_ROOT = ADR06_EVIDENCE_ROOT / "runs"
 DOCS_ROOT = ADR06_EVIDENCE_ROOT / "gx_data_docs"
-_PLACEHOLDER_PNG = bytes.fromhex(
-    "89504E470D0A1A0A0000000D49484452000000010000000108060000001F15C4890000000D49444154789C6360606060000000050001A5F645400000000049454E44AE426082"
-)
 
 
 def _slugify_run_id(run_id: str) -> str:
@@ -248,22 +245,11 @@ def _prepare_gx_docs_root() -> None:
     )
 
 
-def _write_placeholder_spark_screenshots(*, master_url: str, history_url: str, screenshots_path: Path) -> dict[str, str]:
-    screenshots_path.mkdir(parents=True, exist_ok=True)
-    for filename in ["spark_master_ui.png", "spark_history_server.png"]:
-        (screenshots_path / filename).write_bytes(_PLACEHOLDER_PNG)
-    return {
-        "spark_master_ui": str((screenshots_path / "spark_master_ui.png").resolve()),
-        "spark_history_server": str((screenshots_path / "spark_history_server.png").resolve()),
-    }
-
-
 def _capture_airflow_batch_evidence(*, evidence_root: str | Path) -> dict[str, Any]:
     return capture_evidence(
         evidence_root=evidence_root,
         master_url="http://spark-master:8080",
         history_url="http://spark-history-server:18080",
-        screenshot_capturer=_write_placeholder_spark_screenshots,
     )
 
 
@@ -598,19 +584,12 @@ def run_local_evidence_build(*, run_id: str) -> dict[str, Any]:
     airflow_health = _get_json("http://airflow-webserver:8080/health")
     docs_index = DOCS_ROOT / "index.html"
     latest_manifests = sorted(str(path.relative_to(REPO_ROOT)).replace("\\", "/") for path in RUNS_ROOT.rglob("run_manifest.json"))
-    screenshots_root = ADR06_EVIDENCE_ROOT / "screenshots"
-    screenshots_root.mkdir(parents=True, exist_ok=True)
-    (screenshots_root / "README.md").write_text(
-        "Capture required screenshots here: airflow_dag_grid.png, gx_data_docs.png.\n",
-        encoding="utf-8",
-    )
     manifest = {
         "captured_at": _utc_now(),
         "airflow_health": airflow_health,
         "docs_index_exists": docs_index.is_file(),
         "latest_run_manifests": latest_manifests,
         "artifacts": [
-            "screenshots/README.md",
             "gx_data_docs/index.html",
         ],
     }

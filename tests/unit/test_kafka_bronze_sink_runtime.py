@@ -5,6 +5,8 @@ import re
 import sys
 from pathlib import Path
 
+from compose_model import load_compose_model
+
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
@@ -199,10 +201,8 @@ def test_register_bronze_sink_script_writes_response_artifact(monkeypatch, capsy
 
 
 def test_kafka_connect_service_uses_deterministic_custom_image_build() -> None:
-    import yaml
-
     repo_root = _repo_root()
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     kafka_connect = compose["services"]["kafka-connect"]
     assert kafka_connect["build"] == {"context": "./infra/kafka/connect", "dockerfile": "Dockerfile"}

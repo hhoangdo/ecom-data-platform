@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from compose_model import load_compose_model
 from vina_bim_shop.orchestration import runtime
 from vina_bim_shop.orchestration.specs import REQUIRED_DAG_IDS, dag_specs_by_id
 from vina_bim_shop.quality.policies import (
@@ -131,10 +132,8 @@ def test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount(monkeypatch) 
 
 
 def test_airflow_webserver_allows_slow_local_plugin_startup() -> None:
-    import yaml
-
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     env_vars = compose["services"]["airflow-webserver"]["environment"]
 
     assert int(env_vars["AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT"]) >= 300

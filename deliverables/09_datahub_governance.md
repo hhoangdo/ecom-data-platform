@@ -87,7 +87,7 @@ Representative tags verified in the evidence include `bronze`, `silver`, `gold`,
 Start governance after the relevant platform assets exist:
 
 ```powershell
-docker compose --profile governance up -d
+docker compose --profile ingestion --profile lakehouse --profile governance up -d
 ```
 
 If using Airflow as the control plane, trigger:

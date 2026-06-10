@@ -4,6 +4,8 @@ from pathlib import Path
 import pytest
 import yaml
 
+from compose_model import load_compose_model
+
 
 def test_datahub_db_already_configured_in_shared_postgres() -> None:
     repo_root = Path(__file__).resolve().parents[2]
@@ -15,7 +17,7 @@ def test_datahub_db_already_configured_in_shared_postgres() -> None:
 
 def test_governance_compose_profile_has_required_services() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     governance_services = {
         name
@@ -32,7 +34,7 @@ def test_governance_compose_profile_has_required_services() -> None:
 
 def test_governance_profile_reuses_shared_kafka_and_postgres() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     gms = compose["services"]["datahub-gms"]
     env_vars = {k: v for k, v in gms["environment"].items()}
@@ -145,7 +147,7 @@ def test_custom_datahub_lineage_uses_explicit_upstream_type() -> None:
 
 def test_datahub_gms_port_does_not_conflict_with_trino() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     host_ports = {}
     for name, svc in compose.get("services", {}).items():

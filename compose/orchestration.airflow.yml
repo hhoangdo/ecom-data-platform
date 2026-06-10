@@ -1,0 +1,139 @@
+services:
+  airflow-webserver:
+    build:
+      context: .
+      dockerfile: ./infra/orchestration/airflow/Dockerfile
+    image: vina-bim-shop/airflow:2.10.5-gx
+    profiles: ["orchestration", "all"]
+    depends_on:
+      lakehouse-postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    command: webserver
+    ports:
+      - "8082:8080"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://airflow:airflow_password@lakehouse-postgres:5432/airflow"
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      AIRFLOW__CORE__FERNET_KEY: ""
+      AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+      AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: "300"
+      AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: "300"
+      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
+      PYTHONPATH: "/workspace/src"
+      VBS_TRINO_URL: "http://trino:8080"
+      VBS_TRINO_USER: "vina_analyst"
+    volumes:
+      - ./:/workspace
+      - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
+      - ./src:/workspace/src:ro
+      - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
+      - ./infra/governance/recipes:/opt/airflow/recipes:ro
+      - ./artifacts/airflow/logs:/opt/airflow/logs
+      - ./evidence:/workspace/evidence
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  airflow-scheduler:
+    build:
+      context: .
+      dockerfile: ./infra/orchestration/airflow/Dockerfile
+    image: vina-bim-shop/airflow:2.10.5-gx
+    profiles: ["orchestration", "all"]
+    depends_on:
+      lakehouse-postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    command: scheduler
+    environment:
+      AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://airflow:airflow_password@lakehouse-postgres:5432/airflow"
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      AIRFLOW__CORE__FERNET_KEY: ""
+      AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
+      PYTHONPATH: "/workspace/src"
+      VBS_TRINO_URL: "http://trino:8080"
+      VBS_TRINO_USER: "vina_analyst"
+    volumes:
+      - ./:/workspace
+      - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
+      - ./src:/workspace/src:ro
+      - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
+      - ./infra/governance/recipes:/opt/airflow/recipes:ro
+      - ./artifacts/airflow/logs:/opt/airflow/logs
+      - ./evidence:/workspace/evidence
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD-SHELL", "airflow jobs check --job-type SchedulerJob --hostname \"$$(hostname)\""]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  airflow-init:
+    build:
+      context: .
+      dockerfile: ./infra/orchestration/airflow/Dockerfile
+    image: vina-bim-shop/airflow:2.10.5-gx
+    profiles: ["orchestration", "all"]
+    depends_on:
+      lakehouse-postgres:
+        condition: service_healthy
+    command: version
+    environment:
+      AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://airflow:airflow_password@lakehouse-postgres:5432/airflow"
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      AIRFLOW__CORE__FERNET_KEY: ""
+      AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+      _AIRFLOW_DB_UPGRADE: "true"
+      _AIRFLOW_WWW_USER_CREATE: "true"
+      _AIRFLOW_WWW_USER_USERNAME: "${VBS_AIRFLOW_ADMIN_USERNAME:-airflow}"
+      _AIRFLOW_WWW_USER_PASSWORD: "${VBS_AIRFLOW_ADMIN_PASSWORD:-airflow}"
+      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
+      PYTHONPATH: "/workspace/src"
+      VBS_TRINO_URL: "http://trino:8080"
+      VBS_TRINO_USER: "vina_analyst"
+    volumes:
+      - ./:/workspace
+      - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
+      - ./src:/workspace/src:ro
+      - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
+      - ./infra/governance/recipes:/opt/airflow/recipes:ro
+      - ./artifacts/airflow/logs:/opt/airflow/logs
+      - ./evidence:/workspace/evidence
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  gx-docs:
+    image: nginx:1.27-alpine
+    profiles: ["orchestration", "all"]
+    depends_on:
+      airflow-webserver:
+        condition: service_healthy
+    ports:
+      - "8088:80"
+    volumes:
+      - ./evidence/08_airflow_gx/gx_data_docs:/usr/share/nginx/html
+      - ./infra/orchestration/gx_docs/default_index.html:/defaults/default_index.html:ro
+    command:
+      [
+        "/bin/sh",
+        "-c",
+        "if [ ! -f /usr/share/nginx/html/index.html ]; then cp /defaults/default_index.html /usr/share/nginx/html/index.html; fi && exec nginx -g 'daemon off;'",
+      ]
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /usr/share/nginx/html/index.html"]
+      interval: 15s
+      timeout: 10s
+      retries: 20

@@ -1,0 +1,83 @@
+services:
+  spark-master:
+    build:
+      context: .
+      dockerfile: ./infra/spark/Dockerfile
+    image: vina-bim-shop/spark:4.0.0-iceberg-1.10.1
+    profiles: ["batch", "all"]
+    depends_on:
+      minio:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+      hive-metastore:
+        condition: service_healthy
+    command: ["master"]
+    ports:
+      - "8085:8080"
+    environment:
+      VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_MINIO_REGION: "${VBS_MINIO_REGION:-us-east-1}"
+      VBS_HIVE_METASTORE_INTERNAL_URI: "${VBS_HIVE_METASTORE_INTERNAL_URI:-thrift://hive-metastore:9083}"
+      VBS_SILVER_BUCKET: "${VBS_SILVER_BUCKET:-silver}"
+      VBS_GOLD_BUCKET: "${VBS_GOLD_BUCKET:-gold}"
+      VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
+    volumes:
+      - ./:/workspace
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/json/"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  spark-worker:
+    image: vina-bim-shop/spark:4.0.0-iceberg-1.10.1
+    profiles: ["batch", "all"]
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    command: ["worker"]
+    environment:
+      SPARK_WORKER_CORES: "2"
+      SPARK_WORKER_MEMORY: "2g"
+      VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_MINIO_REGION: "${VBS_MINIO_REGION:-us-east-1}"
+      VBS_HIVE_METASTORE_INTERNAL_URI: "${VBS_HIVE_METASTORE_INTERNAL_URI:-thrift://hive-metastore:9083}"
+      VBS_SILVER_BUCKET: "${VBS_SILVER_BUCKET:-silver}"
+      VBS_GOLD_BUCKET: "${VBS_GOLD_BUCKET:-gold}"
+      VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
+    volumes:
+      - ./:/workspace:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  spark-history-server:
+    image: vina-bim-shop/spark:4.0.0-iceberg-1.10.1
+    profiles: ["batch", "all"]
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    command: ["history"]
+    ports:
+      - "18080:18080"
+    environment:
+      VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_MINIO_REGION: "${VBS_MINIO_REGION:-us-east-1}"
+      VBS_HIVE_METASTORE_INTERNAL_URI: "${VBS_HIVE_METASTORE_INTERNAL_URI:-thrift://hive-metastore:9083}"
+      VBS_SILVER_BUCKET: "${VBS_SILVER_BUCKET:-silver}"
+      VBS_GOLD_BUCKET: "${VBS_GOLD_BUCKET:-gold}"
+      VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18080/api/v1/applications"]
+      interval: 15s
+      timeout: 10s
+      retries: 20

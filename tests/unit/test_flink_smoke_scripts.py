@@ -110,10 +110,6 @@ def test_capture_evidence_writes_streaming_manifest_and_artifacts(tmp_path: Path
         evidence_root=tmp_path,
         get_json=fake_get_json,
         run_command=fake_run_command,
-        screenshot_capturer=lambda *, flink_ui_url, screenshots_path: {
-            "jobs": str((screenshots_path / "flink_jobs.png").resolve()),
-            "checkpoints": str((screenshots_path / "flink_checkpoints.png").resolve()),
-        },
     )
 
     expected_files = [
@@ -125,7 +121,6 @@ def test_capture_evidence_writes_streaming_manifest_and_artifacts(tmp_path: Path
         "curated_output_listing.txt",
         "version_matrix.json",
         "run_manifest.json",
-        "screenshots/README.md",
     ]
     for relative_path in expected_files:
         assert (tmp_path / relative_path).is_file()
@@ -136,4 +131,6 @@ def test_capture_evidence_writes_streaming_manifest_and_artifacts(tmp_path: Path
         "realtime_ops_alerts",
         "realtime_metric_corrections",
     }
-    assert manifest["service_urls"]["flink_ui"] == "http://localhost:8086"
+    assert not (tmp_path / "screenshots").exists()
+    assert "flink_ui" not in manifest["service_urls"]
+    assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])

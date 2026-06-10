@@ -43,7 +43,7 @@ docker compose --profile ingestion up -d
 | Kafka Connect | `http://localhost:8083` | Runs the S3 sink that lands events into MinIO Bronze. |
 | Kafka UI | `http://localhost:8084` | Lets reviewers inspect topics, partitions, and messages. |
 
-The profile services are defined in [docker-compose.yml](../docker-compose.yml). Topic config lives in [infra/kafka/topics.yaml](../infra/kafka/topics.yaml).
+The root Compose entry point is [docker-compose.yml](../docker-compose.yml), which includes the ingestion services from [compose/ingestion.kafka.yml](../compose/ingestion.kafka.yml). Topic config lives in [infra/kafka/topics.yaml](../infra/kafka/topics.yaml).
 
 ## Topic Design
 

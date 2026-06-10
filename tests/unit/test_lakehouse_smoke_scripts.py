@@ -44,7 +44,6 @@ def test_capture_evidence_writes_lakehouse_manifest_and_artifacts(tmp_path: Path
         "trino_smoke_query.txt",
         "version_matrix.json",
         "run_manifest.json",
-        "screenshots/README.md",
     ]
     for relative_path in expected_files:
         assert (tmp_path / relative_path).is_file()
@@ -52,11 +51,10 @@ def test_capture_evidence_writes_lakehouse_manifest_and_artifacts(tmp_path: Path
     buckets = json.loads((tmp_path / "minio_buckets.json").read_text(encoding="utf-8"))
     assert buckets["required_buckets"] == ["bronze", "silver", "gold", "checkpoints", "evidence"]
     assert buckets["missing_buckets"] == []
-    assert manifest["service_urls"]["minio_console"] == "http://localhost:9001"
     assert manifest["service_urls"]["trino"] == "http://localhost:8080"
-    assert "screenshots/minio_buckets.png" in manifest["artifacts"]
-    assert "screenshots/trino_query_history.png" in manifest["artifacts"]
-    assert "screenshots/trino_sample_query.png" in manifest["artifacts"]
+    assert "minio_console" not in manifest["service_urls"]
+    assert not (tmp_path / "screenshots").exists()
+    assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])
 
 
 def test_capture_evidence_lists_buckets_with_one_shot_minio_client(tmp_path: Path) -> None:

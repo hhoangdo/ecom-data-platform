@@ -271,10 +271,6 @@ def test_capture_evidence_writes_manifest_and_service_artifacts(tmp_path: Path) 
         evidence_root=tmp_path,
         get_json=fake_get_json,
         post_json=fake_post_json,
-        screenshot_capturer=lambda *, controller_url, screenshots_path: {
-            "tables": str((screenshots_path / "pinot_tables.png").resolve()),
-            "query_console": str((screenshots_path / "pinot_query_console.png").resolve()),
-        },
     )
 
     for relative_path in [
@@ -286,10 +282,11 @@ def test_capture_evidence_writes_manifest_and_service_artifacts(tmp_path: Path) 
         "row_counts.json",
         "version_matrix.json",
         "run_manifest.json",
-        "screenshots/README.md",
     ]:
         assert (tmp_path / relative_path).is_file()
     assert manifest["service_urls"]["pinot_controller"] == "http://localhost:9003"
+    assert not (tmp_path / "screenshots").exists()
+    assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])
 
 
 def test_refresh_evidence_script_parses_args_and_prints_summary(monkeypatch, capsys, tmp_path: Path) -> None:

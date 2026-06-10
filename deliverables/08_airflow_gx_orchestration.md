@@ -17,7 +17,7 @@ A local data platform can quickly become a collection of one-off scripts. Airflo
 | Manual commands are hard to repeat in the same order. | Airflow DAGs define the intended control-plane workflows. |
 | Evidence runs need logical timestamps. | Hourly demo DAGs support closed logical windows. |
 | Quality failures need consistent severity. | GX checks are wrapped in policy logic that decides warning vs blocking behavior. |
-| Instructors need inspectable proof. | Manifests, validation JSON, query reports, screenshots, and GX Data Docs are written to evidence folders. |
+| Instructors need inspectable proof. | Manifests, validation JSON, query reports, and GX Data Docs are written to evidence folders; committed screenshots are historical review artifacts. |
 | Streaming should remain independent. | Airflow documents the boundary instead of supervising Flink runtime jobs. |
 
 Airflow must not monitor or restart Flink in v1. Flink jobs are long-running streaming runtime processes; Airflow owns batch and control-plane workflow orchestration.
@@ -72,7 +72,7 @@ Start orchestration after its dependency profiles are available:
 docker compose --profile ingestion up -d
 docker compose --profile lakehouse up -d
 docker compose --profile batch up -d
-docker compose --profile serving up -d
+docker compose --profile ingestion --profile lakehouse --profile streaming --profile serving up -d
 docker compose --profile orchestration up -d
 ```
 
@@ -155,7 +155,7 @@ Important artifacts include:
 | `runs/<dag_id>/<run_id>/run_manifest.json` | Per-run manifest for each captured DAG run. |
 | `runs/hourly_batch_lakehouse/<run_id>/quality/*.json` | Quality evidence for the batch lakehouse path. |
 | `runs/reconciliation_report/<run_id>/query_outputs/reconciliation_report.md` | Realtime-vs-canonical reconciliation summary. |
-| `screenshots/README.md` | Screenshot capture notes. |
+| `screenshots/README.md` | Historical screenshot capture notes retained with committed evidence artifacts. |
 
 ## Limitations
 

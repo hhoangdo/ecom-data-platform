@@ -1,73 +1,15 @@
 from __future__ import annotations
 
 import json
-import os
-import shutil
-import subprocess
 from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any
 
 import requests
 
 
 DEFAULT_EVIDENCE_ROOT = Path("evidence/07_pinot_serving")
-
-
-class ScreenshotCapturer(Protocol):
-    def __call__(self, *, controller_url: str, screenshots_path: Path) -> dict[str, str]: ...
-
-
-def _resolve_command(command: str) -> str:
-    candidates = [command]
-    if os.name == "nt":
-        candidates = [f"{command}.cmd", f"{command}.exe", command]
-    for candidate in candidates:
-        resolved = shutil.which(candidate)
-        if resolved:
-            return resolved
-    raise FileNotFoundError(f"Required command not found on PATH: {command}")
-
-
-def _capture_screenshots(*, controller_url: str, screenshots_path: Path) -> dict[str, str]:
-    screenshots_path.mkdir(parents=True, exist_ok=True)
-    for filename in ["pinot_tables.png", "pinot_query_console.png"]:
-        (screenshots_path / filename).unlink(missing_ok=True)
-    env = os.environ.copy()
-    env.setdefault("PLAYWRIGHT_BROWSERS_PATH", "0")
-    npx = _resolve_command("npx")
-    subprocess.run([npx, "playwright", "install", "chromium"], check=True, env=env)
-
-    jobs = [
-        (controller_url.rstrip("/"), screenshots_path / "pinot_tables.png", "text=Tables"),
-        (f"{controller_url.rstrip('/')}/#/query", screenshots_path / "pinot_query_console.png", "text=Query Console"),
-    ]
-    for url, destination, selector in jobs:
-        subprocess.run(
-            [
-                npx,
-                "playwright",
-                "screenshot",
-                "--browser",
-                "chromium",
-                "--full-page",
-                "--viewport-size",
-                "1440,1400",
-                "--timeout",
-                "30000",
-                "--wait-for-selector",
-                selector,
-                url,
-                str(destination.resolve()),
-            ],
-            check=True,
-            env=env,
-        )
-    return {
-        "tables": str((screenshots_path / "pinot_tables.png").resolve()),
-        "query_console": str((screenshots_path / "pinot_query_console.png").resolve()),
-    }
 
 
 def _get_json(url: str) -> Any:
@@ -93,7 +35,6 @@ def capture_evidence(
     broker_url: str = "http://localhost:8000",
     get_json: Callable[[str], Any] = _get_json,
     post_json: Callable[[str, dict[str, Any]], Any] = _post_json,
-    screenshot_capturer: ScreenshotCapturer = _capture_screenshots,
 ) -> dict[str, Any]:
     evidence_path = Path(evidence_root)
     evidence_path.mkdir(parents=True, exist_ok=True)
@@ -147,14 +88,6 @@ def capture_evidence(
     }
     (evidence_path / "version_matrix.json").write_text(json.dumps(version_matrix, indent=2, sort_keys=True), encoding="utf-8")
 
-    screenshots_path = evidence_path / "screenshots"
-    screenshots_path.mkdir(exist_ok=True)
-    (screenshots_path / "README.md").write_text(
-        "Capture required screenshots here: pinot_tables.png, pinot_query_console.png.\n",
-        encoding="utf-8",
-    )
-    screenshot_capturer(controller_url=controller_url, screenshots_path=screenshots_path)
-
     query_output_artifacts = []
     query_output_dir = evidence_path / "query_outputs"
     if query_output_dir.exists():
@@ -177,9 +110,6 @@ def capture_evidence(
             "row_counts.json",
             "version_matrix.json",
             "run_manifest.json",
-            "screenshots/README.md",
-            "screenshots/pinot_tables.png",
-            "screenshots/pinot_query_console.png",
             *query_output_artifacts,
         ],
     }

@@ -104,7 +104,6 @@ def capture_evidence(
     *,
     evidence_root: str | Path = DEFAULT_EVIDENCE_ROOT,
     minio_endpoint: str = "http://localhost:9000",
-    minio_console_url: str = "http://localhost:9001",
     trino_url: str = "http://localhost:8080",
     get_json: GetJson = _get_json,
     get_http: Callable[[str], dict[str, Any]] = get_http_artifact,
@@ -164,18 +163,10 @@ def capture_evidence(
     }
     _write_json(evidence_path / "version_matrix.json", version_matrix)
 
-    screenshots_path = evidence_path / "screenshots"
-    screenshots_path.mkdir(exist_ok=True)
-    (screenshots_path / "README.md").write_text(
-        "Capture required screenshots here: minio_buckets.png, trino_query_history.png, trino_sample_query.png.\n",
-        encoding="utf-8",
-    )
-
     manifest = {
         "captured_at": datetime.now(timezone.utc).isoformat(),
         "service_urls": {
             "minio": minio_endpoint,
-            "minio_console": minio_console_url,
             "trino": trino_url,
         },
         "artifacts": [
@@ -188,10 +179,6 @@ def capture_evidence(
             "trino_schemas.txt",
             "trino_smoke_query.txt",
             "version_matrix.json",
-            "screenshots/README.md",
-            "screenshots/minio_buckets.png",
-            "screenshots/trino_query_history.png",
-            "screenshots/trino_sample_query.png",
         ],
     }
     _write_json(evidence_path / "run_manifest.json", manifest)

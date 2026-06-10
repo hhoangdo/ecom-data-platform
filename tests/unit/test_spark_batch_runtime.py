@@ -5,8 +5,8 @@ from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
-import yaml
 
+from compose_model import load_compose_model
 from vina_bim_shop.lakehouse.spark.constants import REQUIRED_GOLD_TABLES
 from vina_bim_shop.lakehouse.spark.evidence import DEFAULT_EVIDENCE_ROOT, capture_evidence
 from vina_bim_shop.lakehouse.spark.parity import run_parity_checks
@@ -30,7 +30,7 @@ def _load_script_module(script_relative_path: str, module_name: str):
 
 
 def test_root_compose_declares_batch_services_and_ui_ports() -> None:
-    compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(_repo_root())
 
     services = compose["services"]
     expected_services = {"spark-master", "spark-worker", "spark-history-server"}
@@ -174,9 +174,7 @@ def test_run_command_uses_utf8_with_replacement(monkeypatch) -> None:
     }
 
 
-def test_capture_evidence_writes_manifest_and_screenshot_placeholders(tmp_path: Path) -> None:
-    screenshots = {}
-
+def test_capture_evidence_writes_machine_verifiable_manifest(tmp_path: Path) -> None:
     def fake_get_json(url: str):
         if url.endswith("/json/"):
             return {"status": "ALIVE", "workers": 1}
@@ -184,38 +182,19 @@ def test_capture_evidence_writes_manifest_and_screenshot_placeholders(tmp_path: 
             return [{"id": "app-001", "name": "vina-bim-shop-batch"}]
         raise AssertionError(f"Unexpected URL: {url}")
 
-    def fake_screenshot_capturer(*, master_url: str, history_url: str, screenshots_path: Path) -> dict[str, str]:
-        screenshots["master_url"] = master_url
-        screenshots["history_url"] = history_url
-        screenshots["path"] = str(screenshots_path)
-        for filename in ["spark_master_ui.png", "spark_history_server.png"]:
-            (screenshots_path / filename).write_text("stub", encoding="utf-8")
-        return {
-            "spark_master_ui": str((screenshots_path / "spark_master_ui.png").resolve()),
-            "spark_history_server": str((screenshots_path / "spark_history_server.png").resolve()),
-        }
-
     manifest = capture_evidence(
         evidence_root=tmp_path,
         master_url="http://localhost:8085",
         history_url="http://localhost:18080",
         get_json=fake_get_json,
-        screenshot_capturer=fake_screenshot_capturer,
     )
 
     assert DEFAULT_EVIDENCE_ROOT == Path("evidence/05_spark_batch")
     assert json.loads((tmp_path / "spark_master_status.json").read_text(encoding="utf-8"))["status"] == "ALIVE"
     assert json.loads((tmp_path / "spark_history_applications.json").read_text(encoding="utf-8"))[0]["id"] == "app-001"
-    assert (tmp_path / "screenshots" / "README.md").is_file()
-    assert (tmp_path / "screenshots" / "spark_master_ui.png").is_file()
-    assert (tmp_path / "screenshots" / "spark_history_server.png").is_file()
     assert "spark_master_status.json" in manifest["artifacts"]
-    assert "screenshots/spark_master_ui.png" in manifest["artifacts"]
-    assert screenshots == {
-        "master_url": "http://localhost:8085",
-        "history_url": "http://localhost:18080",
-        "path": str(tmp_path / "screenshots"),
-    }
+    assert not (tmp_path / "screenshots").exists()
+    assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])
 
 
 def test_run_gold_smoke_queries_writes_results_artifact(tmp_path: Path, monkeypatch) -> None:
@@ -520,7 +499,7 @@ def test_run_batch_pipeline_accepts_custom_capture_evidence_function(monkeypatch
 
     def fake_capture_evidence_fn(*, evidence_root):
         captured["evidence_root"] = Path(evidence_root)
-        return {"artifacts": ["screenshots/README.md"]}
+        return {"artifacts": ["run_manifest.json"]}
 
     monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.run_parity_checks", fake_run_parity_checks)
     monkeypatch.setattr("vina_bim_shop.lakehouse.spark.runner.run_gold_smoke_queries", fake_run_gold_smoke_queries)

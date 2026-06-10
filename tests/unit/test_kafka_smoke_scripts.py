@@ -145,21 +145,10 @@ def test_capture_evidence_writes_manifest_and_service_artifacts(tmp_path: Path) 
             return "Topic: commerce_events\nTopic: catalog_events\n"
         return ""
 
-    def fake_screenshot_capturer(*, kafka_ui_url: str, screenshots_path: Path) -> dict[str, str]:
-        screenshots_path.mkdir(parents=True, exist_ok=True)
-        for filename in ["kafka_ui_topics.png", "kafka_ui_message_sample.png", "schema_registry_subjects.png"]:
-            (screenshots_path / filename).write_bytes(b"png")
-        return {
-            "topics": str(screenshots_path / "kafka_ui_topics.png"),
-            "message_sample": str(screenshots_path / "kafka_ui_message_sample.png"),
-            "schema_registry": str(screenshots_path / "schema_registry_subjects.png"),
-        }
-
     manifest = capture_evidence(
         evidence_root=tmp_path,
         get_json=fake_get_json,
         run_command=fake_run_command,
-        screenshot_capturer=fake_screenshot_capturer,
     )
 
     assert (tmp_path / "topic_list.txt").is_file()
@@ -168,73 +157,6 @@ def test_capture_evidence_writes_manifest_and_service_artifacts(tmp_path: Path) 
     assert (tmp_path / "kafka_connect_status.json").is_file()
     assert (tmp_path / "version_matrix.json").is_file()
     assert (tmp_path / "run_manifest.json").is_file()
-    assert (tmp_path / "screenshots" / "README.md").is_file()
-    assert manifest["service_urls"]["kafka_ui"] == "http://localhost:8084"
-
-
-def test_capture_evidence_uses_screenshot_capturer_and_records_outputs(tmp_path: Path) -> None:
-    from vina_bim_shop.kafka.evidence import capture_evidence
-
-    def fake_get_json(url: str):
-        if url.endswith("/subjects"):
-            return ["commerce_events-value"]
-        if url.endswith("/connectors"):
-            return []
-        return {"status": "ok"}
-
-    def fake_run_command(command):
-        joined = " ".join(command)
-        if "--list" in joined:
-            return "commerce_events\n"
-        if "--describe" in joined:
-            return "Topic: commerce_events\n"
-        return ""
-
-    captures = []
-
-    def fake_screenshot_capturer(*, kafka_ui_url: str, screenshots_path: Path) -> dict[str, str]:
-        captures.append({"kafka_ui_url": kafka_ui_url, "screenshots_path": str(screenshots_path)})
-        screenshots_path.mkdir(parents=True, exist_ok=True)
-        files = {
-            "topics": screenshots_path / "kafka_ui_topics.png",
-            "message_sample": screenshots_path / "kafka_ui_message_sample.png",
-            "schema_registry": screenshots_path / "schema_registry_subjects.png",
-        }
-        for path in files.values():
-            path.write_bytes(b"png")
-        return {key: str(path) for key, path in files.items()}
-
-    manifest = capture_evidence(
-        evidence_root=tmp_path,
-        get_json=fake_get_json,
-        run_command=fake_run_command,
-        screenshot_capturer=fake_screenshot_capturer,
-    )
-
-    assert captures == [{"kafka_ui_url": "http://localhost:8084", "screenshots_path": str(tmp_path / "screenshots")}]
-    assert (tmp_path / "screenshots" / "kafka_ui_topics.png").is_file()
-    assert (tmp_path / "screenshots" / "kafka_ui_message_sample.png").is_file()
-    assert (tmp_path / "screenshots" / "schema_registry_subjects.png").is_file()
-    assert "screenshots/kafka_ui_topics.png" in manifest["artifacts"]
-
-
-def test_resolve_command_prefers_windows_wrappers(monkeypatch) -> None:
-    from vina_bim_shop.kafka.evidence import _resolve_command
-
-    paths = {
-        "npx.cmd": r"C:\Program Files\nodejs\npx.cmd",
-        "npx": None,
-    }
-
-    monkeypatch.setattr("vina_bim_shop.kafka.evidence.shutil.which", lambda name: paths.get(name))
-
-    assert _resolve_command("npx") == r"C:\Program Files\nodejs\npx.cmd"
-
-
-def test_screenshot_jobs_use_shell_safe_urls() -> None:
-    from vina_bim_shop.kafka.evidence import _screenshot_jobs
-
-    jobs = _screenshot_jobs("http://localhost:8084", Path("screenshots"))
-
-    assert all("&" not in url for url, _destination, _selector in jobs)
-    assert jobs[1][0].endswith("/all-topics/commerce_events/messages")
+    assert not (tmp_path / "screenshots").exists()
+    assert "kafka_ui" not in manifest["service_urls"]
+    assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])

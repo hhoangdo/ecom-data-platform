@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import yaml
+from compose_model import load_compose_model
 
 
 def _repo_root() -> Path:
@@ -8,7 +8,7 @@ def _repo_root() -> Path:
 
 
 def test_root_compose_declares_orchestration_services_and_ports() -> None:
-    compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(_repo_root())
 
     services = compose["services"]
     expected = {"airflow-webserver", "airflow-scheduler", "airflow-init", "gx-docs"}
@@ -22,7 +22,7 @@ def test_root_compose_declares_orchestration_services_and_ports() -> None:
 
 
 def test_orchestration_services_reuse_shared_postgres_and_repo_workspace() -> None:
-    compose = yaml.safe_load((_repo_root() / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(_repo_root())
     services = compose["services"]
 
     assert "orchestration" in services["lakehouse-postgres"]["profiles"]

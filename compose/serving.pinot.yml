@@ -1,0 +1,86 @@
+services:
+  pinot-zookeeper:
+    image: zookeeper:3.9.3
+    profiles: ["serving", "all"]
+    environment:
+      ZOO_4LW_COMMANDS_WHITELIST: "ruok"
+    volumes:
+      - pinot_zookeeper_data:/data
+      - pinot_zookeeper_datalog:/datalog
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/2181'"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  pinot-controller:
+    image: apachepinot/pinot:1.4.0
+    profiles: ["serving", "all"]
+    depends_on:
+      pinot-zookeeper:
+        condition: service_healthy
+    command:
+      [
+        "StartController",
+        "-zkAddress",
+        "pinot-zookeeper:2181",
+        "-clusterName",
+        "vina-bim-shop-pinot",
+        "-controllerPort",
+        "9000",
+      ]
+    ports:
+      - "9003:9000"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/9000'"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  pinot-broker:
+    image: apachepinot/pinot:1.4.0
+    profiles: ["serving", "all"]
+    depends_on:
+      pinot-controller:
+        condition: service_healthy
+    command:
+      [
+        "StartBroker",
+        "-zkAddress",
+        "pinot-zookeeper:2181",
+        "-clusterName",
+        "vina-bim-shop-pinot",
+        "-brokerPort",
+        "8000",
+      ]
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/8000'"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  pinot-server:
+    image: apachepinot/pinot:1.4.0
+    profiles: ["serving", "all"]
+    depends_on:
+      kafka:
+        condition: service_healthy
+      pinot-controller:
+        condition: service_healthy
+    command:
+      [
+        "StartServer",
+        "-zkAddress",
+        "pinot-zookeeper:2181",
+        "-clusterName",
+        "vina-bim-shop-pinot",
+        "-serverPort",
+        "7050",
+      ]
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/7050'"]
+      interval: 15s
+      timeout: 10s
+      retries: 20

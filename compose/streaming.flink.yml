@@ -1,0 +1,105 @@
+services:
+  flink-jobmanager:
+    build:
+      context: .
+      dockerfile: ./infra/flink/Dockerfile
+    image: vina-bim-shop/flink:1.19.2-py311
+    profiles: ["streaming", "all"]
+    depends_on:
+      kafka:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+    entrypoint: ["/opt/flink/bin/run-with-time-limit.sh"]
+    command: ["/docker-entrypoint.sh", "jobmanager"]
+    ports:
+      - "8086:8081"
+    environment:
+      VBS_KAFKA_BOOTSTRAP_SERVERS: "${VBS_KAFKA_BOOTSTRAP_SERVERS:-kafka:29092}"
+      VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
+      VBS_EVIDENCE_BUCKET: "${VBS_EVIDENCE_BUCKET:-evidence}"
+      VBS_FLINK_MAX_RUNTIME_MINUTES: "${VBS_FLINK_MAX_RUNTIME_MINUTES:-45}"
+      VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS: "${VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS:-30}"
+      VBS_FLINK_DISABLE_AUTO_STOP: "${VBS_FLINK_DISABLE_AUTO_STOP:-false}"
+      FLINK_PROPERTIES: |-
+        jobmanager.rpc.address: flink-jobmanager
+        rest.port: 8081
+        state.backend: hashmap
+        state.checkpoints.dir: s3://checkpoints/flink
+        s3.endpoint: http://minio:9000
+        s3.path.style.access: true
+        s3.access-key: ${VBS_MINIO_ROOT_USER:-vina_minio}
+        s3.secret-key: ${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}
+        s3.connection.ssl.enabled: false
+    volumes:
+      - ./:/workspace
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/overview"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  flink-taskmanager:
+    image: vina-bim-shop/flink:1.19.2-py311
+    profiles: ["streaming", "all"]
+    depends_on:
+      flink-jobmanager:
+        condition: service_healthy
+    entrypoint: ["/opt/flink/bin/run-with-time-limit.sh"]
+    command: ["/docker-entrypoint.sh", "taskmanager"]
+    environment:
+      VBS_KAFKA_BOOTSTRAP_SERVERS: "${VBS_KAFKA_BOOTSTRAP_SERVERS:-kafka:29092}"
+      VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
+      VBS_EVIDENCE_BUCKET: "${VBS_EVIDENCE_BUCKET:-evidence}"
+      VBS_FLINK_MAX_RUNTIME_MINUTES: "${VBS_FLINK_MAX_RUNTIME_MINUTES:-45}"
+      VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS: "${VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS:-30}"
+      VBS_FLINK_DISABLE_AUTO_STOP: "${VBS_FLINK_DISABLE_AUTO_STOP:-false}"
+      FLINK_PROPERTIES: |-
+        jobmanager.rpc.address: flink-jobmanager
+        taskmanager.numberOfTaskSlots: 4
+        state.backend: hashmap
+        state.checkpoints.dir: s3://checkpoints/flink
+        s3.endpoint: http://minio:9000
+        s3.path.style.access: true
+        s3.access-key: ${VBS_MINIO_ROOT_USER:-vina_minio}
+        s3.secret-key: ${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}
+        s3.connection.ssl.enabled: false
+    volumes:
+      - ./:/workspace:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://flink-jobmanager:8081/taskmanagers"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  flink-job-submit:
+    image: vina-bim-shop/flink:1.19.2-py311
+    profiles: ["streaming", "all"]
+    depends_on:
+      flink-jobmanager:
+        condition: service_healthy
+      flink-taskmanager:
+        condition: service_healthy
+    entrypoint: ["/opt/flink/bin/run-with-time-limit.sh"]
+    command: ["/opt/flink/bin/submit-jobs.sh"]
+    environment:
+      VBS_FLINK_JOBMANAGER_INTERNAL_URL: "${VBS_FLINK_JOBMANAGER_INTERNAL_URL:-http://flink-jobmanager:8081}"
+      VBS_KAFKA_BOOTSTRAP_SERVERS: "${VBS_KAFKA_BOOTSTRAP_SERVERS:-kafka:29092}"
+      VBS_MINIO_INTERNAL_ENDPOINT: "${VBS_MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_CHECKPOINTS_BUCKET: "${VBS_CHECKPOINTS_BUCKET:-checkpoints}"
+      VBS_EVIDENCE_BUCKET: "${VBS_EVIDENCE_BUCKET:-evidence}"
+      VBS_FLINK_MAX_RUNTIME_MINUTES: "${VBS_FLINK_MAX_RUNTIME_MINUTES:-45}"
+      VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS: "${VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS:-30}"
+      VBS_FLINK_DISABLE_AUTO_STOP: "${VBS_FLINK_DISABLE_AUTO_STOP:-false}"
+    volumes:
+      - ./:/workspace

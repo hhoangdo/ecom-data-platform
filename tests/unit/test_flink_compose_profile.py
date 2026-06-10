@@ -1,11 +1,11 @@
 from pathlib import Path
 
-import yaml
+from compose_model import load_compose_model
 
 
 def test_root_compose_declares_streaming_services_and_ports() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
 
     services = compose["services"]
     expected = {"flink-jobmanager", "flink-taskmanager", "flink-job-submit"}
@@ -19,7 +19,7 @@ def test_root_compose_declares_streaming_services_and_ports() -> None:
 
 def test_streaming_services_depend_on_ingestion_and_lakehouse_primitives() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     services = compose["services"]
 
     assert "kafka" in services["flink-jobmanager"]["depends_on"]
@@ -43,7 +43,7 @@ def test_env_example_documents_streaming_urls() -> None:
 
 def test_streaming_services_use_runtime_limit_wrapper() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    compose = yaml.safe_load((repo_root / "docker-compose.yml").read_text(encoding="utf-8"))
+    compose = load_compose_model(repo_root)
     services = compose["services"]
 
     for service_name in ["flink-jobmanager", "flink-taskmanager", "flink-job-submit"]:

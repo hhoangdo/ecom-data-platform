@@ -10,7 +10,6 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Capture ADR 04 Flink streaming evidence.")
     parser.add_argument("--evidence-root", default="evidence/06_flink_streaming")
     parser.add_argument("--flink-api-url", default="http://localhost:8086")
-    parser.add_argument("--flink-ui-url", default="http://localhost:8086")
     return parser.parse_args()
 
 
@@ -19,7 +18,6 @@ def main() -> None:
     manifest = capture_evidence(
         evidence_root=Path(args.evidence_root),
         flink_api_url=args.flink_api_url,
-        flink_ui_url=args.flink_ui_url,
     )
     print(f"Captured ADR 04 evidence with {len(manifest['artifacts'])} artifacts.")
 
