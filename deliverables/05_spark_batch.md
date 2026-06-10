@@ -67,18 +67,31 @@ The interface uses half-open UTC windows: `[start_ts, end_ts)`. `hourly` require
 
 ## Implementation
 
+The engine is **PySpark with Spark DataFrames and Spark SQL**. The job uses
+`pyspark.sql.SparkSession`, distributed `spark.read.parquet` and `spark.read.json`
+readers, `Window` and `row_number` based dedupe, and Spark SQL DDL (`CREATE OR REPLACE
+TABLE`, `MERGE INTO`) against the Iceberg catalog. Silver builders produce Spark
+DataFrames; Gold builders are pure Spark SQL templates in
+`src/vina_bim_shop/lakehouse/spark/sql.py:ordered_gold_queries`.
+
 Spark reads Bronze paths:
 
 - `s3a://bronze/batch/<dataset>/snapshot_date=<date>/*`
 - `s3a://bronze/events/<topic>/ingest_date=<date>/*`
+- `data/raw/bad_snapshots/bad_snapshots.jsonl` (read by `_read_optional_bad_snapshots`
+  using the `VBS_RAW_ROOT` env var or its default)
 
 It then:
 
-1. Creates raw temp views for batch snapshots and Kafka event logs.
-2. Deduplicates Silver tables by stable business keys and latest timestamp.
-3. Extracts event fields from JSON payloads into typed Silver columns.
-4. Writes Silver Iceberg tables with `MERGE INTO` for idempotent updates.
-5. Rebuilds Gold Iceberg tables with `CREATE OR REPLACE TABLE`.
+1. Creates raw temp views for batch snapshots, Kafka event logs, and quarantine
+   contracts (`raw_bad_events`, `raw_bad_snapshots`).
+2. Deduplicates Silver tables by stable business keys and latest timestamp using
+   `Window.partitionBy(...).orderBy(...desc()).row_number()`.
+3. Extracts event fields from JSON payloads into typed Silver columns with
+   `get_json_object`, preserving `schema_version` and tolerating missing fields.
+4. Writes Silver Iceberg tables with `MERGE INTO` for idempotent updates and
+   `CREATE TABLE IF NOT EXISTS` for first-run bootstrap.
+5. Rebuilds Gold Iceberg tables with `CREATE OR REPLACE TABLE` from Spark SQL.
 6. Runs PySpark validations and Great Expectations validations.
 7. Runs Trino smoke queries over `iceberg.gold`.
 8. Runs dbt-DuckDB parity checks.
@@ -91,9 +104,32 @@ Important table families:
 | --- | --- | --- |
 | Silver snapshots | `stg_orders`, `stg_order_items`, `stg_payments`, `stg_shipments` | Merge by stable source keys. |
 | Silver events | `stg_commerce_events`, `stg_catalog_events`, `stg_fulfillment_events`, `stg_ops_events` | Merge by `event_id` and partition by event date. |
+| Silver quarantine | `stg_bad_snapshots` | Merge by `bad_record_id`; partitions by `days(ingest_ts)`. |
 | Gold dimensions | `dim_customer`, `dim_product`, `dim_category`, `dim_promotion` | Rebuilt from current Silver state. |
 | Gold facts | `fact_order`, `fact_order_item`, `fact_payment_attempt`, `fact_shipment` | Rebuilt with reconciled business formulas. |
 | Gold serving | `obt_order_performance`, `agg_hourly_reconciled_kpi`, feature tables | Rebuilt for BI, reconciliation, and local feature surfaces. |
+
+## Data Challenge Handling
+
+The map from generator challenges to Spark code paths is documented in
+[11 Solving Data Challenges](11_solving_data_challenges.md). Highlights:
+
+- **Dedup**: `Window.partitionBy(<stable key>).orderBy(created_ts.desc()).row_number()`
+  in `src/vina_bim_shop/lakehouse/spark/job.py:_dedupe_latest`.
+- **Nullable dimensions**: `coalesce(shipping_method, 'unknown')` in
+  `sql.py:dim_shipping_method` and `sql.py:fact_shipment`; `coalesce(p.brand, 'unknown')`
+  in `sql.py:dim_product` so the product dimension is never null.
+- **Schema evolution**: every `stg_*_events` query preserves `schema_version` as a typed
+  column; JSON paths are extracted with `get_json_object` so missing keys produce null.
+- **Quarantine**: `_read_optional_dead_letter_events` and `_read_optional_bad_snapshots`
+  register `raw_bad_events` and `raw_bad_snapshots`; `stg_bad_snapshots` is a real Silver
+  table keyed by `bad_record_id`.
+- **Skew**: no Spark salting is implemented. Skew is preserved by design and tolerated
+  via distributed transforms and per-category cost rates. See
+  [11 Solving Data Challenges](11_solving_data_challenges.md#spark-batch-engine) for
+  the policy and the documented future action.
+- **Operational signals**: `stg_ops_events` is a Silver fact that the platform uses for
+  audit and DataHub lineage.
 
 ## Data Types And Partitioning
 
@@ -156,3 +192,9 @@ Expected artifacts include:
 - Gold tables are rebuilt for the coursework implementation rather than optimized with every production incremental pattern.
 - Airflow orchestrates batch runs, but Spark itself owns the transformation logic.
 - dbt-DuckDB parity supports confidence and local inspection; Spark/Iceberg/Trino remains canonical for the distributed platform.
+- **No Spark salting is implemented** for skew. Skew is preserved by design; see
+  [11 Solving Data Challenges](11_solving_data_challenges.md#spark-batch-engine) for the
+  current policy and the documented future action.
+- `stg_bad_snapshots` reads from the local raw root (via `VBS_RAW_ROOT`) because the
+  standard batch upload excludes `bad_snapshots`. The dbt-DuckDB path is the canonical
+  local-parity quarantine; the Spark path is the lakehouse quarantine.

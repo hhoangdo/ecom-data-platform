@@ -213,3 +213,11 @@ Key evidence files:
 | DuckDB/dbt | Rebuilds a local parity model from generated raw files. |
 | Airflow/GX | Orchestrates evidence runs and validates Bronze/Gold expectations. |
 | DataHub | Catalogs generated topics, lakehouse tables, lineage, tags, and quality assertions. |
+
+## Data Challenge Handling Overview
+
+Every challenge listed in this document is intentionally designed as a test case for the
+batch and streaming engines. The map of "challenge -> Spark/Flink handling" lives in
+[11 Solving Data Challenges](11_solving_data_challenges.md). It points at the actual code
+paths in `src/vina_bim_shop/lakehouse/spark/` and `src/vina_bim_shop/flink/`, and it
+documents honest gaps (for example, that no Spark salting is implemented today).

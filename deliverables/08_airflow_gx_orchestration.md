@@ -35,7 +35,92 @@ The required DAG inventory is defined in `src/vina_bim_shop/orchestration/specs.
 | `datahub_ingestion` | Manual | Runs governance metadata ingestion after source assets are available. |
 | `local_evidence_build` | Manual | Packages local run evidence into committed evidence structure. |
 
-Manual DAGs stay paused by default and are triggered intentionally. Hourly demo DAGs are also controlled deliberately so evidence can be tied to a known logical date.
+Manual DAGs stay paused by default and are triggered intentionally. `datahub_ingestion` is the one exception: it is unpaused (`is_paused_upon_creation=False`) so governance ingestion can run on demand. Hourly demo DAGs are also controlled deliberately so evidence can be tied to a known logical date.
+
+DAG files under `infra/orchestration/airflow/dags/` are intentionally thin adapters. Each one defines a single `PythonOperator` that calls a runtime function from `src/vina_bim_shop/orchestration/runtime.py`. No business logic, no `subprocess.run`, no `requests.get`, no file I/O, and no browser/screenshot helpers live in the DAG files.
+
+## DAG Reference
+
+### `kafka_topic_bootstrap` (manual)
+
+| Field | Documentation |
+| --- | --- |
+| Purpose | Apply the Kafka ingestion contract: topics, Avro/JSON schemas, and the Bronze S3 sink connector. |
+| Why it exists | Producers, Flink, and Spark need a stable topic and schema surface before any streaming or batch data is published. |
+| Runtime signature | `run_kafka_topic_bootstrap(*, run_id: str) -> dict[str, Any]` |
+| Inputs (file) | `infra/kafka/topics.yaml`, `infra/kafka/schemas/`, `infra/kafka/connect/source-events-s3-sink.template.json` |
+| Inputs (runtime) | `context["run_id"]` only. |
+| Services / endpoints | Kafka broker `kafka:29092`, Schema Registry `http://schema-registry:8081`, Kafka Connect `http://kafka-connect:8083`, MinIO `http://minio:9000`. |
+| Outputs | `evidence/08_airflow_gx/runs/kafka_topic_bootstrap/<run_id>/{bootstrap_health.json, connector_response.json, topic_list.txt, run_manifest.json}`. |
+| Boundary | Does not generate business data, does not run Spark/Flink, does not run GX. |
+| Tests | `tests/unit/test_orchestration_runtime.py::test_required_airflow_dags_are_declared_with_manual_or_demo_schedules`, `tests/unit/test_orchestration_adr_boundaries.py::test_orchestration_evidence_artifacts_exist`. |
+
+### `hourly_batch_lakehouse` (`@hourly`, paused)
+
+| Field | Documentation |
+| --- | --- |
+| Purpose | Run one logical hourly batch window: Bronze landing inventory, Spark Bronze→Silver→Gold transformation, Trino/Iceberg Gold contract check, GX Data Docs render. |
+| Why it exists | Streaming is provisional; Spark batch against MinIO/Iceberg is the canonical truth and the source of Gold tables for Trino. |
+| Runtime signature | `run_hourly_batch_lakehouse(*, run_id: str, start_ts: str, end_ts: str) -> dict[str, Any]` |
+| Inputs (runtime) | `context["data_interval_start"]` and `context["data_interval_end"]`, wrapped by `BatchWindow.from_args(start_ts, end_ts, mode="hourly")`. |
+| Services / endpoints | `spark-master:8080`, `spark-history-server:18080`, MinIO via `mc ls --recursive ALIAS/bronze`, Hive Metastore via Spark, Trino `http://trino:8080` (`show tables from iceberg.gold`, `select count(*) from iceberg.gold.fact_order`), GX docs container `/usr/share/nginx/html`. |
+| Outputs | `evidence/08_airflow_gx/runs/hourly_batch_lakehouse/<run_id>/{run_manifest.json, quality/bronze_raw_minio.json, quality/gold_trino_contract.json, spark_batch/{run_batch_summary.json, spark_master_status.json, spark_history_applications.json, dbt_parity_report.{json,md}, pyspark_validation_report.json, spark_job_manifest.json, spark_table_row_counts.json, trino_gold_smoke_results.json, version_matrix.json, gx/validation_results.json}}`. Manifest's `artifacts[]` is explicit: `quality/bronze_raw_minio.json`, `quality/gold_trino_contract.json`, `spark_batch/run_batch_summary.json`. No `screenshots/` paths. |
+| Boundary | Does not create Kafka topics, does not apply Pinot assets, does not run DataHub ingestion, does not capture UI screenshots. Raises `RuntimeError("Gold Trino validation failed.")` when `gold_report.blocks_dag and not gold_report.success` (per `gate_outcome_for_layer("gold_trino", success=False)`). |
+| Tests | `test_required_airflow_dags_are_declared_with_manual_or_demo_schedules`, `test_required_airflow_dags_preserve_adr06_boundaries`, `test_quality_gate_policy_matches_adr06_failure_contract`, `test_prepare_spark_evidence_root_uses_root_exec_for_shared_workspace`, `test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount`, `test_airflow_webserver_allows_slow_local_plugin_startup`. |
+
+### `pinot_bootstrap` (manual, paused)
+
+| Field | Documentation |
+| --- | --- |
+| Purpose | Apply Pinot schema/table assets and run sample serving queries against Pinot broker + Trino. |
+| Why it exists | Reviewers need to confirm the realtime serving surface and Gold reconciliation queries are reachable before they look at hourly metrics. |
+| Runtime signature | `run_pinot_bootstrap(*, run_id: str) -> dict[str, Any]` |
+| Inputs (file) | Pinot asset templates under `infra/pinot/` (resolved inside `vina_bim_shop.pinot.bootstrap.apply_assets`). |
+| Inputs (runtime) | `context["run_id"]` only. |
+| Services / endpoints | Pinot controller `http://pinot-controller:9000`, Pinot broker `http://pinot-broker:8000`, Trino `http://trino:8080` (user `vina_analyst`). |
+| Outputs | `evidence/08_airflow_gx/runs/pinot_bootstrap/<run_id>/{run_manifest.json, pinot_bootstrap_manifest.json, query_outputs/*, query_examples_manifest.json}`. |
+| Boundary | Does not own Flink job lifecycle. Consumes the realtime topics and Gold tables that Flink/Spark make available. Does not capture UI screenshots. |
+| Tests | `test_required_airflow_dags_are_declared_with_manual_or_demo_schedules`, `test_required_airflow_dags_preserve_adr06_boundaries`, `test_pinot_bootstrap_dag_exists_without_flink_control_logic` (forbids `vina_bim_shop.flink`, `scripts/flink/run_`, `restart` inside the DAG file). |
+
+### `reconciliation_report` (`@hourly`, paused)
+
+| Field | Documentation |
+| --- | --- |
+| Purpose | Compare provisional realtime Pinot metrics against canonical Trino/Iceberg Gold for the same logical hourly window. |
+| Why it exists | Late-arriving events and duplicates mean realtime Pinot numbers can shift; the batch truth is what the report exposes. |
+| Runtime signature | `run_reconciliation_report(*, run_id: str, start_ts: str, end_ts: str) -> dict[str, Any]` |
+| Inputs (runtime) | `context["data_interval_start"]`, `context["data_interval_end"]`. |
+| Services / endpoints | Pinot broker `http://pinot-broker:8000`, Trino `http://trino:8080`, MinIO/Iceberg via Trino. |
+| Outputs | `evidence/08_airflow_gx/runs/reconciliation_report/<run_id>/{run_manifest.json, quality/pinot_query_contract.json, query_outputs/pinot_dashboard_results.json, query_outputs/reconciliation_report.md, query_examples_manifest.json}`. |
+| Boundary | Does not re-run data generation, Kafka bootstrap, or Spark batch. The only Pinot path that escalates to a blocking failure, via `should_fail_reconciliation(pinot_success, reconciliation_success)`. |
+| Tests | `test_required_airflow_dags_are_declared_with_manual_or_demo_schedules`, `test_required_airflow_dags_preserve_adr06_boundaries`, `test_reconciliation_is_the_only_pinot_path_that_escalates_to_failure`. |
+
+### `datahub_ingestion` (manual, **unpaused**)
+
+| Field | Documentation |
+| --- | --- |
+| Purpose | Publish metadata, tags, ownership, lineage, and GX assertions into DataHub GMS. |
+| Why it exists | Governance and lineage are an official platform concern, not a UI decoration. |
+| Runtime signature | `run_datahub_ingestion(*, run_id: str) -> dict[str, Any]` |
+| Inputs (file) | Recipes resolved at `/opt/airflow/recipes/` first, falling back to `infra/governance/recipes/`. The four recipes iterated: `kafka_topics.yml`, `minio_storage.yml`, `trino_tables.yml`, `dbt_legacy.yml`. |
+| Inputs (runtime) | `context["run_id"]` only. |
+| Services / endpoints | `datahub` CLI on PATH, DataHub GMS `http://datahub-gms:8080`, plus emitters in `src/vina_bim_shop/datahub_lineage/` (`spark_lineage.emit_spark_batch_lineage`, `flink_lineage.emit_flink_streaming_lineage`, `emitter.DataHubLineageEmitter`, `gx_assertions.emit_gx_assertions_to_datahub`). |
+| Outputs | `evidence/08_airflow_gx/runs/datahub_ingestion/<run_id>/run_manifest.json` with `status` and `ingestion_results{recipe_name: {status, output|reason}}` plus `custom_lineage.{spark,flink,vocabulary,gx_assertions}`. Tags emitted: `bronze`, `silver`, `gold`, `official`, `provisional`, `pii_safe`, `regression_oracle`, `quality_gate`. Owners emitted: `data_engineer`, `airflow` (both `TECHNICAL_OWNER`). GX docs are merged into `evidence/08_airflow_gx/gx_data_docs/`. |
+| Boundary | Does not validate business data quality; it publishes metadata/lineage. Per-layer quality policy: `datahub` is `WARNING` and `blocks_dag=False` unless `critical=True`. |
+| Tests | `test_run_datahub_ingestion_includes_all_repo_recipes` (asserts all 4 recipes invoked in order), `test_run_datahub_ingestion_preserves_existing_quality_reports`, `test_quality_gate_policy_matches_adr06_failure_contract`, plus `tests/unit/test_datahub_adr_boundaries.py`. |
+
+### `local_evidence_build` (manual, paused)
+
+| Field | Documentation |
+| --- | --- |
+| Purpose | Collect official machine evidence for ADR 06: Airflow health, the latest `run_manifest.json` per DAG, and a pointer to the GX Data Docs index. |
+| Why it exists | Reviewers need a single runnable DAG that produces a portable, machine-verifiable evidence summary. |
+| Runtime signature | `run_local_evidence_build(*, run_id: str) -> dict[str, Any]` |
+| Inputs (runtime) | `context["run_id"]`, Airflow webserver `http://airflow-webserver:8080/health`, and `evidence/08_airflow_gx/runs/`. |
+| Services / endpoints | Airflow webserver `/health`, `gx-docs` static site (`evidence/08_airflow_gx/gx_data_docs/index.html`). |
+| Outputs | `evidence/08_airflow_gx/runs/local_evidence_build/<run_id>/run_manifest.json` (per-run), plus `evidence/08_airflow_gx/airflow_health.json` and `evidence/08_airflow_gx/run_manifest.json` (top-level). Manifest contains `airflow_health`, `docs_index_exists`, `latest_run_manifests[]`, `artifacts=["gx_data_docs/index.html"]`. |
+| Boundary | Does not perform screenshot capture. Does not write any `screenshots/` directory. Per `tests/unit/test_script_surface_documentation.py::test_official_machine_evidence_has_no_browser_or_screenshot_helpers`, the official runtime path must not contain `playwright`, `npx`, `ScreenshotCapturer`, `screenshot_capturer`, `screenshots/README.md`, `_PLACEHOLDER_PNG`, or `--*-ui-url` flags. |
+| Tests | `test_required_airflow_dags_are_declared_with_manual_or_demo_schedules`, `test_orchestration_evidence_artifacts_exist`, `test_official_machine_evidence_has_no_browser_or_screenshot_helpers`. |
 
 ## Quality Policy
 
@@ -139,7 +224,8 @@ The docs are supported by:
 | Validation JSON | Machine-readable result for each check. |
 | GX static HTML | Human-readable local inspection page. |
 | Run manifests | Links each validation batch to DAG and logical-window context. |
-| Screenshots | Optional UI evidence for coursework submission. |
+
+UI screenshots are **not** part of the official machine-evidence surface. They are not generated by the orchestration runtime and are not asserted by `local_evidence_build`. They live under `develop/evidence/08_airflow_gx/screenshots/` on the `develop` branch and exist for human reviewer convenience only.
 
 ## Evidence
 
@@ -155,10 +241,49 @@ Important artifacts include:
 | `runs/<dag_id>/<run_id>/run_manifest.json` | Per-run manifest for each captured DAG run. |
 | `runs/hourly_batch_lakehouse/<run_id>/quality/*.json` | Quality evidence for the batch lakehouse path. |
 | `runs/reconciliation_report/<run_id>/query_outputs/reconciliation_report.md` | Realtime-vs-canonical reconciliation summary. |
-| `screenshots/README.md` | Historical screenshot capture notes retained with committed evidence artifacts. |
+
+### Historical Review Artifacts (develop-only)
+
+A small set of screenshot/UI-capture placeholders previously lived under `evidence/08_airflow_gx/screenshots/` and `evidence/08_airflow_gx/runs/hourly_batch_lakehouse/<run_id>/spark_batch/screenshots/`. They were static capture notes, not generated by the orchestration runtime, and they are now relocated to the `develop` branch under `develop/evidence/08_airflow_gx/...`.
+
+Official machine evidence on `main` is JSON + GX Data Docs only. UI screenshot capture, if reintroduced, must be produced by a runtime function and explicitly listed in a DAG manifest's `artifacts[]`; the no-browser / no-screenshot-helpers contract in `src/vina_bim_shop/orchestration/runtime.py` and `src/vina_bim_shop/lakehouse/spark/evidence.py` is enforced by `tests/unit/test_script_surface_documentation.py::test_official_machine_evidence_has_no_browser_or_screenshot_helpers`.
+
+## Runtime Boundary Follow-ups
+
+`src/vina_bim_shop/orchestration/runtime.py` is currently the single source of truth for every DAG adapter. The file is 599 lines and still cohesive, but the per-DAG documentation above makes the natural split lines obvious. A follow-up refactor should:
+
+1. Introduce one module per DAG under `src/vina_bim_shop/orchestration/` (for example `kafka_bootstrap.py`, `hourly_batch.py`, `pinot_bootstrap.py`, `reconciliation.py`, `datahub_ingestion.py`, `local_evidence.py`) plus a shared `paths.py` and `subprocess_helpers.py`.
+2. Keep `src/vina_bim_shop/orchestration/specs.py` as the single place that declares the required-DAG inventory and ADR06 schedule/window boundaries (`supports_hourly_logical_window`, `monitors_flink`).
+3. Keep `src/vina_bim_shop/orchestration/runtime.py` as a thin re-export shim, or remove it once DAG adapters import the new modules directly.
+4. Extend `tests/unit/test_orchestration_runtime.py` with one import test per DAG adapter that asserts the adapter still calls the expected runtime function with the expected `start_ts`/`end_ts` plumbing.
+5. Re-run the orchestration/DataHub tests below after the split. The contract is already covered by existing tests; the split should not change behavior.
+
+The split is intentionally deferred from this change because no DAG behavior changes when the file is reorganized, and reorganizing without behavior change is best done as its own review.
+
+## Tests
+
+The DAG, runtime, and governance contracts are protected by these unit tests:
+
+| Test file | What it protects |
+| --- | --- |
+| `tests/unit/test_orchestration_runtime.py` | Required DAG inventory, ADR06 failure policies, Spark/GX evidence-root exec calls, DataHub recipe order, DataHub docs preservation. |
+| `tests/unit/test_orchestration_adr_boundaries.py` | This deliverable's policy phrases, `gx_data_docs/index.html` exists. |
+| `tests/unit/test_datahub_adr_boundaries.py` | ADR 07 governance file references and recipe coverage. |
+| `tests/unit/test_script_surface_documentation.py` | No browser/screenshot helpers in the official machine-evidence files; `develop-only` candidate scripts are not referenced from `README.md`, `deliverables/`, `tests/`, `infra/`, or `src/`. |
+
+Run them with:
+
+```powershell
+uv run pytest tests/unit/test_orchestration_runtime.py
+uv run pytest tests/unit/test_orchestration_adr_boundaries.py
+uv run pytest tests/unit/test_datahub_adr_boundaries.py
+uv run pytest tests/unit/test_script_surface_documentation.py
+uv run pytest tests/unit -k airflow
+```
 
 ## Limitations
 
 - Airflow is not a streaming process supervisor. Flink runtime health is verified separately through Flink evidence and clean-room checks.
 - The orchestration profile is designed for staged local startup, not a single high-resource full-stack boot.
 - GX validation proves selected quality policies and evidence boundaries; it is not a complete production observability system.
+- `local_evidence_build` does not include screenshot capture in its `artifacts[]`; UI capture is a `develop`-only concern. The historical placeholders that previously lived under `evidence/08_airflow_gx/screenshots/` have been moved to `develop/evidence/08_airflow_gx/screenshots/`.

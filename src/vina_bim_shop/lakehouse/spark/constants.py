@@ -38,6 +38,7 @@ SILVER_TABLES = (
     "stg_commerce_events",
     "stg_fulfillment_events",
     "stg_ops_events",
+    "stg_bad_snapshots",
 )
 
 GOLD_DIMENSION_TABLES = (
@@ -83,6 +84,7 @@ SILVER_PARTITIONED_BY = {
     "stg_fulfillment_events": ("days(event_timestamp)",),
     "stg_ops_events": ("days(event_timestamp)",),
     "stg_inventory_snapshots": ("days(snapshot_ts)",),
+    "stg_bad_snapshots": ("days(ingest_ts)",),
 }
 
 GOLD_PARTITIONED_BY = {

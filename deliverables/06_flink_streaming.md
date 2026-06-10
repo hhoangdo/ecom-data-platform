@@ -65,6 +65,22 @@ Late-arriving commerce data is handled with correction snapshots:
 
 This design keeps the realtime layer honest: dashboards can be fast, and late-data behavior is explicit.
 
+The full set of streaming behaviors is implemented in:
+
+| Behavior | Code |
+| --- | --- |
+| Bounded out-of-orderness watermark | `src/vina_bim_shop/flink/runtime.py:event_timestamp_assigner` |
+| Event-time timestamp extraction | `src/vina_bim_shop/flink/runtime.py:event_timestamp_millis` |
+| One-minute tumbling event-time window | `src/vina_bim_shop/flink/commerce_job.py` `.window(TumblingEventTimeWindows.of(Time.minutes(...)))` |
+| Per-topic allowed lateness | `src/vina_bim_shop/flink/commerce_job.py` `.allowed_lateness(...)` |
+| Dedupe by `event_id` | `src/vina_bim_shop/flink/metrics.py:dedupe_events` |
+| `duplicate_event_count` and `late_event_count` in the snapshot | `src/vina_bim_shop/flink/metrics.py:build_metric_snapshot` |
+| Correction version + reason | `src/vina_bim_shop/flink/corrections.py:build_correction_record` |
+| 30-second `EXACTLY_ONCE` checkpointing to MinIO | `src/vina_bim_shop/flink/runtime.py:configure_checkpointing` |
+| Three derived Kafka topics | `src/vina_bim_shop/flink/commerce_job.py` (sinks) and `configs/pipelines/flink_streaming.yaml` |
+| JSONL curated file sinks | `src/vina_bim_shop/flink/runtime.py:jsonl_file_sink` |
+| Ops signal -> alert mapping | `src/vina_bim_shop/flink/alerts.py:OPS_ALERT_TYPE_MAP` and `src/vina_bim_shop/flink/ops_job.py` filter |
+
 ## Service Interactions
 
 Flink sits between Kafka and Pinot, with MinIO used for operational state and audit evidence.
@@ -73,10 +89,36 @@ Flink sits between Kafka and Pinot, with MinIO used for operational state and au
 | --- | --- |
 | Kafka | Kafka source topics provide raw commerce, catalog, fulfillment, and ops events. Flink publishes only derived topics back to Kafka. |
 | Schema Registry | Event contracts are managed at ingestion time; Flink consumes the topic payloads according to those source contracts. |
-| MinIO | Flink writes checkpoints to the `checkpoints/flink/` prefix and mirrors selected JSONL audit rows to `evidence/streaming_curated/`. |
-| Pinot | Pinot consumes the Flink-derived topics for realtime OLAP serving. |
+| MinIO | Flink writes checkpoints to the `checkpoints/flink/` prefix (30-second `EXACTLY_ONCE` interval) and mirrors selected JSONL audit rows to `evidence/streaming_curated/`. |
+| Pinot | Pinot consumes the Flink-derived topics for realtime OLAP serving; `realtime_metric_corrections` lets Pinot apply late-event corrections without double-counting. |
 | Airflow | Airflow orchestrates batch and control-plane work only. Airflow does not monitor or restart Flink in v1. Airflow must not monitor or restart Flink in v1. |
 | DataHub | Streaming lineage is emitted after the platform assets exist, connecting source Kafka topics, Flink processing, and derived topics. |
+
+## Data Challenge Handling
+
+The map from generator challenges to Flink code paths is documented in
+[11 Solving Data Challenges](11_solving_data_challenges.md). Highlights:
+
+- **Event time and watermarks**: `WatermarkStrategy.for_bounded_out_of_orderness` in
+  `runtime.py:event_timestamp_assigner`; the `TimestampAssigner` reads `event_timestamp`
+  in `runtime.py:event_timestamp_millis`.
+- **One-minute tumbling event-time windows**:
+  `TumblingEventTimeWindows.of(Time.minutes(config.window_minutes))` in `commerce_job.py`.
+- **Per-topic allowed lateness**: `.allowed_lateness(config.allowed_lateness_seconds[topic] * 1000)`.
+- **Dedupe**: `metrics.py:dedupe_events` keeps one event per `event_id` and the snapshot
+  carries `duplicate_event_count`.
+- **Corrections**: `commerce_job.py:CommerceWindowProcessor` emits to
+  `realtime_metric_corrections` on re-sightings, with `correction_version` and
+  `correction_reason` set by `corrections.py:build_correction_record`.
+- **Checkpointing**: 30-second `EXACTLY_ONCE` checkpoints persisted to MinIO via
+  `runtime.py:configure_checkpointing`.
+- **Derived Kafka topics**: `realtime_commerce_metrics_1m`,
+  `realtime_metric_corrections`, and `realtime_ops_alerts` are the only topics Flink
+  publishes.
+- **Operational signals**: `ops_job.py` filters `traffic_burst_detected`,
+  `late_arrival_observed`, `duplicate_event_observed`, `inventory_low_stock`,
+  `shipment_delayed`, `shipment_blocked_payment_failed`; `alerts.py` maps them to a
+  stable `alert_type` and emits a uniform alert contract.
 
 ## Derived Topic Contracts
 
@@ -156,3 +198,5 @@ Evidence includes:
 - The realtime layer is fresh and provisional; it does not replace reconciled Spark Gold tables.
 - Flink jobs are long-running runtime processes, while Airflow is only the control plane for local evidence workflows.
 - The clean-room verifier resets only selected streaming and serving state so committed evidence and lakehouse data remain intact.
+- Flink does not consume the `dead_letter_events` topic; bad event payloads are quarantined by the Spark batch path only. See
+  [11 Solving Data Challenges](11_solving_data_challenges.md#honest-gaps-and-future-work) for the documented future action.

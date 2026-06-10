@@ -26,6 +26,7 @@ def run_pyspark_validations(*, spark: SparkSession, evidence_root: str | Path) -
         ("stg_payments", "payment_id"),
         ("stg_shipments", "shipment_id"),
         ("stg_commerce_events", "event_id"),
+        ("stg_bad_snapshots", "bad_record_id"),
         ("fact_order", "order_id"),
         ("fact_order_item", "order_item_id"),
         ("fact_payment_attempt", "payment_id"),
@@ -147,6 +148,17 @@ where pm.payment_method_key is null
             success=failure_count == 0,
             detail={"failure_count": failure_count},
         )
+
+    dim_brand_null_count = _scalar(
+        spark,
+        "select count(*) from dim_product where brand is null",
+    )
+    _append_check(
+        results,
+        name="dim_product.brand.not_null",
+        success=dim_brand_null_count == 0,
+        detail={"null_brand_count": dim_brand_null_count},
+    )
 
     paid_revenue_delta = _scalar(
         spark,

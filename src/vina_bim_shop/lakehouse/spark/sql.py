@@ -71,7 +71,7 @@ select
   p.seller_id,
   p.primary_category,
   p.primary_subcategory,
-  p.brand,
+  coalesce(p.brand, 'unknown') as brand,
   p.product_name,
   p.base_price,
   p.price_band,

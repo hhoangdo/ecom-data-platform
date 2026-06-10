@@ -143,6 +143,29 @@ def _empty_bad_snapshots(spark: SparkSession) -> DataFrame:
     )
 
 
+def _resolve_bad_snapshots_file(raw_root: str | os.PathLike[str] | None) -> Path:
+    if raw_root is not None:
+        return Path(raw_root) / "bad_snapshots" / "bad_snapshots.jsonl"
+    return Path(os.environ.get("VBS_RAW_ROOT", "data/raw")) / "bad_snapshots" / "bad_snapshots.jsonl"
+
+
+def _read_optional_bad_snapshots(
+    spark: SparkSession,
+    raw_root: str | os.PathLike[str] | None = None,
+) -> DataFrame:
+    snapshot_file = _resolve_bad_snapshots_file(raw_root)
+    if not snapshot_file.is_file():
+        return _empty_bad_snapshots(spark)
+    dataframe = spark.read.json(str(snapshot_file)).withColumn("ingest_ts", F.current_timestamp())
+    return dataframe.select(
+        F.col("bad_record_id").cast("string").alias("bad_record_id"),
+        F.col("source_dataset").cast("string").alias("source_dataset"),
+        F.col("raw_record").cast("string").alias("raw_record"),
+        F.col("error_reason").cast("string").alias("error_reason"),
+        F.col("ingest_ts").cast("timestamp").alias("ingest_ts"),
+    )
+
+
 def _create_raw_views(spark: SparkSession, window: BatchWindow) -> None:
     dates = _window_dates(window)
     for dataset in BRONZE_BATCH_DATASETS:
@@ -152,7 +175,7 @@ def _create_raw_views(spark: SparkSession, window: BatchWindow) -> None:
         _read_required_json(spark, topic=topic, dates=dates).createOrReplaceTempView(f"raw_kafka_{topic}")
 
     _read_optional_dead_letter_events(spark, dates).createOrReplaceTempView("raw_bad_events")
-    _empty_bad_snapshots(spark).createOrReplaceTempView("raw_bad_snapshots")
+    _read_optional_bad_snapshots(spark).createOrReplaceTempView("raw_bad_snapshots")
 
 
 def _dedupe_latest(df: DataFrame, *, key_columns: list[str], order_column: str) -> DataFrame:
@@ -328,6 +351,13 @@ def _build_silver_tables_for_window(
         order_column="created_ts",
     ).where((F.col("event_timestamp") >= start) & (F.col("event_timestamp") < end))
     silver_tables.append(("stg_ops_events", ops_events, ["event_id"], "created_ts"))
+
+    bad_snapshots = _dedupe_latest(
+        spark.table("raw_bad_snapshots"),
+        key_columns=["bad_record_id"],
+        order_column="ingest_ts",
+    )
+    silver_tables.append(("stg_bad_snapshots", bad_snapshots, ["bad_record_id"], "ingest_ts"))
 
     return silver_tables
 
