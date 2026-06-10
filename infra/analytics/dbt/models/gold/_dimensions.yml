@@ -1,0 +1,344 @@
+version: 2
+
+models:
+  - name: dim_customer
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: customer_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+      tests:
+      - not_null
+      - unique
+    - name: customer_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: anonymous_id
+      data_type: varchar
+    - name: signup_ts
+      data_type: timestamp
+    - name: country
+      data_type: varchar
+    - name: region
+      data_type: varchar
+    - name: city
+      data_type: varchar
+    - name: city_code
+      data_type: varchar
+    - name: segment
+      data_type: varchar
+    - name: marketing_opt_in
+      data_type: boolean
+    - name: preferred_device
+      data_type: varchar
+    - name: acquisition_channel
+      data_type: varchar
+    - name: created_ts
+      data_type: timestamp
+    - name: valid_from_ts
+      data_type: timestamp
+    - name: valid_to_ts
+      data_type: timestamp
+    - name: is_current
+      data_type: boolean
+  - name: dim_seller
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: seller_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: seller_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+    - name: seller_name
+      data_type: varchar
+    - name: seller_tier
+      data_type: varchar
+    - name: primary_category
+      data_type: varchar
+    - name: city
+      data_type: varchar
+    - name: region
+      data_type: varchar
+    - name: seller_rating
+      data_type: double
+    - name: fulfillment_speed_days
+      data_type: double
+    - name: inventory_reliability
+      data_type: double
+    - name: price_band
+      data_type: varchar
+    - name: is_official_store
+      data_type: boolean
+    - name: created_ts
+      data_type: timestamp
+    - name: valid_from_ts
+      data_type: timestamp
+    - name: valid_to_ts
+      data_type: timestamp
+    - name: is_current
+      data_type: boolean
+  - name: dim_product
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: product_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+      tests:
+      - not_null
+      - unique
+    - name: product_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: seller_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_seller')
+        to_columns:
+        - seller_key
+    - name: seller_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_seller')
+        to_columns:
+        - seller_id
+    - name: primary_category
+      data_type: varchar
+    - name: primary_subcategory
+      data_type: varchar
+    - name: brand
+      data_type: varchar
+    - name: product_name
+      data_type: varchar
+    - name: base_price
+      data_type: double
+    - name: price_band
+      data_type: varchar
+    - name: is_active
+      data_type: boolean
+    - name: fulfillment_channel
+      data_type: varchar
+    - name: category_attributes
+      data_type: varchar
+    - name: created_ts
+      data_type: timestamp
+    - name: valid_from_ts
+      data_type: timestamp
+    - name: valid_to_ts
+      data_type: timestamp
+    - name: is_current
+      data_type: boolean
+  - name: dim_category
+    config:
+      contract:
+        enforced: true
+    constraints:
+    - type: unique
+      columns:
+      - category
+      - subcategory
+    columns:
+    - name: category_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+      tests:
+      - not_null
+      - unique
+    - name: category
+      data_type: varchar
+      constraints:
+      - type: not_null
+    - name: subcategory
+      data_type: varchar
+      constraints:
+      - type: not_null
+    - name: category_cost_rate
+      data_type: decimal(3,2)
+  - name: dim_date
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: date_key
+      data_type: integer
+      constraints:
+      - type: primary_key
+    - name: calendar_date
+      data_type: date
+      constraints:
+      - type: not_null
+      - type: unique
+    - name: day_of_week
+      data_type: integer
+    - name: month
+      data_type: integer
+    - name: year
+      data_type: integer
+    - name: is_weekend
+      data_type: boolean
+  - name: dim_payment_method
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: payment_method_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: payment_method
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+  - name: dim_order_status
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: order_status_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: order_status
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - accepted_values:
+          arguments:
+            values:
+            - paid
+            - payment_failed
+  - name: dim_shipment_status
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: shipment_status_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: shipment_status
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+  - name: dim_shipping_method
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: shipping_method_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: shipping_method
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+  - name: dim_promotion
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: promotion_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: promotion_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+    - name: promotion_name
+      data_type: varchar
+    - name: funding_type
+      data_type: varchar
+    - name: funding_detail
+      data_type: varchar
+    - name: seller_id
+      data_type: varchar
+    - name: category
+      data_type: varchar
+    - name: discount_rate
+      data_type: double
+    - name: platform_funding_share
+      data_type: double
+    - name: seller_funding_share
+      data_type: double
+    - name: promotion_start_ts
+      data_type: timestamp
+    - name: promotion_end_ts
+      data_type: timestamp
+    - name: created_ts
+      data_type: timestamp
+  - name: bridge_product_category
+    config:
+      contract:
+        enforced: true
+    constraints:
+    - type: primary_key
+      columns:
+      - product_key
+      - category_key
+    columns:
+    - name: product_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_product')
+        to_columns:
+        - product_key
+    - name: product_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_product')
+        to_columns:
+        - product_id
+    - name: category_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_category')
+        to_columns:
+        - category_key
+    - name: category
+      data_type: varchar
+    - name: subcategory
+      data_type: varchar
+    - name: is_primary
+      data_type: boolean
+    - name: assigned_ts
+      data_type: timestamp
