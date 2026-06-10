@@ -230,10 +230,16 @@ def test_dbt_project_declares_expected_model_layers_and_tests() -> None:
     for relative_path in expected_models:
         assert (dbt_root / relative_path).is_file()
 
-    schema_yml = (dbt_root / "models" / "gold" / "schema.yml").read_text(encoding="utf-8")
-    assert "relationships" in schema_yml
-    assert "accepted_values" in schema_yml
-    assert "expression_is_true" in schema_yml
+    gold_property_files = sorted(
+        (dbt_root / "models" / "gold").glob("_*.yml")
+    )
+    assert gold_property_files, "expected at least one _*.yml property file under models/gold"
+    merged_gold_schema = "".join(
+        path.read_text(encoding="utf-8") for path in gold_property_files
+    )
+    assert "relationships" in merged_gold_schema
+    assert "accepted_values" in merged_gold_schema
+    assert "expression_is_true" in merged_gold_schema
 
 
 def test_quarantine_models_read_generated_bad_record_sources() -> None:
