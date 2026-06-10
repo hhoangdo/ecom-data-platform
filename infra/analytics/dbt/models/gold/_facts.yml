@@ -1,0 +1,583 @@
+version: 2
+
+models:
+  - name: fact_order
+    config:
+      contract:
+        enforced: true
+    tests:
+    - expression_is_true:
+        arguments:
+          expression: official_paid_revenue >= 0
+    columns:
+    - name: order_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: order_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: customer_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_key
+      tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_customer')
+            field: customer_key
+    - name: order_date_key
+      data_type: integer
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_date')
+        to_columns:
+        - date_key
+    - name: order_status_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_order_status')
+        to_columns:
+        - order_status_key
+      tests:
+      - relationships:
+          arguments:
+            to: ref('dim_order_status')
+            field: order_status_key
+    - name: customer_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_id
+    - name: session_id
+      data_type: varchar
+    - name: anonymous_id
+      data_type: varchar
+    - name: order_timestamp
+      data_type: timestamp
+    - name: created_ts
+      data_type: timestamp
+    - name: primary_category
+      data_type: varchar
+    - name: order_status
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_order_status')
+        to_columns:
+        - order_status
+    - name: shipping_city
+      data_type: varchar
+    - name: shipping_region
+      data_type: varchar
+    - name: shipping_method
+      data_type: varchar
+    - name: fulfillment_channel
+      data_type: varchar
+    - name: promotion_id
+      data_type: varchar
+    - name: coupon_code
+      data_type: varchar
+    - name: item_count
+      data_type: bigint
+    - name: order_gross_amount
+      data_type: double
+    - name: order_discount_amount
+      data_type: double
+    - name: order_net_amount
+      data_type: double
+    - name: has_successful_payment
+      data_type: boolean
+    - name: is_paid_order
+      data_type: boolean
+    - name: official_paid_revenue
+      data_type: double
+    - name: gross_merchandise_value
+      data_type: double
+    - name: payment_attempt_count
+      data_type: bigint
+  - name: fact_order_item
+    config:
+      contract:
+        enforced: true
+    tests:
+    - expression_is_true:
+        arguments:
+          expression: estimated_cost >= 0 and estimated_margin is not null
+    columns:
+    - name: order_item_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: order_item_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: order_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_id
+    - name: order_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_key
+    - name: customer_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_key
+    - name: product_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_product')
+        to_columns:
+        - product_key
+      tests:
+      - relationships:
+          arguments:
+            to: ref('dim_product')
+            field: product_key
+    - name: category_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_category')
+        to_columns:
+        - category_key
+    - name: promotion_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_promotion')
+        to_columns:
+        - promotion_key
+    - name: order_date_key
+      data_type: integer
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_date')
+        to_columns:
+        - date_key
+    - name: product_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_product')
+        to_columns:
+        - product_id
+    - name: seller_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_seller')
+        to_columns:
+        - seller_id
+    - name: primary_category
+      data_type: varchar
+    - name: primary_subcategory
+      data_type: varchar
+    - name: quantity
+      data_type: bigint
+    - name: unit_price
+      data_type: double
+    - name: gross_amount
+      data_type: double
+    - name: discount_amount
+      data_type: double
+    - name: net_amount
+      data_type: double
+    - name: category_cost_rate
+      data_type: decimal(3,2)
+    - name: line_paid_revenue
+      data_type: double
+    - name: line_gmv
+      data_type: double
+    - name: estimated_cost
+      data_type: double
+    - name: estimated_margin
+      data_type: double
+    - name: promotion_id
+      data_type: varchar
+    - name: created_ts
+      data_type: timestamp
+  - name: fact_payment_attempt
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: payment_attempt_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: payment_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: order_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_id
+    - name: order_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_key
+    - name: customer_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_key
+    - name: payment_date_key
+      data_type: integer
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_date')
+        to_columns:
+        - date_key
+    - name: payment_method_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_payment_method')
+        to_columns:
+        - payment_method_key
+      tests:
+      - relationships:
+          arguments:
+            to: ref('dim_payment_method')
+            field: payment_method_key
+    - name: customer_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_id
+    - name: payment_timestamp
+      data_type: timestamp
+    - name: created_ts
+      data_type: timestamp
+    - name: payment_method
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_payment_method')
+        to_columns:
+        - payment_method
+    - name: amount
+      data_type: double
+    - name: payment_status
+      data_type: varchar
+    - name: is_payment_success
+      data_type: boolean
+    - name: is_payment_failed
+      data_type: boolean
+    - name: failure_reason
+      data_type: varchar
+  - name: fact_shipment
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: shipment_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: shipment_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: order_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_id
+    - name: order_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_key
+    - name: customer_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_key
+    - name: shipment_status_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_shipment_status')
+        to_columns:
+        - shipment_status_key
+    - name: shipping_method_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_shipping_method')
+        to_columns:
+        - shipping_method_key
+    - name: shipment_created_date_key
+      data_type: integer
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_date')
+        to_columns:
+        - date_key
+    - name: customer_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_id
+    - name: shipping_city
+      data_type: varchar
+    - name: shipping_region
+      data_type: varchar
+    - name: shipping_method
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_shipping_method')
+        to_columns:
+        - shipping_method
+    - name: shipment_status
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_shipment_status')
+        to_columns:
+        - shipment_status
+    - name: is_delivery_delayed
+      data_type: boolean
+    - name: is_payment_blocked
+      data_type: boolean
+    - name: handoff_ts
+      data_type: timestamp
+    - name: estimated_delivery_ts
+      data_type: timestamp
+    - name: created_ts
+      data_type: timestamp
+  - name: fact_inventory_snapshot
+    config:
+      contract:
+        enforced: true
+    constraints:
+    - type: primary_key
+      columns:
+      - product_key
+      - seller_key
+      - snapshot_date_key
+    columns:
+    - name: inventory_snapshot_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: unique
+    - name: snapshot_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      tests:
+      - not_null
+      - unique
+    - name: product_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_product')
+        to_columns:
+        - product_key
+    - name: seller_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_seller')
+        to_columns:
+        - seller_key
+    - name: snapshot_date_key
+      data_type: integer
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_date')
+        to_columns:
+        - date_key
+    - name: product_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_product')
+        to_columns:
+        - product_id
+    - name: seller_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_seller')
+        to_columns:
+        - seller_id
+    - name: snapshot_ts
+      data_type: timestamp
+    - name: stock_on_hand
+      data_type: bigint
+    - name: reserved_stock
+      data_type: bigint
+    - name: available_stock
+      data_type: bigint
+  - name: fact_promotion_application
+    config:
+      contract:
+        enforced: true
+    columns:
+    - name: promotion_application_key
+      data_type: bigint
+      constraints:
+      - type: primary_key
+    - name: order_item_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: unique
+      - type: foreign_key
+        to: ref('fact_order_item')
+        to_columns:
+        - order_item_id
+      tests:
+      - not_null
+      - unique
+    - name: order_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_id
+    - name: order_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('fact_order')
+        to_columns:
+        - order_key
+    - name: customer_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_customer')
+        to_columns:
+        - customer_key
+    - name: promotion_key
+      data_type: bigint
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_promotion')
+        to_columns:
+        - promotion_key
+    - name: promotion_id
+      data_type: varchar
+      constraints:
+      - type: not_null
+      - type: foreign_key
+        to: ref('dim_promotion')
+        to_columns:
+        - promotion_id
+    - name: gross_amount
+      data_type: double
+    - name: discount_amount
+      data_type: double
+    - name: platform_discount_amount
+      data_type: double
+    - name: seller_discount_amount
+      data_type: double
+    - name: funding_type
+      data_type: varchar
+    - name: platform_funding_share
+      data_type: double
+    - name: seller_funding_share
+      data_type: double
