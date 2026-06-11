@@ -1,13 +1,15 @@
+import json
 from pathlib import Path
 
 from compose_model import load_compose_model
-from vina_bim_shop.orchestration import runtime
+from vina_bim_shop.orchestration import datahub_ingestion, hourly_batch
 from vina_bim_shop.orchestration.specs import REQUIRED_DAG_IDS, dag_specs_by_id
 from vina_bim_shop.quality.policies import (
     ValidationSeverity,
     gate_outcome_for_layer,
     should_fail_reconciliation,
 )
+from vina_bim_shop.quality.reports import ValidationReport
 
 
 def test_required_airflow_dags_are_declared_with_manual_or_demo_schedules() -> None:
@@ -95,10 +97,10 @@ def test_prepare_spark_evidence_root_uses_root_exec_for_shared_workspace(monkeyp
         captured["cwd"] = cwd
         return ""
 
-    monkeypatch.setattr(runtime, "_run_command", fake_run_command)
+    monkeypatch.setattr(hourly_batch, "_run_command", fake_run_command)
 
     evidence_root = tmp_path / "runs" / "hourly_batch_lakehouse" / "spark_batch"
-    runtime._prepare_spark_evidence_root(evidence_root)
+    hourly_batch._prepare_spark_evidence_root(evidence_root)
 
     command = captured["command"]
     assert isinstance(command, list)
@@ -107,7 +109,7 @@ def test_prepare_spark_evidence_root_uses_root_exec_for_shared_workspace(monkeyp
     assert "mkdir -p" in command[9]
     assert "chmod -R 0777" in command[9]
     assert evidence_root.as_posix() in command[9]
-    assert captured["cwd"] == runtime.REPO_ROOT
+    assert captured["cwd"] == hourly_batch.REPO_ROOT
 
 
 def test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount(monkeypatch) -> None:
@@ -118,9 +120,9 @@ def test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount(monkeypatch) 
         captured["cwd"] = cwd
         return ""
 
-    monkeypatch.setattr(runtime, "_run_command", fake_run_command)
+    monkeypatch.setattr(hourly_batch, "_run_command", fake_run_command)
 
-    runtime._prepare_gx_docs_root()
+    hourly_batch._prepare_gx_docs_root()
 
     command = captured["command"]
     assert isinstance(command, list)
@@ -128,7 +130,7 @@ def test_prepare_gx_docs_root_uses_root_exec_for_static_site_mount(monkeypatch) 
     assert command[7:9] == ["sh", "-lc"]
     assert "mkdir -p /usr/share/nginx/html" in command[9]
     assert "chmod -R 0777 /usr/share/nginx/html" in command[9]
-    assert captured["cwd"] == runtime.REPO_ROOT
+    assert captured["cwd"] == hourly_batch.REPO_ROOT
 
 
 def test_airflow_webserver_allows_slow_local_plugin_startup() -> None:
@@ -150,12 +152,12 @@ def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) 
         calls.append(command)
         return "ok"
 
-    monkeypatch.setattr(runtime, "build_run_root", fake_build_run_root)
-    monkeypatch.setattr(runtime, "_run_command", fake_run_command)
-    monkeypatch.setattr(runtime, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
-    monkeypatch.setattr(runtime, "_render_docs", lambda reports: reports)
+    monkeypatch.setattr(datahub_ingestion, "build_run_root", fake_build_run_root)
+    monkeypatch.setattr(datahub_ingestion, "_run_command", fake_run_command)
+    monkeypatch.setattr(datahub_ingestion, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
+    monkeypatch.setattr(datahub_ingestion, "_render_docs", lambda reports: reports)
 
-    manifest = runtime.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
+    manifest = datahub_ingestion.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
 
     recipe_names = [Path(command[-1]).name for command in calls if command[:3] == ["datahub", "ingest", "run"]]
     assert recipe_names == [
@@ -168,7 +170,7 @@ def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) 
 
 
 def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, tmp_path) -> None:
-    existing_report = runtime.ValidationReport(
+    existing_report = ValidationReport(
         layer="bronze_raw",
         suite_name="bronze_raw_minio",
         success=False,
@@ -194,21 +196,21 @@ def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, t
     quality_dir = tmp_path / "runs" / "hourly_batch_lakehouse" / "manual__2026" / "quality"
     quality_dir.mkdir(parents=True)
     (quality_dir / "bronze_raw_minio.json").write_text(
-        runtime.json.dumps(existing_report.to_dict()),
+        json.dumps(existing_report.to_dict()),
         encoding="utf-8",
     )
 
-    captured_reports: list[runtime.ValidationReport] = []
+    captured_reports: list[ValidationReport] = []
 
-    def fake_render_docs(reports: list[runtime.ValidationReport]) -> None:
+    def fake_render_docs(reports: list[ValidationReport]) -> None:
         captured_reports.extend(reports)
 
-    monkeypatch.setattr(runtime, "RUNS_ROOT", tmp_path / "runs")
-    monkeypatch.setattr(runtime, "_run_command", lambda command, cwd=None: "ok")
-    monkeypatch.setattr(runtime, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
-    monkeypatch.setattr(runtime, "_render_docs", fake_render_docs)
+    monkeypatch.setattr(datahub_ingestion, "RUNS_ROOT", tmp_path / "runs")
+    monkeypatch.setattr(datahub_ingestion, "_run_command", lambda command, cwd=None: "ok")
+    monkeypatch.setattr(datahub_ingestion, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
+    monkeypatch.setattr(datahub_ingestion, "_render_docs", fake_render_docs)
 
-    runtime.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
+    datahub_ingestion.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
 
     rendered_suites = {report.suite_name for report in captured_reports}
     assert rendered_suites == {"bronze_raw_minio", "datahub_ingestion"}

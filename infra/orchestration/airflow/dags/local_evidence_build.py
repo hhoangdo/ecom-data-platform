@@ -5,7 +5,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from vina_bim_shop.orchestration.runtime import run_local_evidence_build
+from vina_bim_shop.orchestration.local_evidence import run_local_evidence_build
 
 
 def _run(**context):

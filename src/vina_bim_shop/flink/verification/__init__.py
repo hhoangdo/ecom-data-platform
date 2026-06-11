@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
-from .verification._constants import (
+from ._constants import (
     COMPOSE_PROJECT_NAME,
     DEFAULT_BASE_EVIDENCE_ROOT,
     DERIVED_TOPICS,
@@ -13,7 +13,7 @@ from .verification._constants import (
     SERVING_SERVICES,
     STREAMING_SERVICES,
 )
-from .verification._probes import (
+from ._probes import (
     TopicProbeError,
     _consume_topic_rows,
     _container_env_value,
@@ -36,13 +36,13 @@ from .verification._probes import (
     _write_json,
     capture_storage_snapshot,
 )
-from .verification.assertions import (
+from .assertions import (
     build_pre_publish_state,
     evaluate_adr04_assertions,
     evaluate_pinot_gate,
 )
-from .verification.cleanroom import cleanup_runtime_state, reset_cleanroom_state
-from .verification.runner import (
+from .cleanroom import cleanup_runtime_state, reset_cleanroom_state
+from .runner import (
     _publish_cleanroom_phase,
     _run_verify_adr04,
     _run_verify_pinot,

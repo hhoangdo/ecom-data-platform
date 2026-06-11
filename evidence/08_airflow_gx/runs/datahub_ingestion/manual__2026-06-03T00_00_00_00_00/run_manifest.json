@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-06-10T18:40:47.847394+00:00",
+  "ingestion_results": {
+    "custom_lineage": {
+      "flink": "ok",
+      "spark": "ok"
+    },
+    "dbt_legacy": {
+      "output": "ok",
+      "status": "success"
+    },
+    "kafka_topics": {
+      "output": "ok",
+      "status": "success"
+    },
+    "minio_storage": {
+      "output": "ok",
+      "status": "success"
+    },
+    "trino_tables": {
+      "output": "ok",
+      "status": "success"
+    }
+  },
+  "status": "success"
+}

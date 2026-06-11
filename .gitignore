@@ -45,6 +45,7 @@ output/playwright/
 tmp/
 architecture/diagrams/gold_layer_ERD.dbdiagram
 architecture/decisions/
+docs/
 
 # Local development logs
 dbml-error.log

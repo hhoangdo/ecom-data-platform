@@ -5,7 +5,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from vina_bim_shop.orchestration.runtime import run_reconciliation_report
+from vina_bim_shop.orchestration.reconciliation import run_reconciliation_report
 
 
 def _run(**context):

@@ -5,7 +5,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from vina_bim_shop.orchestration.runtime import run_hourly_batch_lakehouse
+from vina_bim_shop.orchestration.hourly_batch import run_hourly_batch_lakehouse
 
 
 def _run(**context):

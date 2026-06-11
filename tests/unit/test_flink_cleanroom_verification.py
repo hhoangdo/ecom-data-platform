@@ -250,10 +250,10 @@ def test_run_verify_pinot_keeps_official_adr05_evidence_untouched(tmp_path: Path
         )
         return {"artifacts": ["row_counts.json"]}
 
-    monkeypatch.setattr(verification, "apply_assets", fake_apply_assets)
-    monkeypatch.setattr(verification, "capture_pinot_evidence", fake_capture_evidence)
-    monkeypatch.setattr(verification, "_wait_for_pinot_runtime", lambda: None)
-    monkeypatch.setattr(verification, "_remove_docker_volumes", lambda **_kwargs: None)
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner.apply_assets", fake_apply_assets)
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner.capture_pinot_evidence", fake_capture_evidence)
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner._wait_for_pinot_runtime", lambda: None)
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner._remove_docker_volumes", lambda **_kwargs: None)
 
     result = verification._run_verify_pinot(run_root=run_root, run_command=lambda _command: "")
 
@@ -394,10 +394,9 @@ def test_wait_for_output_state_accepts_initial_close_phase(monkeypatch) -> None:
             },
         ]
     )
-    monkeypatch.setattr(verification, "_topic_counts", lambda *, run_command: next(observed_counts))
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner._topic_counts_with_artifact", lambda *, run_command, run_root, phase_name: next(observed_counts))
     monkeypatch.setattr(
-        verification,
-        "_list_minio_prefix",
+        "vina_bim_shop.flink.verification.runner._list_minio_prefix",
         lambda bucket, prefix, *, run_command: (
             "checkpoints/flink/commerce_metrics/chk-1"
             if bucket == "checkpoints"
@@ -408,7 +407,7 @@ def test_wait_for_output_state_accepts_initial_close_phase(monkeypatch) -> None:
             )
         ),
     )
-    monkeypatch.setattr("vina_bim_shop.flink.verification.time.sleep", lambda _seconds: None)
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner.time.sleep", lambda _seconds: None)
 
     counts, checkpoint_listing, curated = verification._wait_for_output_state(
         expected_counts={
@@ -443,17 +442,16 @@ def test_wait_for_output_state_accepts_late_correction_phase(monkeypatch) -> Non
             },
         ]
     )
-    monkeypatch.setattr(verification, "_topic_counts", lambda *, run_command: next(observed_counts))
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner._topic_counts_with_artifact", lambda *, run_command, run_root, phase_name: next(observed_counts))
     monkeypatch.setattr(
-        verification,
-        "_list_minio_prefix",
+        "vina_bim_shop.flink.verification.runner._list_minio_prefix",
         lambda bucket, prefix, *, run_command: (
             "checkpoints/flink/commerce_metrics/chk-2"
             if bucket == "checkpoints"
             else f"evidence/{prefix}/event_date=2026-05-01/part-00001.jsonl"
         ),
     )
-    monkeypatch.setattr("vina_bim_shop.flink.verification.time.sleep", lambda _seconds: None)
+    monkeypatch.setattr("vina_bim_shop.flink.verification.runner.time.sleep", lambda _seconds: None)
 
     counts, _checkpoint_listing, curated = verification._wait_for_output_state(
         expected_counts={
@@ -492,8 +490,8 @@ def test_wait_for_json_retries_transient_503_until_payload_is_healthy(monkeypatc
             _Response(200, {"status": "GOOD"}),
         ]
     )
-    monkeypatch.setattr(verification.requests, "get", lambda *_args, **_kwargs: next(responses))
-    monkeypatch.setattr("vina_bim_shop.flink.verification.time.sleep", lambda _seconds: None)
+    monkeypatch.setattr("vina_bim_shop.flink.verification._probes.requests.get", lambda *_args, **_kwargs: next(responses))
+    monkeypatch.setattr("vina_bim_shop.flink.verification._probes.time.sleep", lambda _seconds: None)
 
     payload = verification._wait_for_json(
         "http://localhost:9003/health",

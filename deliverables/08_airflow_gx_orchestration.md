@@ -250,15 +250,36 @@ Official machine evidence on `main` is JSON + GX Data Docs only. UI screenshot c
 
 ## Runtime Boundary Follow-ups
 
-`src/vina_bim_shop/orchestration/runtime.py` is currently the single source of truth for every DAG adapter. The file is 599 lines and still cohesive, but the per-DAG documentation above makes the natural split lines obvious. A follow-up refactor should:
+`src/vina_bim_shop/orchestration/runtime.py` has been split into one module per DAG plus shared helpers. The split is complete; this section now describes the resulting layout.
 
-1. Introduce one module per DAG under `src/vina_bim_shop/orchestration/` (for example `kafka_bootstrap.py`, `hourly_batch.py`, `pinot_bootstrap.py`, `reconciliation.py`, `datahub_ingestion.py`, `local_evidence.py`) plus a shared `paths.py` and `subprocess_helpers.py`.
-2. Keep `src/vina_bim_shop/orchestration/specs.py` as the single place that declares the required-DAG inventory and ADR06 schedule/window boundaries (`supports_hourly_logical_window`, `monitors_flink`).
-3. Keep `src/vina_bim_shop/orchestration/runtime.py` as a thin re-export shim, or remove it once DAG adapters import the new modules directly.
-4. Extend `tests/unit/test_orchestration_runtime.py` with one import test per DAG adapter that asserts the adapter still calls the expected runtime function with the expected `start_ts`/`end_ts` plumbing.
-5. Re-run the orchestration/DataHub tests below after the split. The contract is already covered by existing tests; the split should not change behavior.
+### Resulting Module Layout
 
-The split is intentionally deferred from this change because no DAG behavior changes when the file is reorganized, and reorganizing without behavior change is best done as its own review.
+| Module | Responsibility |
+| --- | --- |
+| `specs.py` | Required-DAG inventory and ADR06 schedule/window boundaries (`supports_hourly_logical_window`, `monitors_flink`). Unchanged. |
+| `paths.py` | `REPO_ROOT`, `ADR06_EVIDENCE_ROOT`, `RUNS_ROOT`, `DOCS_ROOT`, `build_run_root`, `_utc_now`, `_write_json`. |
+| `subprocess_helpers.py` | `_run_command`, `_working_directory`, `_get_json`. |
+| `quality_helpers.py` | `_validate_pandas_dataframe`, `_render_docs`, `_window_payload` — shared by `hourly_batch`, `reconciliation`, and `datahub_ingestion`. |
+| `kafka_bootstrap.py` | `run_kafka_topic_bootstrap`. |
+| `hourly_batch.py` | `run_hourly_batch_lakehouse` plus lakehouse-specific helpers (`_list_bronze_objects`, `_count_quarantine_records`, `_prepare_spark_evidence_root`, `_prepare_gx_docs_root`, `_capture_airflow_batch_evidence`). |
+| `pinot_bootstrap.py` | `run_pinot_bootstrap`. |
+| `reconciliation.py` | `run_reconciliation_report`. |
+| `datahub_ingestion.py` | `run_datahub_ingestion` plus lineage helpers (`_run_custom_lineage_emission`, `_bootstrap_governance_vocabulary`, `_latest_quality_reports`, `_docs_reports_with`). |
+| `local_evidence.py` | `run_local_evidence_build`. |
+
+`runtime.py` is **deleted**; the six DAG adapters import directly from the per-DAG modules above. No shim remains.
+
+### Boundary Rules Preserved By The Split
+
+- `dag_specs_by_id()` in `specs.py` is the single source of truth for the required DAG inventory and ADR06 schedule/window boundaries. None of the new modules redeclare this.
+- The two hourly DAGs (`hourly_batch_lakehouse`, `reconciliation_report`) both call `BatchWindow.from_args(start_ts, end_ts, mode="hourly")` and serialize via the shared `_window_payload` helper. Their DAG adapters forward `data_interval_start` and `data_interval_end` into `start_ts` / `end_ts` as ISO-8601 UTC strings; the new `test_orchestration_dag_adapters.py` asserts that contract for both adapters.
+- `pinot_bootstrap` and `pinot_bootstrap`'s DAG file do not import `vina_bim_shop.flink` or `scripts/flink/run_*`; this is asserted by `test_pinot_bootstrap_dag_exists_without_flink_control_logic` and the new adapter test.
+- `datahub_ingestion` does not validate business data quality; it publishes metadata and lineage. The medallion tag vocabulary is asserted against `datahub_ingestion.py` (not a deleted `runtime.py`) by `test_governance_vocabulary_covers_medallion_layers`.
+- The no-browser / no-screenshot-helpers contract applies to the new module set: `tests/unit/test_script_surface_documentation.py::OFFICIAL_MACHINE_EVIDENCE_FILES` lists all eight new orchestration source files.
+
+### Behavior
+
+The split is byte-equivalent in behavior. No algorithm was changed; only file boundaries and import lines moved. `dag_id`, `description`, `start_date`, `schedule`, `catchup`, `is_paused_upon_creation`, `tags`, and the `_run(**context)` callable bodies are unchanged.
 
 ## Tests
 
@@ -266,7 +287,8 @@ The DAG, runtime, and governance contracts are protected by these unit tests:
 
 | Test file | What it protects |
 | --- | --- |
-| `tests/unit/test_orchestration_runtime.py` | Required DAG inventory, ADR06 failure policies, Spark/GX evidence-root exec calls, DataHub recipe order, DataHub docs preservation. |
+| `tests/unit/test_orchestration_runtime.py` | Required DAG inventory, ADR06 failure policies, Spark/GX evidence-root exec calls, DataHub recipe order, DataHub docs preservation. After the per-DAG split, the monkeypatches resolve against the per-DAG module names (e.g. `hourly_batch._run_command`, `datahub_ingestion._render_docs`). |
+| `tests/unit/test_orchestration_dag_adapters.py` | Adapter-level contract: `dag_id`, `schedule`, `tags`, single `PythonOperator` with `python_callable=_run`, `catchup=False`, `is_paused_upon_creation=...`, no import of the deleted `runtime` module, and (for hourly DAGs) `start_ts=context["data_interval_start"].isoformat()` / `end_ts=context["data_interval_end"].isoformat()` plumbing. |
 | `tests/unit/test_orchestration_adr_boundaries.py` | This deliverable's policy phrases, `gx_data_docs/index.html` exists. |
 | `tests/unit/test_datahub_adr_boundaries.py` | ADR 07 governance file references and recipe coverage. |
 | `tests/unit/test_script_surface_documentation.py` | No browser/screenshot helpers in the official machine-evidence files; `develop-only` candidate scripts are not referenced from `README.md`, `deliverables/`, `tests/`, `infra/`, or `src/`. |

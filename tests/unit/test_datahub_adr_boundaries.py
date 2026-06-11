@@ -64,7 +64,7 @@ def test_datahub_ingestion_evidence_artifacts_exist() -> None:
 
 def test_governance_vocabulary_covers_medallion_layers() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    runtime = (repo_root / "src" / "vina_bim_shop" / "orchestration" / "runtime.py").read_text(encoding="utf-8")
+    runtime = (repo_root / "src" / "vina_bim_shop" / "orchestration" / "datahub_ingestion.py").read_text(encoding="utf-8")
 
     for tag in ["bronze", "silver", "gold", "official", "provisional", "pii_safe", "regression_oracle", "quality_gate"]:
         assert f'"{tag}"' in runtime

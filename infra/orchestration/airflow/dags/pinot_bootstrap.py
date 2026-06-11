@@ -5,7 +5,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from vina_bim_shop.orchestration.runtime import run_pinot_bootstrap
+from vina_bim_shop.orchestration.pinot_bootstrap import run_pinot_bootstrap
 
 
 def _run(**context):
