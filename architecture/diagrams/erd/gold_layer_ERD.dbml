@@ -29,12 +29,18 @@ TableGroup facts [color: #FDE9D5, note: 'Core transactional facts keyed by surro
   fact_promotion_application
 }
 
-TableGroup serving_features [color: #EEE7F8, note: 'Derived aggregate, OBT, and feature tables kept visible for consumers but grouped away from the core star schema.'] {
-  obt_order_performance
-  agg_hourly_reconciled_kpi
+TableGroup features [color: #EEE7F8, note: 'Derived feature tables for ML and real-time serving.'] {
   feat_customer_90d
   feat_stream_60m
   feat_customer_unified
+}
+
+TableGroup obt [color: #D5F5E3, note: 'One Big Table (OBT) for wide analytics and executive readouts.'] {
+  obt_order_performance
+}
+
+TableGroup aggregates [color: #FADBD8, note: 'Hourly reconciliation aggregate KPIs.'] {
+  agg_hourly_reconciled_kpi
 }
 
 Table dim_customer [headercolor: #4F81BD] {
@@ -314,7 +320,7 @@ Table fact_promotion_application [headercolor: #F39C12] {
   seller_funding_share double
 }
 
-Table obt_order_performance [headercolor: #8E7CC3] {
+Table obt_order_performance [headercolor: #16A085] {
   order_id varchar [pk, ref: > fact_order.order_id]
   order_timestamp timestamp
   customer_id varchar [not null, ref: > dim_customer.customer_id]
@@ -351,7 +357,7 @@ Table obt_order_performance [headercolor: #8E7CC3] {
   Note: 'Derived non-canonical OBT for wide analytics and executive readouts.'
 }
 
-Table agg_hourly_reconciled_kpi [headercolor: #8E7CC3] {
+Table agg_hourly_reconciled_kpi [headercolor: #E74C3C] {
   metric_hour timestamp [pk]
   order_count bigint
   paid_order_count hugeint
@@ -429,4 +435,32 @@ Table feat_customer_unified [headercolor: #8E7CC3] {
   }
 
   Note: 'Unified customer feature table keyed by customer_id + event_timestamp.'
+}
+
+
+DiagramView Default {
+  Tables {
+    fact_order
+    fact_order_item
+    fact_payment_attempt
+    fact_shipment
+    fact_inventory_snapshot
+    fact_promotion_application
+    bridge_product_category
+    dim_customer
+    dim_seller
+    dim_product
+    dim_category
+    dim_date
+    dim_payment_method
+    dim_order_status
+    dim_shipment_status
+    dim_shipping_method
+    dim_promotion
+    obt_order_performance
+    agg_hourly_reconciled_kpi
+    feat_customer_90d
+    feat_stream_60m
+    feat_customer_unified
+  }
 }

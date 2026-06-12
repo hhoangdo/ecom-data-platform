@@ -1,0 +1,628 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": true,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "tablePositions": [
+      {
+        "name": "dim_customer",
+        "schemaName": "public",
+        "x": 1488,
+        "y": 392
+      },
+      {
+        "name": "dim_seller",
+        "schemaName": "public",
+        "x": 1136,
+        "y": 2712
+      },
+      {
+        "name": "dim_product",
+        "schemaName": "public",
+        "x": 1472,
+        "y": 2216
+      },
+      {
+        "name": "dim_category",
+        "schemaName": "public",
+        "x": 2608,
+        "y": 1944
+      },
+      {
+        "name": "dim_date",
+        "schemaName": "public",
+        "x": 528,
+        "y": 128
+      },
+      {
+        "name": "dim_payment_method",
+        "schemaName": "public",
+        "x": -344,
+        "y": 976
+      },
+      {
+        "name": "dim_order_status",
+        "schemaName": "public",
+        "x": 1494.6054412907597,
+        "y": 1928
+      },
+      {
+        "name": "dim_shipment_status",
+        "schemaName": "public",
+        "x": -275.2749166096894,
+        "y": 1528
+      },
+      {
+        "name": "dim_shipping_method",
+        "schemaName": "public",
+        "x": -280,
+        "y": 2024
+      },
+      {
+        "name": "dim_promotion",
+        "schemaName": "public",
+        "x": 2864,
+        "y": 1432
+      },
+      {
+        "name": "bridge_product_category",
+        "schemaName": "public",
+        "x": 2352,
+        "y": 2056
+      },
+      {
+        "name": "fact_order",
+        "schemaName": "public",
+        "x": 1080,
+        "y": 1192
+      },
+      {
+        "name": "fact_order_item",
+        "schemaName": "public",
+        "x": 2280,
+        "y": 616
+      },
+      {
+        "name": "fact_payment_attempt",
+        "schemaName": "public",
+        "x": 176,
+        "y": 696
+      },
+      {
+        "name": "fact_shipment",
+        "schemaName": "public",
+        "x": 264,
+        "y": 1536
+      },
+      {
+        "name": "fact_inventory_snapshot",
+        "schemaName": "public",
+        "x": 560,
+        "y": 2232
+      },
+      {
+        "name": "fact_promotion_application",
+        "schemaName": "public",
+        "x": 1624,
+        "y": 1328
+      },
+      {
+        "name": "obt_order_performance",
+        "schemaName": "public",
+        "x": 2752,
+        "y": 2528
+      },
+      {
+        "name": "agg_hourly_reconciled_kpi",
+        "schemaName": "public",
+        "x": 3264,
+        "y": 2551.756036015444
+      },
+      {
+        "name": "feat_customer_90d",
+        "schemaName": "public",
+        "x": 2256,
+        "y": -400
+      },
+      {
+        "name": "feat_stream_60m",
+        "schemaName": "public",
+        "x": 2656,
+        "y": -48
+      },
+      {
+        "name": "feat_customer_unified",
+        "schemaName": "public",
+        "x": 3152,
+        "y": 296
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "seller_key"
+        ],
+        "firstTableName": "dim_seller",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "seller_key"
+        ],
+        "secondTableName": "dim_product",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "product_key"
+        ],
+        "firstTableName": "dim_product",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "product_key"
+        ],
+        "secondTableName": "bridge_product_category",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_key"
+        ],
+        "firstTableName": "dim_category",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "category_key"
+        ],
+        "secondTableName": "bridge_product_category",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_key"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_key"
+        ],
+        "secondTableName": "fact_order",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "date_key"
+        ],
+        "firstTableName": "dim_date",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_date_key"
+        ],
+        "secondTableName": "fact_order",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "order_status_key"
+        ],
+        "firstTableName": "dim_order_status",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_status_key"
+        ],
+        "secondTableName": "fact_order",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "order_key"
+        ],
+        "firstTableName": "fact_order",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_key"
+        ],
+        "secondTableName": "fact_order_item",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_key"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_key"
+        ],
+        "secondTableName": "fact_order_item",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "product_key"
+        ],
+        "firstTableName": "dim_product",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "product_key"
+        ],
+        "secondTableName": "fact_order_item",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "category_key"
+        ],
+        "firstTableName": "dim_category",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "category_key"
+        ],
+        "secondTableName": "fact_order_item",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "promotion_key"
+        ],
+        "firstTableName": "dim_promotion",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "promotion_key"
+        ],
+        "secondTableName": "fact_order_item",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "date_key"
+        ],
+        "firstTableName": "dim_date",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_date_key"
+        ],
+        "secondTableName": "fact_order_item",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "order_key"
+        ],
+        "firstTableName": "fact_order",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_key"
+        ],
+        "secondTableName": "fact_payment_attempt",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_key"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_key"
+        ],
+        "secondTableName": "fact_payment_attempt",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "date_key"
+        ],
+        "firstTableName": "dim_date",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "payment_date_key"
+        ],
+        "secondTableName": "fact_payment_attempt",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "payment_method_key"
+        ],
+        "firstTableName": "dim_payment_method",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "payment_method_key"
+        ],
+        "secondTableName": "fact_payment_attempt",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "order_key"
+        ],
+        "firstTableName": "fact_order",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_key"
+        ],
+        "secondTableName": "fact_shipment",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_key"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_key"
+        ],
+        "secondTableName": "fact_shipment",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "shipment_status_key"
+        ],
+        "firstTableName": "dim_shipment_status",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "shipment_status_key"
+        ],
+        "secondTableName": "fact_shipment",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "shipping_method_key"
+        ],
+        "firstTableName": "dim_shipping_method",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "shipping_method_key"
+        ],
+        "secondTableName": "fact_shipment",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "date_key"
+        ],
+        "firstTableName": "dim_date",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "shipment_created_date_key"
+        ],
+        "secondTableName": "fact_shipment",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "product_key"
+        ],
+        "firstTableName": "dim_product",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "product_key"
+        ],
+        "secondTableName": "fact_inventory_snapshot",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "seller_key"
+        ],
+        "firstTableName": "dim_seller",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "seller_key"
+        ],
+        "secondTableName": "fact_inventory_snapshot",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "date_key"
+        ],
+        "firstTableName": "dim_date",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "snapshot_date_key"
+        ],
+        "secondTableName": "fact_inventory_snapshot",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "order_key"
+        ],
+        "firstTableName": "fact_order",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_key"
+        ],
+        "secondTableName": "fact_promotion_application",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_key"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_key"
+        ],
+        "secondTableName": "fact_promotion_application",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "promotion_key"
+        ],
+        "firstTableName": "dim_promotion",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "promotion_key"
+        ],
+        "secondTableName": "fact_promotion_application",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "order_id"
+        ],
+        "firstTableName": "fact_order",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "order_id"
+        ],
+        "secondTableName": "obt_order_performance",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_id"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_id"
+        ],
+        "secondTableName": "obt_order_performance",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_id"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_id"
+        ],
+        "secondTableName": "feat_customer_90d",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_id"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_id"
+        ],
+        "secondTableName": "feat_stream_60m",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "customer_id"
+        ],
+        "firstTableName": "dim_customer",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "customer_id"
+        ],
+        "secondTableName": "feat_customer_unified",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}
