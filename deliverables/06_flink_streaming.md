@@ -200,3 +200,16 @@ Evidence includes:
 - The clean-room verifier resets only selected streaming and serving state so committed evidence and lakehouse data remain intact.
 - Flink does not consume the `dead_letter_events` topic; bad event payloads are quarantined by the Spark batch path only. See
   [11 Solving Data Challenges](11_solving_data_challenges.md#honest-gaps-and-future-work) for the documented future action.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-streaming` | Start the streaming profile (Flink JobManager, TaskManager, job submitter). |
+| `make down-streaming` | Stop the streaming profile and remove its volumes. |
+| `make up-ingestion` | Start the ingestion profile (Flink reads from Kafka source topics). |
+| `make down-ingestion` | Stop the ingestion profile and remove its volumes. |
+| `make up-lakehouse` | Start the lakehouse profile (Fink checkpoints land in MinIO). |
+| `make down-lakehouse` | Stop the lakehouse profile and remove its volumes. |

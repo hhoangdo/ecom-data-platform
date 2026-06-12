@@ -293,6 +293,22 @@ The repo includes `.env.example` with local defaults. Copy it to `.env` if you w
 
 This project is designed to demonstrate the platform end to end through staged local execution, with each subsystem being verifiable. It is not reliably optimized for a single frictionless full-stack-at-once startup on a constrained machine.
 
+### Common Commands
+
+The repository ships a root [Makefile](Makefile) that wraps the most common commands under a `make + verb` convention. Run `make help` at any time to see the full catalog. Recipes are shell-agnostic (they delegate to `uv run python` and a thin wrapper at `scripts/ctl.py`), so they behave the same way from bash, zsh, PowerShell, Git Bash, or WSL.
+
+| Target | What it does |
+| --- | --- |
+| `make install` | `uv sync` to install Python dependencies. |
+| `make generate` | Run the data generator with default options (`SCALE=medium`, `MODE=full`, `SEED=42`). Override with `make generate SCALE=smoke MODE=streaming SEED=7`. |
+| `make build-dbt` | Run `dbt build` against the local DuckDB profile. |
+| `make test` | Run `pytest`. |
+| `make finalize` | Produce the final Section 01/02 evidence package. |
+| `make reset` | Run `scripts/qa/reset_all.py` (destructive; forwards `RESET_FLAGS=...`, e.g. `--dry-run`, `--force`, `--force --clean-local-data`). |
+| `make up-<profile>` / `make down-<profile>` | Start or stop one of the compose profiles: `ingestion`, `lakehouse`, `batch`, `streaming`, `serving`, `orchestration`, `governance`, or `all`. |
+
+The PowerShell snippets below remain the authoritative command surface; the Makefile is a thin, discoverable shortcut on top of them.
+
 ### 1. Install Python dependencies
 
 ```powershell

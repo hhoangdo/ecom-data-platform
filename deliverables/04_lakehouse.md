@@ -186,3 +186,12 @@ Key evidence files:
 - Raw Bronze files are intentionally not the normal analyst-facing SQL surface.
 - Spark owns Silver/Gold writes; Trino is used for query serving.
 - Local reproducibility favors staged profiles over a single full-stack startup.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-lakehouse` | Start the lakehouse profile (MinIO, Hive Metastore, Trino, shared Postgres). |
+| `make down-lakehouse` | Stop the lakehouse profile and remove its volumes. |

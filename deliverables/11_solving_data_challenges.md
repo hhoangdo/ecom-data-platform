@@ -171,3 +171,15 @@ Kafka source topics
   observed rates for each challenge in the medium run.
 - [evidence/01_data_generator/quality_report.md](../evidence/01_data_generator/quality_report.md) -
   quality report summarising the injected issues.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make install` | `uv sync` to install Python dependencies. |
+| `make generate` | Run the data generator that injects the challenges documented here. |
+| `make build-dbt` | Run `dbt build` (the dbt path is the canonical local-parity quarantine for `stg_bad_snapshots`). |
+| `make up-lakehouse` | Start the lakehouse profile (Spark reads Bronze from MinIO for the batch-side challenge handling). |
+| `make up-streaming` | Start the streaming profile (Flink applies the streaming-side challenge handling). |

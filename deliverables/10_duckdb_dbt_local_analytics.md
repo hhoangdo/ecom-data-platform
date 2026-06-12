@@ -125,3 +125,14 @@ Known boundaries:
 - `data/gold/vina_bim_shop_executive.duckdb` is a snapshot exported from Trino Gold and is stale until regenerated.
 - DuckDB files are local evidence artifacts, not shared production databases.
 - The canonical full-platform truth remains Spark Gold served through Trino.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make install` | `uv sync` to install Python dependencies. |
+| `make generate` | Run the data generator (the dbt-DuckDB parity oracle consumes its raw outputs). |
+| `make build-dbt` | Run `dbt build` against the local DuckDB profile that produces the parity oracle. |
+| `make test` | Run `pytest` to verify the parity contracts. |

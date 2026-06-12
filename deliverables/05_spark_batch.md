@@ -198,3 +198,17 @@ Expected artifacts include:
 - `stg_bad_snapshots` reads from the local raw root (via `VBS_RAW_ROOT`) because the
   standard batch upload excludes `bad_snapshots`. The dbt-DuckDB path is the canonical
   local-parity quarantine; the Spark path is the lakehouse quarantine.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-lakehouse` | Start the lakehouse profile (Spark reads Bronze from MinIO and writes Silver/Gold Iceberg). |
+| `make down-lakehouse` | Stop the lakehouse profile and remove its volumes. |
+| `make up-batch` | Start the batch profile (Spark master, worker, history server). |
+| `make down-batch` | Stop the batch profile and remove its volumes. |
+| `make up-ingestion` | Start the ingestion profile (needed for Kafka Connect Bronze landing). |
+| `make down-ingestion` | Stop the ingestion profile and remove its volumes. |
+| `make build-dbt` | Run `dbt build` against the local DuckDB parity oracle referenced in the parity report. |

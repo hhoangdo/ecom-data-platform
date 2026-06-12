@@ -221,3 +221,12 @@ batch and streaming engines. The map of "challenge -> Spark/Flink handling" live
 [11 Solving Data Challenges](11_solving_data_challenges.md). It points at the actual code
 paths in `src/vina_bim_shop/lakehouse/spark/` and `src/vina_bim_shop/flink/`, and it
 documents honest gaps (for example, that no Spark salting is implemented today).
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make install` | `uv sync` to install Python dependencies. |
+| `make generate` | Run the data generator with default options (`SCALE=medium`, `MODE=full`, `SEED=42`). Override with `make generate SCALE=smoke MODE=streaming SEED=7`. |

@@ -120,3 +120,16 @@ Current known limitation: local DataHub frontend did not render the fuller graph
 For that reason, the governance proof does not rely only on the frontend screenshot. The screenshot is paired with direct GMS health, GraphQL/entity verification, dataset counts, tag counts, lineage counts, and GX assertion counts.
 
 This limitation is local UI/rendering evidence, not a claim that metadata ingestion failed.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-governance` | Start the governance profile (DataHub GMS, frontend, actions, OpenSearch). |
+| `make down-governance` | Stop the governance profile and remove its volumes. |
+| `make up-ingestion` | Start the ingestion profile (DataHub ingests Kafka topic metadata). |
+| `make down-ingestion` | Stop the ingestion profile and remove its volumes. |
+| `make up-lakehouse` | Start the lakehouse profile (DataHub ingests MinIO prefixes and Trino tables). |
+| `make down-lakehouse` | Stop the lakehouse profile and remove its volumes. |

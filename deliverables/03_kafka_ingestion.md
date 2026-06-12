@@ -179,3 +179,14 @@ Key evidence files:
 - Topic partitioning is intentionally simple for coursework reproducibility.
 - Kafka is not the official historical reporting surface; it is the event log and ingestion backbone.
 - Kafka Connect writes Bronze event objects, while Spark owns Silver/Gold transformation.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-ingestion` | Start the ingestion profile (Kafka broker, Schema Registry, Kafka Connect, Kafka UI). |
+| `make down-ingestion` | Stop the ingestion profile and remove its volumes. |
+| `make up-lakehouse` | Start the lakehouse profile (needed by the Bronze Kafka Connect sink). |
+| `make down-lakehouse` | Stop the lakehouse profile and remove its volumes. |

@@ -7,6 +7,22 @@ launchers, or reproducible evidence flows still reference them.
 Do not move or delete a script from `main` unless its README, deliverable, test, DAG,
 and runtime references have been removed or replaced in the same change.
 
+## Convenience Make Targets
+
+The repository also ships a root [Makefile](../Makefile) that provides a `make + verb` shortcut for the most common commands. It is a thin wrapper that delegates to the official scripts below and to `scripts/ctl.py` for the docker compose lifecycle. It introduces no new behavior, so the classification tables in this README continue to be the source of truth for which scripts are official.
+
+| Make target | Underlying script or command |
+| --- | --- |
+| `make install` | `uv sync` |
+| `make generate` | `scripts/generate/run_generator.py` (with `SCALE`, `MODE`, `SEED` variables) |
+| `make build-dbt` | `uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt` |
+| `make test` | `uv run pytest` |
+| `make finalize` | `scripts/qa/finalize_sections_01_02.py` |
+| `make reset` | `scripts/qa/reset_all.py` (forwards `RESET_FLAGS=...`) |
+| `make up-<profile>` / `make down-<profile>` | `scripts/ctl.py compose up <profile>` / `scripts/ctl.py compose down <profile>` for `ingestion`, `lakehouse`, `batch`, `streaming`, `serving`, `orchestration`, `governance`, and `all`. |
+
+Run `make help` at any time to print the full catalog.
+
 ## Classification Policy
 
 | Class | Meaning |

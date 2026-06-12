@@ -157,3 +157,16 @@ That flow proves the Kafka to Flink to derived-topic to Pinot path using runtime
 - Pinot query logic must respect correction snapshots to avoid double-counting late-event updates.
 - Pinot cluster state is operational runtime state, not committed coursework data.
 - The serving profile is intended for staged startup after ingestion and streaming dependencies are healthy.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-serving` | Start the serving profile (Pinot Zookeeper, controller, broker, server). |
+| `make down-serving` | Stop the serving profile and remove its volumes. |
+| `make up-streaming` | Start the streaming profile (Flink produces the derived topics Pinot consumes). |
+| `make down-streaming` | Stop the streaming profile and remove its volumes. |
+| `make up-ingestion` | Start the ingestion profile (Kafka source for the Flink-to-Pinot path). |
+| `make down-ingestion` | Stop the ingestion profile and remove its volumes. |

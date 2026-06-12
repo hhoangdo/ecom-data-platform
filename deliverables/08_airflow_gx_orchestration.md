@@ -309,3 +309,13 @@ uv run pytest tests/unit -k airflow
 - The orchestration profile is designed for staged local startup, not a single high-resource full-stack boot.
 - GX validation proves selected quality policies and evidence boundaries; it is not a complete production observability system.
 - `local_evidence_build` does not include screenshot capture in its `artifacts[]`; UI capture is a `develop`-only concern. The historical placeholders that previously lived under `evidence/08_airflow_gx/screenshots/` have been moved to `develop/evidence/08_airflow_gx/screenshots/`.
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make up-orchestration` | Start the orchestration profile (Airflow webserver, scheduler, init, GX Data Docs). |
+| `make down-orchestration` | Stop the orchestration profile and remove its volumes. |
+| `make test` | Run `pytest` to verify the orchestration runtime contracts. |

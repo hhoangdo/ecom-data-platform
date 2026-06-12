@@ -254,3 +254,15 @@ Evidence artifacts:
 | [infra/analytics/dbt/macros/business_logic.sql](../infra/analytics/dbt/macros/business_logic.sql) | Shared business formulas. |
 | [architecture/diagrams/erd/gold_layer_ERD.dbml](../architecture/diagrams/erd/gold_layer_ERD.dbml) | Gold-only ERD for DBML/dbdiagram preview. |
 | [architecture/diagrams/erd/physical_gold_model.puml](../architecture/diagrams/erd/physical_gold_model.puml) | Full physical model across Bronze, Silver, and Gold. |
+
+## Convenience Make Targets
+
+The root [Makefile](../Makefile) wraps the most common commands for this deliverable under a `make + verb` convention. It is a thin wrapper that delegates to the official scripts in [scripts/](../scripts/) and to `scripts/ctl.py` for docker compose lifecycle; it introduces no new behavior.
+
+| Target | What it does |
+| --- | --- |
+| `make install` | `uv sync` to install Python dependencies. |
+| `make generate` | Run the data generator (this deliverable consumes its raw outputs). |
+| `make build-dbt` | Run `dbt build` against the local DuckDB profile that materializes the schema described above. |
+| `make test` | Run `pytest` to verify the schema contracts and model files. |
+| `make finalize` | Produce the final Section 01/02 evidence package, including the dbt build report. |
