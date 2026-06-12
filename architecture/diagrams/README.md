@@ -13,7 +13,7 @@
 - Workspace defaults in `.vscode/settings.json` use PlantUML server rendering:
   - `"plantuml.render": "PlantUMLServer"`
   - `"plantuml.server": "https://www.plantuml.com/plantuml"`
-- Use PlantUML for system and architecture diagrams such as `lambda_architecture.puml`, `detailed-lambda_architecture.puml`, `schema_design.puml`, and `physical_gold_model.puml`.
+- Use PlantUML for system and architecture diagrams such as `lambda_architecture.puml`, `detailed-lambda_architecture.puml`, `schema_design.puml`, and `erd/physical_gold_model.puml`.
 
 ## Mermaid
 
@@ -34,10 +34,10 @@
 
 ## DBML
 
-- Primary file for the readable Gold-only ERD: `gold_layer_ERD.dbml`
+- Primary file for the readable Gold-only ERD: `erd/gold_layer_ERD.dbml`
 - Use the official dbdiagram VS Code extension preview button, or run **DBML: Open Preview to the Side** from the Command Palette.
-- `gold_layer_ERD.dbml` is the readable Gold-layer ERD for day-to-day inspection.
-- `physical_gold_model.puml` remains the exhaustive physical/logical reference across Bronze, Silver, and Gold.
+- `erd/gold_layer_ERD.dbml` is the readable Gold-layer ERD for day-to-day inspection.
+- `erd/physical_gold_model.puml` remains the exhaustive physical/logical reference across Bronze, Silver, and Gold.
 - `.vscode/extensions.json` recommends the diagram and docs extensions this repo expects contributors to have available.
 
 ## Optional Offline PlantUML Setup

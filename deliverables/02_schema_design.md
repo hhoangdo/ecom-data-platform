@@ -35,7 +35,7 @@ The older flat stream helper output is not part of the public contract. Kafka-to
 | Gold | Constrained analytical tables | Provide dimensions, facts, OBTs, aggregates, and feature tables for reporting and downstream AI work. |
 | Serving | Trino, DuckDB, Pinot | Split canonical historical SQL from portable local analysis and fresh realtime dashboards. |
 
-Gold DuckDB tables enforce primary-key and foreign-key constraints through dbt contracts so DBeaver can render physical ERD relationship lines from database metadata. Bronze and Silver remain views in dbt-DuckDB, but they are included in the physical model for lineage context. The physical model is committed at [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) with a rendered PNG at [architecture/diagrams/physical_gold_model.png](../architecture/diagrams/physical_gold_model.png).
+Gold DuckDB tables enforce primary-key and foreign-key constraints through dbt contracts so DBeaver can render physical ERD relationship lines from database metadata. Bronze and Silver remain views in dbt-DuckDB, but they are included in the physical model for lineage context. The physical model is committed at [architecture/diagrams/erd/physical_gold_model.puml](../architecture/diagrams/erd/physical_gold_model.puml) with a rendered PNG at [architecture/diagrams/erd/physical_gold_model.png](../architecture/diagrams/erd/physical_gold_model.png).
 
 ## Data Format Rationale
 
@@ -252,5 +252,5 @@ Evidence artifacts:
 | [infra/analytics/dbt/models/gold/_marts.yml](../infra/analytics/dbt/models/gold/_marts.yml) | Gold OBT and aggregate contracts, keys, and types. |
 | [infra/analytics/dbt/models/gold/_features.yml](../infra/analytics/dbt/models/gold/_features.yml) | Gold feature contracts, composite keys, and types. |
 | [infra/analytics/dbt/macros/business_logic.sql](../infra/analytics/dbt/macros/business_logic.sql) | Shared business formulas. |
-| [architecture/diagrams/gold_layer_ERD.dbml](../architecture/diagrams/gold_layer_ERD.dbml) | Gold-only ERD for DBML/dbdiagram preview. |
-| [architecture/diagrams/physical_gold_model.puml](../architecture/diagrams/physical_gold_model.puml) | Full physical model across Bronze, Silver, and Gold. |
+| [architecture/diagrams/erd/gold_layer_ERD.dbml](../architecture/diagrams/erd/gold_layer_ERD.dbml) | Gold-only ERD for DBML/dbdiagram preview. |
+| [architecture/diagrams/erd/physical_gold_model.puml](../architecture/diagrams/erd/physical_gold_model.puml) | Full physical model across Bronze, Silver, and Gold. |

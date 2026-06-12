@@ -120,7 +120,7 @@ The Gold model contains:
 | OBT and aggregate | `obt_order_performance`, `agg_hourly_reconciled_kpi` |
 | Features | `feat_customer_90d`, `feat_stream_60m`, `feat_customer_unified` |
 
-Detailed schema documentation is in [Schema Design and Data Dictionary](../deliverables/02_schema_design.md). ERD assets live in `diagrams/physical_gold_model.puml` and `diagrams/gold_layer_ERD.dbml`.
+Detailed schema documentation is in [Schema Design and Data Dictionary](../deliverables/02_schema_design.md). ERD assets live in `diagrams/erd/physical_gold_model.puml` and `diagrams/erd/gold_layer_ERD.dbml`.
 
 ## Quality And Governance
 

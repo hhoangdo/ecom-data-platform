@@ -3,7 +3,7 @@ from pathlib import Path
 
 def test_physical_gold_model_puml_documents_all_layers_and_purposes() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    diagram = repo_root / "architecture" / "diagrams" / "physical_gold_model.puml"
+    diagram = repo_root / "architecture" / "diagrams" / "erd" / "physical_gold_model.puml"
 
     content = diagram.read_text(encoding="utf-8")
 
@@ -30,7 +30,7 @@ def test_physical_gold_model_puml_documents_all_layers_and_purposes() -> None:
 
 def test_gold_layer_erd_dbml_focuses_on_gold_tables_and_dbml_relationships() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    diagram = repo_root / "architecture" / "diagrams" / "gold_layer_ERD.dbml"
+    diagram = repo_root / "architecture" / "diagrams" / "erd" / "gold_layer_ERD.dbml"
 
     content = diagram.read_text(encoding="utf-8")
 
@@ -175,8 +175,8 @@ def test_section02_documentation_records_core_design_decisions() -> None:
         "category_cost_rate",
         "obt_order_performance",
         "dead_letter_events",
-        "architecture/diagrams/physical_gold_model.puml",
-        "architecture/diagrams/physical_gold_model.png",
+        "architecture/diagrams/erd/physical_gold_model.puml",
+        "architecture/diagrams/erd/physical_gold_model.png",
         "Gold DuckDB tables enforce primary-key and foreign-key constraints",
     ]
     for phrase in required_phrases:

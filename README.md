@@ -34,8 +34,8 @@ Related diagrams:
 - [Detailed PlantUML architecture](architecture/diagrams/detailed-lambda_architecture.puml)
 - [Runnable Lambda architecture](architecture/diagrams/lambda_architecture.puml)
 - [Schema design overview](architecture/diagrams/schema_design.puml)
-- [Physical Bronze/Silver/Gold model](architecture/diagrams/physical_gold_model.puml)
-- [Gold layer ERD DBML](architecture/diagrams/gold_layer_ERD.dbml)
+- [Physical Bronze/Silver/Gold model](architecture/diagrams/erd/physical_gold_model.puml)
+- [Gold layer ERD DBML](architecture/diagrams/erd/gold_layer_ERD.dbml)
 
 ---
 
@@ -112,8 +112,8 @@ Mini-coursework artifacts and evidence:
 - `data/gold/vina_bim_shop_executive.duckdb`
 - [Data generator deliverable](deliverables/01_data_generator.md)
 - [Schema design deliverable and Data Dictionary](deliverables/02_schema_design.md)
-- [Physical Gold model PlantUML](architecture/diagrams/physical_gold_model.puml)
-- [Physical Gold model PNG](architecture/diagrams/physical_gold_model.png)
+- [Physical Gold model PlantUML](architecture/diagrams/erd/physical_gold_model.puml)
+- [Physical Gold model PNG](architecture/diagrams/erd/physical_gold_model.png)
 - [Generator quality report](evidence/01_data_generator/quality_report.md)
 - [dbt build report](evidence/02_schema_design/dbt_build_report.md)
 
@@ -201,9 +201,9 @@ Serving is split by freshness and truth role. Pinot answers low-latency question
 
 Schema design is part of the serving implementation, not just documentation. The committed model artifacts are:
 
-- [Physical Bronze/Silver/Gold model](architecture/diagrams/physical_gold_model.puml)
-- [Rendered physical Gold model](architecture/diagrams/physical_gold_model.png)
-- [Gold layer ERD DBML](architecture/diagrams/gold_layer_ERD.dbml)
+- [Physical Bronze/Silver/Gold model](architecture/diagrams/erd/physical_gold_model.puml)
+- [Rendered physical Gold model](architecture/diagrams/erd/physical_gold_model.png)
+- [Gold layer ERD DBML](architecture/diagrams/erd/gold_layer_ERD.dbml)
 - [Schema design deliverable and Data Dictionary](deliverables/02_schema_design.md)
 
 Key docs:
