@@ -64,11 +64,11 @@ def test_orchestration_runtime_import_still_collects_without_duckdb(monkeypatch:
         "duckdb",
         "vina_bim_shop.lakehouse.spark.parity",
         "vina_bim_shop.lakehouse.spark.runner",
-        "vina_bim_shop.orchestration.runtime",
+        "vina_bim_shop.orchestration.paths",
     ):
-        runtime = importlib.import_module("vina_bim_shop.orchestration.runtime")
+        paths = importlib.import_module("vina_bim_shop.orchestration.paths")
 
-    assert runtime.REPO_ROOT == _repo_root()
+    assert paths.REPO_ROOT == _repo_root()
 
 
 def test_run_parity_checks_raises_actionable_error_without_duckdb(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:

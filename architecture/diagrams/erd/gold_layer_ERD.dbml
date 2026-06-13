@@ -29,7 +29,7 @@ TableGroup facts [color: #FDE9D5, note: 'Core transactional facts keyed by surro
   fact_promotion_application
 }
 
-TableGroup features [color: #EEE7F8, note: 'Derived feature tables for ML and real-time serving.'] {
+TableGroup serving_features [color: #EEE7F8, note: 'Derived feature tables for ML and real-time serving.'] {
   feat_customer_90d
   feat_stream_60m
   feat_customer_unified

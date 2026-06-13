@@ -47,9 +47,14 @@ def test_governance_profile_reuses_shared_kafka_and_postgres() -> None:
 
 def test_datahub_does_not_change_canonical_truth_policy() -> None:
     repo_root = Path(__file__).resolve().parents[2]
-    adr07 = (repo_root / "architecture" / "decisions" / "2026-06-01-07-datahub-governance-plan.md").read_text(encoding="utf-8")
+    schema_design = (repo_root / "deliverables" / "02_schema_design.md").read_text(encoding="utf-8")
+    governance = (repo_root / "deliverables" / "09_datahub_governance.md").read_text(encoding="utf-8")
 
-    assert "Do not let DataHub change the canonical truth policy" in adr07
+    assert "Trino-served Gold tables are the canonical reconciled truth" in schema_design
+    assert "Pinot is not used as the official financial source" in schema_design
+    assert "DataHub is the governance and metadata catalog layer" in governance
+    assert "can emit metadata about the same assets that the pipelines produce" in governance
+    assert "Tags such as `bronze`, `silver`, `gold`, `official`, `provisional`, and `quality_gate` classify assets" in governance
 
 
 def test_datahub_ingestion_evidence_artifacts_exist() -> None:

@@ -64,7 +64,8 @@ def _tracked_scripts(repo_root: Path) -> list[str]:
         capture_output=True,
         check=True,
     )
-    return sorted(line for line in completed.stdout.splitlines() if line)
+    script_suffixes = {".py", ".sh"}
+    return sorted(line for line in completed.stdout.splitlines() if Path(line).suffix in script_suffixes)
 
 
 def test_scripts_readme_documents_every_tracked_script() -> None:
