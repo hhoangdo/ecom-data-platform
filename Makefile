@@ -7,7 +7,9 @@
 # A thin, discoverable, `make + verb` wrapper around the project's official
 # command surface. Every target here maps to an existing script, `uv` command,
 # or `docker compose` invocation documented in README.md, scripts/README.md,
-# and the per-stage deliverables. This Makefile introduces no new behavior.
+# and the per-stage deliverables. Compose lifecycle targets delegate to
+# scripts/ctl.py, which expands documented profile bundles and prebuilds shared
+# images where needed.
 #
 # Conventions
 # -----------
@@ -137,8 +139,8 @@ reset:
 # -----------------------------------------------------------------------------
 # Compose profile lifecycle
 # -----------------------------------------------------------------------------
-# Each pair delegates to the thin Python wrapper `scripts/ctl.py` so the
-# Makefile does not depend on any shell-specific docker compose syntax.
+# Each pair delegates to the Python wrapper `scripts/ctl.py` so the Makefile
+# does not depend on shell-specific docker compose syntax.
 
 # Start the Kafka ingestion profile (broker, Schema Registry, Connect, UI).
 up-ingestion:

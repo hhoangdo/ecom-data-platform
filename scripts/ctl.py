@@ -18,20 +18,49 @@ import sys
 from typing import Sequence
 
 
+PROFILE_BUNDLES: dict[str, tuple[str, ...]] = {
+    "ingestion": ("ingestion",),
+    "lakehouse": ("lakehouse",),
+    "batch": ("lakehouse", "batch"),
+    "streaming": ("ingestion", "lakehouse", "streaming"),
+    "serving": ("ingestion", "lakehouse", "streaming", "serving"),
+    "orchestration": ("orchestration",),
+    "governance": ("ingestion", "lakehouse", "governance"),
+    "all": ("all",),
+}
+
+
 def _run(args: Sequence[str]) -> int:
     """Invoke an external command, propagating its return code."""
     completed = subprocess.run(list(args), check=False)
     return completed.returncode
 
 
+def _profile_args(profile: str) -> list[str]:
+    profiles = PROFILE_BUNDLES[profile]
+    args: list[str] = []
+    for name in profiles:
+        args.extend(["--profile", name])
+    return args
+
+
+def _requires_hive_prebuild(profile: str) -> bool:
+    profiles = set(PROFILE_BUNDLES[profile])
+    return "all" in profiles or bool(profiles & {"lakehouse", "batch"})
+
+
 def compose_up(profile: str) -> int:
-    """Start a single docker compose profile in detached mode."""
-    return _run(["docker", "compose", "--profile", profile, "up", "-d"])
+    """Start a documented docker compose profile bundle in detached mode."""
+    if _requires_hive_prebuild(profile):
+        build_code = _run(["docker", "compose", "build", "hive-metastore-init"])
+        if build_code != 0:
+            return build_code
+    return _run(["docker", "compose", *_profile_args(profile), "up", "-d"])
 
 
 def compose_down(profile: str) -> int:
-    """Stop a single docker compose profile and remove its volumes."""
-    return _run(["docker", "compose", "--profile", profile, "down", "-v"])
+    """Stop a documented docker compose profile bundle and remove its volumes."""
+    return _run(["docker", "compose", *_profile_args(profile), "down", "-v"])
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -47,12 +76,12 @@ def _build_parser() -> argparse.ArgumentParser:
     up = compose_sub.add_parser(
         "up", help="docker compose up -d for a single profile"
     )
-    up.add_argument("profile", help="compose profile name (e.g. ingestion)")
+    up.add_argument("profile", choices=sorted(PROFILE_BUNDLES), help="compose profile name (e.g. ingestion)")
 
     down = compose_sub.add_parser(
         "down", help="docker compose down -v for a single profile"
     )
-    down.add_argument("profile", help="compose profile name (e.g. ingestion)")
+    down.add_argument("profile", choices=sorted(PROFILE_BUNDLES), help="compose profile name (e.g. ingestion)")
 
     return parser
 

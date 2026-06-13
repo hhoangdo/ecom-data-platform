@@ -111,31 +111,76 @@ def capture_evidence(
 ) -> dict[str, Any]:
     evidence_path = Path(evidence_root)
     evidence_path.mkdir(parents=True, exist_ok=True)
+    failures: list[dict[str, str]] = []
 
-    minio_health = get_http(f"{minio_endpoint.rstrip('/')}/minio/health/ready")
-    trino_info = get_json(f"{trino_url.rstrip('/')}/v1/info")
-    bucket_listing = run_command(
-        [
-            "docker",
-            "compose",
-            "run",
-            "--rm",
-            "--no-deps",
-            "--entrypoint",
-            "/bin/sh",
-            "minio-init",
-            "-c",
-            'mc alias set ALIAS http://minio:9000 "${MINIO_ROOT_USER}" "${MINIO_ROOT_PASSWORD}" >/dev/null && mc ls ALIAS',
-        ]
-    )
-    postgres_health = run_command(["docker", "compose", "exec", "-T", "lakehouse-postgres", "pg_isready", "-U", "vina_platform", "-d", "platform"])
-    hive_health = run_command(["docker", "compose", "ps", "hive-metastore"])
-    trino_catalogs = run_command(["docker", "compose", "exec", "-T", "trino", "trino", "--execute", "SHOW CATALOGS"])
-    trino_schemas = run_command(["docker", "compose", "exec", "-T", "trino", "trino", "--execute", "SHOW SCHEMAS FROM iceberg"])
-    trino_smoke = run_smoke_sql(run_command=run_command)
+    def record_failure(step: str, exc: Exception | str) -> None:
+        failures.append({"step": step, "error": str(exc)})
+
+    try:
+        minio_health = get_http(f"{minio_endpoint.rstrip('/')}/minio/health/ready")
+    except Exception as exc:
+        minio_health = {"error": str(exc)}
+        record_failure("minio_health", exc)
+
+    try:
+        trino_info = get_json(f"{trino_url.rstrip('/')}/v1/info")
+    except Exception as exc:
+        trino_info = {"error": str(exc)}
+        record_failure("trino_info", exc)
+
+    try:
+        bucket_listing = run_command(
+            [
+                "docker",
+                "compose",
+                "run",
+                "--rm",
+                "--no-deps",
+                "--entrypoint",
+                "/bin/sh",
+                "minio-init",
+                "-c",
+                'mc alias set ALIAS http://minio:9000 "${MINIO_ROOT_USER}" "${MINIO_ROOT_PASSWORD}" >/dev/null && mc ls ALIAS',
+            ]
+        )
+    except Exception as exc:
+        bucket_listing = ""
+        record_failure("minio_buckets", exc)
+
+    try:
+        postgres_health = run_command(["docker", "compose", "exec", "-T", "lakehouse-postgres", "pg_isready", "-U", "vina_platform", "-d", "platform"])
+    except Exception as exc:
+        postgres_health = f"ERROR: {exc}\n"
+        record_failure("postgres_health", exc)
+
+    try:
+        hive_health = run_command(["docker", "compose", "ps", "hive-metastore"])
+    except Exception as exc:
+        hive_health = f"ERROR: {exc}\n"
+        record_failure("hive_metastore_health", exc)
+
+    try:
+        trino_catalogs = run_command(["docker", "compose", "exec", "-T", "trino", "trino", "--execute", "SHOW CATALOGS"])
+    except Exception as exc:
+        trino_catalogs = f"ERROR: {exc}\n"
+        record_failure("trino_catalogs", exc)
+
+    try:
+        trino_schemas = run_command(["docker", "compose", "exec", "-T", "trino", "trino", "--execute", "SHOW SCHEMAS FROM iceberg"])
+    except Exception as exc:
+        trino_schemas = f"ERROR: {exc}\n"
+        record_failure("trino_schemas", exc)
+
+    try:
+        trino_smoke = run_smoke_sql(run_command=run_command)
+    except Exception as exc:
+        trino_smoke = f"ERROR: {exc}\n"
+        record_failure("trino_smoke", exc)
 
     bucket_names = parse_bucket_listing(bucket_listing)
     missing_buckets = [bucket for bucket in REQUIRED_BUCKETS if bucket not in bucket_names]
+    if missing_buckets:
+        record_failure("minio_buckets", f"Missing required MinIO buckets: {', '.join(missing_buckets)}")
 
     _write_json(evidence_path / "minio_health.json", minio_health)
     _write_json(
@@ -165,6 +210,8 @@ def capture_evidence(
 
     manifest = {
         "captured_at": datetime.now(timezone.utc).isoformat(),
+        "status": "failed" if failures else "success",
+        "failures": failures,
         "service_urls": {
             "minio": minio_endpoint,
             "trino": trino_url,
@@ -183,7 +230,8 @@ def capture_evidence(
     }
     _write_json(evidence_path / "run_manifest.json", manifest)
 
-    if missing_buckets:
-        raise RuntimeError(f"Missing required MinIO buckets: {', '.join(missing_buckets)}")
+    if failures:
+        failure_summary = "; ".join(f"{failure['step']}: {failure['error']}" for failure in failures)
+        raise RuntimeError(f"Lakehouse evidence capture failed: {failure_summary}")
 
     return manifest

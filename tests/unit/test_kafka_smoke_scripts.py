@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 
 def test_producer_smoke_runs_deterministic_generation_and_writes_summary(tmp_path: Path, monkeypatch) -> None:
     from vina_bim_shop.kafka.producer_smoke import run_producer_smoke
@@ -160,3 +162,30 @@ def test_capture_evidence_writes_manifest_and_service_artifacts(tmp_path: Path) 
     assert not (tmp_path / "screenshots").exists()
     assert "kafka_ui" not in manifest["service_urls"]
     assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])
+
+
+def test_capture_evidence_writes_failed_manifest_when_kafka_connect_probe_fails(tmp_path: Path) -> None:
+    from vina_bim_shop.kafka.evidence import capture_evidence
+
+    def fake_get_json(url: str):
+        if url.endswith("/subjects"):
+            return ["commerce_events-value"]
+        if url.endswith("/connectors"):
+            raise RuntimeError("connect unavailable")
+        return {"status": "ok"}
+
+    def fake_run_command(command):
+        joined = " ".join(command)
+        if "--list" in joined:
+            return "commerce_events\n"
+        if "--describe" in joined:
+            return "Topic: commerce_events\n"
+        return ""
+
+    with pytest.raises(RuntimeError, match="Kafka evidence capture failed"):
+        capture_evidence(evidence_root=tmp_path, get_json=fake_get_json, run_command=fake_run_command)
+
+    manifest = json.loads((tmp_path / "run_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["status"] == "failed"
+    assert manifest["failures"] == [{"step": "kafka_connect", "error": "connect unavailable"}]
+    assert "schema_registry_subjects.json" in manifest["artifacts"]

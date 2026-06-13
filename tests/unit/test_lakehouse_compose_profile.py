@@ -66,12 +66,15 @@ def test_lakehouse_compose_declares_persistent_state_volumes() -> None:
 def test_hive_metastore_image_includes_postgres_and_s3a_runtime_jars() -> None:
     repo_root = Path(__file__).resolve().parents[2]
     compose = load_compose_model(repo_root)
+    hive_init_service = compose["services"]["hive-metastore-init"]
     hive_service = compose["services"]["hive-metastore"]
 
-    assert hive_service["build"] == {
+    assert hive_init_service["build"] == {
         "context": "./infra/lakehouse/hive",
         "dockerfile": "Dockerfile",
     }
+    assert "build" not in hive_service
+    assert hive_init_service["image"] == "vina-bim-shop/hive-metastore:3.1.3-postgres"
     assert hive_service["image"] == "vina-bim-shop/hive-metastore:3.1.3-postgres"
 
     dockerfile = (repo_root / "infra" / "lakehouse" / "hive" / "Dockerfile").read_text(encoding="utf-8")

@@ -295,7 +295,7 @@ This project is designed to demonstrate the platform end to end through staged l
 
 ### Common Commands
 
-The repository ships a root [Makefile](Makefile) that wraps the most common commands under a `make + verb` convention. Run `make help` at any time to see the full catalog. Recipes are shell-agnostic (they delegate to `uv run python` and a thin wrapper at `scripts/ctl.py`), so they behave the same way from bash, zsh, PowerShell, Git Bash, or WSL.
+The repository ships a root [Makefile](Makefile) that wraps the most common commands under a `make + verb` convention. Run `make help` at any time to see the full catalog. Recipes are shell-agnostic: they delegate to `uv run python` and `scripts/ctl.py`, whose compose lifecycle expands documented profile bundles and prebuilds shared images where needed.
 
 | Target | What it does |
 | --- | --- |
@@ -305,7 +305,7 @@ The repository ships a root [Makefile](Makefile) that wraps the most common comm
 | `make test` | Run `pytest`. |
 | `make finalize` | Produce the final Section 01/02 evidence package. |
 | `make reset` | Run `scripts/qa/reset_all.py` (destructive; forwards `RESET_FLAGS=...`, e.g. `--dry-run`, `--force`, `--force --clean-local-data`). |
-| `make up-<profile>` / `make down-<profile>` | Start or stop one of the compose profiles: `ingestion`, `lakehouse`, `batch`, `streaming`, `serving`, `orchestration`, `governance`, or `all`. |
+| `make up-<profile>` / `make down-<profile>` | Start or stop one of the supported compose profiles; dependent profiles expand to the documented staged bundles. |
 
 The PowerShell snippets below remain the authoritative command surface; the Makefile is a thin, discoverable shortcut on top of them.
 

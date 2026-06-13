@@ -9,7 +9,7 @@ and runtime references have been removed or replaced in the same change.
 
 ## Convenience Make Targets
 
-The repository also ships a root [Makefile](../Makefile) that provides a `make + verb` shortcut for the most common commands. It is a thin wrapper that delegates to the official scripts below and to `scripts/ctl.py` for the docker compose lifecycle. It introduces no new behavior, so the classification tables in this README continue to be the source of truth for which scripts are official.
+The repository also ships a root [Makefile](../Makefile) that provides a `make + verb` shortcut for the most common commands. It delegates to the official scripts below and to `scripts/ctl.py` for the Docker Compose lifecycle. The compose wrapper expands documented profile bundles and prebuilds shared images where needed, while the classification tables in this README remain the source of truth for which scripts are official.
 
 | Make target | Underlying script or command |
 | --- | --- |
@@ -19,7 +19,7 @@ The repository also ships a root [Makefile](../Makefile) that provides a `make +
 | `make test` | `uv run pytest` |
 | `make finalize` | `scripts/qa/finalize_sections_01_02.py` |
 | `make reset` | `scripts/qa/reset_all.py` (forwards `RESET_FLAGS=...`) |
-| `make up-<profile>` / `make down-<profile>` | `scripts/ctl.py compose up <profile>` / `scripts/ctl.py compose down <profile>` for `ingestion`, `lakehouse`, `batch`, `streaming`, `serving`, `orchestration`, `governance`, and `all`. |
+| `make up-<profile>` / `make down-<profile>` | `scripts/ctl.py compose up <profile>` / `scripts/ctl.py compose down <profile>` for `ingestion`, `lakehouse`, `batch`, `streaming`, `serving`, `orchestration`, `governance`, and `all`; dependent profiles expand to the documented staged bundles. |
 
 Run `make help` at any time to print the full catalog.
 
@@ -56,6 +56,7 @@ Run `make help` at any time to print the full catalog.
 | `scripts/pinot/refresh_evidence.py` | Official Pinot evidence refresh command referenced by README-adjacent deliverables, tests, and Flink verification notes. |
 | `scripts/qa/finalize_sections_01_02.py` | Final Section 01/02 package command referenced by README and tests. |
 | `scripts/qa/generate_section02_evidence.py` | Section 02 evidence command referenced by the schema deliverable and tests. |
+| `scripts/qa/summarize_runlog.py` | Produces compact markdown summaries from long platform run logs for post-run review. |
 | `scripts/spark/export_executive_mart.py` | Executive mart export command referenced by README, deliverables, and tests. |
 | `scripts/spark/job.py` | Spark submit compatibility entry point referenced by `src/vina_bim_shop/lakehouse/spark/runner.py` and tests. |
 | `scripts/spark/run_batch.py` | Official Spark batch command referenced by deliverables and tests. |

@@ -201,7 +201,32 @@ def capture_tag_evidence() -> dict:
     }
 
 
-def main() -> None:
+def _manifest_status(health: dict, datasets: dict, tags: dict) -> tuple[str, list[dict[str, str]]]:
+    failures: list[dict[str, str]] = []
+    partial = False
+
+    if not health.get("healthy"):
+        failures.append({"step": "gms_health", "error": str(health.get("error") or health.get("body") or "GMS health check failed")})
+
+    dataset_status = datasets.get("status")
+    if dataset_status != "success":
+        failures.append({"step": "dataset_evidence", "error": str(datasets.get("error") or f"dataset evidence status is {dataset_status}")})
+
+    if tags.get("status") == "partial":
+        partial = True
+        failed_count = len(tags.get("failed_tags", []))
+        failures.append({"step": "tag_evidence", "error": f"{failed_count} tag lookups failed"})
+    elif tags.get("status") not in {"success", None}:
+        failures.append({"step": "tag_evidence", "error": str(tags.get("error") or f"tag evidence status is {tags.get('status')}")})
+
+    if any(failure["step"] in {"gms_health", "dataset_evidence"} for failure in failures):
+        return "failed", failures
+    if partial or failures:
+        return "partial", failures
+    return "success", failures
+
+
+def capture_evidence() -> dict:
     health = capture_gms_health()
     _write_json(EVIDENCE_ROOT / "datahub_health.json", health)
 
@@ -211,8 +236,11 @@ def main() -> None:
     tags = capture_tag_evidence()
     _write_json(EVIDENCE_ROOT / "tag_count.json", tags)
 
+    status, failures = _manifest_status(health, datasets, tags)
     manifest = {
         "captured_at": _utc_now(),
+        "status": status,
+        "failures": failures,
         "gms_url": GMS_URL,
         "latest_successful_datahub_ingestion_run": datasets.get("latest_successful_run_id"),
         "artifacts": [
@@ -222,7 +250,14 @@ def main() -> None:
         ],
     }
     _write_json(EVIDENCE_ROOT / "run_manifest.json", manifest)
+    return manifest
+
+
+def main() -> None:
+    manifest = capture_evidence()
     print(json.dumps(manifest, indent=2))
+    if manifest["status"] == "failed":
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

@@ -27,8 +27,8 @@
       {
         "name": "dim_category",
         "schemaName": "public",
-        "x": 2608,
-        "y": 1944
+        "x": 2584,
+        "y": 1920
       },
       {
         "name": "dim_date",
@@ -63,14 +63,14 @@
       {
         "name": "dim_promotion",
         "schemaName": "public",
-        "x": 2864,
-        "y": 1432
+        "x": 3056,
+        "y": 1488
       },
       {
         "name": "bridge_product_category",
         "schemaName": "public",
-        "x": 2352,
-        "y": 2056
+        "x": 2344,
+        "y": 2216
       },
       {
         "name": "fact_order",

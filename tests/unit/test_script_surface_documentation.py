@@ -82,6 +82,25 @@ def test_scripts_readme_documents_every_tracked_script() -> None:
         assert f"`{script_path}`" in inventory
 
 
+def test_shell_scripts_are_pinned_to_lf_line_endings() -> None:
+    repo_root = _repo_root()
+    attributes = (repo_root / ".gitattributes").read_text(encoding="utf-8")
+
+    assert "*.sh text eol=lf" in attributes
+
+    completed = subprocess.run(
+        ["git", "ls-files", "--eol", "*.sh"],
+        cwd=repo_root,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    shell_script_lines = [line for line in completed.stdout.splitlines() if line.strip()]
+
+    assert shell_script_lines
+    assert all("w/lf" in line for line in shell_script_lines)
+
+
 def test_root_readme_points_reviewers_to_script_inventory() -> None:
     repo_root = _repo_root()
     readme = (repo_root / "README.md").read_text(encoding="utf-8")

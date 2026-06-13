@@ -52,9 +52,48 @@ def test_capture_evidence_writes_lakehouse_manifest_and_artifacts(tmp_path: Path
     assert buckets["required_buckets"] == ["bronze", "silver", "gold", "checkpoints", "evidence"]
     assert buckets["missing_buckets"] == []
     assert manifest["service_urls"]["trino"] == "http://localhost:8080"
+    assert manifest["status"] == "success"
+    assert manifest["failures"] == []
     assert "minio_console" not in manifest["service_urls"]
     assert not (tmp_path / "screenshots").exists()
     assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])
+
+
+def test_capture_evidence_writes_failed_manifest_when_required_buckets_are_missing(tmp_path: Path) -> None:
+    import pytest
+
+    from vina_bim_shop.lakehouse.evidence import capture_evidence
+
+    def fake_get_json(url: str):
+        if url.endswith("/v1/info"):
+            return {"nodeVersion": {"version": "476"}}
+        return {"status": "ok"}
+
+    def fake_run_command(command):
+        joined = " ".join(command)
+        if "minio-init" in joined and "ls ALIAS" in joined:
+            return "[2026-06-01] bronze/\n[2026-06-01] silver/\n"
+        if "SHOW CATALOGS" in joined:
+            return "Catalog\niceberg\nsystem\n"
+        if "SHOW SCHEMAS FROM iceberg" in joined:
+            return "Schema\ninformation_schema\n"
+        if "smoke.sql" in joined:
+            return "iceberg,information_schema\n"
+        return "ok\n"
+
+    with pytest.raises(RuntimeError, match="Missing required MinIO buckets"):
+        capture_evidence(
+            evidence_root=tmp_path,
+            get_json=fake_get_json,
+            get_http=lambda _url: {"status_code": 200, "body": ""},
+            run_command=fake_run_command,
+        )
+
+    manifest = json.loads((tmp_path / "run_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["status"] == "failed"
+    assert manifest["failures"] == [
+        {"step": "minio_buckets", "error": "Missing required MinIO buckets: gold, checkpoints, evidence"}
+    ]
 
 
 def test_capture_evidence_lists_buckets_with_one_shot_minio_client(tmp_path: Path) -> None:
