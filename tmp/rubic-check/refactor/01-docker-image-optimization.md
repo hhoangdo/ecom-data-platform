@@ -191,4 +191,13 @@ Expected result: all focused tests pass and Compose validates without changing t
 
 ## Completion Record
 
-This plan has no implementation execution record. A future executor records the image IDs, measured reduction, test commands, and evidence paths only after the Definition of Done is met; this documentation task must not create or claim those runtime results.
+- Executed on 2026-07-10 in the current `feature/finalize-edai1` checkout; no worktree, staging, or commit was created.
+- Baseline image: `vina-bim-shop/kafka-connect:7.8.3-s3-baseline`, image ID `sha256:d7a9cba83abf27f35020eff70c01a941b6e8bb454262ae1fd56685359247c878`, `1549476393` bytes (`1477.70` MiB).
+- Optimized image: `vina-bim-shop/kafka-connect:7.8.3-s3`, image ID `sha256:613434b8058c6a13134176fafef01c281fb62c10568b0c82348737b703f90d32`, `1540697383` bytes (`1469.32` MiB).
+- Measured reduction: `8779010` bytes (`8.37` MiB, `0.57%`). Both images were built with `rtk docker build --no-cache` on the same Docker engine; the baseline was frozen before the Dockerfile change.
+- Image evidence command: `rtk uv run python scripts/kafka/capture_connect_image_optimization.py --baseline-image vina-bim-shop/kafka-connect:7.8.3-s3-baseline --optimized-image vina-bim-shop/kafka-connect:7.8.3-s3 --evidence-root evidence/00_engineering_fundamentals`.
+- Runtime proof used `kafka`, `schema-registry`, `kafka-connect`, and `minio`, initialized the Bronze bucket, bootstrapped topics, and registered `bronze-events-s3-sink`. `GET /connector-plugins` returned `io.confluent.connect.s3.S3SinkConnector` version `10.6.4`; the connector and task `0` both reported `RUNNING`.
+- Verification: focused capture test passed (`1`), Bronze sink runtime tests passed (`5`), the Kafka regression set passed (`14`), and `rtk docker compose --profile ingestion config --quiet` exited `0`.
+- Evidence: `evidence/00_engineering_fundamentals/kafka_connect_image_baseline.json`, `kafka_connect_image_optimized.json`, both image-history files, `kafka_connect_image_comparison.json`, `kafka_connect_image_comparison.md`, `kafka_connect_plugin_smoke.json`, `kafka_connect_bronze_sink_response.json`, and `run_manifest.json`.
+- Residual limitations: the reduction is positive but modest because the pinned Kafka Connect base and required S3 plugin dominate the final image. This Topic 01 smoke test proves plugin discovery and a running sink task, but does not publish a source record or assert a resulting MinIO object.
+- Teardown: `rtk docker compose --profile ingestion --profile lakehouse down` stopped and removed the runtime containers and network without deleting named volumes.

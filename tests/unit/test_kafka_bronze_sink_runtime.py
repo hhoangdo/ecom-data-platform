@@ -217,3 +217,21 @@ def test_kafka_connect_plugin_installation_pins_explicit_s3_sink_version() -> No
     assert re.search(r"confluentinc/kafka-connect-s3:\d+\.\d+\.\d+", contents), (
         "Expected Dockerfile to pin an explicit Confluent S3 sink plugin version."
     )
+    assert re.search(
+        r"^FROM confluentinc/cp-kafka-connect:7\.8\.3 AS plugin-builder$",
+        contents,
+        flags=re.MULTILINE,
+    ), "Expected a named plugin-builder stage based on the pinned Kafka Connect image."
+    assert (
+        "confluent-hub install --no-prompt --component-dir /opt/connect-plugins "
+        "confluentinc/kafka-connect-s3:10.6.4"
+    ) in contents, "Expected the builder stage to install the pinned S3 sink outside the runtime image."
+    assert "mkdir -p /opt/connect-plugins" in contents, (
+        "Expected the builder stage to create the Confluent Hub component directory before installation."
+    )
+    assert contents.index("mkdir -p /opt/connect-plugins") < contents.index("confluent-hub install"), (
+        "Expected the component directory to exist before Confluent Hub uses it."
+    )
+    assert (
+        "COPY --from=plugin-builder /opt/connect-plugins /usr/share/confluent-hub-components"
+    ) in contents, "Expected the runtime stage to copy only the installed plugin directory."

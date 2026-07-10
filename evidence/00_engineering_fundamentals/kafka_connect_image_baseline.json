@@ -1,0 +1,7 @@
+{
+  "captured_at": "2026-07-10T15:38:28.311748+00:00",
+  "image_id": "sha256:d7a9cba83abf27f35020eff70c01a941b6e8bb454262ae1fd56685359247c878",
+  "image_tag": "vina-bim-shop/kafka-connect:7.8.3-s3-baseline",
+  "size_bytes": 1549476393,
+  "size_mib": 1477.7
+}

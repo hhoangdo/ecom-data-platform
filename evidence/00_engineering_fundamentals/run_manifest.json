@@ -1,0 +1,14 @@
+{
+  "artifacts": [
+    "kafka_connect_image_baseline.json",
+    "kafka_connect_image_optimized.json",
+    "kafka_connect_image_history_baseline.txt",
+    "kafka_connect_image_history_optimized.txt",
+    "kafka_connect_image_comparison.json",
+    "kafka_connect_image_comparison.md",
+    "kafka_connect_plugin_smoke.json",
+    "kafka_connect_bronze_sink_response.json"
+  ],
+  "captured_at": "2026-07-10T15:38:28.311748+00:00",
+  "connector_response": "kafka_connect_bronze_sink_response.json"
+}

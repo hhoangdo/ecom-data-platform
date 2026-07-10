@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-07-10T15:34:04.9201165Z",
+  "connector_name": "bronze-events-s3-sink",
+  "connector_status": {
+    "connector": {
+      "state": "RUNNING",
+      "worker_id": "kafka-connect:8083"
+    },
+    "name": "bronze-events-s3-sink",
+    "tasks": [
+      {
+        "id": 0,
+        "state": "RUNNING",
+        "worker_id": "kafka-connect:8083"
+      }
+    ],
+    "type": "sink"
+  },
+  "plugin": {
+    "class": "io.confluent.connect.s3.S3SinkConnector",
+    "type": "sink",
+    "version": "10.6.4"
+  }
+}
