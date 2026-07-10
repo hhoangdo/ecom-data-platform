@@ -42,7 +42,9 @@ artifacts/airflow/logs/
 output/playwright/
 
 # Temporary files
-tmp/
+tmp/*
+!tmp/rubic-check/
+!tmp/rubic-check/**
 architecture/decisions/
 docs/
 
