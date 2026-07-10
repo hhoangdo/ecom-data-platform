@@ -1,0 +1,5 @@
+entity,id_column,row_count,approx_distinct_count,uniqueness_ratio
+customers,customer_id,12000,12422,1.0
+products,product_id,6000,7538,1.0
+orders,order_id,45000,55332,1.0
+events,event_id,639537,749707,1.0

@@ -1,2 +1,13 @@
 dataset,row_count
-kafka_topics,24859
+bad_snapshots,4
+customers,12000
+inventory_snapshots,60000
+order_items,168496
+orders,45000
+payments,45000
+product_category_map,7340
+products,6000
+promotions,80
+sellers,600
+shipments,45000
+kafka_topics,639541

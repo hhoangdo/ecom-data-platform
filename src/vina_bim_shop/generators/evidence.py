@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import yaml
 
 from vina_bim_shop.generators.config import GeneratorConfig
 
@@ -61,6 +62,24 @@ def write_evidence(
     schema_versions_path = config.evidence_root / "schema_version_summary.csv"
     schema_versions.to_csv(schema_versions_path, index=False)
 
+    cardinality_summary = _cardinality_summary(datasets, topic_events)
+    cardinality_summary_path = config.evidence_root / "cardinality_summary.csv"
+    cardinality_summary.to_csv(cardinality_summary_path, index=False)
+
+    source_config = _load_report_config(config.source_config_path)
+    rubric_evidence_summary_path = config.evidence_root / "rubric_evidence_summary.md"
+    rubric_evidence_summary_path.write_text(
+        _rubric_evidence_report(
+            config,
+            source_config,
+            quality_metrics,
+            issues,
+            cardinality_summary,
+            schema_versions,
+        ),
+        encoding="utf-8",
+    )
+
     manifest = {
         "platform_name": config.platform_name,
         "scale": config.scale,
@@ -76,13 +95,25 @@ def write_evidence(
             for row in event_topic_counts.to_dict("records")
         },
         "config_path": _portable_path(config, config.source_config_path),
+        "evidence_artifacts": {
+            "cardinality_summary": _portable_path(config, cardinality_summary_path),
+            "rubric_evidence_summary": _portable_path(config, rubric_evidence_summary_path),
+        },
     }
     manifest_path = config.evidence_root / "run_manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     report_path = config.evidence_root / "quality_report.md"
     report_path.write_text(
-        _quality_report(config, row_counts, quality_metrics, issues, event_topic_counts, schema_versions),
+        _quality_report(
+            config,
+            row_counts,
+            quality_metrics,
+            issues,
+            event_topic_counts,
+            schema_versions,
+            rubric_evidence_summary_path,
+        ),
         encoding="utf-8",
     )
 
@@ -93,6 +124,8 @@ def write_evidence(
         "issue_manifest": issue_path,
         "event_topic_row_counts": event_topic_counts_path,
         "schema_version_summary": schema_versions_path,
+        "cardinality_summary": cardinality_summary_path,
+        "rubric_evidence_summary": rubric_evidence_summary_path,
         "run_manifest": manifest_path,
         "quality_report": report_path,
     }
@@ -145,6 +178,7 @@ def _quality_report(
     issues: pd.DataFrame,
     event_topic_counts: pd.DataFrame,
     schema_versions: pd.DataFrame,
+    rubric_evidence_summary_path: Path,
 ) -> str:
     row_count_lines = "\n".join(
         f"- `{row.dataset}`: {int(row.row_count):,} rows" for row in row_counts.itertuples(index=False)
@@ -191,6 +225,10 @@ def _quality_report(
 ## Issue Manifest Summary
 
 {issue_lines}
+
+## Rubric Evidence
+
+- Consolidated rows 5-14 evidence: [{rubric_evidence_summary_path.name}]({rubric_evidence_summary_path.name})
 """
 
 
@@ -219,3 +257,193 @@ def _schema_version_summary(topic_events: dict[str, pd.DataFrame]) -> pd.DataFra
         grouped = frame.groupby(["event_topic", "schema_version"]).size().reset_index(name="row_count")
         rows.extend(grouped.to_dict("records"))
     return pd.DataFrame(rows, columns=["event_topic", "schema_version", "row_count"])
+
+
+def _cardinality_summary(
+    datasets: dict[str, pd.DataFrame], topic_events: dict[str, pd.DataFrame]
+) -> pd.DataFrame:
+    import duckdb
+
+    relations: list[tuple[str, str, str, pd.DataFrame]] = []
+    for entity, id_column in [
+        ("customers", "customer_id"),
+        ("products", "product_id"),
+        ("orders", "order_id"),
+    ]:
+        frame = datasets.get(entity)
+        if frame is not None and id_column in frame.columns:
+            relations.append((entity, id_column, f"{entity}_evidence", frame[[id_column]]))
+
+    event_frames = [
+        frame[["event_id"]]
+        for _, frame in sorted(topic_events.items())
+        if "event_id" in frame.columns
+    ]
+    if event_frames:
+        relations.append(("events", "event_id", "events_evidence", pd.concat(event_frames, ignore_index=True)))
+
+    connection = duckdb.connect()
+    rows: list[dict[str, Any]] = []
+    try:
+        for entity, id_column, relation_name, frame in relations:
+            connection.register(relation_name, frame)
+            row_count, approx_distinct_count = connection.execute(
+                f"select count(*) as row_count, approx_count_distinct({id_column}) as approx_distinct_count from {relation_name}"
+            ).fetchone()
+            row_count = int(row_count)
+            approx_distinct_count = int(approx_distinct_count or 0)
+            uniqueness_ratio = round(min(approx_distinct_count, row_count) / row_count, 5) if row_count else 0.0
+            rows.append(
+                {
+                    "entity": entity,
+                    "id_column": id_column,
+                    "row_count": row_count,
+                    "approx_distinct_count": approx_distinct_count,
+                    "uniqueness_ratio": uniqueness_ratio,
+                }
+            )
+    finally:
+        connection.close()
+
+    return pd.DataFrame(
+        rows,
+        columns=["entity", "id_column", "row_count", "approx_distinct_count", "uniqueness_ratio"],
+    )
+
+
+def _load_report_config(source_config_path: Path) -> dict[str, Any]:
+    with source_config_path.open("r", encoding="utf-8") as handle:
+        source_config = yaml.safe_load(handle)
+    if not isinstance(source_config, dict):
+        raise ValueError(f"Expected a YAML mapping in {source_config_path}")
+    return source_config
+
+
+def _rubric_evidence_report(
+    config: GeneratorConfig,
+    source_config: dict[str, Any],
+    quality_metrics: pd.DataFrame,
+    issues: pd.DataFrame,
+    cardinality_summary: pd.DataFrame,
+    schema_versions: pd.DataFrame,
+) -> str:
+    quality_scenarios = source_config["quality_scenarios"]
+    category_weights = source_config["category_weights"]
+    city_weights = source_config["geography"]["cities"]
+    outputs = source_config["outputs"]
+    scale_profiles = source_config["scale_profiles"]
+    burst_windows = source_config["streaming"]["burst_windows"]
+
+    metric_values = {str(row.metric): row.value for row in quality_metrics.itertuples(index=False)}
+    issue_values = {
+        f"issue_{row.dataset}_{row.issue_type}": row.observed_rate for row in issues.itertuples(index=False)
+    }
+
+    def observed(name: str) -> str:
+        value = metric_values.get(name, issue_values.get(name))
+        return "not generated for this mode" if value is None else f"`{value}`"
+
+    def configured(value: Any) -> str:
+        return f"`{value}`"
+
+    def table_row(name: str, configured_value: Any, observed_value: str) -> str:
+        return f"| {name} | {configured(configured_value)} | {observed_value} |"
+
+    city_weight_lines = "; ".join(f"{city['city']}={city['weight']}" for city in city_weights)
+    category_weight_lines = "; ".join(f"{category}={weight}" for category, weight in category_weights.items())
+    cardinality_lines = "\n".join(
+        f"| {row.entity} | {row.id_column} | {int(row.row_count):,} | {int(row.approx_distinct_count):,} | {row.uniqueness_ratio:.5f} |"
+        for row in cardinality_summary.itertuples(index=False)
+    ) or "| not generated for this mode | - | - | - | - |"
+    schema_version_lines = "\n".join(
+        f"| {row.event_topic} | {row.schema_version} | {int(row.row_count):,} |"
+        for row in schema_versions.itertuples(index=False)
+    ) or "| not generated for this mode | - | - |"
+    scale_profile_lines = "\n".join(
+        f"| {profile_name} | {profile['history_days']} | "
+        + "; ".join(f"{entity}={count}" for entity, count in profile["entities"].items())
+        + " |"
+        for profile_name, profile in scale_profiles.items()
+    )
+    ops_event_rows = int(
+        schema_versions.loc[schema_versions["event_topic"] == "ops_events", "row_count"].sum()
+    )
+
+    return f"""# Section 01 Generator Rubric Evidence Summary
+
+- Source configuration: `{_portable_path(config, config.source_config_path)}`
+- Generated mode: `{config.scale}` scale, `{config.history_days}` history days, seed `{config.random_seed}`.
+- Approximate distinct counts use DuckDB `approx_count_distinct`; uniqueness ratios are capped at `1.0` because an approximate estimate can exceed its population.
+
+## Row 5 - Offline Skew
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("HCMC and Ha Noi customer skew target", quality_scenarios["hcmc_hanoi_skew_ratio"], observed("hcmc_hanoi_customer_share"))}
+{table_row("City weights", city_weight_lines, "See customer-share metric above")}
+{table_row("Category weights", category_weight_lines, observed("fmcg_elha_product_share"))}
+
+## Row 6 - Offline High Cardinality
+
+| Entity | ID column | Row count | DuckDB approximate distinct count | Uniqueness ratio |
+| --- | --- | ---: | ---: | ---: |
+{cardinality_lines}
+
+## Row 7 - Offline Schema Evolution
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Schema evolution cutoff ratio", quality_scenarios["schema_evolution_cutoff_ratio"], observed("issue_products_schema_evolution_category_attributes"))}
+{table_row("Missing brand rate", quality_scenarios["missing_brand_rate"], observed("missing_brand_rate"))}
+{table_row("Missing shipping method rate", quality_scenarios["missing_shipping_method_rate"], observed("missing_shipping_method_rate"))}
+
+| Topic | Schema version | Event rows |
+| --- | ---: | ---: |
+{schema_version_lines}
+
+## Row 8 - Offline Duplicates
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Offline order-item duplicate rate", quality_scenarios["offline_duplicate_rate"], observed("offline_order_item_duplicate_rate"))}
+
+## Row 9 - Offline Generator Configuration
+
+| Profile | History days | Entity counts |
+| --- | ---: | --- |
+{scale_profile_lines}
+
+## Row 10 - Bronze Input Storage
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Raw output root", outputs["raw_root"], "Parquet snapshots and Kafka topic JSONL are generated under this root")}
+{table_row("Kafka topic inputs", "catalog_events; commerce_events; fulfillment_events; ops_events; dead_letter_events", "dead_letter_events is the Bronze quarantine input")}
+
+## Row 11 - Streaming Burst
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Burst windows", "; ".join(burst_windows), f"`{ops_event_rows}` ops event rows")}
+
+## Row 12 - Streaming Late Arrivals
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Late-arrival rate", quality_scenarios["late_arrival_rate"], observed("issue_commerce_events_late_arrival"))}
+{table_row("Late delay minutes", f"{quality_scenarios['late_delay_minutes_min']}-{quality_scenarios['late_delay_minutes_max']}", "Measured through the late-arrival issue metric")}
+{table_row("Missing device type rate", quality_scenarios["missing_device_type_rate"], observed("issue_commerce_events_missing_device_type"))}
+
+## Row 13 - Streaming Duplicates
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Streaming duplicate rate", quality_scenarios["stream_duplicate_rate"], observed("issue_commerce_events_exact_duplicate_event_payload"))}
+
+## Row 14 - Streaming Generator Configuration
+
+| Evidence | Configured value | Observed result |
+| --- | --- | --- |
+{table_row("Selected scale profile", config.scale, f"`{config.history_days}` history days")}
+{table_row("Source configuration", _portable_path(config, config.source_config_path), "All reported controls above are loaded from this YAML mapping")}
+"""

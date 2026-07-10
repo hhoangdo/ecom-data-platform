@@ -68,3 +68,15 @@ def test_placeholder_deliverables_are_explicitly_out_of_scope() -> None:
     ]:
         content = (repo_root / "deliverables" / file_name).read_text(encoding="utf-8")
         assert "Out of scope for the current platform evidence" in content
+
+
+def test_generator_deliverables_link_cardinality_and_rubric_evidence() -> None:
+    repo_root = _repo_root()
+    generator_deliverable = (repo_root / "deliverables" / "01_data_generator.md").read_text(encoding="utf-8")
+    challenges_deliverable = (repo_root / "deliverables" / "11_solving_data_challenges.md").read_text(encoding="utf-8")
+
+    assert "cardinality_summary.csv" in generator_deliverable
+    assert "rubric_evidence_summary.md" in generator_deliverable
+    assert "approx_count_distinct" in generator_deliverable
+    assert "evidence-only" in generator_deliverable
+    assert "rubric_evidence_summary.md" in challenges_deliverable

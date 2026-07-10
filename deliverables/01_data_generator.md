@@ -111,6 +111,8 @@ The generator intentionally mixes realistic data problems into the outputs. Thes
 
 The observed medium-run issues are recorded in [evidence/01_data_generator/issue_manifest.csv](../evidence/01_data_generator/issue_manifest.csv) and summarized in [evidence/01_data_generator/quality_report.md](../evidence/01_data_generator/quality_report.md).
 
+The rubric-facing configuration and observation summary is [rubric_evidence_summary.md](../evidence/01_data_generator/rubric_evidence_summary.md). It keeps configured controls separate from measurements produced by the selected generator run.
+
 | Challenge | Example | Why it matters downstream |
 | --- | --- | --- |
 | Geographic skew | Ho Chi Minh City and Ha Noi represent about 45% of customers. | Tests whether BI summaries and customer dimensions reflect realistic urban concentration. |
@@ -125,6 +127,17 @@ The observed medium-run issues are recorded in [evidence/01_data_generator/issue
 | Bad event payloads | `dead_letter_events` includes `missing_required_key`, `invalid_json`, `invalid_timestamp`, and `unknown_schema_version`. | Kafka/DLQ and Bronze quarantine paths can be demonstrated without corrupting normal readers. |
 | Bad snapshot payloads | `bad_snapshots` includes missing keys, broken JSON, invalid timestamps, and unknown schema versions. | Batch quarantine models can explain malformed source extracts separately from valid snapshots. |
 | Operational signals | `ops_events` emits `traffic_burst_detected`, `late_arrival_observed`, `duplicate_event_observed`, and `schema_version_changed`. | Realtime alerting and governance evidence have explicit source observability events. |
+
+## Rubric Cardinality Evidence
+
+[cardinality_summary.csv](../evidence/01_data_generator/cardinality_summary.csv) is generated with DuckDB `approx_count_distinct` for evidence-only rubric support. It does not affect source generation, duplicate injection, or downstream business-key deduplication.
+
+| Entity | Identifier | Reported evidence |
+| --- | --- | --- |
+| Customers | `customer_id` | Row count, approximate distinct count, and uniqueness ratio. |
+| Products | `product_id` | Row count, approximate distinct count, and uniqueness ratio. |
+| Orders | `order_id` | Row count, approximate distinct count, and uniqueness ratio. |
+| Topic events | `event_id` | Row count, approximate distinct count, and uniqueness ratio. |
 
 Concrete examples from committed sample rows:
 
@@ -185,6 +198,8 @@ Key evidence files:
 - [issue_manifest.csv](../evidence/01_data_generator/issue_manifest.csv)
 - [event_topic_row_counts.csv](../evidence/01_data_generator/event_topic_row_counts.csv)
 - [schema_version_summary.csv](../evidence/01_data_generator/schema_version_summary.csv)
+- [cardinality_summary.csv](../evidence/01_data_generator/cardinality_summary.csv)
+- [rubric_evidence_summary.md](../evidence/01_data_generator/rubric_evidence_summary.md)
 - [quality_report.md](../evidence/01_data_generator/quality_report.md)
 - [final dataset manifest](../evidence/final_dataset/final_dataset_manifest.json)
 - [final medium raw dataset zip](../evidence/final_dataset/vina_bim_shop_medium_raw.zip)

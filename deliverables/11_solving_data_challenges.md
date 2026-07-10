@@ -171,6 +171,8 @@ Kafka source topics
   observed rates for each challenge in the medium run.
 - [evidence/01_data_generator/quality_report.md](../evidence/01_data_generator/quality_report.md) -
   quality report summarising the injected issues.
+- [evidence/01_data_generator/rubric_evidence_summary.md](../evidence/01_data_generator/rubric_evidence_summary.md) -
+  consolidated source-side skew, schema, duplicate, burst, lateness, and streaming-duplicate facts used by this Spark and Flink challenge map.
 
 ## Convenience Make Targets
 

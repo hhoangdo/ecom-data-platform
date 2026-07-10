@@ -1,8 +1,31 @@
+import json
 from pathlib import Path
 
 import pandas as pd
+import yaml
 
 from vina_bim_shop.generators.runner import run_generation
+
+
+EXPECTED_CARDINALITY_ROWS = [
+    ("customers", "customer_id"),
+    ("products", "product_id"),
+    ("orders", "order_id"),
+    ("events", "event_id"),
+]
+
+EXPECTED_RUBRIC_HEADINGS = [
+    "Row 5 - Offline Skew",
+    "Row 6 - Offline High Cardinality",
+    "Row 7 - Offline Schema Evolution",
+    "Row 8 - Offline Duplicates",
+    "Row 9 - Offline Generator Configuration",
+    "Row 10 - Bronze Input Storage",
+    "Row 11 - Streaming Burst",
+    "Row 12 - Streaming Late Arrivals",
+    "Row 13 - Streaming Duplicates",
+    "Row 14 - Streaming Generator Configuration",
+]
 
 
 def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> None:
@@ -119,3 +142,77 @@ def test_smoke_full_generation_writes_contracts_and_evidence(tmp_path: Path) -> 
     assert 0.05 <= quality_metrics["issue_commerce_events_late_arrival"] <= 0.20
     assert quality_metrics["issue_dead_letter_events_invalid_json"] > 0
     assert quality_metrics["issue_bad_snapshots_invalid_timestamp"] > 0
+
+
+def test_generator_writes_cardinality_summary(tmp_path: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    evidence_root = tmp_path / "evidence"
+
+    result = run_generation(
+        config_path=repo_root / "configs" / "generator" / "base.yaml",
+        scale="smoke",
+        mode="full",
+        raw_root=tmp_path / "raw",
+        evidence_root=evidence_root,
+        clean=True,
+        seed=42,
+    )
+
+    cardinality_path = evidence_root / "cardinality_summary.csv"
+    assert cardinality_path.is_file()
+    assert result.evidence_paths["cardinality_summary"] == cardinality_path
+
+    cardinality = pd.read_csv(cardinality_path)
+    assert list(cardinality.columns) == [
+        "entity",
+        "id_column",
+        "row_count",
+        "approx_distinct_count",
+        "uniqueness_ratio",
+    ]
+    assert list(cardinality[["entity", "id_column"]].itertuples(index=False, name=None)) == EXPECTED_CARDINALITY_ROWS
+    assert (cardinality["row_count"] > 0).all()
+    assert (cardinality["approx_distinct_count"] > 0).all()
+    assert ((cardinality["uniqueness_ratio"] > 0) & (cardinality["uniqueness_ratio"] <= 1)).all()
+
+    manifest = json.loads((evidence_root / "run_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["evidence_artifacts"]["cardinality_summary"] == str(cardinality_path)
+    assert manifest["evidence_artifacts"]["rubric_evidence_summary"] == str(
+        evidence_root / "rubric_evidence_summary.md"
+    )
+
+
+def test_generator_rubric_report_uses_parsed_config_and_row_order(tmp_path: Path) -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    config_path = repo_root / "configs" / "generator" / "base.yaml"
+    evidence_root = tmp_path / "evidence"
+
+    run_generation(
+        config_path=config_path,
+        scale="smoke",
+        mode="full",
+        raw_root=tmp_path / "raw",
+        evidence_root=evidence_root,
+        clean=True,
+        seed=42,
+    )
+
+    report = (evidence_root / "rubric_evidence_summary.md").read_text(encoding="utf-8")
+    headings = [line.removeprefix("## ") for line in report.splitlines() if line.startswith("## ")]
+    assert headings == EXPECTED_RUBRIC_HEADINGS
+    assert "| Configured value | Observed result |" in report
+    assert "configs/generator/base.yaml" in report
+
+    source_config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+    for value in source_config["quality_scenarios"].values():
+        assert str(value) in report
+    for value in source_config["category_weights"].values():
+        assert str(value) in report
+    for burst_window in source_config["streaming"]["burst_windows"]:
+        assert burst_window in report
+    assert source_config["outputs"]["raw_root"] in report
+    for profile_name, profile in source_config["scale_profiles"].items():
+        assert profile_name in report
+        assert str(profile["history_days"]) in report
+        for entity_count in profile["entities"].values():
+            assert str(entity_count) in report

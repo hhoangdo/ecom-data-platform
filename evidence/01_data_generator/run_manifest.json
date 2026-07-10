@@ -1,21 +1,36 @@
 {
   "platform_name": "vina-bim-shop",
-  "scale": "smoke",
-  "mode": "streaming",
+  "scale": "medium",
+  "mode": "full",
   "random_seed": 42,
-  "history_days": 7,
-  "generated_at": "2026-06-02T16:28:41.279795+00:00",
+  "history_days": 60,
+  "generated_at": "2026-07-10T14:54:13.111302+00:00",
   "raw_root": "data/raw",
   "evidence_root": "evidence/01_data_generator",
   "row_counts": {
-    "kafka_topics": 24859
+    "bad_snapshots": 4,
+    "customers": 12000,
+    "inventory_snapshots": 60000,
+    "order_items": 168496,
+    "orders": 45000,
+    "payments": 45000,
+    "product_category_map": 7340,
+    "products": 6000,
+    "promotions": 80,
+    "sellers": 600,
+    "shipments": 45000,
+    "kafka_topics": 639541
   },
   "kafka_topics": {
-    "catalog_events": 1940,
-    "commerce_events": 17810,
+    "catalog_events": 69160,
+    "commerce_events": 442451,
     "dead_letter_events": 4,
-    "fulfillment_events": 5100,
+    "fulfillment_events": 127921,
     "ops_events": 5
   },
-  "config_path": "configs/generator/base.yaml"
+  "config_path": "configs/generator/base.yaml",
+  "evidence_artifacts": {
+    "cardinality_summary": "evidence/01_data_generator/cardinality_summary.csv",
+    "rubric_evidence_summary": "evidence/01_data_generator/rubric_evidence_summary.md"
+  }
 }

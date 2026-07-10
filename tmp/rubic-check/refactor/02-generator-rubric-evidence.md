@@ -173,4 +173,36 @@ Expected result: regenerated medium evidence matches the current seed/config con
 
 ## Completion Record
 
-This plan has no implementation execution record. A future executor records the generated artifact checksums, commands, and test results only after the Definition of Done is met; this documentation task does not generate or claim the planned evidence.
+Completed on 2026-07-10 in dedicated worktree `C:\Users\oou1hc\Documents\FSDS\ecom-data-platform-submission-topic02` on branch `topic-02-generator-evidence`. No files were staged or committed.
+
+### Commands and Results
+
+- `rtk git status --short` before editing: clean worktree.
+- `rtk uv run pytest tests/unit/test_generator_config.py tests/unit/test_generator_module_split.py tests/unit/test_deliverables_documentation.py tests/integration/test_section01_generator.py tests/integration/test_generator_cli.py -q` before editing: `11 passed in 36.11s`.
+- `rtk uv run pytest tests/integration/test_section01_generator.py tests/unit/test_deliverables_documentation.py -q` after adding the contract tests: `3 failed, 4 passed in 19.06s`, because the two planned artifacts and deliverable links did not yet exist.
+- `rtk uv run pytest tests/integration/test_section01_generator.py -q` after the evidence-writer implementation: `3 passed in 19.56s`.
+- `rtk uv run pytest tests/unit/test_deliverables_documentation.py tests/integration/test_section01_generator.py -q` after documentation updates: `7 passed in 19.07s`.
+- `rtk uv run python scripts/generate/run_generator.py --config configs/generator/base.yaml --scale medium --mode full --seed 42 --evidence-root evidence/01_data_generator`: completed and was validated from the generated manifest and artifacts below.
+- `rtk uv run pytest tests/unit/test_generator_config.py tests/unit/test_generator_module_split.py tests/unit/test_deliverables_documentation.py tests/integration/test_section01_generator.py tests/integration/test_generator_cli.py -q`: `14 passed in 23.73s`.
+
+### Generated Evidence
+
+- `evidence/01_data_generator/run_manifest.json`: scale `medium`, mode `full`, seed `42`, history `60` days, generated at `2026-07-10T14:54:13.111302+00:00`.
+- `evidence/01_data_generator/cardinality_summary.csv`:
+
+| Entity | ID | Rows | DuckDB approximate distinct | Uniqueness ratio |
+| --- | --- | ---: | ---: | ---: |
+| customers | customer_id | 12,000 | 12,422 | 1.00000 |
+| products | product_id | 6,000 | 7,538 | 1.00000 |
+| orders | order_id | 45,000 | 55,332 | 1.00000 |
+| events | event_id | 639,537 | 749,707 | 1.00000 |
+
+- `evidence/01_data_generator/rubric_evidence_summary.md`: contains Rows 5 through 14 as ten separately labelled sections in rubric order.
+- `evidence/01_data_generator/quality_report.md`: links the consolidated rubric evidence.
+- `evidence/01_data_generator/run_manifest.json`: lists both new artifact paths in `evidence_artifacts`.
+
+### Limitations
+
+- DuckDB `approx_count_distinct` is an estimator and can exceed the population; the raw estimates remain visible and the reported uniqueness ratio is capped at `1.0`.
+- `dead_letter_events` has no top-level `event_id`, so it is excluded from the event cardinality relation; its quarantine role remains documented in the Row 10 evidence.
+- The foreground command wrapper timed out after 64 seconds, but the already-started generator process completed. Completion was verified from the full medium manifest, four-row cardinality CSV, ten-section report, and passing regressions rather than from a captured CLI exit status.
