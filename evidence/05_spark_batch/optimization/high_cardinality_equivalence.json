@@ -1,0 +1,23 @@
+{
+  "baseline_application_id": "app-20260710173101-0003",
+  "comparisons": {
+    "customer_id": {
+      "baseline": 50000,
+      "optimized": 50000
+    },
+    "event_id": {
+      "baseline": 150000,
+      "optimized": 150000
+    },
+    "order_id": {
+      "baseline": 150000,
+      "optimized": 150000
+    },
+    "product_id": {
+      "baseline": 30000,
+      "optimized": 30000
+    }
+  },
+  "optimized_application_id": "app-20260710173148-0004",
+  "success": true
+}

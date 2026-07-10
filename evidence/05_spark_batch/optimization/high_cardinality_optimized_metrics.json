@@ -1,0 +1,196 @@
+{
+  "application_id": "app-20260710173148-0004",
+  "application_name": "vina-bim-shop-optimization-high-cardinality-optimized",
+  "aqe_enabled": false,
+  "cardinality": {
+    "customer_id": {
+      "approx_count_distinct": 49401,
+      "exact_count_distinct": 50000
+    },
+    "event_id": {
+      "approx_count_distinct": 146766,
+      "exact_count_distinct": 150000
+    },
+    "order_id": {
+      "approx_count_distinct": 142797,
+      "exact_count_distinct": 150000
+    },
+    "product_id": {
+      "approx_count_distinct": 31069,
+      "exact_count_distinct": 30000
+    }
+  },
+  "elapsed_ms": 8512.983,
+  "event_log_dir": "s3a://checkpoints/spark-events",
+  "event_log_enabled": true,
+  "expected_exact_cardinality": {
+    "customer_id": 50000,
+    "event_id": 150000,
+    "order_id": 150000,
+    "product_id": 30000
+  },
+  "input_contract": {
+    "city_weights": {
+      "Binh Duong": 0.07,
+      "Can Tho": 0.07,
+      "Da Nang": 0.09,
+      "Dong Nai": 0.06,
+      "Ha Noi": 0.18,
+      "Hai Phong": 0.07,
+      "Ho Chi Minh City": 0.27,
+      "Hue": 0.05,
+      "Nha Trang": 0.05,
+      "Other VN": 0.09
+    },
+    "config_path": "configs/generator/base.yaml",
+    "entity_counts": {
+      "customers": 50000,
+      "orders": 150000,
+      "products": 30000
+    },
+    "history_days": 90,
+    "random_seed": 42,
+    "scale": "coursework"
+  },
+  "input_rows": 150000,
+  "pre_aggregate_repartition": {
+    "columns": [
+      "order_id"
+    ],
+    "maximum_rows": 4825,
+    "minimum_rows": 4547,
+    "non_empty_partition_count": 32,
+    "partition_count": 32,
+    "rows_by_partition": [
+      {
+        "partition_id": 0,
+        "row_count": 4761
+      },
+      {
+        "partition_id": 1,
+        "row_count": 4695
+      },
+      {
+        "partition_id": 2,
+        "row_count": 4771
+      },
+      {
+        "partition_id": 3,
+        "row_count": 4612
+      },
+      {
+        "partition_id": 4,
+        "row_count": 4762
+      },
+      {
+        "partition_id": 5,
+        "row_count": 4683
+      },
+      {
+        "partition_id": 6,
+        "row_count": 4663
+      },
+      {
+        "partition_id": 7,
+        "row_count": 4729
+      },
+      {
+        "partition_id": 8,
+        "row_count": 4591
+      },
+      {
+        "partition_id": 9,
+        "row_count": 4717
+      },
+      {
+        "partition_id": 10,
+        "row_count": 4647
+      },
+      {
+        "partition_id": 11,
+        "row_count": 4825
+      },
+      {
+        "partition_id": 12,
+        "row_count": 4675
+      },
+      {
+        "partition_id": 13,
+        "row_count": 4791
+      },
+      {
+        "partition_id": 14,
+        "row_count": 4688
+      },
+      {
+        "partition_id": 15,
+        "row_count": 4800
+      },
+      {
+        "partition_id": 16,
+        "row_count": 4735
+      },
+      {
+        "partition_id": 17,
+        "row_count": 4646
+      },
+      {
+        "partition_id": 18,
+        "row_count": 4649
+      },
+      {
+        "partition_id": 19,
+        "row_count": 4749
+      },
+      {
+        "partition_id": 20,
+        "row_count": 4595
+      },
+      {
+        "partition_id": 21,
+        "row_count": 4654
+      },
+      {
+        "partition_id": 22,
+        "row_count": 4667
+      },
+      {
+        "partition_id": 23,
+        "row_count": 4732
+      },
+      {
+        "partition_id": 24,
+        "row_count": 4799
+      },
+      {
+        "partition_id": 25,
+        "row_count": 4610
+      },
+      {
+        "partition_id": 26,
+        "row_count": 4596
+      },
+      {
+        "partition_id": 27,
+        "row_count": 4731
+      },
+      {
+        "partition_id": 28,
+        "row_count": 4632
+      },
+      {
+        "partition_id": 29,
+        "row_count": 4612
+      },
+      {
+        "partition_id": 30,
+        "row_count": 4547
+      },
+      {
+        "partition_id": 31,
+        "row_count": 4636
+      }
+    ]
+  },
+  "variant": "high-cardinality-optimized"
+}

@@ -1,0 +1,10 @@
+{
+  "baseline_application_id": "app-20260710172933-0001",
+  "compared_fields": [
+    "city",
+    "order_count",
+    "order_amount"
+  ],
+  "optimized_application_id": "app-20260710173018-0002",
+  "success": true
+}

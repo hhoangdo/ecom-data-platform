@@ -60,6 +60,7 @@ Run `make help` at any time to print the full catalog.
 | `scripts/spark/export_executive_mart.py` | Executive mart export command referenced by README, deliverables, and tests. |
 | `scripts/spark/job.py` | Spark submit compatibility entry point referenced by `src/vina_bim_shop/lakehouse/spark/runner.py` and tests. |
 | `scripts/spark/run_batch.py` | Official Spark batch command referenced by deliverables and tests. |
+| `scripts/spark/run_optimization_experiments.py` | Runs one controlled Spark skew or high-cardinality experiment variant for the Section 05 evidence package without invoking the canonical batch path. |
 
 ## Develop-Only Candidates
 

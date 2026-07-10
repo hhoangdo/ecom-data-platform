@@ -53,26 +53,30 @@ def capture_evidence(
         encoding="utf-8",
     )
 
+    artifacts = [
+        "spark_master_status.json",
+        "spark_history_applications.json",
+        "spark_job_manifest.json",
+        "spark_table_row_counts.json",
+        "pyspark_validation_report.json",
+        "dbt_parity_report.json",
+        "dbt_parity_report.md",
+        "trino_gold_smoke_results.json",
+        "executive_mart_export_manifest.json",
+        "executive_mart_export_report.md",
+        "version_matrix.json",
+        "gx/validation_results.json",
+    ]
+    if (evidence_path / "optimization" / "run_manifest.json").is_file():
+        artifacts.append("optimization/run_manifest.json")
+
     manifest = {
         "captured_at": datetime.now(timezone.utc).isoformat(),
         "service_urls": {
             "spark_master_ui": master_url,
             "spark_history_server": history_url,
         },
-        "artifacts": [
-            "spark_master_status.json",
-            "spark_history_applications.json",
-            "spark_job_manifest.json",
-            "spark_table_row_counts.json",
-            "pyspark_validation_report.json",
-            "dbt_parity_report.json",
-            "dbt_parity_report.md",
-            "trino_gold_smoke_results.json",
-            "executive_mart_export_manifest.json",
-            "executive_mart_export_report.md",
-            "version_matrix.json",
-            "gx/validation_results.json",
-        ],
+        "artifacts": artifacts,
     }
     (evidence_path / "run_manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True),

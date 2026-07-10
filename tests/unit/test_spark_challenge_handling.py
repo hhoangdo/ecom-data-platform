@@ -24,11 +24,14 @@ def _read(path: Path) -> str:
 # ---------------------------------------------------------------------------------
 
 
-def test_spark_does_not_claim_salting() -> None:
-    """Pins the no-salting claim: skew is preserved, no Spark salting code path."""
-    spark_package = REPO_ROOT / "src" / "vina_bim_shop" / "lakehouse" / "spark"
-    assert spark_package.is_dir()
-    for path in spark_package.rglob("*.py"):
+def test_canonical_batch_path_does_not_salt() -> None:
+    """The standalone experiment may salt; the production batch path may not."""
+    canonical_paths = (
+        REPO_ROOT / "src" / "vina_bim_shop" / "lakehouse" / "spark" / "job.py",
+        REPO_ROOT / "src" / "vina_bim_shop" / "lakehouse" / "spark" / "runner.py",
+        REPO_ROOT / "scripts" / "spark" / "run_batch.py",
+    )
+    for path in canonical_paths:
         contents = path.read_text(encoding="utf-8")
         for forbidden in ("salt(", ".salting", "_salt", "salt_explode", "salt_factor"):
             assert forbidden not in contents, f"Unexpected salting reference in {path}: {forbidden}"
@@ -201,7 +204,8 @@ def test_deliverable_11_solving_data_challenges_exists_and_links_engines() -> No
     deliverable = (REPO_ROOT / "deliverables" / "11_solving_data_challenges.md").read_text(encoding="utf-8")
     assert "Spark" in deliverable
     assert "Flink" in deliverable
-    assert "no Spark salting" in deliverable.lower() or "no spark salting" in deliverable.lower()
+    assert "standalone optimization experiment" in deliverable.lower()
+    assert "canonical Spark batch path does not use salting" in deliverable
 
 
 def test_data_generator_deliverable_links_to_solution_map() -> None:

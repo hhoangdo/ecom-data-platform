@@ -124,12 +124,31 @@ The map from generator challenges to Spark code paths is documented in
 - **Quarantine**: `_read_optional_dead_letter_events` and `_read_optional_bad_snapshots`
   register `raw_bad_events` and `raw_bad_snapshots`; `stg_bad_snapshots` is a real Silver
   table keyed by `bad_record_id`.
-- **Skew**: no Spark salting is implemented. Skew is preserved by design and tolerated
-  via distributed transforms and per-category cost rates. See
-  [11 Solving Data Challenges](11_solving_data_challenges.md#spark-batch-engine) for
-  the policy and the documented future action.
+- **Skew**: the canonical Spark batch path does not use salting. A separate controlled
+  coursework-scale experiment applies deterministic salting only to the two configured
+  hot cities and proves exact aggregate equivalence without changing production semantics.
 - **Operational signals**: `stg_ops_events` is a Silver fact that the platform uses for
   audit and DataHub lineage.
+
+## Controlled Baseline And Optimization Evidence
+
+The standalone optimization experiment is intentionally outside the canonical
+`run_batch_pipeline` path: it does not read Bronze, write Silver/Gold, or modify Iceberg
+tables. It derives 150,000 deterministic rows from the `coursework` generator profile,
+disables AQE, and submits one Spark application per variant. The optimized skew variant
+uses `pmod(xxhash64(customer_id), 16)` only for `Ho Chi Minh City` and `Ha Noi`; all other
+cities use salt bucket `0`. Exact city totals and all four exact distinct counts are the
+correctness gate. Elapsed time and partition balance are observed evidence, not a
+guaranteed speedup.
+
+| Rubric row | Evidence |
+| --- | --- |
+| 15 - baseline and UI proof | [optimization report](../evidence/05_spark_batch/optimization/optimization_report.md), [skew baseline](../evidence/05_spark_batch/screenshots/spark_skew_baseline_history.png), [cardinality baseline](../evidence/05_spark_batch/screenshots/spark_high_cardinality_baseline_history.png) |
+| 16 - skew | [skew equivalence](../evidence/05_spark_batch/optimization/skew_equivalence.json), [skew optimized](../evidence/05_spark_batch/screenshots/spark_skew_optimized_history.png) |
+| 17 - high cardinality | [all-ID equivalence](../evidence/05_spark_batch/optimization/high_cardinality_equivalence.json), [cardinality optimized](../evidence/05_spark_batch/screenshots/spark_high_cardinality_optimized_history.png) |
+| 18 - schema evolution | `schema_version` preservation and `get_json_object` nullable extraction in `job.py`, plus [PySpark validation](../evidence/05_spark_batch/pyspark_validation_report.json) |
+| 19 - duplicate/quarantine | `_dedupe_latest`, `raw_bad_events`, and `raw_bad_snapshots`, plus [GX validation](../evidence/05_spark_batch/gx/validation_results.json) |
+| 20 - pipeline integration | Airflow task `hourly_batch_lakehouse.run_hourly_batch_window`, which invokes the unchanged canonical `run_batch_pipeline` |
 
 ## Data Types And Partitioning
 
@@ -183,6 +202,10 @@ Expected artifacts include:
 - [gx/validation_results.json](../evidence/05_spark_batch/gx/validation_results.json)
 - [trino_gold_smoke_results.json](../evidence/05_spark_batch/trino_gold_smoke_results.json)
 - [dbt_parity_report.md](../evidence/05_spark_batch/dbt_parity_report.md)
+- [optimization/run_manifest.json](../evidence/05_spark_batch/optimization/run_manifest.json)
+- [optimization/optimization_report.md](../evidence/05_spark_batch/optimization/optimization_report.md)
+- [optimization/skew_equivalence.json](../evidence/05_spark_batch/optimization/skew_equivalence.json)
+- [optimization/high_cardinality_equivalence.json](../evidence/05_spark_batch/optimization/high_cardinality_equivalence.json)
 - `executive_mart_export_manifest.json`
 - `executive_mart_export_report.md`
 
@@ -192,9 +215,8 @@ Expected artifacts include:
 - Gold tables are rebuilt for the coursework implementation rather than optimized with every production incremental pattern.
 - Airflow orchestrates batch runs, but Spark itself owns the transformation logic.
 - dbt-DuckDB parity supports confidence and local inspection; Spark/Iceberg/Trino remains canonical for the distributed platform.
-- **No Spark salting is implemented** for skew. Skew is preserved by design; see
-  [11 Solving Data Challenges](11_solving_data_challenges.md#spark-batch-engine) for the
-  current policy and the documented future action.
+- The canonical Spark batch path does not use salting. The isolated optimization evidence
+  is a coursework experiment and does not alter canonical table semantics.
 - `stg_bad_snapshots` reads from the local raw root (via `VBS_RAW_ROOT`) because the
   standard batch upload excludes `bad_snapshots`. The dbt-DuckDB path is the canonical
   local-parity quarantine; the Spark path is the lakehouse quarantine.

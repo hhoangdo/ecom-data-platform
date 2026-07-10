@@ -234,4 +234,49 @@ Expected result: documentation accurately reports a controlled experiment, prese
 
 ## Completion Record
 
-This plan has no implementation execution record. A future executor records the experiment manifest application IDs, measured metrics, screenshots, and test results only after the Definition of Done is met; this documentation task does not run or claim the planned experiments.
+Completed on 2026-07-10 in the current repository folder on branch `feature/finalize-edai1`.
+No files were staged or committed.
+
+### Implementation Notes
+
+- Added a standalone `optimization_experiments.py` module and one-variant CLI. Neither source imports or calls the canonical batch entry point, canonical persistence helpers, or table DDL.
+- The controlled input is generated from the `coursework` profile: 150,000 rows, 50,000 customer IDs, 30,000 product IDs, and one deterministic order/event ID per row.
+- Host pytest has no PySpark dependency, so source-boundary, CLI, configuration, and documentation contracts are static tests; Spark transformation correctness was executed by the four real `spark-submit` applications below.
+- The existing no-salting policy test now applies only to canonical batch sources. Documentation distinguishes that production boundary from the standalone experiment.
+- Root `capture_evidence` adds `optimization/run_manifest.json` when the experiment manifest exists.
+
+### Successful Evidence-Bearing Applications
+
+| Variant | Application ID | Elapsed ms | Repartition proof | History Server screenshot |
+| --- | --- | ---: | --- | --- |
+| `skew-baseline` | `app-20260710172933-0001` | 1412.994 | 16 partitions by `city`; maximum partition rows 40,500 | `evidence/05_spark_batch/screenshots/spark_skew_baseline_history.png` |
+| `skew-optimized` | `app-20260710173018-0002` | 1392.164 | 16 partitions by `city,salt_bucket`; maximum partition rows 30,669 | `evidence/05_spark_batch/screenshots/spark_skew_optimized_history.png` |
+| `high-cardinality-baseline` | `app-20260710173101-0003` | 7337.401 | 8 partitions by `city`; maximum partition rows 40,500 | `evidence/05_spark_batch/screenshots/spark_high_cardinality_baseline_history.png` |
+| `high-cardinality-optimized` | `app-20260710173148-0004` | 8512.983 | 32 partitions by `order_id`; maximum partition rows 4,825 | `evidence/05_spark_batch/screenshots/spark_high_cardinality_optimized_history.png` |
+
+Each application used AQE disabled, event logging enabled, and `s3a://checkpoints/spark-events`. The optimization manifest contains exactly these four distinct IDs and records `canonical_batch_semantics_changed: false`.
+
+### Correctness Results
+
+- `skew_equivalence.json` reports `success: true`: sorted city/count/fixed-precision amount results are exactly equal.
+- The two hot cities each use all deterministic salt buckets `0` through `15`; every other configured city uses bucket `0` only.
+- `high_cardinality_equivalence.json` reports `success: true`. Exact baseline/optimized counts are customer 50,000, product 30,000, order 150,000, and event 150,000.
+- Approximate-distinct values are retained in both cardinality metrics: customer 49,401, product 31,069, order 142,797, and event 146,766.
+- Root History Server evidence contains all four successful IDs and the root evidence manifest inventories `optimization/run_manifest.json`.
+
+### Commands And Test Results
+
+- `rtk git status --short` before editing: clean worktree.
+- Initial new contract test: `rtk uv run pytest tests/unit/test_spark_optimization_experiments.py -q` -> `3 failed` because the experiment sources did not exist.
+- After implementation and compatibility tests: `rtk uv run pytest tests/unit/test_spark_optimization_experiments.py tests/unit/test_spark_batch_runtime.py tests/unit/test_spark_challenge_handling.py tests/unit/test_deliverables_documentation.py -q` -> `48 passed`.
+- Four successful `spark-submit` commands were run sequentially through the batch profile; `rtk uv run python scripts/spark/capture_evidence.py --evidence-root evidence/05_spark_batch` completed with 13 artifacts.
+- Post-run JSON assertion verified four variants/IDs, exact skew and cardinality equality, targeted salt buckets, screenshot files, History Server IDs, and root-manifest inventory.
+- Full regression: `rtk uv run pytest -q` -> `284 passed, 1 skipped, 3 failed in 98.74s`.
+- `rtk docker compose --profile batch --profile lakehouse down` stopped and removed the runtime containers and network after evidence capture.
+
+### Limitations And Follow-Up
+
+- The first attempted baseline driver (`app-20260710172816-0000`) failed before metrics because the initial city-expression chain used `otherwise` more than once. A red test was added, the expression was corrected to chain `when`, and the successful baseline above was rerun. The failed driver has no optimization artifact and is not in the four-variant manifest.
+- Background execution initially split the quoted `bash -lc` payload through PowerShell. The command was corrected to pass the Docker invocation as one argument string; this is an execution-wrapper correction, not a production semantic change.
+- The full-suite failures are outside Topic 03: `scripts/README.md` does not document the already-tracked `scripts/kafka/capture_connect_image_optimization.py`, and two Section 02 tests require the absent gitignored `data/gold/vina_bim_shop.duckdb`. Neither was modified in this topic.
+- The local single-worker measurements are observed evidence only. Skew partition balance improved, while the high-cardinality optimized run was slower; no speedup is claimed.

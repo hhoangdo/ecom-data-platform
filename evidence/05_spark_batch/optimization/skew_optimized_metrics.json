@@ -1,0 +1,220 @@
+{
+  "application_id": "app-20260710173018-0002",
+  "application_name": "vina-bim-shop-optimization-skew-optimized",
+  "aqe_enabled": false,
+  "city_results": [
+    {
+      "city": "Binh Duong",
+      "order_amount": "27831307.50",
+      "order_count": 10500
+    },
+    {
+      "city": "Can Tho",
+      "order_amount": "27621807.50",
+      "order_count": 10500
+    },
+    {
+      "city": "Da Nang",
+      "order_amount": "31376252.50",
+      "order_count": 13500
+    },
+    {
+      "city": "Dong Nai",
+      "order_amount": "22256335.00",
+      "order_count": 9000
+    },
+    {
+      "city": "Ha Noi",
+      "order_amount": "71101005.00",
+      "order_count": 27000
+    },
+    {
+      "city": "Hai Phong",
+      "order_amount": "24902307.50",
+      "order_count": 10500
+    },
+    {
+      "city": "Ho Chi Minh City",
+      "order_amount": "99892757.50",
+      "order_count": 40500
+    },
+    {
+      "city": "Hue",
+      "order_amount": "17502362.50",
+      "order_count": 7500
+    },
+    {
+      "city": "Nha Trang",
+      "order_amount": "16484862.50",
+      "order_count": 7500
+    },
+    {
+      "city": "Other VN",
+      "order_amount": "32998252.50",
+      "order_count": 13500
+    }
+  ],
+  "city_salt_buckets": {
+    "Binh Duong": [
+      0
+    ],
+    "Can Tho": [
+      0
+    ],
+    "Da Nang": [
+      0
+    ],
+    "Dong Nai": [
+      0
+    ],
+    "Ha Noi": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "Hai Phong": [
+      0
+    ],
+    "Ho Chi Minh City": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "Hue": [
+      0
+    ],
+    "Nha Trang": [
+      0
+    ],
+    "Other VN": [
+      0
+    ]
+  },
+  "elapsed_ms": 1392.164,
+  "event_log_dir": "s3a://checkpoints/spark-events",
+  "event_log_enabled": true,
+  "hot_keys": [
+    "Ho Chi Minh City",
+    "Ha Noi"
+  ],
+  "input_contract": {
+    "city_weights": {
+      "Binh Duong": 0.07,
+      "Can Tho": 0.07,
+      "Da Nang": 0.09,
+      "Dong Nai": 0.06,
+      "Ha Noi": 0.18,
+      "Hai Phong": 0.07,
+      "Ho Chi Minh City": 0.27,
+      "Hue": 0.05,
+      "Nha Trang": 0.05,
+      "Other VN": 0.09
+    },
+    "config_path": "configs/generator/base.yaml",
+    "entity_counts": {
+      "customers": 50000,
+      "orders": 150000,
+      "products": 30000
+    },
+    "history_days": 90,
+    "random_seed": 42,
+    "scale": "coursework"
+  },
+  "input_rows": 150000,
+  "pre_aggregate_repartition": {
+    "columns": [
+      "city",
+      "salt_bucket"
+    ],
+    "maximum_rows": 30669,
+    "minimum_rows": 2622,
+    "non_empty_partition_count": 14,
+    "partition_count": 16,
+    "rows_by_partition": [
+      {
+        "partition_id": 0,
+        "row_count": 4059
+      },
+      {
+        "partition_id": 1,
+        "row_count": 16023
+      },
+      {
+        "partition_id": 2,
+        "row_count": 14343
+      },
+      {
+        "partition_id": 3,
+        "row_count": 10500
+      },
+      {
+        "partition_id": 4,
+        "row_count": 8529
+      },
+      {
+        "partition_id": 5,
+        "row_count": 2685
+      },
+      {
+        "partition_id": 6,
+        "row_count": 17253
+      },
+      {
+        "partition_id": 7,
+        "row_count": 4200
+      },
+      {
+        "partition_id": 8,
+        "row_count": 18876
+      },
+      {
+        "partition_id": 10,
+        "row_count": 2622
+      },
+      {
+        "partition_id": 11,
+        "row_count": 7764
+      },
+      {
+        "partition_id": 13,
+        "row_count": 30669
+      },
+      {
+        "partition_id": 14,
+        "row_count": 5910
+      },
+      {
+        "partition_id": 15,
+        "row_count": 6567
+      }
+    ]
+  },
+  "salt_bucket_count": 16,
+  "variant": "skew-optimized"
+}

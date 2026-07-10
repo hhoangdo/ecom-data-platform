@@ -80,3 +80,21 @@ def test_generator_deliverables_link_cardinality_and_rubric_evidence() -> None:
     assert "approx_count_distinct" in generator_deliverable
     assert "evidence-only" in generator_deliverable
     assert "rubric_evidence_summary.md" in challenges_deliverable
+
+
+def test_spark_deliverables_link_standalone_optimization_evidence() -> None:
+    repo_root = _repo_root()
+    spark_deliverable = (repo_root / "deliverables" / "05_spark_batch.md").read_text(encoding="utf-8")
+    challenges_deliverable = (repo_root / "deliverables" / "11_solving_data_challenges.md").read_text(encoding="utf-8")
+
+    for artifact in [
+        "optimization_report.md",
+        "skew_equivalence.json",
+        "high_cardinality_equivalence.json",
+        "spark_skew_baseline_history.png",
+        "spark_high_cardinality_optimized_history.png",
+        "run_hourly_batch_window",
+    ]:
+        assert artifact in spark_deliverable
+    assert "canonical Spark batch path does not use salting" in spark_deliverable
+    assert "standalone optimization experiment" in challenges_deliverable.lower()

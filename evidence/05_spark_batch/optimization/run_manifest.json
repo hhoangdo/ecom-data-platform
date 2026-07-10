@@ -1,0 +1,29 @@
+{
+  "canonical_batch_semantics_changed": false,
+  "variants": {
+    "high-cardinality-baseline": {
+      "application_id": "app-20260710173101-0003",
+      "application_name": "vina-bim-shop-optimization-high-cardinality-baseline",
+      "metrics_path": "high_cardinality_baseline_metrics.json",
+      "screenshot_path": "../screenshots/spark_high_cardinality_baseline_history.png"
+    },
+    "high-cardinality-optimized": {
+      "application_id": "app-20260710173148-0004",
+      "application_name": "vina-bim-shop-optimization-high-cardinality-optimized",
+      "metrics_path": "high_cardinality_optimized_metrics.json",
+      "screenshot_path": "../screenshots/spark_high_cardinality_optimized_history.png"
+    },
+    "skew-baseline": {
+      "application_id": "app-20260710172933-0001",
+      "application_name": "vina-bim-shop-optimization-skew-baseline",
+      "metrics_path": "skew_baseline_metrics.json",
+      "screenshot_path": "../screenshots/spark_skew_baseline_history.png"
+    },
+    "skew-optimized": {
+      "application_id": "app-20260710173018-0002",
+      "application_name": "vina-bim-shop-optimization-skew-optimized",
+      "metrics_path": "skew_optimized_metrics.json",
+      "screenshot_path": "../screenshots/spark_skew_optimized_history.png"
+    }
+  }
+}

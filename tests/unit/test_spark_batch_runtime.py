@@ -197,6 +197,23 @@ def test_capture_evidence_writes_machine_verifiable_manifest(tmp_path: Path) -> 
     assert all(not artifact.startswith("screenshots/") for artifact in manifest["artifacts"])
 
 
+def test_capture_evidence_includes_optimization_manifest_when_present(tmp_path: Path) -> None:
+    optimization = tmp_path / "optimization"
+    optimization.mkdir()
+    (optimization / "run_manifest.json").write_text("{}", encoding="utf-8")
+
+    def fake_get_json(url: str):
+        if url.endswith("/json/"):
+            return {"status": "ALIVE"}
+        if url.endswith("/api/v1/applications"):
+            return []
+        raise AssertionError(f"Unexpected URL: {url}")
+
+    manifest = capture_evidence(evidence_root=tmp_path, get_json=fake_get_json)
+
+    assert "optimization/run_manifest.json" in manifest["artifacts"]
+
+
 def test_run_gold_smoke_queries_writes_results_artifact(tmp_path: Path, monkeypatch) -> None:
     calls = []
 

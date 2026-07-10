@@ -45,29 +45,24 @@ called out as gaps and parked under [Honest Gaps And Future Work](#honest-gaps-a
   asserts not-null/uniqueness, accepted values, dimensional relationships, and
   reconciliation deltas.
 
-### Skew Policy (Honest)
+### Skew Policy (Controlled)
 
-- **No Spark salting is implemented.** The repository was searched for `salt`/`salting` and
-  no references exist in `src/vina_bim_shop/lakehouse/spark/**.py`. This is a deliberate
-  choice: skew (HCMC/Ha Noi ~45% of customers, FMCG/ELHA dominating the catalog) is a
-  realistic BI signal and is preserved on purpose.
-- The current approach tolerates skew by:
-  - Using **distributed DataFrame transformations** for dedupe, joins, and aggregations so
-    work is parallelised across executors.
-  - Computing **per-category cost rates** in
-    `src/vina_bim_shop/lakehouse/spark/sql.py:category_cost_rate_sql` so the dominant
-    categories do not get a single hard-coded assumption.
-  - **Reconciling hourly** in `agg_hourly_reconciled_kpi` so streaming skew hotspots are
-    caught and overwritten by the batch truth.
-- If a future Spark run shows shuffle hotspots, the documented next step is targeted
-  salting of the affected aggregation (e.g. salt by `customer_key` mod N for the
-  customer/city rollup). The platform is ready for it but has not needed it.
+- The canonical Spark batch path does not use salting. `job.py` retains its Bronze-to-Silver-
+  to-Gold behavior, Iceberg writes, and Airflow integration unchanged.
+- A standalone optimization experiment derives a deterministic 150,000-row coursework input
+  and compares a city repartition baseline with a salted/repartitioned variant. It applies
+  `pmod(xxhash64(customer_id), 16)` only to `Ho Chi Minh City` and `Ha Noi`; all other cities
+  use bucket `0`.
+- AQE is disabled for both runs. The experiment persists exact sorted city aggregates,
+  pre-aggregate partition distributions, elapsed times, and History Server application pages.
+  [Skew equivalence](../evidence/05_spark_batch/optimization/skew_equivalence.json) is the
+  correctness gate; elapsed time is reported as observed rather than guaranteed improvement.
 
 ### Challenge Handling Table
 
 | Generator challenge | Why it matters | Spark handling | Code reference |
 | --- | --- | --- | --- |
-| Geographic skew (HCMC/Ha Noi ~45%) | BI must reflect urban concentration, not smooth it away. | Distributed aggregation preserves the skew; no salting. Reconciliation catches over-counting. | `sql.py:agg_hourly_reconciled_kpi`, `sql.py:dim_customer` |
+| Geographic skew (HCMC/Ha Noi ~45%) | BI must reflect urban concentration, not smooth it away. | The standalone optimization experiment proves deterministic targeted salting/repartitioning and exact city-result equality. The canonical batch path remains unsalted and reconciles hourly. | `optimization_experiments.py`, `sql.py:agg_hourly_reconciled_kpi`, `sql.py:dim_customer` |
 | Category skew (FMCG/ELHA) | Imbalance creates realistic demand and margin pressure. | Per-category cost rates, distributed joins, per-category dimension rows. | `sql.py:category_cost_rate_sql`, `sql.py:dim_category` |
 | Offline duplicate payloads | `order_items` carries exact duplicates; double-counting breaks revenue. | Window dedupe by stable business key, latest `created_ts` wins. | `job.py:_dedupe_latest`, `job.py:_build_silver_tables_for_window` |
 | Streaming duplicate events | Same envelope may be re-delivered by Kafka or replayed after a reset. | `stg_commerce_events` dedupes by `event_id` order by `created_ts desc`. | `job.py:_build_silver_tables_for_window` (commerce block) |
@@ -155,7 +150,7 @@ Kafka source topics
 
 | Gap | Why it matters | Future action |
 | --- | --- | --- |
-| No Spark salting for skew | Skew is preserved by design, but hotspot detection is not automated. | Add shuffle-metric assertions in `validation.py` and document when salting should be applied. |
+| No automatic salting in the canonical batch path | The controlled experiment proves one targeted mitigation, but production still requires a measured hotspot before its semantics change. | Keep the standalone evidence as the decision record; add production shuffle-metric alerting only when a production change is approved. |
 | `stg_bad_snapshots` reads from the local raw root only (via `VBS_RAW_ROOT`) | Bad snapshots are not uploaded to MinIO by the standard batch landing; they live on the local filesystem. | Extend `src/vina_bim_shop/lakehouse/bronze.py` to optionally upload `bad_snapshots` to a dedicated MinIO prefix, or keep the local path but make the resolution explicit. |
 | `dim_product.brand` is normalized to `'unknown'` (post-change) | A reviewer expecting strict null preservation will see a different value. | If a future use case requires strict null preservation, replace the `coalesce` with `p.brand` and remove the `dim_product.brand.not_null` validation. |
 | Spark batch does not run the Flink cleanroom verifier | Spark and Flink are validated independently. | Add a `post-batch` step that asserts `agg_hourly_reconciled_kpi` matches a streaming `realtime_commerce_metrics_1m` aggregate for the same window. |

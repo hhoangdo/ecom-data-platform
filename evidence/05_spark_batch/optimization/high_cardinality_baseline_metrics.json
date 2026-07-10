@@ -1,0 +1,92 @@
+{
+  "application_id": "app-20260710173101-0003",
+  "application_name": "vina-bim-shop-optimization-high-cardinality-baseline",
+  "aqe_enabled": false,
+  "cardinality": {
+    "customer_id": {
+      "approx_count_distinct": 49401,
+      "exact_count_distinct": 50000
+    },
+    "event_id": {
+      "approx_count_distinct": 146766,
+      "exact_count_distinct": 150000
+    },
+    "order_id": {
+      "approx_count_distinct": 142797,
+      "exact_count_distinct": 150000
+    },
+    "product_id": {
+      "approx_count_distinct": 31069,
+      "exact_count_distinct": 30000
+    }
+  },
+  "elapsed_ms": 7337.401,
+  "event_log_dir": "s3a://checkpoints/spark-events",
+  "event_log_enabled": true,
+  "expected_exact_cardinality": {
+    "customer_id": 50000,
+    "event_id": 150000,
+    "order_id": 150000,
+    "product_id": 30000
+  },
+  "input_contract": {
+    "city_weights": {
+      "Binh Duong": 0.07,
+      "Can Tho": 0.07,
+      "Da Nang": 0.09,
+      "Dong Nai": 0.06,
+      "Ha Noi": 0.18,
+      "Hai Phong": 0.07,
+      "Ho Chi Minh City": 0.27,
+      "Hue": 0.05,
+      "Nha Trang": 0.05,
+      "Other VN": 0.09
+    },
+    "config_path": "configs/generator/base.yaml",
+    "entity_counts": {
+      "customers": 50000,
+      "orders": 150000,
+      "products": 30000
+    },
+    "history_days": 90,
+    "random_seed": 42,
+    "scale": "coursework"
+  },
+  "input_rows": 150000,
+  "pre_aggregate_repartition": {
+    "columns": [
+      "city"
+    ],
+    "maximum_rows": 40500,
+    "minimum_rows": 7500,
+    "non_empty_partition_count": 6,
+    "partition_count": 8,
+    "rows_by_partition": [
+      {
+        "partition_id": 0,
+        "row_count": 31500
+      },
+      {
+        "partition_id": 1,
+        "row_count": 10500
+      },
+      {
+        "partition_id": 2,
+        "row_count": 33000
+      },
+      {
+        "partition_id": 3,
+        "row_count": 7500
+      },
+      {
+        "partition_id": 4,
+        "row_count": 27000
+      },
+      {
+        "partition_id": 6,
+        "row_count": 40500
+      }
+    ]
+  },
+  "variant": "high-cardinality-baseline"
+}
