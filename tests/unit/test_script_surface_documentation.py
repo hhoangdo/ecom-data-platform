@@ -30,6 +30,7 @@ OFFICIAL_MACHINE_EVIDENCE_FILES = (
     "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
     "src/vina_bim_shop/orchestration/pinot_bootstrap.py",
     "src/vina_bim_shop/orchestration/hourly_batch.py",
+    "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
     "src/vina_bim_shop/orchestration/reconciliation.py",
     "src/vina_bim_shop/orchestration/datahub_ingestion.py",
     "src/vina_bim_shop/orchestration/local_evidence.py",

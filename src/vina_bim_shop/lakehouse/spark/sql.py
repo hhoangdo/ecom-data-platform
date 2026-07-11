@@ -11,7 +11,7 @@ def category_cost_rate_sql(expression: str) -> str:
 end"""
 
 
-def ordered_gold_queries() -> list[tuple[str, str]]:
+def _legacy_ordered_gold_queries() -> list[tuple[str, str]]:
     category_rate = category_cost_rate_sql("category")
     item_category_rate = category_cost_rate_sql("oi.primary_category")
     return [
@@ -689,3 +689,26 @@ left join event_hourly e using (metric_hour)
 """,
         ),
     ]
+
+
+def ordered_core_gold_queries() -> list[tuple[str, str]]:
+    """Return every non-feature Gold query in deterministic dependency order."""
+    return [
+        (table_name, query)
+        for table_name, query in _legacy_ordered_gold_queries()
+        if not table_name.startswith("feat_")
+    ]
+
+
+def ordered_feature_queries() -> list[tuple[str, str]]:
+    """Return the three offline-feature Gold queries in their public order."""
+    return [
+        (table_name, query)
+        for table_name, query in _legacy_ordered_gold_queries()
+        if table_name.startswith("feat_")
+    ]
+
+
+def ordered_gold_queries() -> list[tuple[str, str]]:
+    """Preserve the full Gold API as the core stage followed by DP3 features."""
+    return [*ordered_core_gold_queries(), *ordered_feature_queries()]

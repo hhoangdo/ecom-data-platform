@@ -144,3 +144,32 @@ def test_dag_adapter_data_interval_parsing_produces_iso_strings() -> None:
     end = datetime(2026, 6, 1, 2, tzinfo=timezone.utc)
     assert start.isoformat() == "2026-06-01T01:00:00+00:00"
     assert end.isoformat() == "2026-06-01T02:00:00+00:00"
+
+
+def test_mini_coursework_pipeline_declares_six_ordered_rubric_tasks() -> None:
+    source = _read_dag("mini_coursework_pipeline.py")
+
+    assert 'dag_id="mini_coursework_pipeline"' in source
+    for group_id in [
+        "dp1_raw_to_bronze",
+        "dp2_bronze_to_silver_gold",
+        "dp3_offline_features",
+    ]:
+        assert f'group_id="{group_id}"' in source
+
+    task_ids = [
+        "ingest_raw_to_bronze",
+        "validate_bronze",
+        "transform_bronze_to_silver_gold",
+        "validate_silver_gold",
+        "compute_offline_features",
+        "validate_offline_features",
+    ]
+    assert source.count("PythonOperator(") == len(task_ids)
+    for task_id in task_ids:
+        assert f'task_id="{task_id}"' in source
+
+    assert (
+        "ingest_raw_to_bronze >> validate_bronze >> transform_bronze_to_silver_gold "
+        ">> validate_silver_gold >> compute_offline_features >> validate_offline_features"
+    ) in source

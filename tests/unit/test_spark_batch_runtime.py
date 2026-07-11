@@ -11,6 +11,7 @@ from vina_bim_shop.lakehouse.spark.constants import REQUIRED_GOLD_TABLES
 from vina_bim_shop.lakehouse.spark.evidence import DEFAULT_EVIDENCE_ROOT, capture_evidence
 from vina_bim_shop.lakehouse.spark.parity import run_parity_checks
 from vina_bim_shop.lakehouse.spark.runner import _run_command, build_spark_submit_command
+from vina_bim_shop.lakehouse.spark import sql as spark_sql
 from vina_bim_shop.lakehouse.spark.sql import ordered_gold_queries
 from vina_bim_shop.lakehouse.spark.trino import run_gold_smoke_queries
 from vina_bim_shop.lakehouse.spark.window import BatchWindow
@@ -436,6 +437,23 @@ def test_spark_feature_queries_expose_created_output_contract() -> None:
 
     assert "greatest(c.created, coalesce(s.created, c.created)) as created" in queries["feat_customer_unified"]
     assert "created_ts" not in queries["feat_customer_unified"]
+
+
+def test_gold_query_groups_partition_the_existing_combined_contract() -> None:
+    assert hasattr(spark_sql, "ordered_core_gold_queries")
+    assert hasattr(spark_sql, "ordered_feature_queries")
+
+    core = spark_sql.ordered_core_gold_queries()
+    features = spark_sql.ordered_feature_queries()
+
+    assert core + features == ordered_gold_queries()
+    assert [name for name, _query in features] == [
+        "feat_customer_90d",
+        "feat_stream_60m",
+        "feat_customer_unified",
+    ]
+    assert all(not name.startswith("feat_") for name, _query in core)
+    assert len({name for name, _query in core + features}) == len(core + features)
 
 
 def test_spark_batch_smoke_sql_reads_gold_tables_only() -> None:

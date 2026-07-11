@@ -22,7 +22,6 @@ services:
       AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
       AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: "300"
       AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: "300"
-      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
       PYTHONPATH: "/workspace/src"
       VBS_TRINO_URL: "http://trino:8080"
       VBS_TRINO_USER: "vina_analyst"
@@ -60,7 +59,6 @@ services:
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
       AIRFLOW__CORE__FERNET_KEY: ""
       AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
-      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
       PYTHONPATH: "/workspace/src"
       VBS_TRINO_URL: "http://trino:8080"
       VBS_TRINO_USER: "vina_analyst"
@@ -89,7 +87,7 @@ services:
     depends_on:
       lakehouse-postgres:
         condition: service_healthy
-    command: version
+    command: ["bash", "-c", "python /opt/airflow/bootstrap/seed_coursework_metadata.py && airflow version"]
     environment:
       AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://airflow:airflow_password@lakehouse-postgres:5432/airflow"
@@ -97,17 +95,27 @@ services:
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
       AIRFLOW__CORE__FERNET_KEY: ""
       AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
       _AIRFLOW_DB_UPGRADE: "true"
       _AIRFLOW_WWW_USER_CREATE: "true"
       _AIRFLOW_WWW_USER_USERNAME: "${VBS_AIRFLOW_ADMIN_USERNAME:-airflow}"
       _AIRFLOW_WWW_USER_PASSWORD: "${VBS_AIRFLOW_ADMIN_PASSWORD:-airflow}"
-      AIRFLOW_CONN_DATAHUB_REST_DEFAULT: '{"conn_type": "datahub_rest", "host": "http://datahub-gms:8080"}'
       PYTHONPATH: "/workspace/src"
       VBS_TRINO_URL: "http://trino:8080"
       VBS_TRINO_USER: "vina_analyst"
+      VBS_KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+      VBS_MINIO_INTERNAL_ENDPOINT: "http://minio:9000"
+      VBS_MINIO_ROOT_USER: "${VBS_MINIO_ROOT_USER:-vina_minio}"
+      VBS_MINIO_ROOT_PASSWORD: "${VBS_MINIO_ROOT_PASSWORD:-vina_minio_password}"
+      VBS_MINIO_REGION: "${VBS_MINIO_REGION:-us-east-1}"
+      VBS_DATAHUB_GMS_URL: "http://datahub-gms:8080"
+      VBS_RAW_ROOT: "/workspace/data/raw"
+      VBS_BRONZE_BUCKET: "${VBS_BRONZE_BUCKET:-bronze}"
+      VBS_SPARK_EVIDENCE_ROOT: "/workspace/evidence/08_airflow_gx/coursework_pipeline"
     volumes:
       - ./:/workspace
       - ./infra/orchestration/airflow/dags:/opt/airflow/dags:ro
+      - ./infra/orchestration/airflow/bootstrap:/opt/airflow/bootstrap:ro
       - ./src:/workspace/src:ro
       - ./infra/orchestration/airflow/plugins:/opt/airflow/plugins:ro
       - ./infra/governance/recipes:/opt/airflow/recipes:ro

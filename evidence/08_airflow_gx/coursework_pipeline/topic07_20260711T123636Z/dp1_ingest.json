@@ -1,0 +1,35 @@
+{
+  "artifact": "dp1_ingest.json",
+  "bronze_batch_objects": [
+    "bronze/batch/customers/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/sellers/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/products/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/product_category_map/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/inventory_snapshots/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/promotions/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/orders/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/order_items/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/payments/snapshot_date=2026-04-26/part-000.parquet",
+    "bronze/batch/shipments/snapshot_date=2026-04-26/part-000.parquet"
+  ],
+  "bronze_event_objects": [
+    "bronze/events/commerce_events/ingest_date=2026-04-26/events.jsonl",
+    "bronze/events/catalog_events/ingest_date=2026-04-26/events.jsonl",
+    "bronze/events/fulfillment_events/ingest_date=2026-04-26/events.jsonl",
+    "bronze/events/ops_events/ingest_date=2026-04-26/events.jsonl",
+    "bronze/events/dead_letter_events/ingest_date=2026-04-26/events.jsonl"
+  ],
+  "dag_id": "mini_coursework_pipeline",
+  "raw_batch_file_count": 10,
+  "raw_event_file_count": 5,
+  "run_id": "topic07_20260711T123636Z",
+  "schema_version": 1,
+  "stage": "dp1_ingest",
+  "state": "success",
+  "task_id": "dp1_raw_to_bronze.ingest_raw_to_bronze",
+  "window": {
+    "end_ts": "2026-04-26T03:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T02:00:00Z"
+  }
+}

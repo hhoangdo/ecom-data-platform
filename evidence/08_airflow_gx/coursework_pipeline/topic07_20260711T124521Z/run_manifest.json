@@ -1,0 +1,43 @@
+{
+  "dag_id": "mini_coursework_pipeline",
+  "run_id": "topic07_20260711T124521Z",
+  "schema_version": 1,
+  "stages": [
+    {
+      "artifact": "dp1_ingest.json",
+      "state": "success",
+      "task_id": "dp1_raw_to_bronze.ingest_raw_to_bronze"
+    },
+    {
+      "artifact": "dp1_validate.json",
+      "state": "success",
+      "task_id": "dp1_raw_to_bronze.validate_bronze"
+    },
+    {
+      "artifact": "dp2_transform.json",
+      "state": "success",
+      "task_id": "dp2_bronze_to_silver_gold.transform_bronze_to_silver_gold"
+    },
+    {
+      "artifact": "dp2_validate.json",
+      "state": "success",
+      "task_id": "dp2_bronze_to_silver_gold.validate_silver_gold"
+    },
+    {
+      "artifact": "dp3_compute.json",
+      "state": "success",
+      "task_id": "dp3_offline_features.compute_offline_features"
+    },
+    {
+      "artifact": "dp3_validate.json",
+      "state": "success",
+      "task_id": "dp3_offline_features.validate_offline_features"
+    }
+  ],
+  "updated_at": "2026-07-11T12:51:31.255457+00:00",
+  "window": {
+    "end_ts": "2026-04-26T04:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T03:00:00Z"
+  }
+}

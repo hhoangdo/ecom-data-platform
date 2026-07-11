@@ -1,0 +1,121 @@
+{
+  "artifact": "dp2_validate.json",
+  "dag_id": "mini_coursework_pipeline",
+  "gate": {
+    "artifacts": [
+      "quality/coursework_core_gold_contract.json"
+    ],
+    "blocks_dag": false,
+    "details": {
+      "results": [
+        {
+          "exception_info": {
+            "exception_message": null,
+            "exception_traceback": null,
+            "raised_exception": false
+          },
+          "expectation_config": {
+            "kwargs": {
+              "batch_id": "coursework_core_gold-coursework_core_gold_asset",
+              "column": "core_gold_table_count",
+              "min_value": 19.0
+            },
+            "meta": {},
+            "severity": "critical",
+            "type": "expect_column_values_to_be_between"
+          },
+          "meta": {},
+          "result": {
+            "element_count": 1,
+            "missing_count": 0,
+            "missing_percent": 0.0,
+            "partial_unexpected_counts": [],
+            "partial_unexpected_index_list": [],
+            "partial_unexpected_list": [],
+            "unexpected_count": 0,
+            "unexpected_percent": 0.0,
+            "unexpected_percent_nonmissing": 0.0,
+            "unexpected_percent_total": 0.0
+          },
+          "success": true
+        },
+        {
+          "exception_info": {
+            "exception_message": null,
+            "exception_traceback": null,
+            "raised_exception": false
+          },
+          "expectation_config": {
+            "kwargs": {
+              "batch_id": "coursework_core_gold-coursework_core_gold_asset",
+              "column": "fact_order_rows",
+              "min_value": 1.0
+            },
+            "meta": {},
+            "severity": "critical",
+            "type": "expect_column_values_to_be_between"
+          },
+          "meta": {},
+          "result": {
+            "element_count": 1,
+            "missing_count": 0,
+            "missing_percent": 0.0,
+            "partial_unexpected_counts": [],
+            "partial_unexpected_index_list": [],
+            "partial_unexpected_list": [],
+            "unexpected_count": 0,
+            "unexpected_percent": 0.0,
+            "unexpected_percent_nonmissing": 0.0,
+            "unexpected_percent_total": 0.0
+          },
+          "success": true
+        }
+      ]
+    },
+    "layer": "gold_trino",
+    "requires_quarantine": false,
+    "severity": "error",
+    "status": "success",
+    "success": true,
+    "suite_name": "coursework_core_gold_contract",
+    "summary": "2/2 expectations passed.",
+    "window": {
+      "end_ts": "2026-04-26T04:00:00Z",
+      "mode": "hourly",
+      "start_ts": "2026-04-26T03:00:00Z"
+    }
+  },
+  "gold_row_counts": {
+    "agg_hourly_reconciled_kpi": 164,
+    "bridge_product_category": 729,
+    "dim_category": 20,
+    "dim_customer": 800,
+    "dim_date": 9,
+    "dim_order_status": 2,
+    "dim_payment_method": 5,
+    "dim_product": 600,
+    "dim_promotion": 17,
+    "dim_seller": 80,
+    "dim_shipment_status": 4,
+    "dim_shipping_method": 5,
+    "fact_inventory_snapshot": 1200,
+    "fact_order": 1800,
+    "fact_order_item": 6756,
+    "fact_payment_attempt": 1800,
+    "fact_promotion_application": 2233,
+    "fact_shipment": 1800,
+    "obt_order_performance": 1800
+  },
+  "gx_report": "quality/coursework_core_gold_contract.json",
+  "run_id": "topic07_20260711T124521Z",
+  "schema_version": 1,
+  "silver_table_count": 15,
+  "stage": "dp2_validate",
+  "state": "success",
+  "task_id": "dp2_bronze_to_silver_gold.validate_silver_gold",
+  "window": {
+    "end_ts": "2026-04-26T04:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T03:00:00Z"
+  }
+}

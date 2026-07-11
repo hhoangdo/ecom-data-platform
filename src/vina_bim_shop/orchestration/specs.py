@@ -19,6 +19,7 @@ REQUIRED_DAG_IDS = (
     "datahub_ingestion",
     "reconciliation_report",
     "local_evidence_build",
+    "mini_coursework_pipeline",
 )
 
 
@@ -31,5 +32,6 @@ def dag_specs_by_id() -> OrderedDict[str, DagSpec]:
             ("datahub_ingestion", DagSpec("datahub_ingestion", "manual", False)),
             ("reconciliation_report", DagSpec("reconciliation_report", "hourly_demo", True)),
             ("local_evidence_build", DagSpec("local_evidence_build", "manual", False)),
+            ("mini_coursework_pipeline", DagSpec("mini_coursework_pipeline", "hourly_demo", True)),
         )
     )

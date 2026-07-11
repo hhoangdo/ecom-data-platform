@@ -1,3 +1,5 @@
+import importlib
+import importlib.util
 import json
 from pathlib import Path
 
@@ -22,6 +24,7 @@ def test_required_airflow_dags_are_declared_with_manual_or_demo_schedules() -> N
         "datahub_ingestion",
         "reconciliation_report",
         "local_evidence_build",
+        "mini_coursework_pipeline",
     )
     assert tuple(dag_specs) == REQUIRED_DAG_IDS
 
@@ -31,6 +34,7 @@ def test_required_airflow_dags_are_declared_with_manual_or_demo_schedules() -> N
     assert dag_specs["local_evidence_build"].schedule == "manual"
     assert dag_specs["hourly_batch_lakehouse"].schedule == "hourly_demo"
     assert dag_specs["reconciliation_report"].schedule == "hourly_demo"
+    assert dag_specs["mini_coursework_pipeline"].schedule == "hourly_demo"
 
 
 def test_required_airflow_dags_preserve_adr06_boundaries() -> None:
@@ -214,3 +218,114 @@ def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, t
 
     rendered_suites = {report.suite_name for report in captured_reports}
     assert rendered_suites == {"bronze_raw_minio", "datahub_ingestion"}
+
+
+def test_legacy_hourly_wrapper_composes_the_six_coursework_stages(monkeypatch, tmp_path) -> None:
+    spec = importlib.util.find_spec("vina_bim_shop.orchestration.mini_coursework_pipeline")
+    assert spec is not None, "Expected the six-stage coursework pipeline runtime module."
+    mini_coursework_pipeline = importlib.import_module(
+        "vina_bim_shop.orchestration.mini_coursework_pipeline"
+    )
+    calls: list[str] = []
+
+    monkeypatch.setattr(hourly_batch, "build_run_root", lambda _dag_id, _run_id: tmp_path)
+    monkeypatch.setattr(
+        hourly_batch,
+        "settings_from_environment",
+        lambda: mini_coursework_pipeline.CourseworkPipelineSettings.for_tests(),
+    )
+
+    for function_name in mini_coursework_pipeline.STAGE_FUNCTION_NAMES:
+        def fake_stage(*, _function_name=function_name, **_kwargs):
+            calls.append(_function_name)
+            return {
+                "stage": _function_name,
+                "artifact": f"{mini_coursework_pipeline.STAGE_DETAILS[_function_name][0]}.json",
+            }
+
+        monkeypatch.setattr(hourly_batch, function_name, fake_stage)
+
+    result = hourly_batch.run_hourly_batch_lakehouse(
+        run_id="manual__2026-04-26T01:00:00+00:00",
+        start_ts="2026-04-26T00:00:00+00:00",
+        end_ts="2026-04-26T01:00:00+00:00",
+    )
+
+    assert calls == list(mini_coursework_pipeline.STAGE_FUNCTION_NAMES)
+    assert result["manifest"]["stage_artifacts"] == [
+        f"{mini_coursework_pipeline.STAGE_DETAILS[name][0]}.json"
+        for name in mini_coursework_pipeline.STAGE_FUNCTION_NAMES
+    ]
+
+
+def test_coursework_dp1_copy_uses_airflow_minio_client(monkeypatch, tmp_path) -> None:
+    pipeline = importlib.import_module("vina_bim_shop.orchestration.mini_coursework_pipeline")
+    source = tmp_path / "customers" / "part-000.parquet"
+    source.parent.mkdir()
+    source.write_text("stub", encoding="utf-8")
+    commands: list[list[str]] = []
+
+    monkeypatch.setattr(pipeline, "_run_command", lambda command: commands.append(command) or "")
+
+    pipeline._copy_to_bronze(
+        source=source,
+        object_key="bronze/batch/customers/snapshot_date=2026-04-26/part-000.parquet",
+        settings=pipeline.CourseworkPipelineSettings.for_tests(),
+    )
+
+    assert commands == [
+        [
+            "mc",
+            "alias",
+            "set",
+            "coursework",
+            "http://minio:9000",
+            "vina_minio",
+            "vina_minio_password",
+        ],
+        [
+            "mc",
+            "cp",
+            str(source),
+            "coursework/bronze/batch/customers/snapshot_date=2026-04-26/part-000.parquet",
+        ],
+    ]
+
+
+def test_coursework_spark_stages_run_from_the_compose_project_root(monkeypatch, tmp_path) -> None:
+    pipeline = importlib.import_module("vina_bim_shop.orchestration.mini_coursework_pipeline")
+    observed_working_directories: list[Path] = []
+
+    def fake_spark_stage(**_kwargs):
+        observed_working_directories.append(Path.cwd())
+        return {"spark_stdout": "ok"}
+
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(pipeline, "_prepare_spark_evidence_root", lambda _path: None)
+    monkeypatch.setattr(pipeline, "run_core_transform", fake_spark_stage)
+    monkeypatch.setattr(pipeline, "run_feature_compute", fake_spark_stage)
+    monkeypatch.setattr(pipeline, "_latest_spark_application_id", lambda: "app-123")
+    monkeypatch.setattr(
+        pipeline,
+        "execute_trino_query",
+        lambda _query, **_kwargs: {"rows": [["event_timestamp"], ["created"]]},
+    )
+
+    run_root = tmp_path / "run"
+    settings = pipeline.CourseworkPipelineSettings.for_tests()
+    pipeline.transform_bronze_to_silver_gold(
+        run_id="manual__2026-04-26T01:00:00+00:00",
+        start_ts="2026-04-26T00:00:00+00:00",
+        end_ts="2026-04-26T01:00:00+00:00",
+        settings=settings,
+        run_root=run_root,
+    )
+    pipeline.compute_offline_features(
+        run_id="manual__2026-04-26T01:00:00+00:00",
+        start_ts="2026-04-26T00:00:00+00:00",
+        end_ts="2026-04-26T01:00:00+00:00",
+        settings=settings,
+        run_root=run_root,
+    )
+
+    assert observed_working_directories == [pipeline.REPO_ROOT, pipeline.REPO_ROOT]

@@ -1,0 +1,74 @@
+{
+  "artifact": "dp3_compute.json",
+  "dag_id": "mini_coursework_pipeline",
+  "feature_columns": {
+    "feat_customer_90d": [
+      "customer_id",
+      "event_timestamp",
+      "f_customer_total_orders_90d",
+      "f_customer_paid_revenue_90d",
+      "f_customer_avg_order_value_90d",
+      "f_customer_distinct_categories_90d",
+      "created"
+    ],
+    "feat_customer_unified": [
+      "customer_id",
+      "event_timestamp",
+      "f_customer_total_orders_90d",
+      "f_customer_paid_revenue_90d",
+      "f_customer_avg_order_value_90d",
+      "f_customer_distinct_categories_90d",
+      "f_stream_views_60m",
+      "f_stream_add_to_cart_60m",
+      "f_stream_checkout_started_60m",
+      "f_stream_order_placed_60m",
+      "f_stream_cart_to_purchase_ratio_60m",
+      "created"
+    ],
+    "feat_stream_60m": [
+      "customer_id",
+      "event_timestamp",
+      "f_stream_views_60m",
+      "f_stream_add_to_cart_60m",
+      "f_stream_checkout_started_60m",
+      "f_stream_order_placed_60m",
+      "f_stream_cart_to_purchase_ratio_60m",
+      "created"
+    ]
+  },
+  "feature_tables": [
+    "feat_customer_90d",
+    "feat_stream_60m",
+    "feat_customer_unified"
+  ],
+  "run_id": "topic07_20260711T124521Z",
+  "schema_version": 1,
+  "spark_application_id": "app-20260711125042-0001",
+  "spark_summary": {
+    "spark_stdout": "",
+    "spark_submit_command": [
+      "docker",
+      "compose",
+      "exec",
+      "-T",
+      "spark-master",
+      "bash",
+      "-lc",
+      "cd /workspace && PYTHONPATH=/workspace/src spark-submit --master spark://spark-master:7077 --deploy-mode client --conf spark.eventLog.enabled=true --conf spark.eventLog.dir=s3a://checkpoints/spark-events scripts/spark/job.py --start-ts 2026-04-26T03:00:00Z --end-ts 2026-04-26T04:00:00Z --mode hourly --evidence-root /workspace/evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/spark_features --stage features"
+    ],
+    "stage": "features",
+    "window": {
+      "end_ts": "2026-04-26T04:00:00Z",
+      "mode": "hourly",
+      "start_ts": "2026-04-26T03:00:00Z"
+    }
+  },
+  "stage": "dp3_compute",
+  "state": "success",
+  "task_id": "dp3_offline_features.compute_offline_features",
+  "window": {
+    "end_ts": "2026-04-26T04:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T03:00:00Z"
+  }
+}

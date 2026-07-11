@@ -20,7 +20,11 @@ from vina_bim_shop.lakehouse.spark.constants import (
     SILVER_TABLES,
 )
 from vina_bim_shop.lakehouse.spark.gx_validation import run_gx_validations
-from vina_bim_shop.lakehouse.spark.sql import ordered_gold_queries
+from vina_bim_shop.lakehouse.spark.sql import (
+    ordered_core_gold_queries,
+    ordered_feature_queries,
+    ordered_gold_queries,
+)
 from vina_bim_shop.lakehouse.spark.validation import run_pyspark_validations
 from vina_bim_shop.lakehouse.spark.window import BatchWindow
 
@@ -31,6 +35,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--end-ts", required=True)
     parser.add_argument("--mode", required=True, choices=["hourly", "backfill"])
     parser.add_argument("--evidence-root", default="evidence/05_spark_batch")
+    parser.add_argument("--stage", default="full", choices=["full", "core", "features"])
     return parser.parse_args()
 
 
@@ -470,20 +475,33 @@ AS
     spark.table(f"iceberg.gold.{table_name}").createOrReplaceTempView(table_name)
 
 
-def _persist_gold_tables(spark: SparkSession) -> None:
-    _create_namespace(spark, "iceberg.gold")
-    for table_name in SILVER_TABLES:
-        spark.table(f"iceberg.silver.{table_name}").createOrReplaceTempView(table_name)
+def _register_persisted_tables(spark: SparkSession, *, namespace: str, table_names: tuple[str, ...]) -> None:
+    for table_name in table_names:
+        spark.table(f"{namespace}.{table_name}").createOrReplaceTempView(table_name)
 
-    for table_name, query in ordered_gold_queries():
+
+def _persist_gold_query_group(spark: SparkSession, queries: list[tuple[str, str]]) -> None:
+    _create_namespace(spark, "iceberg.gold")
+    _register_persisted_tables(spark, namespace="iceberg.silver", table_names=SILVER_TABLES)
+
+    for table_name, query in queries:
         _replace_gold_table(spark=spark, table_name=table_name, query=query)
 
 
-def _capture_table_row_counts(*, spark: SparkSession, evidence_root: str | Path) -> dict[str, dict[str, int]]:
+def _persist_gold_tables(spark: SparkSession) -> None:
+    _persist_gold_query_group(spark, ordered_gold_queries())
+
+
+def _capture_table_row_counts(
+    *,
+    spark: SparkSession,
+    evidence_root: str | Path,
+    gold_tables: tuple[str, ...] = REQUIRED_GOLD_TABLES,
+) -> dict[str, dict[str, int]]:
     row_counts = {"silver": {}, "gold": {}}
     for table_name in SILVER_TABLES:
         row_counts["silver"][table_name] = spark.table(f"iceberg.silver.{table_name}").count()
-    for table_name in REQUIRED_GOLD_TABLES:
+    for table_name in gold_tables:
         row_counts["gold"][table_name] = spark.table(f"iceberg.gold.{table_name}").count()
     evidence_path = Path(evidence_root)
     evidence_path.mkdir(parents=True, exist_ok=True)
@@ -527,17 +545,58 @@ def _write_job_manifest(
     )
 
 
-def run_job(*, start_ts: str, end_ts: str, mode: str, evidence_root: str | Path) -> dict[str, Any]:
+def run_job(
+    *,
+    start_ts: str,
+    end_ts: str,
+    mode: str,
+    evidence_root: str | Path,
+    stage: str = "full",
+) -> dict[str, Any]:
     window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode=mode)
+    if stage not in {"full", "core", "features"}:
+        raise ValueError(f"Unsupported Spark job stage: {stage!r}")
     spark = build_spark_session()
     try:
-        _create_raw_views(spark, window)
-        _persist_silver_tables_for_window(
-            spark,
-            start_ts=window.start_ts.isoformat().replace("+00:00", "Z"),
-            end_ts=window.end_ts.isoformat().replace("+00:00", "Z"),
-        )
-        _persist_gold_tables(spark)
+        if stage in {"full", "core"}:
+            _create_raw_views(spark, window)
+            _persist_silver_tables_for_window(
+                spark,
+                start_ts=window.start_ts.isoformat().replace("+00:00", "Z"),
+                end_ts=window.end_ts.isoformat().replace("+00:00", "Z"),
+            )
+            _persist_gold_query_group(spark, ordered_core_gold_queries())
+        else:
+            _register_persisted_tables(spark, namespace="iceberg.silver", table_names=SILVER_TABLES)
+            _register_persisted_tables(
+                spark,
+                namespace="iceberg.gold",
+                table_names=tuple(table_name for table_name, _query in ordered_core_gold_queries()),
+            )
+
+        if stage in {"full", "features"}:
+            _persist_gold_query_group(spark, ordered_feature_queries())
+
+        if stage != "full":
+            stage_tables = (
+                tuple(table_name for table_name, _query in ordered_core_gold_queries())
+                if stage == "core"
+                else tuple(table_name for table_name, _query in ordered_feature_queries())
+            )
+            return {
+                "window": {
+                    "start_ts": window.start_ts.isoformat().replace("+00:00", "Z"),
+                    "end_ts": window.end_ts.isoformat().replace("+00:00", "Z"),
+                    "mode": window.mode,
+                },
+                "stage": stage,
+                "row_counts": _capture_table_row_counts(
+                    spark=spark,
+                    evidence_root=evidence_root,
+                    gold_tables=stage_tables,
+                ),
+            }
+
         validation_report = run_pyspark_validations(spark=spark, evidence_root=evidence_root)
         gx_report = run_gx_validations(spark=spark, evidence_root=evidence_root)
         row_counts = _capture_table_row_counts(spark=spark, evidence_root=evidence_root)
@@ -567,4 +626,5 @@ def main() -> None:
         end_ts=args.end_ts,
         mode=args.mode,
         evidence_root=args.evidence_root,
+        stage=args.stage,
     )

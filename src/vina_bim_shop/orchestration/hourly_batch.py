@@ -34,6 +34,16 @@ from .paths import (
     _write_json,
     build_run_root,
 )
+from .mini_coursework_pipeline import (
+    STAGE_FUNCTION_NAMES,
+    compute_offline_features,
+    ingest_raw_to_bronze,
+    settings_from_environment,
+    transform_bronze_to_silver_gold,
+    validate_bronze,
+    validate_offline_features,
+    validate_silver_gold,
+)
 from .quality_helpers import _render_docs, _validate_pandas_dataframe, _window_payload
 from .subprocess_helpers import _run_command, _working_directory
 
@@ -124,92 +134,36 @@ def _capture_airflow_batch_evidence(*, evidence_root: str | Any) -> dict[str, An
 
 
 def run_hourly_batch_lakehouse(*, run_id: str, start_ts: str, end_ts: str) -> dict[str, Any]:
+    """Run the legacy entry point as a composition of the six DP stages."""
     run_root = build_run_root("hourly_batch_lakehouse", run_id)
-    window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode="hourly")
-    window_payload = _window_payload(window)
-    spark_evidence_root = run_root / "spark_batch"
-
-    reports_root = run_root / "quality"
-    bronze_paths = _list_bronze_objects()
-    quarantine_counts = _count_quarantine_records()
-    bronze_records = [
-        {"path": path, "quarantine_count": sum(quarantine_counts.values())}
-        for path in bronze_paths
-    ] or [{"path": None, "quarantine_count": sum(quarantine_counts.values())}]
-    bronze_report = _validate_pandas_dataframe(
-        dataframe=pd.DataFrame(bronze_records),
-        datasource_name="bronze_runtime",
-        asset_name="bronze_landing_asset",
-        suite_name="bronze_raw_minio",
-        layer="bronze_raw",
-        expectations=[
-            __import__("great_expectations").expectations.ExpectColumnValuesToNotBeNull(column="path"),
-            __import__("great_expectations").expectations.ExpectTableRowCountToBeBetween(min_value=1),
-        ],
-        output_root=reports_root,
-        window=window_payload,
+    settings = settings_from_environment()
+    stage_functions = (
+        ingest_raw_to_bronze,
+        validate_bronze,
+        transform_bronze_to_silver_gold,
+        validate_silver_gold,
+        compute_offline_features,
+        validate_offline_features,
     )
-    bronze_report.details["quarantine_counts"] = quarantine_counts
-
-    _prepare_spark_evidence_root(spark_evidence_root)
-    with _working_directory(REPO_ROOT):
-        spark_summary = run_batch_pipeline(
-            start_ts=window_payload["start_ts"],
-            end_ts=window_payload["end_ts"],
-            mode="hourly",
-            evidence_root=spark_evidence_root,
-            capture_evidence_fn=_capture_airflow_batch_evidence,
+    stage_results = [
+        stage_function(
+            run_id=run_id,
+            start_ts=start_ts,
+            end_ts=end_ts,
+            settings=settings,
+            run_root=run_root,
         )
-
-    trino_validation_frame = pd.DataFrame(
-        [
-            {
-                "gold_table_count": len(
-                    execute_trino_query("show tables from iceberg.gold", trino_url="http://trino:8080")["rows"]
-                ),
-                "fact_order_rows": execute_trino_query(
-                    "select count(*) as fact_order_count from iceberg.gold.fact_order",
-                    trino_url="http://trino:8080",
-                )["rows"][0][0],
-            }
-        ]
-    )
-    gold_report = _validate_pandas_dataframe(
-        dataframe=trino_validation_frame,
-        datasource_name="trino_runtime",
-        asset_name="gold_validation_asset",
-        suite_name="gold_trino_contract",
-        layer="gold_trino",
-        expectations=[
-            __import__("great_expectations").expectations.ExpectColumnValuesToBeBetween(
-                column="gold_table_count",
-                min_value=1,
-            ),
-            __import__("great_expectations").expectations.ExpectColumnValuesToBeBetween(
-                column="fact_order_rows",
-                min_value=1,
-            ),
-        ],
-        output_root=reports_root,
-        window=window_payload,
-    )
-
-    reports = [bronze_report, gold_report]
-    _prepare_gx_docs_root()
-    _render_docs(reports)
+        for stage_function in stage_functions
+    ]
     manifest = {
         "captured_at": _utc_now(),
-        "window": window_payload,
-        "spark_summary_path": "spark_batch/run_batch_summary.json",
-        "quality_reports": [f"quality/{report.suite_name}.json" for report in reports],
+        "legacy_dag_id": "hourly_batch_lakehouse",
+        "stage_artifacts": [result["artifact"] for result in stage_results],
         "data_docs_index": str(DOCS_ROOT.relative_to(REPO_ROOT) / "index.html").replace("\\", "/"),
-        "artifacts": [
-            "quality/bronze_raw_minio.json",
-            "quality/gold_trino_contract.json",
-            "spark_batch/run_batch_summary.json",
-        ],
     }
     _write_json(run_root / "run_manifest.json", manifest)
-    if gold_report.blocks_dag and not gold_report.success:
-        raise RuntimeError("Gold Trino validation failed.")
+    spark_summary = {
+        "core": stage_results[2].get("spark_summary"),
+        "features": stage_results[4].get("spark_summary"),
+    }
     return {"manifest": manifest, "spark_summary": spark_summary}

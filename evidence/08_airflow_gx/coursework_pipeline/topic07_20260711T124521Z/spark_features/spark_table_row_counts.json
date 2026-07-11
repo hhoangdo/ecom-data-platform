@@ -1,0 +1,24 @@
+{
+  "gold": {
+    "feat_customer_90d": 688,
+    "feat_customer_unified": 688,
+    "feat_stream_60m": 4652
+  },
+  "silver": {
+    "stg_bad_snapshots": 4,
+    "stg_catalog_events": 1940,
+    "stg_commerce_events": 17623,
+    "stg_customers": 800,
+    "stg_fulfillment_events": 4215,
+    "stg_inventory_snapshots": 1200,
+    "stg_ops_events": 5,
+    "stg_order_items": 6756,
+    "stg_orders": 1800,
+    "stg_payments": 1800,
+    "stg_product_category_map": 729,
+    "stg_products": 600,
+    "stg_promotions": 16,
+    "stg_sellers": 80,
+    "stg_shipments": 1800
+  }
+}

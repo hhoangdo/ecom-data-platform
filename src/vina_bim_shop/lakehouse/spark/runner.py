@@ -21,7 +21,12 @@ def _run_command(command: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, check=True, text=True, capture_output=True, encoding="utf-8", errors="replace")
 
 
-def build_spark_submit_command(window: BatchWindow, *, evidence_root: str | Path) -> list[str]:
+def build_spark_submit_command(
+    window: BatchWindow,
+    *,
+    evidence_root: str | Path,
+    stage: str = "full",
+) -> list[str]:
     evidence_path = Path(evidence_root)
     container_evidence_root = evidence_path.as_posix()
     if not evidence_path.is_absolute():
@@ -42,7 +47,7 @@ def build_spark_submit_command(window: BatchWindow, *, evidence_root: str | Path
         "--conf spark.eventLog.dir=s3a://checkpoints/spark-events "
         "scripts/spark/job.py "
         + " ".join(window.to_cli_args())
-        + f" --evidence-root {container_evidence_root}",
+        + f" --evidence-root {container_evidence_root} --stage {stage}",
     ]
 
 
@@ -99,3 +104,35 @@ def run_batch_pipeline(
     }
     persist_run_summary(evidence_root=evidence_root, summary=summary)
     return summary
+
+
+def run_spark_stage(
+    *,
+    stage: str,
+    start_ts: str,
+    end_ts: str,
+    mode: str,
+    evidence_root: str | Path,
+    run_command: RunCommand = _run_command,
+) -> dict[str, Any]:
+    window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode=mode)
+    command = build_spark_submit_command(window, evidence_root=evidence_root, stage=stage)
+    result = run_command(command)
+    return {
+        "stage": stage,
+        "window": {
+            "start_ts": window.start_ts.isoformat().replace("+00:00", "Z"),
+            "end_ts": window.end_ts.isoformat().replace("+00:00", "Z"),
+            "mode": window.mode,
+        },
+        "spark_submit_command": command,
+        "spark_stdout": result.stdout,
+    }
+
+
+def run_core_transform(**kwargs: Any) -> dict[str, Any]:
+    return run_spark_stage(stage="core", **kwargs)
+
+
+def run_feature_compute(**kwargs: Any) -> dict[str, Any]:
+    return run_spark_stage(stage="features", **kwargs)

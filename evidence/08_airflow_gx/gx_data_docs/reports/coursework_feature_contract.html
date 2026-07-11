@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>coursework_feature_contract - GX Detail</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; background: #f6f4ef; color: #1f2933; }
+      h1 { margin-bottom: 0.5rem; }
+      table { width: 100%; border-collapse: collapse; background: white; margin-top: 1rem; }
+      th, td { border: 1px solid #d7dfe7; padding: 0.65rem; text-align: left; vertical-align: top; }
+      th { background: #e8eef5; }
+      .note { color: #52606d; margin-bottom: 1.5rem; }
+      .pass { color: #0f7a32; font-weight: 700; }
+      .fail { color: #a61b1b; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <p><a href="../index.html">Back to GX summary</a></p>
+    <h1>coursework_feature_contract</h1>
+    <p class="note">4/4 expectations passed.</p>
+    <table>
+      <tbody>
+        <tr><th>Layer</th><td>gold_trino</td></tr>
+        <tr><th>Status</th><td>success</td></tr>
+        <tr><th>Severity</th><td>error</td></tr>
+        <tr><th>Blocks DAG</th><td>no</td></tr>
+        <tr><th>Requires Quarantine</th><td>no</td></tr>
+        <tr><th>Window</th><td>hourly / 2026-04-26T03:00:00Z / 2026-04-26T04:00:00Z</td></tr>
+      </tbody>
+    </table>
+    <h2>Expectation Details</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Expectation</th>
+          <th>Column</th>
+          <th>Parameters</th>
+          <th>Observed Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="pass">pass</td><td>expect_column_values_to_be_between</td><td>row_count</td><td>min_value=1.0</td><td>element_count=3, missing_count=0, missing_percent=0.0, partial_unexpected_counts=[], partial_unexpected_index_list=[], partial_unexpected_list=[], unexpected_count=0, unexpected_percent=0.0, unexpected_percent_nonmissing=0.0, unexpected_percent_total=0.0</td></tr>
+<tr><td class="pass">pass</td><td>expect_column_values_to_be_in_set</td><td>has_event_timestamp</td><td>value_set=[True]</td><td>element_count=3, missing_count=0, missing_percent=0.0, partial_unexpected_counts=[], partial_unexpected_index_list=[], partial_unexpected_list=[], unexpected_count=0, unexpected_percent=0.0, unexpected_percent_nonmissing=0.0, unexpected_percent_total=0.0</td></tr>
+<tr><td class="pass">pass</td><td>expect_column_values_to_be_in_set</td><td>has_created</td><td>value_set=[True]</td><td>element_count=3, missing_count=0, missing_percent=0.0, partial_unexpected_counts=[], partial_unexpected_index_list=[], partial_unexpected_list=[], unexpected_count=0, unexpected_percent=0.0, unexpected_percent_nonmissing=0.0, unexpected_percent_total=0.0</td></tr>
+<tr><td class="pass">pass</td><td>expect_column_values_to_be_in_set</td><td>has_created_ts</td><td>value_set=[False]</td><td>element_count=3, missing_count=0, missing_percent=0.0, partial_unexpected_counts=[], partial_unexpected_index_list=[], partial_unexpected_list=[], unexpected_count=0, unexpected_percent=0.0, unexpected_percent_nonmissing=0.0, unexpected_percent_total=0.0</td></tr>
+      </tbody>
+    </table>
+  </body>
+</html>

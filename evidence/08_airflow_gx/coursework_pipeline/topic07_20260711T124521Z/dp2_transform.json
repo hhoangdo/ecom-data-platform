@@ -1,0 +1,55 @@
+{
+  "artifact": "dp2_transform.json",
+  "core_gold_tables": [
+    "dim_customer",
+    "dim_seller",
+    "dim_product",
+    "dim_category",
+    "dim_date",
+    "dim_payment_method",
+    "dim_order_status",
+    "dim_shipment_status",
+    "dim_shipping_method",
+    "dim_promotion",
+    "bridge_product_category",
+    "fact_order",
+    "fact_order_item",
+    "fact_payment_attempt",
+    "fact_shipment",
+    "fact_inventory_snapshot",
+    "fact_promotion_application",
+    "obt_order_performance",
+    "agg_hourly_reconciled_kpi"
+  ],
+  "dag_id": "mini_coursework_pipeline",
+  "run_id": "topic07_20260711T124521Z",
+  "schema_version": 1,
+  "spark_application_id": "app-20260711124824-0000",
+  "spark_summary": {
+    "spark_stdout": "",
+    "spark_submit_command": [
+      "docker",
+      "compose",
+      "exec",
+      "-T",
+      "spark-master",
+      "bash",
+      "-lc",
+      "cd /workspace && PYTHONPATH=/workspace/src spark-submit --master spark://spark-master:7077 --deploy-mode client --conf spark.eventLog.enabled=true --conf spark.eventLog.dir=s3a://checkpoints/spark-events scripts/spark/job.py --start-ts 2026-04-26T03:00:00Z --end-ts 2026-04-26T04:00:00Z --mode hourly --evidence-root /workspace/evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/spark_core --stage core"
+    ],
+    "stage": "core",
+    "window": {
+      "end_ts": "2026-04-26T04:00:00Z",
+      "mode": "hourly",
+      "start_ts": "2026-04-26T03:00:00Z"
+    }
+  },
+  "stage": "dp2_transform",
+  "state": "success",
+  "task_id": "dp2_bronze_to_silver_gold.transform_bronze_to_silver_gold",
+  "window": {
+    "end_ts": "2026-04-26T04:00:00Z",
+    "mode": "hourly",
+    "start_ts": "2026-04-26T03:00:00Z"
+  }
+}

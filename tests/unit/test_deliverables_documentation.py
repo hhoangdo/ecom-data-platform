@@ -98,3 +98,22 @@ def test_spark_deliverables_link_standalone_optimization_evidence() -> None:
         assert artifact in spark_deliverable
     assert "canonical Spark batch path does not use salting" in spark_deliverable
     assert "standalone optimization experiment" in challenges_deliverable.lower()
+
+
+def test_orchestration_deliverable_documents_all_six_coursework_stage_artifacts() -> None:
+    content = (_repo_root() / "deliverables" / "08_airflow_gx_orchestration.md").read_text(encoding="utf-8")
+
+    for expected in [
+        "mini_coursework_pipeline",
+        "dp1_raw_to_bronze.ingest_raw_to_bronze",
+        "dp1_raw_to_bronze.validate_bronze",
+        "dp2_bronze_to_silver_gold.transform_bronze_to_silver_gold",
+        "dp2_bronze_to_silver_gold.validate_silver_gold",
+        "dp3_offline_features.compute_offline_features",
+        "dp3_offline_features.validate_offline_features",
+        "coursework_pipeline/<run-id>/dp1_ingest.json",
+        "coursework_pipeline/<run-id>/dp3_validate.json",
+        "mini_coursework_pipeline_graph.png",
+        "mini_coursework_pipeline_grid.png",
+    ]:
+        assert expected in content
