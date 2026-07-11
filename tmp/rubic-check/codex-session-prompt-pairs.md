@@ -18,27 +18,28 @@ Source controls:
 
 ### Execution Sessions
 
-- Create or enter a dedicated Git worktree for the topic. Start by reading the audit, index, and the exact topic plan named in the prompt.
+- Make changes directly in the current branch/folder for the topic; do not create or enter a dedicated Git worktree. Start by reading the audit, index, and the exact topic plan named in the prompt.
 - Run `rtk git status --short` before editing. Preserve pre-existing changes and do not stage, commit, rebase, merge, or delete unrelated files unless the user explicitly asks.
 - Follow the topic plan's Exact File Map, Ordered Tasks, Required Evidence, and Definition of Done. Record actual commands, test results, artifact paths, and limitations in its Completion Record only after successful work.
 - Complete focused tests before runtime work, then run the full regression suite required by the plan. Do not upgrade an audit status based only on anticipated work.
+- If a session starts Docker/Compose services, after recording the required evidence and before the Completion Handoff, stop only the services it started with `docker compose stop` or `docker stop` as applicable. Preserve volumes and evidence, do not stop pre-existing services, and confirm release of the runtime slot.
 
 ### Shared Runtime Rule
 
-Separate worktrees prevent edit collisions; they do not isolate Docker containers, Compose project names, Kafka topics, MinIO buckets, Spark event logs, Airflow state, DataHub metadata, Pinot state, or evidence paths.
+All execution sessions share the current checkout. Run exactly one execution session at a time, including edit, test, and runtime work, to prevent collisions. Planning sessions remain read-only and may run in parallel.
 
-Only one execution session may hold the shared runtime slot at a time. Before a session starts, stops, rebuilds, resets, ingests into, or captures evidence from Docker, Spark, Flink, Airflow, DataHub, or Pinot, wait for the current runtime session to finish and hand over its evidence paths. Code and unit-test preparation may proceed in parallel in separate worktrees when the schedule below marks it safe.
+Only one execution session may hold the shared runtime slot at a time. Before a session starts, stops, rebuilds, resets, ingests into, or captures evidence from Docker, Spark, Flink, Airflow, DataHub, or Pinot, wait for the current runtime session to finish and hand over its evidence paths.
 
 ## Recommended Schedule
 
-| Wave | Topics | Parallelism rule |
+| Wave | Topics | Execution rule |
 |---|---|---|
 | Planning | 01-11 | All planning prompts may run in parallel; they are read-only. |
-| 1 | 01 Docker, 02 Generator | Execute in separate worktrees. Topic 02 is local generator work; Topic 01 owns the runtime slot only for its image/runtime proof. |
-| 2 | 03 Spark, 04 Flink | Begin only after Topic 02. Code/test preparation may run in parallel. Run Spark and Flink runtime/evidence captures serially. |
+| 1 | 01 Docker, 02 Generator | Execute serially in the current checkout. Topic 02 is local generator work; Topic 01 owns the runtime slot only for its image/runtime proof. |
+| 2 | 03 Spark, 04 Flink | Begin only after Topic 02. Execute Topics 03 and 04 serially, including their code/test preparation and runtime/evidence captures. |
 | 3 | 06 Schema/feature contracts, 05 Storage | Integrate Topic 03 before Topic 06. Run Topic 06 before the final Topic 05 dbt/index benchmark when feature schema changes affect it. |
-| 4 | 07 Airflow, 08 DataHub recovery | Topic 07 requires Topics 03 and 06. Topic 08 code preparation may happen earlier, but its recovery run is exclusive and must finish before Topic 09. |
-| 5 | 09 DataHub lineage, 10 Novel ideas | Topic 09 follows Topics 06-08. Topic 10 follows Topic 05 and may overlap Topic 09 only outside the shared runtime slot. |
+| 4 | 07 Airflow, 08 DataHub recovery | Topic 07 requires Topics 03 and 06. Topic 08 may run earlier when no other execution session is active, but its recovery run must finish before Topic 09. |
+| 5 | 09 DataHub lineage, 10 Novel ideas | Topic 09 follows Topics 06-08. Topic 10 follows Topic 05 and must not overlap Topic 09. |
 | Final | 11 README/rubric navigation | Start only after Topics 01-10 have completed and their evidence is real. |
 
 Topic 11 is strictly last: it may begin only after all implementation and evidence topics have completed successfully.
@@ -62,11 +63,11 @@ Confirm the current baseline image behavior, the exact builder/runtime split nee
 ### Execution Prompt
 
 ```text
-Implement Topic 01 in a dedicated worktree. Read the audit, program index, and tmp/rubic-check/refactor/01-docker-image-optimization.md before editing. Confirm the Topic 01 handoff gate, run rtk git status --short, and preserve unrelated changes.
+Implement Topic 01 directly in the current branch/folder; do not create or enter a Git worktree. Read the audit, program index, and tmp/rubic-check/refactor/01-docker-image-optimization.md before editing. Confirm the Topic 01 handoff gate, run rtk git status --short, and preserve unrelated changes.
 
 Follow the topic plan exactly: capture the unoptimized Kafka Connect image baseline, add the tested multi-stage builder/runtime image, measure before/after bytes and MiB, prove a positive reduction, and run the existing connector/plugin smoke proof. Create only the planned code, tests, documentation, and evidence. Use the shared runtime slot only for Docker build/Compose work; do not overlap another runtime/evidence session.
 
-Run the focused tests, Compose validation, and full regression required by the plan. Record actual image IDs, measurements, commands, evidence paths, and residual limitations in the Topic 01 Completion Record. Do not stage or commit unless explicitly asked.
+Run the focused tests, Compose validation, and full regression required by the plan. Record actual image IDs, measurements, commands, evidence paths, and residual limitations in the Topic 01 Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not stage or commit unless explicitly asked.
 ```
 
 ## Topic 02: Generator Rubric Evidence
@@ -88,11 +89,11 @@ Verify that the plan can add DuckDB approx_count_distinct evidence for customer_
 ### Execution Prompt
 
 ```text
-Implement Topic 02 in a dedicated worktree. Read the audit, program index, and tmp/rubic-check/refactor/02-generator-rubric-evidence.md. Confirm the handoff gate and run rtk git status --short before editing.
+Implement Topic 02 directly in the current branch/folder; do not create or enter a Git worktree. Read the audit, program index, and tmp/rubic-check/refactor/02-generator-rubric-evidence.md. Confirm the handoff gate and run rtk git status --short before editing.
 
 Implement only the approved evidence packaging: derive approximate distinct counts and uniqueness ratios through DuckDB, render the row-5-to-14 report from parsed configs/generator/base.yaml values, preserve generator distributions and configuration behavior, and update the designated deliverables and manifest. Add or extend the planned tests before trusting generated output.
 
-Run focused generator tests, regenerate the approved medium evidence, then run the full regression specified by the plan. Record real commands, metrics, artifact paths, and limitations in Topic 02's Completion Record. Make no unrequested commit.
+Run focused generator tests, regenerate the approved medium evidence, then run the full regression specified by the plan. Record real commands, metrics, artifact paths, and limitations in Topic 02's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Make no unrequested commit.
 ```
 
 ## Topic 03: Spark Skew, Cardinality, and Baseline
@@ -114,11 +115,11 @@ Validate the four-run experiment design: skew-baseline, skew-optimized, high-car
 ### Execution Prompt
 
 ```text
-Implement Topic 03 in a dedicated worktree after Topic 02 has passed its Definition of Done. Read the audit, index, Topic 02 Completion Record, and tmp/rubic-check/refactor/03-spark-skew-cardinality-and-baseline.md. Run rtk git status --short before edits.
+Implement Topic 03 directly in the current branch/folder after Topic 02 has passed its Definition of Done; do not create or enter a Git worktree. Read the audit, index, Topic 02 Completion Record, and tmp/rubic-check/refactor/03-spark-skew-cardinality-and-baseline.md. Run rtk git status --short before edits.
 
 Build the standalone, test-first experiment only. Preserve canonical Spark semantics and enforce the plan's no-import/no-call boundary around run_job. Implement the controlled baseline-versus-optimized experiments, exact equivalence assertions, high-cardinality approximate/exact metrics, and required documentation/evidence contracts.
 
-Claim the shared runtime slot for the four separate Spark submissions and History Server screenshots. Do not run concurrent Flink, Airflow, DataHub, Pinot, or other Docker evidence capture. Run focused and full regression checks, then record application IDs, measurements, screenshots, test results, and limitations in Topic 03's Completion Record. Do not commit unless asked.
+Claim the shared runtime slot for the four separate Spark submissions and History Server screenshots. Do not run concurrent Flink, Airflow, DataHub, Pinot, or other Docker evidence capture. Run focused and full regression checks, then record application IDs, measurements, screenshots, test results, and limitations in Topic 03's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless asked.
 ```
 
 ## Topic 04: Flink Baseline and Streaming Proof
@@ -140,11 +141,11 @@ Confirm that baseline and optimized variants will be isolated, consume identical
 ### Execution Prompt
 
 ```text
-Implement Topic 04 in a dedicated worktree after Topic 02 has completed. Read the audit, index, Topic 02 Completion Record, and tmp/rubic-check/refactor/04-flink-baseline-and-streaming-proof.md. Check rtk git status --short before editing.
+Implement Topic 04 directly in the current branch/folder after Topic 02 has completed; do not create or enter a Git worktree. Read the audit, index, Topic 02 Completion Record, and tmp/rubic-check/refactor/04-flink-baseline-and-streaming-proof.md. Check rtk git status --short before editing.
 
 Implement the approved isolated baseline/optimized profiles, comparison runner, evidence contracts, tests, and row-21-to-25 documentation. Keep canonical streaming configuration unchanged. First pass focused tests; then claim the shared runtime slot to publish one deterministic replay, submit both Flink variants serially, verify output, and capture the named UI evidence.
 
-Run the planned full regression, record real job IDs, metrics, output checks, screenshots, commands, and remaining limitations in Topic 04's Completion Record. Do not commit without explicit user instruction.
+Run the planned full regression, record real job IDs, metrics, output checks, screenshots, commands, and remaining limitations in Topic 04's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit without explicit user instruction.
 ```
 
 ## Topic 05: Storage Optimization
@@ -166,11 +167,11 @@ Confirm the compaction allowlist, before/after invariants, timing policy, and is
 ### Execution Prompt
 
 ```text
-Implement Topic 05 in a dedicated worktree after Topic 03 is complete and after Topic 06 is integrated when it affects the final dbt schema. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/05-storage-optimization.md. Run rtk git status --short before editing.
+Implement Topic 05 directly in the current branch/folder after Topic 03 is complete and after Topic 06 is integrated when it affects the final dbt schema; do not create or enter a Git worktree. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/05-storage-optimization.md. Run rtk git status --short before editing.
 
 Implement exactly the approved Iceberg compaction and isolated DuckDB index experiments. Protect the canonical DuckDB file, enforce the table allowlist, preserve row-count/result-hash invariants, store raw timing samples and plans, and make no unsupported speed claim.
 
-Claim the shared runtime slot for Spark/Iceberg/Trino and any Compose work. Run the required focused and full tests, then record actual rewrite results, query timings, index evidence, result equivalence, artifacts, and limitations in Topic 05's Completion Record. Do not commit unless asked.
+Claim the shared runtime slot for Spark/Iceberg/Trino and any Compose work. Run the required focused and full tests, then record actual rewrite results, query timings, index evidence, result equivalence, artifacts, and limitations in Topic 05's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless asked.
 ```
 
 ## Topic 06: Schema ERD and Feature Contracts
@@ -192,11 +193,11 @@ Confirm that only the three Gold feature outputs change from created_ts to creat
 ### Execution Prompt
 
 ```text
-Implement Topic 06 in a dedicated worktree after Topics 02 and 03 meet their Definitions of Done. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/06-schema-erd-and-feature-contracts.md. Run rtk git status --short before editing.
+Implement Topic 06 directly in the current branch/folder after Topics 02 and 03 meet their Definitions of Done; do not create or enter a Git worktree. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/06-schema-erd-and-feature-contracts.md. Run rtk git status --short before editing.
 
 Implement only the approved feature-contract and documentation changes: make all three Gold feature outputs expose event_timestamp and created in both dbt and Spark, retain upstream created_ts fields, validate the complete Bronze/Silver/Gold ERD, and regenerate the specified schema evidence. Update contracts, tests, and documentation together.
 
-Use the runtime slot only for the generator/dbt/evidence regeneration portion. Run focused and full regressions, then record actual model/test results, ERD source/render artifacts, exact renamed columns, and limitations in Topic 06's Completion Record. Do not commit unless requested.
+Use the runtime slot only for the generator/dbt/evidence regeneration portion. Run focused and full regressions, then record actual model/test results, ERD source/render artifacts, exact renamed columns, and limitations in Topic 06's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless requested.
 ```
 
 ## Topic 07: Airflow DP Stage Orchestration
@@ -218,11 +219,11 @@ Confirm the six exact task identities, TaskGroup order, metadata seed requiremen
 ### Execution Prompt
 
 ```text
-Implement Topic 07 in a dedicated worktree after Topics 03 and 06 are complete. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/07-airflow-dp-stage-orchestration.md. Run rtk git status --short before editing.
+Implement Topic 07 directly in the current branch/folder after Topics 03 and 06 are complete; do not create or enter a Git worktree. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/07-airflow-dp-stage-orchestration.md. Run rtk git status --short before editing.
 
 Implement the approved six-stage mini-coursework pipeline, idempotent stage functions, Airflow metadata seed, compatibility wrapper, stage artifacts, validations, and documentation. Preserve existing DAG contracts outside the planned scope and validate the final feature created contract in DP3.
 
-Pass focused tests before claiming the shared runtime slot. Then run one successful logical window, capture the named graph/grid proof and six stage artifacts, run full regression, and record real run IDs, task states, validation results, screenshots, commands, and limitations in Topic 07's Completion Record. Do not commit unless asked.
+Pass focused tests before claiming the shared runtime slot. Then run one successful logical window, capture the named graph/grid proof and six stage artifacts, run full regression, and record real run IDs, task states, validation results, screenshots, commands, and limitations in Topic 07's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless asked.
 ```
 
 ## Topic 08: DataHub Runtime Recovery
@@ -244,11 +245,11 @@ Confirm the aligned DataHub 1.6.0 and Elasticsearch 7.10.1 migration, metadata-b
 ### Execution Prompt
 
 ```text
-Implement Topic 08 in a dedicated worktree. Read the audit, index, current Topic 06 status, and tmp/rubic-check/refactor/08-datahub-runtime-recovery.md. Confirm the Topic 08 handoff gate, then run rtk git status --short before editing.
+Implement Topic 08 directly in the current branch/folder; do not create or enter a Git worktree. Read the audit, index, current Topic 06 status, and tmp/rubic-check/refactor/08-datahub-runtime-recovery.md. Confirm the Topic 08 handoff gate, then run rtk git status --short before editing.
 
 First implement and test the planned Compose alignment, index-restore script, search evidence gates, diagrams, and documentation. Before changing runtime services, exclusively claim the shared runtime slot, capture and verify the PostgreSQL metadata backup, and preserve volumes. Align DataHub backend/frontend/upgrade/actions and ingestion components to the approved versions with Elasticsearch 7.10.1.
 
-Run system update, re-ingest current metadata when appropriate, restore indices, verify indexed search and real UI entity rendering after restart, and capture the named evidence. GraphQL-only success is insufficient. Run focused and full regressions and record actual versions, backup hash, restore totals, UI proof, test results, and rollback notes in Topic 08's Completion Record. Do not commit unless asked.
+Run system update, re-ingest current metadata when appropriate, restore indices, verify indexed search and real UI entity rendering after restart, and capture the named evidence. GraphQL-only success is insufficient. Run focused and full regressions and record actual versions, backup hash, restore totals, UI proof, test results, and rollback notes in Topic 08's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless asked.
 ```
 
 ## Topic 09: DataHub Lineage and Contract Proof
@@ -270,11 +271,11 @@ Confirm the DataFlow/DataJob identities, DP1-DP3 edge sets, output schema/assert
 ### Execution Prompt
 
 ```text
-Implement Topic 09 in a dedicated worktree only after Topics 06, 07, and 08 are complete. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/09-datahub-lineage-and-contract-proof.md. Run rtk git status --short before editing.
+Implement Topic 09 directly in the current branch/folder only after Topics 06, 07, and 08 are complete; do not create or enter a Git worktree. Read the audit, index, predecessor Completion Records, and tmp/rubic-check/refactor/09-datahub-lineage-and-contract-proof.md. Run rtk git status --short before editing.
 
 Implement the planned DataFlow/DataJobs, exact DP1-DP3 dataset edges, schema/contracts/assertion links, idempotency tests, capture gates, and governance documentation. Require indexed search, expected edges, schemas, assertions, and screenshot manifests to pass together.
 
-Claim the shared runtime slot for metadata emission, evidence capture, and all six UI screenshots. Do not accept API-only proof. Run focused and full regressions, then record real URNs, edge/assertion counts, search results, screenshot hashes, commands, and limitations in Topic 09's Completion Record. Do not commit without explicit instruction.
+Claim the shared runtime slot for metadata emission, evidence capture, and all six UI screenshots. Do not accept API-only proof. Run focused and full regressions, then record real URNs, edge/assertion counts, search results, screenshot hashes, commands, and limitations in Topic 09's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit without explicit instruction.
 ```
 
 ## Topic 10: Novel Ideas Evidence
@@ -296,11 +297,11 @@ Confirm the exact ordered ideas: Novel Idea 1: DuckDB/dbt local analytics and No
 ### Execution Prompt
 
 ```text
-Implement Topic 10 in a dedicated worktree after Topic 05 has completed. Read the audit, index, Topic 05 Completion Record, and tmp/rubic-check/refactor/10-novel-ideas-evidence.md. Run rtk git status --short before editing.
+Implement Topic 10 directly in the current branch/folder after Topic 05 has completed; do not create or enter a Git worktree. Read the audit, index, Topic 05 Completion Record, and tmp/rubic-check/refactor/10-novel-ideas-evidence.md. Run rtk git status --short before editing.
 
 Implement the evidence aggregator, tests, ordered deliverable, manifests, and screenshots exactly as planned. Prove current dbt/DuckDB analytics with a real successful query and prove Pinot realtime serving with table/segment health, provenance, and a successful query. Keep the exact idea names and order.
 
-Claim the shared runtime slot only for dbt/Pinot/Flink/Compose runtime actions and do not overlap a DataHub, Airflow, Spark, or Flink evidence capture. Run focused and full regressions, then record real query results, runtime evidence, screenshots, commands, and limitations in Topic 10's Completion Record. Do not commit unless asked.
+Claim the shared runtime slot only for dbt/Pinot/Flink/Compose runtime actions and do not overlap a DataHub, Airflow, Spark, or Flink evidence capture. Run focused and full regressions, then record real query results, runtime evidence, screenshots, commands, and limitations in Topic 10's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless asked.
 ```
 
 ## Topic 11: README and Rubric Navigation
@@ -322,15 +323,15 @@ Verify that every intended rubric upgrade has validated evidence, every upstream
 ### Execution Prompt
 
 ```text
-Implement Topic 11 in a dedicated worktree only after Topics 01-10 have passed their Definitions of Done. Read the audit, index, all predecessor Completion Records, and tmp/rubic-check/refactor/11-readme-and-rubric-navigation.md. Run rtk git status --short before editing.
+Implement Topic 11 directly in the current branch/folder only after Topics 01-10 have passed their Definitions of Done; do not create or enter a Git worktree. Read the audit, index, all predecessor Completion Records, and tmp/rubic-check/refactor/11-readme-and-rubric-navigation.md. Run rtk git status --short before editing.
 
 Implement the final reviewer navigation, architecture/documentation conventions, declared public API docstring audit, row-ordered evidence manifest, deliverable links, and final audit refresh. The manifest and audit must remain fail-closed: retain Partial status whenever required evidence is missing, stale, or unsupported.
 
-Run all focused documentation/manifest tests and the full regression suite. Do not claim completion until every upstream evidence link/hash is verified. Record actual commands, test outcomes, artifact hashes, final rubric statuses, and residual limitations in Topic 11's Completion Record. Do not commit unless explicitly asked.
+Run all focused documentation/manifest tests and the full regression suite. Do not claim completion until every upstream evidence link/hash is verified. Record actual commands, test outcomes, artifact hashes, final rubric statuses, and residual limitations in Topic 11's Completion Record. Before handoff, if this session started Docker/Compose services, stop only those services with `docker compose stop` or `docker stop` as applicable, preserve volumes and evidence, and confirm the runtime slot is released. Do not commit unless explicitly asked.
 ```
 
 ## Completion Handoff
 
-After any execution session completes, hand the next session its completed Topic Completion Record, the exact generated evidence paths, focused/full test commands and exit codes, runtime release confirmation, and unresolved limitations. The next execution session must re-check those facts before it begins.
+After any execution session completes, hand the next session its completed Topic Completion Record, the exact generated evidence paths, focused/full test commands and exit codes, Docker cleanup confirmation (including stopped session-started containers and preserved volumes/evidence), runtime release confirmation, and unresolved limitations. The next execution session must re-check those facts before it begins.
 
 Do not mark the program complete until Topic 11 verifies the final rubric manifest and audit from real artifacts.
