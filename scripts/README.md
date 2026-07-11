@@ -35,6 +35,7 @@ Run `make help` at any time to print the full catalog.
 
 | Script | Why it stays on `main` |
 | --- | --- |
+| `scripts/analytics/benchmark_duckdb_index.py` | Runs the isolated DuckDB ART-index benchmark without mutating the canonical dbt database. |
 | `scripts/datahub/capture_evidence.py` | Referenced by the DataHub governance deliverable for official governance evidence. |
 | `scripts/flink/capture_evidence.py` | Referenced by the Flink deliverable for streaming evidence capture. |
 | `scripts/flink/publish_smoke.py` | Referenced by the Flink deliverable for deterministic streaming smoke events. |
@@ -43,6 +44,7 @@ Run `make help` at any time to print the full catalog.
 | `scripts/flink/run_ops_alerts_job.py` | Flink job entry point referenced by deliverables, tests, and `infra/flink/bin/submit-jobs.sh`. |
 | `scripts/generate/run_generator.py` | Official Section 01 generator entry point referenced by README, deliverables, and integration tests. |
 | `scripts/kafka/bootstrap_topics.py` | Kafka topic bootstrap command referenced by the Kafka ingestion deliverable. |
+| `scripts/kafka/capture_connect_image_optimization.py` | Captures the Kafka Connect image-size optimization evidence package. |
 | `scripts/kafka/capture_evidence.py` | Kafka evidence command referenced by the Kafka ingestion deliverable. |
 | `scripts/kafka/consumer_smoke.py` | Kafka smoke consumer referenced by the Kafka ingestion deliverable. |
 | `scripts/kafka/producer_smoke.py` | Kafka smoke producer referenced by the Kafka ingestion deliverable. |
@@ -51,6 +53,7 @@ Run `make help` at any time to print the full catalog.
 | `scripts/lakehouse/capture_bronze_evidence.py` | Bronze landing evidence command referenced by deliverables and unit tests. |
 | `scripts/lakehouse/capture_evidence.py` | Lakehouse evidence command referenced by the lakehouse deliverable. |
 | `scripts/lakehouse/land_bronze_batch.py` | Bronze batch landing command referenced by deliverables and unit tests. |
+| `scripts/lakehouse/optimize_iceberg.py` | Captures approved Iceberg compaction and Trino benchmark evidence. |
 | `scripts/lakehouse/smoke_sql.py` | Lakehouse SQL smoke command referenced by the lakehouse deliverable. |
 | `scripts/pinot/bootstrap.py` | Pinot serving bootstrap command referenced by deliverables and unit tests. |
 | `scripts/pinot/query_examples.py` | Pinot query example command referenced by the Pinot serving deliverable. |

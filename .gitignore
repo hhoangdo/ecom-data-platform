@@ -45,6 +45,7 @@ output/playwright/
 tmp/*
 !tmp/rubic-check/
 !tmp/rubic-check/**
+tmp/rubic-check/runtime/*.duckdb
 architecture/decisions/
 docs/
 

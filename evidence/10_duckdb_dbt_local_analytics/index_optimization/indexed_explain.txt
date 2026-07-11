@@ -1,0 +1,78 @@
+physical_plan	┌───────────────────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         order_key         │
+│          order_id         │
+│        customer_key       │
+│       order_date_key      │
+│      order_status_key     │
+│        customer_id        │
+│         session_id        │
+│        anonymous_id       │
+│      order_timestamp      │
+│         created_ts        │
+│      primary_category     │
+│        order_status       │
+│       shipping_city       │
+│      shipping_region      │
+│      shipping_method      │
+│    fulfillment_channel    │
+│        promotion_id       │
+│        coupon_code        │
+│         item_count        │
+│     order_gross_amount    │
+│   order_discount_amount   │
+│      order_net_amount     │
+│   has_successful_payment  │
+│       is_paid_order       │
+│   official_paid_revenue   │
+│  gross_merchandise_value  │
+│   payment_attempt_count   │
+│                           │
+│          ~2 rows          │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│          SEQ_SCAN         │
+│    ────────────────────   │
+│           Table:          │
+│   duckdb_index_benchmark  │
+│ .main.benchmark_fact_order│
+│                           │
+│   Type: Sequential Scan   │
+│                           │
+│        Projections:       │
+│          order_id         │
+│         order_key         │
+│        customer_key       │
+│       order_date_key      │
+│      order_status_key     │
+│        customer_id        │
+│         session_id        │
+│        anonymous_id       │
+│      order_timestamp      │
+│         created_ts        │
+│      primary_category     │
+│        order_status       │
+│       shipping_city       │
+│      shipping_region      │
+│      shipping_method      │
+│    fulfillment_channel    │
+│        promotion_id       │
+│        coupon_code        │
+│         item_count        │
+│     order_gross_amount    │
+│   order_discount_amount   │
+│      order_net_amount     │
+│   has_successful_payment  │
+│       is_paid_order       │
+│   official_paid_revenue   │
+│  gross_merchandise_value  │
+│   payment_attempt_count   │
+│                           │
+│          Filters:         │
+│ order_id='ORD-BDG-20260426│
+│         -00000006'        │
+│                           │
+│          ~2 rows          │
+└───────────────────────────┘
+

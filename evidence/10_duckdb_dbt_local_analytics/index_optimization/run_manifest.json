@@ -1,0 +1,14 @@
+{
+  "artifacts": [
+    "baseline_explain.txt",
+    "indexed_explain.txt",
+    "index_benchmark.json",
+    "report.md",
+    "run_manifest.json"
+  ],
+  "benchmark_db": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\ecom-data-platform-submission\\tmp\\rubic-check\\runtime\\duckdb_index_benchmark.duckdb",
+  "index_column": "order_id",
+  "index_name": "idx_benchmark_fact_order_order_id",
+  "source_db": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\ecom-data-platform-submission\\data\\gold\\vina_bim_shop.duckdb",
+  "source_sha256": "687140863e86b09140186d6f52242012de9117b4022c452b7a48b4b94469a45a"
+}
