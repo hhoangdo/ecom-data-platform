@@ -38,6 +38,7 @@ Run `make help` at any time to print the full catalog.
 | `scripts/datahub/capture_evidence.py` | Referenced by the DataHub governance deliverable for official governance evidence. |
 | `scripts/flink/capture_evidence.py` | Referenced by the Flink deliverable for streaming evidence capture. |
 | `scripts/flink/publish_smoke.py` | Referenced by the Flink deliverable for deterministic streaming smoke events. |
+| `scripts/flink/run_baseline_comparison.py` | Runs the isolated baseline or optimized Flink comparison variant and captures its evidence contract. |
 | `scripts/flink/run_commerce_metrics_job.py` | Flink job entry point referenced by deliverables, tests, and `infra/flink/bin/submit-jobs.sh`. |
 | `scripts/flink/run_ops_alerts_job.py` | Flink job entry point referenced by deliverables, tests, and `infra/flink/bin/submit-jobs.sh`. |
 | `scripts/generate/run_generator.py` | Official Section 01 generator entry point referenced by README, deliverables, and integration tests. |

@@ -4,13 +4,13 @@
 
 - Replay artifact: [`replay.ndjson`](replay.ndjson), SHA-256 `43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7`.
 - The replay publishes 16 byte-preserved records in `initial_business_events`, `watermark_control_event`, and `late_correction_event` phases. The control event closes the first event-time window before `evt-8` arrives.
-- Baseline job: `vina-bim-shop-flink-baseline` (`78e3cd83407fce7360cdaf38e70a2509`); optimized job: `vina-bim-shop-flink-optimized` (`c5f77f6e94518aded04f71fd643bf791`). Each was captured, then deliberately canceled after evidence collection because the Kafka sources are unbounded.
+- Baseline job: `vina-bim-shop-flink-baseline` (`78e3cd83407fce7360cdaf38e70a2509`); optimized job: `vina-bim-shop-flink-optimized` (`88cc24c1eec249d6f00a0571f51c7ee8`). Each was captured, then deliberately canceled after evidence collection because the Kafka sources are unbounded.
 
 ## Results
 
 | Check | Baseline | Optimized |
 | --- | ---: | ---: |
-| Observed duration | 39,159 ms | 52,558 ms |
+| Observed duration | 39,159 ms | 53,439 ms |
 | On-time commerce metrics | 3 | 3 |
 | Ops alerts | 7 | 7 |
 | Late correction records | 0 | 1 |
