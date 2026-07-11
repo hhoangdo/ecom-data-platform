@@ -1,4 +1,5 @@
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 
@@ -122,6 +123,26 @@ def test_catalog_summary_rows_include_columns_and_descriptions() -> None:
     ]
 
 
+def test_all_zone_model_inventory_and_metadata_match_schema_design_source() -> None:
+    evidence = load_evidence_module()
+    repo_root = Path(__file__).resolve().parents[2]
+
+    model_names = evidence.all_zone_model_names(repo_root)
+
+    assert {zone: len(names) for zone, names in model_names.items()} == {
+        "bronze": 16,
+        "silver": 14,
+        "gold": 22,
+    }
+    metadata = evidence.validate_schema_design_model_coverage(repo_root)
+    source_path = repo_root / "architecture" / "diagrams" / "schema_design.puml"
+    assert metadata == {
+        "schema_design_source": "architecture/diagrams/schema_design.puml",
+        "schema_design_sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
+        "schema_design_model_counts": {"bronze": 16, "silver": 14, "gold": 22},
+    }
+
+
 def test_schema_design_render_metadata_records_fallback(tmp_path: Path) -> None:
     evidence = load_evidence_module()
 
@@ -157,5 +178,15 @@ def test_generated_section02_evidence_records_quarantine_and_render_mode() -> No
     indexed_counts = row_counts.set_index(["schema", "table_name"])["row_count"]
 
     assert manifest["schema_design_render_mode"] in {"plantuml_server", "fallback_png"}
+    assert manifest["schema_design_source"] == "architecture/diagrams/schema_design.puml"
+    assert len(manifest["schema_design_sha256"]) == 64
+    assert manifest["schema_design_model_counts"] == {"bronze": 16, "silver": 14, "gold": 22}
     assert indexed_counts[("bronze", "raw_bad_events")] > 0
     assert indexed_counts[("bronze", "raw_bad_snapshots")] > 0
+
+    catalog = pd.read_csv(repo_root / "evidence" / "02_schema_design" / "dbt_catalog_summary.csv")
+    for feature_name in ["feat_customer_90d", "feat_stream_60m", "feat_customer_unified"]:
+        columns = catalog.loc[catalog["model_name"] == feature_name, "columns"].item().split(", ")
+        assert "event_timestamp" in columns
+        assert "created" in columns
+        assert "created_ts" not in columns

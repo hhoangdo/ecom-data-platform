@@ -11,6 +11,7 @@ from vina_bim_shop.lakehouse.spark.constants import REQUIRED_GOLD_TABLES
 from vina_bim_shop.lakehouse.spark.evidence import DEFAULT_EVIDENCE_ROOT, capture_evidence
 from vina_bim_shop.lakehouse.spark.parity import run_parity_checks
 from vina_bim_shop.lakehouse.spark.runner import _run_command, build_spark_submit_command
+from vina_bim_shop.lakehouse.spark.sql import ordered_gold_queries
 from vina_bim_shop.lakehouse.spark.trino import run_gold_smoke_queries
 from vina_bim_shop.lakehouse.spark.window import BatchWindow
 
@@ -421,6 +422,20 @@ def test_required_gold_table_inventory_matches_adr03_scope() -> None:
         "feat_stream_60m",
         "feat_customer_unified",
     )
+
+
+def test_spark_feature_queries_expose_created_output_contract() -> None:
+    queries = dict(ordered_gold_queries())
+
+    assert "max(fo.created_ts) as created" in queries["feat_customer_90d"]
+    assert "\n  created\nfrom customer_orders" in queries["feat_customer_90d"]
+    assert " as created_ts" not in queries["feat_customer_90d"]
+
+    assert "max(created_ts) as created" in queries["feat_stream_60m"]
+    assert " as created_ts" not in queries["feat_stream_60m"]
+
+    assert "greatest(c.created, coalesce(s.created, c.created)) as created" in queries["feat_customer_unified"]
+    assert "created_ts" not in queries["feat_customer_unified"]
 
 
 def test_spark_batch_smoke_sql_reads_gold_tables_only() -> None:

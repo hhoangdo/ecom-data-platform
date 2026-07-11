@@ -20,7 +20,7 @@ select
   coalesce(s.f_stream_checkout_started_60m, 0) as f_stream_checkout_started_60m,
   coalesce(s.f_stream_order_placed_60m, 0) as f_stream_order_placed_60m,
   coalesce(s.f_stream_cart_to_purchase_ratio_60m, 0) as f_stream_cart_to_purchase_ratio_60m,
-  greatest(c.created_ts, coalesce(s.created_ts, c.created_ts)) as created_ts
+  greatest(c.created, coalesce(s.created, c.created)) as created
 from {{ ref('feat_customer_90d') }} c
 left join latest_stream s
   on c.customer_id = s.customer_id

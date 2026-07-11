@@ -152,7 +152,37 @@ Physical key policy:
 | `feat_stream_60m` | one customer-hour | `customer_id`, `event_timestamp` | Streaming activity counters from commerce events. |
 | `feat_customer_unified` | one customer at latest feature timestamp | `customer_id`, `event_timestamp` | Combines offline and streaming features for model-ready analysis. |
 
-Feature tables retain `event_timestamp` for point-in-time joins and `created_ts` for auditability.
+Feature outputs retain `event_timestamp` for point-in-time joins and expose `created` for auditability. Their source events, Bronze and Silver models, dimensions, facts, OBTs, and aggregates retain their existing `created_ts` fields where those fields already exist.
+
+## Rubric Evidence (Rows 40-44)
+
+### Row 40 — All-zone ERD
+
+[`architecture/diagrams/schema_design.puml`](../architecture/diagrams/schema_design.puml) is the generated all-zone ERD source. The Section 02 evidence generator verifies that it names every Bronze, Silver, and Gold dbt model before rendering the reviewer-facing image and records the source path, SHA-256, and zone model counts in the run manifest.
+
+![All-zone generated ERD](../evidence/02_schema_design/screenshots/schema_design.png)
+
+### Row 41 — SCD2-compatible dimensions
+
+`dim_customer`, `dim_seller`, and `dim_product` expose `valid_from_ts`, `valid_to_ts`, and `is_current`. These are SCD2-compatible columns, while the current dbt builds remain current-row oriented rather than a full historical SCD2 version chain.
+
+### Row 42 — Feature timestamp contract
+
+Feature outputs retain `event_timestamp` and expose `created` in both dbt and Spark. `created` is an output alias derived from the upstream `created_ts` audit timestamp; source and non-feature schemas are unchanged. The generated catalog and schema inventory provide the exact column proof.
+
+### Row 43 — Dimension/fact relationships
+
+The physical ERD records the constrained DuckDB Gold primary and foreign-key relationships, including the dimension-to-fact and dimension-to-feature links.
+
+![Physical Bronze, Silver, and Gold relationship ERD](../architecture/diagrams/erd/physical_gold_model.png)
+
+### Row 44 — Naming conventions
+
+| Zone | Required prefixes | Evidence |
+| --- | --- | --- |
+| Bronze | `raw_` | Source-fidelity and quarantine models. |
+| Silver | `stg_` | Standardized snapshot and event models. |
+| Gold | `dim_`, `fact_`, `obt_`, `agg_`, `feat_`, `bridge_` | Constrained serving, dimensional, and relationship models. |
 
 ## Business Logic Formulas
 

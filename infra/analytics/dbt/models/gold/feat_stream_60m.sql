@@ -11,7 +11,7 @@ select
        / sum(case when event_type = 'add_to_cart' then 1 else 0 end)
     else 0
   end as f_stream_cart_to_purchase_ratio_60m,
-  max(created_ts) as created_ts
+  max(created_ts) as created
 from {{ ref('stg_commerce_events') }}
 where customer_id is not null
 group by 1, 2

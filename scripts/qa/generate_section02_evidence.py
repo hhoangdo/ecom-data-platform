@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import subprocess
 import sys
@@ -21,6 +22,8 @@ DBT_DOCS_COMMAND = ["dbt", "docs", "generate", "--project-dir", DBT_PROJECT_DIR,
 EVIDENCE_ROOT = Path("evidence/02_schema_design")
 DBT_TARGET = Path(DBT_PROJECT_DIR) / "target"
 DUCKDB_PATH = Path("data/gold/vina_bim_shop.duckdb")
+SCHEMA_DESIGN_SOURCE = Path("architecture/diagrams/schema_design.puml")
+ALL_ZONE_MODEL_DIRECTORIES = ("bronze", "silver", "gold")
 
 REQUIRED_RAW_INPUTS = [
     Path("data/raw/customers/part-000.parquet"),
@@ -58,6 +61,7 @@ def expected_artifact_paths() -> list[str]:
 def main() -> int:
     repo_root = Path(__file__).resolve().parents[2]
     validate_raw_inputs(repo_root)
+    schema_design_metadata = validate_schema_design_model_coverage(repo_root)
 
     evidence_root = repo_root / EVIDENCE_ROOT
     screenshots_root = evidence_root / "screenshots"
@@ -105,6 +109,7 @@ def main() -> int:
         "catalog_model_count": len(catalog_rows),
         "schema_inventory_row_count": len(inventory_rows),
         "table_row_count": len(row_count_rows),
+        **schema_design_metadata,
         **render_metadata,
         "artifacts": expected_artifact_paths(),
     }
@@ -123,6 +128,43 @@ def validate_raw_inputs(repo_root: Path) -> None:
             f"Run: {RAW_INPUT_HINT}\n"
             f"Missing:\n{missing_lines}"
         )
+
+
+def all_zone_model_names(repo_root: Path) -> dict[str, set[str]]:
+    models_root = repo_root / "infra" / "analytics" / "dbt" / "models"
+    return {
+        zone: {path.stem for path in (models_root / zone).glob("*.sql") if path.is_file()}
+        for zone in ALL_ZONE_MODEL_DIRECTORIES
+    }
+
+
+def validate_schema_design_model_coverage(repo_root: Path) -> dict[str, Any]:
+    source_path = repo_root / SCHEMA_DESIGN_SOURCE
+    source = source_path.read_text(encoding="utf-8")
+    model_names = all_zone_model_names(repo_root)
+    missing_by_zone = {
+        zone: sorted(name for name in names if name not in source)
+        for zone, names in model_names.items()
+    }
+    missing_by_zone = {
+        zone: names for zone, names in missing_by_zone.items() if names
+    }
+    if missing_by_zone:
+        missing_lines = "\n".join(
+            f"- {zone}: {', '.join(names)}"
+            for zone, names in missing_by_zone.items()
+        )
+        raise SystemExit(
+            "schema_design.puml is missing dbt model labels:\n"
+            f"{missing_lines}"
+        )
+    return {
+        "schema_design_source": SCHEMA_DESIGN_SOURCE.as_posix(),
+        "schema_design_sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
+        "schema_design_model_counts": {
+            zone: len(model_names[zone]) for zone in ALL_ZONE_MODEL_DIRECTORIES
+        },
+    }
 
 
 def run_command(command: list[str], cwd: Path) -> dict[str, Any]:
@@ -297,7 +339,7 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def render_schema_design(repo_root: Path, output_path: Path) -> dict[str, str]:
-    source = (repo_root / "architecture/diagrams/schema_design.puml").read_text(encoding="utf-8")
+    source = (repo_root / SCHEMA_DESIGN_SOURCE).read_text(encoding="utf-8")
     try:
         render_plantuml_png(source, output_path)
         return {"schema_design_render_mode": "plantuml_server"}

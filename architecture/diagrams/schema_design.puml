@@ -57,6 +57,7 @@ end note
 note bottom of Serving
 obt_order_performance is one row per order.
 agg_hourly_reconciled_kpi is the hourly comparison target for Pinot.
+Feature outputs require event_timestamp and created.
 See docker-compose.yml profiles: ingestion, lakehouse, batch, streaming, serving.
 end note
 

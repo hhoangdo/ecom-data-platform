@@ -6,7 +6,7 @@ with customer_orders as (
     sum(fo.official_paid_revenue) as f_customer_paid_revenue_90d,
     avg(nullif(fo.official_paid_revenue, 0)) as f_customer_avg_order_value_90d,
     count(distinct fo.primary_category) as f_customer_distinct_categories_90d,
-    max(fo.created_ts) as created_ts
+    max(fo.created_ts) as created
   from {{ ref('fact_order') }} fo
   group by 1
 )
@@ -17,6 +17,6 @@ select
   coalesce(f_customer_paid_revenue_90d, 0) as f_customer_paid_revenue_90d,
   coalesce(f_customer_avg_order_value_90d, 0) as f_customer_avg_order_value_90d,
   coalesce(f_customer_distinct_categories_90d, 0) as f_customer_distinct_categories_90d,
-  created_ts
+  created
 from customer_orders
 where customer_id is not null

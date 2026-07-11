@@ -472,7 +472,7 @@ with customer_orders as (
     sum(fo.official_paid_revenue) as f_customer_paid_revenue_90d,
     avg(nullif(fo.official_paid_revenue, 0)) as f_customer_avg_order_value_90d,
     count(distinct fo.primary_category) as f_customer_distinct_categories_90d,
-    max(fo.created_ts) as created_ts
+    max(fo.created_ts) as created
   from fact_order fo
   group by 1
 )
@@ -483,7 +483,7 @@ select
   coalesce(f_customer_paid_revenue_90d, 0) as f_customer_paid_revenue_90d,
   coalesce(f_customer_avg_order_value_90d, 0) as f_customer_avg_order_value_90d,
   coalesce(f_customer_distinct_categories_90d, 0) as f_customer_distinct_categories_90d,
-  created_ts
+  created
 from customer_orders
 where customer_id is not null
 """,
@@ -504,7 +504,7 @@ select
        / sum(case when event_type = 'add_to_cart' then 1 else 0 end)
     else 0
   end as f_stream_cart_to_purchase_ratio_60m,
-  max(created_ts) as created_ts
+  max(created_ts) as created
 from stg_commerce_events
 where customer_id is not null
 group by 1, 2
@@ -535,7 +535,7 @@ select
   coalesce(s.f_stream_checkout_started_60m, 0) as f_stream_checkout_started_60m,
   coalesce(s.f_stream_order_placed_60m, 0) as f_stream_order_placed_60m,
   coalesce(s.f_stream_cart_to_purchase_ratio_60m, 0) as f_stream_cart_to_purchase_ratio_60m,
-  greatest(c.created_ts, coalesce(s.created_ts, c.created_ts)) as created_ts
+  greatest(c.created, coalesce(s.created, c.created)) as created
 from feat_customer_90d c
 left join latest_stream s
   on c.customer_id = s.customer_id

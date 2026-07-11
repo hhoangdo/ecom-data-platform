@@ -390,7 +390,7 @@ Table feat_customer_90d [headercolor: #8E7CC3] {
   f_customer_paid_revenue_90d double
   f_customer_avg_order_value_90d double
   f_customer_distinct_categories_90d bigint
-  created_ts timestamp
+  created timestamp
 
   indexes {
     (customer_id, event_timestamp) [pk]
@@ -407,7 +407,7 @@ Table feat_stream_60m [headercolor: #8E7CC3] {
   f_stream_checkout_started_60m hugeint
   f_stream_order_placed_60m hugeint
   f_stream_cart_to_purchase_ratio_60m double
-  created_ts timestamp
+  created timestamp
 
   indexes {
     (customer_id, event_timestamp) [pk]
@@ -428,7 +428,7 @@ Table feat_customer_unified [headercolor: #8E7CC3] {
   f_stream_checkout_started_60m hugeint
   f_stream_order_placed_60m hugeint
   f_stream_cart_to_purchase_ratio_60m double
-  created_ts timestamp
+  created timestamp
 
   indexes {
     (customer_id, event_timestamp) [pk]

@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import yaml
+
 
 def test_physical_gold_model_puml_documents_all_layers_and_purposes() -> None:
     repo_root = Path(__file__).resolve().parents[2]
@@ -191,6 +193,24 @@ def test_section02_documentation_records_core_design_decisions() -> None:
         assert phrase not in content
 
 
+def test_section02_documentation_proves_rubric_rows_40_through_44() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    content = (repo_root / "deliverables" / "02_schema_design.md").read_text(encoding="utf-8")
+
+    for phrase in [
+        "### Row 40 — All-zone ERD",
+        "### Row 41 — SCD2-compatible dimensions",
+        "### Row 42 — Feature timestamp contract",
+        "### Row 43 — Dimension/fact relationships",
+        "### Row 44 — Naming conventions",
+        "current-row oriented rather than a full historical SCD2 version chain",
+        "Feature outputs retain `event_timestamp` and expose `created`",
+        "evidence/02_schema_design/screenshots/schema_design.png",
+        "architecture/diagrams/erd/physical_gold_model.png",
+    ]:
+        assert phrase in content
+
+
 def test_schema_design_puml_shows_storage_and_serving_contracts() -> None:
     repo_root = Path(__file__).resolve().parents[2]
     content = (repo_root / "architecture" / "diagrams" / "schema_design.puml").read_text(encoding="utf-8")
@@ -210,6 +230,68 @@ def test_schema_design_puml_shows_storage_and_serving_contracts() -> None:
     ]
     for label in required_labels:
         assert label in content
+
+    model_names_by_zone = {
+        zone: {
+            path.stem
+            for path in (repo_root / "infra" / "analytics" / "dbt" / "models" / zone).glob("*.sql")
+        }
+        for zone in ("bronze", "silver", "gold")
+    }
+    for model_names in model_names_by_zone.values():
+        for model_name in model_names:
+            assert model_name in content
+
+    assert "Feature outputs require event_timestamp and created" in content
+
+
+def test_feature_contract_uses_created_only_at_gold_feature_outputs() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    dbt_root = repo_root / "infra" / "analytics" / "dbt" / "models" / "gold"
+    feature_schema = yaml.safe_load((dbt_root / "_features.yml").read_text(encoding="utf-8"))
+    feature_columns = {
+        model["name"]: [column["name"] for column in model["columns"]]
+        for model in feature_schema["models"]
+    }
+
+    assert set(feature_columns) == {
+        "feat_customer_90d",
+        "feat_stream_60m",
+        "feat_customer_unified",
+    }
+    for columns in feature_columns.values():
+        assert "event_timestamp" in columns
+        assert "created" in columns
+        assert "created_ts" not in columns
+
+    for model_name in feature_columns:
+        model_sql = (dbt_root / f"{model_name}.sql").read_text(encoding="utf-8")
+        assert " as created" in model_sql
+        assert " as created_ts" not in model_sql
+
+    assert "created_ts" in (dbt_root / "_dimensions.yml").read_text(encoding="utf-8")
+    assert "created_ts" in (dbt_root / "_facts.yml").read_text(encoding="utf-8")
+    assert "created_ts" in (repo_root / "infra" / "analytics" / "dbt" / "models" / "silver" / "stg_orders.sql").read_text(encoding="utf-8")
+    assert '"created_ts"' in (repo_root / "infra" / "kafka" / "schemas" / "common_event_value.schema.json").read_text(encoding="utf-8")
+
+
+def test_relationship_diagrams_match_feature_created_contract() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    physical = (repo_root / "architecture" / "diagrams" / "erd" / "physical_gold_model.puml").read_text(encoding="utf-8")
+    dbml = (repo_root / "architecture" / "diagrams" / "erd" / "gold_layer_ERD.dbml").read_text(encoding="utf-8")
+
+    for feature_name in ("feat_customer_90d", "feat_stream_60m", "feat_customer_unified"):
+        physical_start = physical.index(f'class "{feature_name}"')
+        physical_end = physical.find("\n  class ", physical_start + 1)
+        physical_block = physical[physical_start: physical_end if physical_end != -1 else len(physical)]
+        assert "created : TIMESTAMP" in physical_block
+        assert "created_ts : TIMESTAMP" not in physical_block
+
+        dbml_start = dbml.index(f"Table {feature_name}")
+        dbml_end = dbml.find("\nTable ", dbml_start + 1)
+        dbml_block = dbml[dbml_start: dbml_end if dbml_end != -1 else len(dbml)]
+        assert "created timestamp" in dbml_block
+        assert "created_ts timestamp" not in dbml_block
 
 
 def test_dbt_project_declares_expected_model_layers_and_tests() -> None:

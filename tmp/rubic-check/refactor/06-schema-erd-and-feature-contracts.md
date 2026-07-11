@@ -181,4 +181,33 @@ Expected: rows 40-44 are reviewable in order and all schema regressions pass.
 
 ## Completion Record
 
-The implementing session records date, renamed columns, ERD model counts, source hash, dbt result counts, test commands/exit codes, generated artifacts, and any remaining limitations here. Until then, unchecked tasks define the work.
+Completed on 2026-07-11 in the current repository folder on branch `feature/finalize-edai1`. No files were staged or committed.
+
+### Renamed Feature Outputs
+
+- `feat_customer_90d`: `max(fo.created_ts)` now aliases to the output column `created` in dbt and Spark.
+- `feat_stream_60m`: `max(created_ts)` now aliases to the output column `created` in dbt and Spark.
+- `feat_customer_unified`: combines `c.created` and `s.created` into the output column `created` in dbt and Spark.
+- All three dbt contracts expose `event_timestamp` plus `created: timestamp`. Source events, Bronze, Silver, dimensions, facts, OBTs, and aggregates were not renamed.
+
+### ERD And Generated Evidence
+
+- `architecture/diagrams/schema_design.puml` remains the generated all-zone ERD source. The evidence generator now derives model names from the dbt Bronze, Silver, and Gold directories and aborts when a name is missing from that source.
+- The regenerated manifest records source `architecture/diagrams/schema_design.puml`, SHA-256 `fce33138edf07539c560a4c10cd0f01f560fc61353510ea88c7e02445b88861d`, PlantUML Server render mode, and model counts Bronze `16`, Silver `14`, Gold `22`.
+- `physical_gold_model.puml`, `physical_gold_model.png`, and `gold_layer_ERD.dbml` now show `created` for exactly the three feature tables; their relationship topology is unchanged.
+- Regenerated Section 02 artifacts include the all-zone PNG, Gold inventory PNG, dbt catalog, schema inventory, build/test CSVs, row counts, report, and manifest. The generated catalog and schema inventory show `event_timestamp` and `created`, with no feature `created_ts` column.
+
+### Commands And Results
+
+- Initial Topic 06 contract run: `rtk uv run pytest tests/unit/test_section02_schema_design.py tests/unit/test_section02_evidence_generation.py tests/unit/test_spark_batch_runtime.py -q` -> `8 failed, 29 passed`; failures were the intended old feature aliases, absent ERD metadata, stale evidence, and absent local DuckDB artifact.
+- After scoped code/docs changes and before regeneration, the same command -> `3 failed, 35 passed`; only stale evidence and the absent DuckDB artifact remained.
+- `rtk uv run python scripts/generate/run_generator.py --scale smoke --mode full --clean --evidence-root tmp/topic06_generator_evidence` -> exit `0`; fresh raw inputs were produced without rewriting committed Topic 02 evidence.
+- `rtk uv run python scripts/qa/generate_section02_evidence.py` -> exit `0`; its embedded dbt build produced `52` successful models and `66` passing tests, then dbt docs generation completed successfully.
+- The physical relationship PNG was re-rendered from `physical_gold_model.puml` with the existing PlantUML renderer.
+- Focused regression: `rtk uv run pytest tests/unit/test_section02_schema_design.py tests/unit/test_section02_evidence_generation.py tests/unit/test_spark_batch_runtime.py tests/unit/test_deliverables_documentation.py -q` -> `43 passed in 2.03s`.
+- Full regression: `rtk uv run pytest -q` -> `304 passed, 1 skipped, 1 failed in 99.71s`.
+- `rtk docker compose ps --status running` returned no running services. This session did not start Docker or Compose services, so none required stopping; the generator/dbt/evidence runtime slot was released after the completed commands.
+
+### Limitations
+
+- The only full-suite failure is outside Topic 06: `tests/unit/test_script_surface_documentation.py::test_scripts_readme_documents_every_tracked_script` expects the already-tracked `scripts/kafka/capture_connect_image_optimization.py` entry in `scripts/README.md`. It was intentionally left for the owning documentation topic.
