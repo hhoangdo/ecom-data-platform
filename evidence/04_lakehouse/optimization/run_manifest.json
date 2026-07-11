@@ -1,0 +1,32 @@
+{
+  "artifacts": [
+    "before_file_stats.csv",
+    "after_file_stats.csv",
+    "compaction_results.json",
+    "query_benchmark.json",
+    "report.md",
+    "run_manifest.json"
+  ],
+  "captured_at": "2026-07-11T11:46:04.233315+00:00",
+  "command": [
+    "/workspace/scripts/lakehouse/optimize_iceberg.py",
+    "--tables",
+    "silver.stg_orders",
+    "silver.stg_order_items",
+    "gold.fact_order",
+    "gold.fact_order_item",
+    "--target-file-size-bytes",
+    "134217728",
+    "--min-input-files",
+    "2",
+    "--evidence-root",
+    "/workspace/evidence/04_lakehouse/optimization"
+  ],
+  "status": "blocked_no_eligible_file_groups",
+  "tables": [
+    "silver.stg_orders",
+    "silver.stg_order_items",
+    "gold.fact_order",
+    "gold.fact_order_item"
+  ]
+}

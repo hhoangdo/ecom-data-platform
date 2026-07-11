@@ -1,0 +1,87 @@
+{
+  "invariants": [
+    {
+      "failures": [],
+      "success": true,
+      "table": "silver.stg_orders"
+    },
+    {
+      "failures": [],
+      "success": true,
+      "table": "silver.stg_order_items"
+    },
+    {
+      "failures": [],
+      "success": true,
+      "table": "gold.fact_order"
+    },
+    {
+      "failures": [],
+      "success": true,
+      "table": "gold.fact_order_item"
+    }
+  ],
+  "min_input_files": 2,
+  "reason": "No approved table had an eligible partition-level group with at least two data files.",
+  "rewrites": [
+    {
+      "input_file_count": 1,
+      "minimum_input_files": 2,
+      "rewritten_data_files_count": 0,
+      "status": "skipped_insufficient_files",
+      "table": "silver.stg_orders"
+    },
+    {
+      "input_file_count": 1,
+      "minimum_input_files": 2,
+      "rewritten_data_files_count": 0,
+      "status": "skipped_insufficient_files",
+      "table": "silver.stg_order_items"
+    },
+    {
+      "duration_ms": 291.350013,
+      "input_file_count": 7,
+      "minimum_input_files": 2,
+      "procedure_rows": [
+        {
+          "added_data_files_count": 0,
+          "failed_data_files_count": 0,
+          "removed_delete_files_count": 0,
+          "rewritten_bytes_count": 0,
+          "rewritten_data_files_count": 0
+        }
+      ],
+      "rewritten_data_files_count": 0,
+      "status": "skipped_no_eligible_file_groups",
+      "table": "gold.fact_order",
+      "target_file_size_bytes": 134217728
+    },
+    {
+      "duration_ms": 67.38952,
+      "input_file_count": 7,
+      "minimum_input_files": 2,
+      "procedure_rows": [
+        {
+          "added_data_files_count": 0,
+          "failed_data_files_count": 0,
+          "removed_delete_files_count": 0,
+          "rewritten_bytes_count": 0,
+          "rewritten_data_files_count": 0
+        }
+      ],
+      "rewritten_data_files_count": 0,
+      "status": "skipped_no_eligible_file_groups",
+      "table": "gold.fact_order_item",
+      "target_file_size_bytes": 134217728
+    }
+  ],
+  "status": "blocked_no_eligible_file_groups",
+  "success": false,
+  "tables": [
+    "silver.stg_orders",
+    "silver.stg_order_items",
+    "gold.fact_order",
+    "gold.fact_order_item"
+  ],
+  "target_file_size_bytes": 134217728
+}

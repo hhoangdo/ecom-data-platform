@@ -28,8 +28,8 @@
     "indexed": "ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f"
   },
   "source_db": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\ecom-data-platform-submission\\data\\gold\\vina_bim_shop.duckdb",
-  "source_sha256_after": "687140863e86b09140186d6f52242012de9117b4022c452b7a48b4b94469a45a",
-  "source_sha256_before": "687140863e86b09140186d6f52242012de9117b4022c452b7a48b4b94469a45a",
+  "source_sha256_after": "c462cbd8b05f08b6ccd70e5d2a87ee1b6ddc37bf5ec1d99bd933ac83710ba41d",
+  "source_sha256_before": "c462cbd8b05f08b6ccd70e5d2a87ee1b6ddc37bf5ec1d99bd933ac83710ba41d",
   "timing_policy": {
     "measured_runs": 7,
     "warmup_runs": 2
@@ -37,15 +37,15 @@
   "timings": {
     "baseline": {
       "measured_ms": [
-        1.508,
-        1.3556,
-        1.412,
-        1.5048,
-        1.5705,
-        1.4046,
-        1.4295
+        2.1212,
+        1.9194,
+        2.1072,
+        1.5139,
+        1.4139,
+        1.8375,
+        1.7003
       ],
-      "median_ms": 1.4295,
+      "median_ms": 1.8375,
       "result_hash": "ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f",
       "rows": [
         [
@@ -79,21 +79,21 @@
         ]
       ],
       "warmups_ms": [
-        732.6493,
-        1.6648
+        785.6855,
+        2.5748
       ]
     },
     "indexed": {
       "measured_ms": [
-        0.9851,
-        1.1809,
-        1.2886,
-        1.0726,
-        1.005,
-        1.0166,
-        1.1363
+        1.3278,
+        1.4044,
+        1.3468,
+        1.5939,
+        1.6543,
+        1.3387,
+        1.5466
       ],
-      "median_ms": 1.0726,
+      "median_ms": 1.4044,
       "result_hash": "ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f",
       "rows": [
         [
@@ -127,8 +127,8 @@
         ]
       ],
       "warmups_ms": [
-        1.2569,
-        1.0366
+        1.5221,
+        1.2438
       ]
     }
   }

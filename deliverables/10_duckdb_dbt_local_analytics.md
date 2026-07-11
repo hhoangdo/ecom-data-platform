@@ -119,12 +119,32 @@ Important evidence paths:
 | `evidence/05_spark_batch/dbt_parity_report.md` | Human-readable DuckDB vs Spark/Trino parity report. |
 | `evidence/05_spark_batch/dbt_parity_report.json` | Machine-readable parity report. |
 
+## Isolated ART Index Evidence (Row 27)
+
+After the smoke dbt rebuild (52 models and 66 tests), the index experiment copied only `gold.fact_order` into the disposable database at `tmp/rubic-check/runtime/duckdb_index_benchmark.duckdb`. The canonical `data/gold/vina_bim_shop.duckdb` was opened read-only by the benchmark and had the same SHA-256 before and after: `c462cbd8b05f08b6ccd70e5d2a87ee1b6ddc37bf5ec1d99bd933ac83710ba41d`.
+
+The experiment queried the same existing `order_id`, `ORD-BDG-20260426-00000006`, before and after creating `idx_benchmark_fact_order_order_id` on `benchmark_fact_order(order_id)`. Each variant used two warmups and seven measured executions; raw samples, result rows, hashes, index inventory, and both explain outputs are preserved below.
+
+| Variant | Seven measured client times (ms) | Median (ms) | Result hash |
+| --- | --- | ---: | --- |
+| Baseline | 2.1212, 1.9194, 2.1072, 1.5139, 1.4139, 1.8375, 1.7003 | 1.8375 | `ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f` |
+| Named ART index present | 1.3278, 1.4044, 1.3468, 1.5939, 1.6543, 1.3387, 1.5466 | 1.4044 | `ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f` |
+
+The result hash is identical, `duckdb_indexes()` records the named index, and the captured explain text did not visibly change. The second local median is lower in this one run, but this small, warm-cache-sensitive measurement and an unchanged plan do not establish a general ART-index speedup.
+
+Code and evidence:
+
+- [isolated benchmark script](../scripts/analytics/benchmark_duckdb_index.py)
+- [machine-readable index result](../evidence/10_duckdb_dbt_local_analytics/index_optimization/index_benchmark.json) and [run manifest](../evidence/10_duckdb_dbt_local_analytics/index_optimization/run_manifest.json)
+- [baseline explain](../evidence/10_duckdb_dbt_local_analytics/index_optimization/baseline_explain.txt) and [indexed explain](../evidence/10_duckdb_dbt_local_analytics/index_optimization/indexed_explain.txt)
+
 Known boundaries:
 
 - `data/gold/vina_bim_shop.duckdb` is rebuilt from local raw data and represents the dbt parity path.
 - `data/gold/vina_bim_shop_executive.duckdb` is a snapshot exported from Trino Gold and is stale until regenerated.
 - DuckDB files are local evidence artifacts, not shared production databases.
 - The canonical full-platform truth remains Spark Gold served through Trino.
+- The Row-27 timings are isolated local observations, not a production tuning recommendation or a promise of index acceleration.
 
 ## Convenience Make Targets
 

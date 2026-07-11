@@ -143,7 +143,7 @@ def rewrite_data_files(
     )
     return {
         "table": table_name,
-        "status": "rewritten",
+        "status": "rewritten" if rewritten_data_files_count else "skipped_no_eligible_file_groups",
         "input_file_count": input_file_count,
         "minimum_input_files": min_input_files,
         "target_file_size_bytes": target_file_size_bytes,

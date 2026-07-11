@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -80,6 +81,27 @@ def test_rewrite_skips_tables_without_two_input_files() -> None:
     }
 
 
+def test_rewrite_records_when_partition_groups_are_not_eligible() -> None:
+    class FakeRow:
+        def asDict(self, recursive: bool) -> dict[str, int]:
+            assert recursive is True
+            return {"rewritten_data_files_count": 0}
+
+    class FakeResult:
+        def collect(self) -> list[FakeRow]:
+            return [FakeRow()]
+
+    class FakeSpark:
+        def sql(self, statement: str) -> FakeResult:
+            assert "rewrite_data_files" in statement
+            return FakeResult()
+
+    result = rewrite_data_files(FakeSpark(), "gold.fact_order", input_file_count=7)
+
+    assert result["status"] == "skipped_no_eligible_file_groups"
+    assert result["rewritten_data_files_count"] == 0
+
+
 def test_cli_writes_before_file_stats_before_rewrite(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     module = _load_script_module()
     events: list[str] = []
@@ -133,6 +155,66 @@ def test_cli_writes_before_file_stats_before_rewrite(tmp_path: Path, monkeypatch
     module.main()
 
     assert events == ["stats:silver.stg_orders", "rewrite:silver.stg_orders", "stats:silver.stg_orders"]
+
+
+def test_cli_persists_blocked_evidence_when_no_file_group_is_eligible(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _load_script_module()
+
+    def fake_stats(_spark: object, table_name: str) -> dict[str, object]:
+        return {
+            "table": table_name,
+            "file_count": 7,
+            "total_bytes": 700,
+            "min_bytes": 100,
+            "max_bytes": 100,
+            "average_bytes": 100.0,
+            "row_count": 3,
+            "aggregate_hash": "same",
+        }
+
+    monkeypatch.setattr(module, "build_spark_session", lambda: object())
+    monkeypatch.setattr(module, "collect_file_stats", fake_stats)
+    monkeypatch.setattr(
+        module,
+        "rewrite_data_files",
+        lambda _spark, table_name, **_kwargs: {
+            "table": table_name,
+            "status": "skipped_no_eligible_file_groups",
+            "input_file_count": 7,
+            "minimum_input_files": 2,
+            "rewritten_data_files_count": 0,
+        },
+    )
+    monkeypatch.setattr(
+        module,
+        "benchmark_trino_queries",
+        lambda **_kwargs: {"warmup_runs": 2, "measured_runs": 7, "queries": []},
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "optimize_iceberg.py",
+            "--tables",
+            "gold.fact_order",
+            "--evidence-root",
+            str(tmp_path),
+        ],
+    )
+
+    with pytest.raises(RuntimeError, match="did not rewrite"):
+        module.main()
+
+    results = json.loads((tmp_path / "compaction_results.json").read_text(encoding="utf-8"))
+    benchmark = json.loads((tmp_path / "query_benchmark.json").read_text(encoding="utf-8"))
+    assert results["success"] is False
+    assert results["status"] == "blocked_no_eligible_file_groups"
+    assert results["invariants"] == [{"failures": [], "success": True, "table": "gold.fact_order"}]
+    assert benchmark["after"] is None
+    assert (tmp_path / "report.md").is_file()
+    assert (tmp_path / "run_manifest.json").is_file()
 
 
 def test_cli_uses_the_spark_image_python_310_compatible_utc_form() -> None:

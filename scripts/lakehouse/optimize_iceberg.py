@@ -110,6 +110,36 @@ def _write_report(
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def _write_blocked_report(
+    path: Path,
+    *,
+    tables: tuple[str, ...],
+    rewrites: list[dict[str, object]],
+) -> None:
+    lines = [
+        "# Iceberg Storage Optimization Report",
+        "",
+        "## Blocked Physical Layout",
+        "",
+        "No approved table had an eligible partition-level group of at least two data files.",
+        "No rewrite was forced and no after-rewrite Trino timing was collected.",
+        "",
+        "| Table | Status | Input files | Rewritten files |",
+        "| --- | --- | ---: | ---: |",
+    ]
+    for rewrite in rewrites:
+        lines.append(
+            "| {table} | {status} | {input_file_count} | {rewritten_data_files_count} |".format(
+                table=rewrite["table"],
+                status=rewrite["status"],
+                input_file_count=rewrite["input_file_count"],
+                rewritten_data_files_count=rewrite["rewritten_data_files_count"],
+            )
+        )
+    lines.extend(["", f"Tables evaluated: {', '.join(tables)}."])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     args = parse_args()
     tables = validate_tables(args.tables)
@@ -145,6 +175,47 @@ def main() -> None:
         ]
         rewritten = [rewrite for rewrite in rewrites if rewrite["status"] == "rewritten"]
         if not rewritten or sum(int(rewrite["rewritten_data_files_count"]) for rewrite in rewritten) < 1:
+            blocker = "No approved table had an eligible partition-level group with at least two data files."
+            _write_json(
+                evidence_root / "compaction_results.json",
+                {
+                    "success": False,
+                    "status": "blocked_no_eligible_file_groups",
+                    "reason": blocker,
+                    "tables": list(tables),
+                    "target_file_size_bytes": args.target_file_size_bytes,
+                    "min_input_files": args.min_input_files,
+                    "rewrites": rewrites,
+                    "invariants": invariants,
+                },
+            )
+            _write_json(
+                evidence_root / "query_benchmark.json",
+                {
+                    "status": "blocked_no_eligible_file_groups",
+                    "reason": blocker,
+                    "before": before_benchmark,
+                    "after": None,
+                },
+            )
+            _write_blocked_report(evidence_root / "report.md", tables=tables, rewrites=rewrites)
+            _write_json(
+                evidence_root / "run_manifest.json",
+                {
+                    "captured_at": datetime.now(timezone.utc).isoformat(),
+                    "status": "blocked_no_eligible_file_groups",
+                    "command": sys.argv,
+                    "tables": list(tables),
+                    "artifacts": [
+                        "before_file_stats.csv",
+                        "after_file_stats.csv",
+                        "compaction_results.json",
+                        "query_benchmark.json",
+                        "report.md",
+                        "run_manifest.json",
+                    ],
+                },
+            )
             raise RuntimeError("Iceberg compaction did not rewrite any data files.")
         for index, rewrite in enumerate(rewrites):
             if rewrite["status"] == "rewritten" and int(after[index]["file_count"]) > int(before[index]["file_count"]):
