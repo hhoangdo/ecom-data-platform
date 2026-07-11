@@ -193,6 +193,53 @@ Evidence includes:
 | Curated JSONL audit outputs | Preserves correction and alert examples for inspection. |
 | Run manifest | Records the capture context and artifact inventory. |
 
+## Topic 04 Baseline And Streaming Proof
+
+The canonical streaming configuration remains unchanged. The experiment uses one composed job
+per variant so both commerce and ops outputs share the same isolated replay boundary. Each job is
+captured while running and then intentionally canceled because Kafka sources are unbounded.
+
+### Row 21 - Baseline and Optimized Comparison
+
+The baseline job [`vina-bim-shop-flink-baseline`](../evidence/06_flink_streaming/optimization/baseline_metrics.json)
+uses parallelism `1`, no checkpointing, zero watermark out-of-orderness, and zero allowed
+lateness. The optimized job
+[`vina-bim-shop-flink-optimized`](../evidence/06_flink_streaming/optimization/optimized_metrics.json)
+inherits the canonical five-second watermark and `300/600/900/120`-second lateness contract.
+Both consume replay SHA-256 `43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7`.
+[`comparison.json`](../evidence/06_flink_streaming/optimization/comparison.json) proves their
+on-time aggregates are equal; [baseline UI](../evidence/06_flink_streaming/screenshots/flink_baseline_job.png)
+and [optimized UI](../evidence/06_flink_streaming/screenshots/flink_optimized_job.png) show the
+two job IDs, with one completed optimized checkpoint.
+
+### Row 22 - Burst Proof
+
+The deterministic `ops-1` input produces `traffic_burst` with `burst_event_count: 120` in
+[`challenge_samples.json`](../evidence/06_flink_streaming/optimization/challenge_samples.json).
+
+### Row 23 - Late Arrival Proof
+
+The replay advances the event-time watermark before publishing `evt-8`. The baseline records zero
+corrections; the optimized path emits one `late_event` correction to its isolated metric topic.
+The source event and correction snapshot are retained in
+[`challenge_samples.json`](../evidence/06_flink_streaming/optimization/challenge_samples.json).
+
+### Row 24 - Duplicate Proof
+
+The two `evt-3` inputs yield one paid-order metric with `duplicate_event_count: 1`, proving that
+the duplicate is observed without inflating the aggregate. See
+[`challenge_samples.json`](../evidence/06_flink_streaming/optimization/challenge_samples.json).
+
+### Row 25 - Event-Time Window Proof
+
+The sample records the successful one-minute `TumblingEventTimeWindows` output for
+`2026-05-01T10:00:00+00:00` through `2026-05-01T10:01:00+00:00`; the implementation remains in
+`commerce_job.py` and the runtime result is in
+[`challenge_samples.json`](../evidence/06_flink_streaming/optimization/challenge_samples.json).
+
+The full method, IDs, settings, output counts, and limitations are recorded in
+[`optimization/report.md`](../evidence/06_flink_streaming/optimization/report.md).
+
 ## Limitations
 
 - The realtime layer is fresh and provisional; it does not replace reconciled Spark Gold tables.

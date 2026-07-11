@@ -15,20 +15,8 @@ from vina_bim_shop.flink.runtime import (
 )
 
 
-def run() -> None:
-    config = load_streaming_config()
-    runtime = load_runtime_settings(config)
-
+def add_ops_pipeline(*, env, config, runtime, group_ids: dict[str, str]) -> None:
     from pyflink.common import Types, WatermarkStrategy
-    from pyflink.datastream import StreamExecutionEnvironment
-
-    env = StreamExecutionEnvironment.get_execution_environment()
-    env.set_parallelism(1)
-    add_required_jars(env)
-    configure_checkpointing(
-        env,
-        checkpoint_uri=f"s3://{runtime.checkpoint_bucket}/{runtime.checkpoint_prefix}/ops_alerts",
-    )
 
     sources = []
     for source_name in ["ops", "catalog", "fulfillment"]:
@@ -37,7 +25,7 @@ def run() -> None:
                 env=env,
                 topic=config.source_topics[source_name],
                 bootstrap_servers=runtime.kafka_bootstrap_servers,
-                group_id=f"vina-bim-shop-{source_name}-alerts",
+                group_id=group_ids[source_name],
                 watermark_strategy=WatermarkStrategy.no_watermarks(),
             ).map(lambda raw: json.loads(raw), output_type=Types.PICKLED_BYTE_ARRAY()).assign_timestamps_and_watermarks(
                 event_timestamp_assigner(out_of_orderness_seconds=config.out_of_orderness_seconds)
@@ -66,5 +54,30 @@ def run() -> None:
             prefix=runtime.curated_output_prefix,
             topic=config.derived_topics["ops_alerts"],
         )
+    )
+
+
+def run() -> None:
+    config = load_streaming_config()
+    runtime = load_runtime_settings(config)
+
+    from pyflink.datastream import StreamExecutionEnvironment
+
+    env = StreamExecutionEnvironment.get_execution_environment()
+    env.set_parallelism(1)
+    add_required_jars(env)
+    configure_checkpointing(
+        env,
+        checkpoint_uri=f"s3://{runtime.checkpoint_bucket}/{runtime.checkpoint_prefix}/ops_alerts",
+    )
+    add_ops_pipeline(
+        env=env,
+        config=config,
+        runtime=runtime,
+        group_ids={
+            "catalog": "vina-bim-shop-catalog-alerts",
+            "fulfillment": "vina-bim-shop-fulfillment-alerts",
+            "ops": "vina-bim-shop-ops-alerts",
+        },
     )
     env.execute("vina-bim-shop-ops-alerts")

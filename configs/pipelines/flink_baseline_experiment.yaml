@@ -1,0 +1,19 @@
+variants:
+  baseline:
+    job_name: vina-bim-shop-flink-baseline
+    consumer_group_suffix: experiment-baseline
+    derived_topic_suffix: baseline
+    checkpoint_prefix: flink-experiments/baseline
+    curated_output_prefix: streaming_curated/experiments/baseline
+    parallelism: 1
+    checkpointing_enabled: false
+    out_of_orderness_seconds: 0
+    allowed_lateness_seconds: 0
+  optimized:
+    job_name: vina-bim-shop-flink-optimized
+    consumer_group_suffix: experiment-optimized
+    derived_topic_suffix: optimized
+    checkpoint_prefix: flink-experiments/optimized
+    curated_output_prefix: streaming_curated/experiments/optimized
+    parallelism: 1
+    checkpointing_enabled: true

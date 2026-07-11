@@ -1,0 +1,46 @@
+{
+  "format": "flink-experiment-replay-v1",
+  "phase_counts": {
+    "initial_business_events": 14,
+    "late_correction_event": 1,
+    "watermark_control_event": 1
+  },
+  "phase_event_ids": {
+    "initial_business_events": [
+      "cat-1",
+      "evt-1",
+      "evt-2",
+      "evt-3",
+      "evt-3",
+      "evt-4",
+      "evt-5",
+      "evt-6",
+      "evt-7",
+      "ful-1",
+      "ful-2",
+      "ops-1",
+      "ops-2",
+      "ops-3"
+    ],
+    "late_correction_event": [
+      "evt-8"
+    ],
+    "watermark_control_event": [
+      "ctrl-1"
+    ]
+  },
+  "phases": [
+    "initial_business_events",
+    "watermark_control_event",
+    "late_correction_event"
+  ],
+  "record_count": 16,
+  "replay_path": "evidence\\06_flink_streaming\\optimization\\replay.ndjson",
+  "replay_sha256": "43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7",
+  "topic_counts": {
+    "catalog_events": 1,
+    "commerce_events": 10,
+    "fulfillment_events": 2,
+    "ops_events": 3
+  }
+}

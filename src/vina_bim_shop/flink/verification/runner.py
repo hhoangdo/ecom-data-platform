@@ -28,6 +28,7 @@ from ._probes import (
     _has_checkpoint_metadata,
     _list_minio_prefix,
     _remove_docker_volumes,
+    _run_command,
     _running_compose_services,
     _safe_minio_listing,
     _safe_topic_counts,
@@ -84,7 +85,7 @@ def run_cleanroom_verification(
     run_root: Path | None = None,
     include_pinot: bool = False,
     poll_timeout_seconds: int = 240,
-    run_command: RunCommand,
+    run_command: RunCommand = _run_command,
 ) -> dict[str, Any]:
     config_root = run_root or create_run_root(base_evidence_root)
     summary: dict[str, Any] = {

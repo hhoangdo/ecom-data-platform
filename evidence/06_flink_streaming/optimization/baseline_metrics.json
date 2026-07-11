@@ -1,0 +1,318 @@
+{
+  "captured_at": "2026-07-11T01:20:55.295640+00:00",
+  "correction_count": 0,
+  "initial_output_counts": {
+    "commerce_metrics": 3,
+    "metric_corrections": 0,
+    "ops_alerts": 7
+  },
+  "job_id": "78e3cd83407fce7360cdaf38e70a2509",
+  "job_name": "vina-bim-shop-flink-baseline",
+  "job_state_at_capture": "RUNNING",
+  "job_timing": {
+    "duration_ms": 39159,
+    "end_time_epoch_ms": 1783732855522,
+    "start_time_epoch_ms": 1783732816363
+  },
+  "on_time_aggregates": {
+    "commerce|2026-05-01T10:00:00+00:00|1fe8efd21c88": {
+      "checkout_started_count": 1,
+      "duplicate_event_count": 0,
+      "gmv_proxy_amount": 0,
+      "late_event_count": 0,
+      "metric_key": "commerce|2026-05-01T10:00:00+00:00|1fe8efd21c88",
+      "order_count": 0,
+      "order_placed_count": 0,
+      "payment_failure_count": 0,
+      "revenue_amount": 0,
+      "window_end_ts": "2026-05-01T10:01:00+00:00",
+      "window_start_ts": "2026-05-01T10:00:00+00:00"
+    },
+    "commerce|2026-05-01T10:00:00+00:00|603294ce4477": {
+      "checkout_started_count": 0,
+      "duplicate_event_count": 0,
+      "gmv_proxy_amount": 0,
+      "late_event_count": 0,
+      "metric_key": "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+      "order_count": 0,
+      "order_placed_count": 0,
+      "payment_failure_count": 4,
+      "revenue_amount": 0,
+      "window_end_ts": "2026-05-01T10:01:00+00:00",
+      "window_start_ts": "2026-05-01T10:00:00+00:00"
+    },
+    "commerce|2026-05-01T10:00:00+00:00|628802a8358a": {
+      "checkout_started_count": 0,
+      "duplicate_event_count": 1,
+      "gmv_proxy_amount": 125000.0,
+      "late_event_count": 0,
+      "metric_key": "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+      "order_count": 1,
+      "order_placed_count": 1,
+      "payment_failure_count": 0,
+      "revenue_amount": 125000.0,
+      "window_end_ts": "2026-05-01T10:01:00+00:00",
+      "window_start_ts": "2026-05-01T10:00:00+00:00"
+    }
+  },
+  "output_counts": {
+    "commerce_metrics": 3,
+    "metric_corrections": 0,
+    "ops_alerts": 7
+  },
+  "checkpoint_count": 0,
+  "output_rows": {
+    "alerts": [
+      {
+        "alert_id": "cat-1",
+        "alert_type": "inventory_low_stock",
+        "dimensions": {
+          "event_type": "inventory_low_stock",
+          "schema_version": 1
+        },
+        "emitted_ts": "2026-05-01T10:01:00+00:00",
+        "event_time": "2026-05-01T10:01:00+00:00",
+        "metrics": {
+          "inventory_level": 2,
+          "primary_category": "FMCG"
+        },
+        "schema_version": 1,
+        "severity": "medium",
+        "source_topic": "catalog_events",
+        "window_end_ts": "2026-05-01T10:01:00+00:00",
+        "window_start_ts": "2026-05-01T10:01:00+00:00"
+      },
+      {
+        "alert_id": "ful-1",
+        "alert_type": "shipment_delayed",
+        "dimensions": {
+          "event_type": "shipment_delayed",
+          "schema_version": 1
+        },
+        "emitted_ts": "2026-05-01T10:02:00+00:00",
+        "event_time": "2026-05-01T10:02:00+00:00",
+        "metrics": {
+          "shipping_city": "Ho Chi Minh City",
+          "shipping_method": "standard"
+        },
+        "schema_version": 1,
+        "severity": "high",
+        "source_topic": "fulfillment_events",
+        "window_end_ts": "2026-05-01T10:02:00+00:00",
+        "window_start_ts": "2026-05-01T10:02:00+00:00"
+      },
+      {
+        "alert_id": "ful-2",
+        "alert_type": "shipment_blocked_payment_failed",
+        "dimensions": {
+          "event_type": "shipment_blocked_payment_failed",
+          "schema_version": 1
+        },
+        "emitted_ts": "2026-05-01T10:02:10+00:00",
+        "event_time": "2026-05-01T10:02:10+00:00",
+        "metrics": {
+          "block_reason": "payment_failed",
+          "shipment_status": "blocked_payment_failed"
+        },
+        "schema_version": 1,
+        "severity": "high",
+        "source_topic": "fulfillment_events",
+        "window_end_ts": "2026-05-01T10:02:10+00:00",
+        "window_start_ts": "2026-05-01T10:02:10+00:00"
+      },
+      {
+        "alert_id": "ops-1",
+        "alert_type": "traffic_burst",
+        "dimensions": {
+          "event_type": "traffic_burst_detected",
+          "schema_version": 1
+        },
+        "emitted_ts": "2026-05-01T10:03:00+00:00",
+        "event_time": "2026-05-01T10:03:00+00:00",
+        "metrics": {
+          "burst_event_count": 120,
+          "burst_windows": [
+            "12:00-12:20"
+          ]
+        },
+        "schema_version": 1,
+        "severity": "high",
+        "source_topic": "ops_events",
+        "window_end_ts": "2026-05-01T10:03:00+00:00",
+        "window_start_ts": "2026-05-01T10:03:00+00:00"
+      },
+      {
+        "alert_id": "ops-2",
+        "alert_type": "late_arrival",
+        "dimensions": {
+          "event_type": "late_arrival_observed",
+          "schema_version": 1
+        },
+        "emitted_ts": "2026-05-01T10:03:10+00:00",
+        "event_time": "2026-05-01T10:03:10+00:00",
+        "metrics": {
+          "allowed_lateness_seconds": 300,
+          "late_event_count": 1
+        },
+        "schema_version": 1,
+        "severity": "medium",
+        "source_topic": "ops_events",
+        "window_end_ts": "2026-05-01T10:03:10+00:00",
+        "window_start_ts": "2026-05-01T10:03:10+00:00"
+      },
+      {
+        "alert_id": "ops-3",
+        "alert_type": "duplicate_spike",
+        "dimensions": {
+          "event_type": "duplicate_event_observed",
+          "schema_version": 1
+        },
+        "emitted_ts": "2026-05-01T10:03:20+00:00",
+        "event_time": "2026-05-01T10:03:20+00:00",
+        "metrics": {
+          "dedup_key": [
+            "event_id",
+            "created_ts"
+          ],
+          "duplicate_event_count": 1
+        },
+        "schema_version": 1,
+        "severity": "high",
+        "source_topic": "ops_events",
+        "window_end_ts": "2026-05-01T10:03:20+00:00",
+        "window_start_ts": "2026-05-01T10:03:20+00:00"
+      },
+      {
+        "alert_id": "commerce|2026-05-01T10:00:00+00:00|603294ce4477|payment_failure_spike",
+        "alert_type": "payment_failure_spike",
+        "dimensions": {
+          "device_type": "app_android",
+          "order_status": "payment_failed",
+          "payment_method": "wallet",
+          "primary_category": "FMCG",
+          "source": "app"
+        },
+        "emitted_ts": "2026-05-01T10:01:09.999000+00:00",
+        "event_time": "2026-05-01T10:01:00+00:00",
+        "metrics": {
+          "order_count": 0,
+          "payment_failure_count": 4,
+          "payment_failure_rate": 0.0
+        },
+        "schema_version": 1,
+        "severity": "medium",
+        "source_topic": "commerce_events",
+        "window_end_ts": "2026-05-01T10:01:00+00:00",
+        "window_start_ts": "2026-05-01T10:00:00+00:00"
+      }
+    ],
+    "checkpoint_listing": [
+      {
+        "listing": ""
+      }
+    ],
+    "corrections": [],
+    "metrics": [
+      {
+        "checkout_conversion_rate": 0.0,
+        "checkout_started_count": 1,
+        "correction_version": 0,
+        "device_type": "app_android",
+        "duplicate_event_count": 0,
+        "emitted_ts": "2026-07-11T01:20:26.983259+00:00",
+        "gmv_proxy_amount": 0,
+        "late_event_count": 0,
+        "metric_key": "commerce|2026-05-01T10:00:00+00:00|1fe8efd21c88",
+        "metric_minute": "2026-05-01T10:00:00+00:00",
+        "order_count": 0,
+        "order_placed_count": 0,
+        "order_status": "checkout_started",
+        "payment_failure_count": 0,
+        "payment_method": null,
+        "primary_category": "FMCG",
+        "revenue_amount": 0,
+        "schema_version": 1,
+        "source": "app",
+        "watermark_ts": "2026-05-01T10:01:09.999000+00:00",
+        "window_end_ts": "2026-05-01T10:01:00+00:00",
+        "window_start_ts": "2026-05-01T10:00:00+00:00"
+      },
+      {
+        "checkout_conversion_rate": 0.0,
+        "checkout_started_count": 0,
+        "correction_version": 0,
+        "device_type": "app_android",
+        "duplicate_event_count": 1,
+        "emitted_ts": "2026-07-11T01:20:26.987119+00:00",
+        "gmv_proxy_amount": 125000.0,
+        "late_event_count": 0,
+        "metric_key": "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+        "metric_minute": "2026-05-01T10:00:00+00:00",
+        "order_count": 1,
+        "order_placed_count": 1,
+        "order_status": "paid",
+        "payment_failure_count": 0,
+        "payment_method": "wallet",
+        "primary_category": "FMCG",
+        "revenue_amount": 125000.0,
+        "schema_version": 1,
+        "source": "app",
+        "watermark_ts": "2026-05-01T10:01:09.999000+00:00",
+        "window_end_ts": "2026-05-01T10:01:00+00:00",
+        "window_start_ts": "2026-05-01T10:00:00+00:00"
+      },
+      {
+        "checkout_conversion_rate": 0.0,
+        "checkout_started_count": 0,
+        "correction_version": 0,
+        "device_type": "app_android",
+        "duplicate_event_count": 0,
+        "emitted_ts": "2026-07-11T01:20:26.990481+00:00",
+        "gmv_proxy_amount": 0,
+        "late_event_count": 0,
+        "metric_key": "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+        "metric_minute": "2026-05-01T10:00:00+00:00",
+        "order_count": 0,
+        "order_placed_count": 0,
+        "order_status": "payment_failed",
+        "payment_failure_count": 4,
+        "payment_method": "wallet",
+        "primary_category": "FMCG",
+        "revenue_amount": 0,
+        "schema_version": 1,
+        "source": "app",
+        "watermark_ts": "2026-05-01T10:01:09.999000+00:00",
+        "window_end_ts": "2026-05-01T10:01:00+00:00",
+        "window_start_ts": "2026-05-01T10:00:00+00:00"
+      }
+    ]
+  },
+  "profile": {
+    "allowed_lateness_seconds": {
+      "catalog_events": 0,
+      "commerce_events": 0,
+      "fulfillment_events": 0,
+      "ops_events": 0
+    },
+    "checkpoint_prefix": "flink-experiments/baseline",
+    "checkpointing_enabled": false,
+    "consumer_groups": {
+      "catalog": "vina-bim-shop-catalog-alerts-experiment-baseline",
+      "commerce": "vina-bim-shop-commerce-metrics-experiment-baseline",
+      "fulfillment": "vina-bim-shop-fulfillment-alerts-experiment-baseline",
+      "ops": "vina-bim-shop-ops-alerts-experiment-baseline"
+    },
+    "curated_output_prefix": "streaming_curated/experiments/baseline",
+    "derived_topics": {
+      "commerce_metrics": "realtime_commerce_metrics_1m_baseline",
+      "metric_corrections": "realtime_metric_corrections_baseline",
+      "ops_alerts": "realtime_ops_alerts_baseline"
+    },
+    "out_of_orderness_seconds": 0,
+    "parallelism": 1
+  },
+  "replay_record_count": 16,
+  "replay_sha256": "43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7",
+  "terminal_job_state": "CANCELED",
+  "variant": "baseline"
+}

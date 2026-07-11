@@ -1,0 +1,142 @@
+{
+  "burst": {
+    "baseline_output_count": 7,
+    "optimized_output": {
+      "alert_id": "ops-1",
+      "alert_type": "traffic_burst",
+      "dimensions": {
+        "event_type": "traffic_burst_detected",
+        "schema_version": 1
+      },
+      "emitted_ts": "2026-05-01T10:03:00+00:00",
+      "event_time": "2026-05-01T10:03:00+00:00",
+      "metrics": {
+        "burst_event_count": 120,
+        "burst_windows": [
+          "12:00-12:20"
+        ]
+      },
+      "schema_version": 1,
+      "severity": "high",
+      "source_topic": "ops_events",
+      "window_end_ts": "2026-05-01T10:03:00+00:00",
+      "window_start_ts": "2026-05-01T10:03:00+00:00"
+    },
+    "source_event_ids": [
+      "ops-1"
+    ]
+  },
+  "duplicate": {
+    "optimized_metric": {
+      "checkout_conversion_rate": 0.0,
+      "checkout_started_count": 0,
+      "correction_version": 0,
+      "device_type": "app_android",
+      "duplicate_event_count": 1,
+      "emitted_ts": "2026-07-11T01:22:12.172768+00:00",
+      "gmv_proxy_amount": 125000.0,
+      "late_event_count": 0,
+      "metric_key": "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+      "metric_minute": "2026-05-01T10:00:00+00:00",
+      "order_count": 1,
+      "order_placed_count": 1,
+      "order_status": "paid",
+      "payment_failure_count": 0,
+      "payment_method": "wallet",
+      "primary_category": "FMCG",
+      "revenue_amount": 125000.0,
+      "schema_version": 1,
+      "source": "app",
+      "watermark_ts": "2026-05-01T10:01:04.999000+00:00",
+      "window_end_ts": "2026-05-01T10:01:00+00:00",
+      "window_start_ts": "2026-05-01T10:00:00+00:00"
+    },
+    "source_event_ids": [
+      "evt-3",
+      "evt-3"
+    ]
+  },
+  "late_arrival": {
+    "baseline_correction_count": 0,
+    "optimized_correction": {
+      "correction_id": "commerce|2026-05-01T10:00:00+00:00|628802a8358a|v1",
+      "correction_reason": "late_event",
+      "correction_version": 1,
+      "created_ts": "2026-05-01T10:01:04.999000+00:00",
+      "dimension_hash": "632794024e1acf8257216e78dd7c10a720eeef77",
+      "dimensions": {
+        "device_type": "app_android",
+        "order_status": "paid",
+        "payment_method": "wallet",
+        "primary_category": "FMCG",
+        "schema_version": 1,
+        "source": "app"
+      },
+      "metric_snapshot": {
+        "checkout_conversion_rate": 0.0,
+        "checkout_started_count": 0,
+        "correction_version": 1,
+        "device_type": "app_android",
+        "duplicate_event_count": 1,
+        "emitted_ts": "2026-07-11T01:22:45.100384+00:00",
+        "gmv_proxy_amount": 155000.0,
+        "late_event_count": 1,
+        "metric_key": "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+        "metric_minute": "2026-05-01T10:00:00+00:00",
+        "order_count": 2,
+        "order_placed_count": 2,
+        "order_status": "paid",
+        "payment_failure_count": 0,
+        "payment_method": "wallet",
+        "primary_category": "FMCG",
+        "revenue_amount": 125000.0,
+        "schema_version": 1,
+        "source": "app",
+        "watermark_ts": "2026-05-01T10:01:04.999000+00:00",
+        "window_end_ts": "2026-05-01T10:01:00+00:00",
+        "window_start_ts": "2026-05-01T10:00:00+00:00"
+      },
+      "target_topic": "realtime_commerce_metrics_1m_optimized",
+      "window_end_ts": "2026-05-01T10:01:00+00:00",
+      "window_start_ts": "2026-05-01T10:00:00+00:00"
+    },
+    "source_event_ids": [
+      "evt-8"
+    ]
+  },
+  "window_processing": {
+    "optimized_metric": {
+      "checkout_conversion_rate": 0.0,
+      "checkout_started_count": 1,
+      "correction_version": 0,
+      "device_type": "app_android",
+      "duplicate_event_count": 0,
+      "emitted_ts": "2026-07-11T01:22:12.165736+00:00",
+      "gmv_proxy_amount": 0,
+      "late_event_count": 0,
+      "metric_key": "commerce|2026-05-01T10:00:00+00:00|1fe8efd21c88",
+      "metric_minute": "2026-05-01T10:00:00+00:00",
+      "order_count": 0,
+      "order_placed_count": 0,
+      "order_status": "checkout_started",
+      "payment_failure_count": 0,
+      "payment_method": null,
+      "primary_category": "FMCG",
+      "revenue_amount": 0,
+      "schema_version": 1,
+      "source": "app",
+      "watermark_ts": "2026-05-01T10:01:04.999000+00:00",
+      "window_end_ts": "2026-05-01T10:01:00+00:00",
+      "window_start_ts": "2026-05-01T10:00:00+00:00"
+    },
+    "source_event_ids": [
+      "evt-1",
+      "evt-2",
+      "evt-3",
+      "evt-4",
+      "evt-5",
+      "evt-6",
+      "evt-7"
+    ]
+  }
+}

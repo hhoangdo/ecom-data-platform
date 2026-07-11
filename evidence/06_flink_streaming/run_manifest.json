@@ -10,9 +10,17 @@
     "run_manifest.json",
     "screenshots/README.md",
     "screenshots/flink_jobs.png",
-    "screenshots/flink_checkpoints.png"
+    "screenshots/flink_checkpoints.png",
+    "optimization/run_manifest.json",
+    "screenshots/flink_baseline_job.png",
+    "screenshots/flink_optimized_job.png"
   ],
   "captured_at": "2026-06-01T11:36:44.698512+00:00",
+  "optimization": {
+    "captured_at": "2026-07-11T01:23:01.939484+00:00",
+    "replay_sha256": "43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7",
+    "run_manifest": "optimization/run_manifest.json"
+  },
   "service_urls": {
     "flink_api": "http://localhost:8086",
     "flink_ui": "http://localhost:8086"

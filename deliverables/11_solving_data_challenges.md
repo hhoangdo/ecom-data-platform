@@ -146,6 +146,16 @@ Kafka source topics
   -> evidence/streaming_curated/ JSONL file sink
 ```
 
+### Topic 04 Measured Flink Proof
+
+The controlled Flink experiment replays the same byte-preserved 16-event fixture through isolated
+baseline and optimized jobs. [`comparison.json`](../evidence/06_flink_streaming/optimization/comparison.json)
+records equal on-time aggregates and the optimized-only late correction. The four direct input to
+output examples for burst, late arrival, duplicates, and the one-minute event-time window are in
+[`challenge_samples.json`](../evidence/06_flink_streaming/optimization/challenge_samples.json).
+The job IDs, configuration deltas, UI proof, and limitations are consolidated in
+[`optimization/report.md`](../evidence/06_flink_streaming/optimization/report.md).
+
 ## Honest Gaps And Future Work
 
 | Gap | Why it matters | Future action |

@@ -20,11 +20,21 @@ from vina_bim_shop.flink.runtime import (
 
 
 class CommerceWindowProcessor:
-    def __init__(self, *, correction_topic: str, ops_alerts_topic: str, payment_failure_threshold: dict[str, float | int]):
+    def __init__(
+        self,
+        *,
+        metrics_topic: str,
+        correction_topic: str,
+        ops_alerts_topic: str,
+        payment_failure_threshold: dict[str, float | int],
+        allowed_lateness_seconds: int,
+    ):
         self._versions: dict[str, int] = {}
+        self._metrics_topic = metrics_topic
         self._correction_topic = correction_topic
         self._ops_alerts_topic = ops_alerts_topic
         self._payment_failure_threshold = payment_failure_threshold
+        self._allowed_lateness_seconds = allowed_lateness_seconds
 
     def process(self, key: str, context: Any, elements: Any):
         rows = list(elements)
@@ -38,18 +48,19 @@ class CommerceWindowProcessor:
             window_start_ts=window_start,
             window_end_ts=window_end,
             watermark_ts=watermark_ts,
+            allowed_lateness_seconds=self._allowed_lateness_seconds,
         )
         metric_key = str(snapshot["metric_key"])
         if metric_key not in self._versions:
             self._versions[metric_key] = 0
-            yield {"target_topic": "realtime_commerce_metrics_1m", "value": snapshot}
+            yield {"target_topic": self._metrics_topic, "value": snapshot}
         else:
             version = next_correction_version(previous_version=self._versions[metric_key])
             self._versions[metric_key] = version
             yield {
                 "target_topic": self._correction_topic,
                 "value": build_correction_record(
-                    target_topic="realtime_commerce_metrics_1m",
+                    target_topic=self._metrics_topic,
                     metric_snapshot={**snapshot, "correction_version": version},
                     correction_version=version,
                     correction_reason="late_event" if snapshot["late_event_count"] else "recompute",
@@ -72,37 +83,27 @@ class CommerceWindowProcessor:
             }
 
 
-def run() -> None:
-    config = load_streaming_config()
-    runtime = load_runtime_settings(config)
-
+def add_commerce_pipeline(*, env: Any, config: Any, runtime: Any, group_id: str) -> None:
     from pyflink.common import Types, WatermarkStrategy
-    from pyflink.datastream import StreamExecutionEnvironment
     from pyflink.datastream.functions import ProcessWindowFunction
     from pyflink.datastream.window import Time, TumblingEventTimeWindows
-
-    env = StreamExecutionEnvironment.get_execution_environment()
-    env.set_parallelism(1)
-    add_required_jars(env)
-    configure_checkpointing(
-        env,
-        checkpoint_uri=f"s3://{runtime.checkpoint_bucket}/{runtime.checkpoint_prefix}/commerce_metrics",
-    )
 
     source_stream = kafka_source(
         env=env,
         topic=config.source_topics["commerce"],
         bootstrap_servers=runtime.kafka_bootstrap_servers,
-        group_id="vina-bim-shop-commerce-metrics",
+        group_id=group_id,
         watermark_strategy=WatermarkStrategy.no_watermarks(),
     ).map(lambda raw: json.loads(raw), output_type=Types.PICKLED_BYTE_ARRAY()).assign_timestamps_and_watermarks(
         event_timestamp_assigner(out_of_orderness_seconds=config.out_of_orderness_seconds)
     )
 
     processor = CommerceWindowProcessor(
+        metrics_topic=config.derived_topics["commerce_metrics"],
         correction_topic=config.derived_topics["metric_corrections"],
         ops_alerts_topic=config.derived_topics["ops_alerts"],
         payment_failure_threshold=config.payment_failure_alert_threshold,
+        allowed_lateness_seconds=config.allowed_lateness_seconds[config.source_topics["commerce"]],
     )
 
     class _WindowBridge(ProcessWindowFunction):
@@ -149,5 +150,26 @@ def run() -> None:
             prefix=runtime.curated_output_prefix,
             topic=config.derived_topics["ops_alerts"],
         )
+    )
+
+
+def run() -> None:
+    config = load_streaming_config()
+    runtime = load_runtime_settings(config)
+
+    from pyflink.datastream import StreamExecutionEnvironment
+
+    env = StreamExecutionEnvironment.get_execution_environment()
+    env.set_parallelism(1)
+    add_required_jars(env)
+    configure_checkpointing(
+        env,
+        checkpoint_uri=f"s3://{runtime.checkpoint_bucket}/{runtime.checkpoint_prefix}/commerce_metrics",
+    )
+    add_commerce_pipeline(
+        env=env,
+        config=config,
+        runtime=runtime,
+        group_id="vina-bim-shop-commerce-metrics",
     )
     env.execute("vina-bim-shop-commerce-metrics")

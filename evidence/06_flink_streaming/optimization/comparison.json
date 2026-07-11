@@ -1,0 +1,68 @@
+{
+  "correction_counts": {
+    "baseline": 0,
+    "optimized": 1
+  },
+  "job_ids": {
+    "baseline": "78e3cd83407fce7360cdaf38e70a2509",
+    "optimized": "c5f77f6e94518aded04f71fd643bf791"
+  },
+  "on_time_aggregate_keys": [
+    "commerce|2026-05-01T10:00:00+00:00|1fe8efd21c88",
+    "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+    "commerce|2026-05-01T10:00:00+00:00|628802a8358a"
+  ],
+  "on_time_aggregates_equal": true,
+  "passed": true,
+  "profiles": {
+    "baseline": {
+      "allowed_lateness_seconds": {
+        "catalog_events": 0,
+        "commerce_events": 0,
+        "fulfillment_events": 0,
+        "ops_events": 0
+      },
+      "checkpoint_prefix": "flink-experiments/baseline",
+      "checkpointing_enabled": false,
+      "consumer_groups": {
+        "catalog": "vina-bim-shop-catalog-alerts-experiment-baseline",
+        "commerce": "vina-bim-shop-commerce-metrics-experiment-baseline",
+        "fulfillment": "vina-bim-shop-fulfillment-alerts-experiment-baseline",
+        "ops": "vina-bim-shop-ops-alerts-experiment-baseline"
+      },
+      "curated_output_prefix": "streaming_curated/experiments/baseline",
+      "derived_topics": {
+        "commerce_metrics": "realtime_commerce_metrics_1m_baseline",
+        "metric_corrections": "realtime_metric_corrections_baseline",
+        "ops_alerts": "realtime_ops_alerts_baseline"
+      },
+      "out_of_orderness_seconds": 0,
+      "parallelism": 1
+    },
+    "optimized": {
+      "allowed_lateness_seconds": {
+        "catalog_events": 600,
+        "commerce_events": 300,
+        "fulfillment_events": 900,
+        "ops_events": 120
+      },
+      "checkpoint_prefix": "flink-experiments/optimized",
+      "checkpointing_enabled": true,
+      "consumer_groups": {
+        "catalog": "vina-bim-shop-catalog-alerts-experiment-optimized",
+        "commerce": "vina-bim-shop-commerce-metrics-experiment-optimized",
+        "fulfillment": "vina-bim-shop-fulfillment-alerts-experiment-optimized",
+        "ops": "vina-bim-shop-ops-alerts-experiment-optimized"
+      },
+      "curated_output_prefix": "streaming_curated/experiments/optimized",
+      "derived_topics": {
+        "commerce_metrics": "realtime_commerce_metrics_1m_optimized",
+        "metric_corrections": "realtime_metric_corrections_optimized",
+        "ops_alerts": "realtime_ops_alerts_optimized"
+      },
+      "out_of_orderness_seconds": 5,
+      "parallelism": 1
+    }
+  },
+  "replay_sha256": "43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7"
+}

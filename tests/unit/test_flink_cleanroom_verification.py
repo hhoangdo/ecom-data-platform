@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import inspect
 import subprocess
 import sys
 from pathlib import Path
@@ -34,6 +35,14 @@ def test_runtime_limit_defaults_resolve_to_safe_streaming_bounds(monkeypatch) ->
     assert config.max_runtime_minutes == 45
     assert config.grace_seconds == 30
     assert config.disable_auto_stop is False
+
+
+def test_cleanroom_runner_uses_a_default_subprocess_command_runner() -> None:
+    from vina_bim_shop.flink.verification import run_cleanroom_verification
+
+    parameter = inspect.signature(run_cleanroom_verification).parameters["run_command"]
+
+    assert parameter.default is not inspect.Parameter.empty
 
 
 def test_reset_cleanroom_state_only_clears_selected_streaming_runtime_surfaces(tmp_path: Path) -> None:

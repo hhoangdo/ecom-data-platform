@@ -1,0 +1,17 @@
+{
+  "artifacts": [
+    "replay.ndjson",
+    "replay_manifest.json",
+    "baseline_metrics.json",
+    "optimized_metrics.json",
+    "comparison.json",
+    "challenge_samples.json",
+    "report.md"
+  ],
+  "captured_at": "2026-07-11T01:23:01.939484+00:00",
+  "job_ids": {
+    "baseline": "78e3cd83407fce7360cdaf38e70a2509",
+    "optimized": "c5f77f6e94518aded04f71fd643bf791"
+  },
+  "replay_sha256": "43ff67a48371d20ca6793f62cb94a320632b90386a6a1febf92301bea588bbd7"
+}
