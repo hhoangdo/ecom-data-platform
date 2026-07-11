@@ -294,7 +294,7 @@ def test_detailed_excalidraw_architecture_is_logo_backed_lifecycle_view() -> Non
         "Line Legend",
         "Product cards represent deployed Compose service groups",
         "Pinot includes Zookeeper, controller, broker, and server",
-        "DataHub includes GMS, frontend, actions, OpenSearch",
+        "DataHub includes GMS, frontend, actions, Elasticsearch",
         "Trino Gold snapshot export",
     ]:
         assert expected in labels
@@ -524,7 +524,7 @@ def test_detailed_lambda_architecture_plantuml_matches_detailed_excalidraw() -> 
         "DuckDB mart is a local snapshot exported from Trino Gold.",
         "Product cards represent deployed Compose service groups.",
         "Pinot includes Zookeeper, controller, broker, and server;",
-        "DataHub includes GMS, frontend, actions, OpenSearch, and system update jobs.",
+        "DataHub includes GMS, frontend, actions, Elasticsearch, and system update jobs.",
     ]:
         assert expected in content
 

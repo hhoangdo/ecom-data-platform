@@ -20,5 +20,6 @@ volumes:
   kafka_kraft_data:
   minio_data:
   lakehouse_postgres_data:
+  datahub_search_data:
   pinot_zookeeper_data:
   pinot_zookeeper_datalog:

@@ -50,7 +50,7 @@ Related diagrams:
 | Streaming processing | Apache Flink | Produce event-time realtime metrics, alerts, and derived Kafka topics. |
 | Serving | Trino, Apache Pinot, DuckDB | Serve canonical Gold SQL, provisional realtime OLAP, and portable local analysis marts. |
 | Orchestration and quality | Apache Airflow, Great Expectations | Trigger control-plane workflows and publish validation evidence. |
-| Governance | DataHub, OpenSearch | Emit metadata, tags, glossary terms, quality assertions, and lineage evidence. |
+| Governance | DataHub, Elasticsearch | Emit metadata, tags, glossary terms, quality assertions, indexed search, and lineage evidence. |
 | Runtime | Docker Compose profiles, `uv`, pytest | Run the local stack, Python tooling, and verification suite. |
 
 ---
@@ -133,7 +133,7 @@ The root README is the entrypoint. The deeper service-by-service explanations li
 | Serving | `serving` plus Trino/DuckDB | Apache Pinot realtime OLAP, Trino canonical SQL, DuckDB local marts. | [07 Pinot serving](deliverables/07_pinot_serving.md) |
 | Local analytics | local DuckDB files plus dbt | dbt-DuckDB parity oracle and DuckDB Executive Mart export. | [10 DuckDB/dbt local analytics](deliverables/10_duckdb_dbt_local_analytics.md) |
 | Orchestration | `orchestration` | Airflow webserver, scheduler, init, GX Data Docs. | [08 Airflow + GX](deliverables/08_airflow_gx_orchestration.md) |
-| Governance | `governance` | DataHub GMS, frontend, actions, OpenSearch, metadata recipes. | [09 DataHub governance](deliverables/09_datahub_governance.md), [DataHub evidence](evidence/final_integration/datahub_lineage.md) |
+| Governance | `governance` | DataHub GMS, frontend, actions, Elasticsearch, metadata recipes. | [09 DataHub governance](deliverables/09_datahub_governance.md), [DataHub evidence](evidence/final_integration/datahub_lineage.md) |
 
 ### Data Generation
 
@@ -236,7 +236,7 @@ Key docs:
 
 ### Governance
 
-DataHub catalogs the same assets the platform actually produces: Kafka topics, MinIO prefixes, Trino/Iceberg tables, dbt models, Spark and Flink lineage, and GX assertions. Governance proof relies on GMS and GraphQL verification plus committed evidence artifacts, not only the frontend UI.
+DataHub catalogs the same assets the platform actually produces: Kafka topics, MinIO prefixes, Trino/Iceberg tables, dbt models, Spark and Flink lineage, and GX assertions. Governance proof requires Elasticsearch-backed search, GMS verification, and a rendered frontend entity page.
 
 ![Governance overview](architecture/diagrams/mermaid/09-governance.png)
 
@@ -403,7 +403,7 @@ Local defaults are documented in [.env.example](.env.example). Most scripts work
 - Pinot is fresh and provisional; Trino-served Gold tables are the official KPI source.
 - Airflow orchestrates batch and control-plane work; it does not supervise long-running Flink jobs in v1.
 - DataHub requires separate ingestion recipe runs after platform services are healthy.
-- Local DataHub UI capture did not render the fuller graph view, even though GMS/GraphQL evidence supports metadata, lineage, tag, and assertion emission.
+- DataHub recovery evidence includes indexed search and a rendered `vina_bim_shop.fact_order` lineage page after a frontend restart.
 - Observability hardening, production security, CI/CD, and Section 03 drift scenarios are outside the current evidence boundary.
 
 ---
@@ -431,5 +431,5 @@ Runtime service profiles:
 | `streaming` | Flink JobManager, TaskManager, job submitter |
 | `serving` | Pinot Zookeeper, controller, broker, server |
 | `orchestration` | Airflow webserver, scheduler, init, GX Data Docs |
-| `governance` | DataHub GMS, frontend, actions, OpenSearch |
+| `governance` | DataHub GMS, frontend, actions, Elasticsearch |
 | `all` | Best-effort startup of all profiles; staged startup remains the supported workflow |

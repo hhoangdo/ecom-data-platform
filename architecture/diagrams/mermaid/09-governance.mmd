@@ -13,7 +13,10 @@ flowchart LR
     lineage["Spark + Flink lineage"]:::source
     gx["GX assertions"]:::source
     recipes["Recipes + custom emitters<br/>metadata ingestion"]:::compute
-    hub["DataHub GMS + OpenSearch + Frontend"]:::serve
+    update["DataHub System Update\nversion and mapping migration"]:::compute
+    hub["DataHub GMS + Frontend"]:::serve
+    elasticsearch["Elasticsearch\npersistent search indices"]:::store
+    restore["restoreIndices\nrebuild persisted aspects"]:::compute
     outputs["Tags / lineage / assertions<br/>representative entity verification"]:::evidence
 
     kafka --> recipes
@@ -23,4 +26,9 @@ flowchart LR
     lineage --> recipes
     gx --> recipes
     recipes --> hub
+    update --> hub
+    update --> elasticsearch
+    hub --> elasticsearch
+    restore --> hub
+    restore --> elasticsearch
     hub --> outputs

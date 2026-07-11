@@ -1,0 +1,73 @@
+{
+  "backup": {
+    "bytes": 42231,
+    "database": "datahub",
+    "path": "evidence/runtime/datahub-before-1.6.0.dump",
+    "sha256": "B2E5B2526240E280B87E031FA3AFFD4962AB02B72166381CF8C5408CE542C4E4",
+    "verified_with": "pg_restore --list"
+  },
+  "captured_at": "2026-07-11T17:46:15.9391108Z",
+  "elasticsearch": {
+    "datasetindex_v2_documents": 50,
+    "health": "yellow",
+    "volume": "vina-bim-shop_datahub_search_data"
+  },
+  "metadata": {
+    "aspect_count_after_reingestion": 1228,
+    "aspect_count_before_migration": 1150,
+    "restored_rows": 963,
+    "s3_reingestion": {
+      "datahub_cli": "1.6.0",
+      "events_produced": 10,
+      "source": "infra/governance/recipes/minio_storage.yml"
+    }
+  },
+  "runtime_slot": {
+    "exclusive": true,
+    "released_at": "2026-07-11T17:46:15.9391108Z",
+    "stopped_session_services": [
+      "datahub-actions",
+      "datahub-elasticsearch",
+      "datahub-frontend",
+      "datahub-gms",
+      "datahub-opensearch",
+      "kafka",
+      "lakehouse-postgres",
+      "schema-registry"
+    ],
+    "volumes_preserved": [
+      "vina-bim-shop_datahub_search_data",
+      "vina-bim-shop_lakehouse_postgres_data"
+    ]
+  },
+  "search": {
+    "iceberg_fact_order_total": 10,
+    "kafka_commerce_events_total": 12,
+    "pinot_realtime_commerce_metrics_1m_total": 8,
+    "s3_spark_event_log_prefix_total": 1,
+    "status": "success"
+  },
+  "system_update": {
+    "exit_code": 0,
+    "finished_at": "2026-07-11T17:26:32.98581429Z",
+    "log": "system_update.log",
+    "log_bytes": 2144985,
+    "log_sha256": "92F56C586AB6BCA5D12754841406BED80E7E513AEC2D37E14DC778AF2AFA5E08"
+  },
+  "tests": {
+    "focused": "39 passed, 1 skipped in 1.19s",
+    "full": "333 passed, 1 skipped in 95.22s"
+  },
+  "ui": {
+    "entity_screenshot": {
+      "path": "evidence/09_datahub_governance/screenshots/datahub_dataset_entity.png",
+      "sha256": "CB8C37BC0B02557D478D7912D93DB9A91B10A0635A3DAE0D8F094B8BCFD58028"
+    },
+    "frontend_restarted": true,
+    "search_screenshot": {
+      "path": "evidence/09_datahub_governance/screenshots/datahub_search_results.png",
+      "sha256": "3C71273B843F55E9D07D71CFC81B829F5C1B956B20D77E05C4E89AC9854CAD0F"
+    }
+  },
+  "version_matrix": "version_matrix.json"
+}

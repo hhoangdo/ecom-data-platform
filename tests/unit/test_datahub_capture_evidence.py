@@ -31,6 +31,7 @@ def test_datahub_capture_evidence_exits_nonzero_and_writes_failed_manifest(monke
         lambda: {"status": "missing", "error": "No successful datahub_ingestion manifest found"},
     )
     monkeypatch.setattr(module, "capture_tag_evidence", lambda: {"status": "success", "failed_tags": []})
+    monkeypatch.setattr(module, "capture_search_evidence", lambda: {"status": "success"})
 
     with pytest.raises(SystemExit) as exc_info:
         module.main()
@@ -55,9 +56,25 @@ def test_datahub_capture_evidence_marks_tag_failures_as_partial(monkeypatch, tmp
         "capture_tag_evidence",
         lambda: {"status": "partial", "failed_tags": [{"urn": "urn:li:tag:gold", "error": "Tag not found"}]},
     )
+    monkeypatch.setattr(module, "capture_search_evidence", lambda: {"status": "success"})
 
     manifest = module.capture_evidence()
 
     assert manifest["status"] == "partial"
     assert manifest["failures"] == [{"step": "tag_evidence", "error": "1 tag lookups failed"}]
     assert (tmp_path / "run_manifest.json").is_file()
+
+
+def test_datahub_capture_evidence_fails_when_indexed_search_is_unavailable(monkeypatch, tmp_path: Path) -> None:
+    module = _load_script_module()
+
+    monkeypatch.setattr(module, "EVIDENCE_ROOT", tmp_path)
+    monkeypatch.setattr(module, "capture_gms_health", lambda: {"healthy": True, "status_code": 200})
+    monkeypatch.setattr(module, "capture_dataset_evidence", lambda: {"status": "success", "latest_successful_run_id": "manual__ok"})
+    monkeypatch.setattr(module, "capture_tag_evidence", lambda: {"status": "success", "failed_tags": []})
+    monkeypatch.setattr(module, "capture_search_evidence", lambda: {"status": "failed", "error": "indexed search returned no datasets"})
+
+    manifest = module.capture_evidence()
+
+    assert manifest["status"] == "failed"
+    assert manifest["failures"] == [{"step": "search_evidence", "error": "indexed search returned no datasets"}]

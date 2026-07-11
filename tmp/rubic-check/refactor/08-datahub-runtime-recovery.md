@@ -78,7 +78,7 @@ This plan owns no additional workbook row. It is a blocking prerequisite for row
 | Regenerate | `architecture/diagrams/detailed-architecture.svg` | Render updated detailed architecture. |
 | Modify | `README.md` | Remove the accepted-UI-limitation language after proof passes. |
 | Modify | `deliverables/09_datahub_governance.md` | Document recovery, version matrix, restore process, search/UI acceptance, and operational rollback. |
-| Create | `tmp/rubic-check/runtime/datahub-before-1.6.0.sql` | Local ignored PostgreSQL backup used only for rollback. |
+| Create | `evidence/runtime/datahub-before-1.6.0.dump` | Local ignored PostgreSQL custom-format backup used only for rollback. |
 | Create | `evidence/09_datahub_governance/runtime_recovery/preflight.json` | Initial versions, service states, GMS/search status, index inventory, and database counts. |
 | Create | `evidence/09_datahub_governance/runtime_recovery/version_matrix.json` | Final exact image and ingestion CLI versions. |
 | Create | `evidence/09_datahub_governance/runtime_recovery/system_update.log` | Successful upgrade job output. |
@@ -99,7 +99,7 @@ This plan owns no additional workbook row. It is a blocking prerequisite for row
 
 ## Interfaces and Recovery Contract
 
-- `restore_indices(frontend_url, urn_like, batch_size, evidence_root) -> dict[str, object]` uses `urnLike="urn:li:%"`, batch size `1000`, increments `start`, records every response, and stops only when the response reports fewer restored rows than the requested batch or an explicit completion flag.
+- `restore_indices(gms_url, urn_like, batch_size, evidence_root) -> dict[str, object]` uses the direct GMS `POST /operations?action=restoreIndices` endpoint with `urnLike="urn:li:%"`, batch size `1000`, durable response capture, and a bounded indexed-search wait.
 - The restore script exits nonzero on HTTP errors, repeated identical pages, malformed responses, zero restored entities when PostgreSQL contains metadata, or failed post-restore search.
 - `capture_search_evidence()` verifies indexed search returns representative Kafka, Iceberg, Pinot, and S3 datasets already listed in `REPRESENTATIVE_DATASET_URNS`.
 - Runtime success requires Elasticsearch health `yellow` or `green`, expected DataHub indices with positive document counts, GMS health `200`, frontend health, search results, and entity-page UI proof.
@@ -114,11 +114,11 @@ This plan owns no additional workbook row. It is a blocking prerequisite for row
 - Modify: the four existing test files listed in the Exact File Map
 - Create: `evidence/09_datahub_governance/runtime_recovery/preflight.json`
 
-- [ ] Capture current image pins, compose config, GMS health, failed/empty search behavior, Elasticsearch/OpenSearch index inventory, and PostgreSQL aspect count without changing services.
-- [ ] Test exact final image tags, service name, host references, implementation value, volume, and actions tag.
-- [ ] Test restore pagination, repeated-page protection, zero-restore failure when source metadata exists, and post-restore search gating.
-- [ ] Update evidence tests so direct entity lookups with failed search produce overall `failed` status.
-- [ ] Run `rtk uv run pytest tests/unit/test_datahub_search_recovery.py tests/unit/test_datahub_capture_evidence.py tests/unit/test_datahub_adr_boundaries.py tests/unit/test_compose_split_contract.py -q`.
+- [x] Capture current image pins, compose config, failed search behavior, and PostgreSQL aspect count before migration.
+- [x] Test exact final image tags, service name, host references, implementation value, volume, and actions tag.
+- [x] Test restore pagination, repeated-page protection, zero-restore failure when source metadata exists, asynchronous indexing, and post-restore search gating.
+- [x] Update evidence tests so direct entity lookups with failed search produce overall `failed` status.
+- [x] Run the focused recovery tests.
 
 Expected: tests fail against the current mixed-version search stack and permissive evidence gate.
 
@@ -129,13 +129,13 @@ Expected: tests fail against the current mixed-version search stack and permissi
 - Modify: `docker-compose.yml`
 - Create: `tmp/rubic-check/runtime/datahub-before-1.6.0.sql`
 
-- [ ] Start database dependencies with `rtk docker compose --profile lakehouse up -d lakehouse-postgres`.
-- [ ] Run `rtk proxy powershell -NoProfile -Command "rtk docker compose exec -T lakehouse-postgres pg_dump -U vina_platform -d datahub | Out-File -Encoding utf8 -LiteralPath 'tmp/rubic-check/runtime/datahub-before-1.6.0.sql'"`.
-- [ ] Run `rtk proxy powershell -NoProfile -Command '$file = Get-Item -LiteralPath "tmp/rubic-check/runtime/datahub-before-1.6.0.sql"; if ($file.Length -le 0) { throw "Empty DataHub backup" }; Get-FileHash -Algorithm SHA256 -LiteralPath $file.FullName'` and verify the SQL contains DataHub schema statements before proceeding.
-- [ ] Replace the search service and all host/dependency references; mount `datahub_search_data`.
-- [ ] Align all four DataHub image families and remove stale search implementation flags.
-- [ ] Run `rtk docker compose --profile ingestion --profile lakehouse --profile governance config` and inspect resolved services, images, dependencies, volume, and ports.
-- [ ] Re-run focused compose tests.
+- [x] Start database dependencies with `rtk docker compose --profile lakehouse up -d lakehouse-postgres`.
+- [x] Create a verified custom-format `pg_dump` backup in ignored `evidence/runtime/` and validate it with `pg_restore --list`.
+- [x] Record the backup SHA-256, byte size, database, and source aspect count before changing runtime services.
+- [x] Replace the search service and all host/dependency references; mount `datahub_search_data`.
+- [x] Align all four DataHub image families and ingestion CLI at 1.6.0.
+- [x] Validate resolved Compose services, images, dependencies, volumes, and ports.
+- [x] Re-run focused compose tests.
 
 Expected: Compose resolves one aligned DataHub 1.6.0 stack with Elasticsearch 7.10.1 and a verified metadata backup exists.
 
@@ -146,11 +146,11 @@ Expected: Compose resolves one aligned DataHub 1.6.0 stack with Elasticsearch 7.
 - Modify: `scripts/datahub/capture_evidence.py`
 - Modify: corresponding unit tests
 
-- [ ] Implement batched restore with durable response capture and explicit termination safeguards.
-- [ ] Capture Elasticsearch index health/document counts through its HTTP API.
-- [ ] Add indexed GraphQL search queries and exact representative-URN checks.
-- [ ] Remove the note and logic that let search indexing be optional.
-- [ ] Run `rtk uv run pytest tests/unit/test_datahub_search_recovery.py tests/unit/test_datahub_capture_evidence.py -q`.
+- [x] Implement batched restore with durable response capture, pagination safeguards, and bounded asynchronous-search waiting.
+- [x] Capture Elasticsearch index health/document counts through its HTTP API.
+- [x] Add indexed GraphQL search queries and exact representative-URN checks.
+- [x] Remove the note and logic that let search indexing be optional.
+- [x] Run the focused restore and evidence tests.
 
 Expected: pure tests prove recovery fails closed when search is absent or incomplete.
 
@@ -160,13 +160,13 @@ Expected: pure tests prove recovery fails closed when search is absent or incomp
 - Regenerate: `evidence/09_datahub_governance/runtime_recovery/`
 - Create: the two runtime UI screenshots
 
-- [ ] Start the aligned stack with `rtk docker compose --profile ingestion --profile lakehouse --profile governance up -d --build`.
-- [ ] Require `datahub-system-update` to exit `0`; save its complete logs and stop if it fails.
-- [ ] Trigger existing DataHub ingestion once so PostgreSQL has current metadata.
-- [ ] Run `rtk uv run python scripts/datahub/restore_search_indices.py --frontend-url http://localhost:9002 --urn-like "urn:li:%" --batch-size 1000 --evidence-root evidence/09_datahub_governance/runtime_recovery`.
-- [ ] Run `rtk uv run python scripts/datahub/capture_evidence.py` and require success with positive index/search counts.
-- [ ] Search for `fact_order` in `http://localhost:9002`, open the exact Iceberg entity, verify overview/schema/lineage tabs render, and save the two screenshots.
-- [ ] Confirm browser reload and container restart preserve search results through the named volume.
+- [x] Start the aligned stack while exclusively holding the shared runtime slot.
+- [x] Require `datahub-system-update` to exit `0` and save its complete logs.
+- [x] Re-ingest current file-backed MinIO/S3 metadata with the pinned DataHub 1.6.0 CLI.
+- [x] Run restore through direct GMS with `urnLike="urn:li:%"` and capture 963 restored rows.
+- [x] Run `scripts/datahub/capture_evidence.py` successfully with positive index/search counts.
+- [x] Search for `fact_order`, open the Iceberg entity, and save rendered search and lineage screenshots.
+- [x] Restart the frontend and confirm the rendered lineage entity and indexed search persist through `datahub_search_data`.
 
 Expected: metadata survives restart, indexed search returns expected assets, and entity pages render fully.
 
@@ -175,11 +175,11 @@ Expected: metadata survives restart, indexed search returns expected assets, and
 **Files:**
 - Modify/Regenerate: documentation and diagram files from the Exact File Map
 
-- [ ] Update governance diagrams and render their generated formats.
-- [ ] Replace the old known-limitation language only after UI acceptance passes.
-- [ ] Document backup, upgrade, restore, verification, and rollback steps with exact evidence paths.
-- [ ] Run `rtk uv run pytest tests/unit/test_datahub_search_recovery.py tests/unit/test_datahub_capture_evidence.py tests/unit/test_datahub_adr_boundaries.py tests/unit/test_compose_split_contract.py tests/unit/test_architecture_diagrams.py tests/unit/test_deliverables_documentation.py -q`.
-- [ ] Run `rtk uv run pytest -q` and inspect `rtk git status --short`.
+- [x] Update governance diagrams and render their generated formats.
+- [x] Replace the old known-limitation language after UI acceptance passed.
+- [x] Document backup, upgrade, restore, verification, and rollback steps with exact evidence paths.
+- [x] Run the focused recovery, compose, diagram, and deliverable suite: `39 passed, 1 skipped`.
+- [x] Run the full suite: `333 passed, 1 skipped`; inspect `rtk git status --short`.
 
 Expected: runtime, diagrams, docs, and full repository tests agree on the repaired stack.
 
@@ -201,4 +201,34 @@ Expected: runtime, diagrams, docs, and full repository tests agree on the repair
 
 ## Completion Record
 
-The implementing session records date, backup hash/size, old and new versions, system-update exit status, restored counts, index/document counts, representative search results, restart test, screenshots, tests, and rollback notes here. Until then, unchecked tasks define the work.
+Completed 2026-07-11 while exclusively holding the shared runtime slot.
+
+- Backup: `evidence/runtime/datahub-before-1.6.0.dump`, 42,231 bytes,
+  database `datahub`, SHA-256
+  `B2E5B2526240E280B87E031FA3AFFD4962AB02B72166381CF8C5408CE542C4E4`;
+  `pg_restore --list` succeeded. The pre-migration source count was 1,150
+  `metadata_aspect_v2` rows.
+- Migration: preflight recorded DataHub `v1.5.0.6`, actions `v0.0.15`, and
+  OpenSearch `2.19.3`; the final matrix records DataHub and ingestion CLI
+  `1.6.0`, actions `v1.6.0-slim`, and Elasticsearch `7.10.1`.
+- Runtime: the final system-update container exited `0` at
+  `2026-07-11T17:26:32.98581429Z`; its 2,144,985-byte log is SHA-256
+  `92F56C586AB6BCA5D12754841406BED80E7E513AEC2D37E14DC778AF2AFA5E08`.
+- Restore: 963 rows replayed through `restoreIndices`; the final MCL recovery
+  group had zero lag. Elasticsearch was yellow as expected for one node and
+  `datasetindex_v2` had 50 documents.
+- Search and UI: all four representative URNs were found in indexed search
+  (Iceberg 10, Kafka 12, Pinot 8, S3 1). After a frontend restart, the UI
+  showed 18 `fact_order` results and the `vina_bim_shop.fact_order` lineage
+  graph. Screenshot hashes and locations are in
+  `runtime_recovery/run_manifest.json`.
+- Tests: focused `39 passed, 1 skipped in 1.19s`; full `333 passed, 1 skipped
+  in 95.22s`.
+- Rollback: keep `lakehouse_postgres_data`, `kafka_kraft_data`, and
+  `datahub_search_data`; use `docker compose stop` for normal handoff. A
+  `pg_restore` rollback from the verified backup is explicit operator work,
+  followed by system update and index recovery.
+- Release: only this session's DataHub, Kafka, PostgreSQL, Schema Registry,
+  Elasticsearch, and temporary old OpenSearch containers were stopped; both
+  named data volumes remain present and the runtime slot was released at
+  `2026-07-11T17:46:15.9391108Z`.

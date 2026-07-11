@@ -8971,11 +8971,11 @@
       "index": "b0V",
       "fontSize": 13.287813506981996,
       "fontFamily": 1,
-      "text": "Product cards represent deployed Compose service groups.\n\nExample: \n- Pinot includes Zookeeper, controller, broker, and server;\n- DataHub includes GMS, frontend, actions, OpenSearch,\nand system update jobs.",
+      "text": "Product cards represent deployed Compose service groups.\n\nExample: \n- Pinot includes Zookeeper, controller, broker, and server;\n- DataHub includes GMS, frontend, actions, Elasticsearch,\nand system update jobs.",
       "textAlign": "left",
       "verticalAlign": "middle",
       "containerId": null,
-      "originalText": "Product cards represent deployed Compose service groups. \n\nExample: \n- Pinot includes Zookeeper, controller, broker, and server; - DataHub includes GMS, frontend, actions, OpenSearch, and system update jobs.",
+      "originalText": "Product cards represent deployed Compose service groups. \n\nExample: \n- Pinot includes Zookeeper, controller, broker, and server; - DataHub includes GMS, frontend, actions, Elasticsearch, and system update jobs.",
       "autoResize": false,
       "lineHeight": 1.25,
       "baseline": 11

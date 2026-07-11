@@ -19,7 +19,7 @@ The submitted platform evidence covers:
 | Streaming | Flink event-time jobs, one-minute commerce metrics, operational alerts, late-event correction snapshots, checkpoints, and audit JSONL. |
 | Serving | Trino canonical Gold SQL, Apache Pinot realtime OLAP, and DuckDB local evidence files. |
 | Orchestration and quality | Airflow DAGs, Great Expectations validation policy, GX Data Docs, and evidence manifests. |
-| Governance | DataHub metadata emission, lineage, tags, assertions, representative entity checks, and known local UI limitation. |
+| Governance | DataHub metadata emission, lineage, tags, assertions, indexed search, and rendered entity-page checks. |
 
 The current evidence excludes production deployment hardening, CI/CD rollout, security/RBAC enforcement beyond local defaults, drift scenario implementation, ML model training/serving, and LLM application design.
 
@@ -94,7 +94,7 @@ Docker Compose profiles are operated in stages rather than as one broad full-sta
 | `streaming` | Flink JobManager, TaskManager, job submitter | [Flink streaming](../deliverables/06_flink_streaming.md) |
 | `serving` | Pinot Zookeeper, controller, broker, server | [Pinot serving](../deliverables/07_pinot_serving.md) |
 | `orchestration` | Airflow webserver, scheduler, init, GX Data Docs | [Airflow + GX](../deliverables/08_airflow_gx_orchestration.md) |
-| `governance` | DataHub GMS, frontend, actions, OpenSearch | [DataHub governance](../deliverables/09_datahub_governance.md) |
+| `governance` | DataHub GMS, frontend, actions, Elasticsearch | [DataHub governance](../deliverables/09_datahub_governance.md) |
 | local analytics | dbt-DuckDB and DuckDB Executive Mart files | [DuckDB/dbt local analytics](../deliverables/10_duckdb_dbt_local_analytics.md) |
 
 ## Data Formats
@@ -129,11 +129,11 @@ Quality policy:
 - Bronze warnings quarantine malformed source records without hiding source drift.
 - Silver and Gold failures block orchestration because those layers feed official reporting.
 - Pinot query issues warn unless reconciliation fails.
-- DataHub ingestion is verified through GMS health, entity checks, tag checks, lineage counts, and assertion counts.
+- DataHub ingestion is verified through GMS health, indexed search, entity checks, tags, lineage counts, assertions, and frontend UI proof.
 
 Governance evidence includes Kafka datasets, MinIO/S3 prefixes, Trino/Iceberg tables, dbt datasets, Spark lineage, Flink lineage, GX assertions, and representative tags such as `bronze`, `silver`, `gold`, `official`, `provisional`, and `quality_gate`.
 
-Known DataHub limitation: the local frontend did not render the fuller graph view during capture, even though GMS/GraphQL evidence supports metadata emission.
+The recovery evidence shows indexed `fact_order` search and a rendered lineage graph after a frontend restart; direct GMS/GraphQL verification remains a supplemental check rather than an acceptance substitute.
 
 ## Evidence Map
 

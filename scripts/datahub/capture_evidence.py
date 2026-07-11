@@ -11,6 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE_ROOT = REPO_ROOT / "evidence" / "09_datahub_governance"
 DATAHUB_RUNS_ROOT = REPO_ROOT / "evidence" / "08_airflow_gx" / "runs" / "datahub_ingestion"
 GMS_URL = "http://localhost:8087"
+ELASTICSEARCH_URL = "http://localhost:9200"
 
 GRAPHQL_DATASET_QUERY = """
 query GetDataset($urn: String!) {
@@ -37,6 +38,21 @@ query GetTag($urn: String!) {
   tag(urn: $urn) {
     urn
     name
+  }
+}
+""".strip()
+
+GRAPHQL_SEARCH_QUERY = """
+query SearchDatasets($input: SearchInput!) {
+  search(input: $input) {
+    start
+    count
+    total
+    searchResults {
+      entity {
+        urn
+      }
+    }
   }
 }
 """.strip()
@@ -150,6 +166,65 @@ def _capture_representative_datasets() -> dict[str, dict]:
     return verified
 
 
+def _capture_elasticsearch_indices() -> dict:
+    try:
+        health_response = requests.get(f"{ELASTICSEARCH_URL}/_cluster/health", timeout=20)
+        health_response.raise_for_status()
+        health = health_response.json()
+        indices_response = requests.get(f"{ELASTICSEARCH_URL}/_cat/indices?format=json&bytes=b", timeout=20)
+        indices_response.raise_for_status()
+        indices = indices_response.json()
+        populated_indices = [
+            index
+            for index in indices
+            if not str(index.get("index", "")).startswith(".") and int(index.get("docs.count", 0)) > 0
+        ]
+        if health.get("status") not in {"yellow", "green"}:
+            raise RuntimeError(f"Elasticsearch health is {health.get('status')!r}")
+        if not populated_indices:
+            raise RuntimeError("Elasticsearch has no populated DataHub indices")
+        return {"status": "success", "health": health, "indices": indices, "populated_indices": populated_indices}
+    except Exception as exc:
+        return {"status": "failed", "error": str(exc), "url": ELASTICSEARCH_URL}
+
+
+def capture_search_evidence() -> dict:
+    elasticsearch = _capture_elasticsearch_indices()
+    if elasticsearch["status"] != "success":
+        return {"status": "failed", "error": str(elasticsearch["error"]), "elasticsearch": elasticsearch}
+
+    results: dict[str, dict] = {}
+    failures: list[dict[str, str]] = []
+    for label, urn in REPRESENTATIVE_DATASET_URNS.items():
+        try:
+            query = urn.split(",")[1]
+            payload = _graphql(
+                GRAPHQL_SEARCH_QUERY,
+                {"input": {"type": "DATASET", "query": query, "start": 0, "count": 100}},
+            )
+            if payload.get("errors"):
+                raise RuntimeError(str(payload["errors"]))
+            search = payload.get("data", {}).get("search", {})
+            found_urns = [
+                item.get("entity", {}).get("urn")
+                for item in search.get("searchResults", [])
+                if item.get("entity", {}).get("urn")
+            ]
+            results[label] = {"expected_urn": urn, "found_urns": found_urns, "total": search.get("total", 0)}
+            if urn not in found_urns:
+                failures.append({"label": label, "error": f"expected URN was not indexed: {urn}"})
+        except Exception as exc:
+            results[label] = {"expected_urn": urn, "error": str(exc)}
+            failures.append({"label": label, "error": str(exc)})
+
+    return {
+        "status": "success" if not failures else "failed",
+        "elasticsearch": elasticsearch,
+        "results": results,
+        "failures": failures,
+    }
+
+
 def capture_dataset_evidence() -> dict:
     latest_manifest = _load_latest_successful_ingestion_manifest()
     if latest_manifest is None:
@@ -174,7 +249,6 @@ def capture_dataset_evidence() -> dict:
             "gx_assertions_emitted": gx_results.get("assertions_emitted", 0),
         },
         "verified_representative_datasets": _capture_representative_datasets(),
-        "note": "Representative entities are verified directly via GMS GraphQL lookups; search indexing is not required for this evidence pass.",
     }
 
 
@@ -201,7 +275,7 @@ def capture_tag_evidence() -> dict:
     }
 
 
-def _manifest_status(health: dict, datasets: dict, tags: dict) -> tuple[str, list[dict[str, str]]]:
+def _manifest_status(health: dict, datasets: dict, tags: dict, search: dict) -> tuple[str, list[dict[str, str]]]:
     failures: list[dict[str, str]] = []
     partial = False
 
@@ -219,7 +293,10 @@ def _manifest_status(health: dict, datasets: dict, tags: dict) -> tuple[str, lis
     elif tags.get("status") not in {"success", None}:
         failures.append({"step": "tag_evidence", "error": str(tags.get("error") or f"tag evidence status is {tags.get('status')}")})
 
-    if any(failure["step"] in {"gms_health", "dataset_evidence"} for failure in failures):
+    if search.get("status") != "success":
+        failures.append({"step": "search_evidence", "error": str(search.get("error") or search.get("failures") or "indexed search failed")})
+
+    if any(failure["step"] in {"gms_health", "dataset_evidence", "search_evidence"} for failure in failures):
         return "failed", failures
     if partial or failures:
         return "partial", failures
@@ -236,7 +313,10 @@ def capture_evidence() -> dict:
     tags = capture_tag_evidence()
     _write_json(EVIDENCE_ROOT / "tag_count.json", tags)
 
-    status, failures = _manifest_status(health, datasets, tags)
+    search = capture_search_evidence()
+    _write_json(EVIDENCE_ROOT / "search_results.json", search)
+
+    status, failures = _manifest_status(health, datasets, tags, search)
     manifest = {
         "captured_at": _utc_now(),
         "status": status,
@@ -247,6 +327,7 @@ def capture_evidence() -> dict:
             "datahub_health.json",
             "dataset_count.json",
             "tag_count.json",
+            "search_results.json",
         ],
     }
     _write_json(EVIDENCE_ROOT / "run_manifest.json", manifest)

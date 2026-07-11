@@ -190,7 +190,7 @@ up-orchestration:
 down-orchestration:
 	uv run python $(CTL) compose down orchestration
 
-# Start the governance profile (DataHub GMS, frontend, actions, OpenSearch).
+# Start the governance profile (DataHub GMS, frontend, actions, Elasticsearch).
 up-governance:
 	uv run python $(CTL) compose up governance
 

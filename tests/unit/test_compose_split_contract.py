@@ -55,7 +55,7 @@ def test_compose_domain_files_own_each_service_once() -> None:
         "airflow-scheduler": "compose/orchestration.airflow.yml",
         "airflow-init": "compose/orchestration.airflow.yml",
         "gx-docs": "compose/orchestration.airflow.yml",
-        "datahub-opensearch": "compose/governance.datahub.yml",
+        "datahub-elasticsearch": "compose/governance.datahub.yml",
         "datahub-system-update": "compose/governance.datahub.yml",
         "datahub-gms": "compose/governance.datahub.yml",
         "datahub-frontend": "compose/governance.datahub.yml",
@@ -70,6 +70,7 @@ def test_root_compose_preserves_shared_named_volumes() -> None:
         "kafka_kraft_data",
         "minio_data",
         "lakehouse_postgres_data",
+        "datahub_search_data",
         "pinot_zookeeper_data",
         "pinot_zookeeper_datalog",
     }

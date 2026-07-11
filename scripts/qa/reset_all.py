@@ -37,7 +37,7 @@ PROFILES = {
     },
     "governance": {
         "volumes": [],
-        "description": "DataHub GMS, frontend, actions, OpenSearch",
+        "description": "DataHub GMS, frontend, actions, Elasticsearch",
     },
 }
 

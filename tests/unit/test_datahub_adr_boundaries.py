@@ -27,7 +27,7 @@ def test_governance_compose_profile_has_required_services() -> None:
 
     assert "datahub-gms" in governance_services
     assert "datahub-frontend" in governance_services
-    assert "datahub-opensearch" in governance_services
+    assert "datahub-elasticsearch" in governance_services
     assert "datahub-actions" in governance_services
     assert "datahub-system-update" in governance_services
 
@@ -42,7 +42,43 @@ def test_governance_profile_reuses_shared_kafka_and_postgres() -> None:
     assert "lakehouse-postgres:5432" in env_vars["EBEAN_DATASOURCE_URL"]
     assert env_vars["EBEAN_DATASOURCE_USERNAME"] == "datahub"
     assert env_vars["KAFKA_BOOTSTRAP_SERVER"] == "kafka:29092"
-    assert "datahub-opensearch" in env_vars["ELASTICSEARCH_HOST"]
+    assert env_vars["ELASTICSEARCH_HOST"] == "datahub-elasticsearch"
+    assert env_vars["KAFKA_SCHEMAREGISTRY_URL"] == "http://schema-registry:8081"
+    assert env_vars["METADATA_CHANGE_LOG_KAFKA_CONSUMER_GROUP_ID"] == "datahub-1-6-recovery-indexer-v2"
+    assert env_vars["KAFKA_CONSUMER_MCL_AUTO_OFFSET_RESET"] == "latest"
+    assert env_vars["ES_BULK_REFRESH_POLICY"] == "NONE"
+
+    system_update = compose["services"]["datahub-system-update"]
+    assert system_update["environment"]["KAFKA_SCHEMAREGISTRY_URL"] == "http://schema-registry:8081"
+    assert system_update["depends_on"]["schema-registry"]["condition"] == "service_healthy"
+    assert compose["services"]["datahub-actions"]["environment"]["SCHEMA_REGISTRY_URL"] == "http://schema-registry:8081"
+
+
+def test_governance_runtime_uses_aligned_elasticsearch_versions_and_persistence() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    compose = load_compose_model(repo_root)
+
+    elasticsearch = compose["services"]["datahub-elasticsearch"]
+    assert elasticsearch["image"] == "elasticsearch:7.10.1"
+    assert "datahub_search_data:/usr/share/elasticsearch/data" in elasticsearch["volumes"]
+
+    for service_name, image in {
+        "datahub-system-update": "acryldata/datahub-upgrade:v1.6.0",
+        "datahub-gms": "acryldata/datahub-gms:v1.6.0",
+        "datahub-frontend": "acryldata/datahub-frontend-react:v1.6.0",
+        "datahub-actions": "acryldata/datahub-actions:v1.6.0-slim",
+    }.items():
+        assert compose["services"][service_name]["image"] == image
+
+    for service_name in ("datahub-system-update", "datahub-gms"):
+        environment = compose["services"][service_name]["environment"]
+        assert environment["ELASTICSEARCH_HOST"] == "datahub-elasticsearch"
+        assert environment["ELASTICSEARCH_IMPLEMENTATION"] == "elasticsearch"
+
+    frontend = compose["services"]["datahub-frontend"]
+    assert frontend["environment"]["ELASTIC_CLIENT_HOST"] == "datahub-elasticsearch"
+    assert frontend["environment"]["DATAHUB_APP_VERSION"] == "v1.6.0"
+    assert len(frontend["environment"]["DATAHUB_SECRET"]) >= 32
 
 
 def test_datahub_does_not_change_canonical_truth_policy() -> None:

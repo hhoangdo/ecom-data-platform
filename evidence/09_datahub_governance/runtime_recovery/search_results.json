@@ -1,0 +1,63 @@
+{
+  "attempt": 1,
+  "failures": [],
+  "gms_url": "http://localhost:8087",
+  "results": {
+    "iceberg_fact_order": {
+      "expected_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "found_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order_item,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_order_status,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_inventory_snapshot,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_payment_attempt,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_promotion_application,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_shipment,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.obt_order_performance,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_order_items,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_orders,PROD)"
+      ],
+      "total": 10
+    },
+    "kafka_commerce_events": {
+      "expected_urn": "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
+      "found_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:s3,checkpoints.spark-events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,catalog_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,fulfillment_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,ops_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,realtime_commerce_metrics_1m,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:pinot,realtime_commerce_metrics_1m,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_catalog_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_fulfillment_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_ops_events,PROD)"
+      ],
+      "total": 12
+    },
+    "pinot_realtime_commerce_metrics_1m": {
+      "expected_urn": "urn:li:dataset:(urn:li:dataPlatform:pinot,realtime_commerce_metrics_1m,PROD)",
+      "found_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,realtime_commerce_metrics_1m,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:pinot,realtime_commerce_metrics_1m,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,realtime_metric_corrections,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:pinot,realtime_metric_corrections,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:kafka,realtime_ops_alerts,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:pinot,realtime_ops_alerts,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)"
+      ],
+      "total": 8
+    },
+    "s3_spark_event_log_prefix": {
+      "expected_urn": "urn:li:dataset:(urn:li:dataPlatform:s3,checkpoints.spark-events,PROD)",
+      "found_urns": [
+        "urn:li:dataset:(urn:li:dataPlatform:s3,checkpoints.spark-events,PROD)"
+      ],
+      "total": 1
+    }
+  },
+  "status": "success"
+}

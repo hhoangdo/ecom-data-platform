@@ -1,20 +1,14 @@
 {
-  "captured_from_manifest_at": "2026-06-02T18:34:05.936760+00:00",
-  "counts_by_recipe": {
-    "dbt_legacy": 52,
-    "kafka_topics": 8,
-    "minio_storage": 4,
-    "trino_tables": 45
-  },
+  "captured_from_manifest_at": "2026-07-11T17:45:04.306797+00:00",
+  "counts_by_recipe": {},
   "custom_lineage": {
-    "flink_entities": 3,
-    "gx_assertions_emitted": 8,
-    "spark_entities": 20
+    "flink_entities": 2,
+    "gx_assertions_emitted": 0,
+    "spark_entities": 2
   },
-  "latest_successful_run_id": "adr08_datahub_20260603T003300Z",
-  "note": "Representative entities are verified directly via GMS GraphQL lookups; search indexing is not required for this evidence pass.",
+  "latest_successful_run_id": "manual__2026-06-03T00_00_00_00_00",
   "status": "success",
-  "total_datasets_emitted": 109,
+  "total_datasets_emitted": 0,
   "verified_representative_datasets": {
     "iceberg_fact_order": {
       "dataset": {

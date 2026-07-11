@@ -114,7 +114,7 @@ Detailed Coverage
 --
 Product cards represent deployed Compose service groups.
 Example: Pinot includes Zookeeper, controller, broker, and server;
-DataHub includes GMS, frontend, actions, OpenSearch, and system update jobs.
+DataHub includes GMS, frontend, actions, Elasticsearch, and system update jobs.
 end note
 
 legend right

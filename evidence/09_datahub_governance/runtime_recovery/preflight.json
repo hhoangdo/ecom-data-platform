@@ -1,0 +1,26 @@
+{
+  "backup": {
+    "bytes": 42231,
+    "database": "datahub",
+    "format": "pg_dump custom with database create metadata",
+    "path": "evidence/runtime/datahub-before-1.6.0.dump",
+    "sha256": "B2E5B2526240E280B87E031FA3AFFD4962AB02B72166381CF8C5408CE542C4E4"
+  },
+  "captured_at": "2026-07-11T16:38:54.4328021Z",
+  "compose_images": {
+    "datahub-actions": "acryldata/datahub-actions:v0.0.15",
+    "datahub-frontend": "acryldata/datahub-frontend-react:v1.5.0.6",
+    "datahub-gms": "acryldata/datahub-gms:v1.5.0.6",
+    "datahub-opensearch": "opensearchproject/opensearch:2.19.3",
+    "datahub-system-update": "acryldata/datahub-upgrade:v1.5.0.6"
+  },
+  "postgres": {
+    "metadata_aspect_v2_count": 1150,
+    "volume": "lakehouse_postgres_data"
+  },
+  "runtime": {
+    "datahub_services": "not running; old-profile startup timed out before containers were created",
+    "lakehouse_postgres": "healthy",
+    "search_index_inventory": "unavailable because the configured OpenSearch service was not running"
+  }
+}

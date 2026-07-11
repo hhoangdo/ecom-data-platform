@@ -1,12 +1,15 @@
 services:
-  datahub-opensearch:
-    image: opensearchproject/opensearch:2.19.3
+  datahub-elasticsearch:
+    image: elasticsearch:7.10.1
     profiles: ["governance", "all"]
+    ports:
+      - "9200:9200"
     environment:
       discovery.type: single-node
-      DISABLE_SECURITY_PLUGIN: "true"
+      xpack.security.enabled: "false"
       ES_JAVA_OPTS: "-Xms256m -Xmx512m"
-      OPENSEARCH_JAVA_OPTS: "-Xms768m -Xmx1024m"
+    volumes:
+      - datahub_search_data:/usr/share/elasticsearch/data
     healthcheck:
       test: ["CMD-SHELL", "curl -sS --fail http://localhost:9200/_cluster/health?wait_for_status=yellow"]
       interval: 10s
@@ -15,13 +18,15 @@ services:
       start_period: 60s
 
   datahub-system-update:
-    image: acryldata/datahub-upgrade:v1.5.0.6
+    image: acryldata/datahub-upgrade:v1.6.0
     profiles: ["governance", "all"]
     command: ["-u", "SystemUpdate"]
     depends_on:
       kafka:
         condition: service_healthy
-      datahub-opensearch:
+      schema-registry:
+        condition: service_healthy
+      datahub-elasticsearch:
         condition: service_healthy
       lakehouse-postgres:
         condition: service_healthy
@@ -31,11 +36,11 @@ services:
       EBEAN_DATASOURCE_USERNAME: datahub
       EBEAN_DATASOURCE_PASSWORD: datahub_password
       EBEAN_DATASOURCE_HOST: lakehouse-postgres:5432
-      ELASTICSEARCH_HOST: datahub-opensearch
+      ELASTICSEARCH_HOST: datahub-elasticsearch
       ELASTICSEARCH_PORT: "9200"
       ELASTICSEARCH_PROTOCOL: http
       ELASTICSEARCH_USE_SSL: "false"
-      ELASTICSEARCH_IMPLEMENTATION: opensearch
+      ELASTICSEARCH_IMPLEMENTATION: elasticsearch
       ELASTICSEARCH_INDEX_BUILDER_MAPPINGS_REINDEX: "true"
       ELASTICSEARCH_INDEX_BUILDER_SETTINGS_REINDEX: "true"
       ELASTICSEARCH_INDEX_BUILDER_REFRESH_INTERVAL_SECONDS: "3"
@@ -52,17 +57,12 @@ services:
       DATAHUB_GMS_PORT: "8080"
       DATAHUB_BASE_PATH: /
       DATAHUB_GMS_BASE_PATH: /
-      KAFKA_SCHEMAREGISTRY_URL: "http://datahub-gms:8080/schema-registry/api/"
-      SCHEMA_REGISTRY_TYPE: INTERNAL
-      SCHEMA_REGISTRY_SYSTEM_UPDATE: "true"
-      SPRING_KAFKA_PROPERTIES_AUTO_REGISTER_SCHEMAS: "true"
-      SPRING_KAFKA_PROPERTIES_USE_LATEST_VERSION: "true"
-      USE_CONFLUENT_SCHEMA_REGISTRY: "false"
+      KAFKA_SCHEMAREGISTRY_URL: "http://schema-registry:8081"
       ENTITY_VERSIONING_ENABLED: "true"
       PARTITIONS: "3"
 
   datahub-gms:
-    image: acryldata/datahub-gms:v1.5.0.6
+    image: acryldata/datahub-gms:v1.6.0
     profiles: ["governance", "all"]
     depends_on:
       datahub-system-update:
@@ -75,17 +75,20 @@ services:
       EBEAN_DATASOURCE_USERNAME: datahub
       EBEAN_DATASOURCE_PASSWORD: datahub_password
       EBEAN_DATASOURCE_HOST: lakehouse-postgres:5432
-      ELASTICSEARCH_HOST: datahub-opensearch
+      ELASTICSEARCH_HOST: datahub-elasticsearch
       ELASTICSEARCH_PORT: "9200"
       ELASTICSEARCH_PROTOCOL: http
       ELASTICSEARCH_USE_SSL: "false"
-      ELASTICSEARCH_IMPLEMENTATION: opensearch
+      ELASTICSEARCH_IMPLEMENTATION: elasticsearch
       ELASTICSEARCH_INDEX_BUILDER_MAPPINGS_REINDEX: "true"
       ELASTICSEARCH_INDEX_BUILDER_SETTINGS_REINDEX: "true"
       ELASTICSEARCH_LIMIT_RESULTS_STRICT: "true"
-      ES_BULK_REFRESH_POLICY: WAIT_UNTIL
+      ES_BULK_REFRESH_POLICY: NONE
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
-      KAFKA_SCHEMAREGISTRY_URL: "http://datahub-gms:8080/schema-registry/api/"
+      KAFKA_SCHEMAREGISTRY_URL: "http://schema-registry:8081"
+      # Start a fresh indexer at the recovery boundary; restoreIndices emits every persisted aspect.
+      METADATA_CHANGE_LOG_KAFKA_CONSUMER_GROUP_ID: datahub-1-6-recovery-indexer-v2
+      KAFKA_CONSUMER_MCL_AUTO_OFFSET_RESET: latest
       GRAPH_SERVICE_IMPL: elasticsearch
       GRAPH_SERVICE_DIFF_MODE_ENABLED: "false"
       ENTITY_REGISTRY_CONFIG_PATH: /datahub/datahub-gms/resources/entity-registry.yml
@@ -93,10 +96,6 @@ services:
       DATAHUB_TOKEN_SERVICE_SIGNING_KEY: "WnEdIeTG/VVCLQqGwC/BAkqyY0k+H8NEAtWGejrBI94="
       DATAHUB_TOKEN_SERVICE_SALT: "YouKnowNothingJohnSnow"
       DATAHUB_UPGRADE_HISTORY_KAFKA_CONSUMER_GROUP_ID: generic-duhe-consumer-job-client-gms
-      SCHEMA_REGISTRY_TYPE: INTERNAL
-      SPRING_KAFKA_PROPERTIES_AUTO_REGISTER_SCHEMAS: "true"
-      SPRING_KAFKA_PROPERTIES_USE_LATEST_VERSION: "true"
-      USE_CONFLUENT_SCHEMA_REGISTRY: "false"
       MAE_CONSUMER_ENABLED: "true"
       MCE_CONSUMER_ENABLED: "true"
       PE_CONSUMER_ENABLED: "true"
@@ -127,7 +126,7 @@ services:
       start_period: 120s
 
   datahub-frontend:
-    image: acryldata/datahub-frontend-react:v1.5.0.6
+    image: acryldata/datahub-frontend-react:v1.6.0
     profiles: ["governance", "all"]
     depends_on:
       datahub-gms:
@@ -137,19 +136,19 @@ services:
     environment:
       DATAHUB_GMS_HOST: datahub-gms
       DATAHUB_GMS_PORT: "8080"
-      DATAHUB_SECRET: "YouKnowNothing"
-      DATAHUB_APP_VERSION: "v1.5.0.6"
+      DATAHUB_SECRET: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      DATAHUB_APP_VERSION: "v1.6.0"
       DATAHUB_PLAY_MEM_BUFFER_SIZE: "10MB"
       DATAHUB_TRACKING_TOPIC: DataHubUsageEvent_v1
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
-      ELASTIC_CLIENT_HOST: datahub-opensearch
+      ELASTIC_CLIENT_HOST: datahub-elasticsearch
       ELASTIC_CLIENT_PORT: "9200"
       DATAHUB_BASE_PATH: /
       DATAHUB_GMS_BASE_PATH: /
       THEME_V2_DEFAULT: "true"
 
   datahub-actions:
-    image: acryldata/datahub-actions:v0.0.15
+    image: acryldata/datahub-actions:v1.6.0-slim
     profiles: ["governance", "all"]
     depends_on:
       datahub-gms:
@@ -162,6 +161,6 @@ services:
       DATAHUB_SYSTEM_CLIENT_SECRET: JohnSnowKnowsNothing
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
       KAFKA_PROPERTIES_SECURITY_PROTOCOL: PLAINTEXT
-      SCHEMA_REGISTRY_URL: "http://datahub-gms:8080/schema-registry/api/"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
       METADATA_AUDIT_EVENT_NAME: MetadataAuditEvent_v4
       METADATA_CHANGE_LOG_VERSIONED_TOPIC_NAME: MetadataChangeLog_Versioned_v1
