@@ -1,0 +1,7 @@
+{
+  "url": "http://localhost:9002/dataset/urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)/Columns?highlightedPath&is_lineage_mode=false&schemaFilter=",
+  "captured_at": "2026-07-12T07:39:32.582Z",
+  "reloaded": true,
+  "bytes": 61158,
+  "captured_from_fresh_tab": true
+}

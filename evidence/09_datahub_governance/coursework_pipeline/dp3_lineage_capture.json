@@ -1,0 +1,6 @@
+{
+  "url": "http://localhost:9002/tasks/urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp3_offline_features)/Lineage?is_lineage_mode=false",
+  "captured_at": "2026-07-12T07:37:29.503Z",
+  "reloaded": true,
+  "bytes": 71979
+}

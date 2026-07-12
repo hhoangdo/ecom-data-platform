@@ -34,9 +34,9 @@ GOLD_UPSTREAM_MAP: dict[str, list[str]] = {
         "stg_payments",
         "stg_commerce_events",
     ],
-    "feat_customer_90d": ["stg_customers", "stg_orders", "stg_order_items", "stg_payments"],
+    "feat_customer_90d": ["fact_order"],
     "feat_stream_60m": ["stg_commerce_events"],
-    "feat_customer_unified": ["stg_customers", "stg_commerce_events"],
+    "feat_customer_unified": ["feat_customer_90d", "feat_stream_60m"],
 }
 
 MEDALLION_TAGS: dict[str, str] = {

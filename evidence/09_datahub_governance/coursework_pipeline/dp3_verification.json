@@ -1,0 +1,162 @@
+{
+  "assertion_ok": true,
+  "assertions": {
+    "coursework_dp3_feat_customer_90d_has_created": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_90d_has_created"
+    },
+    "coursework_dp3_feat_customer_90d_has_created_ts_false": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_90d_has_created_ts_false"
+    },
+    "coursework_dp3_feat_customer_90d_has_event_timestamp": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_90d_has_event_timestamp"
+    },
+    "coursework_dp3_feat_customer_90d_row_count_min_1": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_90d_row_count_min_1"
+    },
+    "coursework_dp3_feat_customer_unified_has_created": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_unified_has_created"
+    },
+    "coursework_dp3_feat_customer_unified_has_created_ts_false": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_unified_has_created_ts_false"
+    },
+    "coursework_dp3_feat_customer_unified_has_event_timestamp": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_unified_has_event_timestamp"
+    },
+    "coursework_dp3_feat_customer_unified_row_count_min_1": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_customer_unified_row_count_min_1"
+    },
+    "coursework_dp3_feat_stream_60m_has_created": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_stream_60m_has_created"
+    },
+    "coursework_dp3_feat_stream_60m_has_created_ts_false": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_stream_60m_has_created_ts_false"
+    },
+    "coursework_dp3_feat_stream_60m_has_event_timestamp": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_stream_60m_has_event_timestamp"
+    },
+    "coursework_dp3_feat_stream_60m_row_count_min_1": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp3_feat_stream_60m_row_count_min_1"
+    }
+  },
+  "job": {
+    "actual_inputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)"
+    ],
+    "actual_outputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)"
+    ],
+    "dataflow_urn": "urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local)",
+    "error": null,
+    "expected_inputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)"
+    ],
+    "expected_outputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)"
+    ],
+    "status": "success",
+    "urn": "urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp3_offline_features)"
+  },
+  "schema_ok": true,
+  "schemas": {
+    "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)": {
+      "error": null,
+      "fields": [
+        {
+          "fieldPath": "event_timestamp",
+          "nativeDataType": "string"
+        },
+        {
+          "fieldPath": "created",
+          "nativeDataType": "string"
+        }
+      ],
+      "status": "success",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)"
+    },
+    "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)": {
+      "error": null,
+      "fields": [
+        {
+          "fieldPath": "event_timestamp",
+          "nativeDataType": "string"
+        },
+        {
+          "fieldPath": "created",
+          "nativeDataType": "string"
+        }
+      ],
+      "status": "success",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)"
+    },
+    "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)": {
+      "error": null,
+      "fields": [
+        {
+          "fieldPath": "event_timestamp",
+          "nativeDataType": "string"
+        },
+        {
+          "fieldPath": "created",
+          "nativeDataType": "string"
+        }
+      ],
+      "status": "success",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)"
+    }
+  },
+  "status": "success"
+}

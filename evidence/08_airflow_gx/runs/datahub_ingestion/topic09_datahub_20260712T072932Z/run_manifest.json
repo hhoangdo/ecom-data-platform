@@ -1,0 +1,154 @@
+{
+  "captured_at": "2026-07-12T07:30:29.466520+00:00",
+  "ingestion_results": {
+    "custom_lineage": {
+      "coursework_assertions": {
+        "assertion_urns": [
+          "urn:li:assertion:coursework_dp1_bronze_batch_path_not_null",
+          "urn:li:assertion:coursework_dp1_bronze_batch_object_count_min_1",
+          "urn:li:assertion:coursework_dp1_bronze_events_path_not_null",
+          "urn:li:assertion:coursework_dp1_bronze_events_object_count_min_1",
+          "urn:li:assertion:coursework_dp2_fact_order_rows_min_1",
+          "urn:li:assertion:coursework_dp3_feat_customer_90d_row_count_min_1",
+          "urn:li:assertion:coursework_dp3_feat_customer_90d_has_event_timestamp",
+          "urn:li:assertion:coursework_dp3_feat_customer_90d_has_created",
+          "urn:li:assertion:coursework_dp3_feat_customer_90d_has_created_ts_false",
+          "urn:li:assertion:coursework_dp3_feat_stream_60m_row_count_min_1",
+          "urn:li:assertion:coursework_dp3_feat_stream_60m_has_event_timestamp",
+          "urn:li:assertion:coursework_dp3_feat_stream_60m_has_created",
+          "urn:li:assertion:coursework_dp3_feat_stream_60m_has_created_ts_false",
+          "urn:li:assertion:coursework_dp3_feat_customer_unified_row_count_min_1",
+          "urn:li:assertion:coursework_dp3_feat_customer_unified_has_event_timestamp",
+          "urn:li:assertion:coursework_dp3_feat_customer_unified_has_created",
+          "urn:li:assertion:coursework_dp3_feat_customer_unified_has_created_ts_false"
+        ],
+        "assertions_emitted": 17,
+        "source_run_id": "topic07_20260711T124521Z",
+        "source_run_root": "/workspace/evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z",
+        "status": "success"
+      },
+      "coursework_pipelines": {
+        "dataflow_urn": "urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local)",
+        "datajobs_emitted": 3,
+        "input_output_edges": {
+          "dp1_raw_to_bronze": {
+            "inputs": [
+              "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:kafka,catalog_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:kafka,fulfillment_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:kafka,ops_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:kafka,dead_letter_events,PROD)"
+            ],
+            "outputs": [
+              "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)"
+            ]
+          },
+          "dp2_bronze_to_silver_gold": {
+            "inputs": [
+              "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)"
+            ],
+            "outputs": [
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_customers,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_sellers,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_products,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_product_category_map,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_inventory_snapshots,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_promotions,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_orders,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_order_items,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_payments,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_shipments,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_catalog_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_fulfillment_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_ops_events,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_bad_snapshots,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_customer,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_seller,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_product,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_category,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_date,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_payment_method,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_order_status,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_shipment_status,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_shipping_method,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_promotion,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.bridge_product_category,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order_item,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_payment_attempt,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_shipment,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_inventory_snapshot,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_promotion_application,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.obt_order_performance,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.agg_hourly_reconciled_kpi,PROD)"
+            ]
+          },
+          "dp3_offline_features": {
+            "inputs": [
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)"
+            ],
+            "outputs": [
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_90d,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_stream_60m,PROD)",
+              "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)"
+            ]
+          }
+        },
+        "status": "success"
+      },
+      "flink": {
+        "realtime_commerce_metrics_1m": "success",
+        "realtime_metric_corrections": "success",
+        "realtime_ops_alerts": "success"
+      },
+      "gx_assertions": {
+        "assertions_emitted": 8,
+        "files_found": 1
+      },
+      "spark": {
+        "agg_hourly_reconciled_kpi": "success",
+        "dim_category": "success",
+        "dim_customer": "success",
+        "dim_order_status": "success",
+        "dim_payment_method": "success",
+        "dim_product": "success",
+        "dim_promotion": "success",
+        "dim_seller": "success",
+        "dim_shipment_status": "success",
+        "dim_shipping_method": "success",
+        "fact_inventory_snapshot": "success",
+        "fact_order": "success",
+        "fact_order_item": "success",
+        "fact_payment_attempt": "success",
+        "fact_promotion_application": "success",
+        "fact_shipment": "success",
+        "feat_customer_90d": "success",
+        "feat_customer_unified": "success",
+        "feat_stream_60m": "success",
+        "obt_order_performance": "success"
+      },
+      "vocabulary": "success"
+    },
+    "dbt_legacy": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '209.82 MB',\n 'peak_memory_usage': '209.82 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '60.62 GB', 'used_initally': '60.59 GB', 'free': '965.49 GB'},\n 'peak_disk_usage': '60.62 GB',\n 'thread_count': 4,\n 'peak_thread_count': 10}\nSource (dbt) report:\n{'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'assertion': {'dataPlatformInstance': 72, 'assertionInfo': 72, 'assertionRunEvent': 72, 'status': 72},\n             'dataProcessInstance': {'dataProcessInstanceProperties': 53,\n                                     'dataProcessInstanceRelationships': 53,\n                                     'dataProcessInstanceInput': 36,\n                                     'dataProcessInstanceOutput': 53,\n                                     'dataProcessInstanceRunEvent': 106,\n                                     'status': 53},\n             'dataset': {'subTypes': 52,\n                         'dataPlatformInstance': 52,\n                         'datasetProperties': 52,\n                         'status': 52,\n                         'schemaMetadata': 52,\n                         'upstreamLineage': 88,\n                         'fineGrainedLineages': 26,\n                         'viewProperties': 52}},\n 'aspects_by_subtypes_full_count': {'assertion': {'unknown': {'dataPlatformInstance': 72,\n                                                              'assertionInfo': 72,\n                                                              'assertionRunEvent': 72,\n                                                              'status': 72}},\n                                    'd",
+      "status": "success"
+    },
+    "kafka_topics": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '167.02 MB',\n 'peak_memory_usage': '167.02 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '60.56 GB', 'used_initally': '60.65 GB', 'free': '965.55 GB'},\n 'peak_disk_usage': '60.65 GB',\n 'thread_count': 4,\n 'peak_thread_count': 5}\nSource (kafka) report:\n{'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'dataset': {'status': 14,\n                         'dataPlatformInstance': 14,\n                         'datasetProperties': 14,\n                         'subTypes': 14,\n                         'browsePathsV2': 14,\n                         'schemaMetadata': 5}},\n 'aspects_by_subtypes_full_count': {'dataset': {'Topic': {'status': 14,\n                                                          'dataPlatformInstance': 14,\n                                                          'datasetProperties': 14,\n                                                          'subTypes': 14,\n                                                          'browsePathsV2': 14,\n                                                          'schemaMetadata': 5}}},\n 'samples': {},\n 'compute_stats_time_seconds': 0.001443,\n 'event_not_produced_warn': True,\n 'events_produced': 75,\n 'events_produced_per_sec': 47,\n 'num_input_fields_filtered': 0,\n 'soft_deleted_stale_entities': [],\n 'last_state_non_deletable_entities': [],\n 'entity_type_deletion_summary': {},\n 'topics_scanned': 28,\n 'filtered': ['MetadataChangeProposal_v1',\n              '_connect_status',\n              '_connect_offsets',\n              'DataHubUsageEvent_v1',\n              'FailedMetadataChangeProposal_v1',\n              '_s",
+      "status": "success"
+    },
+    "minio_storage": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '142.28 MB',\n 'peak_memory_usage': '142.28 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '60.59 GB', 'used_initally': '60.59 GB', 'free': '965.52 GB'},\n 'peak_disk_usage': '60.59 GB',\n 'thread_count': 4,\n 'peak_thread_count': 5}\nSource (file) report:\n{'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'dataset': {'datasetProperties': 4, 'status': 4}},\n 'aspects_by_subtypes_full_count': {'dataset': {'unknown': {'datasetProperties': 4, 'status': 4}}},\n 'samples': {},\n 'compute_stats_time_seconds': 0.000656,\n 'event_not_produced_warn': True,\n 'events_produced': 8,\n 'events_produced_per_sec': 10,\n 'num_input_fields_filtered': 0,\n 'soft_deleted_stale_entities': [],\n 'last_state_non_deletable_entities': [],\n 'entity_type_deletion_summary': {},\n 'total_num_files': 1,\n 'num_files_completed': 1,\n 'files_completed': ['/workspace/infra/governance/recipes/minio_container_metadata.json'],\n 'percentage_completion': '100.00%',\n 'estimated_time_to_completion_in_minutes': 0,\n 'total_bytes_on_disk': 2813,\n 'total_bytes_read_completed_files': 2813,\n 'current_file_size': 2813,\n 'total_parse_time_in_seconds': 0,\n 'total_count_time_in_seconds': 0,\n 'total_deserialize_time_in_seconds': 0.0,\n 'platform': 'metadata-file',\n 'start_time': '2026-07-12 07:29:50.905857 (now)',\n 'running_time': '0.74 seconds',\n 'failures': [],\n 'warnings': [],\n 'infos': []}\n\nAspects by Subtypes:\n+-------------------+---------------------+\n| Aspect            |   dataset (unknown) |\n+===================+=====================+\n| datasetProperties |                   4 |\n+-------------------+--------",
+      "status": "success"
+    },
+    "trino_tables": {
+      "output": "\nCli report:\n{'cli_version': '1.6.0',\n 'cli_entry_location': '/home/airflow/.local/lib/python3.12/site-packages/datahub/ingestion/run/pipeline.py',\n 'models_version': 'bundled',\n 'py_version': '3.12.9 (main, Feb  6 2025, 22:37:05) [GCC 12.2.0]',\n 'py_exec_path': '/home/airflow/.local/bin/python',\n 'os_details': 'Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36',\n 'mem_info': '298.11 MB',\n 'peak_memory_usage': '298.11 MB',\n 'disk_info': {'total': '1.08 TB', 'used': '60.62 GB', 'used_initally': '60.58 GB', 'free': '965.49 GB'},\n 'peak_disk_usage': '60.62 GB',\n 'thread_count': 4,\n 'peak_thread_count': 6}\nSource (trino) report:\n{'profiling_skipped_not_updated': {},\n 'profiling_skipped_size_limit': {},\n 'profiling_skipped_row_limit': {},\n 'profiling_skipped_table_profile_pattern': {},\n 'profiling_skipped_other': {},\n 'num_tables_not_eligible_profiling': {},\n 'num_tables_fetch_sample_values_failed': 0,\n 'num_tables_classification_attempted': 0,\n 'num_tables_classification_failed': 0,\n 'num_tables_classification_found': 0,\n 'info_types_detected': {},\n 'ingestion_high_stage_seconds': {},\n 'ingestion_stage_durations': {},\n 'aspects': {'container': {'containerProperties': 6, 'status': 6, 'dataPlatformInstance': 6, 'subTypes': 6, 'browsePathsV2': 6, 'container': 5},\n             'dataset': {'container': 46,\n                         'status': 92,\n                         'datasetProperties': 46,\n                         'schemaMetadata': 46,\n                         'subTypes': 46,\n                         'siblings': 92,\n                         'browsePathsV2': 46,\n                         'upstreamLineage': 46,\n                         'fineGrainedLineages': 46}},\n 'aspects_by_subtypes_full_count': {'container': {'Database': {'containerProperties': 1,\n                                                               'status': 1,\n                                                               'dataPlatformInstance': 1,\n                                                 ",
+      "status": "success"
+    }
+  },
+  "status": "success"
+}

@@ -1,14 +1,19 @@
 {
-  "captured_from_manifest_at": "2026-07-11T17:45:04.306797+00:00",
-  "counts_by_recipe": {},
-  "custom_lineage": {
-    "flink_entities": 2,
-    "gx_assertions_emitted": 0,
-    "spark_entities": 2
+  "captured_from_manifest_at": "2026-07-12T07:30:29.466520+00:00",
+  "counts_by_recipe": {
+    "dbt_legacy": 52,
+    "kafka_topics": 14,
+    "minio_storage": 4,
+    "trino_tables": 46
   },
-  "latest_successful_run_id": "manual__2026-06-03T00_00_00_00_00",
+  "custom_lineage": {
+    "flink_entities": 3,
+    "gx_assertions_emitted": 8,
+    "spark_entities": 20
+  },
+  "latest_successful_run_id": "topic09_datahub_20260712T072932Z",
   "status": "success",
-  "total_datasets_emitted": 0,
+  "total_datasets_emitted": 116,
   "verified_representative_datasets": {
     "iceberg_fact_order": {
       "dataset": {
@@ -16,8 +21,8 @@
           "tags": [
             {
               "tag": {
-                "name": "silver",
-                "urn": "urn:li:tag:silver"
+                "name": "quality_gate",
+                "urn": "urn:li:tag:quality_gate"
               }
             }
           ]

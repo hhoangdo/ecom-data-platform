@@ -1,0 +1,6 @@
+{
+  "url": "http://localhost:9002/dataset/urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)/Quality/List?highlightedPath&schemaFilter=&separate_siblings=false",
+  "captured_at": "2026-07-12T07:37:08.262Z",
+  "reloaded": true,
+  "bytes": 68666
+}

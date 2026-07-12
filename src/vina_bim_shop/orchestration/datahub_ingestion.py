@@ -122,6 +122,20 @@ def _run_custom_lineage_emission() -> dict[str, Any]:
     except Exception as exc:
         results["gx_assertions"] = {"status": "warning", "reason": str(exc)}
 
+    try:
+        from vina_bim_shop.datahub_lineage.coursework_pipelines import emit_coursework_pipeline
+
+        results["coursework_pipelines"] = emit_coursework_pipeline(gms_url=gms_url)
+    except Exception as exc:
+        results["coursework_pipelines"] = {"status": "failed", "reason": str(exc)}
+
+    try:
+        from vina_bim_shop.datahub_lineage.gx_assertions import emit_coursework_assertions_to_datahub
+
+        results["coursework_assertions"] = emit_coursework_assertions_to_datahub(gms_url)
+    except Exception as exc:
+        results["coursework_assertions"] = {"status": "failed", "reason": str(exc)}
+
     return results
 
 
@@ -151,10 +165,16 @@ def run_datahub_ingestion(*, run_id: str) -> dict[str, Any]:
 
     lineage_results = _run_custom_lineage_emission()
     recipe_results["custom_lineage"] = lineage_results
+    coursework_results = [
+        lineage_results.get("coursework_pipelines", {}),
+        lineage_results.get("coursework_assertions", {}),
+    ]
+    if any(result.get("status") != "success" for result in coursework_results):
+        all_success = False
 
     manifest = {
         "captured_at": _utc_now(),
-        "status": "success" if all_success else "warning",
+        "status": "success" if all_success else "failed",
         "ingestion_results": recipe_results,
     }
     _write_json(run_root / "run_manifest.json", manifest)
@@ -162,11 +182,11 @@ def run_datahub_ingestion(*, run_id: str) -> dict[str, Any]:
         layer="datahub",
         suite_name="datahub_ingestion",
         success=all_success,
-        status="success" if all_success else "warning",
-        severity="warning",
-        blocks_dag=False,
+        status="success" if all_success else "failed",
+        severity="warning" if all_success else "error",
+        blocks_dag=not all_success,
         requires_quarantine=False,
-        summary="ADR 07 ingestion completed." if all_success else "Some recipes emitted warnings.",
+        summary="ADR 07 ingestion completed." if all_success else "Required coursework metadata emission failed.",
         artifacts=["run_manifest.json"],
     )
     _render_docs(_docs_reports_with([datahub_report]))

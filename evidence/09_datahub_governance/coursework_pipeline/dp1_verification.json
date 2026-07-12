@@ -1,0 +1,76 @@
+{
+  "assertion_ok": true,
+  "assertions": {
+    "coursework_dp1_bronze_batch_object_count_min_1": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp1_bronze_batch_object_count_min_1"
+    },
+    "coursework_dp1_bronze_batch_path_not_null": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp1_bronze_batch_path_not_null"
+    },
+    "coursework_dp1_bronze_events_object_count_min_1": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp1_bronze_events_object_count_min_1"
+    },
+    "coursework_dp1_bronze_events_path_not_null": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp1_bronze_events_path_not_null"
+    }
+  },
+  "job": {
+    "actual_inputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,catalog_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,dead_letter_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,fulfillment_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,ops_events,PROD)"
+    ],
+    "actual_outputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)"
+    ],
+    "dataflow_urn": "urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local)",
+    "error": null,
+    "expected_inputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,catalog_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,commerce_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,dead_letter_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,fulfillment_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:kafka,ops_events,PROD)"
+    ],
+    "expected_outputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)"
+    ],
+    "status": "success",
+    "urn": "urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp1_raw_to_bronze)"
+  },
+  "schema_ok": true,
+  "schemas": {
+    "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)": {
+      "error": null,
+      "fields": [
+        {
+          "fieldPath": "path",
+          "nativeDataType": "string"
+        }
+      ],
+      "status": "success",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)"
+    }
+  },
+  "status": "success"
+}

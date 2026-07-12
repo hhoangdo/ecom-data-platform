@@ -1,0 +1,6 @@
+{
+  "url": "http://localhost:9002/tasks/urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp2_bronze_to_silver_gold)/Lineage?is_lineage_mode=false",
+  "captured_at": "2026-07-12T07:36:09.550Z",
+  "reloaded": true,
+  "bytes": 71092
+}

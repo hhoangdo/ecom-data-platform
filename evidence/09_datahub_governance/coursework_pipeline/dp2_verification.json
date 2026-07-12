@@ -1,0 +1,117 @@
+{
+  "assertion_ok": true,
+  "assertions": {
+    "coursework_dp2_fact_order_rows_min_1": {
+      "assertee_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "error": null,
+      "result": "SUCCESS",
+      "status": "success",
+      "urn": "urn:li:assertion:coursework_dp2_fact_order_rows_min_1"
+    }
+  },
+  "job": {
+    "actual_inputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)"
+    ],
+    "actual_outputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.agg_hourly_reconciled_kpi,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.bridge_product_category,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_category,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_customer,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_date,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_order_status,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_payment_method,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_product,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_promotion,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_seller,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_shipment_status,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_shipping_method,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_inventory_snapshot,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order_item,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_payment_attempt,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_promotion_application,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_shipment,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.obt_order_performance,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_bad_snapshots,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_catalog_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_customers,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_fulfillment_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_inventory_snapshots,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_ops_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_order_items,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_orders,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_payments,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_product_category_map,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_products,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_promotions,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_sellers,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_shipments,PROD)"
+    ],
+    "dataflow_urn": "urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local)",
+    "error": null,
+    "expected_inputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.events,PROD)"
+    ],
+    "expected_outputs": [
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.agg_hourly_reconciled_kpi,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.bridge_product_category,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_category,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_customer,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_date,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_order_status,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_payment_method,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_product,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_promotion,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_seller,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_shipment_status,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.dim_shipping_method,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_inventory_snapshot,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order_item,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_payment_attempt,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_promotion_application,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_shipment,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.obt_order_performance,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_bad_snapshots,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_catalog_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_commerce_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_customers,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_fulfillment_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_inventory_snapshots,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_ops_events,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_order_items,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_orders,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_payments,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_product_category_map,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_products,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_promotions,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_sellers,PROD)",
+      "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.stg_shipments,PROD)"
+    ],
+    "status": "success",
+    "urn": "urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp2_bronze_to_silver_gold)"
+  },
+  "schema_ok": true,
+  "schemas": {
+    "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)": {
+      "error": null,
+      "fields": [
+        {
+          "fieldPath": "order_id",
+          "nativeDataType": "string"
+        },
+        {
+          "fieldPath": "official_paid_revenue",
+          "nativeDataType": "string"
+        }
+      ],
+      "status": "success",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)"
+    }
+  },
+  "status": "success"
+}

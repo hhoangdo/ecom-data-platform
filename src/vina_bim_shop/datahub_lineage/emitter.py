@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from datetime import datetime, timezone
 from typing import Any
 
@@ -7,11 +9,19 @@ from datahub.emitter.mcp import MetadataChangeProposalWrapper
 from datahub.emitter.rest_emitter import DataHubRestEmitter
 from datahub.metadata.schema_classes import (
     AuditStampClass,
+    DataFlowInfoClass,
+    DataJobInfoClass,
+    DataJobInputOutputClass,
     DatasetLineageTypeClass,
     OwnershipClass,
     OwnerClass,
     OwnershipTypeClass,
     GlobalTagsClass,
+    OtherSchemaClass,
+    SchemaFieldClass,
+    SchemaFieldDataTypeClass,
+    SchemaMetadataClass,
+    StringTypeClass,
     TagAssociationClass,
     UpstreamClass,
     UpstreamLineageClass,
@@ -65,12 +75,94 @@ class DataHubLineageEmitter:
             )
         )
 
+    def emit_dataflow(self, *, entity_urn: str, name: str, description: str) -> None:
+        self._emitter.emit(
+            MetadataChangeProposalWrapper(
+                entityUrn=entity_urn,
+                aspect=DataFlowInfoClass(
+                    name=name,
+                    description=description,
+                    env="PROD",
+                ),
+            )
+        )
+
+    def emit_datajob(
+        self,
+        *,
+        entity_urn: str,
+        flow_urn: str,
+        name: str,
+        description: str,
+        input_urns: list[str],
+        output_urns: list[str],
+    ) -> None:
+        self._emitter.emit(
+            MetadataChangeProposalWrapper(
+                entityUrn=entity_urn,
+                aspect=DataJobInfoClass(
+                    name=name,
+                    description=description,
+                    flowUrn=flow_urn,
+                    type="BATCH_SCHEDULED",
+                    env="PROD",
+                ),
+            )
+        )
+        self._emitter.emit(
+            MetadataChangeProposalWrapper(
+                entityUrn=entity_urn,
+                aspect=DataJobInputOutputClass(
+                    inputDatasets=sorted(set(input_urns)),
+                    outputDatasets=sorted(set(output_urns)),
+                ),
+            )
+        )
+
     def emit_tag(self, entity_urn: str, tag_name: str) -> None:
+        self.emit_tags(entity_urn, [tag_name])
+
+    def emit_tags(self, entity_urn: str, tag_names: list[str]) -> None:
         self._emitter.emit(
             MetadataChangeProposalWrapper(
                 entityUrn=entity_urn,
                 aspect=GlobalTagsClass(
-                    tags=[TagAssociationClass(tag=f"urn:li:tag:{tag_name}")]
+                    tags=[
+                        TagAssociationClass(tag=f"urn:li:tag:{tag_name}")
+                        for tag_name in sorted(set(tag_names))
+                    ]
+                ),
+            )
+        )
+
+    def emit_string_schema(
+        self,
+        *,
+        entity_urn: str,
+        platform_urn: str,
+        schema_name: str,
+        field_names: list[str],
+    ) -> None:
+        raw_schema = json.dumps({"type": "record", "name": schema_name, "fields": field_names}, sort_keys=True)
+        self._emitter.emit(
+            MetadataChangeProposalWrapper(
+                entityUrn=entity_urn,
+                aspect=SchemaMetadataClass(
+                    schemaName=schema_name,
+                    platform=platform_urn,
+                    version=0,
+                    hash=hashlib.sha256(raw_schema.encode("utf-8")).hexdigest(),
+                    platformSchema=OtherSchemaClass(rawSchema=raw_schema),
+                    fields=[
+                        SchemaFieldClass(
+                            fieldPath=field_name,
+                            type=SchemaFieldDataTypeClass(type=StringTypeClass()),
+                            nativeDataType="string",
+                            nullable=False,
+                            description="Contract field emitted for the coursework pipeline output.",
+                        )
+                        for field_name in field_names
+                    ],
                 ),
             )
         )
@@ -83,7 +175,7 @@ class DataHubLineageEmitter:
                     owners=[
                         OwnerClass(
                             owner=owner_urn,
-                            type=OwnershipTypeClass[owner_type],
+                            type=getattr(OwnershipTypeClass, owner_type),
                         )
                     ]
                 ),
@@ -97,6 +189,8 @@ class DataHubLineageEmitter:
         assertion_type: str,
         success: bool,
         column: str = "",
+        run_id: str | None = None,
+        timestamp_ms: int | None = None,
     ) -> None:
         from datahub.metadata.schema_classes import (
             AssertionInfoClass,
@@ -110,8 +204,8 @@ class DataHubLineageEmitter:
             DatasetAssertionScopeClass,
         )
 
-        now = _now_ms()
-        run_id = f"gx_run_{now}"
+        now = timestamp_ms if timestamp_ms is not None else _now_ms()
+        resolved_run_id = run_id or f"gx_run_{now}"
 
         self._emitter.emit(
             MetadataChangeProposalWrapper(
@@ -135,7 +229,7 @@ class DataHubLineageEmitter:
                 aspect=AssertionRunEventClass(
                     timestampMillis=now,
                     asserteeUrn=dataset_urn,
-                    runId=run_id,
+                    runId=resolved_run_id,
                     assertionUrn=assertion_urn,
                     status=AssertionRunStatusClass.COMPLETE,
                     result=AssertionResultClass(

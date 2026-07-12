@@ -22,6 +22,26 @@ Direct GMS entity and tag checks remain committed in
 `evidence/09_datahub_governance/`, but they are supplemental: a failed
 Elasticsearch search gate makes the runtime evidence fail.
 
+## Topic 09 Coursework Pipeline Lineage and Contracts
+
+The indexed DataFlow
+`urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local)`
+contains the three rubric-facing DataJobs:
+
+- DP1 has 5 Kafka inputs and 2 Bronze S3 outputs, with 4 passing assertions.
+- DP2 has 2 Bronze inputs and 34 Silver/Gold Iceberg outputs, with a passing
+  `fact_order` assertion.
+- DP3 has 2 Iceberg inputs and 3 feature outputs, with 12 passing assertions.
+
+`evidence/09_datahub_governance/coursework_pipeline/run_manifest.json` is the
+fail-closed acceptance record: it requires exact GraphQL edge sets, indexed
+DataFlow/DataJob search results, output schemas, linked passing assertions,
+and a valid six-image UI manifest. It reports success from the Airflow
+ingestion run `topic09_datahub_20260712T072932Z`; API-only proof does not
+satisfy this gate. The screenshots show the actual DataHub lineage canvases
+and output contract/quality pages, while the JSON verification files retain
+the complete edge and assertion details that are too dense for a screenshot.
+
 ## Lineage Path
 
 ```

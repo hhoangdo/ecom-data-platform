@@ -114,6 +114,67 @@ lineage graph renders an upstream Spark task and `stg_orders` dataset.
 | `evidence/09_datahub_governance/runtime_recovery/` | Backup preflight, versions, system update, restore, search, and index records. |
 | `evidence/09_datahub_governance/screenshots/` | Search and entity UI acceptance screenshots. |
 
+## Coursework Pipeline Proof (Rows 34-39)
+
+The rubric-facing pipeline is the indexed Airflow DataFlow
+`urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local)`.
+It has three aggregate DataJobs, emitted from the same six-stage run that
+produced the DP validation artifacts. The evidence gate requires all of the
+following at once: the exact DataJob edges through GraphQL, an Elasticsearch
+indexed-search hit for the DataFlow and each DataJob, the output contract
+schema, passing assertions attached to that output, and the matching rendered
+DataHub screenshot. Direct API results are supplemental and cannot pass on
+their own.
+
+### Row 34 - DP1 lineage
+
+`DP1: Raw to Bronze` consumes the five canonical Kafka datasets
+(`commerce_events`, `catalog_events`, `fulfillment_events`, `ops_events`, and
+`dead_letter_events`) and produces the `bronze.batch` and `bronze.events` S3
+prefix datasets. Its exact five-input/two-output set is recorded in
+`evidence/09_datahub_governance/coursework_pipeline/dp1_verification.json`.
+The rendered lineage proof is [datahub_dp1_lineage.png](../evidence/09_datahub_governance/screenshots/datahub_dp1_lineage.png).
+
+### Row 35 - DP1 validation and contract
+
+The `bronze.batch` representative output exposes the `path` field and has two
+passing linked assertions: a non-null path check and a minimum object-count
+check. The rendered quality page is [datahub_dp1_contract.png](../evidence/09_datahub_governance/screenshots/datahub_dp1_contract.png);
+the association and result URNs are preserved in the DP1 verification file.
+
+### Row 36 - DP2 lineage
+
+`DP2: Bronze to Silver/Gold` consumes both Bronze prefixes and produces 34
+canonical Iceberg datasets: all 15 Silver staging tables and 19 core Gold
+tables. The exact full set, rather than a summarized graph interpretation, is
+checked in `dp2_verification.json`; the reviewer-facing canvas is
+[datahub_dp2_lineage.png](../evidence/09_datahub_governance/screenshots/datahub_dp2_lineage.png).
+
+### Row 37 - DP2 validation and contract
+
+The Gold representative output `vina_bim_shop.fact_order` exposes
+`order_id` and `official_paid_revenue`; its associated passing row-count
+assertion is checked from the assertion run event. The rendered quality page is
+[datahub_dp2_contract.png](../evidence/09_datahub_governance/screenshots/datahub_dp2_contract.png).
+
+### Row 38 - DP3 lineage
+
+`DP3: Offline Features` consumes `fact_order` and `stg_commerce_events` and
+produces exactly `feat_customer_90d`, `feat_stream_60m`, and
+`feat_customer_unified`. The exact two-input/three-output contract is in
+`dp3_verification.json`, with the real DataHub graph in
+[datahub_dp3_lineage.png](../evidence/09_datahub_governance/screenshots/datahub_dp3_lineage.png).
+
+### Row 39 - DP3 validation and contract
+
+All three feature outputs expose `event_timestamp` and `created`; the capture
+gate rejects `created_ts`. Four passing assertions per feature (12 total)
+record row count and the required/forbidden field checks. The representative
+feature schema is rendered in [datahub_dp3_contract.png](../evidence/09_datahub_governance/screenshots/datahub_dp3_contract.png).
+The six rendered captures, their page URLs, reload confirmations, dimensions,
+and SHA-256 values are bound in
+`evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json`.
+
 ## Convenience Targets
 
 `make up-governance` starts the governance profile. The existing

@@ -37,6 +37,7 @@ Run `make help` at any time to print the full catalog.
 | --- | --- |
 | `scripts/analytics/benchmark_duckdb_index.py` | Runs the isolated DuckDB ART-index benchmark without mutating the canonical dbt database. |
 | `scripts/datahub/capture_evidence.py` | Referenced by the DataHub governance deliverable for official governance evidence. |
+| `scripts/datahub/restore_search_indices.py` | Replays persisted DataHub metadata through GMS to restore indexed-search evidence after a governed runtime recovery. |
 | `scripts/flink/capture_evidence.py` | Referenced by the Flink deliverable for streaming evidence capture. |
 | `scripts/flink/publish_smoke.py` | Referenced by the Flink deliverable for deterministic streaming smoke events. |
 | `scripts/flink/run_baseline_comparison.py` | Runs the isolated baseline or optimized Flink comparison variant and captures its evidence contract. |

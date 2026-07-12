@@ -158,7 +158,16 @@ def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) 
 
     monkeypatch.setattr(datahub_ingestion, "build_run_root", fake_build_run_root)
     monkeypatch.setattr(datahub_ingestion, "_run_command", fake_run_command)
-    monkeypatch.setattr(datahub_ingestion, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
+    monkeypatch.setattr(
+        datahub_ingestion,
+        "_run_custom_lineage_emission",
+        lambda: {
+            "spark": "ok",
+            "flink": "ok",
+            "coursework_pipelines": {"status": "success"},
+            "coursework_assertions": {"status": "success"},
+        },
+    )
     monkeypatch.setattr(datahub_ingestion, "_render_docs", lambda reports: reports)
 
     manifest = datahub_ingestion.run_datahub_ingestion(run_id="manual__2026-06-03T00:00:00+00:00")
@@ -171,6 +180,22 @@ def test_run_datahub_ingestion_includes_all_repo_recipes(monkeypatch, tmp_path) 
         "dbt_legacy.yml",
     ]
     assert manifest["status"] == "success"
+
+
+def test_run_datahub_ingestion_fails_when_coursework_metadata_emission_fails(monkeypatch, tmp_path) -> None:
+    monkeypatch.setattr(datahub_ingestion, "build_run_root", lambda _dag_id, _run_id: tmp_path)
+    monkeypatch.setattr(datahub_ingestion, "_run_command", lambda command, cwd=None: "ok")
+    monkeypatch.setattr(
+        datahub_ingestion,
+        "_run_custom_lineage_emission",
+        lambda: {"coursework_pipelines": {"status": "failed", "reason": "missing assertions"}},
+    )
+    monkeypatch.setattr(datahub_ingestion, "_render_docs", lambda reports: reports)
+
+    manifest = datahub_ingestion.run_datahub_ingestion(run_id="manual__coursework_failure")
+
+    assert manifest["status"] == "failed"
+    assert manifest["ingestion_results"]["custom_lineage"]["coursework_pipelines"]["status"] == "failed"
 
 
 def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, tmp_path) -> None:

@@ -1,0 +1,6 @@
+{
+  "url": "http://localhost:9002/dataset/urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)/Quality/List?highlightedPath&schemaFilter=&separate_siblings=false",
+  "captured_at": "2026-07-12T07:35:48.868Z",
+  "reloaded": true,
+  "bytes": 68247
+}

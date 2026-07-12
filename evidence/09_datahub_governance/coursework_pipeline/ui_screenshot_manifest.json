@@ -1,0 +1,70 @@
+{
+  "screenshots": [
+    {
+      "id": "dp1_lineage",
+      "path": "../screenshots/datahub_dp1_lineage.png",
+      "entity_urn": "urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp1_raw_to_bronze)",
+      "url": "http://localhost:9002/tasks/urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp1_raw_to_bronze)/Lineage?is_lineage_mode=false",
+      "captured_at": "2026-07-12T07:34:51.480Z",
+      "reloaded": true,
+      "width": 1280,
+      "height": 720,
+      "sha256": "8109c154e0412578bcd47d0c56144e5563e2c794286877b1bfb2b3d39a4adff4"
+    },
+    {
+      "id": "dp1_contract",
+      "path": "../screenshots/datahub_dp1_contract.png",
+      "entity_urn": "urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)",
+      "url": "http://localhost:9002/dataset/urn:li:dataset:(urn:li:dataPlatform:s3,bronze.batch,PROD)/Quality/List?highlightedPath&schemaFilter=&separate_siblings=false",
+      "captured_at": "2026-07-12T07:35:48.868Z",
+      "reloaded": true,
+      "width": 1280,
+      "height": 720,
+      "sha256": "8d7d597ec5c29c52d893a46f41a6cfcaa0a5a4c6217b0d579b7c66174b8a9055"
+    },
+    {
+      "id": "dp2_lineage",
+      "path": "../screenshots/datahub_dp2_lineage.png",
+      "entity_urn": "urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp2_bronze_to_silver_gold)",
+      "url": "http://localhost:9002/tasks/urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp2_bronze_to_silver_gold)/Lineage?is_lineage_mode=false",
+      "captured_at": "2026-07-12T07:36:09.550Z",
+      "reloaded": true,
+      "width": 1280,
+      "height": 720,
+      "sha256": "a5eb31dd03bfa76d8a63a145042ec7b18c5c2c84e46e77cf8f0f2bfc48559268"
+    },
+    {
+      "id": "dp2_contract",
+      "path": "../screenshots/datahub_dp2_contract.png",
+      "entity_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)",
+      "url": "http://localhost:9002/dataset/urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.fact_order,PROD)/Quality/List?highlightedPath&schemaFilter=&separate_siblings=false",
+      "captured_at": "2026-07-12T07:37:08.262Z",
+      "reloaded": true,
+      "width": 1280,
+      "height": 720,
+      "sha256": "64a1e7a65ad1ceb01c582209e8cf5bb1a2609fe1f0e612da5b20244f5dbc3178"
+    },
+    {
+      "id": "dp3_lineage",
+      "path": "../screenshots/datahub_dp3_lineage.png",
+      "entity_urn": "urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp3_offline_features)",
+      "url": "http://localhost:9002/tasks/urn:li:dataJob:(urn:li:dataFlow:(airflow,mini_coursework_pipeline,vina-bim-shop-local),dp3_offline_features)/Lineage?is_lineage_mode=false",
+      "captured_at": "2026-07-12T07:37:29.503Z",
+      "reloaded": true,
+      "width": 1280,
+      "height": 720,
+      "sha256": "002d5bee443082746e0b00e61897010afcbce80479052efa62935019e10ed4e9"
+    },
+    {
+      "id": "dp3_contract",
+      "path": "../screenshots/datahub_dp3_contract.png",
+      "entity_urn": "urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)",
+      "url": "http://localhost:9002/dataset/urn:li:dataset:(urn:li:dataPlatform:iceberg,vina_bim_shop.feat_customer_unified,PROD)/Columns?highlightedPath&is_lineage_mode=false&schemaFilter=",
+      "captured_at": "2026-07-12T07:39:32.582Z",
+      "reloaded": true,
+      "width": 1280,
+      "height": 720,
+      "sha256": "76f948bf770649fbb9b172063fdd7851d3d1836e84fc3e7a296c70612694f679"
+    }
+  ]
+}
