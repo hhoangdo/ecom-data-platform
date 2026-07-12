@@ -1,28 +1,28 @@
 {
   "pinot_realtime_commerce_metrics_1m_REALTIME": {
     "_segmentToConsumingInfoMap": {
-      "pinot_realtime_commerce_metrics_1m__0__0__20260602T0232Z": [
+      "pinot_realtime_commerce_metrics_1m__0__0__20260712T1332Z": [
         {
           "consumerState": "CONSUMING",
-          "lastConsumedTimestamp": 1780367569376,
+          "lastConsumedTimestamp": 1783863158322,
           "partitionOffsetInfo": {
             "availabilityLagMsMap": {
-              "0": "432767"
+              "0": "804110"
             },
             "currentOffsetsMap": {
-              "0": "3"
+              "0": "6"
             },
             "latestUpstreamOffsetMap": {
-              "0": "3"
+              "0": "6"
             },
             "recordsLagMap": {
               "0": "0"
             }
           },
           "partitionToOffsetMap": {
-            "0": "3"
+            "0": "6"
           },
-          "serverName": "Server_172.18.0.11_7050"
+          "serverName": "Server_172.18.0.13_7050"
         }
       ]
     },
@@ -31,28 +31,28 @@
   },
   "pinot_realtime_metric_corrections_REALTIME": {
     "_segmentToConsumingInfoMap": {
-      "pinot_realtime_metric_corrections__0__0__20260602T0232Z": [
+      "pinot_realtime_metric_corrections__0__0__20260712T1332Z": [
         {
           "consumerState": "CONSUMING",
-          "lastConsumedTimestamp": 1780367571085,
+          "lastConsumedTimestamp": 1783863171022,
           "partitionOffsetInfo": {
             "availabilityLagMsMap": {
-              "0": "424873"
+              "0": "8"
             },
             "currentOffsetsMap": {
-              "0": "1"
+              "0": "11"
             },
             "latestUpstreamOffsetMap": {
-              "0": "1"
+              "0": "15"
             },
             "recordsLagMap": {
-              "0": "0"
+              "0": "4"
             }
           },
           "partitionToOffsetMap": {
-            "0": "1"
+            "0": "11"
           },
-          "serverName": "Server_172.18.0.11_7050"
+          "serverName": "Server_172.18.0.13_7050"
         }
       ]
     },
@@ -61,28 +61,28 @@
   },
   "pinot_realtime_ops_alerts_REALTIME": {
     "_segmentToConsumingInfoMap": {
-      "pinot_realtime_ops_alerts__0__0__20260602T0232Z": [
+      "pinot_realtime_ops_alerts__0__0__20260712T1332Z": [
         {
           "consumerState": "CONSUMING",
-          "lastConsumedTimestamp": 1780367573286,
+          "lastConsumedTimestamp": 1783863169315,
           "partitionOffsetInfo": {
             "availabilityLagMsMap": {
-              "0": "436026"
+              "0": "16"
             },
             "currentOffsetsMap": {
-              "0": "7"
+              "0": "30"
             },
             "latestUpstreamOffsetMap": {
-              "0": "7"
+              "0": "30"
             },
             "recordsLagMap": {
               "0": "0"
             }
           },
           "partitionToOffsetMap": {
-            "0": "7"
+            "0": "30"
           },
-          "serverName": "Server_172.18.0.11_7050"
+          "serverName": "Server_172.18.0.13_7050"
         }
       ]
     },

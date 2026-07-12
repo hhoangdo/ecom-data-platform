@@ -4,8 +4,8 @@ The benchmark database is an isolated copy of `gold.fact_order`; the canonical d
 
 | Variant | Median ms | Result hash |
 | --- | ---: | --- |
-| Baseline | 1.837 | ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f |
-| Indexed | 1.404 | ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f |
+| Baseline | 1.285 | ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f |
+| Indexed | 1.074 | ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f |
 
 Explain plan changed: False.
 Local timings are observed evidence and do not promise an index speedup.

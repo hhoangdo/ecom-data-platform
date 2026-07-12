@@ -1,23 +1,23 @@
 {
   "correction_audit": {
-    "brokerId": "Broker_172.18.0.12_8000",
-    "brokerReduceTimeMs": 0,
+    "brokerId": "Broker_172.18.0.15_8000",
+    "brokerReduceTimeMs": 14,
     "clientRequestId": null,
     "exceptions": [],
     "explainPlanNumEmptyFilterSegments": 0,
     "explainPlanNumMatchAllFilterSegments": 0,
     "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780367703614,
+    "minConsumingFreshnessTimeMs": 1783863169365,
     "name": "correction_audit",
     "numConsumingSegmentsMatched": 1,
     "numConsumingSegmentsProcessed": 1,
     "numConsumingSegmentsQueried": 1,
-    "numDocsScanned": 1,
+    "numDocsScanned": 10,
     "numEntriesScannedInFilter": 0,
-    "numEntriesScannedPostFilter": 6,
+    "numEntriesScannedPostFilter": 60,
     "numGroupsLimitReached": false,
     "numGroupsWarningLimitReached": false,
-    "numRowsResultSet": 1,
+    "numRowsResultSet": 10,
     "numSegmentsMatched": 1,
     "numSegmentsProcessed": 1,
     "numSegmentsPrunedByBroker": 0,
@@ -47,7 +47,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "1102031609000000009",
+    "requestId": "1187919062000000130",
     "resultTable": {
       "dataSchema": {
         "columnDataTypes": [
@@ -69,6 +69,78 @@
       },
       "rows": [
         [
+          "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+          "2026-05-01T10:00:00+00:00",
+          4,
+          "recompute",
+          0.0,
+          0.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+          "2026-05-01T10:00:00+00:00",
+          4,
+          "late_event",
+          125000.0,
+          155000.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+          "2026-05-01T10:00:00+00:00",
+          3,
+          "recompute",
+          0.0,
+          0.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+          "2026-05-01T10:00:00+00:00",
+          3,
+          "late_event",
+          125000.0,
+          155000.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+          "2026-05-01T10:00:00+00:00",
+          2,
+          "recompute",
+          0.0,
+          0.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+          "2026-05-01T10:00:00+00:00",
+          2,
+          "late_event",
+          125000.0,
+          155000.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|1fe8efd21c88",
+          "2026-05-01T10:00:00+00:00",
+          1,
+          "recompute",
+          0.0,
+          0.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|603294ce4477",
+          "2026-05-01T10:00:00+00:00",
+          1,
+          "recompute",
+          0.0,
+          0.0
+        ],
+        [
+          "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
+          "2026-05-01T10:00:00+00:00",
+          1,
+          "late_event",
+          125000.0,
+          155000.0
+        ],
+        [
           "commerce|2026-05-01T10:00:00+00:00|628802a8358a",
           "2026-05-01T10:00:00+00:00",
           1,
@@ -82,12 +154,12 @@
     "tablesQueried": [
       "pinot_realtime_metric_corrections"
     ],
-    "timeUsedMs": 12,
-    "totalDocs": 1,
+    "timeUsedMs": 83,
+    "totalDocs": 10,
     "traceInfo": {}
   },
   "dashboard_contract": {
-    "brokerId": "Broker_172.18.0.12_8000",
+    "brokerId": "Broker_172.18.0.15_8000",
     "brokerReduceTimeMs": 0,
     "clientRequestId": null,
     "exceptions": [
@@ -137,7 +209,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "1102031609000000007",
+    "requestId": "1187919062000000128",
     "rlsFiltersApplied": false,
     "tablesQueried": [],
     "timeUsedMs": 0,
@@ -145,21 +217,21 @@
     "traceInfo": {}
   },
   "live_ops_alerts": {
-    "brokerId": "Broker_172.18.0.12_8000",
-    "brokerReduceTimeMs": 0,
+    "brokerId": "Broker_172.18.0.15_8000",
+    "brokerReduceTimeMs": 21,
     "clientRequestId": null,
     "exceptions": [],
     "explainPlanNumEmptyFilterSegments": 0,
     "explainPlanNumMatchAllFilterSegments": 0,
     "groupsTrimmed": false,
-    "minConsumingFreshnessTimeMs": 1780367705815,
+    "minConsumingFreshnessTimeMs": 1783863169299,
     "name": "live_ops_alerts",
     "numConsumingSegmentsMatched": 0,
     "numConsumingSegmentsProcessed": 0,
     "numConsumingSegmentsQueried": 1,
-    "numDocsScanned": 7,
+    "numDocsScanned": 30,
     "numEntriesScannedInFilter": 0,
-    "numEntriesScannedPostFilter": 14,
+    "numEntriesScannedPostFilter": 60,
     "numGroupsLimitReached": false,
     "numGroupsWarningLimitReached": false,
     "numRowsResultSet": 7,
@@ -192,7 +264,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "1102031609000000008",
+    "requestId": "1187919062000000129",
     "resultTable": {
       "dataSchema": {
         "columnDataTypes": [
@@ -208,39 +280,39 @@
       },
       "rows": [
         [
+          "payment_failure_spike",
+          "medium",
+          6
+        ],
+        [
           "duplicate_spike",
           "high",
-          1
+          4
         ],
         [
           "inventory_low_stock",
           "medium",
-          1
+          4
         ],
         [
           "late_arrival",
           "medium",
-          1
-        ],
-        [
-          "payment_failure_spike",
-          "medium",
-          1
+          4
         ],
         [
           "shipment_blocked_payment_failed",
           "high",
-          1
+          4
         ],
         [
           "shipment_delayed",
           "high",
-          1
+          4
         ],
         [
           "traffic_burst",
           "high",
-          1
+          4
         ]
       ]
     },
@@ -248,8 +320,8 @@
     "tablesQueried": [
       "pinot_realtime_ops_alerts"
     ],
-    "timeUsedMs": 13,
-    "totalDocs": 7,
+    "timeUsedMs": 374,
+    "totalDocs": 30,
     "traceInfo": {}
   }
 }

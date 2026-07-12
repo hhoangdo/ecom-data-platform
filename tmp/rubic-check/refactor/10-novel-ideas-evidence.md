@@ -89,11 +89,11 @@
 **Files:**
 - Create: `tests/unit/test_novel_ideas_evidence.py`
 
-- [ ] Test exact idea names/order and output paths.
-- [ ] Test Idea 1 fails for unsuccessful dbt results, zero models/tests, failed query, or missing parity/index links.
-- [ ] Test Idea 2 fails for unhealthy Pinot, offline table, no segments, empty query rows, or missing topic provenance.
-- [ ] Test the final manifest requires both success gates and both nonempty screenshots.
-- [ ] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py -q`.
+- [x] Test exact idea names/order and output paths.
+- [x] Test Idea 1 fails for unsuccessful dbt results, zero models/tests, failed query, or missing parity/index links.
+- [x] Test Idea 2 fails for unhealthy Pinot, offline table, no segments, empty query rows, or missing topic provenance.
+- [x] Test the final manifest requires both success gates and both nonempty screenshots.
+- [x] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py -q`.
 
 Expected: tests fail because the capture script does not exist.
 
@@ -102,12 +102,12 @@ Expected: tests fail because the capture script does not exist.
 **Files:**
 - Create: `scripts/qa/capture_novel_ideas.py`
 
-- [ ] Load and validate existing dbt, parity, index, and Pinot manifests rather than copying their metrics manually.
-- [ ] Query canonical DuckDB read-only and capture a stable aggregate over `gold.fact_order` with column names and typed values.
-- [ ] Reuse the current Pinot query endpoint/query manifest and capture table/topic/segment provenance.
-- [ ] Record upstream file SHA-256 hashes and capture timestamps in both idea files.
-- [ ] Add `--allow-missing-screenshots` only for pre-capture generation; final mode remains strict.
-- [ ] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py -q`.
+- [x] Load and validate existing dbt, parity, index, and Pinot manifests rather than copying their metrics manually.
+- [x] Query canonical DuckDB read-only and capture a stable aggregate over `gold.fact_order` with column names and typed values.
+- [x] Reuse the current Pinot query endpoint/query manifest and capture table/topic/segment provenance.
+- [x] Record upstream file SHA-256 hashes and capture timestamps in both idea files.
+- [x] Add `--allow-missing-screenshots` only for pre-capture generation; final mode remains strict.
+- [x] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py -q`.
 
 Expected: focused tests pass and failure modes remain explicit.
 
@@ -116,13 +116,13 @@ Expected: focused tests pass and failure modes remain explicit.
 **Files:**
 - Regenerate: `evidence/10_novel_ideas/`
 
-- [ ] Run `rtk uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt` and require successful model/tests.
-- [ ] Run Topic 05's DuckDB index benchmark if its current manifest is absent or stale.
-- [ ] Start Pinot dependencies with `rtk docker compose --profile ingestion --profile streaming --profile serving up -d --build`.
-- [ ] Run `rtk uv run python scripts/pinot/bootstrap.py`, `rtk uv run python scripts/pinot/query_examples.py`, and `rtk uv run python scripts/pinot/capture_evidence.py`.
-- [ ] Run `rtk uv run python scripts/qa/capture_novel_ideas.py --allow-missing-screenshots` and inspect both idea JSON files.
-- [ ] Capture dbt lineage from generated dbt docs and a successful Pinot realtime query at the exact image paths.
-- [ ] Re-run `rtk uv run python scripts/qa/capture_novel_ideas.py` in strict final mode.
+- [x] Run `rtk uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt` and require successful model/tests.
+- [x] Run Topic 05's DuckDB index benchmark if its current manifest is absent or stale.
+- [x] Start Pinot dependencies with `rtk docker compose --profile ingestion --profile streaming --profile serving up -d --build`.
+- [x] Run `rtk uv run python scripts/pinot/bootstrap.py`, `rtk uv run python scripts/pinot/query_examples.py`, and `rtk uv run python scripts/pinot/capture_evidence.py`.
+- [x] Run `rtk uv run python scripts/qa/capture_novel_ideas.py --allow-missing-screenshots` and inspect both idea JSON files.
+- [x] Capture dbt lineage from generated dbt docs and a successful Pinot realtime query at the exact image paths.
+- [x] Re-run `rtk uv run python scripts/qa/capture_novel_ideas.py` in strict final mode.
 
 Expected: the final manifest reports both ideas successful and binds current upstream evidence plus screenshots.
 
@@ -133,20 +133,20 @@ Expected: the final manifest reports both ideas successful and binds current ups
 - Modify: `deliverables/README.md`
 - Modify: `tests/unit/test_deliverables_documentation.py`
 
-- [ ] Add exact Idea 1 and Idea 2 headings in order.
-- [ ] For each idea, document problem, architecture, implementation paths, run command, observed result, proof links/image, value, trade-offs, and limitations.
-- [ ] Explain Idea 1 as a portable local analytics/parity path and Idea 2 as low-latency provisional serving reconciled by canonical batch truth.
-- [ ] Add the deliverable to the index and assert its headings/required evidence links in tests.
-- [ ] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py tests/unit/test_deliverables_documentation.py -q`.
+- [x] Add exact Idea 1 and Idea 2 headings in order.
+- [x] For each idea, document problem, architecture, implementation paths, run command, observed result, proof links/image, value, trade-offs, and limitations.
+- [x] Explain Idea 1 as a portable local analytics/parity path and Idea 2 as low-latency provisional serving reconciled by canonical batch truth.
+- [x] Add the deliverable to the index and assert its headings/required evidence links in tests.
+- [x] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py tests/unit/test_deliverables_documentation.py -q`.
 
 Expected: both five-point rows have self-contained, explicit proof narratives.
 
 ### Task 5: Run regressions and final evidence checks
 
-- [ ] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py tests/unit/test_deliverables_documentation.py tests/unit/test_pinot_runtime.py tests/unit/test_section02_schema_design.py -q`.
-- [ ] Run `rtk uv run pytest -q`.
-- [ ] Verify both screenshots have positive dimensions and the manifest hashes match them.
-- [ ] Inspect `rtk git status --short` for only authorized changes plus pre-existing user work.
+- [x] Run `rtk uv run pytest tests/unit/test_novel_ideas_evidence.py tests/unit/test_deliverables_documentation.py tests/unit/test_pinot_runtime.py tests/unit/test_section02_schema_design.py -q`.
+- [x] Run `rtk uv run pytest -q`.
+- [x] Verify both screenshots have positive dimensions and the manifest hashes match them.
+- [x] Inspect `rtk git status --short` for only authorized changes plus pre-existing user work.
 
 Expected: full tests pass and both idea packages are reproducible and current.
 
@@ -166,4 +166,36 @@ Expected: full tests pass and both idea packages are reproducible and current.
 
 ## Completion Record
 
-The implementing session records date, dbt result counts, DuckDB query/result, parity/index evidence, Pinot table/segment/query state, screenshot hashes/dimensions, test outputs, and limitations here. Until then, unchecked tasks define the work.
+Completed 2026-07-12. The two idea names and their order are exact: `Novel Idea 1: DuckDB/dbt local analytics`, then `Novel Idea 2: Pinot realtime serving`. No third idea was added.
+
+### Evidence implementation
+
+- Added `scripts/qa/capture_novel_ideas.py`, which writes exactly `idea_1_duckdb_dbt.json`, `idea_2_pinot_realtime.json`, and `run_manifest.json`. It validates upstream evidence rather than copying assertions, executes the fixed DuckDB and Pinot queries, records SHA-256 provenance, and rejects missing/zero-byte screenshots in strict mode. The pre-capture `--allow-missing-screenshots` mode was used only before the screenshots existed.
+- Added the focused evidence tests and documentation assertions, the ordered deliverable, deliverable index entry, and script-inventory entry. The aggregator additionally hashes `infra/analytics/dbt/models/gold/fact_order.sql`, so the stated model provenance is cryptographically bound to Idea 1.
+
+### Fresh Idea 1 capture
+
+- Ran `rtk uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt`, then `rtk uv run dbt docs generate --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt`.
+- The current `run_results.json` records dbt 1.11.11 with 52 successful models, 66 successful tests, and 22 Gold models. The existing Topic 05 parity report has 27 successful comparisons.
+- Re-ran `rtk uv run python scripts/analytics/benchmark_duckdb_index.py --source-db data/gold/vina_bim_shop.duckdb --benchmark-db tmp/rubic-check/runtime/duckdb_index_benchmark.duckdb --evidence-root evidence/10_duckdb_dbt_local_analytics/index_optimization`; it preserved the canonical DuckDB hash `e093eb5894dda2f0db2171c97f1d41a950e7c365508beaf9c12a2ceaab6a479c` and the isolated `idx_benchmark_fact_order_order_id` result parity.
+- The read-only `gold.fact_order` aggregate returned one typed row: `order_count=1800` (`BIGINT`), `paid_order_count=1734` (`HUGEINT`), `official_paid_revenue=5488980096.0` (`DOUBLE`), and `gross_merchandise_value=5737896000.0` (`DOUBLE`).
+
+### Fresh Idea 2 capture and runtime coordination
+
+- Claimed the shared dbt/Pinot/Flink/Compose runtime slot only for these actions. No DataHub, Airflow, Spark, or separate Flink evidence capture ran concurrently.
+- The first profile Compose command with `--build` timed out before starting containers. The immediately following `rtk docker compose --profile ingestion --profile lakehouse --profile streaming --profile serving up -d` used the resolved local images and started the required runtime. `scripts/pinot/refresh_evidence.py` is the current wrapper that invokes bootstrap, query examples, and evidence capture in order.
+- Ran `rtk uv run python scripts/flink/publish_smoke.py --evidence-root evidence/10_novel_ideas`, then `rtk uv run python scripts/pinot/refresh_evidence.py`. Both Flink jobs were running before capture. Persisted Pinot metadata initially contained stale instance registrations; the repair removed only stale Pinot realtime table/instance metadata, re-applied the serving assets, re-published the smoke data, and refreshed evidence. Docker volumes and repository evidence were not removed.
+- The final Pinot gate recorded controller and broker healthy, `pinot_realtime_ops_alerts_REALTIME` in `HEALTHY` state with one segment and consuming-segment proof. Flink-derived topic, table configuration, and smoke output all agree on `realtime_ops_alerts`; the source topics are `ops_events`, `catalog_events`, and `fulfillment_events`.
+- The successful Pinot query was non-partial and returned seven groups: `payment_failure_spike` / `medium` / `10`, then `duplicate_spike`, `inventory_low_stock`, `late_arrival`, `shipment_blocked_payment_failed`, `shipment_delayed`, and `traffic_burst`, each with count `4`.
+
+### Final artifacts, screenshots, and verification
+
+- Strict final command: `rtk uv run python scripts/qa/capture_novel_ideas.py`; result: `Novel ideas evidence status: success` at `2026-07-12T13:38:05.531634+00:00`.
+- Screenshot evidence is current and hash-bound by the manifest: `idea_1_duckdb_dbt_lineage.png` is 1280x720, SHA-256 `45178abdf5bb4f47ffcfda0bfed3a552a279c87e09a727d95b21ee32d5a6c39a`; `idea_2_pinot_realtime_query.png` is 1265x712, SHA-256 `91a31ff7ee165c2990a5b3e3500ed45e8dd37cb678bb1ed78018016b14d11381`.
+- Focused regression: `42 passed in 11.04s`. Full regression: `354 passed, 1 skipped in 128.25s`.
+- Stopped the temporary dbt docs server after screenshot capture. Then ran `rtk docker compose stop` only for the ingestion, lakehouse, streaming, and Pinot-serving services started in this session; no volumes were removed. A post-stop `docker ps` service allowlist was empty, confirming the shared runtime slot was released.
+
+### Limitations retained
+
+- DuckDB/dbt is the local reproducibility and parity path, not distributed canonical truth; isolated index timings are not production performance claims.
+- Pinot serves fresh provisional alerts. Late corrections require correction-aware multi-stage queries, while reconciled KPIs remain canonical in Spark Gold through Trino.

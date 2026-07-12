@@ -1,0 +1,154 @@
+{
+  "captured_at": "2026-07-12T13:38:05.531634+00:00",
+  "idea_name": "Novel Idea 2: Pinot realtime serving",
+  "idea_number": 2,
+  "limitations": [
+    "Pinot is a fresh, provisional serving layer; Spark Gold through Trino remains canonical.",
+    "The correction-aware dashboard contract requires Pinot multi-stage execution and is linked as a limitation, not this gate."
+  ],
+  "representative_query": {
+    "columns": [
+      {
+        "name": "alert_type",
+        "type": "STRING"
+      },
+      {
+        "name": "severity",
+        "type": "STRING"
+      },
+      {
+        "name": "alert_count",
+        "type": "LONG"
+      }
+    ],
+    "engine": "pinot",
+    "exceptions": [],
+    "partial_result": false,
+    "row_count": 7,
+    "rows": [
+      [
+        "payment_failure_spike",
+        "medium",
+        10
+      ],
+      [
+        "duplicate_spike",
+        "high",
+        4
+      ],
+      [
+        "inventory_low_stock",
+        "medium",
+        4
+      ],
+      [
+        "late_arrival",
+        "medium",
+        4
+      ],
+      [
+        "shipment_blocked_payment_failed",
+        "high",
+        4
+      ],
+      [
+        "shipment_delayed",
+        "high",
+        4
+      ],
+      [
+        "traffic_burst",
+        "high",
+        4
+      ]
+    ],
+    "sql": "SELECT alert_type, severity, count(*) AS alert_count\nFROM pinot_realtime_ops_alerts\nGROUP BY alert_type, severity\nORDER BY alert_count DESC, alert_type\nLIMIT 20",
+    "success": true
+  },
+  "schema_version": 1,
+  "source_provenance": {
+    "canonical_truth_reference": "evidence/07_pinot_serving/query_outputs/reconciliation_report.md",
+    "derived_kafka_topic": "realtime_ops_alerts",
+    "flink_job": "vina-bim-shop-ops-alerts",
+    "pinot_realtime_table": "pinot_realtime_ops_alerts",
+    "source_topics": [
+      "ops_events",
+      "catalog_events",
+      "fulfillment_events"
+    ],
+    "truth_policy": "provisional_pinot_alert_stream"
+  },
+  "success": true,
+  "success_gates": {
+    "health": {
+      "broker": true,
+      "controller": true,
+      "passed": true
+    },
+    "provenance": {
+      "configured_topic": "realtime_ops_alerts",
+      "derived_topic": "realtime_ops_alerts",
+      "passed": true,
+      "smoke_topic": "realtime_ops_alerts"
+    },
+    "query": {
+      "passed": true,
+      "row_count": 7
+    },
+    "realtime_table": {
+      "ingestion_state": "HEALTHY",
+      "passed": true,
+      "segment_count": 1,
+      "table": "pinot_realtime_ops_alerts_REALTIME"
+    },
+    "segments": {
+      "passed": true
+    }
+  },
+  "upstream_artifacts": [
+    {
+      "path": "evidence/07_pinot_serving/controller_health.json",
+      "sha256": "c09442326b6264544442812097634d762e4c9c62147809dd40851db8bbf65be3"
+    },
+    {
+      "path": "evidence/07_pinot_serving/broker_health.json",
+      "sha256": "c09442326b6264544442812097634d762e4c9c62147809dd40851db8bbf65be3"
+    },
+    {
+      "path": "evidence/07_pinot_serving/table_status.json",
+      "sha256": "074c9d8d867a784120bfd1b3986975e3ef488afc622ec3d1cdb137b35f36a28f"
+    },
+    {
+      "path": "evidence/07_pinot_serving/consuming_segments.json",
+      "sha256": "36b5f41814c9ed70a7ce7d68ac6e10eba3a9201b0fdccc43cda5ef528189157e"
+    },
+    {
+      "path": "evidence/07_pinot_serving/run_manifest.json",
+      "sha256": "ff64d1a6ddecfdf415e1d306768bde946b41ff3449ff41275b2c2f6ff95674ad"
+    },
+    {
+      "path": "evidence/07_pinot_serving/refresh_evidence_manifest.json",
+      "sha256": "6ae3847aa41458645ce8bd17f647ed0c7dac0187d63976939d2f17c26a11a935"
+    },
+    {
+      "path": "evidence/07_pinot_serving/version_matrix.json",
+      "sha256": "406079aba2892205682d2323e9ee6334f6555143d50cc1088e885605bd8f2bc5"
+    },
+    {
+      "path": "evidence/07_pinot_serving/query_outputs/reconciliation_report.md",
+      "sha256": "3fe51ac5be35f9a7c7267a8394ceabc4b1ee367bb67e520bf020cd2da7bb3271"
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_ops_alerts_realtime.json",
+      "sha256": "b43e0c4453cb5480c64d5775f0119cafcde0f222019626d2fa56b64b9d5885a6"
+    },
+    {
+      "path": "configs/pipelines/flink_streaming.yaml",
+      "sha256": "4194afbbfe064178ae59dafd02a24775baec7146937c734153eb5fbf1250a549"
+    },
+    {
+      "path": "evidence/10_novel_ideas/flink_smoke_publish_summary.json",
+      "sha256": "467ee4d1ac9d4b4d266c6e4d5cc186184347b7e151e2462ea8003a286876d0c9"
+    }
+  ]
+}

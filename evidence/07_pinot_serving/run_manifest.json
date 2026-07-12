@@ -8,15 +8,12 @@
     "row_counts.json",
     "version_matrix.json",
     "run_manifest.json",
-    "screenshots/README.md",
-    "screenshots/pinot_tables.png",
-    "screenshots/pinot_query_console.png",
     "query_outputs/pinot_dashboard_results.json",
     "query_outputs/pinot_reconciliation_results.json",
     "query_outputs/reconciliation_report.md",
     "query_outputs/trino_reconciliation_results.json"
   ],
-  "captured_at": "2026-06-02T02:35:16.417722+00:00",
+  "captured_at": "2026-07-12T13:32:51.148314+00:00",
   "service_urls": {
     "pinot_broker": "http://localhost:8000",
     "pinot_controller": "http://localhost:9003"

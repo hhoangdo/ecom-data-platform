@@ -1,17 +1,17 @@
 {
-  "captured_at": "2026-06-04T03:06:00.830529+00:00",
+  "captured_at": "2026-07-12T13:32:49.666687+00:00",
   "controller_url": "http://localhost:9003",
   "schema_actions": [
     {
-      "action": "created",
+      "action": "updated",
       "schema": "pinot_realtime_commerce_metrics_1m"
     },
     {
-      "action": "created",
+      "action": "updated",
       "schema": "pinot_realtime_metric_corrections"
     },
     {
-      "action": "created",
+      "action": "updated",
       "schema": "pinot_realtime_ops_alerts"
     }
   ],
@@ -22,30 +22,81 @@
   ],
   "table_actions": [
     {
-      "action": "created",
+      "action": "updated",
       "table": "pinot_realtime_commerce_metrics_1m"
     },
     {
-      "action": "created",
+      "action": "updated",
       "table": "pinot_realtime_metric_corrections"
     },
     {
-      "action": "created",
+      "action": "updated",
       "table": "pinot_realtime_ops_alerts"
     }
   ],
   "table_status": {
     "pinot_realtime_commerce_metrics_1m": {
-      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
-      "status": "unverified"
+      "table_debug": [
+        {
+          "brokerDebugInfos": [],
+          "ingestionStatus": {
+            "errorMessage": "",
+            "ingestionState": "HEALTHY"
+          },
+          "numBrokers": 1,
+          "numSegments": 1,
+          "numServers": 1,
+          "segmentDebugInfos": [],
+          "serverDebugInfos": [],
+          "tableName": "pinot_realtime_commerce_metrics_1m_REALTIME",
+          "tableSize": {
+            "estimatedSize": "-1 bytes",
+            "reportedSize": "-1 bytes"
+          }
+        }
+      ]
     },
     "pinot_realtime_metric_corrections": {
-      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
-      "status": "unverified"
+      "table_debug": [
+        {
+          "brokerDebugInfos": [],
+          "ingestionStatus": {
+            "errorMessage": "",
+            "ingestionState": "HEALTHY"
+          },
+          "numBrokers": 1,
+          "numSegments": 1,
+          "numServers": 1,
+          "segmentDebugInfos": [],
+          "serverDebugInfos": [],
+          "tableName": "pinot_realtime_metric_corrections_REALTIME",
+          "tableSize": {
+            "estimatedSize": "-1 bytes",
+            "reportedSize": "-1 bytes"
+          }
+        }
+      ]
     },
     "pinot_realtime_ops_alerts": {
-      "reason": "Pinot controller status/debug endpoints were unavailable during bootstrap.",
-      "status": "unverified"
+      "table_debug": [
+        {
+          "brokerDebugInfos": [],
+          "ingestionStatus": {
+            "errorMessage": "",
+            "ingestionState": "HEALTHY"
+          },
+          "numBrokers": 1,
+          "numSegments": 1,
+          "numServers": 1,
+          "segmentDebugInfos": [],
+          "serverDebugInfos": [],
+          "tableName": "pinot_realtime_ops_alerts_REALTIME",
+          "tableSize": {
+            "estimatedSize": "-1 bytes",
+            "reportedSize": "-1 bytes"
+          }
+        }
+      ]
     }
   },
   "tables": [

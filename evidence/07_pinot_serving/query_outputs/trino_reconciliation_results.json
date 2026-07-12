@@ -1,4 +1,83 @@
 {
+  "column_metadata": [
+    {
+      "name": "metric_hour",
+      "type": "varchar",
+      "typeSignature": {
+        "arguments": [
+          {
+            "kind": "LONG",
+            "value": 2147483647
+          }
+        ],
+        "rawType": "varchar"
+      }
+    },
+    {
+      "name": "order_count",
+      "type": "bigint",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "bigint"
+      }
+    },
+    {
+      "name": "official_paid_revenue",
+      "type": "double",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "double"
+      }
+    },
+    {
+      "name": "gross_merchandise_value",
+      "type": "double",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "double"
+      }
+    },
+    {
+      "name": "payment_attempt_count",
+      "type": "bigint",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "bigint"
+      }
+    },
+    {
+      "name": "payment_success_count",
+      "type": "bigint",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "bigint"
+      }
+    },
+    {
+      "name": "checkout_started_count",
+      "type": "bigint",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "bigint"
+      }
+    },
+    {
+      "name": "order_placed_event_count",
+      "type": "bigint",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "bigint"
+      }
+    },
+    {
+      "name": "conversion_rate",
+      "type": "double",
+      "typeSignature": {
+        "arguments": [],
+        "rawType": "double"
+      }
+    }
+  ],
   "columns": [
     "metric_hour",
     "order_count",
@@ -14,31 +93,31 @@
   "rows": [
     [
       "2026-05-01 10:00:00.000000 UTC",
-      15,
-      56494113.0,
-      62822000.0,
-      11,
-      11,
-      14,
-      15,
-      1.0714285714285714
+      10,
+      25361824.0,
+      25689000.0,
+      9,
+      9,
+      10,
+      10,
+      1.0
     ]
   ],
   "stats": {
-    "analysisTimeMillis": 64,
-    "completedSplits": 11,
-    "cpuTimeMillis": 29,
-    "elapsedTimeMillis": 377,
-    "finishingTimeMillis": 4,
+    "analysisTimeMillis": 68,
+    "completedSplits": 20,
+    "cpuTimeMillis": 66,
+    "elapsedTimeMillis": 359,
+    "finishingTimeMillis": 23,
     "internalNetworkInputBytes": 596,
-    "nodes": 1,
-    "peakMemoryBytes": 1284,
-    "physicalInputBytes": 8986,
-    "physicalInputTimeMillis": 0,
+    "nodes": 2,
+    "peakMemoryBytes": 1812,
+    "physicalInputBytes": 8966,
+    "physicalInputTimeMillis": 19,
     "physicalWrittenBytes": 0,
-    "planningTimeMillis": 146,
-    "processedBytes": 8986,
-    "processedRows": 23,
+    "planningTimeMillis": 97,
+    "processedBytes": 8966,
+    "processedRows": 24,
     "progressPercentage": 100.0,
     "queued": false,
     "queuedSplits": 0,
@@ -46,7 +125,7 @@
     "rootStage": {
       "completedSplits": 1,
       "coordinatorOnly": false,
-      "cpuTimeMillis": 2,
+      "cpuTimeMillis": 3,
       "done": true,
       "failedTasks": 0,
       "nodes": 1,
@@ -59,12 +138,12 @@
       "state": "FINISHED",
       "subStages": [
         {
-          "completedSplits": 9,
+          "completedSplits": 18,
           "coordinatorOnly": false,
-          "cpuTimeMillis": 13,
+          "cpuTimeMillis": 28,
           "done": true,
           "failedTasks": 0,
-          "nodes": 1,
+          "nodes": 2,
           "physicalInputBytes": 0,
           "processedBytes": 298,
           "processedRows": 1,
@@ -76,35 +155,35 @@
             {
               "completedSplits": 1,
               "coordinatorOnly": false,
-              "cpuTimeMillis": 14,
+              "cpuTimeMillis": 35,
               "done": true,
               "failedTasks": 0,
               "nodes": 1,
-              "physicalInputBytes": 8986,
-              "processedBytes": 8986,
-              "processedRows": 23,
+              "physicalInputBytes": 8966,
+              "processedBytes": 8966,
+              "processedRows": 24,
               "queuedSplits": 0,
               "runningSplits": 0,
               "stageId": "2",
               "state": "FINISHED",
               "subStages": [],
               "totalSplits": 1,
-              "wallTimeMillis": 14
+              "wallTimeMillis": 43
             }
           ],
-          "totalSplits": 9,
-          "wallTimeMillis": 23
+          "totalSplits": 18,
+          "wallTimeMillis": 107
         }
       ],
       "totalSplits": 1,
-      "wallTimeMillis": 2
+      "wallTimeMillis": 3
     },
     "runningPercentage": 0.0,
     "runningSplits": 0,
     "scheduled": true,
     "spilledBytes": 0,
     "state": "FINISHED",
-    "totalSplits": 11,
-    "wallTimeMillis": 39
+    "totalSplits": 20,
+    "wallTimeMillis": 153
   }
 }

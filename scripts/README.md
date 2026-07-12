@@ -37,6 +37,7 @@ Run `make help` at any time to print the full catalog.
 | --- | --- |
 | `scripts/analytics/benchmark_duckdb_index.py` | Runs the isolated DuckDB ART-index benchmark without mutating the canonical dbt database. |
 | `scripts/datahub/capture_evidence.py` | Referenced by the DataHub governance deliverable for official governance evidence. |
+| `scripts/datahub/restore_search_indices.py` | Restores DataHub search indices and verifies representative datasets are indexed after recovery. |
 | `scripts/datahub/restore_search_indices.py` | Replays persisted DataHub metadata through GMS to restore indexed-search evidence after a governed runtime recovery. |
 | `scripts/flink/capture_evidence.py` | Referenced by the Flink deliverable for streaming evidence capture. |
 | `scripts/flink/publish_smoke.py` | Referenced by the Flink deliverable for deterministic streaming smoke events. |
@@ -61,6 +62,7 @@ Run `make help` at any time to print the full catalog.
 | `scripts/pinot/refresh_evidence.py` | Official Pinot evidence refresh command referenced by README-adjacent deliverables, tests, and Flink verification notes. |
 | `scripts/qa/finalize_sections_01_02.py` | Final Section 01/02 package command referenced by README and tests. |
 | `scripts/qa/generate_section02_evidence.py` | Section 02 evidence command referenced by the schema deliverable and tests. |
+| `scripts/qa/capture_novel_ideas.py` | Validates the two ordered novel-idea gates and writes their machine-readable evidence package. |
 | `scripts/qa/summarize_runlog.py` | Produces compact markdown summaries from long platform run logs for post-run review. |
 | `scripts/spark/export_executive_mart.py` | Executive mart export command referenced by README, deliverables, and tests. |
 | `scripts/spark/job.py` | Spark submit compatibility entry point referenced by `src/vina_bim_shop/lakehouse/spark/runner.py` and tests. |

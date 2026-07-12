@@ -1,6 +1,6 @@
 {
   "contract_query": {
-    "brokerId": "Broker_172.18.0.12_8000",
+    "brokerId": "Broker_172.18.0.15_8000",
     "brokerReduceTimeMs": 0,
     "clientRequestId": null,
     "exceptions": [
@@ -50,7 +50,7 @@
     "realtimeThreadMemAllocatedBytes": 0,
     "realtimeTotalCpuTimeNs": 0,
     "realtimeTotalMemAllocatedBytes": 0,
-    "requestId": "1102031609000000010",
+    "requestId": "1187919062000000131",
     "rlsFiltersApplied": false,
     "tablesQueried": [],
     "timeUsedMs": 0,

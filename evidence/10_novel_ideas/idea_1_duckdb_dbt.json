@@ -1,0 +1,102 @@
+{
+  "captured_at": "2026-07-12T13:38:05.531634+00:00",
+  "idea_name": "Novel Idea 1: DuckDB/dbt local analytics",
+  "idea_number": 1,
+  "limitations": [
+    "DuckDB is a local reproducibility and parity path, not the canonical distributed truth.",
+    "The isolated ART-index timing is an observed local result, not a production performance guarantee."
+  ],
+  "representative_query": {
+    "columns": [
+      {
+        "name": "order_count",
+        "type": "BIGINT"
+      },
+      {
+        "name": "paid_order_count",
+        "type": "HUGEINT"
+      },
+      {
+        "name": "official_paid_revenue",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "gross_merchandise_value",
+        "type": "DOUBLE"
+      }
+    ],
+    "engine": "duckdb",
+    "row_count": 1,
+    "rows": [
+      [
+        1800,
+        1734,
+        5488980096.0,
+        5737896000.0
+      ]
+    ],
+    "sql": "SELECT\n  count(*) AS order_count,\n  sum(CASE WHEN is_paid_order THEN 1 ELSE 0 END) AS paid_order_count,\n  sum(official_paid_revenue) AS official_paid_revenue,\n  sum(gross_merchandise_value) AS gross_merchandise_value\nFROM gold.fact_order",
+    "success": true
+  },
+  "schema_version": 1,
+  "source_provenance": {
+    "canonical_duckdb": "data/gold/vina_bim_shop.duckdb",
+    "dbt_model": "infra/analytics/dbt/models/gold/fact_order.sql",
+    "dbt_project": "infra/analytics/dbt",
+    "truth_policy": "local_dbt_parity_oracle"
+  },
+  "success": true,
+  "success_gates": {
+    "dbt_build": {
+      "dbt_version": "1.11.11",
+      "generated_at": "2026-07-12T13:14:47.016662Z",
+      "gold_model_count": 22,
+      "model_success_count": 52,
+      "passed": true,
+      "test_pass_count": 66
+    },
+    "index_evidence": {
+      "index_name": "idx_benchmark_fact_order_order_id",
+      "passed": true,
+      "source_sha256": "e093eb5894dda2f0db2171c97f1d41a950e7c365508beaf9c12a2ceaab6a479c"
+    },
+    "parity": {
+      "comparison_count": 27,
+      "passed": true
+    },
+    "representative_query": {
+      "passed": true,
+      "row_count": 1
+    }
+  },
+  "upstream_artifacts": [
+    {
+      "path": "infra/analytics/dbt/target/run_results.json",
+      "sha256": "b366e789b1d6dd69efb0ca093345aa3a52943ad27df61625790d2b22841c635f"
+    },
+    {
+      "path": "infra/analytics/dbt/target/manifest.json",
+      "sha256": "7b2be070580f1c050cea2a3d7866519c37f52cd52b610160f857c49080291310"
+    },
+    {
+      "path": "evidence/05_spark_batch/dbt_parity_report.json",
+      "sha256": "de8174dfe0dd95f69d303a62de8fb907f201a4e40951433307fe1e4826bbf669"
+    },
+    {
+      "path": "evidence/05_spark_batch/run_manifest.json",
+      "sha256": "297d761fe545c16bb014930eefe6e0d9b366e98d5fee9006a25418ba2c1573b9"
+    },
+    {
+      "path": "evidence/10_duckdb_dbt_local_analytics/index_optimization/index_benchmark.json",
+      "sha256": "28eeeb94e93c0642ff9daa901f55a9ae3b886f54554deeb0a466b5127e5345d4"
+    },
+    {
+      "path": "evidence/10_duckdb_dbt_local_analytics/index_optimization/run_manifest.json",
+      "sha256": "4483437473617fabb11544ffb993bd12e7db55e8fd11f8c5514af360007e8930"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_order.sql",
+      "sha256": "7029194a182e1710a9167b550cee11efcc8ec085cc4d93af1b6d0fc69105591b"
+    }
+  ]
+}

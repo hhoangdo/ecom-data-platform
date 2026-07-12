@@ -19,6 +19,7 @@ This folder contains the official coursework writeups. Read these files as the n
 | `08_airflow_gx_orchestration.md` | Airflow orchestration and Great Expectations validation. |
 | `09_datahub_governance.md` | DataHub metadata, lineage, tags, and assertions. |
 | `10_duckdb_dbt_local_analytics.md` | Local DuckDB/dbt analytics and parity path. |
+| `12_novel_ideas.md` | Ordered DuckDB/dbt and Pinot novel-idea proof package. |
 | `11_solving_data_challenges.md` | Data challenge handling and tradeoffs. |
 
 ## How It Differs From Similar Folders

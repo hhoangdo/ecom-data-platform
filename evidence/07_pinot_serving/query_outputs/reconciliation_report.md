@@ -11,8 +11,8 @@
 - Pinot order_count: `0`
 - Pinot revenue_amount: `0`
 - Pinot gmv_proxy_amount: `0`
-- Trino order_count: `15`
-- Trino official_paid_revenue: `56494113.0`
-- Trino gross_merchandise_value: `62822000.0`
-- Trino conversion_rate: `1.0714285714285714`
+- Trino order_count: `10`
+- Trino official_paid_revenue: `25361824.0`
+- Trino gross_merchandise_value: `25689000.0`
+- Trino conversion_rate: `1.0`
 - Pinot metric minutes returned: `0`

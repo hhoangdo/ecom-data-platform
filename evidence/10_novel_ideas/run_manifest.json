@@ -1,0 +1,116 @@
+{
+  "artifacts": [
+    "idea_1_duckdb_dbt.json",
+    "idea_2_pinot_realtime.json",
+    "run_manifest.json",
+    "screenshots/idea_1_duckdb_dbt_lineage.png",
+    "screenshots/idea_2_pinot_realtime_query.png"
+  ],
+  "captured_at": "2026-07-12T13:38:05.531634+00:00",
+  "reproduction_commands": [
+    "uv run dbt build --project-dir infra/analytics/dbt --profiles-dir infra/analytics/dbt",
+    "uv run python scripts/pinot/refresh_evidence.py",
+    "uv run python scripts/qa/capture_novel_ideas.py"
+  ],
+  "schema_version": 1,
+  "screenshots": [
+    {
+      "height": 720,
+      "path": "screenshots/idea_1_duckdb_dbt_lineage.png",
+      "present": true,
+      "sha256": "45178abdf5bb4f47ffcfda0bfed3a552a279c87e09a727d95b21ee32d5a6c39a",
+      "width": 1280
+    },
+    {
+      "height": 712,
+      "path": "screenshots/idea_2_pinot_realtime_query.png",
+      "present": true,
+      "sha256": "91a31ff7ee165c2990a5b3e3500ed45e8dd37cb678bb1ed78018016b14d11381",
+      "width": 1265
+    }
+  ],
+  "status": "success",
+  "success_gates": {
+    "idea_1": true,
+    "idea_2": true
+  },
+  "upstream_artifacts": [
+    {
+      "path": "infra/analytics/dbt/target/run_results.json",
+      "sha256": "b366e789b1d6dd69efb0ca093345aa3a52943ad27df61625790d2b22841c635f"
+    },
+    {
+      "path": "infra/analytics/dbt/target/manifest.json",
+      "sha256": "7b2be070580f1c050cea2a3d7866519c37f52cd52b610160f857c49080291310"
+    },
+    {
+      "path": "evidence/05_spark_batch/dbt_parity_report.json",
+      "sha256": "de8174dfe0dd95f69d303a62de8fb907f201a4e40951433307fe1e4826bbf669"
+    },
+    {
+      "path": "evidence/05_spark_batch/run_manifest.json",
+      "sha256": "297d761fe545c16bb014930eefe6e0d9b366e98d5fee9006a25418ba2c1573b9"
+    },
+    {
+      "path": "evidence/10_duckdb_dbt_local_analytics/index_optimization/index_benchmark.json",
+      "sha256": "28eeeb94e93c0642ff9daa901f55a9ae3b886f54554deeb0a466b5127e5345d4"
+    },
+    {
+      "path": "evidence/10_duckdb_dbt_local_analytics/index_optimization/run_manifest.json",
+      "sha256": "4483437473617fabb11544ffb993bd12e7db55e8fd11f8c5514af360007e8930"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_order.sql",
+      "sha256": "7029194a182e1710a9167b550cee11efcc8ec085cc4d93af1b6d0fc69105591b"
+    },
+    {
+      "path": "evidence/07_pinot_serving/controller_health.json",
+      "sha256": "c09442326b6264544442812097634d762e4c9c62147809dd40851db8bbf65be3"
+    },
+    {
+      "path": "evidence/07_pinot_serving/broker_health.json",
+      "sha256": "c09442326b6264544442812097634d762e4c9c62147809dd40851db8bbf65be3"
+    },
+    {
+      "path": "evidence/07_pinot_serving/table_status.json",
+      "sha256": "074c9d8d867a784120bfd1b3986975e3ef488afc622ec3d1cdb137b35f36a28f"
+    },
+    {
+      "path": "evidence/07_pinot_serving/consuming_segments.json",
+      "sha256": "36b5f41814c9ed70a7ce7d68ac6e10eba3a9201b0fdccc43cda5ef528189157e"
+    },
+    {
+      "path": "evidence/07_pinot_serving/run_manifest.json",
+      "sha256": "ff64d1a6ddecfdf415e1d306768bde946b41ff3449ff41275b2c2f6ff95674ad"
+    },
+    {
+      "path": "evidence/07_pinot_serving/refresh_evidence_manifest.json",
+      "sha256": "6ae3847aa41458645ce8bd17f647ed0c7dac0187d63976939d2f17c26a11a935"
+    },
+    {
+      "path": "evidence/07_pinot_serving/version_matrix.json",
+      "sha256": "406079aba2892205682d2323e9ee6334f6555143d50cc1088e885605bd8f2bc5"
+    },
+    {
+      "path": "evidence/07_pinot_serving/query_outputs/reconciliation_report.md",
+      "sha256": "3fe51ac5be35f9a7c7267a8394ceabc4b1ee367bb67e520bf020cd2da7bb3271"
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_ops_alerts_realtime.json",
+      "sha256": "b43e0c4453cb5480c64d5775f0119cafcde0f222019626d2fa56b64b9d5885a6"
+    },
+    {
+      "path": "configs/pipelines/flink_streaming.yaml",
+      "sha256": "4194afbbfe064178ae59dafd02a24775baec7146937c734153eb5fbf1250a549"
+    },
+    {
+      "path": "evidence/10_novel_ideas/flink_smoke_publish_summary.json",
+      "sha256": "467ee4d1ac9d4b4d266c6e4d5cc186184347b7e151e2462ea8003a286876d0c9"
+    }
+  ],
+  "versions": {
+    "dbt": "1.11.11",
+    "duckdb": "1.5.3",
+    "pinot": "1.4.0"
+  }
+}

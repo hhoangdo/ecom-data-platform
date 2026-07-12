@@ -16,6 +16,7 @@ OFFICIAL_DELIVERABLES = [
     "08_airflow_gx_orchestration.md",
     "09_datahub_governance.md",
     "10_duckdb_dbt_local_analytics.md",
+    "12_novel_ideas.md",
 ]
 
 
@@ -117,3 +118,21 @@ def test_orchestration_deliverable_documents_all_six_coursework_stage_artifacts(
         "mini_coursework_pipeline_grid.png",
     ]:
         assert expected in content
+
+
+def test_novel_ideas_deliverable_uses_exact_ordered_headings_and_evidence_links() -> None:
+    content = (_repo_root() / "deliverables" / "12_novel_ideas.md").read_text(encoding="utf-8")
+
+    idea_1 = "## Novel Idea 1: DuckDB/dbt local analytics"
+    idea_2 = "## Novel Idea 2: Pinot realtime serving"
+    assert idea_1 in content
+    assert idea_2 in content
+    assert content.index(idea_1) < content.index(idea_2)
+    for evidence_path in [
+        "evidence/10_novel_ideas/idea_1_duckdb_dbt.json",
+        "evidence/10_novel_ideas/idea_2_pinot_realtime.json",
+        "evidence/10_novel_ideas/run_manifest.json",
+        "idea_1_duckdb_dbt_lineage.png",
+        "idea_2_pinot_realtime_query.png",
+    ]:
+        assert evidence_path in content
