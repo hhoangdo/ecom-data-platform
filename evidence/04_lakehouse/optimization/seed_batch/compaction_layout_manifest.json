@@ -1,0 +1,266 @@
+{
+  "bucket_count": 2,
+  "layout_profile": "compaction-evidence",
+  "tables": [
+    {
+      "bucket_count": 2,
+      "bucket_row_counts": [
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 108,
+          "order_date_key": 20260426
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 125,
+          "order_date_key": 20260426
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 144,
+          "order_date_key": 20260427
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 135,
+          "order_date_key": 20260427
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 126,
+          "order_date_key": 20260428
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 108,
+          "order_date_key": 20260428
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 158,
+          "order_date_key": 20260429
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 130,
+          "order_date_key": 20260429
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 106,
+          "order_date_key": 20260430
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 105,
+          "order_date_key": 20260430
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 138,
+          "order_date_key": 20260501
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 149,
+          "order_date_key": 20260501
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 138,
+          "order_date_key": 20260502
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 130,
+          "order_date_key": 20260502
+        }
+      ],
+      "candidate_partitions": [
+        20260427,
+        20260428,
+        20260429,
+        20260430,
+        20260501,
+        20260502
+      ],
+      "data_file_partition_counts": [
+        {
+          "file_count": 1,
+          "partition_value": 20260426,
+          "record_count": 233,
+          "total_bytes": 19656
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260427,
+          "record_count": 279,
+          "total_bytes": 31386
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260428,
+          "record_count": 234,
+          "total_bytes": 29566
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260429,
+          "record_count": 288,
+          "total_bytes": 32155
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260430,
+          "record_count": 211,
+          "total_bytes": 28840
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260501,
+          "record_count": 287,
+          "total_bytes": 32399
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260502,
+          "record_count": 268,
+          "total_bytes": 31610
+        }
+      ],
+      "partition_column": "order_date_key",
+      "stable_key": "order_id",
+      "table": "gold.fact_order"
+    },
+    {
+      "bucket_count": 2,
+      "bucket_row_counts": [
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 454,
+          "order_date_key": 20260426
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 448,
+          "order_date_key": 20260426
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 577,
+          "order_date_key": 20260427
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 509,
+          "order_date_key": 20260427
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 433,
+          "order_date_key": 20260428
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 434,
+          "order_date_key": 20260428
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 533,
+          "order_date_key": 20260429
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 577,
+          "order_date_key": 20260429
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 389,
+          "order_date_key": 20260430
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 386,
+          "order_date_key": 20260430
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 531,
+          "order_date_key": 20260501
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 510,
+          "order_date_key": 20260501
+        },
+        {
+          "__compaction_evidence_bucket": 0,
+          "count": 487,
+          "order_date_key": 20260502
+        },
+        {
+          "__compaction_evidence_bucket": 1,
+          "count": 488,
+          "order_date_key": 20260502
+        }
+      ],
+      "candidate_partitions": [
+        20260427,
+        20260428,
+        20260429,
+        20260430,
+        20260501,
+        20260502
+      ],
+      "data_file_partition_counts": [
+        {
+          "file_count": 1,
+          "partition_value": 20260426,
+          "record_count": 902,
+          "total_bytes": 45823
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260427,
+          "record_count": 1086,
+          "total_bytes": 72713
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260428,
+          "record_count": 867,
+          "total_bytes": 63854
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260429,
+          "record_count": 1110,
+          "total_bytes": 74617
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260430,
+          "record_count": 775,
+          "total_bytes": 60213
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260501,
+          "record_count": 1041,
+          "total_bytes": 72832
+        },
+        {
+          "file_count": 2,
+          "partition_value": 20260502,
+          "record_count": 975,
+          "total_bytes": 69693
+        }
+      ],
+      "partition_column": "order_date_key",
+      "stable_key": "order_item_id",
+      "table": "gold.fact_order_item"
+    }
+  ]
+}

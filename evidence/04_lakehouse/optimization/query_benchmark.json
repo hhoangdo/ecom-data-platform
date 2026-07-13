@@ -1,12 +1,11 @@
 {
-  "after": null,
-  "before": {
+  "after": {
     "measured_runs": 7,
     "queries": [
       {
         "measured": [
           {
-            "client_elapsed_ms": 108.800445,
+            "client_elapsed_ms": 140.000541,
             "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
             "rows": [
               [
@@ -14,10 +13,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 93
+            "trino_elapsed_ms": 119
           },
           {
-            "client_elapsed_ms": 97.275861,
+            "client_elapsed_ms": 126.119753,
             "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
             "rows": [
               [
@@ -25,10 +24,82 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 81
+            "trino_elapsed_ms": 107
           },
           {
-            "client_elapsed_ms": 112.098021,
+            "client_elapsed_ms": 121.287216,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 102
+          },
+          {
+            "client_elapsed_ms": 148.571414,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 126
+          },
+          {
+            "client_elapsed_ms": 153.953712,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 131
+          },
+          {
+            "client_elapsed_ms": 137.314842,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 106
+          },
+          {
+            "client_elapsed_ms": 137.492361,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 114
+          }
+        ],
+        "median_client_elapsed_ms": 137.492361,
+        "query": "select count(*) as row_count, round(sum(order_net_amount), 2) as value_sum\nfrom iceberg.silver.stg_orders",
+        "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+        "table": "silver.stg_orders",
+        "warmups": [
+          {
+            "client_elapsed_ms": 148.486517,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 127
+          },
+          {
+            "client_elapsed_ms": 111.929166,
             "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
             "rows": [
               [
@@ -37,85 +108,13 @@
               ]
             ],
             "trino_elapsed_ms": 94
-          },
-          {
-            "client_elapsed_ms": 108.28055,
-            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-            "rows": [
-              [
-                1800,
-                5829696390.0
-              ]
-            ],
-            "trino_elapsed_ms": 92
-          },
-          {
-            "client_elapsed_ms": 117.907585,
-            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-            "rows": [
-              [
-                1800,
-                5829696390.0
-              ]
-            ],
-            "trino_elapsed_ms": 100
-          },
-          {
-            "client_elapsed_ms": 92.329251,
-            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-            "rows": [
-              [
-                1800,
-                5829696390.0
-              ]
-            ],
-            "trino_elapsed_ms": 75
-          },
-          {
-            "client_elapsed_ms": 100.771541,
-            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-            "rows": [
-              [
-                1800,
-                5829696390.0
-              ]
-            ],
-            "trino_elapsed_ms": 84
-          }
-        ],
-        "median_client_elapsed_ms": 108.28055,
-        "query": "select count(*) as row_count, round(sum(order_net_amount), 2) as value_sum\nfrom iceberg.silver.stg_orders",
-        "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-        "table": "silver.stg_orders",
-        "warmups": [
-          {
-            "client_elapsed_ms": 128.823199,
-            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-            "rows": [
-              [
-                1800,
-                5829696390.0
-              ]
-            ],
-            "trino_elapsed_ms": 105
-          },
-          {
-            "client_elapsed_ms": 110.038196,
-            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
-            "rows": [
-              [
-                1800,
-                5829696390.0
-              ]
-            ],
-            "trino_elapsed_ms": 91
           }
         ]
       },
       {
         "measured": [
           {
-            "client_elapsed_ms": 120.115412,
+            "client_elapsed_ms": 165.636287,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -123,10 +122,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 99
+            "trino_elapsed_ms": 141
           },
           {
-            "client_elapsed_ms": 140.774168,
+            "client_elapsed_ms": 145.650921,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -134,10 +133,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 119
+            "trino_elapsed_ms": 127
           },
           {
-            "client_elapsed_ms": 126.499351,
+            "client_elapsed_ms": 109.361281,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -145,10 +144,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 107
+            "trino_elapsed_ms": 91
           },
           {
-            "client_elapsed_ms": 122.242965,
+            "client_elapsed_ms": 120.311855,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -156,10 +155,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 101
+            "trino_elapsed_ms": 100
           },
           {
-            "client_elapsed_ms": 200.768466,
+            "client_elapsed_ms": 137.387983,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -167,10 +166,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 180
+            "trino_elapsed_ms": 112
           },
           {
-            "client_elapsed_ms": 99.934262,
+            "client_elapsed_ms": 115.323824,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -178,10 +177,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 80
+            "trino_elapsed_ms": 97
           },
           {
-            "client_elapsed_ms": 101.459807,
+            "client_elapsed_ms": 155.024742,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -189,16 +188,16 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 84
+            "trino_elapsed_ms": 136
           }
         ],
-        "median_client_elapsed_ms": 122.242965,
+        "median_client_elapsed_ms": 137.387983,
         "query": "select count(*) as row_count, round(sum(net_amount), 2) as value_sum\nfrom iceberg.silver.stg_order_items",
         "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
         "table": "silver.stg_order_items",
         "warmups": [
           {
-            "client_elapsed_ms": 108.302438,
+            "client_elapsed_ms": 127.093779,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -206,10 +205,10 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 92
+            "trino_elapsed_ms": 103
           },
           {
-            "client_elapsed_ms": 105.78376,
+            "client_elapsed_ms": 156.560247,
             "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
             "rows": [
               [
@@ -217,14 +216,14 @@
                 5829696390.0
               ]
             ],
-            "trino_elapsed_ms": 87
+            "trino_elapsed_ms": 137
           }
         ]
       },
       {
         "measured": [
           {
-            "client_elapsed_ms": 119.600754,
+            "client_elapsed_ms": 137.314089,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -232,10 +231,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 100
+            "trino_elapsed_ms": 118
           },
           {
-            "client_elapsed_ms": 115.565424,
+            "client_elapsed_ms": 128.030236,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -243,10 +242,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 91
+            "trino_elapsed_ms": 110
           },
           {
-            "client_elapsed_ms": 130.798418,
+            "client_elapsed_ms": 123.459538,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -254,10 +253,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 99
+            "trino_elapsed_ms": 104
           },
           {
-            "client_elapsed_ms": 120.945064,
+            "client_elapsed_ms": 130.423855,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -265,10 +264,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 102
+            "trino_elapsed_ms": 111
           },
           {
-            "client_elapsed_ms": 115.15792,
+            "client_elapsed_ms": 141.475278,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -276,10 +275,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 98
+            "trino_elapsed_ms": 121
           },
           {
-            "client_elapsed_ms": 98.407289,
+            "client_elapsed_ms": 120.897698,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -287,10 +286,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 82
+            "trino_elapsed_ms": 104
           },
           {
-            "client_elapsed_ms": 92.50046,
+            "client_elapsed_ms": 109.634891,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -298,16 +297,16 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 77
+            "trino_elapsed_ms": 92
           }
         ],
-        "median_client_elapsed_ms": 115.565424,
+        "median_client_elapsed_ms": 128.030236,
         "query": "select count(*) as row_count, round(sum(official_paid_revenue), 2) as value_sum\nfrom iceberg.gold.fact_order",
         "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
         "table": "gold.fact_order",
         "warmups": [
           {
-            "client_elapsed_ms": 117.411046,
+            "client_elapsed_ms": 277.282537,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -315,10 +314,10 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 102
+            "trino_elapsed_ms": 251
           },
           {
-            "client_elapsed_ms": 109.228931,
+            "client_elapsed_ms": 182.373605,
             "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
             "rows": [
               [
@@ -326,14 +325,14 @@
                 5488980096.0
               ]
             ],
-            "trino_elapsed_ms": 92
+            "trino_elapsed_ms": 159
           }
         ]
       },
       {
         "measured": [
           {
-            "client_elapsed_ms": 195.877314,
+            "client_elapsed_ms": 196.101298,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -341,10 +340,10 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 162
+            "trino_elapsed_ms": 173
           },
           {
-            "client_elapsed_ms": 184.85618,
+            "client_elapsed_ms": 140.196211,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -352,10 +351,43 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 161
+            "trino_elapsed_ms": 122
           },
           {
-            "client_elapsed_ms": 140.820209,
+            "client_elapsed_ms": 100.76875,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 86
+          },
+          {
+            "client_elapsed_ms": 132.882691,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 116
+          },
+          {
+            "client_elapsed_ms": 113.924045,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 95
+          },
+          {
+            "client_elapsed_ms": 138.308342,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -366,7 +398,405 @@
             "trino_elapsed_ms": 121
           },
           {
-            "client_elapsed_ms": 160.658318,
+            "client_elapsed_ms": 137.837103,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 118
+          }
+        ],
+        "median_client_elapsed_ms": 137.837103,
+        "query": "select count(*) as row_count, round(sum(estimated_margin), 2) as value_sum\nfrom iceberg.gold.fact_order_item",
+        "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+        "table": "gold.fact_order_item",
+        "warmups": [
+          {
+            "client_elapsed_ms": 215.895462,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 192
+          },
+          {
+            "client_elapsed_ms": 135.511741,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 114
+          }
+        ]
+      }
+    ],
+    "warmup_runs": 2
+  },
+  "before": {
+    "measured_runs": 7,
+    "queries": [
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 280.613593,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 240
+          },
+          {
+            "client_elapsed_ms": 247.845891,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 214
+          },
+          {
+            "client_elapsed_ms": 223.557338,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 190
+          },
+          {
+            "client_elapsed_ms": 211.490316,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 176
+          },
+          {
+            "client_elapsed_ms": 204.860106,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 173
+          },
+          {
+            "client_elapsed_ms": 185.448354,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 155
+          },
+          {
+            "client_elapsed_ms": 194.118777,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 159
+          }
+        ],
+        "median_client_elapsed_ms": 211.490316,
+        "query": "select count(*) as row_count, round(sum(order_net_amount), 2) as value_sum\nfrom iceberg.silver.stg_orders",
+        "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+        "table": "silver.stg_orders",
+        "warmups": [
+          {
+            "client_elapsed_ms": 3744.746416,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 3497
+          },
+          {
+            "client_elapsed_ms": 1116.845589,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 1081
+          }
+        ]
+      },
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 185.224023,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 156
+          },
+          {
+            "client_elapsed_ms": 177.030002,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 152
+          },
+          {
+            "client_elapsed_ms": 174.374402,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 148
+          },
+          {
+            "client_elapsed_ms": 323.576987,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 297
+          },
+          {
+            "client_elapsed_ms": 156.197248,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 129
+          },
+          {
+            "client_elapsed_ms": 144.777138,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 119
+          },
+          {
+            "client_elapsed_ms": 130.085905,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 109
+          }
+        ],
+        "median_client_elapsed_ms": 174.374402,
+        "query": "select count(*) as row_count, round(sum(net_amount), 2) as value_sum\nfrom iceberg.silver.stg_order_items",
+        "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+        "table": "silver.stg_order_items",
+        "warmups": [
+          {
+            "client_elapsed_ms": 436.898863,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 405
+          },
+          {
+            "client_elapsed_ms": 185.476232,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 161
+          }
+        ]
+      },
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 225.345924,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 201
+          },
+          {
+            "client_elapsed_ms": 206.712836,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 182
+          },
+          {
+            "client_elapsed_ms": 147.858008,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 128
+          },
+          {
+            "client_elapsed_ms": 157.830206,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 140
+          },
+          {
+            "client_elapsed_ms": 158.546947,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 139
+          },
+          {
+            "client_elapsed_ms": 174.549544,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 151
+          },
+          {
+            "client_elapsed_ms": 146.741634,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 127
+          }
+        ],
+        "median_client_elapsed_ms": 158.546947,
+        "query": "select count(*) as row_count, round(sum(official_paid_revenue), 2) as value_sum\nfrom iceberg.gold.fact_order",
+        "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+        "table": "gold.fact_order",
+        "warmups": [
+          {
+            "client_elapsed_ms": 271.545094,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 247
+          },
+          {
+            "client_elapsed_ms": 192.10246,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 173
+          }
+        ]
+      },
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 151.317011,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 132
+          },
+          {
+            "client_elapsed_ms": 121.624985,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 104
+          },
+          {
+            "client_elapsed_ms": 158.559558,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -377,7 +807,7 @@
             "trino_elapsed_ms": 138
           },
           {
-            "client_elapsed_ms": 121.695099,
+            "client_elapsed_ms": 175.530425,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -385,10 +815,10 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 100
+            "trino_elapsed_ms": 153
           },
           {
-            "client_elapsed_ms": 132.291875,
+            "client_elapsed_ms": 185.016057,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -396,10 +826,10 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 113
+            "trino_elapsed_ms": 152
           },
           {
-            "client_elapsed_ms": 127.331356,
+            "client_elapsed_ms": 165.61786,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -407,16 +837,27 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 101
+            "trino_elapsed_ms": 146
+          },
+          {
+            "client_elapsed_ms": 150.667613,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 129
           }
         ],
-        "median_client_elapsed_ms": 140.820209,
+        "median_client_elapsed_ms": 158.559558,
         "query": "select count(*) as row_count, round(sum(estimated_margin), 2) as value_sum\nfrom iceberg.gold.fact_order_item",
         "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
         "table": "gold.fact_order_item",
         "warmups": [
           {
-            "client_elapsed_ms": 154.996845,
+            "client_elapsed_ms": 202.007095,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -424,10 +865,10 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 135
+            "trino_elapsed_ms": 182
           },
           {
-            "client_elapsed_ms": 152.558269,
+            "client_elapsed_ms": 152.104588,
             "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
             "rows": [
               [
@@ -435,13 +876,11 @@
                 1420416437.67
               ]
             ],
-            "trino_elapsed_ms": 131
+            "trino_elapsed_ms": 129
           }
         ]
       }
     ],
     "warmup_runs": 2
-  },
-  "reason": "No approved table had an eligible partition-level group with at least two data files.",
-  "status": "blocked_no_eligible_file_groups"
+  }
 }

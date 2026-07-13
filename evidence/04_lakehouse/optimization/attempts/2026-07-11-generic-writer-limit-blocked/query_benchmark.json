@@ -1,0 +1,447 @@
+{
+  "after": null,
+  "before": {
+    "measured_runs": 7,
+    "queries": [
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 108.800445,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 93
+          },
+          {
+            "client_elapsed_ms": 97.275861,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 81
+          },
+          {
+            "client_elapsed_ms": 112.098021,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 94
+          },
+          {
+            "client_elapsed_ms": 108.28055,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 92
+          },
+          {
+            "client_elapsed_ms": 117.907585,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 100
+          },
+          {
+            "client_elapsed_ms": 92.329251,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 75
+          },
+          {
+            "client_elapsed_ms": 100.771541,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 84
+          }
+        ],
+        "median_client_elapsed_ms": 108.28055,
+        "query": "select count(*) as row_count, round(sum(order_net_amount), 2) as value_sum\nfrom iceberg.silver.stg_orders",
+        "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+        "table": "silver.stg_orders",
+        "warmups": [
+          {
+            "client_elapsed_ms": 128.823199,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 105
+          },
+          {
+            "client_elapsed_ms": 110.038196,
+            "result_hash": "5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d",
+            "rows": [
+              [
+                1800,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 91
+          }
+        ]
+      },
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 120.115412,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 99
+          },
+          {
+            "client_elapsed_ms": 140.774168,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 119
+          },
+          {
+            "client_elapsed_ms": 126.499351,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 107
+          },
+          {
+            "client_elapsed_ms": 122.242965,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 101
+          },
+          {
+            "client_elapsed_ms": 200.768466,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 180
+          },
+          {
+            "client_elapsed_ms": 99.934262,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 80
+          },
+          {
+            "client_elapsed_ms": 101.459807,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 84
+          }
+        ],
+        "median_client_elapsed_ms": 122.242965,
+        "query": "select count(*) as row_count, round(sum(net_amount), 2) as value_sum\nfrom iceberg.silver.stg_order_items",
+        "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+        "table": "silver.stg_order_items",
+        "warmups": [
+          {
+            "client_elapsed_ms": 108.302438,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 92
+          },
+          {
+            "client_elapsed_ms": 105.78376,
+            "result_hash": "fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947",
+            "rows": [
+              [
+                6756,
+                5829696390.0
+              ]
+            ],
+            "trino_elapsed_ms": 87
+          }
+        ]
+      },
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 119.600754,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 100
+          },
+          {
+            "client_elapsed_ms": 115.565424,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 91
+          },
+          {
+            "client_elapsed_ms": 130.798418,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 99
+          },
+          {
+            "client_elapsed_ms": 120.945064,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 102
+          },
+          {
+            "client_elapsed_ms": 115.15792,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 98
+          },
+          {
+            "client_elapsed_ms": 98.407289,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 82
+          },
+          {
+            "client_elapsed_ms": 92.50046,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 77
+          }
+        ],
+        "median_client_elapsed_ms": 115.565424,
+        "query": "select count(*) as row_count, round(sum(official_paid_revenue), 2) as value_sum\nfrom iceberg.gold.fact_order",
+        "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+        "table": "gold.fact_order",
+        "warmups": [
+          {
+            "client_elapsed_ms": 117.411046,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 102
+          },
+          {
+            "client_elapsed_ms": 109.228931,
+            "result_hash": "3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702",
+            "rows": [
+              [
+                1800,
+                5488980096.0
+              ]
+            ],
+            "trino_elapsed_ms": 92
+          }
+        ]
+      },
+      {
+        "measured": [
+          {
+            "client_elapsed_ms": 195.877314,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 162
+          },
+          {
+            "client_elapsed_ms": 184.85618,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 161
+          },
+          {
+            "client_elapsed_ms": 140.820209,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 121
+          },
+          {
+            "client_elapsed_ms": 160.658318,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 138
+          },
+          {
+            "client_elapsed_ms": 121.695099,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 100
+          },
+          {
+            "client_elapsed_ms": 132.291875,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 113
+          },
+          {
+            "client_elapsed_ms": 127.331356,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 101
+          }
+        ],
+        "median_client_elapsed_ms": 140.820209,
+        "query": "select count(*) as row_count, round(sum(estimated_margin), 2) as value_sum\nfrom iceberg.gold.fact_order_item",
+        "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+        "table": "gold.fact_order_item",
+        "warmups": [
+          {
+            "client_elapsed_ms": 154.996845,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 135
+          },
+          {
+            "client_elapsed_ms": 152.558269,
+            "result_hash": "7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb",
+            "rows": [
+              [
+                6756,
+                1420416437.67
+              ]
+            ],
+            "trino_elapsed_ms": 131
+          }
+        ]
+      }
+    ],
+    "warmup_runs": 2
+  },
+  "reason": "No approved table had an eligible partition-level group with at least two data files.",
+  "status": "blocked_no_eligible_file_groups"
+}

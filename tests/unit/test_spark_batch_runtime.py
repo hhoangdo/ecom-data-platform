@@ -9,6 +9,13 @@ import pytest
 from compose_model import load_compose_model
 from vina_bim_shop.lakehouse.spark.constants import REQUIRED_GOLD_TABLES
 from vina_bim_shop.lakehouse.spark.evidence import DEFAULT_EVIDENCE_ROOT, capture_evidence
+from vina_bim_shop.lakehouse.spark.layout_profile import (
+    COMPACTION_EVIDENCE_BUCKET_COUNT,
+    COMPACTION_EVIDENCE_LAYOUT_PROFILE,
+    STANDARD_LAYOUT_PROFILE,
+    compaction_evidence_target,
+    validate_layout_profile,
+)
 from vina_bim_shop.lakehouse.spark.parity import run_parity_checks
 from vina_bim_shop.lakehouse.spark.runner import _run_command, build_spark_submit_command
 from vina_bim_shop.lakehouse.spark import sql as spark_sql
@@ -437,6 +444,31 @@ def test_spark_feature_queries_expose_created_output_contract() -> None:
 
     assert "greatest(c.created, coalesce(s.created, c.created)) as created" in queries["feat_customer_unified"]
     assert "created_ts" not in queries["feat_customer_unified"]
+
+
+def test_compaction_evidence_layout_profile_is_two_bucket_and_targeted() -> None:
+    assert STANDARD_LAYOUT_PROFILE == "standard"
+    assert COMPACTION_EVIDENCE_LAYOUT_PROFILE == "compaction-evidence"
+    assert COMPACTION_EVIDENCE_BUCKET_COUNT == 2
+    assert compaction_evidence_target("fact_order") == ("order_id", "order_date_key")
+    assert compaction_evidence_target("fact_order_item") == ("order_item_id", "order_date_key")
+    assert compaction_evidence_target("dim_customer") is None
+
+    with pytest.raises(ValueError, match="Unsupported Spark layout profile"):
+        validate_layout_profile("small-files")
+
+
+def test_canonical_job_exposes_the_opt_in_compaction_evidence_profile() -> None:
+    source = (_repo_root() / "src" / "vina_bim_shop" / "lakehouse" / "spark" / "job.py").read_text(
+        encoding="utf-8"
+    )
+
+    assert '"--layout-profile"' in source
+    assert "COMPACTION_EVIDENCE_LAYOUT_PROFILE" in source
+    assert "repartitionByRange" in source
+    assert "spark.sql.iceberg.distribution-mode" in source
+    assert "compaction_layout_manifest.json" in source
+    assert "layout_profile=args.layout_profile" in source
 
 
 def test_gold_query_groups_partition_the_existing_combined_contract() -> None:

@@ -25,7 +25,7 @@
 
 | Row | Requirement | Points | Current status | Effort | Value added |
 |---:|---|---:|---|---|---|
-| 26 | Optimize Lakehouse storage and compare optimized versus unoptimized. | 2 | Blocked: smoke physical layout has no eligible two-file partition group | M | High |
+| 26 | Optimize Lakehouse storage and compare optimized versus unoptimized. | 2 | Complete: controlled two-bucket profile produced and compacted eligible Gold file groups | M | High |
 | 27 | Optimize data warehouse, for example indexing, with code and analysis. | 2 | Complete: isolated ART-index evidence regenerated | S | Medium |
 
 ## Current Implementation and Evidence
@@ -172,16 +172,16 @@ Expected: focused and full suites pass, with no canonical data-contract regressi
 - Focused and full tests pass and evidence commands are reproducible.
 - Audit status changes only after all named artifacts exist.
 
-## Completion Record — 2026-07-11
+## Completion Record — 2026-07-13
 
-**Status:** Row 27 is complete. Row 26 is blocked by the documented physical-layout prerequisite; no compaction or speedup is claimed.
+**Status:** Rows 26 and 27 are complete. Row 26 has a controlled smoke-scale compaction result; neither Row 26 nor Row 27 claims a general performance improvement.
 
 ### Controlled Inputs and Runtime
 
-- Regenerated only smoke local input with `rtk uv run python scripts/generate/run_generator.py --scale smoke --mode full --clean --raw-root data/raw --evidence-root tmp/topic05-smoke-evidence`. The generator evidence records 800 customers, 1,800 orders, 6,891 raw order-item rows, and 1,800 payments.
+- Regenerated only smoke local input with `rtk uv run python scripts/generate/run_generator.py --scale smoke --mode full --clean --raw-root data/raw --evidence-root tmp/topic05-remediation-smoke-evidence`. The generator evidence records 800 customers, 1,800 orders, 6,891 raw order-item rows, and 1,800 payments.
 - Rebuilt the canonical post-Topic-06 dbt database using `rtk make build-dbt`; all 52 models and 66 tests completed successfully. Topic 06's final feature contract is therefore included in this build; another dbt rebuild is needed only if Topic 06 changes again.
-- Claimed the shared lakehouse/batch runtime and preflighted all required persisted `2026-05-01` Bronze objects: ten batch datasets plus `commerce_events`, `catalog_events`, `fulfillment_events`, and `ops_events`.
-- Ran one canonical backfill through `scripts/spark/job.py` for `2026-04-21T00:00:00Z` to `2026-05-04T00:00:00Z`, with the session-only `--conf spark.sql.files.maxRecordsPerFile=100`. No Spark source, Iceberg table property, or partition spec was altered. Spark and GX validation both passed.
+- Claimed the shared lakehouse/batch runtime and preflighted all required persisted `2026-04-26` and `2026-05-01` Bronze objects: ten batch datasets plus `commerce_events`, `catalog_events`, `fulfillment_events`, and `ops_events`.
+- Ran one canonical full backfill through `scripts/spark/job.py` for `2026-04-21T00:00:00Z` to `2026-05-04T00:00:00Z`, with `--layout-profile compaction-evidence`. The disabled-by-default profile hashes only `fact_order` and `fact_order_item` into two temporary writer buckets, restores its session-only `spark.sql.iceberg.distribution-mode=none` setting, and preserves the existing schemas, partition specs, and business rows. Spark and GX validation both passed.
 - The seeded Iceberg row counts were 1,800 for `fact_order` and 6,756 for `fact_order_item`; the backfill manifest is [here](../../../evidence/04_lakehouse/optimization/seed_batch/spark_job_manifest.json).
 
 ### Iceberg Allowlist, Results, and Invariants
@@ -190,27 +190,27 @@ The fixed allowlist was `silver.stg_orders`, `silver.stg_order_items`, `gold.fac
 
 | Table | Files before → after | Rewritten files | Rows | Aggregate hash |
 | --- | ---: | ---: | ---: | --- |
-| `silver.stg_orders` | 1 → 1 | 0 (skipped: insufficient files) | 1,800 | `bdba28bbfc398cab633fb6851dc02e1f8a45abdaa86d9d11aed35c8302cd209d` |
-| `silver.stg_order_items` | 1 → 1 | 0 (skipped: insufficient files) | 6,756 | `6b892aa78667d2f001660908ff9632e68078fe33b7c3484fe4290b9379015672` |
-| `gold.fact_order` | 7 → 7 | 0 (no eligible partition group) | 1,800 | `f4002002c04ef6f1e9fdfc8d26222bf6c6dc94f86c2d8c3bdd6cd218bb185425` |
-| `gold.fact_order_item` | 7 → 7 | 0 (no eligible partition group) | 6,756 | `9f4abc6265dc9ca11f3b6ec191f8aeec5ee590ef0cd19f85fe32bfa66be109e1` |
+| `silver.stg_orders` | 1 → 1 | 0 (skipped: insufficient files) | 1,800 | `6fd2502b6e457d25a05d71d1cc1f2cf6745a8598d51f169ae3152f4644d6d6bf` |
+| `silver.stg_order_items` | 1 → 1 | 0 (skipped: insufficient files) | 6,756 | `ca567c19b9906f2c8602b87ed2220b7a9757908664f0df23a19092fd70e22d44` |
+| `gold.fact_order` | 13 → 7 | 12 | 1,800 | `f4002002c04ef6f1e9fdfc8d26222bf6c6dc94f86c2d8c3bdd6cd218bb185425` |
+| `gold.fact_order_item` | 13 → 7 | 12 | 6,756 | `9f4abc6265dc9ca11f3b6ec191f8aeec5ee590ef0cd19f85fe32bfa66be109e1` |
 
-All four before/after row-count and aggregate-hash invariants passed. The Gold procedure rows explicitly report `rewritten_data_files_count: 0` and `rewritten_bytes_count: 0`; seven total Gold files occupied seven date partitions, so no partition supplied the required pair of files. The CLI persists this blocked outcome, raw procedure rows, invariant results, and its deliberate nonzero termination rather than lowering the threshold, manufacturing another window, or using `rewrite-all`.
+All four before/after row-count and aggregate-hash invariants passed. The controlled profile made six `order_date_key` partitions eligible in each Gold fact; the Iceberg procedure rewrote 12 files for each fact and reduced both to seven files. It did not lower the two-file threshold, use `rewrite-all`, or alter a persistent table property. The earlier generic writer-limit attempt is preserved under `evidence/04_lakehouse/optimization/attempts/2026-07-11-generic-writer-limit-blocked/`.
 
-The Trino baseline has two warmups and seven measured samples per table, with stable result hashes. Its median client times were 108.281 ms (`stg_orders`), 122.243 ms (`stg_order_items`), 115.565 ms (`fact_order`), and 140.820 ms (`fact_order_item`). `after` is deliberately `null`: without a rewrite there is no valid optimized-versus-unoptimized comparison or performance conclusion.
+Trino has two warmups and seven measured samples per table in both phases, with equal before/after result hashes: `5fdcd793148082c0becabf6d346d794be4f1c85711fdb2752e404c275338f69d` (`stg_orders`), `fa41b1b8374d8d2fe42fb5e18d47b74f2746d74aa7b24d7087098090b5542947` (`stg_order_items`), `3b90748fc1a3afbe9713761928ff791fe46e6b2b9fc5f37db5222c0884724702` (`fact_order`), and `7105276d9a49978ad2b981917d166ff56ec9e427249e238c7c3902d6c28b0ffb` (`fact_order_item`). The before/after median client times were 211.490/137.492 ms, 174.374/137.388 ms, 158.547/128.030 ms, and 158.560/137.837 ms respectively. These smoke-scale local observations are not a storage-performance claim.
 
 Iceberg artifacts:
 
 - [before file stats](../../../evidence/04_lakehouse/optimization/before_file_stats.csv) and [after file stats](../../../evidence/04_lakehouse/optimization/after_file_stats.csv)
-- [blocked procedure and invariant result](../../../evidence/04_lakehouse/optimization/compaction_results.json), [raw Trino samples](../../../evidence/04_lakehouse/optimization/query_benchmark.json), [report](../../../evidence/04_lakehouse/optimization/report.md), and [manifest](../../../evidence/04_lakehouse/optimization/run_manifest.json)
+- [controlled-layout manifest](../../../evidence/04_lakehouse/optimization/seed_batch/compaction_layout_manifest.json), [procedure and invariant result](../../../evidence/04_lakehouse/optimization/compaction_results.json), [raw Trino samples](../../../evidence/04_lakehouse/optimization/query_benchmark.json), [report](../../../evidence/04_lakehouse/optimization/report.md), and [manifest](../../../evidence/04_lakehouse/optimization/run_manifest.json)
 
 ### Isolated DuckDB ART Index Experiment
 
-The benchmark used only `tmp/rubic-check/runtime/duckdb_index_benchmark.duckdb`, a disposable materialization of `gold.fact_order`; it did not create or drop an index in `data/gold/vina_bim_shop.duckdb`. The canonical SHA-256 was equal before and after: `c462cbd8b05f08b6ccd70e5d2a87ee1b6ddc37bf5ec1d99bd933ac83710ba41d`.
+The benchmark used only `tmp/rubic-check/runtime/duckdb_index_benchmark.duckdb`, a disposable materialization of `gold.fact_order`; it did not create or drop an index in `data/gold/vina_bim_shop.duckdb`. The canonical SHA-256 was equal before and after: `b0bb76a932bb1686259b332e50130fb70fb513cd6e1b6b731207c032ccb7b438`.
 
 - Named index: `idx_benchmark_fact_order_order_id` on `benchmark_fact_order(order_id)`; confirmed by `duckdb_indexes()`.
 - Fixed result hash before/after: `ecfe42c8ba49a03ee49642ccc7a043cdba1230fecebc2602c69b73ee2c74771f` for `ORD-BDG-20260426-00000006`.
-- Timing policy: two warmups and seven measured samples per variant. Baseline samples were `2.1212, 1.9194, 2.1072, 1.5139, 1.4139, 1.8375, 1.7003` ms (median 1.8375 ms); indexed samples were `1.3278, 1.4044, 1.3468, 1.5939, 1.6543, 1.3387, 1.5466` ms (median 1.4044 ms).
+- Timing policy: two warmups and seven measured samples per variant. Baseline samples were `1.4715, 1.3721, 1.4490, 1.4326, 1.4292, 1.3582, 1.2887` ms (median 1.4292 ms); indexed samples were `1.1436, 1.0804, 1.0631, 1.1219, 1.1242, 1.1611, 1.1119` ms (median 1.1219 ms).
 - The captured explain text did not visibly change. The lower indexed median is an observed local sample only, not a general ART-index speed claim.
 
 DuckDB artifacts:
@@ -219,13 +219,13 @@ DuckDB artifacts:
 
 ### Implementation and Limitations
 
-- The maintenance helper now labels a zero-result Iceberg procedure as `skipped_no_eligible_file_groups`; the CLI writes a machine-readable blocked result, before-only raw timing samples, report, and manifest before raising its intentional nonzero outcome.
-- The source is local smoke scale and the current layout has one file per eligible Gold partition. A future valid Row-26 comparison requires a naturally produced partition with at least two data files under the unchanged allowlist and minimum-input-files policy.
+- The maintenance helper continues to label a zero-result Iceberg procedure as `skipped_no_eligible_file_groups`. The canonical job now additionally exposes a disabled-by-default `compaction-evidence` profile that creates two deterministic writer buckets only for the two approved Gold fact tables and records its physical layout.
+- The source is local smoke scale. The profile exists solely to make the required physical compaction precondition reproducible; it is not a production writer-tuning recommendation.
 - No canonical DuckDB file was mutated by the index experiment. No unsupported storage or index performance claim is made.
 
 ### Verification and Runtime Release
 
-- Focused Topic-05, lakehouse configuration/profile, Spark runtime, script-inventory, and schema tests: **66 passed**.
-- Full regression: **317 passed, 1 skipped**.
-- Evidence inventory check passed: all required Iceberg and DuckDB artifacts exist; blocked Iceberg invariants are successful; every stored variant has two warmups and seven measured samples; the ART index is present; and the canonical DuckDB SHA-256/result hashes match.
+- Focused Topic-05, lakehouse configuration/profile, Spark runtime, script-inventory, DuckDB-index, and schema tests: **69 passed**.
+- Full regression: **356 passed, 1 skipped**.
+- Evidence inventory check passed: all required active and archived Iceberg artifacts exist; the controlled layout has two buckets and eligible partitions; both Gold rewrites are genuine; all logical invariants and before/after Trino result hashes match; every stored variant has two warmups and seven measured samples; the ART index is present; and the canonical DuckDB SHA-256/result hashes match.
 - Stopped only the lakehouse/batch Compose services started for this session with `rtk docker compose --profile lakehouse --profile batch stop`. `docker compose ps` then returned no running services. Volumes and evidence were preserved, and the shared runtime slot was released.

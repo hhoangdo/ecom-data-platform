@@ -20,6 +20,13 @@ from vina_bim_shop.lakehouse.spark.constants import (
     SILVER_TABLES,
 )
 from vina_bim_shop.lakehouse.spark.gx_validation import run_gx_validations
+from vina_bim_shop.lakehouse.spark.layout_profile import (
+    COMPACTION_EVIDENCE_BUCKET_COUNT,
+    COMPACTION_EVIDENCE_LAYOUT_PROFILE,
+    STANDARD_LAYOUT_PROFILE,
+    compaction_evidence_target,
+    validate_layout_profile,
+)
 from vina_bim_shop.lakehouse.spark.sql import (
     ordered_core_gold_queries,
     ordered_feature_queries,
@@ -36,6 +43,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--mode", required=True, choices=["hourly", "backfill"])
     parser.add_argument("--evidence-root", default="evidence/05_spark_batch")
     parser.add_argument("--stage", default="full", choices=["full", "core", "features"])
+    parser.add_argument(
+        "--layout-profile",
+        default=STANDARD_LAYOUT_PROFILE,
+        choices=[STANDARD_LAYOUT_PROFILE, COMPACTION_EVIDENCE_LAYOUT_PROFILE],
+    )
     return parser.parse_args()
 
 
@@ -475,21 +487,162 @@ AS
     spark.table(f"iceberg.gold.{table_name}").createOrReplaceTempView(table_name)
 
 
+def _restore_spark_configuration(spark: SparkSession, key: str, previous_value: str | None) -> None:
+    if previous_value is None:
+        spark.conf.unset(key)
+    else:
+        spark.conf.set(key, previous_value)
+
+
+def _compaction_evidence_bucket_rows(
+    dataframe: DataFrame,
+    *,
+    stable_key: str,
+    partition_column: str,
+) -> tuple[DataFrame, list[dict[str, object]]]:
+    bucket_column = "__compaction_evidence_bucket"
+    if dataframe.where(F.col(stable_key).isNull() | F.col(partition_column).isNull()).limit(1).count():
+        raise ValueError(
+            f"Compaction-evidence layout requires non-null {stable_key} and {partition_column} values."
+        )
+    bucketed = dataframe.withColumn(
+        bucket_column,
+        F.pmod(F.xxhash64(F.col(stable_key)), F.lit(COMPACTION_EVIDENCE_BUCKET_COUNT)),
+    )
+    rows = [
+        row.asDict(recursive=True)
+        for row in (
+            bucketed.groupBy(partition_column, bucket_column)
+            .count()
+            .orderBy(partition_column, bucket_column)
+            .collect()
+        )
+    ]
+    partitions_with_both_buckets: dict[object, set[int]] = {}
+    for row in rows:
+        partitions_with_both_buckets.setdefault(row[partition_column], set()).add(int(row[bucket_column]))
+    if not any(len(buckets) == COMPACTION_EVIDENCE_BUCKET_COUNT for buckets in partitions_with_both_buckets.values()):
+        raise RuntimeError("Compaction-evidence layout has no partition with both deterministic buckets.")
+    return bucketed, rows
+
+
+def _gold_data_file_partition_counts(
+    spark: SparkSession,
+    *,
+    table_name: str,
+    partition_column: str,
+) -> list[dict[str, object]]:
+    statement = (
+        "select "
+        f"partition.{partition_column} as partition_value, "
+        "count(*) as file_count, "
+        "sum(record_count) as record_count, "
+        "sum(file_size_in_bytes) as total_bytes "
+        f"from iceberg.gold.{table_name}.files "
+        "where content = 0 "
+        f"group by partition.{partition_column} "
+        "order by partition_value"
+    )
+    return [row.asDict(recursive=True) for row in spark.sql(statement).collect()]
+
+
+def _replace_gold_table_for_compaction_evidence(
+    *,
+    spark: SparkSession,
+    table_name: str,
+    query: str,
+    stable_key: str,
+    partition_column: str,
+) -> dict[str, object]:
+    bucketed, bucket_rows = _compaction_evidence_bucket_rows(
+        spark.sql(query),
+        stable_key=stable_key,
+        partition_column=partition_column,
+    )
+    distribution_key = "spark.sql.iceberg.distribution-mode"
+    previous_distribution = spark.conf.get(distribution_key, None)
+    try:
+        spark.conf.set(distribution_key, "none")
+        (
+            bucketed.repartitionByRange(
+                len(bucket_rows),
+                F.col(partition_column),
+                F.col("__compaction_evidence_bucket"),
+            )
+            .sortWithinPartitions(partition_column)
+            .drop("__compaction_evidence_bucket")
+            .writeTo(f"iceberg.gold.{table_name}")
+            .using("iceberg")
+            .partitionedBy(F.col(partition_column))
+            .tableProperty("format-version", "2")
+            .createOrReplace()
+        )
+    finally:
+        _restore_spark_configuration(spark, distribution_key, previous_distribution)
+
+    partition_files = _gold_data_file_partition_counts(
+        spark,
+        table_name=table_name,
+        partition_column=partition_column,
+    )
+    candidate_partitions = [
+        row["partition_value"]
+        for row in partition_files
+        if int(row["file_count"]) >= COMPACTION_EVIDENCE_BUCKET_COUNT
+    ]
+    if not candidate_partitions:
+        raise RuntimeError(f"Compaction-evidence layout did not create a two-file partition for {table_name}.")
+    spark.table(f"iceberg.gold.{table_name}").createOrReplaceTempView(table_name)
+    return {
+        "table": f"gold.{table_name}",
+        "stable_key": stable_key,
+        "partition_column": partition_column,
+        "bucket_count": COMPACTION_EVIDENCE_BUCKET_COUNT,
+        "bucket_row_counts": bucket_rows,
+        "data_file_partition_counts": partition_files,
+        "candidate_partitions": candidate_partitions,
+    }
+
+
 def _register_persisted_tables(spark: SparkSession, *, namespace: str, table_names: tuple[str, ...]) -> None:
     for table_name in table_names:
         spark.table(f"{namespace}.{table_name}").createOrReplaceTempView(table_name)
 
 
-def _persist_gold_query_group(spark: SparkSession, queries: list[tuple[str, str]]) -> None:
+def _persist_gold_query_group(
+    spark: SparkSession,
+    queries: list[tuple[str, str]],
+    *,
+    layout_profile: str = STANDARD_LAYOUT_PROFILE,
+) -> list[dict[str, object]]:
     _create_namespace(spark, "iceberg.gold")
     _register_persisted_tables(spark, namespace="iceberg.silver", table_names=SILVER_TABLES)
 
+    layout_results = []
     for table_name, query in queries:
-        _replace_gold_table(spark=spark, table_name=table_name, query=query)
+        target = compaction_evidence_target(table_name)
+        if layout_profile == COMPACTION_EVIDENCE_LAYOUT_PROFILE and target:
+            stable_key, partition_column = target
+            layout_results.append(
+                _replace_gold_table_for_compaction_evidence(
+                    spark=spark,
+                    table_name=table_name,
+                    query=query,
+                    stable_key=stable_key,
+                    partition_column=partition_column,
+                )
+            )
+        else:
+            _replace_gold_table(spark=spark, table_name=table_name, query=query)
+    return layout_results
 
 
-def _persist_gold_tables(spark: SparkSession) -> None:
-    _persist_gold_query_group(spark, ordered_gold_queries())
+def _persist_gold_tables(
+    spark: SparkSession,
+    *,
+    layout_profile: str = STANDARD_LAYOUT_PROFILE,
+) -> list[dict[str, object]]:
+    return _persist_gold_query_group(spark, ordered_gold_queries(), layout_profile=layout_profile)
 
 
 def _capture_table_row_counts(
@@ -519,7 +672,17 @@ def _write_job_manifest(
     row_counts: dict[str, dict[str, int]],
     validation_report: dict[str, Any],
     gx_report: dict[str, Any],
+    layout_profile: str,
+    has_compaction_layout_manifest: bool,
 ) -> None:
+    artifacts = [
+        "pyspark_validation_report.json",
+        "spark_table_row_counts.json",
+        "spark_job_manifest.json",
+        "gx/validation_results.json",
+    ]
+    if has_compaction_layout_manifest:
+        artifacts.append("compaction_layout_manifest.json")
     manifest = {
         "window": {
             "start_ts": window.start_ts.isoformat().replace("+00:00", "Z"),
@@ -530,17 +693,35 @@ def _write_job_manifest(
         "row_counts": row_counts,
         "pyspark_validation_success": validation_report["success"],
         "gx_validation_success": gx_report["success"],
-        "artifacts": [
-            "pyspark_validation_report.json",
-            "spark_table_row_counts.json",
-            "spark_job_manifest.json",
-            "gx/validation_results.json",
-        ],
+        "layout_profile": layout_profile,
+        "artifacts": artifacts,
     }
     evidence_path = Path(evidence_root)
     evidence_path.mkdir(parents=True, exist_ok=True)
     (evidence_path / "spark_job_manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+
+
+def _write_compaction_layout_manifest(
+    *,
+    evidence_root: str | Path,
+    layout_results: list[dict[str, object]],
+) -> None:
+    evidence_path = Path(evidence_root)
+    evidence_path.mkdir(parents=True, exist_ok=True)
+    (evidence_path / "compaction_layout_manifest.json").write_text(
+        json.dumps(
+            {
+                "layout_profile": COMPACTION_EVIDENCE_LAYOUT_PROFILE,
+                "bucket_count": COMPACTION_EVIDENCE_BUCKET_COUNT,
+                "tables": layout_results,
+            },
+            indent=2,
+            sort_keys=True,
+            default=str,
+        ),
         encoding="utf-8",
     )
 
@@ -552,12 +733,17 @@ def run_job(
     mode: str,
     evidence_root: str | Path,
     stage: str = "full",
+    layout_profile: str = STANDARD_LAYOUT_PROFILE,
 ) -> dict[str, Any]:
     window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode=mode)
     if stage not in {"full", "core", "features"}:
         raise ValueError(f"Unsupported Spark job stage: {stage!r}")
+    validate_layout_profile(layout_profile)
+    if layout_profile == COMPACTION_EVIDENCE_LAYOUT_PROFILE and stage != "full":
+        raise ValueError("Compaction-evidence layout profile requires the full Spark job stage.")
     spark = build_spark_session()
     try:
+        layout_results: list[dict[str, object]] = []
         if stage in {"full", "core"}:
             _create_raw_views(spark, window)
             _persist_silver_tables_for_window(
@@ -565,7 +751,16 @@ def run_job(
                 start_ts=window.start_ts.isoformat().replace("+00:00", "Z"),
                 end_ts=window.end_ts.isoformat().replace("+00:00", "Z"),
             )
-            _persist_gold_query_group(spark, ordered_core_gold_queries())
+            layout_results = _persist_gold_query_group(
+                spark,
+                ordered_core_gold_queries(),
+                layout_profile=layout_profile,
+            )
+            if layout_results:
+                _write_compaction_layout_manifest(
+                    evidence_root=evidence_root,
+                    layout_results=layout_results,
+                )
         else:
             _register_persisted_tables(spark, namespace="iceberg.silver", table_names=SILVER_TABLES)
             _register_persisted_tables(
@@ -590,6 +785,7 @@ def run_job(
                     "mode": window.mode,
                 },
                 "stage": stage,
+                "layout_profile": layout_profile,
                 "row_counts": _capture_table_row_counts(
                     spark=spark,
                     evidence_root=evidence_root,
@@ -606,6 +802,8 @@ def run_job(
             row_counts=row_counts,
             validation_report=validation_report,
             gx_report=gx_report,
+            layout_profile=layout_profile,
+            has_compaction_layout_manifest=bool(layout_results),
         )
         return {
             "window": {
@@ -614,6 +812,7 @@ def run_job(
                 "mode": window.mode,
             },
             "row_counts": row_counts,
+            "layout_profile": layout_profile,
         }
     finally:
         spark.stop()
@@ -627,4 +826,5 @@ def main() -> None:
         mode=args.mode,
         evidence_root=args.evidence_root,
         stage=args.stage,
+        layout_profile=args.layout_profile,
     )

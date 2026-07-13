@@ -22,6 +22,7 @@
     }
   ],
   "min_input_files": 2,
+  "reason": "No approved table had an eligible partition-level group with at least two data files.",
   "rewrites": [
     {
       "input_file_count": 1,
@@ -38,43 +39,44 @@
       "table": "silver.stg_order_items"
     },
     {
-      "duration_ms": 2718.366253,
-      "input_file_count": 13,
+      "duration_ms": 291.350013,
+      "input_file_count": 7,
       "minimum_input_files": 2,
       "procedure_rows": [
         {
-          "added_data_files_count": 6,
+          "added_data_files_count": 0,
           "failed_data_files_count": 0,
           "removed_delete_files_count": 0,
-          "rewritten_bytes_count": 185956,
-          "rewritten_data_files_count": 12
+          "rewritten_bytes_count": 0,
+          "rewritten_data_files_count": 0
         }
       ],
-      "rewritten_data_files_count": 12,
-      "status": "rewritten",
+      "rewritten_data_files_count": 0,
+      "status": "skipped_no_eligible_file_groups",
       "table": "gold.fact_order",
       "target_file_size_bytes": 134217728
     },
     {
-      "duration_ms": 1263.746861,
-      "input_file_count": 13,
+      "duration_ms": 67.38952,
+      "input_file_count": 7,
       "minimum_input_files": 2,
       "procedure_rows": [
         {
-          "added_data_files_count": 6,
+          "added_data_files_count": 0,
           "failed_data_files_count": 0,
           "removed_delete_files_count": 0,
-          "rewritten_bytes_count": 413922,
-          "rewritten_data_files_count": 12
+          "rewritten_bytes_count": 0,
+          "rewritten_data_files_count": 0
         }
       ],
-      "rewritten_data_files_count": 12,
-      "status": "rewritten",
+      "rewritten_data_files_count": 0,
+      "status": "skipped_no_eligible_file_groups",
       "table": "gold.fact_order_item",
       "target_file_size_bytes": 134217728
     }
   ],
-  "success": true,
+  "status": "blocked_no_eligible_file_groups",
+  "success": false,
   "tables": [
     "silver.stg_orders",
     "silver.stg_order_items",

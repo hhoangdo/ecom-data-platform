@@ -182,27 +182,28 @@ Key evidence files:
 
 ## Storage Optimization Evidence (Row 26)
 
-This is a smoke-scale, local physical-layout check. It is **blocked**, not a successful compaction claim.
+This is a smoke-scale, local physical-layout experiment. It completed a genuine Iceberg rewrite without changing schemas, partition specifications, persistent table properties, or the compaction policy.
 
-The local smoke source was regenerated (800 customers, 1,800 orders, and 6,891 raw order-item rows), while the persisted `2026-05-01` Bronze inputs supplied the canonical backfill. The backfill used the session-only Spark option `spark.sql.files.maxRecordsPerFile=100`; no Spark source, Iceberg table property, partition specification, or two-file policy changed. Spark and GX validation both passed for the seeded Iceberg tables.
+The local smoke source was regenerated (800 customers, 1,800 orders, and 6,891 raw order-item rows), while persisted `2026-04-26` and `2026-05-01` Bronze inputs supplied the canonical backfill. The disabled-by-default `--layout-profile compaction-evidence` profile rebuilt only the two Gold fact targets from their existing queries. It deterministically split each fact's rows by natural-key hash into two writer buckets, then restored the temporary `spark.sql.iceberg.distribution-mode=none` session setting. Spark and GX validation both passed.
 
-The optimization CLI evaluated only `silver.stg_orders`, `silver.stg_order_items`, `gold.fact_order`, and `gold.fact_order_item`, with a 128 MiB target and `min-input-files=2`. Before any procedure call it wrote the durable file/invariant snapshot. The resulting layout did not contain an eligible partition-level group: the Silver targets had one data file each, while the Gold targets had seven data files across seven date partitions. Iceberg therefore rewrote zero data files; it was not forced to rewrite a single-file partition.
+The optimization CLI evaluated only `silver.stg_orders`, `silver.stg_order_items`, `gold.fact_order`, and `gold.fact_order_item`, with a 128 MiB target and `min-input-files=2`. Its durable pre-rewrite snapshot showed six date partitions with two Gold data files. It skipped the one-file Silver targets and genuinely compacted both Gold facts.
 
 | Table | Files before → after | Rows | Logical invariant | Procedure outcome |
 | --- | ---: | ---: | --- | --- |
 | `silver.stg_orders` | 1 → 1 | 1,800 | row count and aggregate hash unchanged | skipped: fewer than 2 input files |
 | `silver.stg_order_items` | 1 → 1 | 6,756 | row count and aggregate hash unchanged | skipped: fewer than 2 input files |
-| `gold.fact_order` | 7 → 7 | 1,800 | row count and aggregate hash unchanged | 0 files rewritten; no eligible partition group |
-| `gold.fact_order_item` | 7 → 7 | 6,756 | row count and aggregate hash unchanged | 0 files rewritten; no eligible partition group |
+| `gold.fact_order` | 13 → 7 | 1,800 | row count and aggregate hash unchanged | 12 data files rewritten |
+| `gold.fact_order_item` | 13 → 7 | 6,756 | row count and aggregate hash unchanged | 12 data files rewritten |
 
-The guarded CLI still captured two warmups and seven measured Trino baseline samples per table; each table's result hash was stable across those nine executions. It intentionally records `after: null` and does not present an optimized-versus-unoptimized timing because no physical rewrite occurred.
+The guarded CLI captured two warmups and seven measured Trino executions per table before and after compaction. Result hashes are equal across both phases. The observed client medians changed from 158.547 to 128.030 ms for `fact_order` and from 158.560 to 137.837 ms for `fact_order_item`; the unchanged Silver files also had timing variation, so these local samples are not a general performance guarantee.
 
 Code and evidence:
 
-- [optimization CLI](../scripts/lakehouse/optimize_iceberg.py) and [Iceberg maintenance helpers](../src/vina_bim_shop/lakehouse/spark/maintenance.py)
-- [seed backfill manifest](../evidence/04_lakehouse/optimization/seed_batch/spark_job_manifest.json)
+- [canonical opt-in writer profile](../src/vina_bim_shop/lakehouse/spark/job.py), [optimization CLI](../scripts/lakehouse/optimize_iceberg.py), and [Iceberg maintenance helpers](../src/vina_bim_shop/lakehouse/spark/maintenance.py)
+- [seed backfill manifest](../evidence/04_lakehouse/optimization/seed_batch/spark_job_manifest.json) and [layout manifest](../evidence/04_lakehouse/optimization/seed_batch/compaction_layout_manifest.json)
 - [before file/invariant snapshot](../evidence/04_lakehouse/optimization/before_file_stats.csv) and [after file/invariant snapshot](../evidence/04_lakehouse/optimization/after_file_stats.csv)
-- [blocked compaction result](../evidence/04_lakehouse/optimization/compaction_results.json), [raw Trino baseline samples](../evidence/04_lakehouse/optimization/query_benchmark.json), and [report](../evidence/04_lakehouse/optimization/report.md)
+- [compaction result](../evidence/04_lakehouse/optimization/compaction_results.json), [raw Trino samples](../evidence/04_lakehouse/optimization/query_benchmark.json), and [report](../evidence/04_lakehouse/optimization/report.md)
+- [archived generic-writer-limit attempt](../evidence/04_lakehouse/optimization/attempts/2026-07-11-generic-writer-limit-blocked/report.md)
 
 ## Limitations
 
@@ -210,7 +211,7 @@ Code and evidence:
 - Raw Bronze files are intentionally not the normal analyst-facing SQL surface.
 - Spark owns Silver/Gold writes; Trino is used for query serving.
 - Local reproducibility favors staged profiles over a single full-stack startup.
-- The Row-26 source is smoke-scale and local. The controlled writer option did not create a partition with two eligible data files, so there is no compaction or speedup result to generalize.
+- The Row-26 source is smoke-scale and local. The two-bucket profile is disabled by default and exists only to create a controlled compaction candidate; it is not a production writer-tuning recommendation.
 
 ## Convenience Make Targets
 

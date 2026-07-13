@@ -3,11 +3,9 @@
     "pyspark_validation_report.json",
     "spark_table_row_counts.json",
     "spark_job_manifest.json",
-    "gx/validation_results.json",
-    "compaction_layout_manifest.json"
+    "gx/validation_results.json"
   ],
   "gx_validation_success": true,
-  "layout_profile": "compaction-evidence",
   "pyspark_validation_success": true,
   "required_gold_tables": [
     "dim_customer",

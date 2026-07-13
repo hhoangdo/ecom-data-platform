@@ -7,7 +7,7 @@
     "report.md",
     "run_manifest.json"
   ],
-  "captured_at": "2026-07-13T02:11:46.836247+00:00",
+  "captured_at": "2026-07-11T11:46:04.233315+00:00",
   "command": [
     "/workspace/scripts/lakehouse/optimize_iceberg.py",
     "--tables",
@@ -22,6 +22,7 @@
     "--evidence-root",
     "/workspace/evidence/04_lakehouse/optimization"
   ],
+  "status": "blocked_no_eligible_file_groups",
   "tables": [
     "silver.stg_orders",
     "silver.stg_order_items",

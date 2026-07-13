@@ -10,5 +10,5 @@
   "index_column": "order_id",
   "index_name": "idx_benchmark_fact_order_order_id",
   "source_db": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\ecom-data-platform-submission\\data\\gold\\vina_bim_shop.duckdb",
-  "source_sha256": "e093eb5894dda2f0db2171c97f1d41a950e7c365508beaf9c12a2ceaab6a479c"
+  "source_sha256": "b0bb76a932bb1686259b332e50130fb70fb513cd6e1b6b731207c032ccb7b438"
 }
