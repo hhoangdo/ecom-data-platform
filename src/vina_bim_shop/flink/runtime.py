@@ -1,3 +1,5 @@
+"""Resolve the deployable Flink runtime settings used by streaming jobs."""
+
 from __future__ import annotations
 
 import json
@@ -12,6 +14,8 @@ from vina_bim_shop.flink.config import StreamingConfig
 
 @dataclass(frozen=True)
 class RuntimeSettings:
+    """Expose Kafka, MinIO, checkpoint, and output settings for a Flink job."""
+
     kafka_bootstrap_servers: str
     minio_endpoint: str
     minio_access_key: str
@@ -30,6 +34,12 @@ class ContainerRuntimeLimit:
 
 
 def load_runtime_settings(config: StreamingConfig) -> RuntimeSettings:
+    """Load environment overrides with pipeline-config defaults for a Flink run.
+
+    Returns an immutable settings value; malformed environment values surface through
+    downstream runtime configuration rather than being silently ignored.
+    """
+
     return RuntimeSettings(
         kafka_bootstrap_servers=os.getenv("VBS_KAFKA_BOOTSTRAP_SERVERS", "kafka:29092"),
         minio_endpoint=os.getenv("VBS_MINIO_INTERNAL_ENDPOINT", "http://minio:9000"),

@@ -121,18 +121,18 @@ Each workbook row appears once in this table. Topic `08` is an explicit runtime 
 
 ## Progress Tracker
 
-- [ ] `01-docker-image-optimization.md` meets its Definition of Done.
-- [ ] `02-generator-rubric-evidence.md` meets its Definition of Done.
-- [ ] `03-spark-skew-cardinality-and-baseline.md` meets its Definition of Done.
-- [ ] `04-flink-baseline-and-streaming-proof.md` meets its Definition of Done.
-- [ ] `05-storage-optimization.md` meets its Definition of Done.
-- [ ] `06-schema-erd-and-feature-contracts.md` meets its Definition of Done.
+- [x] `01-docker-image-optimization.md` meets its Definition of Done.
+- [x] `02-generator-rubric-evidence.md` meets its Definition of Done.
+- [x] `03-spark-skew-cardinality-and-baseline.md` meets its Definition of Done.
+- [x] `04-flink-baseline-and-streaming-proof.md` meets its Definition of Done.
+- [x] `05-storage-optimization.md` meets its Definition of Done.
+- [x] `06-schema-erd-and-feature-contracts.md` meets its Definition of Done.
 - [x] `07-airflow-dp-stage-orchestration.md` meets its Definition of Done.
-- [ ] `08-datahub-runtime-recovery.md` meets its Definition of Done.
-- [ ] `09-datahub-lineage-and-contract-proof.md` meets its Definition of Done.
-- [ ] `10-novel-ideas-evidence.md` meets its Definition of Done.
-- [ ] `11-readme-and-rubric-navigation.md` meets its Definition of Done.
-- [ ] The final audit has been refreshed from actual artifacts rather than anticipated work.
+- [x] `08-datahub-runtime-recovery.md` meets its Definition of Done.
+- [x] `09-datahub-lineage-and-contract-proof.md` meets its Definition of Done.
+- [x] `10-novel-ideas-evidence.md` meets its Definition of Done.
+- [x] `11-readme-and-rubric-navigation.md` meets its Definition of Done.
+- [x] The final audit has been refreshed from actual artifacts rather than anticipated work.
 
 ## Program Acceptance Checks
 
@@ -170,4 +170,4 @@ Expected during planning: no tracked source, configuration, test, or evidence ch
 
 ## Completion Record
 
-This index remains unchecked until individual topic Completion Records contain actual results. A final session updates the progress tracker, records the audit refresh date, and links the final evidence manifest after all eleven definitions of done pass.
+Updated 2026-07-13: Topics 01-11 are complete. The verified final evidence manifest is `evidence/final_integration/mini_coursework_rubric_manifest.json`; it reports 45 Satisfied, 0 Partial, and 0 Missing rows and must be re-verified after any bound artifact changes.

@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 
@@ -136,3 +137,15 @@ def test_novel_ideas_deliverable_uses_exact_ordered_headings_and_evidence_links(
         "idea_2_pinot_realtime_query.png",
     ]:
         assert evidence_path in content
+
+
+def test_final_rubric_deliverable_is_indexed_and_row_ordered() -> None:
+    repo_root = _repo_root()
+    index = (repo_root / "deliverables" / "README.md").read_text(encoding="utf-8")
+    content = (repo_root / "deliverables" / "13_mini_coursework_rubric_evidence.md").read_text(encoding="utf-8")
+
+    assert "`13_mini_coursework_rubric_evidence.md`" in index
+    assert index.index("`12_novel_ideas.md`") < index.index("`13_mini_coursework_rubric_evidence.md`")
+    rows = [int(value) for value in re.findall(r"^\| (\d+) \|", content, re.MULTILINE)]
+    assert rows == list(range(2, 47))
+    assert "mini_coursework_rubric_manifest.json" in content

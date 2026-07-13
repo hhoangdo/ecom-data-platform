@@ -16,11 +16,13 @@ This folder contains committed proof artifacts for the coursework platform. Revi
 | `08_airflow_gx/` | Airflow/GX run manifests, validation outputs, and generated Data Docs. |
 | `09_datahub_governance/` | DataHub health, dataset, tag, and run evidence. |
 | `final_dataset/` | Submitted final raw dataset package and manifest. |
-| `final_integration/` | Cross-platform health, lineage, reconciliation, UI screenshot, and final manifest evidence. |
+| `final_integration/` | Cross-platform health and historical integration evidence, plus the public-API coverage and fail-closed Mini-Coursework rubric manifest. |
 
 ## How To Read It
 
 Use the numbered folders with the matching `../deliverables/` document. Markdown, JSON, CSV, and SQL output files are the main machine-verifiable evidence. Screenshot folders are historical review evidence and are not the official regeneration path.
+
+`final_integration/final_manifest.json` is a historical health summary, not the rubric-status source. Use `final_integration/mini_coursework_rubric_manifest.json` with `uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json`. The verifier rejects missing, empty, duplicate, outside-workspace, or hash-changed referenced artifacts.
 
 ## How It Differs From Similar Folders
 

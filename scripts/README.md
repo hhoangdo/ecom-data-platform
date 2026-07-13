@@ -63,6 +63,8 @@ Run `make help` at any time to print the full catalog.
 | `scripts/qa/finalize_sections_01_02.py` | Final Section 01/02 package command referenced by README and tests. |
 | `scripts/qa/generate_section02_evidence.py` | Section 02 evidence command referenced by the schema deliverable and tests. |
 | `scripts/qa/capture_novel_ideas.py` | Validates the two ordered novel-idea gates and writes their machine-readable evidence package. |
+| `scripts/qa/audit_public_documentation.py` | AST-audits the declared deployable public API and writes hash-bound coverage evidence. |
+| `scripts/qa/build_mini_coursework_rubric_manifest.py` | Builds and verifies the fail-closed, row-ordered Mini-Coursework rubric manifest. |
 | `scripts/qa/summarize_runlog.py` | Produces compact markdown summaries from long platform run logs for post-run review. |
 | `scripts/spark/export_executive_mart.py` | Executive mart export command referenced by README, deliverables, and tests. |
 | `scripts/spark/job.py` | Spark submit compatibility entry point referenced by `src/vina_bim_shop/lakehouse/spark/runner.py` and tests. |

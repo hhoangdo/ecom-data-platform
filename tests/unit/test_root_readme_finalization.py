@@ -1,3 +1,5 @@
+import json
+import re
 from pathlib import Path
 
 
@@ -36,3 +38,34 @@ def test_root_readme_links_section_evidence() -> None:
         "evidence/02_schema_design/dbt_build_report.md",
     ]:
         assert path in readme
+
+
+def test_root_readme_exposes_final_rubric_navigation_and_manifest_summary() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    readme = (repo_root / "README.md").read_text(encoding="utf-8")
+    manifest = json.loads(
+        (repo_root / "evidence" / "final_integration" / "mini_coursework_rubric_manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    expected_summary = " · ".join(
+        f"{manifest['summary'][status]} {status}" for status in ("Satisfied", "Partial", "Missing")
+    )
+
+    for phrase in [
+        "## Rubric Evidence and Navigation",
+        "deliverables/13_mini_coursework_rubric_evidence.md",
+        "evidence/final_integration/mini_coursework_rubric_manifest.json",
+        "evidence/final_integration/public_documentation_coverage.json",
+        "detailed-architecture.svg",
+        "Public API documentation",
+        expected_summary,
+    ]:
+        assert phrase in readme
+
+    anchors = re.findall(r"\]\(#([^)]+)\)", readme)
+    headings = {
+        re.sub(r"[^a-z0-9 -]", "", heading.lower()).replace(" ", "-")
+        for heading in re.findall(r"^#{1,3}\s+(.+)$", readme, re.MULTILINE)
+    }
+    assert all(anchor in headings for anchor in anchors)

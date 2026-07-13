@@ -1,0 +1,1254 @@
+{
+  "rows": [
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/final_integration/public_documentation_coverage.json"
+      ],
+      "evidence_sha256": {
+        "evidence/final_integration/public_documentation_coverage.json": "74c36c6261026129c1b4bd2c1482bf141560628f5befe1cce7e513287eb7bd3a"
+      },
+      "implementation_paths": [
+        "README.md",
+        "architecture/diagrams/README.md",
+        "deliverables/13_mini_coursework_rubric_evidence.md",
+        "scripts/qa/audit_public_documentation.py"
+      ],
+      "implementation_sha256": {
+        "README.md": "1aaf53b18b64957fb276e6d09151ecab6805e795b9977d41bd975f6ef299ede0",
+        "architecture/diagrams/README.md": "0d5b1ab1b73b7e98743e4cc4defa576c44cce69a9e999de3e7118ea7b1dc53fb",
+        "deliverables/13_mini_coursework_rubric_evidence.md": "f6939a77b8c69f35e3a2d987a75622b1c34775b39b28d9b9b97132ab597c8ea9",
+        "scripts/qa/audit_public_documentation.py": "bb6a3d6d2366384380846caa04f1ed2020e69c64fb422233cfd20d040c80ee08"
+      },
+      "notes": "Central reviewer navigation and declared API coverage.",
+      "points": 10,
+      "required_path_count": 5,
+      "row": 2,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 2,
+      "evidence_paths": [
+        "evidence/00_engineering_fundamentals/kafka_connect_image_comparison.json"
+      ],
+      "evidence_sha256": {
+        "evidence/00_engineering_fundamentals/kafka_connect_image_comparison.json": "46413d61bd7f60b9fb21cc518ab26a44d4723a6b0a225f2ce8980649540843dd"
+      },
+      "implementation_paths": [
+        "infra/kafka/connect/Dockerfile"
+      ],
+      "implementation_sha256": {
+        "infra/kafka/connect/Dockerfile": "d68c5728a25c8cf434d5536f416f3076a5e525d385b6b4a18811403529fef902"
+      },
+      "notes": "Measured Kafka Connect image reduction.",
+      "points": 1,
+      "required_path_count": 2,
+      "row": 3,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 2,
+      "evidence_paths": [
+        "evidence/00_engineering_fundamentals/kafka_connect_plugin_smoke.json"
+      ],
+      "evidence_sha256": {
+        "evidence/00_engineering_fundamentals/kafka_connect_plugin_smoke.json": "42a791d9a410122e52fa73c95fb410a3838f5c99aeba0c877319b0f631d2ca4c"
+      },
+      "implementation_paths": [
+        "infra/kafka/connect/Dockerfile"
+      ],
+      "implementation_sha256": {
+        "infra/kafka/connect/Dockerfile": "d68c5728a25c8cf434d5536f416f3076a5e525d385b6b4a18811403529fef902"
+      },
+      "notes": "Multi-stage Kafka Connect build and runtime smoke proof.",
+      "points": 1,
+      "required_path_count": 2,
+      "row": 4,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 5 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 5,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 6 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 6,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 7 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 7,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 8 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 8,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 9 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 9,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 10 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 10,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 11 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 11,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 12 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 12,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 13 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 13,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/01_data_generator/rubric_evidence_summary.md",
+        "evidence/01_data_generator/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/01_data_generator/rubric_evidence_summary.md": "4de39ecd32743c036ec1e7a64511c42acef19a08eef8713879182e41ef2824f3",
+        "evidence/01_data_generator/run_manifest.json": "d4d027fdd8f90ef890490197662c94af7886c23c627e76119bc657c18230f0eb"
+      },
+      "implementation_paths": [
+        "configs/generator/base.yaml",
+        "src/vina_bim_shop/generators/runner.py"
+      ],
+      "implementation_sha256": {
+        "configs/generator/base.yaml": "b044c217d68c501269cd670261b16fa49ab0aa8f86355e0bfa28543ee780cb11",
+        "src/vina_bim_shop/generators/runner.py": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4"
+      },
+      "notes": "Generator Row 14 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 14,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/05_spark_batch/optimization/run_manifest.json",
+        "evidence/05_spark_batch/optimization/optimization_report.md"
+      ],
+      "evidence_sha256": {
+        "evidence/05_spark_batch/optimization/optimization_report.md": "8c60ab2238a55c6cba1c353319cb0c42eaab799b0283f578d7114a8b6a6029e2",
+        "evidence/05_spark_batch/optimization/run_manifest.json": "a8b4baa21273cfda9c0a71b86f7aef75e81d819362bb24ebe64f84766d4e0448"
+      },
+      "implementation_paths": [
+        "scripts/spark/run_optimization_experiments.py",
+        "src/vina_bim_shop/lakehouse/spark/runner.py"
+      ],
+      "implementation_sha256": {
+        "scripts/spark/run_optimization_experiments.py": "e05f74afda64fa00205da1af7d206c92252af6e7926847a34e8b07319d7115a6",
+        "src/vina_bim_shop/lakehouse/spark/runner.py": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69"
+      },
+      "notes": "Spark optimization Row 15 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 15,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/05_spark_batch/optimization/run_manifest.json",
+        "evidence/05_spark_batch/optimization/optimization_report.md"
+      ],
+      "evidence_sha256": {
+        "evidence/05_spark_batch/optimization/optimization_report.md": "8c60ab2238a55c6cba1c353319cb0c42eaab799b0283f578d7114a8b6a6029e2",
+        "evidence/05_spark_batch/optimization/run_manifest.json": "a8b4baa21273cfda9c0a71b86f7aef75e81d819362bb24ebe64f84766d4e0448"
+      },
+      "implementation_paths": [
+        "scripts/spark/run_optimization_experiments.py",
+        "src/vina_bim_shop/lakehouse/spark/runner.py"
+      ],
+      "implementation_sha256": {
+        "scripts/spark/run_optimization_experiments.py": "e05f74afda64fa00205da1af7d206c92252af6e7926847a34e8b07319d7115a6",
+        "src/vina_bim_shop/lakehouse/spark/runner.py": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69"
+      },
+      "notes": "Spark optimization Row 16 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 16,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/05_spark_batch/optimization/run_manifest.json",
+        "evidence/05_spark_batch/optimization/optimization_report.md"
+      ],
+      "evidence_sha256": {
+        "evidence/05_spark_batch/optimization/optimization_report.md": "8c60ab2238a55c6cba1c353319cb0c42eaab799b0283f578d7114a8b6a6029e2",
+        "evidence/05_spark_batch/optimization/run_manifest.json": "a8b4baa21273cfda9c0a71b86f7aef75e81d819362bb24ebe64f84766d4e0448"
+      },
+      "implementation_paths": [
+        "scripts/spark/run_optimization_experiments.py",
+        "src/vina_bim_shop/lakehouse/spark/runner.py"
+      ],
+      "implementation_sha256": {
+        "scripts/spark/run_optimization_experiments.py": "e05f74afda64fa00205da1af7d206c92252af6e7926847a34e8b07319d7115a6",
+        "src/vina_bim_shop/lakehouse/spark/runner.py": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69"
+      },
+      "notes": "Spark optimization Row 17 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 17,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/05_spark_batch/optimization/run_manifest.json",
+        "evidence/05_spark_batch/optimization/optimization_report.md"
+      ],
+      "evidence_sha256": {
+        "evidence/05_spark_batch/optimization/optimization_report.md": "8c60ab2238a55c6cba1c353319cb0c42eaab799b0283f578d7114a8b6a6029e2",
+        "evidence/05_spark_batch/optimization/run_manifest.json": "a8b4baa21273cfda9c0a71b86f7aef75e81d819362bb24ebe64f84766d4e0448"
+      },
+      "implementation_paths": [
+        "scripts/spark/run_optimization_experiments.py",
+        "src/vina_bim_shop/lakehouse/spark/runner.py"
+      ],
+      "implementation_sha256": {
+        "scripts/spark/run_optimization_experiments.py": "e05f74afda64fa00205da1af7d206c92252af6e7926847a34e8b07319d7115a6",
+        "src/vina_bim_shop/lakehouse/spark/runner.py": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69"
+      },
+      "notes": "Spark optimization Row 18 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 18,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/05_spark_batch/optimization/run_manifest.json",
+        "evidence/05_spark_batch/optimization/optimization_report.md"
+      ],
+      "evidence_sha256": {
+        "evidence/05_spark_batch/optimization/optimization_report.md": "8c60ab2238a55c6cba1c353319cb0c42eaab799b0283f578d7114a8b6a6029e2",
+        "evidence/05_spark_batch/optimization/run_manifest.json": "a8b4baa21273cfda9c0a71b86f7aef75e81d819362bb24ebe64f84766d4e0448"
+      },
+      "implementation_paths": [
+        "scripts/spark/run_optimization_experiments.py",
+        "src/vina_bim_shop/lakehouse/spark/runner.py"
+      ],
+      "implementation_sha256": {
+        "scripts/spark/run_optimization_experiments.py": "e05f74afda64fa00205da1af7d206c92252af6e7926847a34e8b07319d7115a6",
+        "src/vina_bim_shop/lakehouse/spark/runner.py": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69"
+      },
+      "notes": "Spark optimization Row 19 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 19,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/05_spark_batch/optimization/run_manifest.json",
+        "evidence/05_spark_batch/optimization/optimization_report.md"
+      ],
+      "evidence_sha256": {
+        "evidence/05_spark_batch/optimization/optimization_report.md": "8c60ab2238a55c6cba1c353319cb0c42eaab799b0283f578d7114a8b6a6029e2",
+        "evidence/05_spark_batch/optimization/run_manifest.json": "a8b4baa21273cfda9c0a71b86f7aef75e81d819362bb24ebe64f84766d4e0448"
+      },
+      "implementation_paths": [
+        "scripts/spark/run_optimization_experiments.py",
+        "src/vina_bim_shop/lakehouse/spark/runner.py"
+      ],
+      "implementation_sha256": {
+        "scripts/spark/run_optimization_experiments.py": "e05f74afda64fa00205da1af7d206c92252af6e7926847a34e8b07319d7115a6",
+        "src/vina_bim_shop/lakehouse/spark/runner.py": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69"
+      },
+      "notes": "Spark optimization Row 20 evidence.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 20,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/06_flink_streaming/optimization/run_manifest.json",
+        "evidence/06_flink_streaming/optimization/comparison.json",
+        "evidence/06_flink_streaming/optimization/challenge_samples.json"
+      ],
+      "evidence_sha256": {
+        "evidence/06_flink_streaming/optimization/challenge_samples.json": "da466a1441040af0dc7fa56956c69bb4e1500b0a1826e6648cf990a4756df6b0",
+        "evidence/06_flink_streaming/optimization/comparison.json": "8ad8bcbf03e60ce751309676d4b2e2451d2340191a020d3358fdcc715b603f10",
+        "evidence/06_flink_streaming/optimization/run_manifest.json": "a2885c3cbda44f5cb5c4a6ae106850386034735b59d996969771008c45dbbdf7"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/flink/baseline_experiment.py",
+        "configs/pipelines/flink_baseline_experiment.yaml"
+      ],
+      "implementation_sha256": {
+        "configs/pipelines/flink_baseline_experiment.yaml": "1e7ab30ec8413d52c29fb0da124c1ab99b2eb9befcc797b4998ec805aa2f332b",
+        "src/vina_bim_shop/flink/baseline_experiment.py": "9a8057f5523e5b0610d4191a5fb3477a46701696d8834196553ed6995a35ebfd"
+      },
+      "notes": "Flink optimization Row 21 evidence.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 21,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/06_flink_streaming/optimization/run_manifest.json",
+        "evidence/06_flink_streaming/optimization/comparison.json",
+        "evidence/06_flink_streaming/optimization/challenge_samples.json"
+      ],
+      "evidence_sha256": {
+        "evidence/06_flink_streaming/optimization/challenge_samples.json": "da466a1441040af0dc7fa56956c69bb4e1500b0a1826e6648cf990a4756df6b0",
+        "evidence/06_flink_streaming/optimization/comparison.json": "8ad8bcbf03e60ce751309676d4b2e2451d2340191a020d3358fdcc715b603f10",
+        "evidence/06_flink_streaming/optimization/run_manifest.json": "a2885c3cbda44f5cb5c4a6ae106850386034735b59d996969771008c45dbbdf7"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/flink/baseline_experiment.py",
+        "configs/pipelines/flink_baseline_experiment.yaml"
+      ],
+      "implementation_sha256": {
+        "configs/pipelines/flink_baseline_experiment.yaml": "1e7ab30ec8413d52c29fb0da124c1ab99b2eb9befcc797b4998ec805aa2f332b",
+        "src/vina_bim_shop/flink/baseline_experiment.py": "9a8057f5523e5b0610d4191a5fb3477a46701696d8834196553ed6995a35ebfd"
+      },
+      "notes": "Flink optimization Row 22 evidence.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 22,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/06_flink_streaming/optimization/run_manifest.json",
+        "evidence/06_flink_streaming/optimization/comparison.json",
+        "evidence/06_flink_streaming/optimization/challenge_samples.json"
+      ],
+      "evidence_sha256": {
+        "evidence/06_flink_streaming/optimization/challenge_samples.json": "da466a1441040af0dc7fa56956c69bb4e1500b0a1826e6648cf990a4756df6b0",
+        "evidence/06_flink_streaming/optimization/comparison.json": "8ad8bcbf03e60ce751309676d4b2e2451d2340191a020d3358fdcc715b603f10",
+        "evidence/06_flink_streaming/optimization/run_manifest.json": "a2885c3cbda44f5cb5c4a6ae106850386034735b59d996969771008c45dbbdf7"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/flink/baseline_experiment.py",
+        "configs/pipelines/flink_baseline_experiment.yaml"
+      ],
+      "implementation_sha256": {
+        "configs/pipelines/flink_baseline_experiment.yaml": "1e7ab30ec8413d52c29fb0da124c1ab99b2eb9befcc797b4998ec805aa2f332b",
+        "src/vina_bim_shop/flink/baseline_experiment.py": "9a8057f5523e5b0610d4191a5fb3477a46701696d8834196553ed6995a35ebfd"
+      },
+      "notes": "Flink optimization Row 23 evidence.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 23,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/06_flink_streaming/optimization/run_manifest.json",
+        "evidence/06_flink_streaming/optimization/comparison.json",
+        "evidence/06_flink_streaming/optimization/challenge_samples.json"
+      ],
+      "evidence_sha256": {
+        "evidence/06_flink_streaming/optimization/challenge_samples.json": "da466a1441040af0dc7fa56956c69bb4e1500b0a1826e6648cf990a4756df6b0",
+        "evidence/06_flink_streaming/optimization/comparison.json": "8ad8bcbf03e60ce751309676d4b2e2451d2340191a020d3358fdcc715b603f10",
+        "evidence/06_flink_streaming/optimization/run_manifest.json": "a2885c3cbda44f5cb5c4a6ae106850386034735b59d996969771008c45dbbdf7"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/flink/baseline_experiment.py",
+        "configs/pipelines/flink_baseline_experiment.yaml"
+      ],
+      "implementation_sha256": {
+        "configs/pipelines/flink_baseline_experiment.yaml": "1e7ab30ec8413d52c29fb0da124c1ab99b2eb9befcc797b4998ec805aa2f332b",
+        "src/vina_bim_shop/flink/baseline_experiment.py": "9a8057f5523e5b0610d4191a5fb3477a46701696d8834196553ed6995a35ebfd"
+      },
+      "notes": "Flink optimization Row 24 evidence.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 24,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/06_flink_streaming/optimization/run_manifest.json",
+        "evidence/06_flink_streaming/optimization/comparison.json",
+        "evidence/06_flink_streaming/optimization/challenge_samples.json"
+      ],
+      "evidence_sha256": {
+        "evidence/06_flink_streaming/optimization/challenge_samples.json": "da466a1441040af0dc7fa56956c69bb4e1500b0a1826e6648cf990a4756df6b0",
+        "evidence/06_flink_streaming/optimization/comparison.json": "8ad8bcbf03e60ce751309676d4b2e2451d2340191a020d3358fdcc715b603f10",
+        "evidence/06_flink_streaming/optimization/run_manifest.json": "a2885c3cbda44f5cb5c4a6ae106850386034735b59d996969771008c45dbbdf7"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/flink/baseline_experiment.py",
+        "configs/pipelines/flink_baseline_experiment.yaml"
+      ],
+      "implementation_sha256": {
+        "configs/pipelines/flink_baseline_experiment.yaml": "1e7ab30ec8413d52c29fb0da124c1ab99b2eb9befcc797b4998ec805aa2f332b",
+        "src/vina_bim_shop/flink/baseline_experiment.py": "9a8057f5523e5b0610d4191a5fb3477a46701696d8834196553ed6995a35ebfd"
+      },
+      "notes": "Flink optimization Row 25 evidence.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 25,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/04_lakehouse/optimization/compaction_results.json",
+        "evidence/04_lakehouse/optimization/before_file_stats.csv",
+        "evidence/04_lakehouse/optimization/after_file_stats.csv"
+      ],
+      "evidence_sha256": {
+        "evidence/04_lakehouse/optimization/after_file_stats.csv": "5bbeca03e7f2a8897c24c31ea67e508e09ce46018e3a1c9e97bddad5f76cb664",
+        "evidence/04_lakehouse/optimization/before_file_stats.csv": "37ede89825dd0dc4030d82858138d7e0d0f36377e8f3a3a14cab57046dcd4ae5",
+        "evidence/04_lakehouse/optimization/compaction_results.json": "bb468f764c6570239613b8d4244562f10bb203caae045798d0ff37e7274a13eb"
+      },
+      "implementation_paths": [
+        "scripts/lakehouse/optimize_iceberg.py"
+      ],
+      "implementation_sha256": {
+        "scripts/lakehouse/optimize_iceberg.py": "18424d3cde9e2dc88f3c248d68aa713a481256c8fa75dec63cc30d067d1f2485"
+      },
+      "notes": "Controlled compaction proof; not a general performance claim.",
+      "points": 2,
+      "required_path_count": 4,
+      "row": 26,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 3,
+      "evidence_paths": [
+        "evidence/04_lakehouse/optimization/query_benchmark.json",
+        "evidence/10_duckdb_dbt_local_analytics/index_optimization/index_benchmark.json"
+      ],
+      "evidence_sha256": {
+        "evidence/04_lakehouse/optimization/query_benchmark.json": "957c008f23d4aafe6e12071bc572b1b3b376b3fdf3df54788f632b4f968b71fe",
+        "evidence/10_duckdb_dbt_local_analytics/index_optimization/index_benchmark.json": "973a6e97ffdfe2dc3a38c9a0dae50b40a05dcc828bcdb4829712b4e7f134b538"
+      },
+      "implementation_paths": [
+        "scripts/analytics/benchmark_duckdb_index.py"
+      ],
+      "implementation_sha256": {
+        "scripts/analytics/benchmark_duckdb_index.py": "a607a6859d6dc13aeabfa8d78958c770f5e923eb6e050cc2e5fedb31a29e81c3"
+      },
+      "notes": "Reproducible warehouse/index benchmark evidence.",
+      "points": 2,
+      "required_path_count": 3,
+      "row": 27,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 6,
+      "evidence_paths": [
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp1_ingest.json",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png"
+      ],
+      "evidence_sha256": {
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp1_ingest.json": "fe16cb49df5e184ec7af818201985b23d0c4b3694354024b55aad45f5185d37f",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json": "8cc8da49f2dcc2c9777a662d6ed45b4fc7086be27daf00fe7c8b59eb089abc6d",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png": "58a89520805e09efbafeb2c704f089037ee8b2af4f482f02374cb784d86c2e2e",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png": "41eb87bb764b808b28cf3c95565f548c1968fd8113dbf97b4667cfc0d9784d09"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py"
+      ],
+      "implementation_sha256": {
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": "d7bd93fea50051d3d93331f130fbca4591363d9f273e91f1294077f5c863a9a8",
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": "68b19556360ea81f9b897f1186ff916b021eb91ce0af754367bd795c7d9f4218"
+      },
+      "notes": "Airflow coursework stage Row 28.",
+      "points": 2,
+      "required_path_count": 6,
+      "row": 28,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 6,
+      "evidence_paths": [
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp1_validate.json",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png"
+      ],
+      "evidence_sha256": {
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp1_validate.json": "53d0ee81b9e54adffa949d3e0269915240bd500f50a378b818f46ddd9029d81a",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json": "8cc8da49f2dcc2c9777a662d6ed45b4fc7086be27daf00fe7c8b59eb089abc6d",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png": "58a89520805e09efbafeb2c704f089037ee8b2af4f482f02374cb784d86c2e2e",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png": "41eb87bb764b808b28cf3c95565f548c1968fd8113dbf97b4667cfc0d9784d09"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py"
+      ],
+      "implementation_sha256": {
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": "d7bd93fea50051d3d93331f130fbca4591363d9f273e91f1294077f5c863a9a8",
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": "68b19556360ea81f9b897f1186ff916b021eb91ce0af754367bd795c7d9f4218"
+      },
+      "notes": "Airflow coursework stage Row 29.",
+      "points": 2,
+      "required_path_count": 6,
+      "row": 29,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 6,
+      "evidence_paths": [
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp2_transform.json",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png"
+      ],
+      "evidence_sha256": {
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp2_transform.json": "313ccb0aeb2d00c124f34a753f0bd4a1ff371e2f0395d5104d0db6720276ab82",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json": "8cc8da49f2dcc2c9777a662d6ed45b4fc7086be27daf00fe7c8b59eb089abc6d",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png": "58a89520805e09efbafeb2c704f089037ee8b2af4f482f02374cb784d86c2e2e",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png": "41eb87bb764b808b28cf3c95565f548c1968fd8113dbf97b4667cfc0d9784d09"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py"
+      ],
+      "implementation_sha256": {
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": "d7bd93fea50051d3d93331f130fbca4591363d9f273e91f1294077f5c863a9a8",
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": "68b19556360ea81f9b897f1186ff916b021eb91ce0af754367bd795c7d9f4218"
+      },
+      "notes": "Airflow coursework stage Row 30.",
+      "points": 2,
+      "required_path_count": 6,
+      "row": 30,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 6,
+      "evidence_paths": [
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp2_validate.json",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png"
+      ],
+      "evidence_sha256": {
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp2_validate.json": "9bc535edcf63eea69069b3c0dcfc0236b40e753a0b410ab786fa322a2bc68c7b",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json": "8cc8da49f2dcc2c9777a662d6ed45b4fc7086be27daf00fe7c8b59eb089abc6d",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png": "58a89520805e09efbafeb2c704f089037ee8b2af4f482f02374cb784d86c2e2e",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png": "41eb87bb764b808b28cf3c95565f548c1968fd8113dbf97b4667cfc0d9784d09"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py"
+      ],
+      "implementation_sha256": {
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": "d7bd93fea50051d3d93331f130fbca4591363d9f273e91f1294077f5c863a9a8",
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": "68b19556360ea81f9b897f1186ff916b021eb91ce0af754367bd795c7d9f4218"
+      },
+      "notes": "Airflow coursework stage Row 31.",
+      "points": 2,
+      "required_path_count": 6,
+      "row": 31,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 6,
+      "evidence_paths": [
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp3_compute.json",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png"
+      ],
+      "evidence_sha256": {
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp3_compute.json": "8fd0d16fea11bb1629ace1adf8d1ed0d121c6eeee745f337b3d3c15d4eb8fe91",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json": "8cc8da49f2dcc2c9777a662d6ed45b4fc7086be27daf00fe7c8b59eb089abc6d",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png": "58a89520805e09efbafeb2c704f089037ee8b2af4f482f02374cb784d86c2e2e",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png": "41eb87bb764b808b28cf3c95565f548c1968fd8113dbf97b4667cfc0d9784d09"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py"
+      ],
+      "implementation_sha256": {
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": "d7bd93fea50051d3d93331f130fbca4591363d9f273e91f1294077f5c863a9a8",
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": "68b19556360ea81f9b897f1186ff916b021eb91ce0af754367bd795c7d9f4218"
+      },
+      "notes": "Airflow coursework stage Row 32.",
+      "points": 2,
+      "required_path_count": 6,
+      "row": 32,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 6,
+      "evidence_paths": [
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp3_validate.json",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png"
+      ],
+      "evidence_sha256": {
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/dp3_validate.json": "06550b4def42609ffa4f8cee2995fcba92baec920923d366ebd1567f7cffc05e",
+        "evidence/08_airflow_gx/coursework_pipeline/topic07_20260711T124521Z/run_manifest.json": "8cc8da49f2dcc2c9777a662d6ed45b4fc7086be27daf00fe7c8b59eb089abc6d",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_graph.png": "58a89520805e09efbafeb2c704f089037ee8b2af4f482f02374cb784d86c2e2e",
+        "evidence/08_airflow_gx/screenshots/mini_coursework_pipeline_grid.png": "41eb87bb764b808b28cf3c95565f548c1968fd8113dbf97b4667cfc0d9784d09"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py"
+      ],
+      "implementation_sha256": {
+        "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": "d7bd93fea50051d3d93331f130fbca4591363d9f273e91f1294077f5c863a9a8",
+        "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": "68b19556360ea81f9b897f1186ff916b021eb91ce0af754367bd795c7d9f4218"
+      },
+      "notes": "Airflow coursework stage Row 33.",
+      "points": 2,
+      "required_path_count": 6,
+      "row": 33,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/09_datahub_governance/coursework_pipeline/dp1_lineage_capture.json",
+        "evidence/09_datahub_governance/screenshots/datahub_dp1_lineage.png",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/09_datahub_governance/coursework_pipeline/dp1_lineage_capture.json": "da10bbea9a6840825c6f9386e2c2be214eebbc2fe12e5a34c841a2af07190fce",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json": "156e0e11c72e0d974661aea35820d448f801128b3ef487661c6047f1c962e233",
+        "evidence/09_datahub_governance/screenshots/datahub_dp1_lineage.png": "8109c154e0412578bcd47d0c56144e5563e2c794286877b1bfb2b3d39a4adff4"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/datahub_lineage/emitter.py",
+        "scripts/datahub/capture_evidence.py"
+      ],
+      "implementation_sha256": {
+        "scripts/datahub/capture_evidence.py": "9c52726ef047cccae4da855af0cb106be9c2e06044e2866e6a260c3e0d73d302",
+        "src/vina_bim_shop/datahub_lineage/emitter.py": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881"
+      },
+      "notes": "DP1 lineage UI proof.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 34,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/09_datahub_governance/coursework_pipeline/dp1_contract_capture.json",
+        "evidence/09_datahub_governance/screenshots/datahub_dp1_contract.png",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/09_datahub_governance/coursework_pipeline/dp1_contract_capture.json": "6142bcc8e12200cccf16e2615993028032649fdf453d796a95eec79ce8fd1dd3",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json": "156e0e11c72e0d974661aea35820d448f801128b3ef487661c6047f1c962e233",
+        "evidence/09_datahub_governance/screenshots/datahub_dp1_contract.png": "8d7d597ec5c29c52d893a46f41a6cfcaa0a5a4c6217b0d579b7c66174b8a9055"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/datahub_lineage/emitter.py",
+        "scripts/datahub/capture_evidence.py"
+      ],
+      "implementation_sha256": {
+        "scripts/datahub/capture_evidence.py": "9c52726ef047cccae4da855af0cb106be9c2e06044e2866e6a260c3e0d73d302",
+        "src/vina_bim_shop/datahub_lineage/emitter.py": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881"
+      },
+      "notes": "DP1 contract UI proof.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 35,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/09_datahub_governance/coursework_pipeline/dp2_lineage_capture.json",
+        "evidence/09_datahub_governance/screenshots/datahub_dp2_lineage.png",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/09_datahub_governance/coursework_pipeline/dp2_lineage_capture.json": "6ceb996f89682e3f17eee2ff286839dd0e0f52031727af4fa4a053b3b432badb",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json": "156e0e11c72e0d974661aea35820d448f801128b3ef487661c6047f1c962e233",
+        "evidence/09_datahub_governance/screenshots/datahub_dp2_lineage.png": "a5eb31dd03bfa76d8a63a145042ec7b18c5c2c84e46e77cf8f0f2bfc48559268"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/datahub_lineage/emitter.py",
+        "scripts/datahub/capture_evidence.py"
+      ],
+      "implementation_sha256": {
+        "scripts/datahub/capture_evidence.py": "9c52726ef047cccae4da855af0cb106be9c2e06044e2866e6a260c3e0d73d302",
+        "src/vina_bim_shop/datahub_lineage/emitter.py": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881"
+      },
+      "notes": "DP2 lineage UI proof.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 36,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/09_datahub_governance/coursework_pipeline/dp2_contract_capture.json",
+        "evidence/09_datahub_governance/screenshots/datahub_dp2_contract.png",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/09_datahub_governance/coursework_pipeline/dp2_contract_capture.json": "26b5aaa430e3c658f8765e68f73c525afb160bc9a065afd28a76308f3565a066",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json": "156e0e11c72e0d974661aea35820d448f801128b3ef487661c6047f1c962e233",
+        "evidence/09_datahub_governance/screenshots/datahub_dp2_contract.png": "64a1e7a65ad1ceb01c582209e8cf5bb1a2609fe1f0e612da5b20244f5dbc3178"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/datahub_lineage/emitter.py",
+        "scripts/datahub/capture_evidence.py"
+      ],
+      "implementation_sha256": {
+        "scripts/datahub/capture_evidence.py": "9c52726ef047cccae4da855af0cb106be9c2e06044e2866e6a260c3e0d73d302",
+        "src/vina_bim_shop/datahub_lineage/emitter.py": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881"
+      },
+      "notes": "DP2 contract UI proof.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 37,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/09_datahub_governance/coursework_pipeline/dp3_lineage_capture.json",
+        "evidence/09_datahub_governance/screenshots/datahub_dp3_lineage.png",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/09_datahub_governance/coursework_pipeline/dp3_lineage_capture.json": "911c5256a18a71f541a06c88ac497eb5c8da753fb3fb20f820d5a26a017d9bf5",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json": "156e0e11c72e0d974661aea35820d448f801128b3ef487661c6047f1c962e233",
+        "evidence/09_datahub_governance/screenshots/datahub_dp3_lineage.png": "002d5bee443082746e0b00e61897010afcbce80479052efa62935019e10ed4e9"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/datahub_lineage/emitter.py",
+        "scripts/datahub/capture_evidence.py"
+      ],
+      "implementation_sha256": {
+        "scripts/datahub/capture_evidence.py": "9c52726ef047cccae4da855af0cb106be9c2e06044e2866e6a260c3e0d73d302",
+        "src/vina_bim_shop/datahub_lineage/emitter.py": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881"
+      },
+      "notes": "DP3 lineage UI proof.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 38,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/09_datahub_governance/coursework_pipeline/dp3_contract_capture.json",
+        "evidence/09_datahub_governance/screenshots/datahub_dp3_contract.png",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/09_datahub_governance/coursework_pipeline/dp3_contract_capture.json": "5e10fc215662aafb060831cdc3b33711494406e76e8ba9f8126db3d8dfe358e8",
+        "evidence/09_datahub_governance/coursework_pipeline/ui_screenshot_manifest.json": "156e0e11c72e0d974661aea35820d448f801128b3ef487661c6047f1c962e233",
+        "evidence/09_datahub_governance/screenshots/datahub_dp3_contract.png": "76f948bf770649fbb9b172063fdd7851d3d1836e84fc3e7a296c70612694f679"
+      },
+      "implementation_paths": [
+        "src/vina_bim_shop/datahub_lineage/emitter.py",
+        "scripts/datahub/capture_evidence.py"
+      ],
+      "implementation_sha256": {
+        "scripts/datahub/capture_evidence.py": "9c52726ef047cccae4da855af0cb106be9c2e06044e2866e6a260c3e0d73d302",
+        "src/vina_bim_shop/datahub_lineage/emitter.py": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881"
+      },
+      "notes": "DP3 contract UI proof.",
+      "points": 2,
+      "required_path_count": 5,
+      "row": 39,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 3,
+      "evidence_paths": [
+        "evidence/02_schema_design/run_manifest.json",
+        "evidence/02_schema_design/screenshots/schema_design.png"
+      ],
+      "evidence_sha256": {
+        "evidence/02_schema_design/run_manifest.json": "c42f9a31cb05d770bd8746ad93f5f7a4b7c47014c139c9607136cfb45e668c0b",
+        "evidence/02_schema_design/screenshots/schema_design.png": "06717d411c2f79da8faee41f7f162180858f7ffc6ca8fd2fb61c749a86d857b6"
+      },
+      "implementation_paths": [
+        "architecture/diagrams/schema_design.puml"
+      ],
+      "implementation_sha256": {
+        "architecture/diagrams/schema_design.puml": "fce33138edf07539c560a4c10cd0f01f560fc61353510ea88c7e02445b88861d"
+      },
+      "notes": "Generated all-zone ERD proof.",
+      "points": 2,
+      "required_path_count": 3,
+      "row": 40,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 2,
+      "evidence_paths": [
+        "evidence/02_schema_design/schema_inventory.csv"
+      ],
+      "evidence_sha256": {
+        "evidence/02_schema_design/schema_inventory.csv": "db7585139b0c22703116093503a592fb2659ca19715bdb9e37fd43c837b5a861"
+      },
+      "implementation_paths": [
+        "infra/analytics/dbt/models/gold/dim_customer.sql"
+      ],
+      "implementation_sha256": {
+        "infra/analytics/dbt/models/gold/dim_customer.sql": "b7540c840cec5f24b4738342a62fe8a5dff1c97c1f064c3805215cd129d9e08d"
+      },
+      "notes": "SCD2-compatible dimension columns.",
+      "points": 1,
+      "required_path_count": 2,
+      "row": 41,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 4,
+      "evidence_paths": [
+        "evidence/02_schema_design/dbt_catalog_summary.csv",
+        "evidence/02_schema_design/schema_inventory.csv"
+      ],
+      "evidence_sha256": {
+        "evidence/02_schema_design/dbt_catalog_summary.csv": "66c4432bfd6b4154ce061437ea91de601ec32dba83f73c46ce3f8178a3c9d69c",
+        "evidence/02_schema_design/schema_inventory.csv": "db7585139b0c22703116093503a592fb2659ca19715bdb9e37fd43c837b5a861"
+      },
+      "implementation_paths": [
+        "infra/analytics/dbt/models/gold/_features.yml",
+        "src/vina_bim_shop/lakehouse/spark/sql.py"
+      ],
+      "implementation_sha256": {
+        "infra/analytics/dbt/models/gold/_features.yml": "fcfc84d6139daf34c3d031bebb5be501c5653d9cb314bc98caed16c8e1a08f69",
+        "src/vina_bim_shop/lakehouse/spark/sql.py": "bcc90e55643cf47a047060a29a982a53934f71089e77c519d9cd4502171ee7c6"
+      },
+      "notes": "Exact feature created/event_timestamp contract.",
+      "points": 1,
+      "required_path_count": 4,
+      "row": 42,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 2,
+      "evidence_paths": [
+        "architecture/diagrams/erd/physical_gold_model.png"
+      ],
+      "evidence_sha256": {
+        "architecture/diagrams/erd/physical_gold_model.png": "d77df643ab7acb6482536ee61f2b3954c8fdfdb886a3bf79e1f9191f586eb3be"
+      },
+      "implementation_paths": [
+        "architecture/diagrams/erd/physical_gold_model.puml"
+      ],
+      "implementation_sha256": {
+        "architecture/diagrams/erd/physical_gold_model.puml": "72599fc63d9dccbf22df842177e56684d48f0c5d347d6f578181a18a776b3317"
+      },
+      "notes": "Dimension/fact relationship proof.",
+      "points": 2,
+      "required_path_count": 2,
+      "row": 43,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 2,
+      "evidence_paths": [
+        "evidence/02_schema_design/run_manifest.json"
+      ],
+      "evidence_sha256": {
+        "evidence/02_schema_design/run_manifest.json": "c42f9a31cb05d770bd8746ad93f5f7a4b7c47014c139c9607136cfb45e668c0b"
+      },
+      "implementation_paths": [
+        "deliverables/02_schema_design.md"
+      ],
+      "implementation_sha256": {
+        "deliverables/02_schema_design.md": "181f499e093508c9648bcf0e29e94917d6639f9e4d3b07b9f4c8c2ad4152f319"
+      },
+      "notes": "Bronze/Silver/Gold naming-convention proof.",
+      "points": 2,
+      "required_path_count": 2,
+      "row": 44,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/10_novel_ideas/idea_1_duckdb_dbt.json",
+        "evidence/10_novel_ideas/run_manifest.json",
+        "evidence/10_novel_ideas/screenshots/idea_1_duckdb_dbt_lineage.png"
+      ],
+      "evidence_sha256": {
+        "evidence/10_novel_ideas/idea_1_duckdb_dbt.json": "2b32bf7c4ae1db6ae65c356e6fd4383ee6ff4feaa711ff72d36de17eec28a8f7",
+        "evidence/10_novel_ideas/run_manifest.json": "e44cd400157cded2dddff3994f17c54b020fe463d4e0d7f100fe4bea58b722cb",
+        "evidence/10_novel_ideas/screenshots/idea_1_duckdb_dbt_lineage.png": "45178abdf5bb4f47ffcfda0bfed3a552a279c87e09a727d95b21ee32d5a6c39a"
+      },
+      "implementation_paths": [
+        "scripts/qa/capture_novel_ideas.py",
+        "deliverables/12_novel_ideas.md"
+      ],
+      "implementation_sha256": {
+        "deliverables/12_novel_ideas.md": "729fa045fb6f3e03e9f50b04ac03c00de7f51d732518908062eb9539e369e3a7",
+        "scripts/qa/capture_novel_ideas.py": "a91042c5f1402ab7feb1e7d3fb859ac3e82fcb40a86c86d30d70890bb883d646"
+      },
+      "notes": "Novel Idea 1: DuckDB/dbt local analytics.",
+      "points": 5,
+      "required_path_count": 5,
+      "row": 45,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    },
+    {
+      "captured_path_count": 5,
+      "evidence_paths": [
+        "evidence/10_novel_ideas/idea_2_pinot_realtime.json",
+        "evidence/10_novel_ideas/run_manifest.json",
+        "evidence/10_novel_ideas/screenshots/idea_2_pinot_realtime_query.png"
+      ],
+      "evidence_sha256": {
+        "evidence/10_novel_ideas/idea_2_pinot_realtime.json": "fe61373b0ca9febebb2fffc201dfcd915210c2d6fd0ea3e3226d058ea3621f2d",
+        "evidence/10_novel_ideas/run_manifest.json": "e44cd400157cded2dddff3994f17c54b020fe463d4e0d7f100fe4bea58b722cb",
+        "evidence/10_novel_ideas/screenshots/idea_2_pinot_realtime_query.png": "91a31ff7ee165c2990a5b3e3500ed45e8dd37cb678bb1ed78018016b14d11381"
+      },
+      "implementation_paths": [
+        "scripts/qa/capture_novel_ideas.py",
+        "deliverables/12_novel_ideas.md"
+      ],
+      "implementation_sha256": {
+        "deliverables/12_novel_ideas.md": "729fa045fb6f3e03e9f50b04ac03c00de7f51d732518908062eb9539e369e3a7",
+        "scripts/qa/capture_novel_ideas.py": "a91042c5f1402ab7feb1e7d3fb859ac3e82fcb40a86c86d30d70890bb883d646"
+      },
+      "notes": "Novel Idea 2: Pinot realtime serving.",
+      "points": 5,
+      "required_path_count": 5,
+      "row": 46,
+      "status": "Satisfied",
+      "verification_commands": [
+        "rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "summary": {
+    "Missing": 0,
+    "Partial": 0,
+    "Satisfied": 45
+  },
+  "verified_at": "2026-07-13T04:09:52.609993+00:00"
+}

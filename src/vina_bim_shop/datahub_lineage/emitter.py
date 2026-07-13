@@ -1,3 +1,5 @@
+"""Emit the deployable DataHub lineage and metadata contracts for platform assets."""
+
 from __future__ import annotations
 
 import hashlib
@@ -51,6 +53,12 @@ def datajob_urn(dag_id: str, task_id: str = "") -> str:
 
 
 class DataHubLineageEmitter:
+    """Send DataHub metadata proposals through the configured GMS endpoint.
+
+    The emitter accepts dataset and job identifiers and lets DataHub transport failures
+    propagate so evidence capture cannot report absent lineage as successful.
+    """
+
     def __init__(self, gms_url: str = "http://datahub-gms:8080"):
         self._emitter = DataHubRestEmitter(gms_url)
 

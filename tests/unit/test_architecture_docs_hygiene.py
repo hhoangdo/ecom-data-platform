@@ -104,3 +104,18 @@ def test_domain_docs_include_current_platform_concepts() -> None:
         "DataHub",
     ]:
         assert concept in content
+
+
+def test_diagram_notes_declare_reviewer_render_and_arrow_conventions() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    content = (repo_root / "architecture" / "diagrams" / "README.md").read_text(encoding="utf-8")
+
+    for phrase in [
+        "Reviewer-facing primary diagram",
+        "detailed-architecture.svg",
+        "detailed-architecture.excalidraw",
+        "Arrow conventions",
+        "source, target, and flow label",
+        "left-to-right or top-to-bottom",
+    ]:
+        assert phrase in content

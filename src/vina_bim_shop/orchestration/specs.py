@@ -1,3 +1,5 @@
+"""Declare the supported Airflow DAG inventory and scheduling contracts."""
+
 from __future__ import annotations
 
 from collections import OrderedDict
@@ -6,6 +8,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class DagSpec:
+    """Describe one deployable DAG's ID, schedule, window support, and monitoring role."""
+
     dag_id: str
     schedule: str
     supports_hourly_logical_window: bool
@@ -24,6 +28,12 @@ REQUIRED_DAG_IDS = (
 
 
 def dag_specs_by_id() -> OrderedDict[str, DagSpec]:
+    """Return the ordered deployable DAG specification mapping used by orchestration.
+
+    The mapping includes only supported DAG IDs; callers must reject unknown IDs rather
+    than constructing an undocumented runtime contract.
+    """
+
     return OrderedDict(
         (
             ("hourly_batch_lakehouse", DagSpec("hourly_batch_lakehouse", "hourly_demo", True)),

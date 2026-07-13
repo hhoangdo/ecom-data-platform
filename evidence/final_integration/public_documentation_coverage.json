@@ -1,0 +1,137 @@
+{
+  "modules": [
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/generators/runner.py",
+      "sha256": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4",
+      "summary": "Public orchestration for the Section 01 generator."
+    },
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "sha256": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69",
+      "summary": "Run the canonical Spark batch pipeline and collect its evidence summary."
+    },
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/flink/runtime.py",
+      "sha256": "6e70f04b2d22a77bb356d47409f7ff137284f4adec268312bbe40c762d60a0a7",
+      "summary": "Resolve the deployable Flink runtime settings used by streaming jobs."
+    },
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/orchestration/specs.py",
+      "sha256": "bf6d18feca81173879c649d5ec7560b34529c6b30b55785777a5cfd3c9f7179a",
+      "summary": "Declare the supported Airflow DAG inventory and scheduling contracts."
+    },
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "sha256": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881",
+      "summary": "Emit the deployable DataHub lineage and metadata contracts for platform assets."
+    },
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/pinot/bootstrap.py",
+      "sha256": "707508c377d635cfc48d90463597b37de00f952864a01bdcf0bb43dc93d8c2b6",
+      "summary": "Apply the deployable Pinot schema and table assets and record their status."
+    },
+    {
+      "documented": true,
+      "path": "src/vina_bim_shop/quality/policies.py",
+      "sha256": "71836474a5b55810fc82ec8a7a2209ebde69fc41f99c38b3ac715a7a5fc4bce6",
+      "summary": "Map deployable data-quality layer outcomes to orchestration gate behavior."
+    }
+  ],
+  "schema_version": 1,
+  "success": true,
+  "summary": {
+    "coverage_percent": 100.0,
+    "documented_modules": 7,
+    "documented_symbols": 10,
+    "required_modules": 7,
+    "required_symbols": 10
+  },
+  "symbols": [
+    {
+      "documented": true,
+      "kind": "class",
+      "name": "GenerationResult",
+      "path": "src/vina_bim_shop/generators/runner.py",
+      "sha256": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4",
+      "summary": "Return generated roots, row counts, and evidence paths from one generator run."
+    },
+    {
+      "documented": true,
+      "kind": "function",
+      "name": "run_generation",
+      "path": "src/vina_bim_shop/generators/runner.py",
+      "sha256": "be9ea0423d955bca6618b6e688b79691cab648b4cfcfde711a9c8a77072b58b4",
+      "summary": "Generate the selected source modes and return their persisted evidence locations."
+    },
+    {
+      "documented": true,
+      "kind": "function",
+      "name": "run_batch_pipeline",
+      "path": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "sha256": "0940bd670acf949e581e0f5667daf51c5420808af06e90fb428be918edc5ad69",
+      "summary": "Run Spark, dbt, parity, Trino, and export steps for one batch window."
+    },
+    {
+      "documented": true,
+      "kind": "class",
+      "name": "RuntimeSettings",
+      "path": "src/vina_bim_shop/flink/runtime.py",
+      "sha256": "6e70f04b2d22a77bb356d47409f7ff137284f4adec268312bbe40c762d60a0a7",
+      "summary": "Expose Kafka, MinIO, checkpoint, and output settings for a Flink job."
+    },
+    {
+      "documented": true,
+      "kind": "function",
+      "name": "load_runtime_settings",
+      "path": "src/vina_bim_shop/flink/runtime.py",
+      "sha256": "6e70f04b2d22a77bb356d47409f7ff137284f4adec268312bbe40c762d60a0a7",
+      "summary": "Load environment overrides with pipeline-config defaults for a Flink run."
+    },
+    {
+      "documented": true,
+      "kind": "class",
+      "name": "DagSpec",
+      "path": "src/vina_bim_shop/orchestration/specs.py",
+      "sha256": "bf6d18feca81173879c649d5ec7560b34529c6b30b55785777a5cfd3c9f7179a",
+      "summary": "Describe one deployable DAG's ID, schedule, window support, and monitoring role."
+    },
+    {
+      "documented": true,
+      "kind": "function",
+      "name": "dag_specs_by_id",
+      "path": "src/vina_bim_shop/orchestration/specs.py",
+      "sha256": "bf6d18feca81173879c649d5ec7560b34529c6b30b55785777a5cfd3c9f7179a",
+      "summary": "Return the ordered deployable DAG specification mapping used by orchestration."
+    },
+    {
+      "documented": true,
+      "kind": "class",
+      "name": "DataHubLineageEmitter",
+      "path": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "sha256": "fc8a18194c65f188906300e7e82e9b562ff3c94f214854203554c34964c48881",
+      "summary": "Send DataHub metadata proposals through the configured GMS endpoint."
+    },
+    {
+      "documented": true,
+      "kind": "function",
+      "name": "apply_assets",
+      "path": "src/vina_bim_shop/pinot/bootstrap.py",
+      "sha256": "707508c377d635cfc48d90463597b37de00f952864a01bdcf0bb43dc93d8c2b6",
+      "summary": "Create or update Pinot assets and return the captured bootstrap manifest."
+    },
+    {
+      "documented": true,
+      "kind": "function",
+      "name": "gate_outcome_for_layer",
+      "path": "src/vina_bim_shop/quality/policies.py",
+      "sha256": "71836474a5b55810fc82ec8a7a2209ebde69fc41f99c38b3ac715a7a5fc4bce6",
+      "summary": "Return the quality-gate policy for one layer result."
+    }
+  ]
+}

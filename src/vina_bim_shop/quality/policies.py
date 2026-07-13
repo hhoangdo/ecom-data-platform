@@ -1,3 +1,5 @@
+"""Map deployable data-quality layer outcomes to orchestration gate behavior."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -20,6 +22,12 @@ class GateOutcome:
 
 
 def gate_outcome_for_layer(layer: str, *, success: bool, critical: bool = False) -> GateOutcome:
+    """Return the quality-gate policy for one layer result.
+
+    The returned outcome states severity and DAG blocking behavior; unsupported layers
+    raise ``ValueError`` so callers cannot silently apply an undefined policy.
+    """
+
     normalized = layer.strip().lower()
     if success:
         severity = ValidationSeverity.WARNING if normalized == "bronze_raw" else ValidationSeverity.ERROR

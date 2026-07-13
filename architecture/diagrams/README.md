@@ -1,5 +1,16 @@
 # Diagram Editing Notes
 
+## Reviewer Navigation and Arrow Conventions
+
+- **Reviewer-facing primary diagram:** `detailed-architecture.svg`, embedded by the root README for the complete staged platform view.
+- **Editable paired lifecycle view:** `detailed-architecture.excalidraw`. Keep the reviewer SVG and its detailed Excalidraw view aligned when a deployable unit or flow changes; the SVG is the review render, not an automatically regenerated artifact.
+- **Companion sources:** `detailed-lambda_architecture.puml` gives the textual detailed architecture, while `architecture.excalidraw` and `lambda_architecture.puml` remain the general editable architecture views.
+- **Service order:** sources feed ingestion, then branch to the realtime speed path and lakehouse batch truth path; orchestration, quality, governance, and evidence observe those paths rather than replacing them.
+
+### Arrow conventions
+
+Every arrow must identify its source, target, and flow label, and must preserve the shown left-to-right or top-to-bottom execution direction. Solid black arrows are primary data flow. Dashed green arrows are schema, contract, or quality flow; purple arrows are metadata; orange arrows are Airflow control; teal arrows are evidence/audit; blue arrows are local analytics; and gray arrows are BI consumption.
+
 ## Excalidraw
 
 - Primary file: `architecture.excalidraw`

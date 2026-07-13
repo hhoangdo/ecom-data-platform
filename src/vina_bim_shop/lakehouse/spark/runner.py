@@ -1,3 +1,5 @@
+"""Run the canonical Spark batch pipeline and collect its evidence summary."""
+
 from __future__ import annotations
 
 import json
@@ -72,6 +74,12 @@ def run_batch_pipeline(
     run_command: RunCommand = _run_command,
     capture_evidence_fn: CaptureEvidence = capture_evidence,
 ) -> dict[str, Any]:
+    """Run Spark, dbt, parity, Trino, and export steps for one batch window.
+
+    Returns the persisted run summary; subprocess or downstream validation failures
+    propagate so orchestration records the batch as failed.
+    """
+
     window = BatchWindow.from_args(start_ts=start_ts, end_ts=end_ts, mode=mode)
     spark_submit = build_spark_submit_command(window, evidence_root=evidence_root)
     spark_result = run_command(spark_submit)

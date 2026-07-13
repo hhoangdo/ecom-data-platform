@@ -13,6 +13,7 @@ The platform is runnable locally, but it should be operated through staged Docke
 - [Introduction](#introduction)
 - [Problem Definition](#problem-definition)
 - [Coursework Status](#coursework-status)
+- [Rubric Evidence and Navigation](#rubric-evidence-and-navigation)
 - [Platform Implementation Overview](#platform-implementation-overview)
 - [Repository Structure](#repository-structure)
 - [Prerequisites](#prerequisites)
@@ -20,6 +21,34 @@ The platform is runnable locally, but it should be operated through staged Docke
 - [Configuration](#configuration)
 - [Known Limits](#known-limits)
 - [Data](#data)
+
+---
+
+## Rubric Evidence and Navigation
+
+The reviewer-facing rubric route is [this proof index](deliverables/13_mini_coursework_rubric_evidence.md). Its machine-verifiable source of truth is the [Mini-Coursework manifest](evidence/final_integration/mini_coursework_rubric_manifest.json), verified with the documented `--verify` command. Current manifest summary: **45 Satisfied · 0 Partial · 0 Missing**.
+
+Row 2 navigation:
+
+- [Business domain and platform purpose](#introduction)
+- [Reviewer-facing deployment diagram](architecture/diagrams/detailed-architecture.svg) and [diagram conventions](architecture/diagrams/README.md)
+- [Repository map](#repository-structure) and [staged deployment order](#3-start-the-distributed-platform-in-stages)
+- [Declared public API coverage](evidence/final_integration/public_documentation_coverage.json)
+- [Row-ordered implementation and evidence proof](deliverables/13_mini_coursework_rubric_evidence.md)
+
+### Public API documentation
+
+The deployable API surface is deliberately limited to the following entry points. The AST report above requires every listed module and symbol to carry a nonempty docstring; internal helpers remain internal.
+
+| Module | Declared symbols |
+| --- | --- |
+| [`generators/runner.py`](src/vina_bim_shop/generators/runner.py) | `GenerationResult`, `run_generation` |
+| [`lakehouse/spark/runner.py`](src/vina_bim_shop/lakehouse/spark/runner.py) | `run_batch_pipeline` |
+| [`flink/runtime.py`](src/vina_bim_shop/flink/runtime.py) | `RuntimeSettings`, `load_runtime_settings` |
+| [`orchestration/specs.py`](src/vina_bim_shop/orchestration/specs.py) | `DagSpec`, `dag_specs_by_id` |
+| [`datahub_lineage/emitter.py`](src/vina_bim_shop/datahub_lineage/emitter.py) | `DataHubLineageEmitter` |
+| [`pinot/bootstrap.py`](src/vina_bim_shop/pinot/bootstrap.py) | `apply_assets` |
+| [`quality/policies.py`](src/vina_bim_shop/quality/policies.py) | `gate_outcome_for_layer` |
 
 ---
 

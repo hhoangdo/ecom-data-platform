@@ -28,6 +28,8 @@ GenerationMode = Literal["offline", "streaming", "full"]
 
 @dataclass(frozen=True)
 class GenerationResult:
+    """Return generated roots, row counts, and evidence paths from one generator run."""
+
     raw_root: Path
     evidence_root: Path
     row_counts: dict[str, int]
@@ -47,6 +49,12 @@ def run_generation(
     kafka_bootstrap_servers: str | None = None,
     kafka_flush_timeout_seconds: float = 30.0,
 ) -> GenerationResult:
+    """Generate the selected source modes and return their persisted evidence locations.
+
+    Configuration and write failures propagate so command callers cannot mistake a partial
+    dataset for a completed generation run.
+    """
+
     config = load_generator_config(
         config_path,
         scale=scale,

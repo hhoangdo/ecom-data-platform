@@ -117,11 +117,11 @@ Each listed module requires a module docstring. Each listed class/function requi
 - Create: `tests/unit/test_mini_coursework_rubric_manifest.py`
 - Modify: the four existing documentation/diagram test files listed above
 
-- [ ] Assert the exact seven-module/ten-symbol declaration and 100% documented result.
-- [ ] Assert rows 2-46 appear exactly once and in order in the final manifest/deliverable.
-- [ ] Assert unsupported `Satisfied` status fails when a required artifact is absent, empty, or hashless.
-- [ ] Assert README contains a rubric checklist, primary deployment diagram link, deployable-unit/arrow conventions, public API policy, repository map, deployment order, and final manifest link.
-- [ ] Run `rtk uv run pytest tests/unit/test_public_documentation_audit.py tests/unit/test_mini_coursework_rubric_manifest.py tests/unit/test_root_readme_finalization.py tests/unit/test_architecture_docs_hygiene.py tests/unit/test_architecture_diagrams.py tests/unit/test_deliverables_documentation.py -q`.
+- [x] Assert the exact seven-module/ten-symbol declaration and 100% documented result.
+- [x] Assert rows 2-46 appear exactly once and in order in the final manifest/deliverable.
+- [x] Assert unsupported `Satisfied` status fails when a required artifact is absent, empty, or hashless.
+- [x] Assert README contains a rubric checklist, primary deployment diagram link, deployable-unit/arrow conventions, public API policy, repository map, deployment order, and final manifest link.
+- [x] Run `rtk uv run pytest tests/unit/test_public_documentation_audit.py tests/unit/test_mini_coursework_rubric_manifest.py tests/unit/test_root_readme_finalization.py tests/unit/test_architecture_docs_hygiene.py tests/unit/test_architecture_diagrams.py tests/unit/test_deliverables_documentation.py -q`.
 
 Expected: new tests fail because audit/manifest scripts and final documentation do not exist.
 
@@ -132,11 +132,11 @@ Expected: new tests fail because audit/manifest scripts and final documentation 
 - Modify: the seven declared source modules
 - Create: `evidence/final_integration/public_documentation_coverage.json`
 
-- [ ] Implement the exact AST target list and reject missing modules, symbols, or docstrings.
-- [ ] Add concise module/symbol docstrings only to declared targets that lack them.
-- [ ] Run `rtk uv run python scripts/qa/audit_public_documentation.py --output evidence/final_integration/public_documentation_coverage.json`.
-- [ ] Require ten of ten symbols and seven of seven modules documented with `coverage_percent: 100.0`.
-- [ ] Run `rtk uv run pytest tests/unit/test_public_documentation_audit.py -q`.
+- [x] Implement the exact AST target list and reject missing modules, symbols, or docstrings.
+- [x] Add concise module/symbol docstrings only to declared targets that lack them.
+- [x] Run `rtk uv run python scripts/qa/audit_public_documentation.py --output evidence/final_integration/public_documentation_coverage.json`.
+- [x] Require ten of ten symbols and seven of seven modules documented with `coverage_percent: 100.0`.
+- [x] Run `rtk uv run pytest tests/unit/test_public_documentation_audit.py -q`.
 
 Expected: declared public API coverage is complete without unrelated helper churn.
 
@@ -146,11 +146,11 @@ Expected: declared public API coverage is complete without unrelated helper chur
 - Create: `scripts/qa/build_mini_coursework_rubric_manifest.py`
 - Create: `evidence/final_integration/mini_coursework_rubric_manifest.json`
 
-- [ ] Encode row ownership/evidence requirements from `00-refactor-index.md` in exact row order.
-- [ ] Validate all topic run manifests, required screenshots, documentation coverage, and row-specific success fields.
-- [ ] Hash every referenced artifact and fail on missing, empty, duplicate, or out-of-workspace paths.
-- [ ] Run `rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --output evidence/final_integration/mini_coursework_rubric_manifest.json`.
-- [ ] Run `rtk uv run pytest tests/unit/test_mini_coursework_rubric_manifest.py -q`.
+- [x] Encode row ownership/evidence requirements from `00-refactor-index.md` in exact row order.
+- [x] Validate all topic run manifests, required screenshots, documentation coverage, and row-specific success fields.
+- [x] Hash every referenced artifact and fail on missing, empty, duplicate, or out-of-workspace paths.
+- [x] Run `rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --output evidence/final_integration/mini_coursework_rubric_manifest.json`.
+- [x] Run `rtk uv run pytest tests/unit/test_mini_coursework_rubric_manifest.py -q`.
 
 Expected: the manifest truthfully distinguishes satisfied rows from any remaining partial/missing evidence.
 
@@ -160,12 +160,12 @@ Expected: the manifest truthfully distinguishes satisfied rows from any remainin
 - Create: `deliverables/13_mini_coursework_rubric_evidence.md`
 - Modify: `README.md`, `deliverables/README.md`, `evidence/README.md`, and `architecture/diagrams/README.md`
 
-- [ ] Add a README rubric-status summary derived from the manifest, not manually invented totals.
-- [ ] Add a row-2 checklist linking business domain, primary diagram, repository map, deployment order, public API coverage, and evidence manifest.
-- [ ] Verify every Table of Contents anchor and local Markdown link resolves.
-- [ ] Document that diagram arrows identify source/target, data/control flow label, and left-to-right or top-to-bottom execution order.
-- [ ] Write rows 2-46 in order in the final deliverable with implementation/evidence links and honest remaining limitations.
-- [ ] Run the focused documentation/diagram tests.
+- [x] Add a README rubric-status summary derived from the manifest, not manually invented totals.
+- [x] Add a row-2 checklist linking business domain, primary diagram, repository map, deployment order, public API coverage, and evidence manifest.
+- [x] Verify every Table of Contents anchor and local Markdown link resolves.
+- [x] Document that diagram arrows identify source/target, data/control flow label, and left-to-right or top-to-bottom execution order.
+- [x] Write rows 2-46 in order in the final deliverable with implementation/evidence links and honest remaining limitations.
+- [x] Run the focused documentation/diagram tests.
 
 Expected: a reviewer can navigate from README to any rubric row and its current proof in two links or fewer.
 
@@ -174,13 +174,13 @@ Expected: a reviewer can navigate from README to any rubric row and its current 
 **Files:**
 - Modify: `tmp/rubic-check/mini-coursework-rubric-audit.md`
 
-- [ ] Recalculate executive status counts from `mini_coursework_rubric_manifest.json`.
-- [ ] Update each row's status/evidence/gap/action without changing workbook order or claiming absent proof.
-- [ ] Change completed actions to maintenance guidance and preserve explicit residual risks.
-- [ ] Run `rtk uv run pytest tests/unit/test_public_documentation_audit.py tests/unit/test_mini_coursework_rubric_manifest.py tests/unit/test_root_readme_finalization.py tests/unit/test_architecture_docs_hygiene.py tests/unit/test_architecture_diagrams.py tests/unit/test_deliverables_documentation.py -q`.
-- [ ] Run `rtk uv run pytest -q`.
-- [ ] Run the manifest builder again and require byte-stable row ordering/status output apart from its verification timestamp.
-- [ ] Inspect `rtk git status --short` and verify every change belongs to a completed topic or was pre-existing user work.
+- [x] Recalculate executive status counts from `mini_coursework_rubric_manifest.json`.
+- [x] Update each row's status/evidence/gap/action without changing workbook order or claiming absent proof.
+- [x] Change completed actions to maintenance guidance and preserve explicit residual risks.
+- [x] Run `rtk uv run pytest tests/unit/test_public_documentation_audit.py tests/unit/test_mini_coursework_rubric_manifest.py tests/unit/test_root_readme_finalization.py tests/unit/test_architecture_docs_hygiene.py tests/unit/test_architecture_diagrams.py tests/unit/test_deliverables_documentation.py -q`.
+- [x] Run `rtk uv run pytest -q`.
+- [x] Run the manifest builder again and require byte-stable row ordering/status output apart from its verification timestamp.
+- [x] Inspect `rtk git status --short` and verify every change belongs to a completed topic or was pre-existing user work.
 
 Expected: final tests pass and README, deliverable, manifest, and local audit agree.
 
@@ -199,6 +199,25 @@ Expected: final tests pass and README, deliverable, manifest, and local audit ag
 - All links/anchors resolve, the primary diagram conventions are documented/tested, and focused/full suites pass.
 - No unrelated source refactor or speculative documentation is introduced.
 
-## Completion Record
+## Completion Record — 2026-07-13
 
-The implementing session records date, documented module/symbol counts, coverage percentage, manifest status totals, link-check results, audit changes, test commands/exit codes, changed files, and residual rubric risks here. Until then, unchecked tasks define the work.
+**Status:** Row 2 and all rows 3-46 are validated as `Satisfied` by the generated manifest: 45 Satisfied, 0 Partial, 0 Missing (100 points).
+
+### Generated evidence and integrity
+
+- `rtk uv run python scripts/qa/audit_public_documentation.py --output evidence/final_integration/public_documentation_coverage.json` exited `0`: 7/7 declared modules and 10/10 declared symbols documented, `coverage_percent: 100.0`. SHA-256: `74c36c6261026129c1b4bd2c1482bf141560628f5befe1cce7e513287eb7bd3a`.
+- `rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --output evidence/final_integration/mini_coursework_rubric_manifest.json` exited `0`: every row 2-46 is present once in order with hash-bound implementation/evidence paths and row-specific gates. SHA-256: `482fbc50298513f9a6b3829d9333e9319f75572aecbc08e29b0917ddb2d57da7`.
+- `rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json` exited `0`; changed, missing, empty, duplicate, outside-workspace, or forged artifact/status data fails verification.
+- Final Markdown check resolved 178 local links across README, indexes, final deliverable, architecture, evidence, and script documentation; 0 were missing. `rtk git diff --check` exited `0`.
+
+### Tests
+
+- TDD red checks: new utility tests initially failed because the two scripts did not exist; documentation tests initially failed because final navigation/deliverable/manifest did not exist.
+- `rtk uv run pytest tests/unit/test_public_documentation_audit.py tests/unit/test_mini_coursework_rubric_manifest.py -q` -> `10 passed` before the final Topic 01 multistage regression test was added; the final manifest-focused test file then passed `6` tests.
+- `rtk uv run pytest tests/unit/test_root_readme_finalization.py tests/unit/test_architecture_docs_hygiene.py tests/unit/test_architecture_diagrams.py tests/unit/test_deliverables_documentation.py tests/unit/test_script_surface_documentation.py tests/unit/test_public_documentation_audit.py tests/unit/test_mini_coursework_rubric_manifest.py -q` -> `40 passed`.
+- `rtk uv run pytest -q` -> `370 passed, 1 skipped in 93.15s`.
+
+### Scope and residual limitations
+
+- Added only the declared API docstrings, two QA scripts/tests, final evidence JSON, reviewer navigation, final deliverable, and associated documentation/audit controls. No upstream evidence was regenerated and no Docker/Compose service was started, so no runtime teardown was required.
+- Topic 05 remains a controlled smoke-scale compaction/layout proof; DuckDB remains a local parity path; Pinot remains provisional while Spark Gold is canonical. These are explicit limits, not Partial rows, because the manifest validates the rubric claims actually made.

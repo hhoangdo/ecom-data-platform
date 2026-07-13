@@ -1,177 +1,71 @@
 # Mini-Coursework Rubric Audit
 
-Source workbook: `tmp/rubic-check/Coursework Tracking (Public).xlsx`  
-Source sheet: `rubic (mini-coursework)`  
-Audit date: 2026-06-27  
-Scoring mode: strict rubric read. If the repo has equivalent machine-readable proof but the rubric asks for a specific UI screenshot, baseline comparison, or exact field name, this audit marks the row as `Partial`.
+**Audit source of truth:** `evidence/final_integration/mini_coursework_rubric_manifest.json`, rebuilt and verified on 2026-07-13. The manifest validates repository-relative nonempty implementation/evidence paths, records SHA-256 hashes, and recomputes row-specific gates. A changed or missing artifact makes `--verify` fail; it cannot be upgraded manually through this audit.
 
-## Executive Summary
+## Executive Status
 
-The repository is a strong coursework platform implementation with a broad local data stack, staged Docker Compose profiles, data generator, Kafka/MinIO Bronze path, Spark lakehouse processing, Flink streaming, Pinot serving, Airflow/GX orchestration, DataHub metadata emission, and committed evidence artifacts.
+| Status | Rows | Points | Meaning |
+| --- | ---: | ---: | --- |
+| Satisfied | 45 | 100 | Every required path, hash, and row gate passed. |
+| Partial | 0 | 0 | Reserved for missing, stale, or unsupported evidence. |
+| Missing | 0 | 0 | Reserved for an absent complete evidence path. |
 
-Strictly against the mini-coursework rubric, the repo is strongest in generator behavior, schema evolution, duplicate handling, Flink event-time/window logic, Spark integration, dbt schema modeling, and naming conventions. The main gaps are proof-format and documentation gaps: Docker image optimization proof, explicit high-cardinality summaries, Spark/Flink baseline-versus-optimized screenshots, storage optimization analysis, Airflow stage screenshots by DP1/DP2/DP3, DataHub UI proof of lineage/contracts, DBeaver-specific schema screenshots, exact `created` feature-table naming, and explicit Novel Idea 1/2 writeups.
+## Validated Rubric Rows
 
-Strict status count across rows 2-46:
+| Row | Requirement area | Points | Status | Bound evidence | Maintenance / residual note |
+| ---: | --- | ---: | --- | --- | --- |
+| 2 | README and reviewer navigation | 10 | Satisfied | README, API coverage, final deliverable, manifest | Re-run API audit and manifest after changing declared API/docs. |
+| 3 | Docker image optimization | 1 | Satisfied | Kafka Connect image comparison | Reduction is measured, not extrapolated. |
+| 4 | Multi-stage Dockerfile | 1 | Satisfied | Kafka Connect Dockerfile and plugin smoke | Preserve the builder-to-runtime copy contract. |
+| 5 | Offline skew | 2 | Satisfied | Generator rubric summary | Rebuild only with a documented generator profile. |
+| 6 | Offline high cardinality | 2 | Satisfied | Cardinality summary | Approximate counts remain explicitly labeled. |
+| 7 | Schema evolution | 2 | Satisfied | Schema-version summary | Preserve null/evolution evidence. |
+| 8 | Offline duplicates | 2 | Satisfied | Generator quality report | Keep configured and observed rates paired. |
+| 9 | Offline configuration | 2 | Satisfied | Generator config and manifest | Preserve named profile settings. |
+| 10 | Bronze input storage | 2 | Satisfied | Generator summary | Raw data remains Bronze-ready source input. |
+| 11 | Streaming burst | 2 | Satisfied | Generator rubric summary | Keep burst controls and observed counts linked. |
+| 12 | Late arrivals | 2 | Satisfied | Generator rubric summary | Keep configured rate and measured rate linked. |
+| 13 | Streaming duplicates | 2 | Satisfied | Generator rubric summary | Keep configured rate and measured rate linked. |
+| 14 | Streaming configuration | 2 | Satisfied | Generator manifest | Preserve submission scale and seed. |
+| 15 | Spark baseline | 2 | Satisfied | Spark optimization manifest | Standalone experiments do not alter canonical semantics. |
+| 16 | Spark skew handling | 2 | Satisfied | Spark optimization manifest | Keep controlled salting evidence isolated. |
+| 17 | Spark high cardinality | 2 | Satisfied | Spark optimization manifest | Keep controlled repartition evidence isolated. |
+| 18 | Spark schema evolution | 2 | Satisfied | Spark optimization report | Preserve current compatibility behavior. |
+| 19 | Spark duplicate handling | 2 | Satisfied | Spark optimization report | Preserve quarantine/validation evidence. |
+| 20 | Spark Airflow integration | 2 | Satisfied | Spark and Airflow evidence | Keep task integration documented. |
+| 21 | Flink baseline | 2 | Satisfied | Flink comparison | Optimized job cancellation is documented after successful checkpoint/equality proof. |
+| 22 | Flink burst | 2 | Satisfied | Flink challenge samples | Keep input/output sample proof. |
+| 23 | Flink late arrivals | 2 | Satisfied | Flink challenge samples | Keep correction-path proof. |
+| 24 | Flink duplicates | 2 | Satisfied | Flink challenge samples | Keep duplicate metric proof. |
+| 25 | Flink windows | 2 | Satisfied | Flink comparison | Preserve event-time configuration proof. |
+| 26 | Lakehouse compaction | 2 | Satisfied | Compaction result and file stats | Controlled smoke-scale layout proof, not a general performance claim. |
+| 27 | Warehouse/index optimization | 2 | Satisfied | Query and DuckDB index benchmarks | Isolated timing is not a production claim. |
+| 28 | DP1 ingest | 2 | Satisfied | Topic 07 DP1 artifact and screenshots | Preserve the exact six-task run contract. |
+| 29 | DP1 validation | 2 | Satisfied | Topic 07 Bronze GX contract | Preserve 2/2 GX result. |
+| 30 | DP2 transform | 2 | Satisfied | Topic 07 DP2 artifact | Preserve application ID and table-count proof. |
+| 31 | DP2 validation | 2 | Satisfied | Topic 07 Gold GX contract | Preserve 2/2 GX result. |
+| 32 | DP3 feature compute | 2 | Satisfied | Topic 07 DP3 artifact | Preserve feature application proof. |
+| 33 | DP3 feature validation | 2 | Satisfied | Topic 07 feature contract | Preserve `event_timestamp`/`created` and no `created_ts`. |
+| 34 | DP1 lineage | 2 | Satisfied | DataHub DP1 lineage capture/UI hash | Indexed UI proof remains required. |
+| 35 | DP1 contract | 2 | Satisfied | DataHub DP1 contract capture/UI hash | Indexed UI proof remains required. |
+| 36 | DP2 lineage | 2 | Satisfied | DataHub DP2 lineage capture/UI hash | Indexed UI proof remains required. |
+| 37 | DP2 contract | 2 | Satisfied | DataHub DP2 contract capture/UI hash | Indexed UI proof remains required. |
+| 38 | DP3 lineage | 2 | Satisfied | DataHub DP3 lineage capture/UI hash | Indexed UI proof remains required. |
+| 39 | DP3 contract | 2 | Satisfied | DataHub DP3 contract capture/UI hash | Indexed UI proof remains required. |
+| 40 | All-zone ERD | 2 | Satisfied | Schema manifest and rendered ERD | Preserve model inventory gate. |
+| 41 | SCD2-compatible dimensions | 1 | Satisfied | Schema inventory | Current-row behavior is not full historical SCD2. |
+| 42 | Feature timestamp contract | 1 | Satisfied | dbt catalog and schema inventory | Only feature outputs use `created`. |
+| 43 | Dimension/fact relationships | 2 | Satisfied | Physical Gold ERD | Preserve relationship topology. |
+| 44 | Layer naming conventions | 2 | Satisfied | Schema deliverable and manifest | Preserve Bronze/Silver/Gold naming table. |
+| 45 | Novel Idea 1 | 5 | Satisfied | DuckDB/dbt idea JSON and screenshot | Local parity path is not distributed canonical truth. |
+| 46 | Novel Idea 2 | 5 | Satisfied | Pinot idea JSON and screenshot | Pinot is fresh/provisional; Spark Gold remains canonical. |
 
-| Status | Count | Meaning |
-|---|---:|---|
-| Satisfied | 19 | Implementation and current proof are close enough to the rubric requirement. |
-| Partial | 25 | Implementation exists or adjacent evidence exists, but exact proof, docs, screenshot, or explicit explanation is missing. |
-| Missing | 1 | No clear implementation/proof for the rubric item was found. |
+## Reverification
 
-## Rubric Compliance Matrix
+```powershell
+rtk uv run python scripts/qa/audit_public_documentation.py --output evidence/final_integration/public_documentation_coverage.json
+rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --output evidence/final_integration/mini_coursework_rubric_manifest.json
+rtk uv run python scripts/qa/build_mini_coursework_rubric_manifest.py --verify --manifest evidence/final_integration/mini_coursework_rubric_manifest.json
+```
 
-| Row | Category | Rubric requirement | Proof requested | Points | Status | Current repo evidence | Gap | Recommended action |
-|---:|---|---|---|---:|---|---|---|---|
-| 2 | README / system overview | README introduces business domain and high-level deployment diagram; includes repo structure, ToC, docstrings/file descriptions, deployable units, and labeled data-flow arrows. | README and diagram quality. | 10 | Partial | `README.md`; `architecture/diagrams/detailed-architecture.svg`; `architecture/masterplan.md`; `src/vina_bim_shop/README.md`; tests for README/diagram hygiene. | README is strong, but strict proof for function/class docstring coverage and diagram deployable-unit/arrow-label rules is not centralized. Docs are in `deliverables/`, `architecture/`, and `evidence/`, not a rubric-style `docs/` folder. | Update documentation with a rubric-facing README checklist, link the exact deployment diagram, and add a short docstring/file-header coverage note. |
-| 3 | Engineering Fundamentals / Docker & Docker Compose | Use Docker and Docker Compose. | Document image reduction from X to Y and optimization method. | 1 | Partial | `docker-compose.yml`; `compose/*.yml`; `README.md` staged compose profiles; `Makefile`; `infra/*/Dockerfile`. | Compose usage is clear, but no image-size reduction table or optimization proof was found. | Add image-size evidence before/after optimization and document method. |
-| 4 | Engineering Fundamentals / Docker & Docker Compose | Optimize Dockerfile, for example multistage build. | Optimized Dockerfile evidence. | 1 | Missing | `infra/spark/Dockerfile`; `infra/flink/Dockerfile`; `infra/orchestration/airflow/Dockerfile`; `infra/kafka/connect/Dockerfile`. | Main service Dockerfiles are single-stage or do not document multistage/size optimization. | Implement at least one meaningful Dockerfile optimization, preferably Spark/Flink/Airflow, and document resulting image-size reduction. |
-| 5 | Implement Data Generator / Offline problems | Simulate skew. | Screenshot/output summary with skew distribution, data characteristics, and generator config. | 2 | Satisfied | `configs/generator/base.yaml`; `deliverables/01_data_generator.md`; `evidence/01_data_generator/quality_report.md`; `evidence/01_data_generator/quality_metrics.csv`; `src/vina_bim_shop/generators/skew.py`. | Existing docs/evidence are good; strict grader may still expect the summary screenshot embedded near this row. | Update documents only: add a small rubric-facing excerpt for city/category skew percentages. |
-| 6 | Implement Data Generator / Offline problems | Simulate high cardinality. | Cardinality summary such as `approx_count_distinct` by ID. | 2 | Partial | `configs/generator/base.yaml` scale profiles; `src/vina_bim_shop/generators/ids.py`; `deliverables/01_data_generator.md`. | Generator supports many IDs/entities, but no explicit approx-count-distinct/cardinality evidence was found. | Add a cardinality evidence query/report for customer/product/order/event IDs. |
-| 7 | Implement Data Generator / Offline problems | Simulate schema evolution. | Summary of nulls in old partitions and schema evolution. | 2 | Satisfied | `src/vina_bim_shop/generators/schema_evolution.py`; `configs/generator/base.yaml`; `evidence/01_data_generator/schema_version_summary.csv`; `deliverables/01_data_generator.md`. | Evidence exists; exact rubric screenshot may be absent. | Update documents only: embed schema-version/null summary in the generator deliverable. |
-| 8 | Implement Data Generator / Offline problems | Simulate another offline data problem, for example 2% duplicate rate. | Duplicate rate before/after dedup. | 2 | Satisfied | `src/vina_bim_shop/generators/duplicates.py`; `configs/generator/base.yaml`; `evidence/01_data_generator/quality_report.md`; `deliverables/11_solving_data_challenges.md`. | Generator duplicate evidence exists; before/after dedup is mainly shown later in Spark validation. | Update documents only: cross-link generator duplicate rate to Spark dedup validation. |
-| 9 | Implement Data Generator / Offline problems | Use generator configuration. | Document generator config. | 2 | Satisfied | `configs/generator/base.yaml`; `configs/scenarios/README.md`; `deliverables/01_data_generator.md`; `scripts/generate/run_generator.py`. | Config is clear. | No code action required; keep config path prominent in docs. |
-| 10 | Implement Data Generator / Offline problems | Store simulated data so Bronze can ingest later, for example MinIO/PostgreSQL. | Data characteristics and stored format. | 2 | Satisfied | `data/raw/.gitignore`; `deliverables/01_data_generator.md`; `scripts/lakehouse/land_bronze_batch.py`; `deliverables/04_lakehouse.md`; `evidence/04_lakehouse/bronze_landing_examples.json`. | Stored path and Bronze landing are documented. | Update documents only: add one rubric-facing sentence that `data/raw` and Kafka topic JSONL are Bronze inputs. |
-| 11 | Implement Data Generator / Streaming problems | Simulate burst. | Streaming burst/late/duplicate output summary. | 2 | Satisfied | `configs/generator/base.yaml`; `src/vina_bim_shop/generators/ops_signals.py`; `deliverables/01_data_generator.md`; `deliverables/11_solving_data_challenges.md`. | Burst behavior is present; proof is spread across generator and Flink docs. | Update documents only: include burst counts/rates in one generator evidence table. |
-| 12 | Implement Data Generator / Streaming problems | Simulate late arrivals. | Streaming late-arrival rate summary. | 2 | Satisfied | `configs/generator/base.yaml`; `src/vina_bim_shop/generators/lateness.py`; `evidence/01_data_generator/quality_report.md`; `deliverables/06_flink_streaming.md`. | Evidence exists. | Update documents only: cite late-arrival metric beside config setting. |
-| 13 | Implement Data Generator / Streaming problems | Simulate another streaming problem, for example 1.5% duplicate rate. | Streaming duplicate rate summary. | 2 | Satisfied | `configs/generator/base.yaml`; `src/vina_bim_shop/generators/duplicates.py`; `evidence/01_data_generator/quality_report.md`; `deliverables/11_solving_data_challenges.md`. | Evidence exists. | Update documents only: cite configured 1.5% duplicate rate and measured output rate together. |
-| 14 | Implement Data Generator / Streaming problems | Use generator configuration, including scale-like settings. | Document generator config. | 2 | Satisfied | `configs/generator/base.yaml`; `configs/scenarios/README.md`; `deliverables/01_data_generator.md`. | Config exists; row-specific scale values may not be quoted in a rubric table. | Update documents only: add scale profile values to the evidence summary. |
-| 15 | Processing Jobs / Spark offline | Baseline without optimization. | Explain each optimization step from baseline, Spark UI screenshots, and Airflow integration. | 2 | Partial | `deliverables/05_spark_batch.md`; `evidence/05_spark_batch/screenshots/spark_master_ui.png`; `evidence/05_spark_batch/screenshots/spark_history_server.png`; `infra/orchestration/airflow/dags/hourly_batch_lakehouse.py`. | Spark job and screenshots exist, but no explicit baseline run or before/after optimization narrative was found. | Add baseline-vs-optimized Spark run evidence and a short optimization log. |
-| 16 | Processing Jobs / Spark offline | Handle skew with explanation. | Explain skew issue, Spark UI symptoms, experiments, and improvement over baseline. | 2 | Partial | `deliverables/11_solving_data_challenges.md`; `src/vina_bim_shop/lakehouse/spark/sql.py`; `src/vina_bim_shop/lakehouse/spark/job.py`. | Docs explicitly say no Spark salting is implemented; current approach tolerates/preserves skew rather than proving an optimization. | Either document why skew is not optimized and accepted, or implement targeted salting/repartition experiment with Spark UI proof. |
-| 17 | Processing Jobs / Spark offline | Handle high cardinality with explanation. | Explanation and optimization proof. | 2 | Partial | Natural ID usage across generator/dbt/Spark; `deliverables/05_spark_batch.md`; `src/vina_bim_shop/lakehouse/spark/job.py`. | No dedicated high-cardinality mitigation or measured proof was found. | Add high-cardinality analysis and, if needed, repartition/bucketing-style experiment evidence. |
-| 18 | Processing Jobs / Spark offline | Handle schema evolution with explanation. | Explanation and proof. | 2 | Satisfied | `deliverables/05_spark_batch.md`; `deliverables/11_solving_data_challenges.md`; `src/vina_bim_shop/lakehouse/spark/job.py`; `src/vina_bim_shop/lakehouse/spark/validation.py`. | Current Spark logic preserves schema version and tolerates nullable drift fields. | Update documents only: add the exact schema-evolution handling path to the rubric proof table. |
-| 19 | Processing Jobs / Spark offline | Handle other offline data problem with explanation. | Explanation and proof. | 2 | Satisfied | `deliverables/11_solving_data_challenges.md`; `src/vina_bim_shop/lakehouse/spark/job.py`; `evidence/05_spark_batch/pyspark_validation_report.json`; `evidence/05_spark_batch/gx/validation_results.json`. | Duplicate and bad-record handling are implemented and validated. | Update documents only: summarize duplicate-before/after and quarantine checks in one place. |
-| 20 | Processing Jobs / Spark offline | Integrate Spark job into data pipelines. | Airflow pipeline integration proof. | 2 | Satisfied | `infra/orchestration/airflow/dags/hourly_batch_lakehouse.py`; `src/vina_bim_shop/orchestration/hourly_batch.py`; `evidence/08_airflow_gx/runs/hourly_batch_lakehouse/`; `deliverables/08_airflow_gx_orchestration.md`. | Integration exists; strict screenshot of stage ordering can be improved under Airflow rows. | Update documents only: explicitly name Spark task inside the Airflow pipeline diagram/screenshot caption. |
-| 21 | Processing Jobs / Flink streaming | Baseline without optimization. | Explain each optimization step from baseline and Flink UI screenshots. | 2 | Partial | `deliverables/06_flink_streaming.md`; `evidence/06_flink_streaming/screenshots/flink_jobs.png`; `evidence/06_flink_streaming/screenshots/flink_checkpoints.png`; `src/vina_bim_shop/flink/*`. | Flink UI screenshots and design exist, but no baseline-vs-optimized run narrative was found. | Add a Flink baseline/optimized comparison covering watermarks, lateness, checkpoints, and windowing. |
-| 22 | Processing Jobs / Flink streaming | Handle burst with explanation. | Explanation and proof. | 2 | Satisfied | `src/vina_bim_shop/flink/ops_job.py`; `src/vina_bim_shop/flink/alerts.py`; `deliverables/06_flink_streaming.md`; `deliverables/11_solving_data_challenges.md`. | Burst handling is implemented via ops alerts and realtime topics. | Update documents only: add an example burst event and output alert proof. |
-| 23 | Processing Jobs / Flink streaming | Handle late arrival with explanation. | Explanation and proof. | 2 | Satisfied | `src/vina_bim_shop/flink/runtime.py`; `src/vina_bim_shop/flink/commerce_job.py`; `src/vina_bim_shop/flink/corrections.py`; `deliverables/06_flink_streaming.md`. | Watermarks, allowed lateness, and correction records are documented. | Update documents only: embed the late-correction evidence path near the rubric row. |
-| 24 | Processing Jobs / Flink streaming | Handle other streaming problem with explanation. | Explanation and proof. | 2 | Satisfied | `src/vina_bim_shop/flink/metrics.py`; `src/vina_bim_shop/flink/verification/`; `deliverables/06_flink_streaming.md`; `evidence/06_flink_streaming/derived_topic_samples.json`. | Duplicate handling is implemented and tested. | Update documents only: show duplicate-count field from sample output. |
-| 25 | Processing Jobs / Flink streaming | Window processing. | Capture code showing Flink Window processing. | 2 | Satisfied | `src/vina_bim_shop/flink/commerce_job.py`; `deliverables/06_flink_streaming.md`; `deliverables/11_solving_data_challenges.md`. | Code uses `TumblingEventTimeWindows` and allowed lateness. | Update documents only: add a compact code excerpt/screenshot to the Flink deliverable. |
-| 26 | Data Storage | Optimize Lakehouse, for example compaction, z-order, or partitioning. | Capture code and analyze optimized versus unoptimized. | 2 | Partial | `deliverables/04_lakehouse.md`; `src/vina_bim_shop/lakehouse/spark/constants.py`; `src/vina_bim_shop/lakehouse/spark/sql.py`; `evidence/04_lakehouse/`. | Partitioning exists, but no compaction/z-order or optimized-vs-unoptimized storage analysis was found. | Add file-size/table-layout analysis and either implement compaction or document partitioning impact. |
-| 27 | Data Storage | Optimize Datawarehouse, for example indexing. | Capture code and analysis. | 2 | Partial | Pinot table configs in `infra/pinot/tables/*.json`; `deliverables/07_pinot_serving.md`; `deliverables/10_duckdb_dbt_local_analytics.md`. | Pinot range indexes exist, but warehouse indexing/optimization proof is not framed against the rubric. | Document Pinot indexing or DuckDB/dbt serving optimization with before/after query evidence. |
-| 28 | Data Pipeline Orchestration / DP1 | Raw to Bronze pipeline ingest stage. | Airflow UI screenshot showing stages and order. | 2 | Partial | `infra/orchestration/airflow/dags/kafka_topic_bootstrap.py`; `scripts/lakehouse/land_bronze_batch.py`; `evidence/08_airflow_gx/runs/kafka_topic_bootstrap/`; `evidence/final_integration/ui_screenshots/10_airflow_ui.png`. | Raw-to-Bronze pieces exist, but DP1 is not clearly presented as one Airflow pipeline with ingest stage screenshot. | Add or document a DP1 Airflow DAG/stage view for raw-to-Bronze ingest. |
-| 29 | Data Pipeline Orchestration / DP1 | Raw to Bronze pipeline validate stage. | Airflow UI screenshot showing stages and order. | 2 | Partial | `evidence/08_airflow_gx/runs/hourly_batch_lakehouse/*/quality/bronze_raw_minio.json`; `evidence/08_airflow_gx/gx_data_docs/reports/bronze_raw_minio.html`; `deliverables/08_airflow_gx_orchestration.md`. | Bronze validation exists, but it is not clearly tied to a DP1 validate stage in Airflow UI proof. | Add DP1 validate task/screenshot and link Bronze GX report. |
-| 30 | Data Pipeline Orchestration / DP2 | Bronze to Silver/Gold ingest stage. | Airflow UI screenshot showing stages and order. | 2 | Partial | `infra/orchestration/airflow/dags/hourly_batch_lakehouse.py`; `src/vina_bim_shop/orchestration/hourly_batch.py`; `evidence/08_airflow_gx/runs/hourly_batch_lakehouse/`. | DP2 transformation exists, but exact Airflow stage-order screenshot should be captured and embedded. | Capture Airflow graph/grid view for `hourly_batch_lakehouse` and document task order. |
-| 31 | Data Pipeline Orchestration / DP2 | Bronze to Silver/Gold validate stage. | Airflow UI screenshot showing stages and order. | 2 | Partial | `evidence/08_airflow_gx/runs/hourly_batch_lakehouse/*/quality/gold_trino_contract.json`; `evidence/05_spark_batch/gx/validation_results.json`; `evidence/08_airflow_gx/gx_data_docs/`. | Validation exists, but strict rubric wants UI stage proof. | Capture and document DP2 validation task in Airflow plus GX/Trino contract output. |
-| 32 | Data Pipeline Orchestration / DP3 | Compute offline feature table ingest stage. | Airflow UI screenshot showing stages and order. | 2 | Partial | Gold feature dbt models in `infra/analytics/dbt/models/gold/feat_*.sql`; Spark Gold build; `infra/orchestration/airflow/dags/hourly_batch_lakehouse.py`. | Feature tables are computed in the broader batch path, but DP3 is not isolated/named as its own ingest stage. | Add a DP3 task group or documentation slice for offline feature-table computation. |
-| 33 | Data Pipeline Orchestration / DP3 | Compute offline feature table validate stage. | Airflow UI screenshot showing stages and order. | 2 | Partial | `infra/analytics/dbt/models/gold/_features.yml`; `evidence/02_schema_design/dbt_test_results.csv`; `evidence/05_spark_batch/dbt_parity_report.md`. | Feature validations exist, but no DP3-specific Airflow validate stage screenshot was found. | Add DP3 feature-table validation task proof and link dbt/GX evidence. |
-| 34 | Data Governance / DP1 | DP1 lineage between pipeline and related tables. | DataHub UI screenshot showing lineage, validation, and data contract. | 2 | Partial | `deliverables/09_datahub_governance.md`; `src/vina_bim_shop/datahub_lineage/*`; `evidence/final_integration/datahub_lineage.md`; `evidence/final_integration/ui_screenshots/12_datahub_ui.png`. | Backend/GMS evidence is strong, but local UI graph capture is documented as limited. | Capture clearer DataHub UI lineage for DP1 or add screenshots from entity pages plus GraphQL proof. |
-| 35 | Data Governance / DP1 | DP1 data validation and data contract. | DataHub UI screenshot showing validation and contract. | 2 | Partial | Kafka schemas in `infra/kafka/schemas/`; GX reports; `src/vina_bim_shop/datahub_lineage/gx_assertions.py`; `evidence/09_datahub_governance/`. | Contracts/assertions exist, but DP1 UI contract proof is not explicit. | Add DP1 contract/assertion screenshots or a DataHub proof section with exact entities. |
-| 36 | Data Governance / DP2 | DP2 lineage between pipeline and related tables. | DataHub UI screenshot showing lineage, validation, and data contract. | 2 | Partial | `src/vina_bim_shop/datahub_lineage/spark_lineage.py`; `deliverables/09_datahub_governance.md`; `evidence/final_integration/datahub_lineage.md`. | Spark lineage emission exists, but UI lineage screenshot proof is weak. | Capture DP2 DataHub lineage path from Bronze/Silver/Gold entities. |
-| 37 | Data Governance / DP2 | DP2 data validation and data contract. | DataHub UI screenshot showing validation and contract. | 2 | Partial | `src/vina_bim_shop/datahub_lineage/gx_assertions.py`; `evidence/08_airflow_gx/gx_data_docs/`; `infra/analytics/dbt/models/*/*.yml`. | GX/dbt contracts exist, but DataHub UI assertion/contract proof is not explicit. | Add DataHub UI proof for Gold contracts and GX assertions. |
-| 38 | Data Governance / DP3 | DP3 lineage between pipeline and related feature tables. | DataHub UI screenshot showing lineage, validation, and data contract. | 2 | Partial | `src/vina_bim_shop/datahub_lineage/spark_lineage.py`; `infra/analytics/dbt/models/gold/feat_*.sql`; `infra/analytics/dbt/models/gold/_features.yml`. | Feature-table lineage appears represented in backend emitters, but DP3 UI proof is not explicit. | Capture feature-table lineage screenshots for `feat_customer_90d`, `feat_stream_60m`, and/or `feat_customer_unified`. |
-| 39 | Data Governance / DP3 | DP3 data validation and data contract. | DataHub UI screenshot showing validation and contract. | 2 | Partial | `infra/analytics/dbt/models/gold/_features.yml`; `evidence/02_schema_design/dbt_test_results.csv`; GX/DataHub assertion emitters. | Feature contracts/tests exist, but DataHub UI proof is missing or unclear. | Add DataHub proof for feature-table contracts/tests. |
-| 40 | Documentation / Schema design | Visualize tables on all zones. | DBeaver screenshot. | 2 | Partial | `deliverables/02_schema_design.md`; `architecture/diagrams/erd/physical_gold_model.png`; `architecture/diagrams/erd/gold_layer_ERD.dbml`; `evidence/02_schema_design/screenshots/schema_design.png`. | Schema diagrams exist, but DBeaver-specific screenshot and all-zone visualization proof are not clear. | Add DBeaver screenshots or explicitly document the generated ERD as the replacement evidence. |
-| 41 | Documentation / Schema design | Dim table with SCD2 columns: `valid_from_ts`, `valid_to_ts`, `is_current`. | Schema proof. | 1 | Satisfied | `infra/analytics/dbt/models/gold/dim_customer.sql`; `dim_product.sql`; `dim_seller.sql`; `infra/analytics/dbt/models/gold/_dimensions.yml`. | SCD2-compatible columns exist; current implementation appears current-row oriented rather than full historical SCD2 versioning. | Update documents only: state whether current-row SCD2-compatible columns are intentional. |
-| 42 | Documentation / Schema design | Feature tables with `event_timestamp` and `created` columns. | Schema proof. | 1 | Partial | `infra/analytics/dbt/models/gold/feat_customer_90d.sql`; `feat_stream_60m.sql`; `feat_customer_unified.sql`; `infra/analytics/dbt/models/gold/_features.yml`. | Feature tables have `event_timestamp` and `created_ts`, not exact column name `created`. | Rename/alias `created_ts` to `created`, or document that `created_ts` is the project standard equivalent if allowed. |
-| 43 | Documentation / Schema design | Relationship between dim and fact tables. | DBeaver or similar export. | 2 | Satisfied | `infra/analytics/dbt/models/gold/_facts.yml`; `infra/analytics/dbt/models/gold/_dimensions.yml`; `architecture/diagrams/erd/physical_gold_model.png`; `deliverables/02_schema_design.md`. | Relationships are modeled and documented. | Update documents only: embed the relationship image near the rubric requirement. |
-| 44 | Documentation / Schema design | Naming convention: Gold uses `dim_`, `fact_`, `obt_`, `feat_`, `raw` or similar; Bronze/Silver use `raw_`, `stg_`. | Naming proof. | 2 | Satisfied | `infra/analytics/dbt/models/bronze/raw_*.sql`; `infra/analytics/dbt/models/silver/stg_*.sql`; `infra/analytics/dbt/models/gold/dim_*.sql`, `fact_*.sql`, `obt_*.sql`, `feat_*.sql`. | Naming convention is consistently applied. | No code action required; add a short naming-convention table to docs if not already prominent. |
-| 45 | Novel ideas | Idea 1. | Document idea and proof it worked. | 5 | Partial | Potential candidates: DataHub GraphQL/GMS proof, GX assertions, DuckDB/dbt local analytics, Pinot serving, Flink clean-room verification. | Novel elements exist, but no explicit `Idea 1` rubric writeup/proof was found. | Create a Novel Ideas document and choose one implemented idea with proof paths. |
-| 46 | Novel ideas | Idea 2. | Document idea and proof it worked. | 5 | Partial | Potential candidates: DuckDB/dbt parity oracle/executive mart, Pinot realtime serving, or Flink clean-room verification. | Novel elements exist, but no explicit `Idea 2` rubric writeup/proof was found. | Add second Novel Ideas section with evidence and screenshots/API output. |
-
-## Detailed Findings
-
-### Documentation and Architecture
-
-The README already does much of what the rubric asks: it introduces the e-commerce business domain, describes the staged platform, links deliverables and evidence, shows a repo structure, and references the detailed architecture diagram. The strict gap is not the absence of docs, but proof packaging. The rubric asks for reviewer-friendly docs under `docs/` and explicit diagram conventions. This repo uses `deliverables/`, `architecture/`, and `evidence/` instead. That can be acceptable for engineering clarity, but a coursework grader reading the rubric literally may mark it down.
-
-Recommended follow-up: add a short rubric-facing documentation index or `docs/README.md` that links the existing deliverables without moving large files. Also add a short README checklist covering diagram units, arrows, labels, and docstring/file-header policy.
-
-### Docker and Compose
-
-Docker Compose coverage is clear and broad. The root compose entrypoint plus split profile files cover ingestion, lakehouse, batch, streaming, serving, orchestration, and governance. The missing strict-rubric item is optimization proof: no before/after image size table and no clear multistage Dockerfile optimization was found for the main service images.
-
-Recommended follow-up: pick one or two high-impact images, especially Airflow/Spark/Flink, capture current image sizes, apply a scoped optimization, recapture sizes, and document the result.
-
-### Data Generator
-
-The generator implementation is one of the strongest areas. It covers skew, schema evolution, offline duplicates, streaming duplicates, late arrivals, traffic bursts, bad records, quality reports, and configurable scale/profile settings. The main strict gap is explicit high-cardinality proof in the form the rubric names, such as `approx_count_distinct` by ID.
-
-Recommended follow-up: add a generated evidence table with approximate distinct counts for IDs such as customer, product, order, event, seller, and shipment. Link it from the generator deliverable.
-
-### Spark Batch Processing
-
-Spark handles the important correctness problems: schema drift, duplicate records, Bronze/Silver/Gold transforms, validation reports, GX/dbt parity, and Airflow integration. The gap is optimization evidence. The repo documents that no Spark salting is implemented and treats skew as a business feature to preserve rather than an optimization target. That is a reasonable design, but the rubric asks for baseline issues, Spark UI observations, experiments, and improvement over baseline.
-
-Recommended follow-up: add a small baseline-vs-optimized Spark experiment. If no code change is desired, document the current no-salting decision clearly and show Spark UI evidence that the workload is acceptable.
-
-### Flink Streaming Processing
-
-Flink is also strong on implementation: event-time windows, watermarks, allowed lateness, duplicate counting, late correction records, ops burst alerts, checkpoint evidence, and clean-room verification are all present. The strict missing proof is similar to Spark: no baseline-vs-optimized comparison narrative with Flink UI evidence.
-
-Recommended follow-up: capture baseline and optimized Flink runs, even if the "optimization" is enabling event-time/watermark/checkpoint settings, and summarize job behavior from the Flink UI screenshots.
-
-### Storage Optimization
-
-The lakehouse uses Iceberg/MinIO/Trino patterns and partitioning, and Pinot table configs include indexing-style settings for realtime serving. The strict rubric wants storage optimization analysis against an unoptimized state. That specific before/after analysis is not currently packaged.
-
-Recommended follow-up: add a storage optimization note showing partitioning impact, file counts/sizes, query behavior, and any compaction decision. For the warehouse row, frame Pinot range indexes or DuckDB/dbt serving behavior as the datawarehouse optimization proof.
-
-### Airflow, GX, and DataHub
-
-Airflow DAGs and GX validation evidence exist, but the rubric splits orchestration into DP1, DP2, and DP3 with ingest and validate stages. The current repo has the pieces, yet they are not always shown as separate rubric-labeled Airflow pipelines/stages. DataHub evidence is strong through GMS/GraphQL and committed metadata counts, but the UI screenshot is known to be limited.
-
-Recommended follow-up: create a small rubric-facing orchestration/governance page with six DP rows, each showing the exact DAG/task, validation artifact, DataHub entity, and screenshot/API proof.
-
-### Schema Design
-
-The dbt model structure is strong. Bronze, Silver, and Gold naming conventions are consistent; dim/fact relationships are represented; SCD2-compatible columns exist on key dimensions; and feature tables include `event_timestamp`. The strict gaps are DBeaver-specific screenshots and the exact feature-table column name `created` versus the current project standard `created_ts`.
-
-Recommended follow-up: either alias feature tables with a `created` column or document `created_ts` as the intended equivalent. Add DBeaver screenshots if the grader expects that tool specifically.
-
-### Novel Ideas
-
-The repo has credible novel-idea candidates: DataHub governance with GraphQL proof, DuckDB/dbt parity and executive mart, Pinot realtime serving, and Flink clean-room verification. The issue is packaging: the rubric asks for Idea 1 and Idea 2 with proof, and no explicit Novel Ideas document was found.
-
-Recommended follow-up: create one concise document with exactly two ideas, each with problem, technique, implementation paths, and proof it worked.
-
-## Ordered To-Do List
-
-| Row | Action plan | Effort | Value added | Notes |
-|---:|---|---|---|---|
-| 2 | Update documents: add a rubric-facing README checklist for domain, repo structure, diagram conventions, and docstring/file-header policy. | S | High | Avoids losing points on a mostly complete documentation row. |
-| 3 | Capture Docker image sizes before/after optimization and document the optimization method. | S | High | Needed even though Compose usage is already clear. |
-| 4 | Optimize at least one major Dockerfile, preferably Airflow/Spark/Flink, and document image-size impact. | M | High | This is the only row marked Missing. |
-| 5 | Update documents: embed city/category skew percentages from existing generator evidence. | XS | Medium | Implementation appears satisfied. |
-| 6 | Add approx-distinct/cardinality evidence for key IDs and link it from generator docs. | S | High | Directly addresses a named proof requirement. |
-| 7 | Update documents: include schema-version/null summary in the generator evidence section. | XS | Medium | Implementation appears satisfied. |
-| 8 | Update documents: show offline duplicate rate and link to downstream dedup proof. | XS | Medium | Implementation appears satisfied. |
-| 9 | Update documents: keep `configs/generator/base.yaml` and scale profile usage prominent. | XS | Low | No code action needed. |
-| 10 | Update documents: state exactly how stored raw outputs feed Bronze. | XS | Medium | Use existing `data/raw` and Bronze landing evidence. |
-| 11 | Update documents: include burst-rate/count evidence beside generator config. | XS | Medium | Existing burst generation is spread across docs. |
-| 12 | Update documents: cite late-arrival config and measured rate together. | XS | Medium | Existing evidence is enough with clearer packaging. |
-| 13 | Update documents: cite streaming duplicate config and measured output rate together. | XS | Medium | Existing evidence is enough with clearer packaging. |
-| 14 | Update documents: quote the generator scale/profile values used for coursework evidence. | XS | Low | Helps reviewers see config-driven generation. |
-| 15 | Add Spark baseline-vs-optimized run notes with Spark UI screenshots and Airflow task link. | M | High | Major strict-rubric gap. |
-| 16 | Either implement/test skew optimization or document the intentional no-salting decision with Spark UI evidence. | M | High | Current docs say no salting is implemented. |
-| 17 | Add high-cardinality handling analysis and optional repartition/bucketing experiment proof. | M | High | Pair with row 6 evidence if possible. |
-| 18 | Update documents: point schema-evolution handling to exact Spark code and validation evidence. | XS | Medium | Implementation appears satisfied. |
-| 19 | Update documents: summarize duplicate/quarantine handling and validation result. | XS | Medium | Implementation appears satisfied. |
-| 20 | Update documents: name Spark task(s) inside Airflow pipeline proof. | XS | Medium | Integration exists. |
-| 21 | Add Flink baseline-vs-optimized run notes with Flink UI screenshots. | M | High | Major strict-rubric gap. |
-| 22 | Update documents: add sample burst input and output alert proof. | XS | Medium | Implementation appears satisfied. |
-| 23 | Update documents: add late-event correction sample and link to code path. | XS | Medium | Implementation appears satisfied. |
-| 24 | Update documents: show duplicate-count sample output from Flink metrics. | XS | Medium | Implementation appears satisfied. |
-| 25 | Update documents: add code excerpt/screenshot for `TumblingEventTimeWindows`. | XS | Medium | Implementation appears satisfied. |
-| 26 | Add lakehouse optimization analysis with partitioning/file-size/query evidence; consider compaction if needed. | M | High | Can be documentation-first if partitioning is the chosen optimization. |
-| 27 | Document datawarehouse optimization using Pinot indexes or DuckDB/dbt query evidence. | S | Medium | Existing Pinot configs are likely enough once framed. |
-| 28 | Add DP1 Airflow ingest-stage screenshot or document exact DAG/task group for raw-to-Bronze. | S | High | Strict screenshot/stage proof gap. |
-| 29 | Add DP1 validation-stage screenshot and link Bronze GX report. | S | High | Strict screenshot/stage proof gap. |
-| 30 | Capture DP2 Airflow graph/grid screenshot for Bronze-to-Silver/Gold stage order. | S | High | Current batch DAG evidence exists but should be framed. |
-| 31 | Capture DP2 validation-stage screenshot and link GX/Trino contract output. | S | High | Current validations exist. |
-| 32 | Document or add DP3 feature-table compute stage in Airflow. | S | High | Feature tables exist inside broader batch flow. |
-| 33 | Document or add DP3 feature-table validation stage and link dbt tests/contracts. | S | High | Feature validations exist but are not DP3-framed. |
-| 34 | Capture DP1 DataHub lineage UI or equivalent entity-page screenshots plus GraphQL proof. | M | High | Backend evidence is strong; UI proof is weak. |
-| 35 | Capture DP1 DataHub contract/assertion proof for schemas and Bronze validations. | M | High | Pair with row 34. |
-| 36 | Capture DP2 DataHub lineage UI for Bronze/Silver/Gold Spark path. | M | High | Backend lineage emitters exist. |
-| 37 | Capture DP2 DataHub validation/contract proof for Gold contracts and GX assertions. | M | High | Pair with row 36. |
-| 38 | Capture DP3 DataHub lineage UI for feature tables. | M | High | Use `feat_customer_90d`, `feat_stream_60m`, or `feat_customer_unified`. |
-| 39 | Capture DP3 DataHub validation/contract proof for feature models. | M | High | Pair with row 38. |
-| 40 | Add DBeaver screenshots for all-zone schema visualization or document the generated ERD replacement. | S | High | Rubric names DBeaver specifically. |
-| 41 | Update documents: clarify SCD2-compatible columns versus full historical SCD2 behavior. | XS | Medium | Current columns satisfy the named field requirement. |
-| 42 | Add `created` alias to feature tables or update rubric note explaining `created_ts` equivalence. | S | Medium | Code change is small if exact column name is required. |
-| 43 | Update documents: embed dim/fact relationship diagram near schema requirement. | XS | Medium | Relationships are already modeled. |
-| 44 | Update documents: add a compact naming-convention proof table. | XS | Low | Naming already matches. |
-| 45 | Create Novel Idea 1 writeup with problem, implementation, and proof. | S | High | Recommended candidate: DataHub governance plus GraphQL/GX assertion proof. |
-| 46 | Create Novel Idea 2 writeup with problem, implementation, and proof. | S | High | Recommended candidate: DuckDB/dbt parity oracle or Flink clean-room verification. |
-
+If any command fails or the summary includes a Partial/Missing row, retain that status and state the exact manifest failure here rather than carrying forward this audit result.

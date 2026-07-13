@@ -1,3 +1,5 @@
+"""Apply the deployable Pinot schema and table assets and record their status."""
+
 from __future__ import annotations
 
 import json
@@ -98,6 +100,13 @@ def apply_assets(
     evidence_root: str | Path = DEFAULT_EVIDENCE_ROOT,
     request: Callable[[str, str], Any] | None = None,
 ) -> dict[str, Any]:
+    """Create or update Pinot assets and return the captured bootstrap manifest.
+
+    Inputs are the controller endpoint, evidence destination, and optional request
+    adapter. HTTP and asset-validation failures propagate instead of producing a
+    successful bootstrap record.
+    """
+
     request_fn = request or _request_factory(controller_url=controller_url)
     evidence_path = Path(evidence_root)
     evidence_path.mkdir(parents=True, exist_ok=True)
