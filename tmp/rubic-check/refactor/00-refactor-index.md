@@ -127,7 +127,7 @@ Each workbook row appears once in this table. Topic `08` is an explicit runtime 
 - [ ] `04-flink-baseline-and-streaming-proof.md` meets its Definition of Done.
 - [ ] `05-storage-optimization.md` meets its Definition of Done.
 - [ ] `06-schema-erd-and-feature-contracts.md` meets its Definition of Done.
-- [ ] `07-airflow-dp-stage-orchestration.md` meets its Definition of Done.
+- [x] `07-airflow-dp-stage-orchestration.md` meets its Definition of Done.
 - [ ] `08-datahub-runtime-recovery.md` meets its Definition of Done.
 - [ ] `09-datahub-lineage-and-contract-proof.md` meets its Definition of Done.
 - [ ] `10-novel-ideas-evidence.md` meets its Definition of Done.

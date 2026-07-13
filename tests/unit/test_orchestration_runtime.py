@@ -235,6 +235,8 @@ def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, t
         captured_reports.extend(reports)
 
     monkeypatch.setattr(datahub_ingestion, "RUNS_ROOT", tmp_path / "runs")
+    run_root = tmp_path / "runs" / "datahub_ingestion" / "manual__2026"
+    monkeypatch.setattr(datahub_ingestion, "build_run_root", lambda _dag_id, _run_id: run_root)
     monkeypatch.setattr(datahub_ingestion, "_run_command", lambda command, cwd=None: "ok")
     monkeypatch.setattr(datahub_ingestion, "_run_custom_lineage_emission", lambda: {"spark": "ok", "flink": "ok"})
     monkeypatch.setattr(datahub_ingestion, "_render_docs", fake_render_docs)
@@ -243,6 +245,7 @@ def test_run_datahub_ingestion_preserves_existing_quality_reports(monkeypatch, t
 
     rendered_suites = {report.suite_name for report in captured_reports}
     assert rendered_suites == {"bronze_raw_minio", "datahub_ingestion"}
+    assert (run_root / "run_manifest.json").is_file()
 
 
 def test_legacy_hourly_wrapper_composes_the_six_coursework_stages(monkeypatch, tmp_path) -> None:
