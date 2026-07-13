@@ -1,8 +1,8 @@
-# Vina Bim Shop Data Platform Coursework
+# Vina Bim Shop Data Platform
 
-`vina-bim-shop` is a staged, runnable local data engineering platform for a Shopee-inspired Vietnamese marketplace. It demonstrates how a modern e-commerce platform can support both realtime operational analytics and batch-reconciled historical analytics through a Lambda-style architecture.
+`vina-bim-shop` is a staged, runnable local data platform for a Shopee-inspired Vietnamese marketplace. It demonstrates how a modern e-commerce system can support both realtime operational analytics and batch-reconciled historical analytics through a Lambda-style architecture.
 
-The platform is runnable locally, but it should be operated through staged Docker Compose profiles. A broad full-stack startup attempt can cause Docker instability and API inspection failures on constrained machines, so this evidence pass treats staged startup as the supported workflow rather than relying on a monolithic `all` startup.
+The project brings together data generation, event ingestion, lakehouse storage, batch and streaming processing, serving, orchestration, quality, and governance in one locally runnable platform.
 
 ---
 
@@ -12,8 +12,7 @@ The platform is runnable locally, but it should be operated through staged Docke
 - [Tech Stack](#tech-stack)
 - [Introduction](#introduction)
 - [Problem Definition](#problem-definition)
-- [Coursework Status](#coursework-status)
-- [Rubric Evidence and Navigation](#rubric-evidence-and-navigation)
+- [Project Status](#project-status)
 - [Platform Implementation Overview](#platform-implementation-overview)
 - [Repository Structure](#repository-structure)
 - [Prerequisites](#prerequisites)
@@ -21,34 +20,7 @@ The platform is runnable locally, but it should be operated through staged Docke
 - [Configuration](#configuration)
 - [Known Limits](#known-limits)
 - [Data](#data)
-
----
-
-## Rubric Evidence and Navigation
-
-The reviewer-facing rubric route is [this proof index](deliverables/13_mini_coursework_rubric_evidence.md). Its machine-verifiable source of truth is the [Mini-Coursework manifest](evidence/final_integration/mini_coursework_rubric_manifest.json), verified with the documented `--verify` command. Current manifest summary: **45 Satisfied · 0 Partial · 0 Missing**.
-
-Row 2 navigation:
-
-- [Business domain and platform purpose](#introduction)
-- [Reviewer-facing deployment diagram](architecture/diagrams/detailed-architecture.svg) and [diagram conventions](architecture/diagrams/README.md)
-- [Repository map](#repository-structure) and [staged deployment order](#3-start-the-distributed-platform-in-stages)
-- [Declared public API coverage](evidence/final_integration/public_documentation_coverage.json)
-- [Row-ordered implementation and evidence proof](deliverables/13_mini_coursework_rubric_evidence.md)
-
-### Public API documentation
-
-The deployable API surface is deliberately limited to the following entry points. The AST report above requires every listed module and symbol to carry a nonempty docstring; internal helpers remain internal.
-
-| Module | Declared symbols |
-| --- | --- |
-| [`generators/runner.py`](src/vina_bim_shop/generators/runner.py) | `GenerationResult`, `run_generation` |
-| [`lakehouse/spark/runner.py`](src/vina_bim_shop/lakehouse/spark/runner.py) | `run_batch_pipeline` |
-| [`flink/runtime.py`](src/vina_bim_shop/flink/runtime.py) | `RuntimeSettings`, `load_runtime_settings` |
-| [`orchestration/specs.py`](src/vina_bim_shop/orchestration/specs.py) | `DagSpec`, `dag_specs_by_id` |
-| [`datahub_lineage/emitter.py`](src/vina_bim_shop/datahub_lineage/emitter.py) | `DataHubLineageEmitter` |
-| [`pinot/bootstrap.py`](src/vina_bim_shop/pinot/bootstrap.py) | `apply_assets` |
-| [`quality/policies.py`](src/vina_bim_shop/quality/policies.py) | `gate_outcome_for_layer` |
+- [Rubric Evidence and Navigation](#rubric-evidence-and-navigation)
 
 ---
 
@@ -86,14 +58,14 @@ Related diagrams:
 
 ## Introduction
 
-`vina-bim-shop` models the data platform needs of a Vietnamese e-commerce marketplace with customers, sellers, products, promotions, orders, payments, shipments, inventory, and user behavior events. The project is coursework-oriented, but it is intentionally built around realistic data engineering concerns: source contracts, replayable event logs, medallion lakehouse storage, quality gates, serving-layer truth policies, and evidence packaging.
+`vina-bim-shop` models the data platform needs of a Vietnamese e-commerce marketplace with customers, sellers, products, promotions, orders, payments, shipments, inventory, and user behavior events. It is intentionally built around realistic data engineering concerns: source contracts, replayable event logs, medallion lakehouse storage, quality gates, serving-layer truth policies, and auditable project outputs.
 
 The main design choice is a Lambda architecture because the platform needs two complementary analysis streams:
 
 - **Realtime analysis** for low-latency operational views such as traffic bursts, payment issues, live conversion, and alert candidates.
 - **Batch analysis** for reconciled executive KPIs, dimensional modeling, financial formulas, and repeatable historical reporting.
 
-Kafka, Flink, and Pinot provide the fresh but provisional speed path. MinIO, Spark, Iceberg, Hive Metastore, Trino, and DuckDB provide the reconciled batch path. Airflow, Great Expectations, and DataHub make the platform inspectable for coursework evidence.
+Kafka, Flink, and Pinot provide the fresh but provisional speed path. MinIO, Spark, Iceberg, Hive Metastore, Trino, and DuckDB provide the reconciled batch path. Airflow, Great Expectations, and DataHub make the platform inspectable and auditable.
 
 ---
 
@@ -121,18 +93,18 @@ The generator also injects intentional data errors and contract drift so the pla
 
 ---
 
-## Coursework Status
+## Project Status
 
-Sections 01 and 02 are fulfilled for the mini-coursework phase.
+Sections 01 and 02 are fulfilled for the mini-coursework phase. They are preserved as a historical project milestone, not as the overall identity of the platform.
 
-For the original Sections 01/02 submission boundary, Spark, Flink, Apache Pinot, and Trino are architectural target contracts, while dbt-DuckDB is the runnable local implementation. The broader repository now also includes the staged runnable platform implementation for ingestion, lakehouse, batch, streaming, serving, orchestration, and governance.
+For the original Sections 01/02 submission boundary, Spark, Flink, Apache Pinot, and Trino are architectural target contracts, while dbt-DuckDB is the runnable local implementation. The broader project now also includes the staged runnable platform implementation for ingestion, lakehouse, batch, streaming, serving, orchestration, and governance.
 
 | View | Meaning |
 | --- | --- |
 | `Runnable locally` | `dbt-DuckDB`, the final dataset package, and the documented evidence artifacts can be reproduced on one machine. |
 | `Architectural contract` | The staged Kafka, Spark, Flink, Pinot, Trino, Airflow, and DataHub stack documents the full target platform through service-level deliverables and evidence. |
 
-Mini-coursework artifacts and evidence:
+Historical Section 01/02 artifacts and evidence:
 
 - `uv run python scripts/qa/finalize_sections_01_02.py`
 - [Final raw dataset zip](evidence/final_dataset/vina_bim_shop_medium_raw.zip)
@@ -242,7 +214,7 @@ Key docs:
 
 ### Local Analytics
 
-DuckDB provides the portable local analytics layer in two forms: the dbt-DuckDB parity oracle rebuilt from generated raw data, and the Executive Mart exported from Trino Gold. These files support regression checks, offline inspection, and coursework evidence without requiring the full distributed stack to stay online.
+DuckDB provides the portable local analytics layer in two forms: the dbt-DuckDB parity oracle rebuilt from generated raw data, and the Executive Mart exported from Trino Gold. These files support regression checks and offline inspection without requiring the full distributed stack to stay online.
 
 ![Local analytics overview](architecture/diagrams/mermaid/07-local-analytics.png)
 
@@ -280,12 +252,12 @@ Key docs:
 ## Repository Structure
 
 ```text
-coursework/
+vina-bim-shop/
 |-- architecture/             # Domain contracts, PlantUML, DBML, and Excalidraw architecture assets
 |-- compose/                  # Domain Compose files included by the root compatibility entry point
 |-- configs/                  # Generator, scenario, and pipeline configuration
 |-- data/                     # Gitignored local raw and Gold outputs, with folder-intent .gitignore files
-|-- deliverables/             # Official coursework writeups and service-level documentation
+|-- deliverables/             # Project writeups and service-level documentation
 |-- evidence/                 # Committed evidence packages, screenshots, manifests, reports, and query outputs
 |-- infra/                    # Docker images, service config, Airflow DAGs, and dbt project assets
 |-- scripts/                  # CLI entrypoints for generation, bootstrap, smoke tests, evidence, reset, and exports
@@ -310,7 +282,7 @@ the official capture scripts.
 | Docker Desktop / Docker Compose | Docker 24+ | Run staged service profiles. |
 | Python | 3.12+ | Run generator, scripts, tests, dbt-DuckDB path. |
 | `uv` | Current stable | Install and run the Python environment. |
-| Git | Current stable | Clone and inspect the coursework repo. |
+| Git | Current stable | Clone and inspect the project repository. |
 | DBeaver or DuckDB CLI | Optional | Inspect local DuckDB evidence files. |
 | PlantUML / DBML tooling | Optional | Preview architecture and ERD files locally. |
 
@@ -320,7 +292,7 @@ The repo includes `.env.example` with local defaults. Copy it to `.env` if you w
 
 ## Installation & Setup
 
-This project is designed to demonstrate the platform end to end through staged local execution, with each subsystem being verifiable. It is not reliably optimized for a single frictionless full-stack-at-once startup on a constrained machine.
+This project is designed to demonstrate the platform end to end through staged local execution, with each subsystem being independently verifiable. Use the fast local path for core checks, or start the distributed profiles in the documented order.
 
 ### Common Commands
 
@@ -358,6 +330,8 @@ uv run pytest
 
 Start each stage in order. All services share the same Docker network.
 
+> **Runtime note:** The platform runs locally, but constrained machines should start Docker Compose profiles in stages. A broad full-stack startup can destabilize Docker and cause API inspection failures. The `all` profile is high-resource and best-effort; staged startup is the supported local workflow.
+
 ```powershell
 docker compose --profile ingestion up -d
 docker compose --profile lakehouse up -d
@@ -367,8 +341,6 @@ docker compose --profile ingestion --profile lakehouse --profile streaming --pro
 docker compose --profile orchestration up -d
 docker compose --profile ingestion --profile lakehouse --profile governance up -d
 ```
-
-The `all` profile exists for best-effort demos, but staged startup is the supported evidence workflow.
 
 ### 4. Generate final Section 01/02 package evidence
 
@@ -424,16 +396,28 @@ Local defaults are documented in [.env.example](.env.example). Most scripts work
 
 ## Known Limits
 
-- The platform is runnable locally, but only if you follow staged profile startup and accept some UI/runtime constraints.
-- A broad full-stack startup attempt is known to cause Docker instability and API inspection failures on constrained machines; staged profiles are the normal workflow for this evidence pass.
-- The full `all` profile is high-resource and best-effort, not the primary acceptance path.
-- dbt-DuckDB is a local compatibility path; Spark/Iceberg/Trino is canonical for reconciled truth in the full platform evidence.
-- The DuckDB Executive Mart is a Trino Gold snapshot export; regenerate it after each Spark Gold refresh.
-- Pinot is fresh and provisional; Trino-served Gold tables are the official KPI source.
+These are current runtime, data-truth, and scope boundaries to keep in mind when running or evaluating the platform.
+
+### Runtime and startup
+
+- Start Docker Compose profiles in stages and expect some UI or runtime constraints on local machines.
+- The `all` profile is high-resource and best-effort; it is not the primary local workflow.
+
+### Data and serving truth
+
+- dbt-DuckDB is a local compatibility path. In the full platform, Spark/Iceberg/Trino is the canonical source for reconciled truth.
+- The DuckDB Executive Mart is a Trino Gold snapshot export, not an independent source of truth. Regenerate it after each Spark Gold refresh.
+- Pinot serves fresh, provisional realtime data. Use Trino-served Gold tables as the official KPI source.
+
+### Operations and recovery
+
 - Airflow orchestrates batch and control-plane work; it does not supervise long-running Flink jobs in v1.
-- DataHub requires separate ingestion recipe runs after platform services are healthy.
-- DataHub recovery evidence includes indexed search and a rendered `vina_bim_shop.fact_order` lineage page after a frontend restart.
-- Observability hardening, production security, CI/CD, and Section 03 drift scenarios are outside the current evidence boundary.
+- DataHub requires separate ingestion recipe runs after the platform services are healthy.
+- DataHub recovery verification currently covers indexed search and a rendered `vina_bim_shop.fact_order` lineage page after a frontend restart.
+
+### Scope boundaries
+
+- Observability hardening, production security, CI/CD, and Section 03 drift scenarios are outside the current project scope.
 
 ---
 
@@ -462,3 +446,33 @@ Runtime service profiles:
 | `orchestration` | Airflow webserver, scheduler, init, GX Data Docs |
 | `governance` | DataHub GMS, frontend, actions, Elasticsearch |
 | `all` | Best-effort startup of all profiles; staged startup remains the supported workflow |
+
+---
+
+## Rubric Evidence and Navigation
+
+This section is optional and intended for reviewers or maintainers who need to trace the project to its generated evidence. It is not part of the normal runtime setup.
+
+The central proof index is [the implementation and evidence index](deliverables/13_mini_coursework_rubric_evidence.md). Its machine-verifiable source of truth is the [Mini-Coursework manifest](evidence/final_integration/mini_coursework_rubric_manifest.json), verified with the documented `--verify` command. Current verification summary: **45 Satisfied · 0 Partial · 0 Missing**.
+
+Quick links:
+
+- [Business domain and platform purpose](#introduction)
+- [Reviewer-facing deployment diagram](architecture/diagrams/detailed-architecture.svg) and [diagram conventions](architecture/diagrams/README.md)
+- [Repository map](#repository-structure) and [staged deployment order](#3-start-the-distributed-platform-in-stages)
+- [Declared public API coverage](evidence/final_integration/public_documentation_coverage.json)
+- [Implementation and evidence index](deliverables/13_mini_coursework_rubric_evidence.md)
+
+### Public API documentation
+
+The project exposes a deliberately small public API surface. The coverage report lists the supported modules and symbols below; internal helpers remain internal. Every listed module and symbol must have a nonempty docstring.
+
+| Module | Declared symbols |
+| --- | --- |
+| [`generators/runner.py`](src/vina_bim_shop/generators/runner.py) | `GenerationResult`, `run_generation` |
+| [`lakehouse/spark/runner.py`](src/vina_bim_shop/lakehouse/spark/runner.py) | `run_batch_pipeline` |
+| [`flink/runtime.py`](src/vina_bim_shop/flink/runtime.py) | `RuntimeSettings`, `load_runtime_settings` |
+| [`orchestration/specs.py`](src/vina_bim_shop/orchestration/specs.py) | `DagSpec`, `dag_specs_by_id` |
+| [`datahub_lineage/emitter.py`](src/vina_bim_shop/datahub_lineage/emitter.py) | `DataHubLineageEmitter` |
+| [`pinot/bootstrap.py`](src/vina_bim_shop/pinot/bootstrap.py) | `apply_assets` |
+| [`quality/policies.py`](src/vina_bim_shop/quality/policies.py) | `gate_outcome_for_layer` |
