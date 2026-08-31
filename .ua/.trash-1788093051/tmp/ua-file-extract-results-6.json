@@ -1,0 +1,1025 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 8,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 8,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/vina_bim_shop/kafka/bootstrap.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 43,
+      "nonEmptyLines": 36,
+      "functions": [
+        {
+          "name": "bootstrap_topics",
+          "startLine": 13,
+          "endLine": 43,
+          "params": [
+            "runner",
+            "bootstrap_server",
+            "topics_file"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "bootstrap_topics",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "bootstrap_topics",
+          "callee": "load_topic_config",
+          "lineNumber": 19
+        },
+        {
+          "caller": "bootstrap_topics",
+          "callee": "load_topic_config",
+          "lineNumber": 19
+        },
+        {
+          "caller": "bootstrap_topics",
+          "callee": "topics.items",
+          "lineNumber": 22
+        },
+        {
+          "caller": "bootstrap_topics",
+          "callee": "str",
+          "lineNumber": 37
+        },
+        {
+          "caller": "bootstrap_topics",
+          "callee": "str",
+          "lineNumber": 39
+        },
+        {
+          "caller": "bootstrap_topics",
+          "callee": "runner",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/bronze_sink.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 70,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "_resolve_template_path",
+          "startLine": 15,
+          "endLine": 29,
+          "params": [
+            "template_path"
+          ]
+        },
+        {
+          "name": "register_bronze_sink",
+          "startLine": 32,
+          "endLine": 70,
+          "params": [
+            "connect_url",
+            "template_path",
+            "connector_name",
+            "bronze_bucket",
+            "minio_endpoint",
+            "minio_region",
+            "minio_access_key",
+            "minio_secret_key",
+            "post",
+            "put"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_resolve_template_path",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "register_bronze_sink",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_resolve_template_path",
+          "callee": "Path",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_resolve_template_path",
+          "callee": "candidate.is_file",
+          "lineNumber": 17
+        },
+        {
+          "caller": "_resolve_template_path",
+          "callee": "parts.index",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_resolve_template_path",
+          "callee": "Path",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_resolve_template_path",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_resolve_template_path",
+          "callee": "Path",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_resolve_template_path",
+          "callee": "fallback.is_file",
+          "lineNumber": 26
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "json.loads",
+          "lineNumber": 45
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "_resolve_template_path(template_path).read_text",
+          "lineNumber": 45
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "_resolve_template_path",
+          "lineNumber": 45
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "payload.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "list",
+          "lineNumber": 56
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "config.items",
+          "lineNumber": 56
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "isinstance",
+          "lineNumber": 57
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "replacements.items",
+          "lineNumber": 58
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "value.replace",
+          "lineNumber": 59
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "post",
+          "lineNumber": 62
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "connect_url.rstrip",
+          "lineNumber": 62
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "getattr",
+          "lineNumber": 63
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "put",
+          "lineNumber": 64
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "connect_url.rstrip",
+          "lineNumber": 65
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "hasattr",
+          "lineNumber": 68
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "response.raise_for_status",
+          "lineNumber": 69
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "response.json",
+          "lineNumber": 70
+        },
+        {
+          "caller": "register_bronze_sink",
+          "callee": "hasattr",
+          "lineNumber": 70
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/cleanup.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 43,
+      "nonEmptyLines": 37,
+      "functions": [
+        {
+          "name": "cleanup_kafka",
+          "startLine": 15,
+          "endLine": 43,
+          "params": [
+            "runner",
+            "bootstrap_server",
+            "evidence_root",
+            "clean_evidence"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "cleanup_kafka",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "cleanup_kafka",
+          "callee": "all_topic_names",
+          "lineNumber": 22
+        },
+        {
+          "caller": "cleanup_kafka",
+          "callee": "runner",
+          "lineNumber": 23
+        },
+        {
+          "caller": "cleanup_kafka",
+          "callee": "Path",
+          "lineNumber": 40
+        },
+        {
+          "caller": "cleanup_kafka",
+          "callee": "evidence_path.exists",
+          "lineNumber": 41
+        },
+        {
+          "caller": "cleanup_kafka",
+          "callee": "shutil.rmtree",
+          "lineNumber": 42
+        },
+        {
+          "caller": "cleanup_kafka",
+          "callee": "bootstrap_topics",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/consumer_smoke.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 87,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "_schema_for",
+          "startLine": 17,
+          "endLine": 18,
+          "params": [
+            "repo_root",
+            "topic"
+          ]
+        },
+        {
+          "name": "_consume_messages",
+          "startLine": 21,
+          "endLine": 45,
+          "params": [
+            "bootstrap_servers",
+            "group_id",
+            "topics",
+            "timeout_seconds"
+          ]
+        },
+        {
+          "name": "run_consumer_smoke",
+          "startLine": 48,
+          "endLine": 87,
+          "params": [
+            "bootstrap_servers",
+            "evidence_root",
+            "group_id",
+            "timeout_seconds",
+            "message_iter"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_schema_for",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "_consume_messages",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "run_consumer_smoke",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_schema_for",
+          "callee": "json.loads",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_schema_for",
+          "callee": "(repo_root / \"infra\" / \"kafka\" / \"schemas\" / f\"{topic}-value.schema.json\").read_text",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "Consumer",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "consumer.subscribe",
+          "lineNumber": 32
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "time.time",
+          "lineNumber": 33
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "time.time",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "consumer.poll",
+          "lineNumber": 36
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "message.error",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "message.error().code",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "message.error",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "RuntimeError",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "message.error",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "json.loads",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "message.value().decode",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "message.value",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_consume_messages",
+          "callee": "consumer.close",
+          "lineNumber": 45
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "source_topic_names",
+          "lineNumber": 56
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 57
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "Path",
+          "lineNumber": 57
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "_schema_for",
+          "lineNumber": 58
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "_consume_messages",
+          "lineNumber": 61
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "int",
+          "lineNumber": 61
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "time.time",
+          "lineNumber": 61
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "iterator",
+          "lineNumber": 63
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "str",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "event.get",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "jsonschema.validate",
+          "lineNumber": 67
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "samples.setdefault",
+          "lineNumber": 69
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "all",
+          "lineNumber": 70
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "read_counts.values",
+          "lineNumber": 70
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "read_counts.items",
+          "lineNumber": 73
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "RuntimeError",
+          "lineNumber": 75
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "', '.join",
+          "lineNumber": 75
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "Path",
+          "lineNumber": 83
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 84
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "(evidence_path / \"consumer_samples.json\").write_text",
+          "lineNumber": 85
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "json.dumps",
+          "lineNumber": 85
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "(evidence_path / \"consumer_smoke_summary.json\").write_text",
+          "lineNumber": 86
+        },
+        {
+          "caller": "run_consumer_smoke",
+          "callee": "json.dumps",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/producer_smoke.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 47,
+      "functions": [
+        {
+          "name": "run_producer_smoke",
+          "startLine": 11,
+          "endLine": 53,
+          "params": [
+            "config_path",
+            "raw_root",
+            "evidence_root",
+            "bootstrap_servers"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "run_producer_smoke",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run_producer_smoke",
+          "callee": "Path",
+          "lineNumber": 18
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "run_generation",
+          "lineNumber": 19
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "Path",
+          "lineNumber": 20
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "Path",
+          "lineNumber": 25
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "source_topic_names",
+          "lineNumber": 31
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "str",
+          "lineNumber": 33
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "jsonl_files.items",
+          "lineNumber": 36
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "Path(path).is_file",
+          "lineNumber": 36
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "Path",
+          "lineNumber": 36
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "RuntimeError",
+          "lineNumber": 38
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "', '.join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "str",
+          "lineNumber": 44
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "str",
+          "lineNumber": 45
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 48
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "(evidence_path / \"producer_smoke_summary.json\").write_text",
+          "lineNumber": 49
+        },
+        {
+          "caller": "run_producer_smoke",
+          "callee": "json.dumps",
+          "lineNumber": 50
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/schema_registry.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "register_schema_subjects",
+          "startLine": 23,
+          "endLine": 50,
+          "params": [
+            "registry_url",
+            "schemas_dir",
+            "evidence_root",
+            "post"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "register_schema_subjects",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "register_schema_subjects",
+          "callee": "Path",
+          "lineNumber": 30
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "(schemas_path / f\"{subject}.schema.json\").read_text",
+          "lineNumber": 34
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "post",
+          "lineNumber": 35
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "registry_url.rstrip",
+          "lineNumber": 36
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "response.raise_for_status",
+          "lineNumber": 41
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "response.json",
+          "lineNumber": 42
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "Path",
+          "lineNumber": 44
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 45
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "(evidence_path / \"schema_registry_subjects.json\").write_text",
+          "lineNumber": 46
+        },
+        {
+          "caller": "register_schema_subjects",
+          "callee": "json.dumps",
+          "lineNumber": 47
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/topics.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "load_topic_config",
+          "startLine": 12,
+          "endLine": 17,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "source_topic_names",
+          "startLine": 20,
+          "endLine": 21,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "derived_placeholder_topic_names",
+          "startLine": 24,
+          "endLine": 25,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "all_topic_names",
+          "startLine": 28,
+          "endLine": 29,
+          "params": [
+            "path"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "load_topic_config",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "source_topic_names",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "derived_placeholder_topic_names",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "all_topic_names",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "load_topic_config",
+          "callee": "Path(path).open",
+          "lineNumber": 13
+        },
+        {
+          "caller": "load_topic_config",
+          "callee": "Path",
+          "lineNumber": 13
+        },
+        {
+          "caller": "load_topic_config",
+          "callee": "yaml.safe_load",
+          "lineNumber": 14
+        },
+        {
+          "caller": "load_topic_config",
+          "callee": "isinstance",
+          "lineNumber": 15
+        },
+        {
+          "caller": "load_topic_config",
+          "callee": "ValueError",
+          "lineNumber": 16
+        },
+        {
+          "caller": "source_topic_names",
+          "callee": "list",
+          "lineNumber": 21
+        },
+        {
+          "caller": "source_topic_names",
+          "callee": "load_topic_config",
+          "lineNumber": 21
+        },
+        {
+          "caller": "derived_placeholder_topic_names",
+          "callee": "list",
+          "lineNumber": 25
+        },
+        {
+          "caller": "derived_placeholder_topic_names",
+          "callee": "load_topic_config",
+          "lineNumber": 25
+        },
+        {
+          "caller": "all_topic_names",
+          "callee": "source_topic_names",
+          "lineNumber": 29
+        },
+        {
+          "caller": "all_topic_names",
+          "callee": "derived_placeholder_topic_names",
+          "lineNumber": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 74,
+      "nonEmptyLines": 64,
+      "functions": [
+        {
+          "name": "run_kafka_topic_bootstrap",
+          "startLine": 27,
+          "endLine": 74,
+          "params": [
+            "run_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "run_kafka_topic_bootstrap",
+          "line": 27,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "build_run_root",
+          "lineNumber": 28
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "bootstrap_topics",
+          "lineNumber": 29
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "subprocess.run",
+          "lineNumber": 30
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "str",
+          "lineNumber": 30
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "register_schema_subjects",
+          "lineNumber": 35
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "register_bronze_sink",
+          "lineNumber": 40
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_utc_now",
+          "lineNumber": 52
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_get_json",
+          "lineNumber": 53
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_get_json",
+          "lineNumber": 54
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_run_command",
+          "lineNumber": 56
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_write_json",
+          "lineNumber": 60
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_write_json",
+          "lineNumber": 61
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "(run_root / \"topic_list.txt\").write_text",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_utc_now",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "len",
+          "lineNumber": 66
+        },
+        {
+          "caller": "run_kafka_topic_bootstrap",
+          "callee": "_write_json",
+          "lineNumber": 73
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

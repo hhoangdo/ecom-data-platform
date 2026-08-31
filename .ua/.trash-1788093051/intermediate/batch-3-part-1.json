@@ -1,0 +1,908 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "type": "file",
+      "name": "coursework_pipelines.py",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "summary": "Defines DataHub entities, lineage metadata, and assertion specifications for the coursework Airflow pipeline.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "metadata"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:ice_urn",
+      "type": "function",
+      "name": "ice_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        65,
+        66
+      ],
+      "summary": "Builds or emits DataHub metadata for ice urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:kafka_urn",
+      "type": "function",
+      "name": "kafka_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        69,
+        70
+      ],
+      "summary": "Builds or emits DataHub metadata for kafka urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:pinot_urn",
+      "type": "function",
+      "name": "pinot_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        73,
+        74
+      ],
+      "summary": "Builds or emits DataHub metadata for pinot urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:s3_urn",
+      "type": "function",
+      "name": "s3_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        77,
+        78
+      ],
+      "summary": "Builds or emits DataHub metadata for s3 urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:dataflow_urn",
+      "type": "function",
+      "name": "dataflow_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        81,
+        82
+      ],
+      "summary": "Builds or emits DataHub metadata for dataflow urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:datajob_urn",
+      "type": "function",
+      "name": "datajob_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        85,
+        87
+      ],
+      "summary": "Builds or emits DataHub metadata for datajob urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:coursework_pipeline_entities",
+      "type": "function",
+      "name": "coursework_pipeline_entities",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        133,
+        186
+      ],
+      "summary": "Builds or emits DataHub metadata for coursework pipeline entities.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:emit_coursework_pipeline_metadata",
+      "type": "function",
+      "name": "emit_coursework_pipeline_metadata",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        189,
+        228
+      ],
+      "summary": "Builds or emits DataHub metadata for emit coursework pipeline metadata.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:emit_coursework_pipeline",
+      "type": "function",
+      "name": "emit_coursework_pipeline",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        231,
+        235
+      ],
+      "summary": "Builds or emits DataHub metadata for emit coursework pipeline.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:coursework_assertion_specs",
+      "type": "function",
+      "name": "coursework_assertion_specs",
+      "filePath": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "lineRange": [
+        238,
+        311
+      ],
+      "summary": "Builds or emits DataHub metadata for coursework assertion specs.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "type": "file",
+      "name": "emitter.py",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "summary": "Provides a DataHub REST emitter wrapper for lineage, schema, ownership, tagging, and assertion metadata.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "metadata"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/emitter.py:_now_ms",
+      "type": "function",
+      "name": "_now_ms",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "lineRange": [
+        33,
+        34
+      ],
+      "summary": "Builds or emits DataHub metadata for now ms.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/emitter.py:ice_urn",
+      "type": "function",
+      "name": "ice_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "lineRange": [
+        37,
+        38
+      ],
+      "summary": "Builds or emits DataHub metadata for ice urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/emitter.py:kafka_urn",
+      "type": "function",
+      "name": "kafka_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "lineRange": [
+        41,
+        42
+      ],
+      "summary": "Builds or emits DataHub metadata for kafka urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/emitter.py:pinot_urn",
+      "type": "function",
+      "name": "pinot_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "lineRange": [
+        45,
+        46
+      ],
+      "summary": "Builds or emits DataHub metadata for pinot urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/emitter.py:datajob_urn",
+      "type": "function",
+      "name": "datajob_urn",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "lineRange": [
+        49,
+        52
+      ],
+      "summary": "Builds or emits DataHub metadata for datajob urn.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/datahub_lineage/emitter.py:DataHubLineageEmitter",
+      "type": "class",
+      "name": "DataHubLineageEmitter",
+      "filePath": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "lineRange": [
+        55,
+        249
+      ],
+      "summary": "Wraps DataHub REST emission operations for lineage and governance metadata.",
+      "tags": [
+        "datahub",
+        "metadata",
+        "service"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "type": "file",
+      "name": "flink_lineage.py",
+      "filePath": "src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "summary": "Publishes DataHub lineage for Flink streaming topics and their Pinot serving tables.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/flink_lineage.py:emit_flink_streaming_lineage",
+      "type": "function",
+      "name": "emit_flink_streaming_lineage",
+      "filePath": "src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "lineRange": [
+        31,
+        66
+      ],
+      "summary": "Builds or emits DataHub metadata for emit flink streaming lineage.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "type": "file",
+      "name": "gx_assertions.py",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "summary": "Loads Great Expectations quality artifacts and emits their outcomes as DataHub assertions.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_find_gx_quality_artifacts",
+      "type": "function",
+      "name": "_find_gx_quality_artifacts",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        20,
+        23
+      ],
+      "summary": "Builds or emits DataHub metadata for find gx quality artifacts.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_load_gx_results",
+      "type": "function",
+      "name": "_load_gx_results",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        26,
+        30
+      ],
+      "summary": "Builds or emits DataHub metadata for load gx results.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_latest_successful_coursework_run",
+      "type": "function",
+      "name": "_latest_successful_coursework_run",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        33,
+        44
+      ],
+      "summary": "Builds or emits DataHub metadata for latest successful coursework run.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_run_timestamp_ms",
+      "type": "function",
+      "name": "_run_timestamp_ms",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        47,
+        54
+      ],
+      "summary": "Builds or emits DataHub metadata for run timestamp ms.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:emit_coursework_assertions_to_datahub",
+      "type": "function",
+      "name": "emit_coursework_assertions_to_datahub",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        57,
+        93
+      ],
+      "summary": "Builds or emits DataHub metadata for emit coursework assertions to datahub.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:emit_gx_assertions_to_datahub",
+      "type": "function",
+      "name": "emit_gx_assertions_to_datahub",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        96,
+        110
+      ],
+      "summary": "Builds or emits DataHub metadata for emit gx assertions to datahub.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_emit_from_gx_data",
+      "type": "function",
+      "name": "_emit_from_gx_data",
+      "filePath": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "lineRange": [
+        113,
+        147
+      ],
+      "summary": "Builds or emits DataHub metadata for emit from gx data.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "type": "file",
+      "name": "spark_lineage.py",
+      "filePath": "src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "summary": "Publishes DataHub lineage for the Spark batch lakehouse pipeline and governed tables.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/spark_lineage.py:emit_spark_batch_lineage",
+      "type": "function",
+      "name": "emit_spark_batch_lineage",
+      "filePath": "src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "lineRange": [
+        49,
+        78
+      ],
+      "summary": "Builds or emits DataHub metadata for emit spark batch lineage.",
+      "tags": [
+        "datahub",
+        "lineage",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/__init__.py",
+      "summary": "Exports the Spark lakehouse package surface, including constants and batch-window utilities.",
+      "tags": [
+        "spark",
+        "lakehouse",
+        "batch-processing"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:ice_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:ice_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:kafka_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:kafka_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:pinot_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:pinot_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:s3_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:s3_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:dataflow_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:dataflow_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:datajob_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:datajob_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:coursework_pipeline_entities",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:coursework_pipeline_entities",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:emit_coursework_pipeline_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:emit_coursework_pipeline_metadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:emit_coursework_pipeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:emit_coursework_pipeline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:coursework_assertion_specs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py:coursework_assertion_specs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:_now_ms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:_now_ms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:ice_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:ice_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:kafka_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:kafka_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:pinot_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:pinot_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:datajob_urn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/emitter.py:datajob_urn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "class:src/vina_bim_shop/datahub_lineage/emitter.py:DataHubLineageEmitter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "target": "class:src/vina_bim_shop/datahub_lineage/emitter.py:DataHubLineageEmitter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/flink_lineage.py:emit_flink_streaming_lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/flink_lineage.py:emit_flink_streaming_lineage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "target": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_find_gx_quality_artifacts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_find_gx_quality_artifacts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_load_gx_results",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_load_gx_results",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_latest_successful_coursework_run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_latest_successful_coursework_run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_run_timestamp_ms",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_run_timestamp_ms",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:emit_coursework_assertions_to_datahub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:emit_coursework_assertions_to_datahub",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:emit_gx_assertions_to_datahub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:emit_gx_assertions_to_datahub",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_emit_from_gx_data",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/gx_assertions.py:_emit_from_gx_data",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "file:src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "target": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/spark_lineage.py:emit_spark_batch_lineage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/spark_lineage.py:emit_spark_batch_lineage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "target": "file:src/vina_bim_shop/datahub_lineage/emitter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/__init__.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/__init__.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

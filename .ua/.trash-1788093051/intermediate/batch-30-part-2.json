@@ -1,0 +1,379 @@
+{
+  "nodes": [
+    {
+      "id": "document:scripts/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "scripts/README.md",
+      "summary": "Documents the project scripts and their operational usage.",
+      "tags": [
+        "documentation",
+        "operations",
+        "development"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "type": "file",
+      "name": "capture_connect_image_optimization.py",
+      "filePath": "scripts/kafka/capture_connect_image_optimization.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/kafka/capture_connect_image_optimization.py:_inspect_image",
+      "type": "function",
+      "name": "_inspect_image",
+      "filePath": "scripts/kafka/capture_connect_image_optimization.py",
+      "lineRange": [
+        30,
+        42
+      ],
+      "summary": "Implements the _inspect_image operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/kafka/capture_connect_image_optimization.py:_comparison_markdown",
+      "type": "function",
+      "name": "_comparison_markdown",
+      "filePath": "scripts/kafka/capture_connect_image_optimization.py",
+      "lineRange": [
+        49,
+        68
+      ],
+      "summary": "Implements the _comparison_markdown operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/kafka/capture_connect_image_optimization.py:write_image_optimization_evidence",
+      "type": "function",
+      "name": "write_image_optimization_evidence",
+      "filePath": "scripts/kafka/capture_connect_image_optimization.py",
+      "lineRange": [
+        71,
+        132
+      ],
+      "summary": "Implements the write_image_optimization_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/kafka/capture_connect_image_optimization.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/kafka/capture_connect_image_optimization.py",
+      "lineRange": [
+        143,
+        153
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/kafka/capture_evidence.py",
+      "type": "file",
+      "name": "capture_evidence.py",
+      "filePath": "scripts/kafka/capture_evidence.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/kafka/cleanup_kafka.py",
+      "type": "file",
+      "name": "cleanup_kafka.py",
+      "filePath": "scripts/kafka/cleanup_kafka.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/kafka/consumer_smoke.py",
+      "type": "file",
+      "name": "consumer_smoke.py",
+      "filePath": "scripts/kafka/consumer_smoke.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/kafka/producer_smoke.py",
+      "type": "file",
+      "name": "producer_smoke.py",
+      "filePath": "scripts/kafka/producer_smoke.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/kafka/register_bronze_sink.py",
+      "type": "file",
+      "name": "register_bronze_sink.py",
+      "filePath": "scripts/kafka/register_bronze_sink.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/kafka/register_bronze_sink.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "filePath": "scripts/kafka/register_bronze_sink.py",
+      "lineRange": [
+        10,
+        21
+      ],
+      "summary": "Implements the parse_args operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/kafka/register_bronze_sink.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/kafka/register_bronze_sink.py",
+      "lineRange": [
+        24,
+        40
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/kafka/register_schemas.py",
+      "type": "file",
+      "name": "register_schemas.py",
+      "filePath": "scripts/kafka/register_schemas.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/lakehouse/capture_bronze_evidence.py",
+      "type": "file",
+      "name": "capture_bronze_evidence.py",
+      "filePath": "scripts/lakehouse/capture_bronze_evidence.py",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/lakehouse/capture_evidence.py",
+      "type": "file",
+      "name": "capture_evidence.py",
+      "filePath": "scripts/lakehouse/capture_evidence.py",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/lakehouse/cleanup_lakehouse.py",
+      "type": "file",
+      "name": "cleanup_lakehouse.py",
+      "filePath": "scripts/lakehouse/cleanup_lakehouse.py",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/lakehouse/land_bronze_batch.py",
+      "type": "file",
+      "name": "land_bronze_batch.py",
+      "filePath": "scripts/lakehouse/land_bronze_batch.py",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/lakehouse/land_bronze_batch.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/lakehouse/land_bronze_batch.py",
+      "lineRange": [
+        18,
+        28
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:_inspect_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:_comparison_markdown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:write_image_optimization_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:_inspect_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:_comparison_markdown",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:write_image_optimization_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/kafka/capture_connect_image_optimization.py",
+      "target": "function:scripts/kafka/capture_connect_image_optimization.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/kafka/register_bronze_sink.py",
+      "target": "function:scripts/kafka/register_bronze_sink.py:parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/kafka/register_bronze_sink.py",
+      "target": "function:scripts/kafka/register_bronze_sink.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/kafka/register_bronze_sink.py",
+      "target": "function:scripts/kafka/register_bronze_sink.py:parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/kafka/register_bronze_sink.py",
+      "target": "function:scripts/kafka/register_bronze_sink.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/lakehouse/land_bronze_batch.py",
+      "target": "function:scripts/lakehouse/land_bronze_batch.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/lakehouse/land_bronze_batch.py",
+      "target": "function:scripts/lakehouse/land_bronze_batch.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

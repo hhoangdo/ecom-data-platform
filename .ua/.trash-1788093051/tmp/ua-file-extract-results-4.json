@@ -1,0 +1,3929 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 12,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 12,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 12,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/vina_bim_shop/flink/smoke.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 232,
+      "nonEmptyLines": 206,
+      "functions": [
+        {
+          "name": "run_streaming_smoke_publish",
+          "startLine": 16,
+          "endLine": 39,
+          "params": [
+            "bootstrap_servers",
+            "evidence_root",
+            "publish_topic_events"
+          ]
+        },
+        {
+          "name": "build_streaming_smoke_topic_events",
+          "startLine": 42,
+          "endLine": 49,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "build_cleanroom_smoke_phases",
+          "startLine": 52,
+          "endLine": 80,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "_commerce_events",
+          "startLine": 83,
+          "endLine": 97,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "_control_commerce_event",
+          "startLine": 100,
+          "endLine": 116,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "_catalog_events",
+          "startLine": 119,
+          "endLine": 132,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "_fulfillment_events",
+          "startLine": 135,
+          "endLine": 159,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "_ops_events",
+          "startLine": 162,
+          "endLine": 197,
+          "params": [
+            "base"
+          ]
+        },
+        {
+          "name": "_commerce_envelope",
+          "startLine": 200,
+          "endLine": 211,
+          "params": [
+            "event_id",
+            "event_type",
+            "event_timestamp",
+            "created_ts",
+            "payload"
+          ]
+        },
+        {
+          "name": "_commerce_payload",
+          "startLine": 214,
+          "endLine": 232,
+          "params": [
+            "primary_category",
+            "source",
+            "device_type",
+            "payment_method",
+            "order_status",
+            "order_net_amount",
+            "amount"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "run_streaming_smoke_publish",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "build_streaming_smoke_topic_events",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "build_cleanroom_smoke_phases",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "_commerce_events",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "_control_commerce_event",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "_catalog_events",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "_fulfillment_events",
+          "line": 135,
+          "isDefault": false
+        },
+        {
+          "name": "_ops_events",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "_commerce_envelope",
+          "line": 200,
+          "isDefault": false
+        },
+        {
+          "name": "_commerce_payload",
+          "line": 214,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run_streaming_smoke_publish",
+          "callee": "build_streaming_smoke_topic_events",
+          "lineNumber": 22
+        },
+        {
+          "caller": "run_streaming_smoke_publish",
+          "callee": "publish_topic_events",
+          "lineNumber": 23
+        },
+        {
+          "caller": "run_streaming_smoke_publish",
+          "callee": "Path",
+          "lineNumber": 36
+        },
+        {
+          "caller": "run_streaming_smoke_publish",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 37
+        },
+        {
+          "caller": "run_streaming_smoke_publish",
+          "callee": "(evidence_path / \"flink_smoke_publish_summary.json\").write_text",
+          "lineNumber": 38
+        },
+        {
+          "caller": "run_streaming_smoke_publish",
+          "callee": "json.dumps",
+          "lineNumber": 38
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "datetime",
+          "lineNumber": 43
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "pd.DataFrame",
+          "lineNumber": 45
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "_commerce_events",
+          "lineNumber": 45
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "pd.DataFrame",
+          "lineNumber": 46
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "_catalog_events",
+          "lineNumber": 46
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "pd.DataFrame",
+          "lineNumber": 47
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "_fulfillment_events",
+          "lineNumber": 47
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "pd.DataFrame",
+          "lineNumber": 48
+        },
+        {
+          "caller": "build_streaming_smoke_topic_events",
+          "callee": "_ops_events",
+          "lineNumber": 48
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "build_streaming_smoke_topic_events",
+          "lineNumber": 53
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "topic_events[\"commerce_events\"].to_dict",
+          "lineNumber": 54
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "pd.DataFrame",
+          "lineNumber": 62
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "pd.DataFrame",
+          "lineNumber": 71
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "_control_commerce_event",
+          "lineNumber": 71
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "datetime",
+          "lineNumber": 71
+        },
+        {
+          "caller": "build_cleanroom_smoke_phases",
+          "callee": "pd.DataFrame",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "dict",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "(base + timedelta(seconds=26)).replace(tzinfo=None).isoformat",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "(base + timedelta(seconds=26)).replace",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_envelope",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "timedelta",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_commerce_events",
+          "callee": "_commerce_payload",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_control_commerce_event",
+          "callee": "timedelta",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_control_commerce_event",
+          "callee": "_commerce_envelope",
+          "lineNumber": 102
+        },
+        {
+          "caller": "_control_commerce_event",
+          "callee": "_commerce_payload",
+          "lineNumber": 107
+        },
+        {
+          "caller": "_catalog_events",
+          "callee": "(base + timedelta(minutes=1)).replace(tzinfo=None).isoformat",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_catalog_events",
+          "callee": "(base + timedelta(minutes=1)).replace",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_catalog_events",
+          "callee": "timedelta",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_catalog_events",
+          "callee": "(base + timedelta(minutes=1)).replace(tzinfo=None).isoformat",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_catalog_events",
+          "callee": "(base + timedelta(minutes=1)).replace",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_catalog_events",
+          "callee": "timedelta",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2)).replace(tzinfo=None).isoformat",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2)).replace",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "timedelta",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2)).replace(tzinfo=None).isoformat",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2)).replace",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "timedelta",
+          "lineNumber": 143
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2, seconds=10)).replace(tzinfo=None).isoformat",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2, seconds=10)).replace",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "timedelta",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2, seconds=10)).replace(tzinfo=None).isoformat",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "(base + timedelta(minutes=2, seconds=10)).replace",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_fulfillment_events",
+          "callee": "timedelta",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3)).replace(tzinfo=None).isoformat",
+          "lineNumber": 169
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3)).replace",
+          "lineNumber": 169
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "timedelta",
+          "lineNumber": 169
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3)).replace(tzinfo=None).isoformat",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3)).replace",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "timedelta",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=10)).replace(tzinfo=None).isoformat",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=10)).replace",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "timedelta",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=10)).replace(tzinfo=None).isoformat",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=10)).replace",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "timedelta",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=20)).replace(tzinfo=None).isoformat",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=20)).replace",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "timedelta",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=20)).replace(tzinfo=None).isoformat",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "(base + timedelta(minutes=3, seconds=20)).replace",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_ops_events",
+          "callee": "timedelta",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_commerce_envelope",
+          "callee": "event_timestamp.replace(tzinfo=None).isoformat",
+          "lineNumber": 206
+        },
+        {
+          "caller": "_commerce_envelope",
+          "callee": "event_timestamp.replace",
+          "lineNumber": 206
+        },
+        {
+          "caller": "_commerce_envelope",
+          "callee": "created_ts.replace(tzinfo=None).isoformat",
+          "lineNumber": 207
+        },
+        {
+          "caller": "_commerce_envelope",
+          "callee": "created_ts.replace",
+          "lineNumber": 207
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 10,
+        "functionCount": 10,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 107,
+      "nonEmptyLines": 101,
+      "functions": [
+        {
+          "name": "_legacy_namespace",
+          "startLine": 106,
+          "endLine": 107,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_legacy_namespace",
+          "line": 106,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_legacy_namespace",
+          "callee": "globals",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 107,
+      "nonEmptyLines": 101,
+      "functions": [
+        {
+          "name": "_legacy_namespace",
+          "startLine": 106,
+          "endLine": 107,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_legacy_namespace",
+          "line": 106,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_legacy_namespace",
+          "callee": "globals",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/_constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 42,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/_probes.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 282,
+      "nonEmptyLines": 234,
+      "functions": [
+        {
+          "name": "_run_command",
+          "startLine": 29,
+          "endLine": 31,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "_write_json",
+          "startLine": 34,
+          "endLine": 36,
+          "params": [
+            "path",
+            "payload"
+          ]
+        },
+        {
+          "name": "capture_storage_snapshot",
+          "startLine": 39,
+          "endLine": 48,
+          "params": [
+            "run_command"
+          ]
+        },
+        {
+          "name": "_health_is_good",
+          "startLine": 51,
+          "endLine": 57,
+          "params": [
+            "payload"
+          ]
+        },
+        {
+          "name": "_topic_counts",
+          "startLine": 60,
+          "endLine": 61,
+          "params": [
+            "run_command"
+          ]
+        },
+        {
+          "name": "_safe_topic_counts",
+          "startLine": 64,
+          "endLine": 68,
+          "params": [
+            "run_command"
+          ]
+        },
+        {
+          "name": "_topic_message_count",
+          "startLine": 71,
+          "endLine": 100,
+          "params": [
+            "topic",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_topic_counts_with_artifact",
+          "startLine": 103,
+          "endLine": 125,
+          "params": [
+            "run_command",
+            "run_root",
+            "phase_name"
+          ]
+        },
+        {
+          "name": "_consume_topic_rows",
+          "startLine": 128,
+          "endLine": 152,
+          "params": [
+            "topic",
+            "count",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_running_compose_services",
+          "startLine": 155,
+          "endLine": 159,
+          "params": [
+            "run_command"
+          ]
+        },
+        {
+          "name": "_list_minio_prefix",
+          "startLine": 162,
+          "endLine": 177,
+          "params": [
+            "bucket",
+            "prefix",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_safe_minio_listing",
+          "startLine": 180,
+          "endLine": 184,
+          "params": [
+            "bucket",
+            "prefix",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_has_checkpoint_metadata",
+          "startLine": 187,
+          "endLine": 189,
+          "params": [
+            "checkpoint_listing",
+            "job_prefix"
+          ]
+        },
+        {
+          "name": "_remove_docker_volumes",
+          "startLine": 192,
+          "endLine": 199,
+          "params": [
+            "volume_suffixes",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_delete_minio_prefix",
+          "startLine": 202,
+          "endLine": 217,
+          "params": [
+            "bucket",
+            "prefix",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_container_env_value",
+          "startLine": 220,
+          "endLine": 232,
+          "params": [
+            "container",
+            "variable_name",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_extract_pinot_row_count",
+          "startLine": 235,
+          "endLine": 241,
+          "params": [
+            "payload"
+          ]
+        },
+        {
+          "name": "_wait_for_json",
+          "startLine": 244,
+          "endLine": 267,
+          "params": [
+            "url",
+            "predicate",
+            "timeout_seconds"
+          ]
+        },
+        {
+          "name": "_wait_for_flink_runtime",
+          "startLine": 270,
+          "endLine": 277,
+          "params": [
+            "timeout_seconds"
+          ]
+        },
+        {
+          "name": "_wait_for_pinot_runtime",
+          "startLine": 280,
+          "endLine": 282,
+          "params": [
+            "timeout_seconds"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "TopicProbeError",
+          "startLine": 16,
+          "endLine": 26,
+          "methods": [
+            "__init__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TopicProbeError",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "_run_command",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "_write_json",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "capture_storage_snapshot",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "_health_is_good",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "_topic_counts",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "_safe_topic_counts",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "_topic_message_count",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "_topic_counts_with_artifact",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "_consume_topic_rows",
+          "line": 128,
+          "isDefault": false
+        },
+        {
+          "name": "_running_compose_services",
+          "line": 155,
+          "isDefault": false
+        },
+        {
+          "name": "_list_minio_prefix",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "_safe_minio_listing",
+          "line": 180,
+          "isDefault": false
+        },
+        {
+          "name": "_has_checkpoint_metadata",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "_remove_docker_volumes",
+          "line": 192,
+          "isDefault": false
+        },
+        {
+          "name": "_delete_minio_prefix",
+          "line": 202,
+          "isDefault": false
+        },
+        {
+          "name": "_container_env_value",
+          "line": 220,
+          "isDefault": false
+        },
+        {
+          "name": "_extract_pinot_row_count",
+          "line": 235,
+          "isDefault": false
+        },
+        {
+          "name": "_wait_for_json",
+          "line": 244,
+          "isDefault": false
+        },
+        {
+          "name": "_wait_for_flink_runtime",
+          "line": 270,
+          "isDefault": false
+        },
+        {
+          "name": "_wait_for_pinot_runtime",
+          "line": 280,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "' '.join",
+          "lineNumber": 18
+        },
+        {
+          "caller": "__init__",
+          "callee": "stderr.strip",
+          "lineNumber": 19
+        },
+        {
+          "caller": "__init__",
+          "callee": "stdout.strip",
+          "lineNumber": 19
+        },
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 22
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_run_command",
+          "callee": "subprocess.run",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_write_json",
+          "callee": "path.parent.mkdir",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_write_json",
+          "callee": "path.write_text",
+          "lineNumber": 36
+        },
+        {
+          "caller": "_write_json",
+          "callee": "json.dumps",
+          "lineNumber": 36
+        },
+        {
+          "caller": "capture_storage_snapshot",
+          "callee": "Path.cwd",
+          "lineNumber": 40
+        },
+        {
+          "caller": "capture_storage_snapshot",
+          "callee": "shutil.disk_usage",
+          "lineNumber": 41
+        },
+        {
+          "caller": "capture_storage_snapshot",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 43
+        },
+        {
+          "caller": "capture_storage_snapshot",
+          "callee": "datetime.now",
+          "lineNumber": 43
+        },
+        {
+          "caller": "capture_storage_snapshot",
+          "callee": "round",
+          "lineNumber": 46
+        },
+        {
+          "caller": "capture_storage_snapshot",
+          "callee": "run_command",
+          "lineNumber": 47
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "payload.get",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "payload.get",
+          "lineNumber": 54
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "payload.get",
+          "lineNumber": 55
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "any",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "str(candidate).strip().upper",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "str(candidate).strip",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "str",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_topic_counts",
+          "callee": "_topic_message_count",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_safe_topic_counts",
+          "callee": "_topic_counts",
+          "lineNumber": 66
+        },
+        {
+          "caller": "_safe_topic_counts",
+          "callee": "str",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "run_command(command).strip",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "run_command",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "TopicProbeError",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "getattr",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "getattr",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "output.splitlines",
+          "lineNumber": 98
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "int",
+          "lineNumber": 99
+        },
+        {
+          "caller": "_topic_message_count",
+          "callee": "line.rsplit",
+          "lineNumber": 99
+        },
+        {
+          "caller": "_topic_counts_with_artifact",
+          "callee": "_topic_counts",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_topic_counts_with_artifact",
+          "callee": "_write_json",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_topic_counts_with_artifact",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_topic_counts_with_artifact",
+          "callee": "datetime.now",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_topic_counts_with_artifact",
+          "callee": "str",
+          "lineNumber": 122
+        },
+        {
+          "caller": "_consume_topic_rows",
+          "callee": "run_command(\r\n        [\r\n            \"docker\",\r\n            \"compose\",\r\n            \"exec\",\r\n            \"-T\",\r\n            \"kafka\",\r\n            \"kafka-console-consumer\",\r\n            \"--bootstrap-server\",\r\n            \"kafka:29092\",\r\n            \"--topic\",\r\n            topic,\r\n            \"--from-beginning\",\r\n            \"--max-messages\",\r\n            str(count),\r\n            \"--timeout-ms\",\r\n            \"20000\",\r\n        ]\r\n    ).strip",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_consume_topic_rows",
+          "callee": "run_command",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_consume_topic_rows",
+          "callee": "str",
+          "lineNumber": 145
+        },
+        {
+          "caller": "_consume_topic_rows",
+          "callee": "json.loads",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_consume_topic_rows",
+          "callee": "output.splitlines",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_consume_topic_rows",
+          "callee": "line.strip",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_running_compose_services",
+          "callee": "run_command([\"docker\", \"compose\", \"ps\", \"--services\", \"--status\", \"running\"]).strip",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_running_compose_services",
+          "callee": "run_command",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_running_compose_services",
+          "callee": "line.strip",
+          "lineNumber": 159
+        },
+        {
+          "caller": "_running_compose_services",
+          "callee": "output.splitlines",
+          "lineNumber": 159
+        },
+        {
+          "caller": "_running_compose_services",
+          "callee": "line.strip",
+          "lineNumber": 159
+        },
+        {
+          "caller": "_list_minio_prefix",
+          "callee": "run_command",
+          "lineNumber": 163
+        },
+        {
+          "caller": "_safe_minio_listing",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_safe_minio_listing",
+          "callee": "str",
+          "lineNumber": 184
+        },
+        {
+          "caller": "_has_checkpoint_metadata",
+          "callee": "line.strip",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_has_checkpoint_metadata",
+          "callee": "checkpoint_listing.splitlines",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_has_checkpoint_metadata",
+          "callee": "line.strip",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_has_checkpoint_metadata",
+          "callee": "any",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_remove_docker_volumes",
+          "callee": "run_command([\"docker\", \"volume\", \"ls\", \"--format\", \"{{.Name}}\"]).strip",
+          "lineNumber": 193
+        },
+        {
+          "caller": "_remove_docker_volumes",
+          "callee": "run_command",
+          "lineNumber": 193
+        },
+        {
+          "caller": "_remove_docker_volumes",
+          "callee": "line.strip",
+          "lineNumber": 196
+        },
+        {
+          "caller": "_remove_docker_volumes",
+          "callee": "output.splitlines",
+          "lineNumber": 196
+        },
+        {
+          "caller": "_remove_docker_volumes",
+          "callee": "line.strip",
+          "lineNumber": 196
+        },
+        {
+          "caller": "_remove_docker_volumes",
+          "callee": "run_command",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_delete_minio_prefix",
+          "callee": "run_command",
+          "lineNumber": 203
+        },
+        {
+          "caller": "_container_env_value",
+          "callee": "run_command(\r\n        [\r\n            \"docker\",\r\n            \"compose\",\r\n            \"exec\",\r\n            \"-T\",\r\n            container,\r\n            \"/bin/sh\",\r\n            \"-lc\",\r\n            f'printenv {variable_name}',\r\n        ]\r\n    ).strip",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_container_env_value",
+          "callee": "run_command",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_extract_pinot_row_count",
+          "callee": "isinstance",
+          "lineNumber": 236
+        },
+        {
+          "caller": "_extract_pinot_row_count",
+          "callee": "payload.get(\"resultTable\", {}).get",
+          "lineNumber": 238
+        },
+        {
+          "caller": "_extract_pinot_row_count",
+          "callee": "payload.get",
+          "lineNumber": 238
+        },
+        {
+          "caller": "_extract_pinot_row_count",
+          "callee": "int",
+          "lineNumber": 241
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "time.time",
+          "lineNumber": 245
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "time.time",
+          "lineNumber": 247
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "requests.get",
+          "lineNumber": 249
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "str",
+          "lineNumber": 251
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "time.sleep",
+          "lineNumber": 252
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "response.json",
+          "lineNumber": 256
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "time.sleep",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "response.raise_for_status",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "predicate",
+          "lineNumber": 264
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "time.sleep",
+          "lineNumber": 266
+        },
+        {
+          "caller": "_wait_for_json",
+          "callee": "TimeoutError",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_jobs_ready",
+          "callee": "str",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_jobs_ready",
+          "callee": "job.get",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_jobs_ready",
+          "callee": "payload.get",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_jobs_ready",
+          "callee": "{\"vina-bim-shop-commerce-metrics\", \"vina-bim-shop-ops-alerts\"}.issubset",
+          "lineNumber": 273
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "_wait_for_json",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "int",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "payload.get",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "_wait_for_json",
+          "lineNumber": 276
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "bool",
+          "lineNumber": 276
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "payload.get",
+          "lineNumber": 276
+        },
+        {
+          "caller": "_wait_for_flink_runtime",
+          "callee": "_wait_for_json",
+          "lineNumber": 277
+        },
+        {
+          "caller": "_wait_for_pinot_runtime",
+          "callee": "_wait_for_json",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_wait_for_pinot_runtime",
+          "callee": "_wait_for_json",
+          "lineNumber": 282
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 21,
+        "functionCount": 20,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/assertions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 130,
+      "nonEmptyLines": 114,
+      "functions": [
+        {
+          "name": "build_pre_publish_state",
+          "startLine": 10,
+          "endLine": 37,
+          "params": [
+            "topic_counts",
+            "checkpoint_listing",
+            "curated_listings",
+            "running_jobs"
+          ]
+        },
+        {
+          "name": "evaluate_adr04_assertions",
+          "startLine": 40,
+          "endLine": 97,
+          "params": [
+            "topic_counts",
+            "metric_rows",
+            "correction_rows",
+            "checkpoint_listing",
+            "curated_listings"
+          ]
+        },
+        {
+          "name": "evaluate_pinot_gate",
+          "startLine": 100,
+          "endLine": 121,
+          "params": [
+            "controller_health",
+            "broker_health",
+            "row_counts"
+          ]
+        },
+        {
+          "name": "_health_is_good",
+          "startLine": 124,
+          "endLine": 130,
+          "params": [
+            "payload"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "build_pre_publish_state",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "evaluate_adr04_assertions",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "evaluate_pinot_gate",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "_health_is_good",
+          "line": 124,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "int",
+          "lineNumber": 19
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "topic_counts.get",
+          "lineNumber": 19
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "failures.append",
+          "lineNumber": 20
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "checkpoint_listing.strip",
+          "lineNumber": 21
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "failures.append",
+          "lineNumber": 22
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "curated_listings.get(\"realtime_metric_corrections\", \"\").strip",
+          "lineNumber": 23
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "curated_listings.get",
+          "lineNumber": 23
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "failures.append",
+          "lineNumber": 24
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "curated_listings.get(\"realtime_ops_alerts\", \"\").strip",
+          "lineNumber": 25
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "curated_listings.get",
+          "lineNumber": 25
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "failures.append",
+          "lineNumber": 26
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "failures.append",
+          "lineNumber": 28
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 30
+        },
+        {
+          "caller": "build_pre_publish_state",
+          "callee": "datetime.now",
+          "lineNumber": 30
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "EXPECTED_ADR04_COUNTS.items",
+          "lineNumber": 48
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "int",
+          "lineNumber": 49
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "topic_counts.get",
+          "lineNumber": 49
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 52
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 53
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "len",
+          "lineNumber": 55
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 56
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "len",
+          "lineNumber": 56
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "correction.get",
+          "lineNumber": 59
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 60
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "int",
+          "lineNumber": 61
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "correction.get",
+          "lineNumber": 61
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 62
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "correction.get",
+          "lineNumber": 63
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 64
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "str(correction.get(\"dimension_hash\", \"\")).strip",
+          "lineNumber": 65
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "str",
+          "lineNumber": 65
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "correction.get",
+          "lineNumber": 65
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 66
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "dict",
+          "lineNumber": 68
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "correction.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "str",
+          "lineNumber": 69
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "row.get",
+          "lineNumber": 69
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "str",
+          "lineNumber": 70
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "snapshot.get",
+          "lineNumber": 70
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 71
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "expected_snapshot.items",
+          "lineNumber": 81
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "snapshot.get",
+          "lineNumber": 82
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 83
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "_has_checkpoint_metadata",
+          "lineNumber": 85
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 86
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "curated_listings.get(\"realtime_metric_corrections\", \"\").strip",
+          "lineNumber": 87
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "curated_listings.get",
+          "lineNumber": 87
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 88
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "curated_listings.get(\"realtime_ops_alerts\", \"\").strip",
+          "lineNumber": 89
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "curated_listings.get",
+          "lineNumber": 89
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "ValueError",
+          "lineNumber": 90
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 93
+        },
+        {
+          "caller": "evaluate_adr04_assertions",
+          "callee": "datetime.now",
+          "lineNumber": 93
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "_health_is_good",
+          "lineNumber": 106
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "ValueError",
+          "lineNumber": 107
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "_health_is_good",
+          "lineNumber": 108
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "ValueError",
+          "lineNumber": 109
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "int",
+          "lineNumber": 115
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "row_counts.get",
+          "lineNumber": 115
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "ValueError",
+          "lineNumber": 116
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 118
+        },
+        {
+          "caller": "evaluate_pinot_gate",
+          "callee": "datetime.now",
+          "lineNumber": 118
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "payload.get",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "payload.get",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "payload.get",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "any",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "str(candidate).strip().upper",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "str(candidate).strip",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_health_is_good",
+          "callee": "str",
+          "lineNumber": 130
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/cleanroom.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 77,
+      "functions": [
+        {
+          "name": "_run_command",
+          "startLine": 25,
+          "endLine": 27,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "reset_cleanroom_state",
+          "startLine": 30,
+          "endLine": 70,
+          "params": [
+            "run_command",
+            "cleanup_kafka_fn",
+            "delete_object_prefix",
+            "remove_tree",
+            "run_root",
+            "checkpoint_bucket",
+            "checkpoint_prefix",
+            "curated_output_bucket",
+            "curated_output_prefix"
+          ]
+        },
+        {
+          "name": "cleanup_runtime_state",
+          "startLine": 73,
+          "endLine": 89,
+          "params": [
+            "run_command",
+            "capture_storage_snapshot"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run_command",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "reset_cleanroom_state",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "cleanup_runtime_state",
+          "line": 73,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run_command",
+          "callee": "subprocess.run",
+          "lineNumber": 26
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "_delete_minio_prefix",
+          "lineNumber": 42
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "run_root.exists",
+          "lineNumber": 43
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "remove_tree",
+          "lineNumber": 44
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "run_command",
+          "lineNumber": 46
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "run_command",
+          "lineNumber": 47
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "run_command",
+          "lineNumber": 48
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "cleanup_kafka_fn",
+          "lineNumber": 50
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "subprocess.run",
+          "lineNumber": 51
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "Path",
+          "lineNumber": 53
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "delete_prefix",
+          "lineNumber": 56
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "delete_prefix",
+          "lineNumber": 57
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "delete_prefix",
+          "lineNumber": 58
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 61
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "datetime.now",
+          "lineNumber": 61
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "run_root.mkdir",
+          "lineNumber": 68
+        },
+        {
+          "caller": "reset_cleanroom_state",
+          "callee": "_write_json",
+          "lineNumber": 69
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "_capture_storage_snapshot",
+          "lineNumber": 78
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "snapshot_fn",
+          "lineNumber": 79
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "run_command",
+          "lineNumber": 80
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "run_command",
+          "lineNumber": 81
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "run_command",
+          "lineNumber": 82
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "run_command",
+          "lineNumber": 83
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "snapshot_fn",
+          "lineNumber": 84
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 86
+        },
+        {
+          "caller": "cleanup_runtime_state",
+          "callee": "datetime.now",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/runner.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 312,
+      "nonEmptyLines": 280,
+      "functions": [
+        {
+          "name": "create_run_root",
+          "startLine": 49,
+          "endLine": 54,
+          "params": [
+            "base_evidence_root"
+          ]
+        },
+        {
+          "name": "collect_preflight_manifest",
+          "startLine": 57,
+          "endLine": 78,
+          "params": [
+            "run_root",
+            "run_command"
+          ]
+        },
+        {
+          "name": "run_cleanroom_verification",
+          "startLine": 81,
+          "endLine": 121,
+          "params": [
+            "phase",
+            "base_evidence_root",
+            "run_root",
+            "include_pinot",
+            "poll_timeout_seconds",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_run_verify_adr04",
+          "startLine": 124,
+          "endLine": 201,
+          "params": [
+            "run_root",
+            "poll_timeout_seconds",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_run_verify_pinot",
+          "startLine": 204,
+          "endLine": 242,
+          "params": [
+            "run_root",
+            "run_command"
+          ]
+        },
+        {
+          "name": "_wait_for_output_state",
+          "startLine": 245,
+          "endLine": 297,
+          "params": [
+            "expected_counts",
+            "required_curated_topics",
+            "run_command",
+            "timeout_seconds",
+            "run_root",
+            "phase_name"
+          ]
+        },
+        {
+          "name": "_publish_cleanroom_phase",
+          "startLine": 300,
+          "endLine": 312,
+          "params": [
+            "phase",
+            "run_root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "create_run_root",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "collect_preflight_manifest",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "run_cleanroom_verification",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "_run_verify_adr04",
+          "line": 124,
+          "isDefault": false
+        },
+        {
+          "name": "_run_verify_pinot",
+          "line": 204,
+          "isDefault": false
+        },
+        {
+          "name": "_wait_for_output_state",
+          "line": 245,
+          "isDefault": false
+        },
+        {
+          "name": "_publish_cleanroom_phase",
+          "line": 300,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "create_run_root",
+          "callee": "Path",
+          "lineNumber": 50
+        },
+        {
+          "caller": "create_run_root",
+          "callee": "datetime.now(timezone.utc).strftime",
+          "lineNumber": 51
+        },
+        {
+          "caller": "create_run_root",
+          "callee": "datetime.now",
+          "lineNumber": 51
+        },
+        {
+          "caller": "create_run_root",
+          "callee": "run_root.mkdir",
+          "lineNumber": 53
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "load_container_runtime_limit",
+          "lineNumber": 62
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 64
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "datetime.now",
+          "lineNumber": 64
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "capture_storage_snapshot",
+          "lineNumber": 70
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "run_command",
+          "lineNumber": 71
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "_running_compose_services",
+          "lineNumber": 72
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "_safe_topic_counts",
+          "lineNumber": 73
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "_safe_minio_listing",
+          "lineNumber": 74
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "_safe_minio_listing",
+          "lineNumber": 75
+        },
+        {
+          "caller": "collect_preflight_manifest",
+          "callee": "_write_json",
+          "lineNumber": 77
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "create_run_root",
+          "lineNumber": 90
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "str",
+          "lineNumber": 93
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "collect_preflight_manifest",
+          "lineNumber": 97
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "reset_cleanroom_state",
+          "lineNumber": 100
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "_run_verify_adr04",
+          "lineNumber": 110
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "_run_verify_pinot",
+          "lineNumber": 113
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "cleanup_runtime_state",
+          "lineNumber": 116
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "_write_json",
+          "lineNumber": 117
+        },
+        {
+          "caller": "run_cleanroom_verification",
+          "callee": "_write_json",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "build_pre_publish_state",
+          "lineNumber": 125
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_topic_counts_with_artifact",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 133
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 138
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_running_compose_services",
+          "lineNumber": 144
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "service.startswith",
+          "lineNumber": 144
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_write_json",
+          "lineNumber": 146
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "ValueError",
+          "lineNumber": 148
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "run_command",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_wait_for_flink_runtime",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_container_env_value",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_container_env_value",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_container_env_value",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_write_json",
+          "lineNumber": 158
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "build_cleanroom_smoke_phases",
+          "lineNumber": 160
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_publish_cleanroom_phase",
+          "lineNumber": 161
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_publish_cleanroom_phase",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_wait_for_output_state",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_write_json",
+          "lineNumber": 172
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "datetime.now",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_publish_cleanroom_phase",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_wait_for_output_state",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_consume_topic_rows",
+          "lineNumber": 191
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_consume_topic_rows",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "evaluate_adr04_assertions",
+          "lineNumber": 193
+        },
+        {
+          "caller": "_run_verify_adr04",
+          "callee": "_write_json",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "adr04_gate_path.is_file",
+          "lineNumber": 206
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "ValueError",
+          "lineNumber": 207
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "json.loads",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "adr04_gate_path.read_text",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "adr04_gate.get",
+          "lineNumber": 209
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "ValueError",
+          "lineNumber": 210
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "run_command",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "run_command",
+          "lineNumber": 213
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "_remove_docker_volumes",
+          "lineNumber": 214
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "run_command",
+          "lineNumber": 215
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "_wait_for_pinot_runtime",
+          "lineNumber": 216
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "apply_assets",
+          "lineNumber": 218
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "capture_pinot_evidence",
+          "lineNumber": 220
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "json.loads",
+          "lineNumber": 222
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "(pinot_evidence_root / \"controller_health.json\").read_text",
+          "lineNumber": 222
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "json.loads",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "(pinot_evidence_root / \"broker_health.json\").read_text",
+          "lineNumber": 223
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "json.loads",
+          "lineNumber": 224
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "(pinot_evidence_root / \"row_counts.json\").read_text",
+          "lineNumber": 224
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "_extract_pinot_row_count",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "row_count_payloads.items",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "evaluate_pinot_gate",
+          "lineNumber": 226
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "_write_json",
+          "lineNumber": 231
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "_write_json",
+          "lineNumber": 232
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 235
+        },
+        {
+          "caller": "_run_verify_pinot",
+          "callee": "datetime.now",
+          "lineNumber": 235
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "time.time",
+          "lineNumber": 254
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "time.time",
+          "lineNumber": 262
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "_topic_counts_with_artifact",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 270
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "_list_minio_prefix",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "_has_checkpoint_metadata",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "all",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "last_curated[topic].strip",
+          "lineNumber": 282
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "time.sleep",
+          "lineNumber": 285
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "_write_json",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_wait_for_output_state",
+          "callee": "datetime.now",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_publish_cleanroom_phase",
+          "callee": "publish_topic_events",
+          "lineNumber": 301
+        },
+        {
+          "caller": "_publish_cleanroom_phase",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 306
+        },
+        {
+          "caller": "_publish_cleanroom_phase",
+          "callee": "datetime.now",
+          "lineNumber": 306
+        },
+        {
+          "caller": "_publish_cleanroom_phase",
+          "callee": "sorted",
+          "lineNumber": 309
+        },
+        {
+          "caller": "_publish_cleanroom_phase",
+          "callee": "_write_json",
+          "lineNumber": 311
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/publisher.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 41,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "_json_default",
+          "startLine": 9,
+          "endLine": 14,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "publish_topic_events",
+          "startLine": 17,
+          "endLine": 41,
+          "params": [
+            "topic_events",
+            "bootstrap_servers",
+            "flush_timeout_seconds"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_json_default",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "publish_topic_events",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_json_default",
+          "callee": "pd.isna",
+          "lineNumber": 10
+        },
+        {
+          "caller": "_json_default",
+          "callee": "hasattr",
+          "lineNumber": 12
+        },
+        {
+          "caller": "_json_default",
+          "callee": "value.isoformat",
+          "lineNumber": 13
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "Producer",
+          "lineNumber": 25
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "sorted",
+          "lineNumber": 28
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "topic_events.items",
+          "lineNumber": 28
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "frame.to_dict",
+          "lineNumber": 30
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "record.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "record.get",
+          "lineNumber": 31
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "producer.produce",
+          "lineNumber": 32
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "str(key).encode",
+          "lineNumber": 34
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "str",
+          "lineNumber": 34
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "json.dumps(record, default=_json_default, separators=(\",\", \":\")).encode",
+          "lineNumber": 35
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "json.dumps",
+          "lineNumber": 35
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "producer.poll",
+          "lineNumber": 37
+        },
+        {
+          "caller": "publish_topic_events",
+          "callee": "producer.flush",
+          "lineNumber": 40
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/bootstrap.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 152,
+      "nonEmptyLines": 126,
+      "functions": [
+        {
+          "name": "_request_factory",
+          "startLine": 20,
+          "endLine": 32,
+          "params": [
+            "controller_url"
+          ]
+        },
+        {
+          "name": "_load_json_assets",
+          "startLine": 35,
+          "endLine": 40,
+          "params": [
+            "directory",
+            "key"
+          ]
+        },
+        {
+          "name": "_table_listing",
+          "startLine": 43,
+          "endLine": 53,
+          "params": [
+            "payload"
+          ]
+        },
+        {
+          "name": "_schema_listing",
+          "startLine": 56,
+          "endLine": 61,
+          "params": [
+            "payload"
+          ]
+        },
+        {
+          "name": "_wait_for_table_status",
+          "startLine": 64,
+          "endLine": 94,
+          "params": [
+            "table_name",
+            "request",
+            "retries"
+          ]
+        },
+        {
+          "name": "apply_assets",
+          "startLine": 97,
+          "endLine": 152,
+          "params": [
+            "controller_url",
+            "evidence_root",
+            "request"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_request_factory",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "_load_json_assets",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "_table_listing",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "_schema_listing",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "_wait_for_table_status",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "apply_assets",
+          "line": 97,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_request_factory",
+          "callee": "controller_url.rstrip",
+          "lineNumber": 21
+        },
+        {
+          "caller": "_request",
+          "callee": "requests.request",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_request",
+          "callee": "response.raise_for_status",
+          "lineNumber": 25
+        },
+        {
+          "caller": "_request",
+          "callee": "response.headers.get",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_request",
+          "callee": "response.json",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_load_json_assets",
+          "callee": "sorted",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_load_json_assets",
+          "callee": "directory.glob",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_load_json_assets",
+          "callee": "json.loads",
+          "lineNumber": 38
+        },
+        {
+          "caller": "_load_json_assets",
+          "callee": "path.read_text",
+          "lineNumber": 38
+        },
+        {
+          "caller": "_load_json_assets",
+          "callee": "assets.append",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_load_json_assets",
+          "callee": "str",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "isinstance",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "payload.get",
+          "lineNumber": 45
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "set",
+          "lineNumber": 48
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "normalized.add",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "str",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "str(table_name).endswith",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "str",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "normalized.add",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "str(table_name).removesuffix",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_table_listing",
+          "callee": "str",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_schema_listing",
+          "callee": "isinstance",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_schema_listing",
+          "callee": "payload.get",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_schema_listing",
+          "callee": "str",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "range",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "request",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "isinstance",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "str(first_item.get(\"ingestionStatus\", {}).get(\"ingestionState\", \"\")).upper",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "str",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "first_item.get(\"ingestionStatus\", {}).get",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "first_item.get",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "isinstance",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "str(payload.get(\"ingestionStatus\", {}).get(\"ingestionState\", \"\")).upper",
+          "lineNumber": 78
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "str",
+          "lineNumber": 78
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "payload.get(\"ingestionStatus\", {}).get",
+          "lineNumber": 78
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "payload.get",
+          "lineNumber": 78
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "request",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "isinstance",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "str(payload.get(\"status\", \"\")).upper",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "str",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "payload.get",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_wait_for_table_status",
+          "callee": "time.sleep",
+          "lineNumber": 93
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "_request_factory",
+          "lineNumber": 110
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "Path",
+          "lineNumber": 111
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 112
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "_load_json_assets",
+          "lineNumber": 114
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "_load_json_assets",
+          "lineNumber": 115
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "_schema_listing",
+          "lineNumber": 116
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "request_fn",
+          "lineNumber": 116
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "_table_listing",
+          "lineNumber": 117
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "request_fn",
+          "lineNumber": 117
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "request_fn",
+          "lineNumber": 122
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "schema_actions.append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "request_fn",
+          "lineNumber": 125
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "schema_actions.append",
+          "lineNumber": 126
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "request_fn",
+          "lineNumber": 132
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "table_actions.append",
+          "lineNumber": 133
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "request_fn",
+          "lineNumber": 135
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "table_actions.append",
+          "lineNumber": 136
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "_wait_for_table_status",
+          "lineNumber": 137
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 140
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "datetime.now",
+          "lineNumber": 140
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "(evidence_path / \"pinot_bootstrap_manifest.json\").write_text",
+          "lineNumber": 148
+        },
+        {
+          "caller": "apply_assets",
+          "callee": "json.dumps",
+          "lineNumber": 149
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/evidence.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 117,
+      "nonEmptyLines": 101,
+      "functions": [
+        {
+          "name": "_get_json",
+          "startLine": 15,
+          "endLine": 22,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "_post_json",
+          "startLine": 25,
+          "endLine": 28,
+          "params": [
+            "url",
+            "payload"
+          ]
+        },
+        {
+          "name": "capture_evidence",
+          "startLine": 31,
+          "endLine": 117,
+          "params": [
+            "evidence_root",
+            "controller_url",
+            "broker_url",
+            "get_json",
+            "post_json"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_get_json",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "_post_json",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "capture_evidence",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_get_json",
+          "callee": "requests.get",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.raise_for_status",
+          "lineNumber": 17
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.headers.get",
+          "lineNumber": 20
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.json",
+          "lineNumber": 21
+        },
+        {
+          "caller": "_post_json",
+          "callee": "requests.post",
+          "lineNumber": 26
+        },
+        {
+          "caller": "_post_json",
+          "callee": "response.raise_for_status",
+          "lineNumber": 27
+        },
+        {
+          "caller": "_post_json",
+          "callee": "response.json",
+          "lineNumber": 28
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "Path",
+          "lineNumber": 39
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 40
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 42
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "controller_url.rstrip",
+          "lineNumber": 42
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 43
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "broker_url.rstrip",
+          "lineNumber": 43
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 44
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "controller_url.rstrip",
+          "lineNumber": 44
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 52
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "controller_url.rstrip",
+          "lineNumber": 52
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "table_name.removesuffix",
+          "lineNumber": 52
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 56
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "controller_url.rstrip",
+          "lineNumber": 56
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "table_name.removesuffix",
+          "lineNumber": 56
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "post_json",
+          "lineNumber": 60
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "broker_url.rstrip",
+          "lineNumber": 61
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "post_json",
+          "lineNumber": 64
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "broker_url.rstrip",
+          "lineNumber": 65
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "post_json",
+          "lineNumber": 68
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "broker_url.rstrip",
+          "lineNumber": 69
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"controller_health.json\").write_text",
+          "lineNumber": 74
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 74
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"broker_health.json\").write_text",
+          "lineNumber": 75
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 75
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"table_inventory.json\").write_text",
+          "lineNumber": 76
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 76
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"table_status.json\").write_text",
+          "lineNumber": 77
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 77
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"consuming_segments.json\").write_text",
+          "lineNumber": 78
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 79
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"row_counts.json\").write_text",
+          "lineNumber": 82
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 82
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"version_matrix.json\").write_text",
+          "lineNumber": 89
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 89
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "query_output_dir.exists",
+          "lineNumber": 93
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "sorted",
+          "lineNumber": 94
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "query_output_dir.rglob",
+          "lineNumber": 94
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "path.is_file",
+          "lineNumber": 95
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "query_output_artifacts.append",
+          "lineNumber": 96
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "str(path.relative_to(evidence_path)).replace",
+          "lineNumber": 96
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "str",
+          "lineNumber": 96
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "path.relative_to",
+          "lineNumber": 96
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 99
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "datetime.now",
+          "lineNumber": 99
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"run_manifest.json\").write_text",
+          "lineNumber": 116
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 116
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/refresh_evidence.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 104,
+      "nonEmptyLines": 92,
+      "functions": [
+        {
+          "name": "_payload_is_healthy",
+          "startLine": 15,
+          "endLine": 23,
+          "params": [
+            "payload"
+          ]
+        },
+        {
+          "name": "_require_http_json",
+          "startLine": 26,
+          "endLine": 45,
+          "params": [
+            "url",
+            "service_name"
+          ]
+        },
+        {
+          "name": "refresh_evidence",
+          "startLine": 48,
+          "endLine": 104,
+          "params": [
+            "controller_url",
+            "broker_url",
+            "trino_url",
+            "trino_user",
+            "evidence_root",
+            "start_ts",
+            "end_ts"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_payload_is_healthy",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "_require_http_json",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "refresh_evidence",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "isinstance",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "payload.get",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "payload.get",
+          "lineNumber": 19
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "payload.get",
+          "lineNumber": 20
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "any",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "str(candidate).strip().upper",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "str(candidate).strip",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "str",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "str(payload).strip().upper",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "str(payload).strip",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_payload_is_healthy",
+          "callee": "str",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "requests.get",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "response.raise_for_status",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "RuntimeError",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "response.headers.get",
+          "lineNumber": 34
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "service_name.startswith",
+          "lineNumber": 36
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "_payload_is_healthy",
+          "lineNumber": 36
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "RuntimeError",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "response.text.strip",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "response.json",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "RuntimeError",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "service_name.startswith",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "_payload_is_healthy",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_require_http_json",
+          "callee": "RuntimeError",
+          "lineNumber": 44
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "Path",
+          "lineNumber": 58
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 59
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "_require_http_json",
+          "lineNumber": 61
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "controller_url.rstrip",
+          "lineNumber": 61
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "_require_http_json",
+          "lineNumber": 62
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "broker_url.rstrip",
+          "lineNumber": 62
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "_require_http_json",
+          "lineNumber": 63
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "trino_url.rstrip",
+          "lineNumber": 63
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "apply_assets",
+          "lineNumber": 65
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "run_query_examples",
+          "lineNumber": 69
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "capture_evidence",
+          "lineNumber": 77
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 84
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "datetime.now",
+          "lineNumber": 84
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "bootstrap_manifest.get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "sorted",
+          "lineNumber": 92
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "query_manifest.get",
+          "lineNumber": 94
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "evidence_manifest.get",
+          "lineNumber": 95
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "(evidence_path / \"refresh_evidence_manifest.json\").write_text",
+          "lineNumber": 100
+        },
+        {
+          "caller": "refresh_evidence",
+          "callee": "json.dumps",
+          "lineNumber": 101
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

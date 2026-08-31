@@ -1,0 +1,1407 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "type": "file",
+      "name": "bronze.py",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "summary": "Builds MinIO object keys and upload commands for landing batch snapshot files in the bronze layer.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:render_batch_snapshot_prefix",
+      "type": "function",
+      "name": "render_batch_snapshot_prefix",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        8,
+        9
+      ],
+      "summary": "Implements render batch snapshot prefix for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:render_batch_snapshot_key",
+      "type": "function",
+      "name": "render_batch_snapshot_key",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        12,
+        13
+      ],
+      "summary": "Implements render batch snapshot key for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:render_event_prefix",
+      "type": "function",
+      "name": "render_event_prefix",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        16,
+        17
+      ],
+      "summary": "Implements render event prefix for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:render_event_key",
+      "type": "function",
+      "name": "render_event_key",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        20,
+        21
+      ],
+      "summary": "Implements render event key for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:build_batch_snapshot_upload_commands",
+      "type": "function",
+      "name": "build_batch_snapshot_upload_commands",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        24,
+        39
+      ],
+      "summary": "Implements build batch snapshot upload commands for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:_run_command",
+      "type": "function",
+      "name": "_run_command",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        42,
+        43
+      ],
+      "summary": "Implements run command for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/bronze.py:execute_batch_snapshot_uploads",
+      "type": "function",
+      "name": "execute_batch_snapshot_uploads",
+      "filePath": "src/vina_bim_shop/lakehouse/bronze.py",
+      "lineRange": [
+        46,
+        88
+      ],
+      "summary": "Implements execute batch snapshot uploads for bronze.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "type": "file",
+      "name": "evidence.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "summary": "Captures Spark master and history-server status into timestamped evidence artifacts for batch runs.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/evidence.py:_get_json",
+      "type": "function",
+      "name": "_get_json",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "lineRange": [
+        15,
+        18
+      ],
+      "summary": "Implements get json for evidence.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/evidence.py:capture_evidence",
+      "type": "function",
+      "name": "capture_evidence",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "lineRange": [
+        21,
+        85
+      ],
+      "summary": "Implements capture evidence for evidence.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "type": "file",
+      "name": "executive_mart.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "summary": "Exports selected Trino gold tables into a DuckDB executive mart and records its manifest and evidence.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_quote_identifier",
+      "type": "function",
+      "name": "_quote_identifier",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        19,
+        20
+      ],
+      "summary": "Implements quote identifier for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_duckdb_type",
+      "type": "function",
+      "name": "_duckdb_type",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        23,
+        43
+      ],
+      "summary": "Implements duckdb type for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_table_query",
+      "type": "function",
+      "name": "_table_query",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        46,
+        47
+      ],
+      "summary": "Implements table query for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_create_gold_table",
+      "type": "function",
+      "name": "_create_gold_table",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        50,
+        62
+      ],
+      "summary": "Implements create gold table for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_insert_rows",
+      "type": "function",
+      "name": "_insert_rows",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        65,
+        75
+      ],
+      "summary": "Implements insert rows for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_write_manifest_tables",
+      "type": "function",
+      "name": "_write_manifest_tables",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        78,
+        128
+      ],
+      "summary": "Implements write manifest tables for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_write_evidence",
+      "type": "function",
+      "name": "_write_evidence",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        131,
+        164
+      ],
+      "summary": "Implements write evidence for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:export_executive_mart",
+      "type": "function",
+      "name": "export_executive_mart",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "lineRange": [
+        167,
+        234
+      ],
+      "summary": "Implements export executive mart for executive_mart.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "type": "file",
+      "name": "maintenance.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "summary": "Validates, rewrites, and benchmarks Iceberg table data files through Trino maintenance operations.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:validate_tables",
+      "type": "function",
+      "name": "validate_tables",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        43,
+        52
+      ],
+      "summary": "Implements validate tables for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:rewrite_data_files_sql",
+      "type": "function",
+      "name": "rewrite_data_files_sql",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        55,
+        74
+      ],
+      "summary": "Implements rewrite data files sql for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_aggregate_hash",
+      "type": "function",
+      "name": "_aggregate_hash",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        77,
+        82
+      ],
+      "summary": "Implements aggregate hash for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:collect_file_stats",
+      "type": "function",
+      "name": "collect_file_stats",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        85,
+        109
+      ],
+      "summary": "Implements collect file stats for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:rewrite_data_files",
+      "type": "function",
+      "name": "rewrite_data_files",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        112,
+        153
+      ],
+      "summary": "Implements rewrite data files for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:compare_invariants",
+      "type": "function",
+      "name": "compare_invariants",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        156,
+        164
+      ],
+      "summary": "Implements compare invariants for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_result_hash",
+      "type": "function",
+      "name": "_result_hash",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        167,
+        169
+      ],
+      "summary": "Implements result hash for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_query_sample",
+      "type": "function",
+      "name": "_query_sample",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        172,
+        180
+      ],
+      "summary": "Implements query sample for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:benchmark_trino_queries",
+      "type": "function",
+      "name": "benchmark_trino_queries",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "lineRange": [
+        183,
+        217
+      ],
+      "summary": "Implements benchmark trino queries for maintenance.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "type": "file",
+      "name": "parity.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "summary": "Runs DuckDB and Trino parity checks to compare local executive-mart results with gold-layer queries.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_load_duckdb",
+      "type": "function",
+      "name": "_load_duckdb",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "lineRange": [
+        13,
+        17
+      ],
+      "summary": "Implements load duckdb for parity.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_duckdb_scalar",
+      "type": "function",
+      "name": "_duckdb_scalar",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "lineRange": [
+        20,
+        21
+      ],
+      "summary": "Implements duckdb scalar for parity.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_trino_scalar",
+      "type": "function",
+      "name": "_trino_scalar",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "lineRange": [
+        24,
+        28
+      ],
+      "summary": "Implements trino scalar for parity.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/parity.py:run_parity_checks",
+      "type": "function",
+      "name": "run_parity_checks",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "lineRange": [
+        31,
+        132
+      ],
+      "summary": "Implements run parity checks for parity.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "type": "file",
+      "name": "runner.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "summary": "Builds Spark and dbt commands and coordinates batch-stage execution with persisted run summaries.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:_run_command",
+      "type": "function",
+      "name": "_run_command",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        22,
+        23
+      ],
+      "summary": "Implements run command for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:build_spark_submit_command",
+      "type": "function",
+      "name": "build_spark_submit_command",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        26,
+        53
+      ],
+      "summary": "Implements build spark submit command for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:build_dbt_build_command",
+      "type": "function",
+      "name": "build_dbt_build_command",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        56,
+        57
+      ],
+      "summary": "Implements build dbt build command for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:persist_run_summary",
+      "type": "function",
+      "name": "persist_run_summary",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        60,
+        65
+      ],
+      "summary": "Implements persist run summary for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_batch_pipeline",
+      "type": "function",
+      "name": "run_batch_pipeline",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        68,
+        114
+      ],
+      "summary": "Implements run batch pipeline for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_spark_stage",
+      "type": "function",
+      "name": "run_spark_stage",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        117,
+        138
+      ],
+      "summary": "Implements run spark stage for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_core_transform",
+      "type": "function",
+      "name": "run_core_transform",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        141,
+        142
+      ],
+      "summary": "Implements run core transform for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_feature_compute",
+      "type": "function",
+      "name": "run_feature_compute",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "lineRange": [
+        145,
+        146
+      ],
+      "summary": "Implements run feature compute for runner.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "file",
+      "name": "trino.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "summary": "Executes Trino queries and performs smoke checks against the gold-layer tables.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/trino.py:execute_trino_query",
+      "type": "function",
+      "name": "execute_trino_query",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "lineRange": [
+        11,
+        49
+      ],
+      "summary": "Implements execute trino query for trino.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/trino.py:run_gold_smoke_queries",
+      "type": "function",
+      "name": "run_gold_smoke_queries",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "lineRange": [
+        52,
+        79
+      ],
+      "summary": "Implements run gold smoke queries for trino.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_batch_snapshot_prefix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_batch_snapshot_prefix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_batch_snapshot_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_batch_snapshot_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_event_prefix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_event_prefix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_event_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:render_event_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:build_batch_snapshot_upload_commands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:build_batch_snapshot_upload_commands",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:_run_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:_run_command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:execute_batch_snapshot_uploads",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "target": "function:src/vina_bim_shop/lakehouse/bronze.py:execute_batch_snapshot_uploads",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/evidence.py:_get_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/evidence.py:_get_json",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/evidence.py:capture_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/evidence.py:capture_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_quote_identifier",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_quote_identifier",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_duckdb_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_duckdb_type",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_table_query",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_table_query",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_create_gold_table",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_create_gold_table",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_insert_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_insert_rows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_write_manifest_tables",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_write_manifest_tables",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_write_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:_write_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:export_executive_mart",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/executive_mart.py:export_executive_mart",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:validate_tables",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:validate_tables",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:rewrite_data_files_sql",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:rewrite_data_files_sql",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_aggregate_hash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_aggregate_hash",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:collect_file_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:collect_file_stats",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:rewrite_data_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:rewrite_data_files",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:compare_invariants",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:compare_invariants",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_result_hash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_result_hash",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_query_sample",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:_query_sample",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:benchmark_trino_queries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/maintenance.py:benchmark_trino_queries",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_load_duckdb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_load_duckdb",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_duckdb_scalar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_duckdb_scalar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_trino_scalar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:_trino_scalar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:run_parity_checks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/parity.py:run_parity_checks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:_run_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:_run_command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:build_spark_submit_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:build_spark_submit_command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:build_dbt_build_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:build_dbt_build_command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:persist_run_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:persist_run_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_batch_pipeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_batch_pipeline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_spark_stage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_spark_stage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_core_transform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_core_transform",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_feature_compute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/runner.py:run_feature_compute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/parity.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/trino.py:execute_trino_query",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/trino.py:execute_trino_query",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/trino.py:run_gold_smoke_queries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/trino.py:run_gold_smoke_queries",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

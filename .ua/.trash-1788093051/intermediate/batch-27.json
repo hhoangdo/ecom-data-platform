@@ -1,0 +1,8 @@
+{
+  "nodes": [
+    {"id":"config:infra/pinot/tables/pinot_realtime_commerce_metrics_1m_realtime.json","type":"config","name":"pinot_realtime_commerce_metrics_1m_realtime.json","filePath":"infra/pinot/tables/pinot_realtime_commerce_metrics_1m_realtime.json","summary":"Configures Pinot realtime ingestion for minute-level commerce metrics from Kafka, including seven-day retention, indexes, transforms, and provisional truth policy.","tags":["configuration","pinot","kafka","realtime-analytics","ingestion"],"complexity":"moderate"},
+    {"id":"config:infra/pinot/tables/pinot_realtime_metric_corrections_realtime.json","type":"config","name":"pinot_realtime_metric_corrections_realtime.json","filePath":"infra/pinot/tables/pinot_realtime_metric_corrections_realtime.json","summary":"Configures Pinot ingestion of realtime metric corrections from Kafka, extracting correction snapshot fields and preserving a provisional correction-audit policy.","tags":["configuration","pinot","kafka","data-correction","ingestion"],"complexity":"moderate"},
+    {"id":"config:infra/pinot/tables/pinot_realtime_ops_alerts_realtime.json","type":"config","name":"pinot_realtime_ops_alerts_realtime.json","filePath":"infra/pinot/tables/pinot_realtime_ops_alerts_realtime.json","summary":"Configures Pinot ingestion of realtime operational alerts from Kafka with dimensional and metric JSON transformations and seven-day retention.","tags":["configuration","pinot","kafka","monitoring","ingestion"],"complexity":"moderate"}
+  ],
+  "edges": []
+}

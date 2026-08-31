@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {"id":"document:architecture/domain/business-context.md","type":"document","name":"business-context.md","filePath":"architecture/domain/business-context.md","summary":"Defines the marketplace business context, its actors, supported analytical questions, and explicit scope boundaries for the data platform.","tags":["documentation","domain-model","business-context","analytics"],"complexity":"simple"},
+    {"id":"document:architecture/domain/category-taxonomy.md","type":"document","name":"category-taxonomy.md","filePath":"architecture/domain/category-taxonomy.md","summary":"Documents the category taxonomy policy, level-one categories and subcategories, and implementation guidance for product classification.","tags":["documentation","domain-model","taxonomy","reference-data"],"complexity":"moderate"},
+    {"id":"document:architecture/domain/source-event-catalog.md","type":"document","name":"source-event-catalog.md","filePath":"architecture/domain/source-event-catalog.md","summary":"Catalogues the common event envelope, source and derived Kafka topics, payload purposes, and freshness and truth policy.","tags":["documentation","event-catalog","streaming","data-contract"],"complexity":"moderate"},
+    {"id":"document:architecture/domain/source-to-target-mapping.md","type":"document","name":"source-to-target-mapping.md","filePath":"architecture/domain/source-to-target-mapping.md","summary":"Maps offline snapshots and event topics to serving, local analytics, and governance targets while recording contract reminders.","tags":["documentation","data-lineage","mapping","data-contract"],"complexity":"moderate"}
+  ],
+  "edges": [
+    {"source":"document:architecture/domain/source-to-target-mapping.md","target":"document:architecture/domain/source-event-catalog.md","type":"related","direction":"forward","weight":0.5},
+    {"source":"document:architecture/domain/category-taxonomy.md","target":"document:architecture/domain/business-context.md","type":"related","direction":"forward","weight":0.5}
+  ]
+}

@@ -1,0 +1,1260 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 17,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 17,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 17
+    }
+  },
+  "results": [
+    {
+      "path": "deliverables/01_data_generator.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 247,
+      "nonEmptyLines": 194,
+      "sections": [
+        {
+          "heading": "01 Data Generator",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why The Project Needs It",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Outputs",
+          "level": 2,
+          "line": 29
+        },
+        {
+          "heading": "Offline Snapshot Design",
+          "level": 2,
+          "line": 63
+        },
+        {
+          "heading": "Streaming Source Design",
+          "level": 2,
+          "line": 82
+        },
+        {
+          "heading": "Data Challenges Injected",
+          "level": 2,
+          "line": 108
+        },
+        {
+          "heading": "Rubric Cardinality Evidence",
+          "level": 2,
+          "line": 131
+        },
+        {
+          "heading": "Final Medium Evidence",
+          "level": 2,
+          "line": 158
+        },
+        {
+          "heading": "Implementation Files",
+          "level": 2,
+          "line": 207
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 218
+        },
+        {
+          "heading": "Data Challenge Handling Overview",
+          "level": 2,
+          "line": 232
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 240
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "deliverables/02_schema_design.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 298,
+      "nonEmptyLines": 226,
+      "sections": [
+        {
+          "heading": "02 Schema Design And Data Dictionary",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Architecture Fit",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "Layer Overview",
+          "level": 2,
+          "line": 29
+        },
+        {
+          "heading": "Data Format Rationale",
+          "level": 2,
+          "line": 40
+        },
+        {
+          "heading": "Bronze Data Dictionary",
+          "level": 2,
+          "line": 61
+        },
+        {
+          "heading": "Silver Data Dictionary",
+          "level": 2,
+          "line": 84
+        },
+        {
+          "heading": "Gold Data Dictionary",
+          "level": 2,
+          "line": 107
+        },
+        {
+          "heading": "Dimensions And Bridge",
+          "level": 3,
+          "line": 111
+        },
+        {
+          "heading": "Facts",
+          "level": 3,
+          "line": 134
+        },
+        {
+          "heading": "OBT, Aggregates, And Features",
+          "level": 3,
+          "line": 145
+        },
+        {
+          "heading": "Rubric Evidence (Rows 40-44)",
+          "level": 2,
+          "line": 157
+        },
+        {
+          "heading": "Row 40 — All-zone ERD",
+          "level": 3,
+          "line": 159
+        },
+        {
+          "heading": "Row 41 — SCD2-compatible dimensions",
+          "level": 3,
+          "line": 165
+        },
+        {
+          "heading": "Row 42 — Feature timestamp contract",
+          "level": 3,
+          "line": 169
+        },
+        {
+          "heading": "Row 43 — Dimension/fact relationships",
+          "level": 3,
+          "line": 173
+        },
+        {
+          "heading": "Row 44 — Naming conventions",
+          "level": 3,
+          "line": 179
+        },
+        {
+          "heading": "Business Logic Formulas",
+          "level": 2,
+          "line": 187
+        },
+        {
+          "heading": "Serving Contracts",
+          "level": 2,
+          "line": 210
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 229
+        },
+        {
+          "heading": "Data Quality And Evidence",
+          "level": 2,
+          "line": 243
+        },
+        {
+          "heading": "Implementation Files",
+          "level": 2,
+          "line": 273
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 288
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 23
+      }
+    },
+    {
+      "path": "deliverables/03_data_generator_improvement.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 9,
+      "nonEmptyLines": 5,
+      "sections": [
+        {
+          "heading": "Data Generator Improvement",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "deliverables/03_kafka_ingestion.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 192,
+      "nonEmptyLines": 139,
+      "sections": [
+        {
+          "heading": "03 Kafka Ingestion",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why Kafka Is Needed",
+          "level": 2,
+          "line": 17
+        },
+        {
+          "heading": "Services",
+          "level": 2,
+          "line": 31
+        },
+        {
+          "heading": "Topic Design",
+          "level": 2,
+          "line": 48
+        },
+        {
+          "heading": "Schema Registry",
+          "level": 2,
+          "line": 69
+        },
+        {
+          "heading": "Kafka Connect To MinIO Bronze",
+          "level": 2,
+          "line": 89
+        },
+        {
+          "heading": "End-To-End Data Flow",
+          "level": 2,
+          "line": 111
+        },
+        {
+          "heading": "Evidence And Verification",
+          "level": 2,
+          "line": 131
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 162
+        },
+        {
+          "heading": "Limitations",
+          "level": 2,
+          "line": 176
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 183
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    },
+    {
+      "path": "deliverables/04.1_ml_design.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 9,
+      "nonEmptyLines": 5,
+      "sections": [
+        {
+          "heading": "ML Design",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "deliverables/04.2_llm_design.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 9,
+      "nonEmptyLines": 5,
+      "sections": [
+        {
+          "heading": "LLM Design",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "deliverables/04_lakehouse.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 223,
+      "nonEmptyLines": 162,
+      "sections": [
+        {
+          "heading": "04 Lakehouse",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why The Project Needs A Lakehouse",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Services",
+          "level": 2,
+          "line": 27
+        },
+        {
+          "heading": "Bucket Design",
+          "level": 2,
+          "line": 45
+        },
+        {
+          "heading": "Bronze To Silver To Gold Lifecycle",
+          "level": 2,
+          "line": 57
+        },
+        {
+          "heading": "Bronze",
+          "level": 3,
+          "line": 76
+        },
+        {
+          "heading": "Silver",
+          "level": 3,
+          "line": 88
+        },
+        {
+          "heading": "Gold",
+          "level": 3,
+          "line": 102
+        },
+        {
+          "heading": "Data Type Choices Across Layers",
+          "level": 2,
+          "line": 116
+        },
+        {
+          "heading": "Trino Catalog",
+          "level": 2,
+          "line": 126
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 138
+        },
+        {
+          "heading": "Run And Evidence",
+          "level": 2,
+          "line": 151
+        },
+        {
+          "heading": "Storage Optimization Evidence (Row 26)",
+          "level": 2,
+          "line": 183
+        },
+        {
+          "heading": "Limitations",
+          "level": 2,
+          "line": 208
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 216
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 16
+      }
+    },
+    {
+      "path": "deliverables/05_spark_batch.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 236,
+      "nonEmptyLines": 187,
+      "sections": [
+        {
+          "heading": "05 Spark Batch",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why Spark Is Needed",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Services",
+          "level": 2,
+          "line": 32
+        },
+        {
+          "heading": "Batch Interface",
+          "level": 2,
+          "line": 52
+        },
+        {
+          "heading": "Implementation",
+          "level": 2,
+          "line": 68
+        },
+        {
+          "heading": "Data Challenge Handling",
+          "level": 2,
+          "line": 112
+        },
+        {
+          "heading": "Controlled Baseline And Optimization Evidence",
+          "level": 2,
+          "line": 133
+        },
+        {
+          "heading": "Data Types And Partitioning",
+          "level": 2,
+          "line": 153
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 178
+        },
+        {
+          "heading": "Evidence",
+          "level": 2,
+          "line": 191
+        },
+        {
+          "heading": "Limitations",
+          "level": 2,
+          "line": 212
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 224
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "deliverables/06_flink_streaming.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 262,
+      "nonEmptyLines": 197,
+      "sections": [
+        {
+          "heading": "Flink Streaming",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why Flink Is Needed",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Implemented Jobs",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Event-Time And Late Data Handling",
+          "level": 2,
+          "line": 44
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 84
+        },
+        {
+          "heading": "Data Challenge Handling",
+          "level": 2,
+          "line": 97
+        },
+        {
+          "heading": "Derived Topic Contracts",
+          "level": 2,
+          "line": 123
+        },
+        {
+          "heading": "Runtime Profile",
+          "level": 2,
+          "line": 133
+        },
+        {
+          "heading": "Verification And Evidence",
+          "level": 2,
+          "line": 163
+        },
+        {
+          "heading": "Topic 04 Baseline And Streaming Proof",
+          "level": 2,
+          "line": 196
+        },
+        {
+          "heading": "Row 21 - Baseline and Optimized Comparison",
+          "level": 3,
+          "line": 202
+        },
+        {
+          "heading": "Row 22 - Burst Proof",
+          "level": 3,
+          "line": 215
+        },
+        {
+          "heading": "Row 23 - Late Arrival Proof",
+          "level": 3,
+          "line": 220
+        },
+        {
+          "heading": "Row 24 - Duplicate Proof",
+          "level": 3,
+          "line": 227
+        },
+        {
+          "heading": "Row 25 - Event-Time Window Proof",
+          "level": 3,
+          "line": 233
+        },
+        {
+          "heading": "Limitations",
+          "level": 2,
+          "line": 243
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 251
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 18
+      }
+    },
+    {
+      "path": "deliverables/07_pinot_serving.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 172,
+      "nonEmptyLines": 125,
+      "sections": [
+        {
+          "heading": "Pinot Serving",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why Pinot Is Needed",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Why Pinot Instead Of ClickHouse For This Slice",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Implemented Serving Tables",
+          "level": 2,
+          "line": 37
+        },
+        {
+          "heading": "Correction Handling",
+          "level": 2,
+          "line": 60
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 73
+        },
+        {
+          "heading": "Runtime Profile",
+          "level": 2,
+          "line": 84
+        },
+        {
+          "heading": "Evidence",
+          "level": 2,
+          "line": 129
+        },
+        {
+          "heading": "Limitations",
+          "level": 2,
+          "line": 154
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 161
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "deliverables/08_airflow_gx_orchestration.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 345,
+      "nonEmptyLines": 255,
+      "sections": [
+        {
+          "heading": "Airflow And Great Expectations Orchestration",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why Airflow And GX Are Needed",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "Implemented DAGs",
+          "level": 2,
+          "line": 25
+        },
+        {
+          "heading": "DAG Reference",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "`kafka_topic_bootstrap` (manual)",
+          "level": 3,
+          "line": 45
+        },
+        {
+          "heading": "`hourly_batch_lakehouse` (`@hourly`, paused)",
+          "level": 3,
+          "line": 59
+        },
+        {
+          "heading": "`pinot_bootstrap` (manual, paused)",
+          "level": 3,
+          "line": 72
+        },
+        {
+          "heading": "`reconciliation_report` (`@hourly`, paused)",
+          "level": 3,
+          "line": 86
+        },
+        {
+          "heading": "`datahub_ingestion` (manual, **unpaused**)",
+          "level": 3,
+          "line": 99
+        },
+        {
+          "heading": "`local_evidence_build` (manual, paused)",
+          "level": 3,
+          "line": 113
+        },
+        {
+          "heading": "Quality Policy",
+          "level": 2,
+          "line": 126
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 140
+        },
+        {
+          "heading": "Runtime Profile",
+          "level": 2,
+          "line": 153
+        },
+        {
+          "heading": "Typical Trigger Flow",
+          "level": 2,
+          "line": 185
+        },
+        {
+          "heading": "GX Data Docs",
+          "level": 2,
+          "line": 217
+        },
+        {
+          "heading": "Evidence",
+          "level": 2,
+          "line": 231
+        },
+        {
+          "heading": "Historical Review Artifacts",
+          "level": 3,
+          "line": 246
+        },
+        {
+          "heading": "Runtime Boundary Follow-ups",
+          "level": 2,
+          "line": 252
+        },
+        {
+          "heading": "Resulting Module Layout",
+          "level": 3,
+          "line": 256
+        },
+        {
+          "heading": "Boundary Rules Preserved By The Split",
+          "level": 3,
+          "line": 273
+        },
+        {
+          "heading": "Behavior",
+          "level": 3,
+          "line": 281
+        },
+        {
+          "heading": "Tests",
+          "level": 2,
+          "line": 285
+        },
+        {
+          "heading": "Limitations",
+          "level": 2,
+          "line": 307
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 314
+        },
+        {
+          "heading": "Mini Coursework Pipeline (DP1–DP3)",
+          "level": 2,
+          "line": 324
+        },
+        {
+          "heading": "Captured Topic 07 Runtime Proof",
+          "level": 3,
+          "line": 341
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 27
+      }
+    },
+    {
+      "path": "deliverables/09_datahub_governance.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 183,
+      "nonEmptyLines": 144,
+      "sections": [
+        {
+          "heading": "DataHub Governance",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Runtime Contract",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Metadata Sources",
+          "level": 2,
+          "line": 35
+        },
+        {
+          "heading": "Recovery Procedure",
+          "level": 2,
+          "line": 45
+        },
+        {
+          "heading": "Acceptance Evidence",
+          "level": 2,
+          "line": 75
+        },
+        {
+          "heading": "Operational Controls and Rollback",
+          "level": 2,
+          "line": 92
+        },
+        {
+          "heading": "Evidence Locations",
+          "level": 2,
+          "line": 106
+        },
+        {
+          "heading": "Coursework Pipeline Proof (Rows 34-39)",
+          "level": 2,
+          "line": 117
+        },
+        {
+          "heading": "Row 34 - DP1 lineage",
+          "level": 3,
+          "line": 129
+        },
+        {
+          "heading": "Row 35 - DP1 validation and contract",
+          "level": 3,
+          "line": 138
+        },
+        {
+          "heading": "Row 36 - DP2 lineage",
+          "level": 3,
+          "line": 145
+        },
+        {
+          "heading": "Row 37 - DP2 validation and contract",
+          "level": 3,
+          "line": 153
+        },
+        {
+          "heading": "Row 38 - DP3 lineage",
+          "level": 3,
+          "line": 160
+        },
+        {
+          "heading": "Row 39 - DP3 validation and contract",
+          "level": 3,
+          "line": 168
+        },
+        {
+          "heading": "Convenience Targets",
+          "level": 2,
+          "line": 178
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 16
+      }
+    },
+    {
+      "path": "deliverables/10_duckdb_dbt_local_analytics.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 158,
+      "nonEmptyLines": 112,
+      "sections": [
+        {
+          "heading": "DuckDB, dbt, And Local Analytics",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "What DuckDB And dbt Do In This Project",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "Why DuckDB/dbt Is Needed",
+          "level": 2,
+          "line": 29
+        },
+        {
+          "heading": "dbt-DuckDB Parity Oracle",
+          "level": 2,
+          "line": 42
+        },
+        {
+          "heading": "DuckDB Executive Mart",
+          "level": 2,
+          "line": 70
+        },
+        {
+          "heading": "Service Interactions",
+          "level": 2,
+          "line": 99
+        },
+        {
+          "heading": "Evidence And Limitations",
+          "level": 2,
+          "line": 111
+        },
+        {
+          "heading": "Isolated ART Index Evidence (Row 27)",
+          "level": 2,
+          "line": 122
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 149
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "path": "deliverables/11_solving_data_challenges.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 192,
+      "nonEmptyLines": 160,
+      "sections": [
+        {
+          "heading": "11 Solving Data Challenges",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Why The Map Exists",
+          "level": 2,
+          "line": 13
+        },
+        {
+          "heading": "Spark (Batch) Engine",
+          "level": 2,
+          "line": 28
+        },
+        {
+          "heading": "Engine Profile",
+          "level": 3,
+          "line": 30
+        },
+        {
+          "heading": "Skew Policy (Controlled)",
+          "level": 3,
+          "line": 48
+        },
+        {
+          "heading": "Challenge Handling Table",
+          "level": 3,
+          "line": 61
+        },
+        {
+          "heading": "End-To-End Flow",
+          "level": 3,
+          "line": 78
+        },
+        {
+          "heading": "Flink (Streaming) Engine",
+          "level": 2,
+          "line": 90
+        },
+        {
+          "heading": "Engine Profile",
+          "level": 3,
+          "line": 92
+        },
+        {
+          "heading": "Challenge Handling Table",
+          "level": 3,
+          "line": 121
+        },
+        {
+          "heading": "End-To-End Flow",
+          "level": 3,
+          "line": 134
+        },
+        {
+          "heading": "Topic 04 Measured Flink Proof",
+          "level": 3,
+          "line": 149
+        },
+        {
+          "heading": "Honest Gaps And Future Work",
+          "level": 2,
+          "line": 159
+        },
+        {
+          "heading": "Cross-References",
+          "level": 2,
+          "line": 169
+        },
+        {
+          "heading": "Convenience Make Targets",
+          "level": 2,
+          "line": 182
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 16
+      }
+    },
+    {
+      "path": "deliverables/12_novel_ideas.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 74,
+      "nonEmptyLines": 47,
+      "sections": [
+        {
+          "heading": "Novel Ideas Evidence",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Novel Idea 1: DuckDB/dbt local analytics",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "Problem",
+          "level": 3,
+          "line": 7
+        },
+        {
+          "heading": "Implementation and proof",
+          "level": 3,
+          "line": 11
+        },
+        {
+          "heading": "Why it is novel, value, and limits",
+          "level": 3,
+          "line": 35
+        },
+        {
+          "heading": "Novel Idea 2: Pinot realtime serving",
+          "level": 2,
+          "line": 41
+        },
+        {
+          "heading": "Problem",
+          "level": 3,
+          "line": 43
+        },
+        {
+          "heading": "Implementation and proof",
+          "level": 3,
+          "line": 47
+        },
+        {
+          "heading": "Why it is novel, value, and limits",
+          "level": 3,
+          "line": 70
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "deliverables/13_mini_coursework_rubric_evidence.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 53,
+      "nonEmptyLines": 50,
+      "sections": [
+        {
+          "heading": "Mini-Coursework Rubric Evidence",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "deliverables/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 34,
+      "nonEmptyLines": 28,
+      "sections": [
+        {
+          "heading": "`deliverables`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Suggested Review Order",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "How It Differs From Similar Folders",
+          "level": 2,
+          "line": 26
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    }
+  ]
+}

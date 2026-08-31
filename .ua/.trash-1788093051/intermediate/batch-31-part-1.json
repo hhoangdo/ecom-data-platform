@@ -1,0 +1,1351 @@
+{
+  "nodes": [
+    {
+      "id": "file:scripts/lakehouse/optimize_iceberg.py",
+      "type": "file",
+      "name": "optimize_iceberg.py",
+      "filePath": "scripts/lakehouse/optimize_iceberg.py",
+      "summary": "Implements the optimize_iceberg.py script or module.",
+      "tags": [
+        "lakehouse",
+        "utility",
+        "data-pipeline"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/lakehouse/optimize_iceberg.py:_write_file_stats",
+      "type": "function",
+      "name": "_write_file_stats",
+      "filePath": "scripts/lakehouse/optimize_iceberg.py",
+      "lineRange": [
+        45,
+        61
+      ],
+      "summary": "Implements _write_file_stats for the optimize_iceberg.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/lakehouse/optimize_iceberg.py:_write_report",
+      "type": "function",
+      "name": "_write_report",
+      "filePath": "scripts/lakehouse/optimize_iceberg.py",
+      "lineRange": [
+        64,
+        110
+      ],
+      "summary": "Implements _write_report for the optimize_iceberg.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/lakehouse/optimize_iceberg.py:_write_blocked_report",
+      "type": "function",
+      "name": "_write_blocked_report",
+      "filePath": "scripts/lakehouse/optimize_iceberg.py",
+      "lineRange": [
+        113,
+        140
+      ],
+      "summary": "Implements _write_blocked_report for the optimize_iceberg.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/lakehouse/optimize_iceberg.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/lakehouse/optimize_iceberg.py",
+      "lineRange": [
+        143,
+        259
+      ],
+      "summary": "Implements main for the optimize_iceberg.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:scripts/lakehouse/smoke_sql.py",
+      "type": "file",
+      "name": "smoke_sql.py",
+      "filePath": "scripts/lakehouse/smoke_sql.py",
+      "summary": "Implements the smoke_sql.py script or module.",
+      "tags": [
+        "lakehouse",
+        "utility",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/pinot/bootstrap.py",
+      "type": "file",
+      "name": "bootstrap.py",
+      "filePath": "scripts/pinot/bootstrap.py",
+      "summary": "Implements the bootstrap.py script or module.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/pinot/capture_evidence.py",
+      "type": "file",
+      "name": "capture_evidence.py",
+      "filePath": "scripts/pinot/capture_evidence.py",
+      "summary": "Implements the capture_evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/pinot/query_examples.py",
+      "type": "file",
+      "name": "query_examples.py",
+      "filePath": "scripts/pinot/query_examples.py",
+      "summary": "Implements the query_examples.py script or module.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/pinot/query_examples.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/pinot/query_examples.py",
+      "lineRange": [
+        20,
+        30
+      ],
+      "summary": "Implements main for the query_examples.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/pinot/refresh_evidence.py",
+      "type": "file",
+      "name": "refresh_evidence.py",
+      "filePath": "scripts/pinot/refresh_evidence.py",
+      "summary": "Implements the refresh_evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/pinot/refresh_evidence.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "filePath": "scripts/pinot/refresh_evidence.py",
+      "lineRange": [
+        9,
+        18
+      ],
+      "summary": "Implements parse_args for the refresh_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/pinot/refresh_evidence.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/pinot/refresh_evidence.py",
+      "lineRange": [
+        21,
+        32
+      ],
+      "summary": "Implements main for the refresh_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/qa/audit_public_documentation.py",
+      "type": "file",
+      "name": "audit_public_documentation.py",
+      "filePath": "scripts/qa/audit_public_documentation.py",
+      "summary": "Implements the audit_public_documentation.py script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/audit_public_documentation.py:audit_public_documentation",
+      "type": "function",
+      "name": "audit_public_documentation",
+      "filePath": "scripts/qa/audit_public_documentation.py",
+      "lineRange": [
+        43,
+        105
+      ],
+      "summary": "Implements audit_public_documentation for the audit_public_documentation.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "type": "file",
+      "name": "build_mini_coursework_rubric_manifest.py",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "summary": "Implements the build_mini_coursework_rubric_manifest.py script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_gate_row_2",
+      "type": "function",
+      "name": "_gate_row_2",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "lineRange": [
+        43,
+        53
+      ],
+      "summary": "Implements _gate_row_2 for the build_mini_coursework_rubric_manifest.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_gate_airflow",
+      "type": "function",
+      "name": "_gate_airflow",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "lineRange": [
+        111,
+        129
+      ],
+      "summary": "Implements _gate_airflow for the build_mini_coursework_rubric_manifest.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_gate_datahub",
+      "type": "function",
+      "name": "_gate_datahub",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "lineRange": [
+        132,
+        142
+      ],
+      "summary": "Implements _gate_datahub for the build_mini_coursework_rubric_manifest.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_hash_paths",
+      "type": "function",
+      "name": "_hash_paths",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "lineRange": [
+        231,
+        241
+      ],
+      "summary": "Implements _hash_paths for the build_mini_coursework_rubric_manifest.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:build_manifest",
+      "type": "function",
+      "name": "build_manifest",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "lineRange": [
+        244,
+        284
+      ],
+      "summary": "Implements build_manifest for the build_mini_coursework_rubric_manifest.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "lineRange": [
+        311,
+        328
+      ],
+      "summary": "Implements main for the build_mini_coursework_rubric_manifest.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/qa/capture_novel_ideas.py",
+      "type": "file",
+      "name": "capture_novel_ideas.py",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "summary": "Implements the capture_novel_ideas.py script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_query_duckdb",
+      "type": "function",
+      "name": "_query_duckdb",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        80,
+        104
+      ],
+      "summary": "Implements _query_duckdb for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_dbt_gate",
+      "type": "function",
+      "name": "_dbt_gate",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        107,
+        188
+      ],
+      "summary": "Implements _dbt_gate for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_has_consuming_or_completed_segment",
+      "type": "function",
+      "name": "_has_consuming_or_completed_segment",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        205,
+        216
+      ],
+      "summary": "Implements _has_consuming_or_completed_segment for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_query_pinot",
+      "type": "function",
+      "name": "_query_pinot",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        219,
+        244
+      ],
+      "summary": "Implements _query_pinot for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_wait_for_pinot_query",
+      "type": "function",
+      "name": "_wait_for_pinot_query",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        247,
+        256
+      ],
+      "summary": "Implements _wait_for_pinot_query for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_pinot_gate",
+      "type": "function",
+      "name": "_pinot_gate",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        259,
+        337
+      ],
+      "summary": "Implements _pinot_gate for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:_screenshot_metadata",
+      "type": "function",
+      "name": "_screenshot_metadata",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        340,
+        364
+      ],
+      "summary": "Implements _screenshot_metadata for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:capture_novel_ideas",
+      "type": "function",
+      "name": "capture_novel_ideas",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        372,
+        468
+      ],
+      "summary": "Implements capture_novel_ideas for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/qa/capture_novel_ideas.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/qa/capture_novel_ideas.py",
+      "lineRange": [
+        480,
+        493
+      ],
+      "summary": "Implements main for the capture_novel_ideas.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/qa/finalize_sections_01_02.py",
+      "type": "file",
+      "name": "finalize_sections_01_02.py",
+      "filePath": "scripts/qa/finalize_sections_01_02.py",
+      "summary": "Implements the finalize_sections_01_02.py script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/finalize_sections_01_02.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/qa/finalize_sections_01_02.py",
+      "lineRange": [
+        24,
+        72
+      ],
+      "summary": "Implements main for the finalize_sections_01_02.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/finalize_sections_01_02.py:run_command",
+      "type": "function",
+      "name": "run_command",
+      "filePath": "scripts/qa/finalize_sections_01_02.py",
+      "lineRange": [
+        75,
+        90
+      ],
+      "summary": "Implements run_command for the finalize_sections_01_02.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/finalize_sections_01_02.py:build_final_dataset_manifest",
+      "type": "function",
+      "name": "build_final_dataset_manifest",
+      "filePath": "scripts/qa/finalize_sections_01_02.py",
+      "lineRange": [
+        100,
+        125
+      ],
+      "summary": "Implements build_final_dataset_manifest for the finalize_sections_01_02.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/qa/generate_section02_evidence.py",
+      "type": "file",
+      "name": "generate_section02_evidence.py",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "summary": "Implements the generate_section02_evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:expected_artifact_paths",
+      "type": "function",
+      "name": "expected_artifact_paths",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        46,
+        58
+      ],
+      "summary": "Implements expected_artifact_paths for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        61,
+        119
+      ],
+      "summary": "Implements main for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:validate_schema_design_model_coverage",
+      "type": "function",
+      "name": "validate_schema_design_model_coverage",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        141,
+        167
+      ],
+      "summary": "Implements validate_schema_design_model_coverage for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:run_command",
+      "type": "function",
+      "name": "run_command",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        170,
+        187
+      ],
+      "summary": "Implements run_command for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:split_dbt_run_results",
+      "type": "function",
+      "name": "split_dbt_run_results",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        198,
+        241
+      ],
+      "summary": "Implements split_dbt_run_results for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:catalog_summary_rows",
+      "type": "function",
+      "name": "catalog_summary_rows",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        244,
+        262
+      ],
+      "summary": "Implements catalog_summary_rows for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:schema_inventory_rows",
+      "type": "function",
+      "name": "schema_inventory_rows",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        265,
+        295
+      ],
+      "summary": "Implements schema_inventory_rows for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:table_row_count_rows",
+      "type": "function",
+      "name": "table_row_count_rows",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        298,
+        323
+      ],
+      "summary": "Implements table_row_count_rows for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:render_schema_design",
+      "type": "function",
+      "name": "render_schema_design",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        341,
+        356
+      ],
+      "summary": "Implements render_schema_design for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:render_plantuml_png",
+      "type": "function",
+      "name": "render_plantuml_png",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        359,
+        368
+      ],
+      "summary": "Implements render_plantuml_png for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:encode_plantuml_bytes",
+      "type": "function",
+      "name": "encode_plantuml_bytes",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        376,
+        389
+      ],
+      "summary": "Implements encode_plantuml_bytes for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:encode_6bit",
+      "type": "function",
+      "name": "encode_6bit",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        392,
+        406
+      ],
+      "summary": "Implements encode_6bit for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:write_table_png",
+      "type": "function",
+      "name": "write_table_png",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        418,
+        470
+      ],
+      "summary": "Implements write_table_png for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/generate_section02_evidence.py:build_report_markdown",
+      "type": "function",
+      "name": "build_report_markdown",
+      "filePath": "scripts/qa/generate_section02_evidence.py",
+      "lineRange": [
+        486,
+        521
+      ],
+      "summary": "Implements build_report_markdown for the generate_section02_evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/qa/reset_all.py",
+      "type": "file",
+      "name": "reset_all.py",
+      "filePath": "scripts/qa/reset_all.py",
+      "summary": "Implements the reset_all.py script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        69,
+        100
+      ],
+      "summary": "Implements parse_args for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:_build_destruction_plan",
+      "type": "function",
+      "name": "_build_destruction_plan",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        113,
+        133
+      ],
+      "summary": "Implements _build_destruction_plan for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:_print_plan",
+      "type": "function",
+      "name": "_print_plan",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        136,
+        150
+      ],
+      "summary": "Implements _print_plan for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:_stop_and_down",
+      "type": "function",
+      "name": "_stop_and_down",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        159,
+        171
+      ],
+      "summary": "Implements _stop_and_down for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:_clean_local_paths",
+      "type": "function",
+      "name": "_clean_local_paths",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        174,
+        194
+      ],
+      "summary": "Implements _clean_local_paths for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:_write_log",
+      "type": "function",
+      "name": "_write_log",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        197,
+        210
+      ],
+      "summary": "Implements _write_log for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/reset_all.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/qa/reset_all.py",
+      "lineRange": [
+        213,
+        237
+      ],
+      "summary": "Implements main for the reset_all.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/qa/summarize_runlog.py",
+      "type": "file",
+      "name": "summarize_runlog.py",
+      "filePath": "scripts/qa/summarize_runlog.py",
+      "summary": "Implements the summarize_runlog.py script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/qa/summarize_runlog.py:_extract_commands",
+      "type": "function",
+      "name": "_extract_commands",
+      "filePath": "scripts/qa/summarize_runlog.py",
+      "lineRange": [
+        16,
+        26
+      ],
+      "summary": "Implements _extract_commands for the summarize_runlog.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/qa/summarize_runlog.py:summarize_runlog",
+      "type": "function",
+      "name": "summarize_runlog",
+      "filePath": "scripts/qa/summarize_runlog.py",
+      "lineRange": [
+        42,
+        77
+      ],
+      "summary": "Implements summarize_runlog for the summarize_runlog.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:scripts/lakehouse/optimize_iceberg.py",
+      "target": "function:scripts/lakehouse/optimize_iceberg.py:_write_file_stats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/lakehouse/optimize_iceberg.py",
+      "target": "function:scripts/lakehouse/optimize_iceberg.py:_write_report",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/lakehouse/optimize_iceberg.py",
+      "target": "function:scripts/lakehouse/optimize_iceberg.py:_write_blocked_report",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/lakehouse/optimize_iceberg.py",
+      "target": "function:scripts/lakehouse/optimize_iceberg.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/pinot/query_examples.py",
+      "target": "function:scripts/pinot/query_examples.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/pinot/refresh_evidence.py",
+      "target": "function:scripts/pinot/refresh_evidence.py:parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/pinot/refresh_evidence.py",
+      "target": "function:scripts/pinot/refresh_evidence.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/audit_public_documentation.py",
+      "target": "function:scripts/qa/audit_public_documentation.py:audit_public_documentation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "target": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_gate_row_2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "target": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_gate_airflow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "target": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_gate_datahub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "target": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:_hash_paths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "target": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:build_manifest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "target": "function:scripts/qa/build_mini_coursework_rubric_manifest.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_query_duckdb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_dbt_gate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_has_consuming_or_completed_segment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_query_pinot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_wait_for_pinot_query",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_pinot_gate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:_screenshot_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:capture_novel_ideas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/capture_novel_ideas.py",
+      "target": "function:scripts/qa/capture_novel_ideas.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/finalize_sections_01_02.py",
+      "target": "function:scripts/qa/finalize_sections_01_02.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/finalize_sections_01_02.py",
+      "target": "function:scripts/qa/finalize_sections_01_02.py:run_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/finalize_sections_01_02.py",
+      "target": "function:scripts/qa/finalize_sections_01_02.py:build_final_dataset_manifest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:expected_artifact_paths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:validate_schema_design_model_coverage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:run_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:split_dbt_run_results",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:catalog_summary_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:schema_inventory_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:table_row_count_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:render_schema_design",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:render_plantuml_png",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:encode_plantuml_bytes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:encode_6bit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:write_table_png",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/generate_section02_evidence.py",
+      "target": "function:scripts/qa/generate_section02_evidence.py:build_report_markdown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:_build_destruction_plan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:_print_plan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:_stop_and_down",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:_clean_local_paths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:_write_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/reset_all.py",
+      "target": "function:scripts/qa/reset_all.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/summarize_runlog.py",
+      "target": "function:scripts/qa/summarize_runlog.py:_extract_commands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/qa/summarize_runlog.py",
+      "target": "function:scripts/qa/summarize_runlog.py:summarize_runlog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

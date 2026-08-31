@@ -1,0 +1,5046 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 12,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 12,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 12,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 311,
+      "nonEmptyLines": 276,
+      "functions": [
+        {
+          "name": "ice_urn",
+          "startLine": 65,
+          "endLine": 66,
+          "params": [
+            "table_name",
+            "env"
+          ]
+        },
+        {
+          "name": "kafka_urn",
+          "startLine": 69,
+          "endLine": 70,
+          "params": [
+            "topic_name",
+            "env"
+          ]
+        },
+        {
+          "name": "pinot_urn",
+          "startLine": 73,
+          "endLine": 74,
+          "params": [
+            "table_name",
+            "env"
+          ]
+        },
+        {
+          "name": "s3_urn",
+          "startLine": 77,
+          "endLine": 78,
+          "params": [
+            "prefix_name",
+            "env"
+          ]
+        },
+        {
+          "name": "dataflow_urn",
+          "startLine": 81,
+          "endLine": 82,
+          "params": [
+            "dag_id"
+          ]
+        },
+        {
+          "name": "datajob_urn",
+          "startLine": 85,
+          "endLine": 87,
+          "params": [
+            "dag_id",
+            "task_id"
+          ]
+        },
+        {
+          "name": "coursework_pipeline_entities",
+          "startLine": 133,
+          "endLine": 186,
+          "params": [
+            "env"
+          ]
+        },
+        {
+          "name": "emit_coursework_pipeline_metadata",
+          "startLine": 189,
+          "endLine": 228,
+          "params": [
+            "emitter",
+            "env"
+          ]
+        },
+        {
+          "name": "emit_coursework_pipeline",
+          "startLine": 231,
+          "endLine": 235,
+          "params": [
+            "gms_url",
+            "env"
+          ]
+        },
+        {
+          "name": "coursework_assertion_specs",
+          "startLine": 238,
+          "endLine": 311,
+          "params": [
+            "run_root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ice_urn",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "kafka_urn",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "pinot_urn",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "s3_urn",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "dataflow_urn",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "datajob_urn",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "coursework_pipeline_entities",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "emit_coursework_pipeline_metadata",
+          "line": 189,
+          "isDefault": false
+        },
+        {
+          "name": "emit_coursework_pipeline",
+          "line": 231,
+          "isDefault": false
+        },
+        {
+          "name": "coursework_assertion_specs",
+          "line": 238,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "datajob_urn",
+          "callee": "dataflow_urn",
+          "lineNumber": 86
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "s3_urn",
+          "lineNumber": 135
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "s3_urn",
+          "lineNumber": 135
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "kafka_urn",
+          "lineNumber": 137
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "ice_urn",
+          "lineNumber": 146
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "ice_urn",
+          "lineNumber": 146
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "ice_urn",
+          "lineNumber": 147
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "ice_urn",
+          "lineNumber": 147
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "ice_urn",
+          "lineNumber": 148
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "dataflow_urn",
+          "lineNumber": 152
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "datajob_urn",
+          "lineNumber": 160
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "datajob_urn",
+          "lineNumber": 169
+        },
+        {
+          "caller": "coursework_pipeline_entities",
+          "callee": "datajob_urn",
+          "lineNumber": 178
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "coursework_pipeline_entities",
+          "lineNumber": 191
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "isinstance",
+          "lineNumber": 193
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "isinstance",
+          "lineNumber": 195
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "emitter.emit_dataflow",
+          "lineNumber": 197
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "emitter.emit_ownership",
+          "lineNumber": 202
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "isinstance",
+          "lineNumber": 205
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "emitter.emit_datajob",
+          "lineNumber": 206
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "emitter.emit_ownership",
+          "lineNumber": 214
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "emitter.emit_tags",
+          "lineNumber": 215
+        },
+        {
+          "caller": "emit_coursework_pipeline_metadata",
+          "callee": "len",
+          "lineNumber": 220
+        },
+        {
+          "caller": "emit_coursework_pipeline",
+          "callee": "emit_coursework_pipeline_metadata",
+          "lineNumber": 235
+        },
+        {
+          "caller": "emit_coursework_pipeline",
+          "callee": "DataHubLineageEmitter",
+          "lineNumber": 235
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "validation_files.items",
+          "lineNumber": 246
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "json.loads",
+          "lineNumber": 249
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "stage_path.read_text",
+          "lineNumber": 249
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "json.loads",
+          "lineNumber": 250
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "quality_path.read_text",
+          "lineNumber": 250
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "stage.get",
+          "lineNumber": 251
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "quality.get",
+          "lineNumber": 251
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "ValueError",
+          "lineNumber": 252
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "stage.get",
+          "lineNumber": 253
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "isinstance",
+          "lineNumber": 254
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "ValueError",
+          "lineNumber": 255
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "prefix_name.replace",
+          "lineNumber": 260
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "specs.extend",
+          "lineNumber": 261
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "s3_urn",
+          "lineNumber": 266
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "s3_urn",
+          "lineNumber": 276
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "specs.append",
+          "lineNumber": 285
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "ice_urn",
+          "lineNumber": 289
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "specs.append",
+          "lineNumber": 299
+        },
+        {
+          "caller": "coursework_assertion_specs",
+          "callee": "ice_urn",
+          "lineNumber": 303
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 10,
+        "functionCount": 10,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 249,
+      "nonEmptyLines": 221,
+      "functions": [
+        {
+          "name": "_now_ms",
+          "startLine": 33,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "ice_urn",
+          "startLine": 37,
+          "endLine": 38,
+          "params": [
+            "table_name"
+          ]
+        },
+        {
+          "name": "kafka_urn",
+          "startLine": 41,
+          "endLine": 42,
+          "params": [
+            "topic_name"
+          ]
+        },
+        {
+          "name": "pinot_urn",
+          "startLine": 45,
+          "endLine": 46,
+          "params": [
+            "table_name"
+          ]
+        },
+        {
+          "name": "datajob_urn",
+          "startLine": 49,
+          "endLine": 52,
+          "params": [
+            "dag_id",
+            "task_id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "DataHubLineageEmitter",
+          "startLine": 55,
+          "endLine": 249,
+          "methods": [
+            "__init__",
+            "emit_upstream_lineage",
+            "emit_dataflow",
+            "emit_datajob",
+            "emit_tag",
+            "emit_tags",
+            "emit_string_schema",
+            "emit_ownership",
+            "emit_assertion"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_now_ms",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "ice_urn",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "kafka_urn",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "pinot_urn",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "datajob_urn",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "DataHubLineageEmitter",
+          "line": 55,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_now_ms",
+          "callee": "int",
+          "lineNumber": 34
+        },
+        {
+          "caller": "_now_ms",
+          "callee": "datetime.now(timezone.utc).timestamp",
+          "lineNumber": 34
+        },
+        {
+          "caller": "_now_ms",
+          "callee": "datetime.now",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "DataHubRestEmitter",
+          "lineNumber": 63
+        },
+        {
+          "caller": "emit_upstream_lineage",
+          "callee": "_now_ms",
+          "lineNumber": 66
+        },
+        {
+          "caller": "emit_upstream_lineage",
+          "callee": "self._emitter.emit",
+          "lineNumber": 67
+        },
+        {
+          "caller": "emit_upstream_lineage",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 68
+        },
+        {
+          "caller": "emit_upstream_lineage",
+          "callee": "UpstreamLineageClass",
+          "lineNumber": 70
+        },
+        {
+          "caller": "emit_upstream_lineage",
+          "callee": "UpstreamClass",
+          "lineNumber": 72
+        },
+        {
+          "caller": "emit_upstream_lineage",
+          "callee": "AuditStampClass",
+          "lineNumber": 75
+        },
+        {
+          "caller": "emit_dataflow",
+          "callee": "self._emitter.emit",
+          "lineNumber": 87
+        },
+        {
+          "caller": "emit_dataflow",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 88
+        },
+        {
+          "caller": "emit_dataflow",
+          "callee": "DataFlowInfoClass",
+          "lineNumber": 90
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "self._emitter.emit",
+          "lineNumber": 108
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 109
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "DataJobInfoClass",
+          "lineNumber": 111
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "self._emitter.emit",
+          "lineNumber": 120
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 121
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "DataJobInputOutputClass",
+          "lineNumber": 123
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "sorted",
+          "lineNumber": 124
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "set",
+          "lineNumber": 124
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "sorted",
+          "lineNumber": 125
+        },
+        {
+          "caller": "emit_datajob",
+          "callee": "set",
+          "lineNumber": 125
+        },
+        {
+          "caller": "emit_tag",
+          "callee": "self.emit_tags",
+          "lineNumber": 131
+        },
+        {
+          "caller": "emit_tags",
+          "callee": "self._emitter.emit",
+          "lineNumber": 134
+        },
+        {
+          "caller": "emit_tags",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 135
+        },
+        {
+          "caller": "emit_tags",
+          "callee": "GlobalTagsClass",
+          "lineNumber": 137
+        },
+        {
+          "caller": "emit_tags",
+          "callee": "TagAssociationClass",
+          "lineNumber": 139
+        },
+        {
+          "caller": "emit_tags",
+          "callee": "sorted",
+          "lineNumber": 140
+        },
+        {
+          "caller": "emit_tags",
+          "callee": "set",
+          "lineNumber": 140
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "json.dumps",
+          "lineNumber": 154
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "self._emitter.emit",
+          "lineNumber": 155
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 156
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "SchemaMetadataClass",
+          "lineNumber": 158
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "hashlib.sha256(raw_schema.encode(\"utf-8\")).hexdigest",
+          "lineNumber": 162
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "hashlib.sha256",
+          "lineNumber": 162
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "raw_schema.encode",
+          "lineNumber": 162
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "OtherSchemaClass",
+          "lineNumber": 163
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "SchemaFieldClass",
+          "lineNumber": 165
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "SchemaFieldDataTypeClass",
+          "lineNumber": 167
+        },
+        {
+          "caller": "emit_string_schema",
+          "callee": "StringTypeClass",
+          "lineNumber": 167
+        },
+        {
+          "caller": "emit_ownership",
+          "callee": "self._emitter.emit",
+          "lineNumber": 179
+        },
+        {
+          "caller": "emit_ownership",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 180
+        },
+        {
+          "caller": "emit_ownership",
+          "callee": "OwnershipClass",
+          "lineNumber": 182
+        },
+        {
+          "caller": "emit_ownership",
+          "callee": "OwnerClass",
+          "lineNumber": 184
+        },
+        {
+          "caller": "emit_ownership",
+          "callee": "getattr",
+          "lineNumber": 186
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "_now_ms",
+          "lineNumber": 215
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "self._emitter.emit",
+          "lineNumber": 218
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 219
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "AssertionInfoClass",
+          "lineNumber": 221
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "DatasetAssertionInfoClass",
+          "lineNumber": 223
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "self._emitter.emit",
+          "lineNumber": 234
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "MetadataChangeProposalWrapper",
+          "lineNumber": 235
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "AssertionRunEventClass",
+          "lineNumber": 237
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "AssertionResultClass",
+          "lineNumber": 243
+        },
+        {
+          "caller": "emit_assertion",
+          "callee": "str",
+          "lineNumber": 245
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 66,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "emit_flink_streaming_lineage",
+          "startLine": 31,
+          "endLine": 66,
+          "params": [
+            "gms_url"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "emit_flink_streaming_lineage",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "DataHubLineageEmitter",
+          "lineNumber": 32
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "emitter.emit_tag",
+          "lineNumber": 37
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "kafka_urn",
+          "lineNumber": 37
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "kafka_urn",
+          "lineNumber": 42
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "DERIVED_UPSTREAM_MAP.get",
+          "lineNumber": 43
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "kafka_urn",
+          "lineNumber": 47
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "emitter.emit_upstream_lineage",
+          "lineNumber": 49
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "emitter.emit_tag",
+          "lineNumber": 50
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "emitter.emit_upstream_lineage",
+          "lineNumber": 58
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "pinot_urn",
+          "lineNumber": 59
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "kafka_urn",
+          "lineNumber": 60
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "emitter.emit_tag",
+          "lineNumber": 62
+        },
+        {
+          "caller": "emit_flink_streaming_lineage",
+          "callee": "pinot_urn",
+          "lineNumber": 62
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 147,
+      "nonEmptyLines": 126,
+      "functions": [
+        {
+          "name": "_find_gx_quality_artifacts",
+          "startLine": 20,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "_load_gx_results",
+          "startLine": 26,
+          "endLine": 30,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "_latest_successful_coursework_run",
+          "startLine": 33,
+          "endLine": 44,
+          "params": []
+        },
+        {
+          "name": "_run_timestamp_ms",
+          "startLine": 47,
+          "endLine": 54,
+          "params": [
+            "run_id"
+          ]
+        },
+        {
+          "name": "emit_coursework_assertions_to_datahub",
+          "startLine": 57,
+          "endLine": 93,
+          "params": [
+            "gms_url"
+          ]
+        },
+        {
+          "name": "emit_gx_assertions_to_datahub",
+          "startLine": 96,
+          "endLine": 110,
+          "params": [
+            "gms_url"
+          ]
+        },
+        {
+          "name": "_emit_from_gx_data",
+          "startLine": 113,
+          "endLine": 147,
+          "params": [
+            "emitter",
+            "data",
+            "results",
+            "source_name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_find_gx_quality_artifacts",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "_load_gx_results",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "_latest_successful_coursework_run",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "_run_timestamp_ms",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "emit_coursework_assertions_to_datahub",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "emit_gx_assertions_to_datahub",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "_emit_from_gx_data",
+          "line": 113,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_find_gx_quality_artifacts",
+          "callee": "sorted",
+          "lineNumber": 21
+        },
+        {
+          "caller": "_find_gx_quality_artifacts",
+          "callee": "REPO_ROOT.glob",
+          "lineNumber": 21
+        },
+        {
+          "caller": "_find_gx_quality_artifacts",
+          "callee": "sorted",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_find_gx_quality_artifacts",
+          "callee": "REPO_ROOT.glob",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_load_gx_results",
+          "callee": "json.loads",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_load_gx_results",
+          "callee": "path.read_text",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "sorted",
+          "lineNumber": 34
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "COURSEWORK_PIPELINE_ROOT.glob",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "path.stat",
+          "lineNumber": 36
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "_load_gx_results",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "data.get",
+          "lineNumber": 41
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "len",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "all",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_latest_successful_coursework_run",
+          "callee": "stage.get",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "re.search",
+          "lineNumber": 48
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "int",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "datetime.strptime(compact.group(1), \"%Y%m%dT%H%M%SZ\").replace(tzinfo=timezone.utc).timestamp",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "datetime.strptime(compact.group(1), \"%Y%m%dT%H%M%SZ\").replace",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "datetime.strptime",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "compact.group",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "re.search",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "int",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "datetime.fromisoformat(f\"{iso.group(1)}{'+00:00' if iso.group(2) == 'Z' else iso.group(2)}\").timestamp",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "datetime.fromisoformat",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "iso.group",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "iso.group",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "iso.group",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_run_timestamp_ms",
+          "callee": "ValueError",
+          "lineNumber": 54
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "_latest_successful_coursework_run",
+          "lineNumber": 58
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "coursework_assertion_specs",
+          "lineNumber": 63
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "DataHubLineageEmitter",
+          "lineNumber": 64
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "COURSEWORK_SCHEMA_TARGETS.items",
+          "lineNumber": 65
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "dataset_urn.split(\",\")[1].removeprefix",
+          "lineNumber": 67
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "dataset_urn.split",
+          "lineNumber": 67
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "emitter.emit_string_schema",
+          "lineNumber": 68
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "emitter.emit_assertion",
+          "lineNumber": 75
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 77
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 78
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "bool",
+          "lineNumber": 79
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 80
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 81
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "_run_timestamp_ms",
+          "lineNumber": 82
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 82
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 85
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 85
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 89
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 90
+        },
+        {
+          "caller": "emit_coursework_assertions_to_datahub",
+          "callee": "len",
+          "lineNumber": 91
+        },
+        {
+          "caller": "emit_gx_assertions_to_datahub",
+          "callee": "DataHubLineageEmitter",
+          "lineNumber": 97
+        },
+        {
+          "caller": "emit_gx_assertions_to_datahub",
+          "callee": "_find_gx_quality_artifacts",
+          "lineNumber": 98
+        },
+        {
+          "caller": "emit_gx_assertions_to_datahub",
+          "callee": "len",
+          "lineNumber": 99
+        },
+        {
+          "caller": "emit_gx_assertions_to_datahub",
+          "callee": "_load_gx_results",
+          "lineNumber": 103
+        },
+        {
+          "caller": "emit_gx_assertions_to_datahub",
+          "callee": "_emit_from_gx_data",
+          "lineNumber": 106
+        },
+        {
+          "caller": "emit_gx_assertions_to_datahub",
+          "callee": "str",
+          "lineNumber": 108
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "data.get(\"validations\", {}).items",
+          "lineNumber": 119
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "data.get",
+          "lineNumber": 119
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "ice_urn",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "enumerate",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "isinstance",
+          "lineNumber": 124
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "result.get",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "expectation_info.get",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "isinstance",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "exp_type.get",
+          "lineNumber": 129
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "expectation_info.get(\"kwargs\", {}).get",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "expectation_info.get",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "result.get",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "emitter.emit_assertion",
+          "lineNumber": 134
+        },
+        {
+          "caller": "_emit_from_gx_data",
+          "callee": "emitter.emit_tag",
+          "lineNumber": 145
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 78,
+      "nonEmptyLines": 68,
+      "functions": [
+        {
+          "name": "emit_spark_batch_lineage",
+          "startLine": 49,
+          "endLine": 78,
+          "params": [
+            "gms_url"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "emit_spark_batch_lineage",
+          "line": 49,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "DataHubLineageEmitter",
+          "lineNumber": 50
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "ice_urn",
+          "lineNumber": 54
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "GOLD_UPSTREAM_MAP.get",
+          "lineNumber": 55
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "ice_urn",
+          "lineNumber": 59
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "emitter.emit_upstream_lineage",
+          "lineNumber": 61
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "MEDALLION_TAGS.items",
+          "lineNumber": 66
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "emitter.emit_tag",
+          "lineNumber": 68
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "ice_urn",
+          "lineNumber": 68
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "emitter.emit_tag",
+          "lineNumber": 74
+        },
+        {
+          "caller": "emit_spark_batch_lineage",
+          "callee": "ice_urn",
+          "lineNumber": 74
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/constants.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 97,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/gx_validation.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 102,
+      "nonEmptyLines": 90,
+      "functions": [
+        {
+          "name": "_serialize_result",
+          "startLine": 11,
+          "endLine": 17,
+          "params": [
+            "result"
+          ]
+        },
+        {
+          "name": "_validate_dataframe",
+          "startLine": 20,
+          "endLine": 36,
+          "params": [
+            "context",
+            "datasource_name",
+            "asset_name",
+            "dataframe",
+            "expectations"
+          ]
+        },
+        {
+          "name": "run_gx_validations",
+          "startLine": 39,
+          "endLine": 102,
+          "params": [
+            "spark",
+            "evidence_root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_serialize_result",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "_validate_dataframe",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "run_gx_validations",
+          "line": 39,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_serialize_result",
+          "callee": "getattr",
+          "lineNumber": 12
+        },
+        {
+          "caller": "_serialize_result",
+          "callee": "callable",
+          "lineNumber": 13
+        },
+        {
+          "caller": "_serialize_result",
+          "callee": "to_json",
+          "lineNumber": 14
+        },
+        {
+          "caller": "_serialize_result",
+          "callee": "repr",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_serialize_result",
+          "callee": "json.loads",
+          "lineNumber": 17
+        },
+        {
+          "caller": "_serialize_result",
+          "callee": "json.dumps",
+          "lineNumber": 17
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "context.data_sources.add_spark",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "datasource.add_dataframe_asset",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "asset.add_batch_definition_whole_dataframe",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "batch_definition.get_batch",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "results.append",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "_serialize_result",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_validate_dataframe",
+          "callee": "batch.validate",
+          "lineNumber": 35
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.get_context",
+          "lineNumber": 40
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "_validate_dataframe",
+          "lineNumber": 42
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "spark.table",
+          "lineNumber": 46
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToNotBeNull",
+          "lineNumber": 48
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToBeUnique",
+          "lineNumber": 49
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "_validate_dataframe",
+          "lineNumber": 52
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "spark.table",
+          "lineNumber": 56
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToNotBeNull",
+          "lineNumber": 58
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToBeBetween",
+          "lineNumber": 59
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "_validate_dataframe",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "spark.table",
+          "lineNumber": 66
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToNotBeNull",
+          "lineNumber": 68
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToNotBeNull",
+          "lineNumber": 69
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "_validate_dataframe",
+          "lineNumber": 72
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "spark.table",
+          "lineNumber": 76
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToNotBeNull",
+          "lineNumber": 78
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx.expectations.ExpectColumnValuesToBeBetween",
+          "lineNumber": 79
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "all",
+          "lineNumber": 85
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "expectation_result.get",
+          "lineNumber": 86
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "validations.values",
+          "lineNumber": 87
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "Path",
+          "lineNumber": 93
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "gx_root.mkdir",
+          "lineNumber": 94
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "(gx_root / \"validation_results.json\").write_text",
+          "lineNumber": 95
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "json.dumps",
+          "lineNumber": 96
+        },
+        {
+          "caller": "run_gx_validations",
+          "callee": "RuntimeError",
+          "lineNumber": 101
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/job.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 830,
+      "nonEmptyLines": 737,
+      "functions": [
+        {
+          "name": "parse_args",
+          "startLine": 39,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "build_spark_session",
+          "startLine": 54,
+          "endLine": 66,
+          "params": []
+        },
+        {
+          "name": "_window_dates",
+          "startLine": 69,
+          "endLine": 76,
+          "params": [
+            "window"
+          ]
+        },
+        {
+          "name": "_table_location",
+          "startLine": 79,
+          "endLine": 82,
+          "params": [
+            "layer",
+            "table_name"
+          ]
+        },
+        {
+          "name": "_path_exists",
+          "startLine": 85,
+          "endLine": 91,
+          "params": [
+            "spark",
+            "path_pattern"
+          ]
+        },
+        {
+          "name": "_existing_paths",
+          "startLine": 94,
+          "endLine": 95,
+          "params": [
+            "spark",
+            "path_patterns"
+          ]
+        },
+        {
+          "name": "_batch_paths",
+          "startLine": 98,
+          "endLine": 99,
+          "params": [
+            "dataset",
+            "dates"
+          ]
+        },
+        {
+          "name": "_event_paths",
+          "startLine": 102,
+          "endLine": 103,
+          "params": [
+            "topic",
+            "dates"
+          ]
+        },
+        {
+          "name": "_read_required_parquet",
+          "startLine": 106,
+          "endLine": 110,
+          "params": [
+            "spark",
+            "dataset",
+            "dates"
+          ]
+        },
+        {
+          "name": "_read_required_json",
+          "startLine": 113,
+          "endLine": 117,
+          "params": [
+            "spark",
+            "topic",
+            "dates"
+          ]
+        },
+        {
+          "name": "_read_optional_dead_letter_events",
+          "startLine": 120,
+          "endLine": 145,
+          "params": [
+            "spark",
+            "dates"
+          ]
+        },
+        {
+          "name": "_empty_bad_snapshots",
+          "startLine": 148,
+          "endLine": 160,
+          "params": [
+            "spark"
+          ]
+        },
+        {
+          "name": "_resolve_bad_snapshots_file",
+          "startLine": 163,
+          "endLine": 166,
+          "params": [
+            "raw_root"
+          ]
+        },
+        {
+          "name": "_read_optional_bad_snapshots",
+          "startLine": 169,
+          "endLine": 183,
+          "params": [
+            "spark",
+            "raw_root"
+          ]
+        },
+        {
+          "name": "_create_raw_views",
+          "startLine": 186,
+          "endLine": 195,
+          "params": [
+            "spark",
+            "window"
+          ]
+        },
+        {
+          "name": "_dedupe_latest",
+          "startLine": 198,
+          "endLine": 200,
+          "params": [
+            "df",
+            "key_columns",
+            "order_column"
+          ]
+        },
+        {
+          "name": "_json_string",
+          "startLine": 203,
+          "endLine": 204,
+          "params": [
+            "column_name",
+            "path"
+          ]
+        },
+        {
+          "name": "_json_double",
+          "startLine": 207,
+          "endLine": 208,
+          "params": [
+            "column_name",
+            "path"
+          ]
+        },
+        {
+          "name": "_json_int",
+          "startLine": 211,
+          "endLine": 212,
+          "params": [
+            "column_name",
+            "path"
+          ]
+        },
+        {
+          "name": "_build_silver_tables_for_window",
+          "startLine": 215,
+          "endLine": 379,
+          "params": [
+            "spark",
+            "start_ts",
+            "end_ts"
+          ]
+        },
+        {
+          "name": "_partition_clause",
+          "startLine": 382,
+          "endLine": 385,
+          "params": [
+            "partition_expressions"
+          ]
+        },
+        {
+          "name": "_create_namespace",
+          "startLine": 388,
+          "endLine": 389,
+          "params": [
+            "spark",
+            "namespace"
+          ]
+        },
+        {
+          "name": "_create_table_if_missing",
+          "startLine": 392,
+          "endLine": 409,
+          "params": [
+            "spark",
+            "full_table_name",
+            "layer",
+            "table_name",
+            "source_view_name",
+            "partition_expressions"
+          ]
+        },
+        {
+          "name": "_merge_into_table",
+          "startLine": 412,
+          "endLine": 435,
+          "params": [
+            "spark",
+            "full_table_name",
+            "source_view_name",
+            "key_columns",
+            "order_column"
+          ]
+        },
+        {
+          "name": "_persist_silver_tables_for_window",
+          "startLine": 438,
+          "endLine": 468,
+          "params": [
+            "spark",
+            "start_ts",
+            "end_ts"
+          ]
+        },
+        {
+          "name": "_replace_gold_table",
+          "startLine": 471,
+          "endLine": 487,
+          "params": [
+            "spark",
+            "table_name",
+            "query"
+          ]
+        },
+        {
+          "name": "_restore_spark_configuration",
+          "startLine": 490,
+          "endLine": 494,
+          "params": [
+            "spark",
+            "key",
+            "previous_value"
+          ]
+        },
+        {
+          "name": "_compaction_evidence_bucket_rows",
+          "startLine": 497,
+          "endLine": 526,
+          "params": [
+            "dataframe",
+            "stable_key",
+            "partition_column"
+          ]
+        },
+        {
+          "name": "_gold_data_file_partition_counts",
+          "startLine": 529,
+          "endLine": 546,
+          "params": [
+            "spark",
+            "table_name",
+            "partition_column"
+          ]
+        },
+        {
+          "name": "_replace_gold_table_for_compaction_evidence",
+          "startLine": 549,
+          "endLine": 604,
+          "params": [
+            "spark",
+            "table_name",
+            "query",
+            "stable_key",
+            "partition_column"
+          ]
+        },
+        {
+          "name": "_register_persisted_tables",
+          "startLine": 607,
+          "endLine": 609,
+          "params": [
+            "spark",
+            "namespace",
+            "table_names"
+          ]
+        },
+        {
+          "name": "_persist_gold_query_group",
+          "startLine": 612,
+          "endLine": 637,
+          "params": [
+            "spark",
+            "queries",
+            "layout_profile"
+          ]
+        },
+        {
+          "name": "_persist_gold_tables",
+          "startLine": 640,
+          "endLine": 645,
+          "params": [
+            "spark",
+            "layout_profile"
+          ]
+        },
+        {
+          "name": "_capture_table_row_counts",
+          "startLine": 648,
+          "endLine": 665,
+          "params": [
+            "spark",
+            "evidence_root",
+            "gold_tables"
+          ]
+        },
+        {
+          "name": "_write_job_manifest",
+          "startLine": 668,
+          "endLine": 704,
+          "params": [
+            "window",
+            "evidence_root",
+            "row_counts",
+            "validation_report",
+            "gx_report",
+            "layout_profile",
+            "has_compaction_layout_manifest"
+          ]
+        },
+        {
+          "name": "_write_compaction_layout_manifest",
+          "startLine": 707,
+          "endLine": 726,
+          "params": [
+            "evidence_root",
+            "layout_results"
+          ]
+        },
+        {
+          "name": "run_job",
+          "startLine": 729,
+          "endLine": 818,
+          "params": [
+            "start_ts",
+            "end_ts",
+            "mode",
+            "evidence_root",
+            "stage",
+            "layout_profile"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 821,
+          "endLine": 830,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "parse_args",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "build_spark_session",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "_window_dates",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "_table_location",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "_path_exists",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "_existing_paths",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "_batch_paths",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "_event_paths",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "_read_required_parquet",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "_read_required_json",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "_read_optional_dead_letter_events",
+          "line": 120,
+          "isDefault": false
+        },
+        {
+          "name": "_empty_bad_snapshots",
+          "line": 148,
+          "isDefault": false
+        },
+        {
+          "name": "_resolve_bad_snapshots_file",
+          "line": 163,
+          "isDefault": false
+        },
+        {
+          "name": "_read_optional_bad_snapshots",
+          "line": 169,
+          "isDefault": false
+        },
+        {
+          "name": "_create_raw_views",
+          "line": 186,
+          "isDefault": false
+        },
+        {
+          "name": "_dedupe_latest",
+          "line": 198,
+          "isDefault": false
+        },
+        {
+          "name": "_json_string",
+          "line": 203,
+          "isDefault": false
+        },
+        {
+          "name": "_json_double",
+          "line": 207,
+          "isDefault": false
+        },
+        {
+          "name": "_json_int",
+          "line": 211,
+          "isDefault": false
+        },
+        {
+          "name": "_build_silver_tables_for_window",
+          "line": 215,
+          "isDefault": false
+        },
+        {
+          "name": "_partition_clause",
+          "line": 382,
+          "isDefault": false
+        },
+        {
+          "name": "_create_namespace",
+          "line": 388,
+          "isDefault": false
+        },
+        {
+          "name": "_create_table_if_missing",
+          "line": 392,
+          "isDefault": false
+        },
+        {
+          "name": "_merge_into_table",
+          "line": 412,
+          "isDefault": false
+        },
+        {
+          "name": "_persist_silver_tables_for_window",
+          "line": 438,
+          "isDefault": false
+        },
+        {
+          "name": "_replace_gold_table",
+          "line": 471,
+          "isDefault": false
+        },
+        {
+          "name": "_restore_spark_configuration",
+          "line": 490,
+          "isDefault": false
+        },
+        {
+          "name": "_compaction_evidence_bucket_rows",
+          "line": 497,
+          "isDefault": false
+        },
+        {
+          "name": "_gold_data_file_partition_counts",
+          "line": 529,
+          "isDefault": false
+        },
+        {
+          "name": "_replace_gold_table_for_compaction_evidence",
+          "line": 549,
+          "isDefault": false
+        },
+        {
+          "name": "_register_persisted_tables",
+          "line": 607,
+          "isDefault": false
+        },
+        {
+          "name": "_persist_gold_query_group",
+          "line": 612,
+          "isDefault": false
+        },
+        {
+          "name": "_persist_gold_tables",
+          "line": 640,
+          "isDefault": false
+        },
+        {
+          "name": "_capture_table_row_counts",
+          "line": 648,
+          "isDefault": false
+        },
+        {
+          "name": "_write_job_manifest",
+          "line": 668,
+          "isDefault": false
+        },
+        {
+          "name": "_write_compaction_layout_manifest",
+          "line": 707,
+          "isDefault": false
+        },
+        {
+          "name": "run_job",
+          "line": 729,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 821,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parse_args",
+          "callee": "argparse.ArgumentParser",
+          "lineNumber": 40
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.add_argument",
+          "lineNumber": 41
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.add_argument",
+          "lineNumber": 42
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.add_argument",
+          "lineNumber": 43
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.add_argument",
+          "lineNumber": 44
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.add_argument",
+          "lineNumber": 45
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.add_argument",
+          "lineNumber": 46
+        },
+        {
+          "caller": "parse_args",
+          "callee": "parser.parse_args",
+          "lineNumber": 51
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config(\"spark.sql.extensions\", \"org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions\")\r\n        .config(\"spark.sql.catalog.iceberg\", \"org.apache.iceberg.spark.SparkCatalog\")\r\n        .config(\"spark.sql.catalog.iceberg.type\", \"hive\")\r\n        .config(\"spark.sql.catalog.iceberg.uri\", \"thrift://hive-metastore:9083\")\r\n        .config(\"spark.sql.catalog.iceberg.writer.mode\", \"hash\")\r\n        .config(\"spark.sql.catalog.iceberg.warehouse\", \"s3a://silver/warehouse\")\r\n        .getOrCreate",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config(\"spark.sql.extensions\", \"org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions\")\r\n        .config(\"spark.sql.catalog.iceberg\", \"org.apache.iceberg.spark.SparkCatalog\")\r\n        .config(\"spark.sql.catalog.iceberg.type\", \"hive\")\r\n        .config(\"spark.sql.catalog.iceberg.uri\", \"thrift://hive-metastore:9083\")\r\n        .config(\"spark.sql.catalog.iceberg.writer.mode\", \"hash\")\r\n        .config",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config(\"spark.sql.extensions\", \"org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions\")\r\n        .config(\"spark.sql.catalog.iceberg\", \"org.apache.iceberg.spark.SparkCatalog\")\r\n        .config(\"spark.sql.catalog.iceberg.type\", \"hive\")\r\n        .config(\"spark.sql.catalog.iceberg.uri\", \"thrift://hive-metastore:9083\")\r\n        .config",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config(\"spark.sql.extensions\", \"org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions\")\r\n        .config(\"spark.sql.catalog.iceberg\", \"org.apache.iceberg.spark.SparkCatalog\")\r\n        .config(\"spark.sql.catalog.iceberg.type\", \"hive\")\r\n        .config",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config(\"spark.sql.extensions\", \"org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions\")\r\n        .config(\"spark.sql.catalog.iceberg\", \"org.apache.iceberg.spark.SparkCatalog\")\r\n        .config",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config(\"spark.sql.extensions\", \"org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions\")\r\n        .config",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName(\"vina-bim-shop-batch\")\r\n        .config",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "SparkSession.builder.appName",
+          "lineNumber": 56
+        },
+        {
+          "caller": "build_spark_session",
+          "callee": "spark.sparkContext.setLogLevel",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_window_dates",
+          "callee": "window.start_ts.date",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_window_dates",
+          "callee": "(window.end_ts - window.end_ts.resolution).date",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_window_dates",
+          "callee": "dates.append",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_window_dates",
+          "callee": "cursor.isoformat",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_window_dates",
+          "callee": "cursor.fromordinal",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_window_dates",
+          "callee": "cursor.toordinal",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_table_location",
+          "callee": "layer.upper",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_table_location",
+          "callee": "os.getenv",
+          "lineNumber": 81
+        },
+        {
+          "caller": "_path_exists",
+          "callee": "spark._jsc.hadoopConfiguration",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_path_exists",
+          "callee": "jvm.org.apache.hadoop.fs.Path",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_path_exists",
+          "callee": "path.getFileSystem",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_path_exists",
+          "callee": "fs.globStatus",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_path_exists",
+          "callee": "len",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_existing_paths",
+          "callee": "_path_exists",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_read_required_parquet",
+          "callee": "_existing_paths",
+          "lineNumber": 107
+        },
+        {
+          "caller": "_read_required_parquet",
+          "callee": "_batch_paths",
+          "lineNumber": 107
+        },
+        {
+          "caller": "_read_required_parquet",
+          "callee": "RuntimeError",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_read_required_parquet",
+          "callee": "spark.read.parquet(*paths).withColumn",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_read_required_parquet",
+          "callee": "spark.read.parquet",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_read_required_parquet",
+          "callee": "F.current_timestamp",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_read_required_json",
+          "callee": "_existing_paths",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_read_required_json",
+          "callee": "_event_paths",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_read_required_json",
+          "callee": "RuntimeError",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_read_required_json",
+          "callee": "spark.read.json(paths).withColumn",
+          "lineNumber": 117
+        },
+        {
+          "caller": "_read_required_json",
+          "callee": "spark.read.json",
+          "lineNumber": 117
+        },
+        {
+          "caller": "_read_required_json",
+          "callee": "F.current_timestamp",
+          "lineNumber": 117
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "_existing_paths",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "_event_paths",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "spark.read.json(paths).select",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "spark.read.json",
+          "lineNumber": 123
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "F.col(\"ingest_ts\").cast(\"timestamp\").alias",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "F.col(\"ingest_ts\").cast",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "F.col",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "spark.createDataFrame",
+          "lineNumber": 132
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructType",
+          "lineNumber": 134
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StringType",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StringType",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 138
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StringType",
+          "lineNumber": 138
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 139
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StringType",
+          "lineNumber": 139
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StringType",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 141
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.LongType",
+          "lineNumber": 141
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.StructField",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_read_optional_dead_letter_events",
+          "callee": "T.TimestampType",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "spark.createDataFrame",
+          "lineNumber": 149
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StructType",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StructField",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StringType",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StructField",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StringType",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StructField",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StringType",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StructField",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StringType",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.StructField",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_empty_bad_snapshots",
+          "callee": "T.TimestampType",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_resolve_bad_snapshots_file",
+          "callee": "Path",
+          "lineNumber": 165
+        },
+        {
+          "caller": "_resolve_bad_snapshots_file",
+          "callee": "Path",
+          "lineNumber": 166
+        },
+        {
+          "caller": "_resolve_bad_snapshots_file",
+          "callee": "os.environ.get",
+          "lineNumber": 166
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "_resolve_bad_snapshots_file",
+          "lineNumber": 173
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "snapshot_file.is_file",
+          "lineNumber": 174
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "_empty_bad_snapshots",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "spark.read.json(str(snapshot_file)).withColumn",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "spark.read.json",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "str",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.current_timestamp",
+          "lineNumber": 176
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "dataframe.select",
+          "lineNumber": 177
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"bad_record_id\").cast(\"string\").alias",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"bad_record_id\").cast",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"source_dataset\").cast(\"string\").alias",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"source_dataset\").cast",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col",
+          "lineNumber": 179
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"raw_record\").cast(\"string\").alias",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"raw_record\").cast",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"error_reason\").cast(\"string\").alias",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"error_reason\").cast",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"ingest_ts\").cast(\"timestamp\").alias",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col(\"ingest_ts\").cast",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_read_optional_bad_snapshots",
+          "callee": "F.col",
+          "lineNumber": 182
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_window_dates",
+          "lineNumber": 187
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_required_parquet(spark, dataset, dates).createOrReplaceTempView",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_required_parquet",
+          "lineNumber": 189
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_required_json(spark, topic=topic, dates=dates).createOrReplaceTempView",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_required_json",
+          "lineNumber": 192
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_optional_dead_letter_events(spark, dates).createOrReplaceTempView",
+          "lineNumber": 194
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_optional_dead_letter_events",
+          "lineNumber": 194
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_optional_bad_snapshots(spark).createOrReplaceTempView",
+          "lineNumber": 195
+        },
+        {
+          "caller": "_create_raw_views",
+          "callee": "_read_optional_bad_snapshots",
+          "lineNumber": 195
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "Window.partitionBy(*[F.col(column_name) for column_name in key_columns]).orderBy",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "Window.partitionBy",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "F.col",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "F.col(order_column).desc",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "F.col",
+          "lineNumber": 199
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "df.withColumn(\"_row_num\", F.row_number().over(window)).where(F.col(\"_row_num\") == 1).drop",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "df.withColumn(\"_row_num\", F.row_number().over(window)).where",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "df.withColumn",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "F.row_number().over",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "F.row_number",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_dedupe_latest",
+          "callee": "F.col",
+          "lineNumber": 200
+        },
+        {
+          "caller": "_json_string",
+          "callee": "F.get_json_object",
+          "lineNumber": 204
+        },
+        {
+          "caller": "_json_string",
+          "callee": "F.to_json",
+          "lineNumber": 204
+        },
+        {
+          "caller": "_json_string",
+          "callee": "F.col",
+          "lineNumber": 204
+        },
+        {
+          "caller": "_json_double",
+          "callee": "_json_string(column_name, path).cast",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_json_double",
+          "callee": "_json_string",
+          "lineNumber": 208
+        },
+        {
+          "caller": "_json_int",
+          "callee": "_json_string(column_name, path).cast",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_json_int",
+          "callee": "_json_string",
+          "lineNumber": 212
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit(start_ts).cast",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 221
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit(end_ts).cast",
+          "lineNumber": 222
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 222
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 224
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 224
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 225
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 226
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 226
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 229
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 230
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 239
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 239
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 243
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 243
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 246
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 246
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 250
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 250
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 253
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 253
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest(spark.table(\"raw_promotions\"), key_columns=[\"promotion_id\"], order_column=\"created_ts\").withColumn(\r\n        \"platform_funding_share\",\r\n        F.when(F.col(\"funding_type\") == \"platform\", F.lit(1.0))\r\n        .when(F.col(\"funding_type\") == \"seller\", F.lit(0.0))\r\n        .when(F.col(\"funding_type\") == \"mixed\", F.coalesce(F.get_json_object(F.col(\"funding_detail\"), \"$.platform_share\").cast(\"double\"), F.lit(0.5)))\r\n        .otherwise(F.lit(0.0)),\r\n    ).withColumn",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest(spark.table(\"raw_promotions\"), key_columns=[\"promotion_id\"], order_column=\"created_ts\").withColumn",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when(F.col(\"funding_type\") == \"platform\", F.lit(1.0))\r\n        .when(F.col(\"funding_type\") == \"seller\", F.lit(0.0))\r\n        .when(F.col(\"funding_type\") == \"mixed\", F.coalesce(F.get_json_object(F.col(\"funding_detail\"), \"$.platform_share\").cast(\"double\"), F.lit(0.5)))\r\n        .otherwise",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when(F.col(\"funding_type\") == \"platform\", F.lit(1.0))\r\n        .when(F.col(\"funding_type\") == \"seller\", F.lit(0.0))\r\n        .when",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when(F.col(\"funding_type\") == \"platform\", F.lit(1.0))\r\n        .when",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 262
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 262
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.coalesce",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.get_json_object(F.col(\"funding_detail\"), \"$.platform_share\").cast",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.get_json_object",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 263
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 264
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when(F.col(\"funding_type\") == \"platform\", F.lit(0.0))\r\n        .when(F.col(\"funding_type\") == \"seller\", F.lit(1.0))\r\n        .when(F.col(\"funding_type\") == \"mixed\", F.coalesce(F.get_json_object(F.col(\"funding_detail\"), \"$.seller_share\").cast(\"double\"), F.lit(0.5)))\r\n        .otherwise",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when(F.col(\"funding_type\") == \"platform\", F.lit(0.0))\r\n        .when(F.col(\"funding_type\") == \"seller\", F.lit(1.0))\r\n        .when",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when(F.col(\"funding_type\") == \"platform\", F.lit(0.0))\r\n        .when",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.when",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 267
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 268
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 269
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.coalesce",
+          "lineNumber": 269
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.get_json_object(F.col(\"funding_detail\"), \"$.seller_share\").cast",
+          "lineNumber": 269
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.get_json_object",
+          "lineNumber": 269
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 269
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 269
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.lit",
+          "lineNumber": 270
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "silver_tables.append",
+          "lineNumber": 272
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest(\r\n        spark.table(\"raw_kafka_commerce_events\").select(\r\n            \"event_id\",\r\n            \"event_type\",\r\n            \"event_topic\",\r\n            F.col(\"schema_version\").cast(\"int\").alias(\"schema_version\"),\r\n            F.col(\"event_timestamp\").cast(\"timestamp\").alias(\"event_timestamp\"),\r\n            F.col(\"created_ts\").cast(\"timestamp\").alias(\"created_ts\"),\r\n            \"producer\",\r\n            _json_string(\"correlation_ids\", \"$.session_id\").alias(\"session_id\"),\r\n            _json_string(\"correlation_ids\", \"$.anonymous_id\").alias(\"anonymous_id\"),\r\n            _json_string(\"correlation_ids\", \"$.customer_id\").alias(\"customer_id\"),\r\n            F.coalesce(_json_string(\"correlation_ids\", \"$.product_id\"), _json_string(\"payload\", \"$.product_id\")).alias(\"product_id\"),\r\n            F.coalesce(_json_string(\"correlation_ids\", \"$.order_id\"), _json_string(\"payload\", \"$.order_id\")).alias(\"order_id\"),\r\n            _json_string(\"correlation_ids\", \"$.payment_id\").alias(\"payment_id\"),\r\n            _json_string(\"payload\", \"$.primary_category\").alias(\"primary_category\"),\r\n            _json_string(\"payload\", \"$.device_type\").alias(\"device_type\"),\r\n            _json_string(\"payload\", \"$.source\").alias(\"source\"),\r\n            _json_string(\"payload\", \"$.order_status\").alias(\"order_status\"),\r\n            _json_double(\"payload\", \"$.order_net_amount\").alias(\"order_net_amount\"),\r\n            _json_string(\"payload\", \"$.payment_method\").alias(\"payment_method\"),\r\n            _json_double(\"payload\", \"$.amount\").alias(\"payment_amount\"),\r\n            _json_string(\"payload\", \"$.failure_reason\").alias(\"failure_reason\"),\r\n            \"payload\",\r\n            \"ingest_ts\",\r\n        ),\r\n        key_columns=[\"event_id\"],\r\n        order_column=\"created_ts\",\r\n    ).where",
+          "lineNumber": 274
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 274
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table(\"raw_kafka_commerce_events\").select",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 275
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast(\"int\").alias",
+          "lineNumber": 279
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast",
+          "lineNumber": 279
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 279
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast(\"timestamp\").alias",
+          "lineNumber": 280
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast",
+          "lineNumber": 280
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 280
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast(\"timestamp\").alias",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 281
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.session_id\").alias",
+          "lineNumber": 283
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 283
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.anonymous_id\").alias",
+          "lineNumber": 284
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 284
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.customer_id\").alias",
+          "lineNumber": 285
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 285
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.coalesce(_json_string(\"correlation_ids\", \"$.product_id\"), _json_string(\"payload\", \"$.product_id\")).alias",
+          "lineNumber": 286
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.coalesce",
+          "lineNumber": 286
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 286
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 286
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.coalesce(_json_string(\"correlation_ids\", \"$.order_id\"), _json_string(\"payload\", \"$.order_id\")).alias",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.coalesce",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 287
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.payment_id\").alias",
+          "lineNumber": 288
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 288
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.primary_category\").alias",
+          "lineNumber": 289
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 289
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.device_type\").alias",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 290
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.source\").alias",
+          "lineNumber": 291
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 291
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.order_status\").alias",
+          "lineNumber": 292
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 292
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double(\"payload\", \"$.order_net_amount\").alias",
+          "lineNumber": 293
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double",
+          "lineNumber": 293
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.payment_method\").alias",
+          "lineNumber": 294
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 294
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double(\"payload\", \"$.amount\").alias",
+          "lineNumber": 295
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double",
+          "lineNumber": 295
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.failure_reason\").alias",
+          "lineNumber": 296
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 296
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 302
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 302
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "silver_tables.append",
+          "lineNumber": 303
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest(\r\n        spark.table(\"raw_kafka_catalog_events\").select(\r\n            \"event_id\",\r\n            \"event_type\",\r\n            \"event_topic\",\r\n            F.col(\"schema_version\").cast(\"int\").alias(\"schema_version\"),\r\n            F.col(\"event_timestamp\").cast(\"timestamp\").alias(\"event_timestamp\"),\r\n            F.col(\"created_ts\").cast(\"timestamp\").alias(\"created_ts\"),\r\n            \"producer\",\r\n            _json_string(\"correlation_ids\", \"$.snapshot_id\").alias(\"snapshot_id\"),\r\n            _json_string(\"correlation_ids\", \"$.product_id\").alias(\"product_id\"),\r\n            _json_string(\"correlation_ids\", \"$.seller_id\").alias(\"seller_id\"),\r\n            _json_string(\"correlation_ids\", \"$.promotion_id\").alias(\"promotion_id\"),\r\n            _json_string(\"payload\", \"$.category\").alias(\"category\"),\r\n            _json_double(\"payload\", \"$.stock_on_hand\").alias(\"stock_on_hand\"),\r\n            _json_double(\"payload\", \"$.discount_rate\").alias(\"discount_rate\"),\r\n            \"payload\",\r\n            \"ingest_ts\",\r\n        ),\r\n        key_columns=[\"event_id\"],\r\n        order_column=\"created_ts\",\r\n    ).where",
+          "lineNumber": 305
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 305
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table(\"raw_kafka_catalog_events\").select",
+          "lineNumber": 306
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 306
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast(\"int\").alias",
+          "lineNumber": 310
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast",
+          "lineNumber": 310
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 310
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast(\"timestamp\").alias",
+          "lineNumber": 311
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast",
+          "lineNumber": 311
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 311
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast(\"timestamp\").alias",
+          "lineNumber": 312
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast",
+          "lineNumber": 312
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 312
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.snapshot_id\").alias",
+          "lineNumber": 314
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 314
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.product_id\").alias",
+          "lineNumber": 315
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 315
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.seller_id\").alias",
+          "lineNumber": 316
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 316
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.promotion_id\").alias",
+          "lineNumber": 317
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 317
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.category\").alias",
+          "lineNumber": 318
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 318
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double(\"payload\", \"$.stock_on_hand\").alias",
+          "lineNumber": 319
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double",
+          "lineNumber": 319
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double(\"payload\", \"$.discount_rate\").alias",
+          "lineNumber": 320
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_double",
+          "lineNumber": 320
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 326
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 326
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "silver_tables.append",
+          "lineNumber": 327
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest(\r\n        spark.table(\"raw_kafka_fulfillment_events\").select(\r\n            \"event_id\",\r\n            \"event_type\",\r\n            \"event_topic\",\r\n            F.col(\"schema_version\").cast(\"int\").alias(\"schema_version\"),\r\n            F.col(\"event_timestamp\").cast(\"timestamp\").alias(\"event_timestamp\"),\r\n            F.col(\"created_ts\").cast(\"timestamp\").alias(\"created_ts\"),\r\n            \"producer\",\r\n            _json_string(\"correlation_ids\", \"$.shipment_id\").alias(\"shipment_id\"),\r\n            _json_string(\"correlation_ids\", \"$.order_id\").alias(\"order_id\"),\r\n            _json_string(\"correlation_ids\", \"$.customer_id\").alias(\"customer_id\"),\r\n            _json_string(\"payload\", \"$.shipment_status\").alias(\"shipment_status\"),\r\n            _json_string(\"payload\", \"$.shipping_city\").alias(\"shipping_city\"),\r\n            _json_string(\"payload\", \"$.shipping_method\").alias(\"shipping_method\"),\r\n            \"payload\",\r\n            \"ingest_ts\",\r\n        ),\r\n        key_columns=[\"event_id\"],\r\n        order_column=\"created_ts\",\r\n    ).where",
+          "lineNumber": 329
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 329
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table(\"raw_kafka_fulfillment_events\").select",
+          "lineNumber": 330
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 330
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast(\"int\").alias",
+          "lineNumber": 334
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast",
+          "lineNumber": 334
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 334
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast(\"timestamp\").alias",
+          "lineNumber": 335
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast",
+          "lineNumber": 335
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 335
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast(\"timestamp\").alias",
+          "lineNumber": 336
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast",
+          "lineNumber": 336
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 336
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.shipment_id\").alias",
+          "lineNumber": 338
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 338
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.order_id\").alias",
+          "lineNumber": 339
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 339
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"correlation_ids\", \"$.customer_id\").alias",
+          "lineNumber": 340
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 340
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.shipment_status\").alias",
+          "lineNumber": 341
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 341
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.shipping_city\").alias",
+          "lineNumber": 342
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 342
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string(\"payload\", \"$.shipping_method\").alias",
+          "lineNumber": 343
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_string",
+          "lineNumber": 343
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 349
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 349
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "silver_tables.append",
+          "lineNumber": 350
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest(\r\n        spark.table(\"raw_kafka_ops_events\").select(\r\n            \"event_id\",\r\n            \"event_type\",\r\n            \"event_topic\",\r\n            F.col(\"schema_version\").cast(\"int\").alias(\"schema_version\"),\r\n            F.col(\"event_timestamp\").cast(\"timestamp\").alias(\"event_timestamp\"),\r\n            F.col(\"created_ts\").cast(\"timestamp\").alias(\"created_ts\"),\r\n            \"producer\",\r\n            _json_int(\"payload\", \"$.burst_event_count\").alias(\"burst_event_count\"),\r\n            _json_int(\"payload\", \"$.late_event_count\").alias(\"late_event_count\"),\r\n            _json_int(\"payload\", \"$.duplicate_event_count\").alias(\"duplicate_event_count\"),\r\n            \"payload\",\r\n            \"ingest_ts\",\r\n        ),\r\n        key_columns=[\"event_id\"],\r\n        order_column=\"created_ts\",\r\n    ).where",
+          "lineNumber": 352
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 352
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table(\"raw_kafka_ops_events\").select",
+          "lineNumber": 353
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 353
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast(\"int\").alias",
+          "lineNumber": 357
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"schema_version\").cast",
+          "lineNumber": 357
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 357
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast(\"timestamp\").alias",
+          "lineNumber": 358
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"event_timestamp\").cast",
+          "lineNumber": 358
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 358
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast(\"timestamp\").alias",
+          "lineNumber": 359
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col(\"created_ts\").cast",
+          "lineNumber": 359
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 359
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_int(\"payload\", \"$.burst_event_count\").alias",
+          "lineNumber": 361
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_int",
+          "lineNumber": 361
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_int(\"payload\", \"$.late_event_count\").alias",
+          "lineNumber": 362
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_int",
+          "lineNumber": 362
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_int(\"payload\", \"$.duplicate_event_count\").alias",
+          "lineNumber": 363
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_json_int",
+          "lineNumber": 363
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 369
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "F.col",
+          "lineNumber": 369
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "silver_tables.append",
+          "lineNumber": 370
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "_dedupe_latest",
+          "lineNumber": 372
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 373
+        },
+        {
+          "caller": "_build_silver_tables_for_window",
+          "callee": "silver_tables.append",
+          "lineNumber": 377
+        },
+        {
+          "caller": "_partition_clause",
+          "callee": "', '.join",
+          "lineNumber": 385
+        },
+        {
+          "caller": "_create_namespace",
+          "callee": "spark.sql",
+          "lineNumber": 389
+        },
+        {
+          "caller": "_create_table_if_missing",
+          "callee": "spark.sql",
+          "lineNumber": 401
+        },
+        {
+          "caller": "_create_table_if_missing",
+          "callee": "f\"\"\"\r\nCREATE TABLE IF NOT EXISTS {full_table_name}\r\nUSING iceberg\r\n{_partition_clause(partition_expressions)}\r\nTBLPROPERTIES ('format-version'='2')\r\nAS SELECT * FROM {source_view_name}\r\n\"\"\".strip",
+          "lineNumber": 402
+        },
+        {
+          "caller": "_create_table_if_missing",
+          "callee": "_partition_clause",
+          "lineNumber": 405
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "spark.table",
+          "lineNumber": 420
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "\" AND \".join",
+          "lineNumber": 421
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "\", \".join",
+          "lineNumber": 422
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "\", \".join",
+          "lineNumber": 423
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "\", \".join",
+          "lineNumber": 424
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "spark.sql",
+          "lineNumber": 425
+        },
+        {
+          "caller": "_merge_into_table",
+          "callee": "f\"\"\"\r\nMERGE INTO {full_table_name} t\r\nUSING {source_view_name} s\r\nON {key_predicate}\r\nWHEN MATCHED AND s.{order_column} >= t.{order_column} THEN\r\n  UPDATE SET {assignments}\r\nWHEN NOT MATCHED THEN\r\n  INSERT ({insert_columns}) VALUES ({insert_values})\r\n\"\"\".strip",
+          "lineNumber": 426
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "_create_namespace",
+          "lineNumber": 444
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "_build_silver_tables_for_window",
+          "lineNumber": 445
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "dataframe.createOrReplaceTempView",
+          "lineNumber": 451
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "_create_table_if_missing",
+          "lineNumber": 453
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "SILVER_PARTITIONED_BY.get",
+          "lineNumber": 459
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "_merge_into_table",
+          "lineNumber": 461
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "spark.table(full_table_name).createOrReplaceTempView",
+          "lineNumber": 468
+        },
+        {
+          "caller": "_persist_silver_tables_for_window",
+          "callee": "spark.table",
+          "lineNumber": 468
+        },
+        {
+          "caller": "_replace_gold_table",
+          "callee": "spark.sql",
+          "lineNumber": 477
+        },
+        {
+          "caller": "_replace_gold_table",
+          "callee": "f\"\"\"\r\nCREATE OR REPLACE TABLE iceberg.gold.{table_name}\r\nUSING iceberg\r\n{_partition_clause(GOLD_PARTITIONED_BY.get(table_name, ()))}\r\nTBLPROPERTIES ('format-version'='2')\r\nAS\r\n{query}\r\n\"\"\".strip",
+          "lineNumber": 478
+        },
+        {
+          "caller": "_replace_gold_table",
+          "callee": "_partition_clause",
+          "lineNumber": 481
+        },
+        {
+          "caller": "_replace_gold_table",
+          "callee": "GOLD_PARTITIONED_BY.get",
+          "lineNumber": 481
+        },
+        {
+          "caller": "_replace_gold_table",
+          "callee": "spark.table(f\"iceberg.gold.{table_name}\").createOrReplaceTempView",
+          "lineNumber": 487
+        },
+        {
+          "caller": "_replace_gold_table",
+          "callee": "spark.table",
+          "lineNumber": 487
+        },
+        {
+          "caller": "_restore_spark_configuration",
+          "callee": "spark.conf.unset",
+          "lineNumber": 492
+        },
+        {
+          "caller": "_restore_spark_configuration",
+          "callee": "spark.conf.set",
+          "lineNumber": 494
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "dataframe.where(F.col(stable_key).isNull() | F.col(partition_column).isNull()).limit(1).count",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "dataframe.where(F.col(stable_key).isNull() | F.col(partition_column).isNull()).limit",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "dataframe.where",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.col(stable_key).isNull",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.col",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.col(partition_column).isNull",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.col",
+          "lineNumber": 504
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "ValueError",
+          "lineNumber": 505
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "dataframe.withColumn",
+          "lineNumber": 508
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.pmod",
+          "lineNumber": 510
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.xxhash64",
+          "lineNumber": 510
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.col",
+          "lineNumber": 510
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "F.lit",
+          "lineNumber": 510
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "row.asDict",
+          "lineNumber": 513
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "bucketed.groupBy(partition_column, bucket_column)\r\n            .count()\r\n            .orderBy(partition_column, bucket_column)\r\n            .collect",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "bucketed.groupBy(partition_column, bucket_column)\r\n            .count()\r\n            .orderBy",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "bucketed.groupBy(partition_column, bucket_column)\r\n            .count",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "bucketed.groupBy",
+          "lineNumber": 515
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "partitions_with_both_buckets.setdefault(row[partition_column], set()).add",
+          "lineNumber": 523
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "partitions_with_both_buckets.setdefault",
+          "lineNumber": 523
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "set",
+          "lineNumber": 523
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "int",
+          "lineNumber": 523
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "any",
+          "lineNumber": 524
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "len",
+          "lineNumber": 524
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "partitions_with_both_buckets.values",
+          "lineNumber": 524
+        },
+        {
+          "caller": "_compaction_evidence_bucket_rows",
+          "callee": "RuntimeError",
+          "lineNumber": 525
+        },
+        {
+          "caller": "_gold_data_file_partition_counts",
+          "callee": "row.asDict",
+          "lineNumber": 546
+        },
+        {
+          "caller": "_gold_data_file_partition_counts",
+          "callee": "spark.sql(statement).collect",
+          "lineNumber": 546
+        },
+        {
+          "caller": "_gold_data_file_partition_counts",
+          "callee": "spark.sql",
+          "lineNumber": 546
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "_compaction_evidence_bucket_rows",
+          "lineNumber": 557
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "spark.sql",
+          "lineNumber": 558
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "spark.conf.get",
+          "lineNumber": 563
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "spark.conf.set",
+          "lineNumber": 565
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions(partition_column)\r\n            .drop(\"__compaction_evidence_bucket\")\r\n            .writeTo(f\"iceberg.gold.{table_name}\")\r\n            .using(\"iceberg\")\r\n            .partitionedBy(F.col(partition_column))\r\n            .tableProperty(\"format-version\", \"2\")\r\n            .createOrReplace",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions(partition_column)\r\n            .drop(\"__compaction_evidence_bucket\")\r\n            .writeTo(f\"iceberg.gold.{table_name}\")\r\n            .using(\"iceberg\")\r\n            .partitionedBy(F.col(partition_column))\r\n            .tableProperty",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions(partition_column)\r\n            .drop(\"__compaction_evidence_bucket\")\r\n            .writeTo(f\"iceberg.gold.{table_name}\")\r\n            .using(\"iceberg\")\r\n            .partitionedBy",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions(partition_column)\r\n            .drop(\"__compaction_evidence_bucket\")\r\n            .writeTo(f\"iceberg.gold.{table_name}\")\r\n            .using",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions(partition_column)\r\n            .drop(\"__compaction_evidence_bucket\")\r\n            .writeTo",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions(partition_column)\r\n            .drop",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange(\r\n                len(bucket_rows),\r\n                F.col(partition_column),\r\n                F.col(\"__compaction_evidence_bucket\"),\r\n            )\r\n            .sortWithinPartitions",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "bucketed.repartitionByRange",
+          "lineNumber": 567
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "len",
+          "lineNumber": 568
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "F.col",
+          "lineNumber": 569
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "F.col",
+          "lineNumber": 570
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "F.col",
+          "lineNumber": 576
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "_restore_spark_configuration",
+          "lineNumber": 581
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "_gold_data_file_partition_counts",
+          "lineNumber": 583
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "int",
+          "lineNumber": 591
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "RuntimeError",
+          "lineNumber": 594
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "spark.table(f\"iceberg.gold.{table_name}\").createOrReplaceTempView",
+          "lineNumber": 595
+        },
+        {
+          "caller": "_replace_gold_table_for_compaction_evidence",
+          "callee": "spark.table",
+          "lineNumber": 595
+        },
+        {
+          "caller": "_register_persisted_tables",
+          "callee": "spark.table(f\"{namespace}.{table_name}\").createOrReplaceTempView",
+          "lineNumber": 609
+        },
+        {
+          "caller": "_register_persisted_tables",
+          "callee": "spark.table",
+          "lineNumber": 609
+        },
+        {
+          "caller": "_persist_gold_query_group",
+          "callee": "_create_namespace",
+          "lineNumber": 618
+        },
+        {
+          "caller": "_persist_gold_query_group",
+          "callee": "_register_persisted_tables",
+          "lineNumber": 619
+        },
+        {
+          "caller": "_persist_gold_query_group",
+          "callee": "compaction_evidence_target",
+          "lineNumber": 623
+        },
+        {
+          "caller": "_persist_gold_query_group",
+          "callee": "layout_results.append",
+          "lineNumber": 626
+        },
+        {
+          "caller": "_persist_gold_query_group",
+          "callee": "_replace_gold_table_for_compaction_evidence",
+          "lineNumber": 627
+        },
+        {
+          "caller": "_persist_gold_query_group",
+          "callee": "_replace_gold_table",
+          "lineNumber": 636
+        },
+        {
+          "caller": "_persist_gold_tables",
+          "callee": "_persist_gold_query_group",
+          "lineNumber": 645
+        },
+        {
+          "caller": "_persist_gold_tables",
+          "callee": "ordered_gold_queries",
+          "lineNumber": 645
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "spark.table(f\"iceberg.silver.{table_name}\").count",
+          "lineNumber": 656
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "spark.table",
+          "lineNumber": 656
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "spark.table(f\"iceberg.gold.{table_name}\").count",
+          "lineNumber": 658
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "spark.table",
+          "lineNumber": 658
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "Path",
+          "lineNumber": 659
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 660
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "(evidence_path / \"spark_table_row_counts.json\").write_text",
+          "lineNumber": 661
+        },
+        {
+          "caller": "_capture_table_row_counts",
+          "callee": "json.dumps",
+          "lineNumber": 662
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "artifacts.append",
+          "lineNumber": 685
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "window.start_ts.isoformat().replace",
+          "lineNumber": 688
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "window.start_ts.isoformat",
+          "lineNumber": 688
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "window.end_ts.isoformat().replace",
+          "lineNumber": 689
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "window.end_ts.isoformat",
+          "lineNumber": 689
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "list",
+          "lineNumber": 692
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "Path",
+          "lineNumber": 699
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 700
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "(evidence_path / \"spark_job_manifest.json\").write_text",
+          "lineNumber": 701
+        },
+        {
+          "caller": "_write_job_manifest",
+          "callee": "json.dumps",
+          "lineNumber": 702
+        },
+        {
+          "caller": "_write_compaction_layout_manifest",
+          "callee": "Path",
+          "lineNumber": 712
+        },
+        {
+          "caller": "_write_compaction_layout_manifest",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 713
+        },
+        {
+          "caller": "_write_compaction_layout_manifest",
+          "callee": "(evidence_path / \"compaction_layout_manifest.json\").write_text",
+          "lineNumber": 714
+        },
+        {
+          "caller": "_write_compaction_layout_manifest",
+          "callee": "json.dumps",
+          "lineNumber": 715
+        },
+        {
+          "caller": "run_job",
+          "callee": "BatchWindow.from_args",
+          "lineNumber": 738
+        },
+        {
+          "caller": "run_job",
+          "callee": "ValueError",
+          "lineNumber": 740
+        },
+        {
+          "caller": "run_job",
+          "callee": "validate_layout_profile",
+          "lineNumber": 741
+        },
+        {
+          "caller": "run_job",
+          "callee": "ValueError",
+          "lineNumber": 743
+        },
+        {
+          "caller": "run_job",
+          "callee": "build_spark_session",
+          "lineNumber": 744
+        },
+        {
+          "caller": "run_job",
+          "callee": "_create_raw_views",
+          "lineNumber": 748
+        },
+        {
+          "caller": "run_job",
+          "callee": "_persist_silver_tables_for_window",
+          "lineNumber": 749
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.start_ts.isoformat().replace",
+          "lineNumber": 751
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.start_ts.isoformat",
+          "lineNumber": 751
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.end_ts.isoformat().replace",
+          "lineNumber": 752
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.end_ts.isoformat",
+          "lineNumber": 752
+        },
+        {
+          "caller": "run_job",
+          "callee": "_persist_gold_query_group",
+          "lineNumber": 754
+        },
+        {
+          "caller": "run_job",
+          "callee": "ordered_core_gold_queries",
+          "lineNumber": 756
+        },
+        {
+          "caller": "run_job",
+          "callee": "_write_compaction_layout_manifest",
+          "lineNumber": 760
+        },
+        {
+          "caller": "run_job",
+          "callee": "_register_persisted_tables",
+          "lineNumber": 765
+        },
+        {
+          "caller": "run_job",
+          "callee": "_register_persisted_tables",
+          "lineNumber": 766
+        },
+        {
+          "caller": "run_job",
+          "callee": "tuple",
+          "lineNumber": 769
+        },
+        {
+          "caller": "run_job",
+          "callee": "ordered_core_gold_queries",
+          "lineNumber": 769
+        },
+        {
+          "caller": "run_job",
+          "callee": "_persist_gold_query_group",
+          "lineNumber": 773
+        },
+        {
+          "caller": "run_job",
+          "callee": "ordered_feature_queries",
+          "lineNumber": 773
+        },
+        {
+          "caller": "run_job",
+          "callee": "tuple",
+          "lineNumber": 777
+        },
+        {
+          "caller": "run_job",
+          "callee": "ordered_core_gold_queries",
+          "lineNumber": 777
+        },
+        {
+          "caller": "run_job",
+          "callee": "tuple",
+          "lineNumber": 779
+        },
+        {
+          "caller": "run_job",
+          "callee": "ordered_feature_queries",
+          "lineNumber": 779
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.start_ts.isoformat().replace",
+          "lineNumber": 783
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.start_ts.isoformat",
+          "lineNumber": 783
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.end_ts.isoformat().replace",
+          "lineNumber": 784
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.end_ts.isoformat",
+          "lineNumber": 784
+        },
+        {
+          "caller": "run_job",
+          "callee": "_capture_table_row_counts",
+          "lineNumber": 789
+        },
+        {
+          "caller": "run_job",
+          "callee": "run_pyspark_validations",
+          "lineNumber": 796
+        },
+        {
+          "caller": "run_job",
+          "callee": "run_gx_validations",
+          "lineNumber": 797
+        },
+        {
+          "caller": "run_job",
+          "callee": "_capture_table_row_counts",
+          "lineNumber": 798
+        },
+        {
+          "caller": "run_job",
+          "callee": "_write_job_manifest",
+          "lineNumber": 799
+        },
+        {
+          "caller": "run_job",
+          "callee": "bool",
+          "lineNumber": 806
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.start_ts.isoformat().replace",
+          "lineNumber": 810
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.start_ts.isoformat",
+          "lineNumber": 810
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.end_ts.isoformat().replace",
+          "lineNumber": 811
+        },
+        {
+          "caller": "run_job",
+          "callee": "window.end_ts.isoformat",
+          "lineNumber": 811
+        },
+        {
+          "caller": "run_job",
+          "callee": "spark.stop",
+          "lineNumber": 818
+        },
+        {
+          "caller": "main",
+          "callee": "parse_args",
+          "lineNumber": 822
+        },
+        {
+          "caller": "main",
+          "callee": "run_job",
+          "lineNumber": 823
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 38,
+        "functionCount": 38,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/layout_profile.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 14,
+      "functions": [
+        {
+          "name": "validate_layout_profile",
+          "startLine": 14,
+          "endLine": 17,
+          "params": [
+            "layout_profile"
+          ]
+        },
+        {
+          "name": "compaction_evidence_target",
+          "startLine": 20,
+          "endLine": 21,
+          "params": [
+            "table_name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "validate_layout_profile",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "compaction_evidence_target",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "validate_layout_profile",
+          "callee": "ValueError",
+          "lineNumber": 16
+        },
+        {
+          "caller": "compaction_evidence_target",
+          "callee": "_COMPACTION_EVIDENCE_TARGETS.get",
+          "lineNumber": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/sql.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 714,
+      "nonEmptyLines": 704,
+      "functions": [
+        {
+          "name": "category_cost_rate_sql",
+          "startLine": 4,
+          "endLine": 11,
+          "params": [
+            "expression"
+          ]
+        },
+        {
+          "name": "_legacy_ordered_gold_queries",
+          "startLine": 14,
+          "endLine": 691,
+          "params": []
+        },
+        {
+          "name": "ordered_core_gold_queries",
+          "startLine": 694,
+          "endLine": 700,
+          "params": []
+        },
+        {
+          "name": "ordered_feature_queries",
+          "startLine": 703,
+          "endLine": 709,
+          "params": []
+        },
+        {
+          "name": "ordered_gold_queries",
+          "startLine": 712,
+          "endLine": 714,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "category_cost_rate_sql",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "_legacy_ordered_gold_queries",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "ordered_core_gold_queries",
+          "line": 694,
+          "isDefault": false
+        },
+        {
+          "name": "ordered_feature_queries",
+          "line": 703,
+          "isDefault": false
+        },
+        {
+          "name": "ordered_gold_queries",
+          "line": 712,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_legacy_ordered_gold_queries",
+          "callee": "category_cost_rate_sql",
+          "lineNumber": 15
+        },
+        {
+          "caller": "_legacy_ordered_gold_queries",
+          "callee": "category_cost_rate_sql",
+          "lineNumber": 16
+        },
+        {
+          "caller": "ordered_core_gold_queries",
+          "callee": "_legacy_ordered_gold_queries",
+          "lineNumber": 698
+        },
+        {
+          "caller": "ordered_core_gold_queries",
+          "callee": "table_name.startswith",
+          "lineNumber": 699
+        },
+        {
+          "caller": "ordered_feature_queries",
+          "callee": "_legacy_ordered_gold_queries",
+          "lineNumber": 707
+        },
+        {
+          "caller": "ordered_feature_queries",
+          "callee": "table_name.startswith",
+          "lineNumber": 708
+        },
+        {
+          "caller": "ordered_gold_queries",
+          "callee": "ordered_core_gold_queries",
+          "lineNumber": 714
+        },
+        {
+          "caller": "ordered_gold_queries",
+          "callee": "ordered_feature_queries",
+          "lineNumber": 714
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/validation.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 235,
+      "nonEmptyLines": 217,
+      "functions": [
+        {
+          "name": "_scalar",
+          "startLine": 12,
+          "endLine": 13,
+          "params": [
+            "spark",
+            "query"
+          ]
+        },
+        {
+          "name": "_append_check",
+          "startLine": 16,
+          "endLine": 17,
+          "params": [
+            "results",
+            "name",
+            "success",
+            "detail"
+          ]
+        },
+        {
+          "name": "run_pyspark_validations",
+          "startLine": 20,
+          "endLine": 235,
+          "params": [
+            "spark",
+            "evidence_root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_scalar",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "_append_check",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "run_pyspark_validations",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_scalar",
+          "callee": "spark.sql(query).first",
+          "lineNumber": 13
+        },
+        {
+          "caller": "_scalar",
+          "callee": "spark.sql",
+          "lineNumber": 13
+        },
+        {
+          "caller": "_append_check",
+          "callee": "results.append",
+          "lineNumber": 17
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 36
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 37
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 49
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 55
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "SOURCE_TOPIC_ACCEPTED_VALUES.items",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "qualified_name.split",
+          "lineNumber": 63
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "\", \".join",
+          "lineNumber": 70
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "repr",
+          "lineNumber": 70
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 73
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "list",
+          "lineNumber": 77
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 122
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 123
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 131
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 135
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 139
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "non_negative_failures.items",
+          "lineNumber": 144
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 145
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 152
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 156
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 163
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 179
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_scalar",
+          "lineNumber": 186
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 204
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "spark.sql(\"show tables in iceberg.gold\").collect",
+          "lineNumber": 212
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "spark.sql",
+          "lineNumber": 212
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "sorted",
+          "lineNumber": 214
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "set",
+          "lineNumber": 214
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "_append_check",
+          "lineNumber": 215
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "sorted",
+          "lineNumber": 219
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "all",
+          "lineNumber": 223
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "Path",
+          "lineNumber": 226
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 227
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "(evidence_path / \"pyspark_validation_report.json\").write_text",
+          "lineNumber": 228
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "json.dumps",
+          "lineNumber": 229
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "RuntimeError",
+          "lineNumber": 234
+        },
+        {
+          "caller": "run_pyspark_validations",
+          "callee": "', '.join",
+          "lineNumber": 234
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

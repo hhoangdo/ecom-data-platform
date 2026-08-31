@@ -1,0 +1,182 @@
+{
+  "projectRoot": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework",
+  "batchFiles": [
+    {
+      "path": "infra/analytics/dbt/dbt_project.yml",
+      "language": "yaml",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/profiles.yml",
+      "language": "yaml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/tests/assert_fact_order_reconciles_to_stg_orders.sql",
+      "language": "sql",
+      "sizeLines": 12,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/tests/assert_order_item_totals_reconcile.sql",
+      "language": "sql",
+      "sizeLines": 13,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/flink/bin/run-with-time-limit.sh",
+      "language": "shell",
+      "sizeLines": 12,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/flink/bin/submit-jobs.sh",
+      "language": "shell",
+      "sizeLines": 25,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/kafka/connect/source-events-s3-sink.template.json",
+      "language": "json",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/topics.yaml",
+      "language": "yaml",
+      "sizeLines": 34,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/hive/hive-site.xml",
+      "language": "xml",
+      "sizeLines": 52,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/hive/init-schema.sh",
+      "language": "shell",
+      "sizeLines": 20,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/lakehouse/minio/create-buckets.sh",
+      "language": "shell",
+      "sizeLines": 14,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/lakehouse/postgres/init/01-create-platform-databases.sql",
+      "language": "sql",
+      "sizeLines": 8,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/lakehouse/trino/catalog/iceberg.properties",
+      "language": "properties",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/trino/sql/smoke.sql",
+      "language": "sql",
+      "sizeLines": 5,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/lakehouse/trino/sql/spark_batch_smoke.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "language": "python",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/datahub_ingestion.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/hourly_batch_lakehouse.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/kafka_topic_bootstrap.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/local_evidence_build.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "language": "python",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/pinot_bootstrap.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/reconciliation_report.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/plugins/datahub_plugin.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/gx_docs/default_index.html",
+      "language": "html",
+      "sizeLines": 11,
+      "fileCategory": "markup"
+    }
+  ],
+  "batchImportData": {
+    "infra/analytics/dbt/dbt_project.yml": [],
+    "infra/analytics/dbt/profiles.yml": [],
+    "infra/analytics/dbt/tests/assert_fact_order_reconciles_to_stg_orders.sql": [],
+    "infra/analytics/dbt/tests/assert_order_item_totals_reconcile.sql": [],
+    "infra/flink/bin/run-with-time-limit.sh": [],
+    "infra/flink/bin/submit-jobs.sh": [],
+    "infra/kafka/connect/source-events-s3-sink.template.json": [],
+    "infra/kafka/topics.yaml": [],
+    "infra/lakehouse/hive/hive-site.xml": [],
+    "infra/lakehouse/hive/init-schema.sh": [],
+    "infra/lakehouse/minio/create-buckets.sh": [],
+    "infra/lakehouse/postgres/init/01-create-platform-databases.sql": [],
+    "infra/lakehouse/trino/catalog/iceberg.properties": [],
+    "infra/lakehouse/trino/sql/smoke.sql": [],
+    "infra/lakehouse/trino/sql/spark_batch_smoke.sql": [],
+    "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py": [],
+    "infra/orchestration/airflow/dags/datahub_ingestion.py": [],
+    "infra/orchestration/airflow/dags/hourly_batch_lakehouse.py": [],
+    "infra/orchestration/airflow/dags/kafka_topic_bootstrap.py": [],
+    "infra/orchestration/airflow/dags/local_evidence_build.py": [],
+    "infra/orchestration/airflow/dags/mini_coursework_pipeline.py": [],
+    "infra/orchestration/airflow/dags/pinot_bootstrap.py": [],
+    "infra/orchestration/airflow/dags/reconciliation_report.py": [],
+    "infra/orchestration/airflow/plugins/datahub_plugin.py": [],
+    "infra/orchestration/gx_docs/default_index.html": []
+  }
+}

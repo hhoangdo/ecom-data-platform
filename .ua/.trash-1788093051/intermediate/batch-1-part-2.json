@@ -1,0 +1,1322 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "type": "file",
+      "name": "generator.py",
+      "filePath": "src/vina_bim_shop/generators/offline/generator.py",
+      "summary": "Coordinates offline source-data generation and preserves the legacy public generation interface.",
+      "tags": [
+        "python",
+        "data-generation",
+        "offline-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/vina_bim_shop/generators/offline/generator.py:OfflineGeneration",
+      "type": "class",
+      "name": "OfflineGeneration",
+      "filePath": "src/vina_bim_shop/generators/offline/generator.py",
+      "lineRange": [
+        55,
+        57
+      ],
+      "summary": "Defines the OfflineGeneration data structure used by coordinates offline source-data generation and preserves the legacy public generation interface.",
+      "tags": [
+        "python",
+        "data-model",
+        "generator"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/generator.py:generate_offline",
+      "type": "function",
+      "name": "generate_offline",
+      "filePath": "src/vina_bim_shop/generators/offline/generator.py",
+      "lineRange": [
+        60,
+        113
+      ],
+      "summary": "Implements generate_offline for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "type": "file",
+      "name": "inventory_promos.py",
+      "filePath": "src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "summary": "Generates inventory snapshots and promotion records for the offline commerce dataset.",
+      "tags": [
+        "python",
+        "data-generation",
+        "offline-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:_generate_inventory_snapshots",
+      "type": "function",
+      "name": "_generate_inventory_snapshots",
+      "filePath": "src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "lineRange": [
+        11,
+        36
+      ],
+      "summary": "Implements _generate_inventory_snapshots for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:_generate_promotions",
+      "type": "function",
+      "name": "_generate_promotions",
+      "filePath": "src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "lineRange": [
+        39,
+        87
+      ],
+      "summary": "Implements _generate_promotions for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:generate_inventory_snapshots",
+      "type": "function",
+      "name": "generate_inventory_snapshots",
+      "filePath": "src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "lineRange": [
+        90,
+        97
+      ],
+      "summary": "Implements generate_inventory_snapshots for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:generate_promotions",
+      "type": "function",
+      "name": "generate_promotions",
+      "filePath": "src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "lineRange": [
+        100,
+        108
+      ],
+      "summary": "Implements generate_promotions for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "type": "file",
+      "name": "orders.py",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "summary": "Generates orders and order items, then calculates order totals and fulfillment-related attributes.",
+      "tags": [
+        "python",
+        "data-generation",
+        "offline-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/orders.py:_generate_orders",
+      "type": "function",
+      "name": "_generate_orders",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "lineRange": [
+        18,
+        90
+      ],
+      "summary": "Implements _generate_orders for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/orders.py:_generate_order_items",
+      "type": "function",
+      "name": "_generate_order_items",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "lineRange": [
+        93,
+        141
+      ],
+      "summary": "Implements _generate_order_items for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/orders.py:_attach_order_totals",
+      "type": "function",
+      "name": "_attach_order_totals",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "lineRange": [
+        144,
+        155
+      ],
+      "summary": "Implements _attach_order_totals for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/orders.py:generate_orders",
+      "type": "function",
+      "name": "generate_orders",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "lineRange": [
+        158,
+        168
+      ],
+      "summary": "Implements generate_orders for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/orders.py:generate_order_items",
+      "type": "function",
+      "name": "generate_order_items",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "lineRange": [
+        171,
+        178
+      ],
+      "summary": "Implements generate_order_items for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/offline/orders.py:attach_order_totals",
+      "type": "function",
+      "name": "attach_order_totals",
+      "filePath": "src/vina_bim_shop/generators/offline/orders.py",
+      "lineRange": [
+        181,
+        182
+      ],
+      "summary": "Implements attach_order_totals for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "type": "file",
+      "name": "ops_signals.py",
+      "filePath": "src/vina_bim_shop/generators/ops_signals.py",
+      "summary": "Builds operational signal events from session activity using the shared streaming envelope format.",
+      "tags": [
+        "python",
+        "data-generation",
+        "streaming-events"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/ops_signals.py:_ops_topic_events",
+      "type": "function",
+      "name": "_ops_topic_events",
+      "filePath": "src/vina_bim_shop/generators/ops_signals.py",
+      "lineRange": [
+        16,
+        101
+      ],
+      "summary": "Implements _ops_topic_events for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/ops_signals.py:ops_topic_events",
+      "type": "function",
+      "name": "ops_topic_events",
+      "filePath": "src/vina_bim_shop/generators/ops_signals.py",
+      "lineRange": [
+        104,
+        105
+      ],
+      "summary": "Implements ops_topic_events for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/profiles.py",
+      "type": "file",
+      "name": "profiles.py",
+      "filePath": "src/vina_bim_shop/generators/profiles.py",
+      "summary": "Defines category and pricing profiles plus weighted-choice and timestamp sampling helpers.",
+      "tags": [
+        "python",
+        "data-generation",
+        "synthetic-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/profiles.py:weighted_choice",
+      "type": "function",
+      "name": "weighted_choice",
+      "filePath": "src/vina_bim_shop/generators/profiles.py",
+      "lineRange": [
+        42,
+        50
+      ],
+      "summary": "Implements weighted_choice for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/profiles.py:random_timestamps",
+      "type": "function",
+      "name": "random_timestamps",
+      "filePath": "src/vina_bim_shop/generators/profiles.py",
+      "lineRange": [
+        53,
+        83
+      ],
+      "summary": "Implements random_timestamps for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/profiles.py:time_bounds",
+      "type": "function",
+      "name": "time_bounds",
+      "filePath": "src/vina_bim_shop/generators/profiles.py",
+      "lineRange": [
+        86,
+        93
+      ],
+      "summary": "Implements time_bounds for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/runner.py",
+      "type": "file",
+      "name": "runner.py",
+      "filePath": "src/vina_bim_shop/generators/runner.py",
+      "summary": "Orchestrates the complete synthetic-data generation run and returns its datasets, issues, and evidence outputs.",
+      "tags": [
+        "python",
+        "data-generation",
+        "synthetic-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/vina_bim_shop/generators/runner.py:GenerationResult",
+      "type": "class",
+      "name": "GenerationResult",
+      "filePath": "src/vina_bim_shop/generators/runner.py",
+      "lineRange": [
+        30,
+        36
+      ],
+      "summary": "Defines the GenerationResult data structure used by orchestrates the complete synthetic-data generation run and returns its datasets, issues, and evidence outputs.",
+      "tags": [
+        "python",
+        "data-model",
+        "generator"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/runner.py:run_generation",
+      "type": "function",
+      "name": "run_generation",
+      "filePath": "src/vina_bim_shop/generators/runner.py",
+      "lineRange": [
+        39,
+        104
+      ],
+      "summary": "Implements run_generation for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/schema_evolution.py",
+      "type": "file",
+      "name": "schema_evolution.py",
+      "filePath": "src/vina_bim_shop/generators/schema_evolution.py",
+      "summary": "Creates category-specific attribute payloads and defines the cutoff used to model schema evolution.",
+      "tags": [
+        "python",
+        "data-generation",
+        "synthetic-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/schema_evolution.py:category_attributes",
+      "type": "function",
+      "name": "category_attributes",
+      "filePath": "src/vina_bim_shop/generators/schema_evolution.py",
+      "lineRange": [
+        12,
+        38
+      ],
+      "summary": "Implements category_attributes for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/schema_evolution.py:schema_evolution_cutoff",
+      "type": "function",
+      "name": "schema_evolution_cutoff",
+      "filePath": "src/vina_bim_shop/generators/schema_evolution.py",
+      "lineRange": [
+        41,
+        43
+      ],
+      "summary": "Implements schema_evolution_cutoff for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/skew.py",
+      "type": "file",
+      "name": "skew.py",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "summary": "Models segment preferences and distribution skew for categories, devices, fulfillment, payments, and shipments.",
+      "tags": [
+        "python",
+        "data-generation",
+        "synthetic-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:segment_affinity_to_categories",
+      "type": "function",
+      "name": "segment_affinity_to_categories",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        48,
+        51
+      ],
+      "summary": "Implements segment_affinity_to_categories for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:customer_order_weights",
+      "type": "function",
+      "name": "customer_order_weights",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        54,
+        63
+      ],
+      "summary": "Implements customer_order_weights for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:coupon_affinity",
+      "type": "function",
+      "name": "coupon_affinity",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        66,
+        69
+      ],
+      "summary": "Implements coupon_affinity for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:preferred_device",
+      "type": "function",
+      "name": "preferred_device",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        72,
+        78
+      ],
+      "summary": "Implements preferred_device for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:acquisition_channel",
+      "type": "function",
+      "name": "acquisition_channel",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        81,
+        87
+      ],
+      "summary": "Implements acquisition_channel for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:shipping_method",
+      "type": "function",
+      "name": "shipping_method",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        90,
+        91
+      ],
+      "summary": "Implements shipping_method for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:fulfillment_channel",
+      "type": "function",
+      "name": "fulfillment_channel",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        94,
+        95
+      ],
+      "summary": "Implements fulfillment_channel for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:fulfillment_channel_for_orders",
+      "type": "function",
+      "name": "fulfillment_channel_for_orders",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        98,
+        99
+      ],
+      "summary": "Implements fulfillment_channel_for_orders for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:payment_method",
+      "type": "function",
+      "name": "payment_method",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        102,
+        103
+      ],
+      "summary": "Implements payment_method for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:payment_failure_reason",
+      "type": "function",
+      "name": "payment_failure_reason",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        106,
+        107
+      ],
+      "summary": "Implements payment_failure_reason for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:shipment_status",
+      "type": "function",
+      "name": "shipment_status",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        110,
+        111
+      ],
+      "summary": "Implements shipment_status for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/generators/skew.py:promotion_funding_type",
+      "type": "function",
+      "name": "promotion_funding_type",
+      "filePath": "src/vina_bim_shop/generators/skew.py",
+      "lineRange": [
+        114,
+        115
+      ],
+      "summary": "Implements promotion_funding_type for the generator responsibility in this module.",
+      "tags": [
+        "python",
+        "generator",
+        "data-processing"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "class:src/vina_bim_shop/generators/offline/generator.py:OfflineGeneration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "class:src/vina_bim_shop/generators/offline/generator.py:OfflineGeneration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "function:src/vina_bim_shop/generators/offline/generator.py:generate_offline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "function:src/vina_bim_shop/generators/offline/generator.py:generate_offline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/duplicates.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/offline/entities.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/offline/fulfillment.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "target": "file:src/vina_bim_shop/generators/profiles.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:_generate_inventory_snapshots",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:_generate_inventory_snapshots",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:_generate_promotions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:_generate_promotions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:generate_inventory_snapshots",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:generate_inventory_snapshots",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:generate_promotions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "function:src/vina_bim_shop/generators/offline/inventory_promos.py:generate_promotions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "file:src/vina_bim_shop/generators/profiles.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "target": "file:src/vina_bim_shop/generators/skew.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:_generate_orders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:_generate_orders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:_generate_order_items",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:_generate_order_items",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:_attach_order_totals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:_attach_order_totals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:generate_orders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:generate_orders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:generate_order_items",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:generate_order_items",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:attach_order_totals",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "function:src/vina_bim_shop/generators/offline/orders.py:attach_order_totals",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "file:src/vina_bim_shop/generators/ids.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "file:src/vina_bim_shop/generators/profiles.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/offline/orders.py",
+      "target": "file:src/vina_bim_shop/generators/skew.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "target": "function:src/vina_bim_shop/generators/ops_signals.py:_ops_topic_events",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "target": "function:src/vina_bim_shop/generators/ops_signals.py:_ops_topic_events",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "target": "function:src/vina_bim_shop/generators/ops_signals.py:ops_topic_events",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "target": "function:src/vina_bim_shop/generators/ops_signals.py:ops_topic_events",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/ops_signals.py",
+      "target": "file:src/vina_bim_shop/generators/streaming/envelope.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "function:src/vina_bim_shop/generators/profiles.py:weighted_choice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "function:src/vina_bim_shop/generators/profiles.py:weighted_choice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "function:src/vina_bim_shop/generators/profiles.py:random_timestamps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "function:src/vina_bim_shop/generators/profiles.py:random_timestamps",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "function:src/vina_bim_shop/generators/profiles.py:time_bounds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "function:src/vina_bim_shop/generators/profiles.py:time_bounds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/profiles.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "class:src/vina_bim_shop/generators/runner.py:GenerationResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "class:src/vina_bim_shop/generators/runner.py:GenerationResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "function:src/vina_bim_shop/generators/runner.py:run_generation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "function:src/vina_bim_shop/generators/runner.py:run_generation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/bad_records.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/duplicates.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/evidence.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/offline/generator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/streaming/generator.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/runner.py",
+      "target": "file:src/vina_bim_shop/generators/writer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/schema_evolution.py",
+      "target": "function:src/vina_bim_shop/generators/schema_evolution.py:category_attributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/schema_evolution.py",
+      "target": "function:src/vina_bim_shop/generators/schema_evolution.py:category_attributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/schema_evolution.py",
+      "target": "function:src/vina_bim_shop/generators/schema_evolution.py:schema_evolution_cutoff",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/schema_evolution.py",
+      "target": "function:src/vina_bim_shop/generators/schema_evolution.py:schema_evolution_cutoff",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/schema_evolution.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:segment_affinity_to_categories",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:segment_affinity_to_categories",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:customer_order_weights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:customer_order_weights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:coupon_affinity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:coupon_affinity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:preferred_device",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:preferred_device",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:acquisition_channel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:acquisition_channel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:shipping_method",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:shipping_method",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:fulfillment_channel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:fulfillment_channel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:fulfillment_channel_for_orders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:fulfillment_channel_for_orders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:payment_method",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:payment_method",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:payment_failure_reason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:payment_failure_reason",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:shipment_status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:shipment_status",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:promotion_funding_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "function:src/vina_bim_shop/generators/skew.py:promotion_funding_type",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "file:src/vina_bim_shop/generators/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/generators/skew.py",
+      "target": "file:src/vina_bim_shop/generators/profiles.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

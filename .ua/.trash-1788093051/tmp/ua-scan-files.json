@@ -1,0 +1,1974 @@
+{
+  "scriptCompleted": true,
+  "contentDigest": "5b76a0eac0e3566de320d29e65fc7947818fae8c99430576d6a16c7b48c5c5f8",
+  "files": [
+    {
+      "path": ".env.example",
+      "language": "config",
+      "sizeLines": 52,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".gitattributes",
+      "language": "unknown",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".python-version",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "Makefile",
+      "language": "makefile",
+      "sizeLines": 208,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 478,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "architecture/diagrams/README.md",
+      "language": "markdown",
+      "sizeLines": 62,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "architecture/diagrams/architecture.excalidraw",
+      "language": "excalidraw",
+      "sizeLines": 5392,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/detailed-architecture.excalidraw",
+      "language": "excalidraw",
+      "sizeLines": 9151,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/detailed-lambda_architecture.puml",
+      "language": "puml",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/erd/gold_layer_ERD.dbdiagram",
+      "language": "dbdiagram",
+      "sizeLines": 627,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/erd/gold_layer_ERD.dbml",
+      "language": "dbml",
+      "sizeLines": 466,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/erd/physical_gold_model.puml",
+      "language": "puml",
+      "sizeLines": 896,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/lambda_architecture.puml",
+      "language": "puml",
+      "sizeLines": 92,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/01-data-generation.mmd",
+      "language": "mmd",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/02-ingestion.mmd",
+      "language": "mmd",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/03-lakehouse.mmd",
+      "language": "mmd",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/04-batch.mmd",
+      "language": "mmd",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/05-streaming.mmd",
+      "language": "mmd",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/06-serving.mmd",
+      "language": "mmd",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/07-local-analytics.mmd",
+      "language": "mmd",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/08-orchestration.mmd",
+      "language": "mmd",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/mermaid/09-governance.mmd",
+      "language": "mmd",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/diagrams/schema_design.puml",
+      "language": "puml",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "architecture/domain/business-context.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "architecture/domain/category-taxonomy.md",
+      "language": "markdown",
+      "sizeLines": 56,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "architecture/domain/source-event-catalog.md",
+      "language": "markdown",
+      "sizeLines": 111,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "architecture/domain/source-to-target-mapping.md",
+      "language": "markdown",
+      "sizeLines": 60,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "architecture/masterplan.md",
+      "language": "markdown",
+      "sizeLines": 174,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "compose/batch.spark.yml",
+      "language": "yaml",
+      "sizeLines": 83,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose/governance.datahub.yml",
+      "language": "yaml",
+      "sizeLines": 166,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose/ingestion.kafka.yml",
+      "language": "yaml",
+      "sizeLines": 104,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose/lakehouse.yml",
+      "language": "yaml",
+      "sizeLines": 161,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose/orchestration.airflow.yml",
+      "language": "yaml",
+      "sizeLines": 147,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose/serving.pinot.yml",
+      "language": "yaml",
+      "sizeLines": 86,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose/streaming.flink.yml",
+      "language": "yaml",
+      "sizeLines": 105,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/README.md",
+      "language": "markdown",
+      "sizeLines": 26,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "configs/generator/base.yaml",
+      "language": "yaml",
+      "sizeLines": 198,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/pipelines/flink_baseline_experiment.yaml",
+      "language": "yaml",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/pipelines/flink_streaming.yaml",
+      "language": "yaml",
+      "sizeLines": 28,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/pipelines/local.yaml",
+      "language": "yaml",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/scenarios/README.md",
+      "language": "markdown",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/01_data_generator.md",
+      "language": "markdown",
+      "sizeLines": 247,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/02_schema_design.md",
+      "language": "markdown",
+      "sizeLines": 298,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/03_data_generator_improvement.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/03_kafka_ingestion.md",
+      "language": "markdown",
+      "sizeLines": 192,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/04.1_ml_design.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/04.2_llm_design.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/04_lakehouse.md",
+      "language": "markdown",
+      "sizeLines": 223,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/05_spark_batch.md",
+      "language": "markdown",
+      "sizeLines": 236,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/06_flink_streaming.md",
+      "language": "markdown",
+      "sizeLines": 262,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/07_pinot_serving.md",
+      "language": "markdown",
+      "sizeLines": 172,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/08_airflow_gx_orchestration.md",
+      "language": "markdown",
+      "sizeLines": 345,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/09_datahub_governance.md",
+      "language": "markdown",
+      "sizeLines": 183,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/10_duckdb_dbt_local_analytics.md",
+      "language": "markdown",
+      "sizeLines": 158,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/11_solving_data_challenges.md",
+      "language": "markdown",
+      "sizeLines": 192,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/12_novel_ideas.md",
+      "language": "markdown",
+      "sizeLines": 74,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/13_mini_coursework_rubric_evidence.md",
+      "language": "markdown",
+      "sizeLines": 53,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deliverables/README.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 25,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "infra/README.md",
+      "language": "markdown",
+      "sizeLines": 30,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "infra/analytics/dbt/dbt_project.yml",
+      "language": "yaml",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/macros/business_logic.sql",
+      "language": "sql",
+      "sizeLines": 21,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/macros/generate_schema_name.sql",
+      "language": "sql",
+      "sizeLines": 7,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/macros/generic_tests.sql",
+      "language": "sql",
+      "sizeLines": 5,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/macros/reset_gold_schema.sql",
+      "language": "sql",
+      "sizeLines": 7,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_bad_events.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_bad_snapshots.sql",
+      "language": "sql",
+      "sizeLines": 7,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_customers.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_inventory_snapshots.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_kafka_catalog_events.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_kafka_commerce_events.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_kafka_fulfillment_events.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_kafka_ops_events.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_order_items.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_orders.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_payments.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_product_category_map.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_products.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_promotions.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_sellers.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/raw_shipments.sql",
+      "language": "sql",
+      "sizeLines": 4,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/bronze/schema.yml",
+      "language": "yaml",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/_dimensions.yml",
+      "language": "yaml",
+      "sizeLines": 344,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/_facts.yml",
+      "language": "yaml",
+      "sizeLines": 583,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/_features.yml",
+      "language": "yaml",
+      "sizeLines": 123,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/_marts.yml",
+      "language": "yaml",
+      "sizeLines": 138,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/agg_hourly_reconciled_kpi.sql",
+      "language": "sql",
+      "sizeLines": 65,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/bridge_product_category.sql",
+      "language": "sql",
+      "sizeLines": 14,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_category.sql",
+      "language": "sql",
+      "sizeLines": 10,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_customer.sql",
+      "language": "sql",
+      "sizeLines": 18,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_date.sql",
+      "language": "sql",
+      "sizeLines": 18,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_order_status.sql",
+      "language": "sql",
+      "sizeLines": 8,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_payment_method.sql",
+      "language": "sql",
+      "sizeLines": 8,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_product.sql",
+      "language": "sql",
+      "sizeLines": 21,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_promotion.sql",
+      "language": "sql",
+      "sizeLines": 51,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_seller.sql",
+      "language": "sql",
+      "sizeLines": 18,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_shipment_status.sql",
+      "language": "sql",
+      "sizeLines": 8,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/dim_shipping_method.sql",
+      "language": "sql",
+      "sizeLines": 7,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_inventory_snapshot.sql",
+      "language": "sql",
+      "sizeLines": 17,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_order.sql",
+      "language": "sql",
+      "sizeLines": 43,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_order_item.sql",
+      "language": "sql",
+      "sizeLines": 47,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_payment_attempt.sql",
+      "language": "sql",
+      "sizeLines": 24,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_promotion_application.sql",
+      "language": "sql",
+      "sizeLines": 21,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/fact_shipment.sql",
+      "language": "sql",
+      "sizeLines": 28,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/feat_customer_90d.sql",
+      "language": "sql",
+      "sizeLines": 22,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/feat_customer_unified.sql",
+      "language": "sql",
+      "sizeLines": 26,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/feat_stream_60m.sql",
+      "language": "sql",
+      "sizeLines": 17,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/gold/obt_order_performance.sql",
+      "language": "sql",
+      "sizeLines": 72,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/schema.yml",
+      "language": "yaml",
+      "sizeLines": 35,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_catalog_events.sql",
+      "language": "sql",
+      "sizeLines": 24,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_commerce_events.sql",
+      "language": "sql",
+      "sizeLines": 31,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_customers.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_fulfillment_events.sql",
+      "language": "sql",
+      "sizeLines": 23,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_inventory_snapshots.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_ops_events.sql",
+      "language": "sql",
+      "sizeLines": 20,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_order_items.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_orders.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_payments.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_product_category_map.sql",
+      "language": "sql",
+      "sizeLines": 12,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_products.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_promotions.sql",
+      "language": "sql",
+      "sizeLines": 26,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_sellers.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/models/silver/stg_shipments.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/profiles.yml",
+      "language": "yaml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/analytics/dbt/tests/assert_fact_order_reconciles_to_stg_orders.sql",
+      "language": "sql",
+      "sizeLines": 12,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/analytics/dbt/tests/assert_order_item_totals_reconcile.sql",
+      "language": "sql",
+      "sizeLines": 13,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/flink/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 31,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "infra/flink/bin/run-with-time-limit.sh",
+      "language": "shell",
+      "sizeLines": 12,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/flink/bin/submit-jobs.sh",
+      "language": "shell",
+      "sizeLines": 25,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/governance/recipes/dbt_legacy.yml",
+      "language": "yaml",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/governance/recipes/kafka_topics.yml",
+      "language": "yaml",
+      "sizeLines": 24,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/governance/recipes/minio_container_metadata.json",
+      "language": "json",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/governance/recipes/minio_storage.yml",
+      "language": "yaml",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/governance/recipes/trino_tables.yml",
+      "language": "yaml",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/connect/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 21,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "infra/kafka/connect/source-events-s3-sink.template.json",
+      "language": "json",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/schemas/catalog_events-value.schema.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/schemas/commerce_events-value.schema.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/schemas/common_event_value.schema.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/schemas/dead_letter_events-value.schema.json",
+      "language": "json",
+      "sizeLines": 25,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/schemas/fulfillment_events-value.schema.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/schemas/ops_events-value.schema.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/kafka/topics.yaml",
+      "language": "yaml",
+      "sizeLines": 34,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/hive/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 16,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "infra/lakehouse/hive/hive-site.xml",
+      "language": "xml",
+      "sizeLines": 52,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/hive/init-schema.sh",
+      "language": "shell",
+      "sizeLines": 20,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/lakehouse/minio/create-buckets.sh",
+      "language": "shell",
+      "sizeLines": 14,
+      "fileCategory": "script"
+    },
+    {
+      "path": "infra/lakehouse/postgres/init/01-create-platform-databases.sql",
+      "language": "sql",
+      "sizeLines": 8,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/lakehouse/trino/catalog/iceberg.properties",
+      "language": "properties",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/trino/etc/config.properties",
+      "language": "properties",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/trino/etc/node.properties",
+      "language": "properties",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/trino/etc/worker-config.properties",
+      "language": "properties",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/trino/etc/worker-node.properties",
+      "language": "properties",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/lakehouse/trino/sql/smoke.sql",
+      "language": "sql",
+      "sizeLines": 5,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/lakehouse/trino/sql/spark_batch_smoke.sql",
+      "language": "sql",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/orchestration/airflow/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 23,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "language": "python",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/datahub_ingestion.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/hourly_batch_lakehouse.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/kafka_topic_bootstrap.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/local_evidence_build.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "language": "python",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/pinot_bootstrap.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/reconciliation_report.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/airflow/plugins/datahub_plugin.py",
+      "language": "python",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "infra/orchestration/gx_docs/default_index.html",
+      "language": "html",
+      "sizeLines": 11,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "infra/pinot/schemas/pinot_realtime_commerce_metrics_1m.json",
+      "language": "json",
+      "sizeLines": 32,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/pinot/schemas/pinot_realtime_metric_corrections.json",
+      "language": "json",
+      "sizeLines": 37,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/pinot/schemas/pinot_realtime_ops_alerts.json",
+      "language": "json",
+      "sizeLines": 32,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/pinot/sql/dashboard_pinot.sql",
+      "language": "sql",
+      "sizeLines": 66,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/pinot/sql/reconciliation_pinot.sql",
+      "language": "sql",
+      "sizeLines": 38,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/pinot/sql/reconciliation_trino.sql",
+      "language": "sql",
+      "sizeLines": 14,
+      "fileCategory": "data"
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_commerce_metrics_1m_realtime.json",
+      "language": "json",
+      "sizeLines": 62,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_metric_corrections_realtime.json",
+      "language": "json",
+      "sizeLines": 94,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_ops_alerts_realtime.json",
+      "language": "json",
+      "sizeLines": 74,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infra/spark/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 41,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "infra/spark/bin/entrypoint.sh",
+      "language": "shell",
+      "sizeLines": 80,
+      "fileCategory": "script"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 32,
+      "fileCategory": "config"
+    },
+    {
+      "path": "scripts/README.md",
+      "language": "markdown",
+      "sizeLines": 103,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/analytics/benchmark_duckdb_index.py",
+      "language": "python",
+      "sizeLines": 208,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/ctl.py",
+      "language": "python",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/datahub/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 704,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/datahub/restore_search_indices.py",
+      "language": "python",
+      "sizeLines": 310,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/cleanroom_verify.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/publish_smoke.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/run_baseline_comparison.py",
+      "language": "python",
+      "sizeLines": 491,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/run_commerce_metrics_job.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/run_ops_alerts_job.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/generate/run_generator.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/bootstrap_topics.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/capture_connect_image_optimization.py",
+      "language": "python",
+      "sizeLines": 157,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/cleanup_kafka.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/consumer_smoke.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/producer_smoke.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/register_bronze_sink.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/register_schemas.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/capture_bronze_evidence.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/cleanup_lakehouse.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/land_bronze_batch.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/optimize_iceberg.py",
+      "language": "python",
+      "sizeLines": 263,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/smoke_sql.py",
+      "language": "python",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/pinot/bootstrap.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/pinot/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/pinot/query_examples.py",
+      "language": "python",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/pinot/refresh_evidence.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/audit_public_documentation.py",
+      "language": "python",
+      "sizeLines": 129,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/build_mini_coursework_rubric_manifest.py",
+      "language": "python",
+      "sizeLines": 332,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/capture_novel_ideas.py",
+      "language": "python",
+      "sizeLines": 497,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/finalize_sections_01_02.py",
+      "language": "python",
+      "sizeLines": 165,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/generate_section02_evidence.py",
+      "language": "python",
+      "sizeLines": 539,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/reset_all.py",
+      "language": "python",
+      "sizeLines": 241,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/summarize_runlog.py",
+      "language": "python",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/qa/upload_bronze.sh",
+      "language": "shell",
+      "sizeLines": 19,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/spark/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/spark/export_executive_mart.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/spark/job.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/spark/run_batch.py",
+      "language": "python",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/spark/run_optimization_experiments.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/README.md",
+      "language": "markdown",
+      "sizeLines": 30,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/vina_bim_shop/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/__init__.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/coursework_pipelines.py",
+      "language": "python",
+      "sizeLines": 311,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/emitter.py",
+      "language": "python",
+      "sizeLines": 249,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/flink_lineage.py",
+      "language": "python",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/gx_assertions.py",
+      "language": "python",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/datahub_lineage/spark_lineage.py",
+      "language": "python",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/alerts.py",
+      "language": "python",
+      "sizeLines": 90,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "language": "python",
+      "sizeLines": 243,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/commerce_job.py",
+      "language": "python",
+      "sizeLines": 175,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/config.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/corrections.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/evidence.py",
+      "language": "python",
+      "sizeLines": 133,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/metrics.py",
+      "language": "python",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/ops_job.py",
+      "language": "python",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/runtime.py",
+      "language": "python",
+      "sizeLines": 159,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/smoke.py",
+      "language": "python",
+      "sizeLines": 232,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification.py",
+      "language": "python",
+      "sizeLines": 107,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/__init__.py",
+      "language": "python",
+      "sizeLines": 107,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/_constants.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/_probes.py",
+      "language": "python",
+      "sizeLines": 282,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/assertions.py",
+      "language": "python",
+      "sizeLines": 130,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/cleanroom.py",
+      "language": "python",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/flink/verification/runner.py",
+      "language": "python",
+      "sizeLines": 312,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/bad_records.py",
+      "language": "python",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/config.py",
+      "language": "python",
+      "sizeLines": 118,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/duplicates.py",
+      "language": "python",
+      "sizeLines": 62,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/evidence.py",
+      "language": "python",
+      "sizeLines": 449,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/ids.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/lateness.py",
+      "language": "python",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/offline/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/offline/entities.py",
+      "language": "python",
+      "sizeLines": 240,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/offline/fulfillment.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/offline/generator.py",
+      "language": "python",
+      "sizeLines": 151,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/offline/inventory_promos.py",
+      "language": "python",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/offline/orders.py",
+      "language": "python",
+      "sizeLines": 185,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/ops_signals.py",
+      "language": "python",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/profiles.py",
+      "language": "python",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/runner.py",
+      "language": "python",
+      "sizeLines": 116,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/schema_evolution.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/skew.py",
+      "language": "python",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/envelope.py",
+      "language": "python",
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/generator.py",
+      "language": "python",
+      "sizeLines": 151,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/session_events.py",
+      "language": "python",
+      "sizeLines": 240,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/topic_catalog.py",
+      "language": "python",
+      "sizeLines": 153,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/topic_commerce.py",
+      "language": "python",
+      "sizeLines": 208,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/topic_fulfillment.py",
+      "language": "python",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/generators/writer.py",
+      "language": "python",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/bootstrap.py",
+      "language": "python",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/bronze_sink.py",
+      "language": "python",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/cleanup.py",
+      "language": "python",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/consumer_smoke.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/evidence.py",
+      "language": "python",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/producer_smoke.py",
+      "language": "python",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/publisher.py",
+      "language": "python",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/schema_registry.py",
+      "language": "python",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/topics.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/bronze.py",
+      "language": "python",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/evidence.py",
+      "language": "python",
+      "sizeLines": 237,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/smoke.py",
+      "language": "python",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/__init__.py",
+      "language": "python",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/constants.py",
+      "language": "python",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "language": "python",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "language": "python",
+      "sizeLines": 234,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/gx_validation.py",
+      "language": "python",
+      "sizeLines": 102,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/job.py",
+      "language": "python",
+      "sizeLines": 830,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/layout_profile.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "language": "python",
+      "sizeLines": 217,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/optimization_experiments.py",
+      "language": "python",
+      "sizeLines": 418,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "language": "python",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "language": "python",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/sql.py",
+      "language": "python",
+      "sizeLines": 714,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/validation.py",
+      "language": "python",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/window.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/__init__.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "language": "python",
+      "sizeLines": 193,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "language": "python",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "language": "python",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/local_evidence.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "language": "python",
+      "sizeLines": 554,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/paths.py",
+      "language": "python",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/quality_helpers.py",
+      "language": "python",
+      "sizeLines": 81,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/reconciliation.py",
+      "language": "python",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/specs.py",
+      "language": "python",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "language": "python",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/bootstrap.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/evidence.py",
+      "language": "python",
+      "sizeLines": 117,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/query_examples.py",
+      "language": "python",
+      "sizeLines": 214,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/refresh_evidence.py",
+      "language": "python",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/quality/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/quality/policies.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/quality/reports.py",
+      "language": "python",
+      "sizeLines": 184,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 322,
+  "filteredByIgnore": 345,
+  "estimatedComplexity": "large",
+  "stats": {
+    "filesScanned": 322,
+    "byCategory": {
+      "config": 46,
+      "code": 169,
+      "infra": 7,
+      "docs": 29,
+      "data": 64,
+      "script": 6,
+      "markup": 1
+    },
+    "byLanguage": {
+      "config": 1,
+      "unknown": 2,
+      "makefile": 1,
+      "markdown": 29,
+      "excalidraw": 2,
+      "puml": 4,
+      "dbdiagram": 1,
+      "dbml": 1,
+      "mmd": 9,
+      "yaml": 25,
+      "sql": 64,
+      "dockerfile": 5,
+      "shell": 6,
+      "json": 14,
+      "xml": 1,
+      "properties": 5,
+      "python": 150,
+      "html": 1,
+      "toml": 1
+    }
+  }
+}

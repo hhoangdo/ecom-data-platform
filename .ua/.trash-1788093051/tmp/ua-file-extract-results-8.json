@@ -1,0 +1,86 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 1,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 1,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 1
+    }
+  },
+  "results": [
+    {
+      "path": "infra/kafka/connect/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra",
+      "totalLines": 21,
+      "nonEmptyLines": 15,
+      "services": [
+        {
+          "name": "plugin-builder",
+          "image": "confluentinc/cp-kafka-connect:7.8.3",
+          "ports": [],
+          "startLine": 1,
+          "endLine": 11
+        },
+        {
+          "name": "cp-kafka-connect",
+          "image": "confluentinc/cp-kafka-connect:7.8.3",
+          "ports": [],
+          "startLine": 12,
+          "endLine": 22
+        }
+      ],
+      "steps": [
+        {
+          "name": "FROM confluentinc/cp-kafka-connect:7.8.3 AS plugin-builder",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "name": "USER root",
+          "startLine": 3,
+          "endLine": 3
+        },
+        {
+          "name": "RUN yum install -y ca-certificates \\",
+          "startLine": 5,
+          "endLine": 5
+        },
+        {
+          "name": "FROM confluentinc/cp-kafka-connect:7.8.3",
+          "startLine": 12,
+          "endLine": 12
+        },
+        {
+          "name": "USER root",
+          "startLine": 14,
+          "endLine": 14
+        },
+        {
+          "name": "RUN yum install -y ca-certificates \\",
+          "startLine": 16,
+          "endLine": 16
+        },
+        {
+          "name": "COPY --from=plugin-builder /opt/connect-plugins /usr/share/conflu",
+          "startLine": 21,
+          "endLine": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "serviceCount": 2,
+        "stepCount": 7
+      }
+    }
+  ]
+}

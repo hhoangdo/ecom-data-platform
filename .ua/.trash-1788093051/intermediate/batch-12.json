@@ -1,0 +1,22 @@
+{
+  "nodes": [
+    {"id":"config:.env.example","type":"config","name":".env.example","filePath":".env.example","summary":"Provides local default environment variables for service endpoints, credentials, runtime limits, and lakehouse storage locations.","tags":["configuration","environment","runtime","local-development"],"complexity":"moderate"},
+    {"id":"service:Makefile","type":"service","name":"Makefile","filePath":"Makefile","summary":"Offers a portable command surface for dependency setup, data generation, testing, evidence production, reset, and staged Docker Compose lifecycle operations.","tags":["automation","build-system","development","orchestration"],"complexity":"moderate","languageNotes":"Phony targets delegate cross-platform operations to uv and the Python control wrapper."},
+    {"id":"document:README.md","type":"document","name":"README.md","filePath":"README.md","summary":"Project overview and operating guide covering platform architecture, implementation stages, setup, common commands, configuration, constraints, and rubric evidence navigation.","tags":["documentation","entry-point","architecture","operations"],"complexity":"complex"},
+    {"id":"service:docker-compose.yml","type":"service","name":"docker-compose.yml","filePath":"docker-compose.yml","summary":"Composes the Vina Bim Shop platform by including the staged ingestion, lakehouse, batch, streaming, serving, orchestration, and governance service definitions.","tags":["infrastructure","orchestration","docker-compose","deployment"],"complexity":"simple"},
+    {"id":"config:pyproject.toml","type":"config","name":"pyproject.toml","filePath":"pyproject.toml","summary":"Defines the Python package metadata, runtime and development dependencies, Hatch build settings, and pytest test discovery path.","tags":["configuration","python","dependencies","build-system"],"complexity":"simple"}
+  ],
+  "edges": [
+    {"source":"config:.env.example","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"document:README.md","target":"service:Makefile","type":"documents","direction":"forward","weight":0.5},
+    {"source":"document:README.md","target":"service:docker-compose.yml","type":"documents","direction":"forward","weight":0.5},
+    {"source":"document:README.md","target":"config:pyproject.toml","type":"documents","direction":"forward","weight":0.5},
+    {"source":"service:docker-compose.yml","target":"config:compose/ingestion.kafka.yml","type":"depends_on","direction":"forward","weight":0.6},
+    {"source":"service:docker-compose.yml","target":"config:compose/lakehouse.yml","type":"depends_on","direction":"forward","weight":0.6},
+    {"source":"service:docker-compose.yml","target":"config:compose/batch.spark.yml","type":"depends_on","direction":"forward","weight":0.6},
+    {"source":"service:docker-compose.yml","target":"config:compose/streaming.flink.yml","type":"depends_on","direction":"forward","weight":0.6},
+    {"source":"service:docker-compose.yml","target":"config:compose/serving.pinot.yml","type":"depends_on","direction":"forward","weight":0.6},
+    {"source":"service:docker-compose.yml","target":"config:compose/orchestration.airflow.yml","type":"depends_on","direction":"forward","weight":0.6},
+    {"source":"service:docker-compose.yml","target":"config:compose/governance.datahub.yml","type":"depends_on","direction":"forward","weight":0.6}
+  ]
+}

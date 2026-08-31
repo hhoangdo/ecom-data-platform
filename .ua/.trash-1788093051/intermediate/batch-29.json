@@ -1,0 +1,510 @@
+{
+  "nodes": [
+    {
+      "id": "config:infra/analytics/dbt/dbt_project.yml",
+      "type": "config",
+      "name": "dbt_project.yml",
+      "filePath": "infra/analytics/dbt/dbt_project.yml",
+      "summary": "Configures lakehouse-related runtime behavior or metadata.",
+      "tags": [
+        "configuration",
+        "infrastructure",
+        "runtime"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:infra/analytics/dbt/profiles.yml",
+      "type": "config",
+      "name": "profiles.yml",
+      "filePath": "infra/analytics/dbt/profiles.yml",
+      "summary": "Configures lakehouse-related runtime behavior or metadata.",
+      "tags": [
+        "configuration",
+        "infrastructure",
+        "runtime"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:infra/analytics/dbt/tests/assert_fact_order_reconciles_to_stg_orders.sql:assert_fact_order_reconciles_to_stg_orders",
+      "type": "table",
+      "name": "assert_fact_order_reconciles_to_stg_orders.sql",
+      "filePath": "infra/analytics/dbt/tests/assert_fact_order_reconciles_to_stg_orders.sql",
+      "summary": "Defines a lakehouse SQL validation or data operation.",
+      "tags": [
+        "database",
+        "validation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:infra/analytics/dbt/tests/assert_order_item_totals_reconcile.sql:assert_order_item_totals_reconcile",
+      "type": "table",
+      "name": "assert_order_item_totals_reconcile.sql",
+      "filePath": "infra/analytics/dbt/tests/assert_order_item_totals_reconcile.sql",
+      "summary": "Defines a lakehouse SQL validation or data operation.",
+      "tags": [
+        "database",
+        "validation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/flink/bin/run-with-time-limit.sh",
+      "type": "file",
+      "name": "run-with-time-limit.sh",
+      "filePath": "infra/flink/bin/run-with-time-limit.sh",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/flink/bin/submit-jobs.sh",
+      "type": "file",
+      "name": "submit-jobs.sh",
+      "filePath": "infra/flink/bin/submit-jobs.sh",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:infra/flink/bin/submit-jobs.sh:submit_if_missing",
+      "type": "function",
+      "name": "submit_if_missing",
+      "filePath": "infra/flink/bin/submit-jobs.sh",
+      "lineRange": [
+        12,
+        21
+      ],
+      "summary": "Implements the submit_if_missing operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:infra/kafka/connect/source-events-s3-sink.template.json",
+      "type": "config",
+      "name": "source-events-s3-sink.template.json",
+      "filePath": "infra/kafka/connect/source-events-s3-sink.template.json",
+      "summary": "Configures Kafka-related runtime behavior or metadata.",
+      "tags": [
+        "configuration",
+        "infrastructure",
+        "runtime"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:infra/kafka/topics.yaml",
+      "type": "config",
+      "name": "topics.yaml",
+      "filePath": "infra/kafka/topics.yaml",
+      "summary": "Configures Kafka-related runtime behavior or metadata.",
+      "tags": [
+        "configuration",
+        "infrastructure",
+        "runtime"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/lakehouse/hive/init-schema.sh",
+      "type": "file",
+      "name": "init-schema.sh",
+      "filePath": "infra/lakehouse/hive/init-schema.sh",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/lakehouse/minio/create-buckets.sh",
+      "type": "file",
+      "name": "create-buckets.sh",
+      "filePath": "infra/lakehouse/minio/create-buckets.sh",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:infra/lakehouse/postgres/init/01-create-platform-databases.sql:01-create-platform-databases",
+      "type": "table",
+      "name": "01-create-platform-databases.sql",
+      "filePath": "infra/lakehouse/postgres/init/01-create-platform-databases.sql",
+      "summary": "Defines a lakehouse SQL validation or data operation.",
+      "tags": [
+        "database",
+        "validation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:infra/lakehouse/trino/sql/smoke.sql:smoke",
+      "type": "table",
+      "name": "smoke.sql",
+      "filePath": "infra/lakehouse/trino/sql/smoke.sql",
+      "summary": "Defines a lakehouse SQL validation or data operation.",
+      "tags": [
+        "database",
+        "validation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:infra/lakehouse/trino/sql/spark_batch_smoke.sql:spark_batch_smoke",
+      "type": "table",
+      "name": "spark_batch_smoke.sql",
+      "filePath": "infra/lakehouse/trino/sql/spark_batch_smoke.sql",
+      "summary": "Defines a lakehouse SQL validation or data operation.",
+      "tags": [
+        "database",
+        "validation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "type": "file",
+      "name": "seed_coursework_metadata.py",
+      "filePath": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:_connection_specs",
+      "type": "function",
+      "name": "_connection_specs",
+      "filePath": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "lineRange": [
+        20,
+        61
+      ],
+      "summary": "Implements the _connection_specs operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:_upsert_connection",
+      "type": "function",
+      "name": "_upsert_connection",
+      "filePath": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "lineRange": [
+        73,
+        91
+      ],
+      "summary": "Implements the _upsert_connection operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:seed_coursework_metadata",
+      "type": "function",
+      "name": "seed_coursework_metadata",
+      "filePath": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "lineRange": [
+        94,
+        106
+      ],
+      "summary": "Implements the seed_coursework_metadata operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "lineRange": [
+        109,
+        130
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/datahub_ingestion.py",
+      "type": "file",
+      "name": "datahub_ingestion.py",
+      "filePath": "infra/orchestration/airflow/dags/datahub_ingestion.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/hourly_batch_lakehouse.py",
+      "type": "file",
+      "name": "hourly_batch_lakehouse.py",
+      "filePath": "infra/orchestration/airflow/dags/hourly_batch_lakehouse.py",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/kafka_topic_bootstrap.py",
+      "type": "file",
+      "name": "kafka_topic_bootstrap.py",
+      "filePath": "infra/orchestration/airflow/dags/kafka_topic_bootstrap.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/local_evidence_build.py",
+      "type": "file",
+      "name": "local_evidence_build.py",
+      "filePath": "infra/orchestration/airflow/dags/local_evidence_build.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "type": "file",
+      "name": "mini_coursework_pipeline.py",
+      "filePath": "infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:infra/orchestration/airflow/dags/mini_coursework_pipeline.py:_run",
+      "type": "function",
+      "name": "_run",
+      "filePath": "infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "lineRange": [
+        23,
+        34
+      ],
+      "summary": "Implements the _run operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/pinot_bootstrap.py",
+      "type": "file",
+      "name": "pinot_bootstrap.py",
+      "filePath": "infra/orchestration/airflow/dags/pinot_bootstrap.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/dags/reconciliation_report.py",
+      "type": "file",
+      "name": "reconciliation_report.py",
+      "filePath": "infra/orchestration/airflow/dags/reconciliation_report.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/airflow/plugins/datahub_plugin.py",
+      "type": "file",
+      "name": "datahub_plugin.py",
+      "filePath": "infra/orchestration/airflow/plugins/datahub_plugin.py",
+      "summary": "Provides a Airflow operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:infra/lakehouse/hive/hive-site.xml",
+      "type": "config",
+      "name": "hive-site.xml",
+      "filePath": "infra/lakehouse/hive/hive-site.xml",
+      "summary": "Configures Hive Metastore runtime properties for the lakehouse.",
+      "tags": [
+        "configuration",
+        "hive",
+        "lakehouse"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:infra/lakehouse/trino/catalog/iceberg.properties",
+      "type": "config",
+      "name": "iceberg.properties",
+      "filePath": "infra/lakehouse/trino/catalog/iceberg.properties",
+      "summary": "Configures the Trino Iceberg catalog connection for the lakehouse.",
+      "tags": [
+        "configuration",
+        "trino",
+        "iceberg"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/orchestration/gx_docs/default_index.html",
+      "type": "file",
+      "name": "default_index.html",
+      "filePath": "infra/orchestration/gx_docs/default_index.html",
+      "summary": "Provides the fallback HTML landing page for Great Expectations Data Docs.",
+      "tags": [
+        "markup",
+        "documentation",
+        "great-expectations"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:infra/flink/bin/submit-jobs.sh",
+      "target": "function:infra/flink/bin/submit-jobs.sh:submit_if_missing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:_connection_specs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:_upsert_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:seed_coursework_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:_connection_specs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:_upsert_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:seed_coursework_metadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "target": "function:infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "target": "function:infra/orchestration/airflow/dags/mini_coursework_pipeline.py:_run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "target": "function:infra/orchestration/airflow/dags/mini_coursework_pipeline.py:_run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

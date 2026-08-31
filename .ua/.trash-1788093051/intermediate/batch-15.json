@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {"id":"config:configs/pipelines/flink_baseline_experiment.yaml","type":"config","name":"flink_baseline_experiment.yaml","filePath":"configs/pipelines/flink_baseline_experiment.yaml","summary":"Defines baseline and optimized Flink experiment variants, including consumer groups, output prefixes, parallelism, checkpointing, and lateness settings.","tags":["configuration","flink","experimentation","streaming"],"complexity":"simple"},
+    {"id":"config:configs/pipelines/flink_streaming.yaml","type":"config","name":"flink_streaming.yaml","filePath":"configs/pipelines/flink_streaming.yaml","summary":"Defines source and derived topics, event-time windows, lateness policies, alert thresholds, and checkpoint and curated-output locations for Flink streaming.","tags":["configuration","flink","streaming","data-contract"],"complexity":"simple"},
+    {"id":"config:configs/pipelines/local.yaml","type":"config","name":"local.yaml","filePath":"configs/pipelines/local.yaml","summary":"Defines the local compatibility stack, storage locations, DuckDB parity outputs, and recurring bronze, silver, and gold scheduling intervals.","tags":["configuration","local-development","lakehouse","scheduling"],"complexity":"simple"}
+  ],
+  "edges": [
+    {"source":"config:configs/pipelines/flink_baseline_experiment.yaml","target":"file:src/vina_bim_shop/flink/baseline_experiment.py","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:configs/pipelines/flink_streaming.yaml","target":"file:src/vina_bim_shop/flink/config.py","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:configs/pipelines/local.yaml","target":"file:src/vina_bim_shop/orchestration/specs.py","type":"configures","direction":"forward","weight":0.6}
+  ]
+}

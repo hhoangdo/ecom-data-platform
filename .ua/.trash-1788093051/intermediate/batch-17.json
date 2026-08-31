@@ -1,0 +1,61 @@
+{
+  "nodes": [
+    {
+      "id": "file:infra/analytics/dbt/macros/business_logic.sql",
+      "type": "file",
+      "name": "business_logic.sql",
+      "filePath": "infra/analytics/dbt/macros/business_logic.sql",
+      "summary": "Provides reusable dbt SQL macros for category cost rates and typed JSON value extraction.",
+      "tags": [
+        "dbt",
+        "sql-macro",
+        "analytics",
+        "transformation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/macros/generate_schema_name.sql",
+      "type": "file",
+      "name": "generate_schema_name.sql",
+      "filePath": "infra/analytics/dbt/macros/generate_schema_name.sql",
+      "summary": "Overrides dbt schema naming to preserve the target schema when no custom schema is supplied.",
+      "tags": [
+        "dbt",
+        "sql-macro",
+        "analytics",
+        "transformation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/macros/generic_tests.sql",
+      "type": "file",
+      "name": "generic_tests.sql",
+      "filePath": "infra/analytics/dbt/macros/generic_tests.sql",
+      "summary": "Defines a generic dbt test that returns rows whose supplied expression is false.",
+      "tags": [
+        "dbt",
+        "sql-macro",
+        "analytics",
+        "transformation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/macros/reset_gold_schema.sql",
+      "type": "file",
+      "name": "reset_gold_schema.sql",
+      "filePath": "infra/analytics/dbt/macros/reset_gold_schema.sql",
+      "summary": "Provides a dbt macro that recreates the gold schema for build and run commands.",
+      "tags": [
+        "dbt",
+        "sql-macro",
+        "analytics",
+        "transformation"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,300 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/generators/offline/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/generators/offline/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/streaming/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/generators/streaming/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/kafka/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/evidence.py",
+      "type": "file",
+      "name": "evidence.py",
+      "filePath": "src/vina_bim_shop/kafka/evidence.py",
+      "summary": "Implements the evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/evidence.py:capture_evidence",
+      "type": "function",
+      "name": "capture_evidence",
+      "filePath": "src/vina_bim_shop/kafka/evidence.py",
+      "lineRange": [
+        32,
+        99
+      ],
+      "summary": "Implements capture_evidence for the evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/lakehouse/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "lakehouse",
+        "utility",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/evidence.py",
+      "type": "file",
+      "name": "evidence.py",
+      "filePath": "src/vina_bim_shop/lakehouse/evidence.py",
+      "summary": "Implements the evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/evidence.py:parse_bucket_listing",
+      "type": "function",
+      "name": "parse_bucket_listing",
+      "filePath": "src/vina_bim_shop/lakehouse/evidence.py",
+      "lineRange": [
+        54,
+        63
+      ],
+      "summary": "Implements parse_bucket_listing for the evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/evidence.py:capture_bronze_landing_evidence",
+      "type": "function",
+      "name": "capture_bronze_landing_evidence",
+      "filePath": "src/vina_bim_shop/lakehouse/evidence.py",
+      "lineRange": [
+        66,
+        100
+      ],
+      "summary": "Implements capture_bronze_landing_evidence for the evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/evidence.py:capture_evidence",
+      "type": "function",
+      "name": "capture_evidence",
+      "filePath": "src/vina_bim_shop/lakehouse/evidence.py",
+      "lineRange": [
+        103,
+        237
+      ],
+      "summary": "Implements capture_evidence for the evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/smoke.py",
+      "type": "file",
+      "name": "smoke.py",
+      "filePath": "src/vina_bim_shop/lakehouse/smoke.py",
+      "summary": "Implements the smoke.py script or module.",
+      "tags": [
+        "lakehouse",
+        "utility",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/smoke.py:run_smoke_sql",
+      "type": "function",
+      "name": "run_smoke_sql",
+      "filePath": "src/vina_bim_shop/lakehouse/smoke.py",
+      "lineRange": [
+        15,
+        27
+      ],
+      "summary": "Implements run_smoke_sql for the smoke.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/orchestration/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/specs.py",
+      "type": "file",
+      "name": "specs.py",
+      "filePath": "src/vina_bim_shop/orchestration/specs.py",
+      "summary": "Implements the specs.py script or module.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/specs.py:dag_specs_by_id",
+      "type": "function",
+      "name": "dag_specs_by_id",
+      "filePath": "src/vina_bim_shop/orchestration/specs.py",
+      "lineRange": [
+        30,
+        47
+      ],
+      "summary": "Implements dag_specs_by_id for the specs.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/pinot/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/pinot/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/quality/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/quality/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/kafka/evidence.py",
+      "target": "function:src/vina_bim_shop/kafka/evidence.py:capture_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/evidence.py:parse_bucket_listing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/evidence.py:capture_bronze_landing_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/evidence.py",
+      "target": "function:src/vina_bim_shop/lakehouse/evidence.py:capture_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/evidence.py",
+      "target": "file:src/vina_bim_shop/lakehouse/smoke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/smoke.py",
+      "target": "function:src/vina_bim_shop/lakehouse/smoke.py:run_smoke_sql",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/specs.py",
+      "target": "function:src/vina_bim_shop/orchestration/specs.py:dag_specs_by_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

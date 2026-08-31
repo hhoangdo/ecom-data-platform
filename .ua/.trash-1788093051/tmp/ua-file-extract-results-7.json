@@ -1,0 +1,99 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 1,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 1,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 1
+    }
+  },
+  "results": [
+    {
+      "path": "infra/flink/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra",
+      "totalLines": 31,
+      "nonEmptyLines": 23,
+      "services": [
+        {
+          "name": "flink",
+          "image": "flink:1.19.2-scala_2.12-java17",
+          "ports": [],
+          "startLine": 1,
+          "endLine": 32
+        }
+      ],
+      "steps": [
+        {
+          "name": "FROM flink:1.19.2-scala_2.12-java17",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "name": "USER root",
+          "startLine": 3,
+          "endLine": 3
+        },
+        {
+          "name": "RUN apt-get update \\",
+          "startLine": 5,
+          "endLine": 5
+        },
+        {
+          "name": "RUN python3 -m pip install --no-cache-dir \\",
+          "startLine": 10,
+          "endLine": 10
+        },
+        {
+          "name": "RUN mkdir -p /opt/flink/usrlib /opt/flink/plugins/s3-fs-hadoop",
+          "startLine": 18,
+          "endLine": 18
+        },
+        {
+          "name": "RUN curl -fsSL -o /opt/flink/usrlib/flink-sql-connector-kafka-3.",
+          "startLine": 20,
+          "endLine": 20
+        },
+        {
+          "name": "COPY infra/flink/bin/submit-jobs.sh /opt/flink/bin/submit-jobs.sh",
+          "startLine": 25,
+          "endLine": 25
+        },
+        {
+          "name": "COPY infra/flink/bin/run-with-time-limit.sh /opt/flink/bin/run-wi",
+          "startLine": 26,
+          "endLine": 26
+        },
+        {
+          "name": "RUN chmod +x /opt/flink/bin/submit-jobs.sh /opt/flink/bin/run-wi",
+          "startLine": 27,
+          "endLine": 27
+        },
+        {
+          "name": "ENV PYTHONPATH=/workspace/src",
+          "startLine": 29,
+          "endLine": 29
+        },
+        {
+          "name": "USER flink",
+          "startLine": 31,
+          "endLine": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "serviceCount": 1,
+        "stepCount": 11
+      }
+    }
+  ]
+}

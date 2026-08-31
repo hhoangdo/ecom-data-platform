@@ -1,0 +1,7 @@
+{
+  "nodes": [
+    {"id":"service:infra/orchestration/airflow/Dockerfile","type":"service","name":"Dockerfile","filePath":"infra/orchestration/airflow/Dockerfile","summary":"Builds the Airflow orchestration image with the project package, Docker tooling, MinIO client, data-quality libraries, and DataHub integration. It packages the application source for execution from Airflow.","tags":["infrastructure","containerization","airflow","orchestration","data-pipeline"],"complexity":"simple","languageNotes":"The image installs the local Python package and pins scientific, validation, and metadata-platform dependencies for Airflow tasks."},
+    {"id":"service:infra/orchestration/airflow/Dockerfile:airflow","type":"service","name":"airflow","filePath":"infra/orchestration/airflow/Dockerfile","summary":"Airflow service image stage that contains the project package and its orchestration dependencies.","tags":["service","airflow","orchestration","containerization"],"complexity":"simple"}
+  ],
+  "edges": []
+}

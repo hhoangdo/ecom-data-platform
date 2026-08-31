@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    {"id":"service:infra/lakehouse/hive/Dockerfile","type":"service","name":"Dockerfile","filePath":"infra/lakehouse/hive/Dockerfile","summary":"Builds the Hive image with PostgreSQL JDBC and Hadoop AWS dependencies for the lakehouse metastore. It includes the schema-initialization script executed by the Hive deployment.","tags":["infrastructure","containerization","hive","lakehouse"],"complexity":"simple","languageNotes":"The image augments Hive 3.1 with a PostgreSQL driver and symbolic links to the bundled Hadoop AWS libraries."},
+    {"id":"service:infra/lakehouse/hive/Dockerfile:hive","type":"service","name":"hive","filePath":"infra/lakehouse/hive/Dockerfile","summary":"Hive service image stage configured with metastore database and object-store client dependencies.","tags":["service","hive","lakehouse","containerization"],"complexity":"simple"}
+  ],
+  "edges": [
+    {"source":"service:infra/lakehouse/hive/Dockerfile","target":"file:infra/lakehouse/hive/init-schema.sh","type":"deploys","direction":"forward","weight":0.7}
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 1,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 1,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 1
+    }
+  },
+  "results": [
+    {
+      "path": "infra/lakehouse/hive/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra",
+      "totalLines": 16,
+      "nonEmptyLines": 12,
+      "services": [
+        {
+          "name": "hive",
+          "image": "apache/hive:3.1.3",
+          "ports": [],
+          "startLine": 1,
+          "endLine": 17
+        }
+      ],
+      "steps": [
+        {
+          "name": "FROM apache/hive:3.1.3",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "name": "USER root",
+          "startLine": 3,
+          "endLine": 3
+        },
+        {
+          "name": "RUN apt-get update \\",
+          "startLine": 5,
+          "endLine": 5
+        },
+        {
+          "name": "ADD https://repo.maven.apache.org/maven2/org/postgresql/postgres",
+          "startLine": 9,
+          "endLine": 9
+        },
+        {
+          "name": "RUN chmod 0644 /opt/hive/lib/postgresql-42.7.4.jar \\",
+          "startLine": 10,
+          "endLine": 10
+        },
+        {
+          "name": "COPY init-schema.sh /opt/hive/init-schema.sh",
+          "startLine": 13,
+          "endLine": 13
+        },
+        {
+          "name": "RUN chmod 0755 /opt/hive/init-schema.sh",
+          "startLine": 14,
+          "endLine": 14
+        },
+        {
+          "name": "USER hive",
+          "startLine": 16,
+          "endLine": 16
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "serviceCount": 1,
+        "stepCount": 8
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "projectRoot": "C:/Users/hhoangdo/Documents/Personal Projects/FSDS/coursework",
+  "batchFiles": [{"path":"infra/flink/Dockerfile","language":"dockerfile","sizeLines":31,"fileCategory":"infra"}],
+  "batchImportData": {"infra/flink/Dockerfile": []}
+}

@@ -1,0 +1,201 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 3,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 3
+    }
+  },
+  "results": [
+    {
+      "path": "infra/pinot/tables/pinot_realtime_commerce_metrics_1m_realtime.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 62,
+      "nonEmptyLines": 62,
+      "sections": [
+        {
+          "heading": "tableName",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "tableType",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "segmentsConfig",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "tableIndexConfig",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "fieldConfigList",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "tenants",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "metadata",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "ingestionConfig",
+          "level": 1,
+          "line": 33
+        },
+        {
+          "heading": "isDimTable",
+          "level": 1,
+          "line": 61
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_metric_corrections_realtime.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 94,
+      "nonEmptyLines": 94,
+      "sections": [
+        {
+          "heading": "tableName",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "tableType",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "segmentsConfig",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "tableIndexConfig",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "fieldConfigList",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "tenants",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "metadata",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "ingestionConfig",
+          "level": 1,
+          "line": 34
+        },
+        {
+          "heading": "isDimTable",
+          "level": 1,
+          "line": 93
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "infra/pinot/tables/pinot_realtime_ops_alerts_realtime.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 74,
+      "nonEmptyLines": 74,
+      "sections": [
+        {
+          "heading": "tableName",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "tableType",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "segmentsConfig",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "tableIndexConfig",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "fieldConfigList",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "tenants",
+          "level": 1,
+          "line": 29
+        },
+        {
+          "heading": "metadata",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "ingestionConfig",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "isDimTable",
+          "level": 1,
+          "line": 73
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    }
+  ]
+}

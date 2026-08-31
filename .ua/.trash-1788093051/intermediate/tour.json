@@ -1,0 +1,83 @@
+[
+  {
+    "order": 1,
+    "title": "Project Overview",
+    "description": "Start with the root README entry node document:README.md to understand the platform's purpose, staged architecture, operating commands, constraints, and evidence map. It gives the newcomer a shared vocabulary and a roadmap for following synthetic commerce data from its source to analytics and governance.",
+    "nodeIds": ["document:README.md"]
+  },
+  {
+    "order": 2,
+    "title": "Business and Event Context",
+    "description": "With the overall roadmap in hand, these documents define the marketplace actors, analytical questions, scope boundaries, and the event topics that carry the platform's facts. They establish the business meaning and freshness policy that later Kafka, batch, streaming, and serving components must preserve.",
+    "nodeIds": ["document:architecture/domain/business-context.md", "document:architecture/domain/source-event-catalog.md"]
+  },
+  {
+    "order": 3,
+    "title": "Synthetic Data Generation",
+    "description": "The generator runner coordinates a complete synthetic-data run, while its widely used configuration module loads taxonomy, paths, weights, and typed settings. This is the platform's controlled source of offline snapshots, streaming events, injected challenges, and evidence, so understand it before examining ingestion.",
+    "nodeIds": ["file:src/vina_bim_shop/generators/runner.py", "file:src/vina_bim_shop/generators/config.py"],
+    "languageLesson": "Typed Python configuration centralizes defaults and normalization: downstream generators receive a consistent domain vocabulary instead of repeatedly parsing raw YAML values."
+  },
+  {
+    "order": 4,
+    "title": "Kafka Ingestion Contracts",
+    "description": "Building on generated events, the publisher sends JSON collections to Kafka and the schema-registry module registers the subjects that validate them. The shared event-envelope schema makes topic payloads predictable before they are consumed by sinks or real-time processors.",
+    "nodeIds": ["file:src/vina_bim_shop/kafka/publisher.py", "file:src/vina_bim_shop/kafka/schema_registry.py", "config:infra/kafka/schemas/common_event_value.schema.json"],
+    "languageLesson": "A JSON Schema is a data contract: a shared envelope stabilizes metadata and payload shape across producers and consumers, allowing compatible changes to be managed deliberately."
+  },
+  {
+    "order": 5,
+    "title": "Lakehouse Analytics Model",
+    "description": "After events and snapshots land, dbt organizes their transformation into a governed analytics project and the order fact exposes customer and status keys alongside paid revenue and GMV. This is the durable bronze-to-silver-to-gold modeling path that makes raw platform activity useful for business analysis.",
+    "nodeIds": ["config:infra/analytics/dbt/dbt_project.yml", "table:infra/analytics/dbt/models/gold/fact_order.sql:fact_order"],
+    "languageLesson": "In dimensional modeling, fact tables record measurable events while dimension keys supply their business context; dbt turns those relationships into testable, version-controlled SQL models."
+  },
+  {
+    "order": 6,
+    "title": "Batch Lakehouse Processing",
+    "description": "The Spark batch job operationalizes the lakehouse model by reading bronze inputs, constructing silver and gold Iceberg tables, validating the results, and recording evidence. It is the broadest processing hub in the graph, connecting ingestion outputs to curated analytical products.",
+    "nodeIds": ["file:src/vina_bim_shop/lakehouse/spark/job.py"],
+    "languageLesson": "A batch job separates extraction, transformation, validation, and publication so a rerun can rebuild a consistent analytical state from persisted inputs."
+  },
+  {
+    "order": 7,
+    "title": "Streaming Commerce Metrics",
+    "description": "Alongside the periodic Spark path, the Flink commerce job continuously computes windowed commerce metrics and handles corrections from event streams. Comparing this with Step 6 clarifies the lambda-style split: batch establishes durable truth, while streaming supplies low-latency provisional insight.",
+    "nodeIds": ["file:src/vina_bim_shop/flink/commerce_job.py"],
+    "languageLesson": "Stream windows group unbounded events by time; late or corrected events require explicit handling so real-time metrics can converge toward the durable batch result."
+  },
+  {
+    "order": 8,
+    "title": "Realtime Serving Layer",
+    "description": "The Pinot bootstrap module applies the serving assets and waits until they are available, while the realtime table definition ingests minute-level commerce metrics from Kafka with retention, indexes, transforms, and a provisional-truth policy. This is where the streaming output becomes fast, queryable operational analytics.",
+    "nodeIds": ["file:src/vina_bim_shop/pinot/bootstrap.py", "config:infra/pinot/tables/pinot_realtime_commerce_metrics_1m_realtime.json"],
+    "languageLesson": "Realtime analytical tables trade some finality for latency: ingestion configuration, indexes, and retention determine how quickly data is queryable and how long it remains available."
+  },
+  {
+    "order": 9,
+    "title": "Platform Service Topology",
+    "description": "Now connect the logical stages to their runtime: the root Compose definition includes ingestion, lakehouse, batch, streaming, serving, orchestration, and governance profiles, while the lakehouse profile supplies MinIO, Postgres, Hive Metastore, and Trino. These assets show which services cooperate locally and where persisted data and SQL queries live.",
+    "nodeIds": ["service:docker-compose.yml", "config:compose/lakehouse.yml"],
+    "languageLesson": "Docker Compose profiles let one repository describe a multi-service platform while starting only the stage-specific services needed for a particular workflow."
+  },
+  {
+    "order": 10,
+    "title": "Orchestration and Quality",
+    "description": "The mini-coursework pipeline coordinates the end-to-end path from bronze ingestion through quality validation and offline features, using policy definitions to decide which failures gate each layer. This makes the processing stages operational rather than a collection of manual commands.",
+    "nodeIds": ["file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py", "file:src/vina_bim_shop/quality/policies.py"],
+    "languageLesson": "Orchestration turns dependency order into executable workflow structure, while severity-based quality policies distinguish warnings worth recording from failures that must block promotion."
+  },
+  {
+    "order": 11,
+    "title": "Governance and Lineage",
+    "description": "After quality has been applied, the DataHub emitter publishes lineage, schemas, ownership, tags, and assertion metadata for the platform's datasets. It supplies the discoverability and audit trail needed to explain how a serving metric traces back through processing to its Kafka and generated sources.",
+    "nodeIds": ["file:src/vina_bim_shop/datahub_lineage/emitter.py"],
+    "languageLesson": "Data lineage records upstream and downstream relationships, enabling impact analysis when a source contract, transformation, or quality assertion changes."
+  },
+  {
+    "order": 12,
+    "title": "Operational Evidence Guide",
+    "description": "Finish with the deliverables index and rubric evidence document, which organize the operational narrative and the proof used to assess the platform. Returning here after the technical tour turns architecture knowledge into a practical checklist for reviewing runs, artifacts, and coursework requirements.",
+    "nodeIds": ["document:deliverables/README.md", "document:deliverables/13_mini_coursework_rubric_evidence.md"]
+  }
+]

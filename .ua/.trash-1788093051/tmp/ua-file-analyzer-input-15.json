@@ -1,0 +1,9 @@
+{
+  "projectRoot": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework",
+  "batchFiles": [
+    {"path":"configs/pipelines/flink_baseline_experiment.yaml","language":"yaml","sizeLines":19,"fileCategory":"config"},
+    {"path":"configs/pipelines/flink_streaming.yaml","language":"yaml","sizeLines":28,"fileCategory":"config"},
+    {"path":"configs/pipelines/local.yaml","language":"yaml","sizeLines":18,"fileCategory":"config"}
+  ],
+  "batchImportData": {"configs/pipelines/flink_baseline_experiment.yaml":[],"configs/pipelines/flink_streaming.yaml":[],"configs/pipelines/local.yaml":[]}
+}

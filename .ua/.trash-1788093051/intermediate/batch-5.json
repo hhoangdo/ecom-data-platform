@@ -1,0 +1,1589 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/flink/alerts.py",
+      "type": "file",
+      "name": "alerts.py",
+      "filePath": "src/vina_bim_shop/flink/alerts.py",
+      "summary": "Normalizes source alert records and builds payment-failure alerts for the Flink pipeline.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/alerts.py:normalize_source_alert_event",
+      "type": "function",
+      "name": "normalize_source_alert_event",
+      "filePath": "src/vina_bim_shop/flink/alerts.py",
+      "lineRange": [
+        17,
+        36
+      ],
+      "summary": "Implements normalize source alert event behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/alerts.py:build_payment_failure_alert",
+      "type": "function",
+      "name": "build_payment_failure_alert",
+      "filePath": "src/vina_bim_shop/flink/alerts.py",
+      "lineRange": [
+        39,
+        74
+      ],
+      "summary": "Implements build payment failure alert behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/alerts.py:_source_severity",
+      "type": "function",
+      "name": "_source_severity",
+      "filePath": "src/vina_bim_shop/flink/alerts.py",
+      "lineRange": [
+        77,
+        82
+      ],
+      "summary": "Implements  source severity behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/alerts.py:_normalize_ts",
+      "type": "function",
+      "name": "_normalize_ts",
+      "filePath": "src/vina_bim_shop/flink/alerts.py",
+      "lineRange": [
+        85,
+        90
+      ],
+      "summary": "Implements  normalize ts behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "type": "file",
+      "name": "baseline_experiment.py",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "summary": "Loads and validates Flink experiment profiles, then runs and compares baseline variants.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:load_experiment_profile",
+      "type": "function",
+      "name": "load_experiment_profile",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        48,
+        88
+      ],
+      "summary": "Implements load experiment profile behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:_validate_profile",
+      "type": "function",
+      "name": "_validate_profile",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        91,
+        103
+      ],
+      "summary": "Implements  validate profile behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:profile_streaming_config",
+      "type": "function",
+      "name": "profile_streaming_config",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        106,
+        118
+      ],
+      "summary": "Implements profile streaming config behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:compose_variant_job",
+      "type": "function",
+      "name": "compose_variant_job",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        121,
+        152
+      ],
+      "summary": "Implements compose variant job behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:run_experiment_job",
+      "type": "function",
+      "name": "run_experiment_job",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        155,
+        169
+      ],
+      "summary": "Implements run experiment job behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:compare_runs",
+      "type": "function",
+      "name": "compare_runs",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        172,
+        192
+      ],
+      "summary": "Implements compare runs behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:write_replay_fixture",
+      "type": "function",
+      "name": "write_replay_fixture",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        195,
+        237
+      ],
+      "summary": "Implements write replay fixture behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/baseline_experiment.py:_json_default",
+      "type": "function",
+      "name": "_json_default",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        240,
+        243
+      ],
+      "summary": "Implements  json default behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/flink/baseline_experiment.py:FlinkExperimentProfile",
+      "type": "class",
+      "name": "FlinkExperimentProfile",
+      "filePath": "src/vina_bim_shop/flink/baseline_experiment.py",
+      "lineRange": [
+        29,
+        45
+      ],
+      "summary": "Models FlinkExperimentProfile state and behavior used by the flink workflow.",
+      "tags": [
+        "flink",
+        "data-model",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "type": "file",
+      "name": "commerce_job.py",
+      "filePath": "src/vina_bim_shop/flink/commerce_job.py",
+      "summary": "Defines and runs the Flink commerce window pipeline with metrics and correction handling.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/commerce_job.py:add_commerce_pipeline",
+      "type": "function",
+      "name": "add_commerce_pipeline",
+      "filePath": "src/vina_bim_shop/flink/commerce_job.py",
+      "lineRange": [
+        86,
+        153
+      ],
+      "summary": "Implements add commerce pipeline behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/commerce_job.py:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/vina_bim_shop/flink/commerce_job.py",
+      "lineRange": [
+        156,
+        175
+      ],
+      "summary": "Implements run behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/flink/commerce_job.py:CommerceWindowProcessor",
+      "type": "class",
+      "name": "CommerceWindowProcessor",
+      "filePath": "src/vina_bim_shop/flink/commerce_job.py",
+      "lineRange": [
+        22,
+        83
+      ],
+      "summary": "Models CommerceWindowProcessor state and behavior used by the flink workflow.",
+      "tags": [
+        "flink",
+        "data-model",
+        "class"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/config.py",
+      "type": "file",
+      "name": "config.py",
+      "filePath": "src/vina_bim_shop/flink/config.py",
+      "summary": "Loads the streaming configuration and derives payment alert thresholds.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/config.py:load_streaming_config",
+      "type": "function",
+      "name": "load_streaming_config",
+      "filePath": "src/vina_bim_shop/flink/config.py",
+      "lineRange": [
+        27,
+        42
+      ],
+      "summary": "Implements load streaming config behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/config.py:_payment_thresholds",
+      "type": "function",
+      "name": "_payment_thresholds",
+      "filePath": "src/vina_bim_shop/flink/config.py",
+      "lineRange": [
+        45,
+        49
+      ],
+      "summary": "Implements  payment thresholds behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/flink/config.py:StreamingConfig",
+      "type": "class",
+      "name": "StreamingConfig",
+      "filePath": "src/vina_bim_shop/flink/config.py",
+      "lineRange": [
+        14,
+        24
+      ],
+      "summary": "Models StreamingConfig state and behavior used by the flink workflow.",
+      "tags": [
+        "flink",
+        "data-model",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/corrections.py",
+      "type": "file",
+      "name": "corrections.py",
+      "filePath": "src/vina_bim_shop/flink/corrections.py",
+      "summary": "Builds versioned correction records for late or revised streaming metrics.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/corrections.py:next_correction_version",
+      "type": "function",
+      "name": "next_correction_version",
+      "filePath": "src/vina_bim_shop/flink/corrections.py",
+      "lineRange": [
+        8,
+        9
+      ],
+      "summary": "Implements next correction version behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/corrections.py:build_correction_record",
+      "type": "function",
+      "name": "build_correction_record",
+      "filePath": "src/vina_bim_shop/flink/corrections.py",
+      "lineRange": [
+        12,
+        40
+      ],
+      "summary": "Implements build correction record behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/corrections.py:_normalize_ts",
+      "type": "function",
+      "name": "_normalize_ts",
+      "filePath": "src/vina_bim_shop/flink/corrections.py",
+      "lineRange": [
+        43,
+        48
+      ],
+      "summary": "Implements  normalize ts behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "summary": "Deduplicates event streams and produces windowed commerce metric snapshots.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:dedupe_events",
+      "type": "function",
+      "name": "dedupe_events",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        19,
+        28
+      ],
+      "summary": "Implements dedupe events behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:build_metric_snapshot",
+      "type": "function",
+      "name": "build_metric_snapshot",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        31,
+        84
+      ],
+      "summary": "Implements build metric snapshot behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:_metric_key",
+      "type": "function",
+      "name": "_metric_key",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        87,
+        90
+      ],
+      "summary": "Implements  metric key behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:_dimension_values",
+      "type": "function",
+      "name": "_dimension_values",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        93,
+        102
+      ],
+      "summary": "Implements  dimension values behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:_empty_dimensions",
+      "type": "function",
+      "name": "_empty_dimensions",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        105,
+        113
+      ],
+      "summary": "Implements  empty dimensions behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:_is_late_event",
+      "type": "function",
+      "name": "_is_late_event",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        116,
+        119
+      ],
+      "summary": "Implements  is late event behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:_parse_ts",
+      "type": "function",
+      "name": "_parse_ts",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        122,
+        127
+      ],
+      "summary": "Implements  parse ts behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/metrics.py:_normalize_iso",
+      "type": "function",
+      "name": "_normalize_iso",
+      "filePath": "src/vina_bim_shop/flink/metrics.py",
+      "lineRange": [
+        130,
+        131
+      ],
+      "summary": "Implements  normalize iso behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/ops_job.py",
+      "type": "file",
+      "name": "ops_job.py",
+      "filePath": "src/vina_bim_shop/flink/ops_job.py",
+      "summary": "Defines and runs the Flink operations-alert pipeline.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/ops_job.py:add_ops_pipeline",
+      "type": "function",
+      "name": "add_ops_pipeline",
+      "filePath": "src/vina_bim_shop/flink/ops_job.py",
+      "lineRange": [
+        18,
+        57
+      ],
+      "summary": "Implements add ops pipeline behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/ops_job.py:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/vina_bim_shop/flink/ops_job.py",
+      "lineRange": [
+        60,
+        83
+      ],
+      "summary": "Implements run behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/runtime.py",
+      "type": "file",
+      "name": "runtime.py",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "summary": "Loads Flink runtime settings and configures Kafka sources, sinks, timestamps, and checkpointing.",
+      "tags": [
+        "flink",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:load_runtime_settings",
+      "type": "function",
+      "name": "load_runtime_settings",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        36,
+        52
+      ],
+      "summary": "Implements load runtime settings behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:load_container_runtime_limit",
+      "type": "function",
+      "name": "load_container_runtime_limit",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        55,
+        60
+      ],
+      "summary": "Implements load container runtime limit behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:add_required_jars",
+      "type": "function",
+      "name": "add_required_jars",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        63,
+        64
+      ],
+      "summary": "Implements add required jars behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:configure_checkpointing",
+      "type": "function",
+      "name": "configure_checkpointing",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        67,
+        79
+      ],
+      "summary": "Implements configure checkpointing behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:kafka_source",
+      "type": "function",
+      "name": "kafka_source",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        82,
+        95
+      ],
+      "summary": "Implements kafka source behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:kafka_sink",
+      "type": "function",
+      "name": "kafka_sink",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        98,
+        106
+      ],
+      "summary": "Implements kafka sink behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:event_timestamp_assigner",
+      "type": "function",
+      "name": "event_timestamp_assigner",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        109,
+        117
+      ],
+      "summary": "Implements event timestamp assigner behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:event_timestamp_millis",
+      "type": "function",
+      "name": "event_timestamp_millis",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        120,
+        123
+      ],
+      "summary": "Implements event timestamp millis behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:jsonl_file_sink",
+      "type": "function",
+      "name": "jsonl_file_sink",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        126,
+        142
+      ],
+      "summary": "Implements jsonl file sink behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:normalize_ts",
+      "type": "function",
+      "name": "normalize_ts",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        145,
+        150
+      ],
+      "summary": "Implements normalize ts behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/runtime.py:_coerce_event_record",
+      "type": "function",
+      "name": "_coerce_event_record",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        153,
+        159
+      ],
+      "summary": "Implements  coerce event record behavior for the flink workflow.",
+      "tags": [
+        "flink",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/flink/runtime.py:RuntimeSettings",
+      "type": "class",
+      "name": "RuntimeSettings",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        16,
+        26
+      ],
+      "summary": "Models RuntimeSettings state and behavior used by the flink workflow.",
+      "tags": [
+        "flink",
+        "data-model",
+        "class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/flink/runtime.py:ContainerRuntimeLimit",
+      "type": "class",
+      "name": "ContainerRuntimeLimit",
+      "filePath": "src/vina_bim_shop/flink/runtime.py",
+      "lineRange": [
+        30,
+        33
+      ],
+      "summary": "Models ContainerRuntimeLimit state and behavior used by the flink workflow.",
+      "tags": [
+        "flink",
+        "data-model",
+        "class"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:normalize_source_alert_event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:normalize_source_alert_event",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:build_payment_failure_alert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:build_payment_failure_alert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:_source_severity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:_source_severity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:_normalize_ts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/alerts.py",
+      "target": "function:src/vina_bim_shop/flink/alerts.py:_normalize_ts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:load_experiment_profile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:load_experiment_profile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:_validate_profile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:_validate_profile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:profile_streaming_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:profile_streaming_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:compose_variant_job",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:compose_variant_job",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:run_experiment_job",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:run_experiment_job",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:compare_runs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:compare_runs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:write_replay_fixture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:write_replay_fixture",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:_json_default",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "function:src/vina_bim_shop/flink/baseline_experiment.py:_json_default",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "class:src/vina_bim_shop/flink/baseline_experiment.py:FlinkExperimentProfile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "class:src/vina_bim_shop/flink/baseline_experiment.py:FlinkExperimentProfile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "file:src/vina_bim_shop/flink/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "file:src/vina_bim_shop/flink/runtime.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/baseline_experiment.py",
+      "target": "file:src/vina_bim_shop/flink/smoke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "function:src/vina_bim_shop/flink/commerce_job.py:add_commerce_pipeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "function:src/vina_bim_shop/flink/commerce_job.py:add_commerce_pipeline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "function:src/vina_bim_shop/flink/commerce_job.py:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "function:src/vina_bim_shop/flink/commerce_job.py:run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "class:src/vina_bim_shop/flink/commerce_job.py:CommerceWindowProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "class:src/vina_bim_shop/flink/commerce_job.py:CommerceWindowProcessor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "file:src/vina_bim_shop/flink/alerts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "file:src/vina_bim_shop/flink/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "file:src/vina_bim_shop/flink/corrections.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "file:src/vina_bim_shop/flink/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/commerce_job.py",
+      "target": "file:src/vina_bim_shop/flink/runtime.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/config.py",
+      "target": "function:src/vina_bim_shop/flink/config.py:load_streaming_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/config.py",
+      "target": "function:src/vina_bim_shop/flink/config.py:load_streaming_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/config.py",
+      "target": "function:src/vina_bim_shop/flink/config.py:_payment_thresholds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/config.py",
+      "target": "function:src/vina_bim_shop/flink/config.py:_payment_thresholds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/config.py",
+      "target": "class:src/vina_bim_shop/flink/config.py:StreamingConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/config.py",
+      "target": "class:src/vina_bim_shop/flink/config.py:StreamingConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/corrections.py",
+      "target": "function:src/vina_bim_shop/flink/corrections.py:next_correction_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/corrections.py",
+      "target": "function:src/vina_bim_shop/flink/corrections.py:next_correction_version",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/corrections.py",
+      "target": "function:src/vina_bim_shop/flink/corrections.py:build_correction_record",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/corrections.py",
+      "target": "function:src/vina_bim_shop/flink/corrections.py:build_correction_record",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/corrections.py",
+      "target": "function:src/vina_bim_shop/flink/corrections.py:_normalize_ts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/corrections.py",
+      "target": "function:src/vina_bim_shop/flink/corrections.py:_normalize_ts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:dedupe_events",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:dedupe_events",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:build_metric_snapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:build_metric_snapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_metric_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_metric_key",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_dimension_values",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_dimension_values",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_empty_dimensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_empty_dimensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_is_late_event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_is_late_event",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_parse_ts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_parse_ts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_normalize_iso",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/metrics.py",
+      "target": "function:src/vina_bim_shop/flink/metrics.py:_normalize_iso",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "function:src/vina_bim_shop/flink/ops_job.py:add_ops_pipeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "function:src/vina_bim_shop/flink/ops_job.py:add_ops_pipeline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "function:src/vina_bim_shop/flink/ops_job.py:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "function:src/vina_bim_shop/flink/ops_job.py:run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "file:src/vina_bim_shop/flink/alerts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "file:src/vina_bim_shop/flink/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/ops_job.py",
+      "target": "file:src/vina_bim_shop/flink/runtime.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:load_runtime_settings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:load_runtime_settings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:load_container_runtime_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:load_container_runtime_limit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:add_required_jars",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:add_required_jars",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:configure_checkpointing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:configure_checkpointing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:kafka_source",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:kafka_source",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:kafka_sink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:kafka_sink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:event_timestamp_assigner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:event_timestamp_assigner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:event_timestamp_millis",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:event_timestamp_millis",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:jsonl_file_sink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:jsonl_file_sink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:normalize_ts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:normalize_ts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:_coerce_event_record",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "function:src/vina_bim_shop/flink/runtime.py:_coerce_event_record",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "class:src/vina_bim_shop/flink/runtime.py:RuntimeSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "class:src/vina_bim_shop/flink/runtime.py:RuntimeSettings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "class:src/vina_bim_shop/flink/runtime.py:ContainerRuntimeLimit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "class:src/vina_bim_shop/flink/runtime.py:ContainerRuntimeLimit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/runtime.py",
+      "target": "file:src/vina_bim_shop/flink/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

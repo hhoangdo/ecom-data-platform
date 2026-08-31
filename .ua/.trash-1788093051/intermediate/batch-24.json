@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    {"id":"config:infra/lakehouse/trino/etc/config.properties","type":"config","name":"config.properties","filePath":"infra/lakehouse/trino/etc/config.properties","summary":"Configures the Trino coordinator, its HTTP endpoint, and service discovery address.","tags":["configuration","trino","coordinator","lakehouse"],"complexity":"simple"},
+    {"id":"config:infra/lakehouse/trino/etc/node.properties","type":"config","name":"node.properties","filePath":"infra/lakehouse/trino/etc/node.properties","summary":"Defines the Trino coordinator node identity, local environment, and data directory.","tags":["configuration","trino","node","lakehouse"],"complexity":"simple"},
+    {"id":"config:infra/lakehouse/trino/etc/worker-config.properties","type":"config","name":"worker-config.properties","filePath":"infra/lakehouse/trino/etc/worker-config.properties","summary":"Configures a Trino worker HTTP endpoint and its connection to the coordinator's discovery service.","tags":["configuration","trino","worker","lakehouse"],"complexity":"simple"},
+    {"id":"config:infra/lakehouse/trino/etc/worker-node.properties","type":"config","name":"worker-node.properties","filePath":"infra/lakehouse/trino/etc/worker-node.properties","summary":"Defines the Trino worker node identity, local environment, and data directory.","tags":["configuration","trino","worker","node"],"complexity":"simple"}
+  ],
+  "edges": []
+}

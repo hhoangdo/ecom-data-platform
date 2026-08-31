@@ -1,0 +1,880 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 22,
+  "filesSkipped": [
+    "infra/lakehouse/hive/hive-site.xml",
+    "infra/lakehouse/trino/catalog/iceberg.properties",
+    "infra/orchestration/gx_docs/default_index.html"
+  ],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 22,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 9,
+      "failed": 0,
+      "skipped": 13
+    }
+  },
+  "results": [
+    {
+      "path": "infra/analytics/dbt/dbt_project.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 31,
+      "nonEmptyLines": 26,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "config-version",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "profile",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "model-paths",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "macro-paths",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "test-paths",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "target-path",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "clean-targets",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "on-run-start",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "models",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "vars",
+          "level": 1,
+          "line": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    },
+    {
+      "path": "infra/analytics/dbt/profiles.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "sections": [
+        {
+          "heading": "vina_bim_shop",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "infra/analytics/dbt/tests/assert_fact_order_reconciles_to_stg_orders.sql",
+      "language": "sql",
+      "fileCategory": "data",
+      "totalLines": 12,
+      "nonEmptyLines": 12,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 0
+      }
+    },
+    {
+      "path": "infra/analytics/dbt/tests/assert_order_item_totals_reconcile.sql",
+      "language": "sql",
+      "fileCategory": "data",
+      "totalLines": 13,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 0
+      }
+    },
+    {
+      "path": "infra/flink/bin/run-with-time-limit.sh",
+      "language": "shell",
+      "fileCategory": "script",
+      "totalLines": 12,
+      "nonEmptyLines": 9,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/flink/bin/submit-jobs.sh",
+      "language": "shell",
+      "fileCategory": "script",
+      "totalLines": 25,
+      "nonEmptyLines": 21,
+      "functions": [
+        {
+          "name": "wait_for_jobmanager",
+          "startLine": 6,
+          "endLine": 10,
+          "params": []
+        },
+        {
+          "name": "submit_if_missing",
+          "startLine": 12,
+          "endLine": 21,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/kafka/connect/source-events-s3-sink.template.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 27,
+      "nonEmptyLines": 27,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "config",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "infra/kafka/topics.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 34,
+      "nonEmptyLines": 34,
+      "sections": [
+        {
+          "heading": "source_topics",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "derived_placeholder_topics",
+          "level": 1,
+          "line": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "infra/lakehouse/hive/init-schema.sh",
+      "language": "shell",
+      "fileCategory": "script",
+      "totalLines": 20,
+      "nonEmptyLines": 17,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/lakehouse/minio/create-buckets.sh",
+      "language": "shell",
+      "fileCategory": "script",
+      "totalLines": 14,
+      "nonEmptyLines": 10,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/lakehouse/postgres/init/01-create-platform-databases.sql",
+      "language": "sql",
+      "fileCategory": "data",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 0
+      }
+    },
+    {
+      "path": "infra/lakehouse/trino/sql/smoke.sql",
+      "language": "sql",
+      "fileCategory": "data",
+      "totalLines": 5,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 0
+      }
+    },
+    {
+      "path": "infra/lakehouse/trino/sql/spark_batch_smoke.sql",
+      "language": "sql",
+      "fileCategory": "data",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/bootstrap/seed_coursework_metadata.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 134,
+      "nonEmptyLines": 114,
+      "functions": [
+        {
+          "name": "_endpoint",
+          "startLine": 13,
+          "endLine": 17,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "_connection_specs",
+          "startLine": 20,
+          "endLine": 61,
+          "params": [
+            "environ"
+          ]
+        },
+        {
+          "name": "_variable_specs",
+          "startLine": 64,
+          "endLine": 70,
+          "params": [
+            "environ"
+          ]
+        },
+        {
+          "name": "_upsert_connection",
+          "startLine": 73,
+          "endLine": 91,
+          "params": [
+            "connection_model",
+            "payload"
+          ]
+        },
+        {
+          "name": "seed_coursework_metadata",
+          "startLine": 94,
+          "endLine": 106,
+          "params": [
+            "connection_model",
+            "variable_model",
+            "environ",
+            "log"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 109,
+          "endLine": 130,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_endpoint",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "_connection_specs",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "_variable_specs",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "_upsert_connection",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "seed_coursework_metadata",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 109,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_endpoint",
+          "callee": "urlparse",
+          "lineNumber": 14
+        },
+        {
+          "caller": "_endpoint",
+          "callee": "ValueError",
+          "lineNumber": 16
+        },
+        {
+          "caller": "_connection_specs",
+          "callee": "_endpoint",
+          "lineNumber": 21
+        },
+        {
+          "caller": "_connection_specs",
+          "callee": "_endpoint",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_connection_specs",
+          "callee": "_endpoint",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "hasattr",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "connection_model.upsert",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "settings.Session",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "session.query(connection_model).filter_by(conn_id=payload[\"conn_id\"]).one_or_none",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "session.query(connection_model).filter_by",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "session.query",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "json.dumps",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "session.add",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "connection_model",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "values.items",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "setattr",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "session.commit",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_upsert_connection",
+          "callee": "session.close",
+          "lineNumber": 91
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "_connection_specs",
+          "lineNumber": 101
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "_upsert_connection",
+          "lineNumber": 102
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "log",
+          "lineNumber": 103
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "_variable_specs(environ).items",
+          "lineNumber": 104
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "_variable_specs",
+          "lineNumber": 104
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "variable_model.set",
+          "lineNumber": 105
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "isinstance",
+          "lineNumber": 105
+        },
+        {
+          "caller": "seed_coursework_metadata",
+          "callee": "log",
+          "lineNumber": 106
+        },
+        {
+          "caller": "main",
+          "callee": "seed_coursework_metadata",
+          "lineNumber": 126
+        },
+        {
+          "caller": "main",
+          "callee": "os.getenv",
+          "lineNumber": 129
+        },
+        {
+          "caller": "main",
+          "callee": "required.items",
+          "lineNumber": 129
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/datahub_ingestion.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 11,
+          "endLine": 12,
+          "params": [
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "run_datahub_ingestion",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/hourly_batch_lakehouse.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 31,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 11,
+          "endLine": 16,
+          "params": [
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "run_hourly_batch_lakehouse",
+          "lineNumber": 12
+        },
+        {
+          "caller": "_run",
+          "callee": "context[\"data_interval_start\"].isoformat",
+          "lineNumber": 14
+        },
+        {
+          "caller": "_run",
+          "callee": "context[\"data_interval_end\"].isoformat",
+          "lineNumber": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/kafka_topic_bootstrap.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 11,
+          "endLine": 12,
+          "params": [
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "run_kafka_topic_bootstrap",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/local_evidence_build.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 11,
+          "endLine": 12,
+          "params": [
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "run_local_evidence_build",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/mini_coursework_pipeline.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 23,
+          "endLine": 34,
+          "params": [
+            "stage_function",
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "settings_from_airflow",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_run",
+          "callee": "stage_function",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_run",
+          "callee": "context[\"data_interval_start\"].isoformat",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_run",
+          "callee": "context[\"data_interval_end\"].isoformat",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_run",
+          "callee": "build_coursework_run_root",
+          "lineNumber": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/pinot_bootstrap.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 11,
+          "endLine": 12,
+          "params": [
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "run_pinot_bootstrap",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/dags/reconciliation_report.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 31,
+      "nonEmptyLines": 24,
+      "functions": [
+        {
+          "name": "_run",
+          "startLine": 11,
+          "endLine": 16,
+          "params": [
+            "**context"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run",
+          "callee": "run_reconciliation_report",
+          "lineNumber": 12
+        },
+        {
+          "caller": "_run",
+          "callee": "context[\"data_interval_start\"].isoformat",
+          "lineNumber": 14
+        },
+        {
+          "caller": "_run",
+          "callee": "context[\"data_interval_end\"].isoformat",
+          "lineNumber": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "infra/orchestration/airflow/plugins/datahub_plugin.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 32,
+      "classes": [
+        {
+          "name": "DataHubPlugin",
+          "startLine": 33,
+          "endLine": 35,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "DataHubPlugin",
+          "line": 33,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    }
+  ]
+}

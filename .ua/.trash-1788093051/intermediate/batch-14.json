@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {"id":"config:compose/batch.spark.yml","type":"config","name":"batch.spark.yml","filePath":"compose/batch.spark.yml","summary":"Configures the Spark master, worker, and history-server services for the batch processing profile with MinIO and Hive dependencies.","tags":["configuration","spark","batch-processing","docker-compose"],"complexity":"moderate"},
+    {"id":"config:compose/governance.datahub.yml","type":"config","name":"governance.datahub.yml","filePath":"compose/governance.datahub.yml","summary":"Configures DataHub governance services, including Elasticsearch, metadata services, frontend, actions, and their Kafka and Postgres dependencies.","tags":["configuration","datahub","governance","docker-compose"],"complexity":"moderate"},
+    {"id":"config:compose/ingestion.kafka.yml","type":"config","name":"ingestion.kafka.yml","filePath":"compose/ingestion.kafka.yml","summary":"Configures the Kafka ingestion stack, including broker, Schema Registry, Kafka Connect, and operational user interface services.","tags":["configuration","kafka","ingestion","docker-compose"],"complexity":"moderate"},
+    {"id":"config:compose/lakehouse.yml","type":"config","name":"lakehouse.yml","filePath":"compose/lakehouse.yml","summary":"Configures the lakehouse runtime with MinIO, Postgres, Hive Metastore, and Trino coordinator and worker services.","tags":["configuration","lakehouse","storage","docker-compose"],"complexity":"moderate"},
+    {"id":"config:compose/orchestration.airflow.yml","type":"config","name":"orchestration.airflow.yml","filePath":"compose/orchestration.airflow.yml","summary":"Configures Airflow webserver, scheduler, initialization, and Great Expectations documentation services for workflow orchestration.","tags":["configuration","airflow","orchestration","docker-compose"],"complexity":"moderate"},
+    {"id":"config:compose/serving.pinot.yml","type":"config","name":"serving.pinot.yml","filePath":"compose/serving.pinot.yml","summary":"Configures the Pinot serving profile with Zookeeper, controller, broker, and server services for real-time analytics.","tags":["configuration","pinot","serving","docker-compose"],"complexity":"moderate"},
+    {"id":"config:compose/streaming.flink.yml","type":"config","name":"streaming.flink.yml","filePath":"compose/streaming.flink.yml","summary":"Configures Flink JobManager, TaskManager, and job-submission services with Kafka, MinIO, checkpointing, and runtime controls.","tags":["configuration","flink","streaming","docker-compose"],"complexity":"moderate"}
+  ],
+  "edges": [
+    {"source":"config:compose/batch.spark.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:compose/governance.datahub.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:compose/ingestion.kafka.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:compose/lakehouse.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:compose/orchestration.airflow.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:compose/serving.pinot.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6},
+    {"source":"config:compose/streaming.flink.yml","target":"service:docker-compose.yml","type":"configures","direction":"forward","weight":0.6}
+  ]
+}

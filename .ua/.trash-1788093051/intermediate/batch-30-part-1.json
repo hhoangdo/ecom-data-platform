@@ -1,0 +1,1570 @@
+{
+  "nodes": [
+    {
+      "id": "file:infra/spark/bin/entrypoint.sh",
+      "type": "file",
+      "name": "entrypoint.sh",
+      "filePath": "infra/spark/bin/entrypoint.sh",
+      "summary": "Provides a lakehouse operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "type": "file",
+      "name": "benchmark_duckdb_index.py",
+      "filePath": "scripts/analytics/benchmark_duckdb_index.py",
+      "summary": "Provides a project operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/analytics/benchmark_duckdb_index.py:_run_variant",
+      "type": "function",
+      "name": "_run_variant",
+      "filePath": "scripts/analytics/benchmark_duckdb_index.py",
+      "lineRange": [
+        43,
+        68
+      ],
+      "summary": "Implements the _run_variant operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/analytics/benchmark_duckdb_index.py:_write_report",
+      "type": "function",
+      "name": "_write_report",
+      "filePath": "scripts/analytics/benchmark_duckdb_index.py",
+      "lineRange": [
+        81,
+        101
+      ],
+      "summary": "Implements the _write_report operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/analytics/benchmark_duckdb_index.py:benchmark_index",
+      "type": "function",
+      "name": "benchmark_index",
+      "filePath": "scripts/analytics/benchmark_duckdb_index.py",
+      "lineRange": [
+        104,
+        187
+      ],
+      "summary": "Implements the benchmark_index operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:scripts/ctl.py",
+      "type": "file",
+      "name": "ctl.py",
+      "filePath": "scripts/ctl.py",
+      "summary": "Provides a project operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/ctl.py:_build_parser",
+      "type": "function",
+      "name": "_build_parser",
+      "filePath": "scripts/ctl.py",
+      "lineRange": [
+        66,
+        86
+      ],
+      "summary": "Implements the _build_parser operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/ctl.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/ctl.py",
+      "lineRange": [
+        89,
+        99
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/datahub/capture_evidence.py",
+      "type": "file",
+      "name": "capture_evidence.py",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "summary": "Provides a project operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:validate_coursework_screenshot_manifest",
+      "type": "function",
+      "name": "validate_coursework_screenshot_manifest",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        220,
+        263
+      ],
+      "summary": "Implements the validate_coursework_screenshot_manifest operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:capture_gms_health",
+      "type": "function",
+      "name": "capture_gms_health",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        297,
+        315
+      ],
+      "summary": "Implements the capture_gms_health operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_extract_dataset_counts",
+      "type": "function",
+      "name": "_extract_dataset_counts",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        318,
+        329
+      ],
+      "summary": "Implements the _extract_dataset_counts operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_capture_representative_datasets",
+      "type": "function",
+      "name": "_capture_representative_datasets",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        332,
+        348
+      ],
+      "summary": "Implements the _capture_representative_datasets operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_capture_elasticsearch_indices",
+      "type": "function",
+      "name": "_capture_elasticsearch_indices",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        351,
+        370
+      ],
+      "summary": "Implements the _capture_elasticsearch_indices operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:capture_search_evidence",
+      "type": "function",
+      "name": "capture_search_evidence",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        373,
+        407
+      ],
+      "summary": "Implements the capture_search_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_indexed_entity_search",
+      "type": "function",
+      "name": "_indexed_entity_search",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        410,
+        439
+      ],
+      "summary": "Implements the _indexed_entity_search operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_capture_coursework_job",
+      "type": "function",
+      "name": "_capture_coursework_job",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        442,
+        468
+      ],
+      "summary": "Implements the _capture_coursework_job operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_capture_dataset_schema",
+      "type": "function",
+      "name": "_capture_dataset_schema",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        471,
+        480
+      ],
+      "summary": "Implements the _capture_dataset_schema operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_capture_assertion",
+      "type": "function",
+      "name": "_capture_assertion",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        483,
+        502
+      ],
+      "summary": "Implements the _capture_assertion operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:capture_coursework_pipeline_evidence",
+      "type": "function",
+      "name": "capture_coursework_pipeline_evidence",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        513,
+        566
+      ],
+      "summary": "Implements the capture_coursework_pipeline_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:capture_dataset_evidence",
+      "type": "function",
+      "name": "capture_dataset_evidence",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        569,
+        593
+      ],
+      "summary": "Implements the capture_dataset_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:capture_tag_evidence",
+      "type": "function",
+      "name": "capture_tag_evidence",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        596,
+        616
+      ],
+      "summary": "Implements the capture_tag_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:_manifest_status",
+      "type": "function",
+      "name": "_manifest_status",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        619,
+        644
+      ],
+      "summary": "Implements the _manifest_status operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/capture_evidence.py:capture_evidence",
+      "type": "function",
+      "name": "capture_evidence",
+      "filePath": "scripts/datahub/capture_evidence.py",
+      "lineRange": [
+        647,
+        693
+      ],
+      "summary": "Implements the capture_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/datahub/restore_search_indices.py",
+      "type": "file",
+      "name": "restore_search_indices.py",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "summary": "Provides a project operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:_restored_rows",
+      "type": "function",
+      "name": "_restored_rows",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        61,
+        77
+      ],
+      "summary": "Implements the _restored_rows operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:_response_cursor",
+      "type": "function",
+      "name": "_response_cursor",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        80,
+        90
+      ],
+      "summary": "Implements the _response_cursor operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:capture_search_evidence",
+      "type": "function",
+      "name": "capture_search_evidence",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        97,
+        146
+      ],
+      "summary": "Implements the capture_search_evidence operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:wait_for_indexed_search",
+      "type": "function",
+      "name": "wait_for_indexed_search",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        149,
+        158
+      ],
+      "summary": "Implements the wait_for_indexed_search operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:capture_elasticsearch_indices",
+      "type": "function",
+      "name": "capture_elasticsearch_indices",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        161,
+        184
+      ],
+      "summary": "Implements the capture_elasticsearch_indices operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:restore_indices",
+      "type": "function",
+      "name": "restore_indices",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        195,
+        271
+      ],
+      "summary": "Implements the restore_indices operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/datahub/restore_search_indices.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/datahub/restore_search_indices.py",
+      "lineRange": [
+        285,
+        306
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/flink/capture_evidence.py",
+      "type": "file",
+      "name": "capture_evidence.py",
+      "filePath": "scripts/flink/capture_evidence.py",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/flink/cleanroom_verify.py",
+      "type": "file",
+      "name": "cleanroom_verify.py",
+      "filePath": "scripts/flink/cleanroom_verify.py",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/cleanroom_verify.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "filePath": "scripts/flink/cleanroom_verify.py",
+      "lineRange": [
+        9,
+        20
+      ],
+      "summary": "Implements the parse_args operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/cleanroom_verify.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/flink/cleanroom_verify.py",
+      "lineRange": [
+        23,
+        32
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/flink/publish_smoke.py",
+      "type": "file",
+      "name": "publish_smoke.py",
+      "filePath": "scripts/flink/publish_smoke.py",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/flink/run_baseline_comparison.py",
+      "type": "file",
+      "name": "run_baseline_comparison.py",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        25,
+        34
+      ],
+      "summary": "Implements the parse_args operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        37,
+        76
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_reset_variant_state",
+      "type": "function",
+      "name": "_reset_variant_state",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        99,
+        161
+      ],
+      "summary": "Implements the _reset_variant_state operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:build_submission_command",
+      "type": "function",
+      "name": "build_submission_command",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        172,
+        191
+      ],
+      "summary": "Implements the build_submission_command operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_publish_phase",
+      "type": "function",
+      "name": "_publish_phase",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        194,
+        213
+      ],
+      "summary": "Implements the _publish_phase operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_wait_for_outputs",
+      "type": "function",
+      "name": "_wait_for_outputs",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        216,
+        242
+      ],
+      "summary": "Implements the _wait_for_outputs operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_build_metrics",
+      "type": "function",
+      "name": "_build_metrics",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        245,
+        292
+      ],
+      "summary": "Implements the _build_metrics operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_stable_metric_row",
+      "type": "function",
+      "name": "_stable_metric_row",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        295,
+        309
+      ],
+      "summary": "Implements the _stable_metric_row operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_finalize_comparison",
+      "type": "function",
+      "name": "_finalize_comparison",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        320,
+        350
+      ],
+      "summary": "Implements the _finalize_comparison operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_challenge_samples",
+      "type": "function",
+      "name": "_challenge_samples",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        353,
+        369
+      ],
+      "summary": "Implements the _challenge_samples operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_topic_count",
+      "type": "function",
+      "name": "_topic_count",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        376,
+        393
+      ],
+      "summary": "Implements the _topic_count operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_consume_rows",
+      "type": "function",
+      "name": "_consume_rows",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        396,
+        418
+      ],
+      "summary": "Implements the _consume_rows operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_delete_minio_prefix",
+      "type": "function",
+      "name": "_delete_minio_prefix",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        421,
+        436
+      ],
+      "summary": "Implements the _delete_minio_prefix operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/flink/run_baseline_comparison.py:_list_minio_prefix",
+      "type": "function",
+      "name": "_list_minio_prefix",
+      "filePath": "scripts/flink/run_baseline_comparison.py",
+      "lineRange": [
+        439,
+        454
+      ],
+      "summary": "Implements the _list_minio_prefix operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/flink/run_commerce_metrics_job.py",
+      "type": "file",
+      "name": "run_commerce_metrics_job.py",
+      "filePath": "scripts/flink/run_commerce_metrics_job.py",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/flink/run_ops_alerts_job.py",
+      "type": "file",
+      "name": "run_ops_alerts_job.py",
+      "filePath": "scripts/flink/run_ops_alerts_job.py",
+      "summary": "Provides a Flink operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/generate/run_generator.py",
+      "type": "file",
+      "name": "run_generator.py",
+      "filePath": "scripts/generate/run_generator.py",
+      "summary": "Provides a project operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/generate/run_generator.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "filePath": "scripts/generate/run_generator.py",
+      "lineRange": [
+        9,
+        21
+      ],
+      "summary": "Implements the parse_args operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/generate/run_generator.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/generate/run_generator.py",
+      "lineRange": [
+        24,
+        44
+      ],
+      "summary": "Implements the main operation for this script.",
+      "tags": [
+        "utility",
+        "automation",
+        "script"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/kafka/bootstrap_topics.py",
+      "type": "file",
+      "name": "bootstrap_topics.py",
+      "filePath": "scripts/kafka/bootstrap_topics.py",
+      "summary": "Provides a Kafka operational script or executable entry point.",
+      "tags": [
+        "automation",
+        "operations",
+        "utility"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "target": "function:scripts/analytics/benchmark_duckdb_index.py:_run_variant",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "target": "function:scripts/analytics/benchmark_duckdb_index.py:_write_report",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "target": "function:scripts/analytics/benchmark_duckdb_index.py:benchmark_index",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "target": "function:scripts/analytics/benchmark_duckdb_index.py:_run_variant",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "target": "function:scripts/analytics/benchmark_duckdb_index.py:_write_report",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/analytics/benchmark_duckdb_index.py",
+      "target": "function:scripts/analytics/benchmark_duckdb_index.py:benchmark_index",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/ctl.py",
+      "target": "function:scripts/ctl.py:_build_parser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/ctl.py",
+      "target": "function:scripts/ctl.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/ctl.py",
+      "target": "function:scripts/ctl.py:_build_parser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/ctl.py",
+      "target": "function:scripts/ctl.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:validate_coursework_screenshot_manifest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_gms_health",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_extract_dataset_counts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_representative_datasets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_elasticsearch_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_search_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_indexed_entity_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_coursework_job",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_dataset_schema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_assertion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_coursework_pipeline_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_dataset_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_tag_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_manifest_status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:validate_coursework_screenshot_manifest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_gms_health",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_extract_dataset_counts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_representative_datasets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_elasticsearch_indices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_search_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_indexed_entity_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_coursework_job",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_dataset_schema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_capture_assertion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_coursework_pipeline_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_dataset_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_tag_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:_manifest_status",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/capture_evidence.py",
+      "target": "function:scripts/datahub/capture_evidence.py:capture_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:_restored_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:_response_cursor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:capture_search_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:wait_for_indexed_search",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:capture_elasticsearch_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:restore_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:_restored_rows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:_response_cursor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:capture_search_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:wait_for_indexed_search",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:capture_elasticsearch_indices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:restore_indices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/datahub/restore_search_indices.py",
+      "target": "function:scripts/datahub/restore_search_indices.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/cleanroom_verify.py",
+      "target": "function:scripts/flink/cleanroom_verify.py:parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/cleanroom_verify.py",
+      "target": "function:scripts/flink/cleanroom_verify.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/cleanroom_verify.py",
+      "target": "function:scripts/flink/cleanroom_verify.py:parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/cleanroom_verify.py",
+      "target": "function:scripts/flink/cleanroom_verify.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_reset_variant_state",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:build_submission_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_publish_phase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_wait_for_outputs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_build_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_stable_metric_row",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_finalize_comparison",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_challenge_samples",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_topic_count",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_consume_rows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_delete_minio_prefix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_list_minio_prefix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_reset_variant_state",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:build_submission_command",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_publish_phase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_wait_for_outputs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_build_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_stable_metric_row",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_finalize_comparison",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_challenge_samples",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_topic_count",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_consume_rows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_delete_minio_prefix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/flink/run_baseline_comparison.py",
+      "target": "function:scripts/flink/run_baseline_comparison.py:_list_minio_prefix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/generate/run_generator.py",
+      "target": "function:scripts/generate/run_generator.py:parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/generate/run_generator.py",
+      "target": "function:scripts/generate/run_generator.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/generate/run_generator.py",
+      "target": "function:scripts/generate/run_generator.py:parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:scripts/generate/run_generator.py",
+      "target": "function:scripts/generate/run_generator.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

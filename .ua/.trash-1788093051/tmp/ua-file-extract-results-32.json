@@ -1,0 +1,985 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 11,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 11,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/vina_bim_shop/generators/offline/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/generators/streaming/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/kafka/evidence.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 99,
+      "nonEmptyLines": 80,
+      "functions": [
+        {
+          "name": "_get_json",
+          "startLine": 17,
+          "endLine": 20,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "_run_command",
+          "startLine": 23,
+          "endLine": 25,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "_write_json",
+          "startLine": 28,
+          "endLine": 29,
+          "params": [
+            "path",
+            "payload"
+          ]
+        },
+        {
+          "name": "capture_evidence",
+          "startLine": 32,
+          "endLine": 99,
+          "params": [
+            "evidence_root",
+            "schema_registry_url",
+            "kafka_connect_url",
+            "get_json",
+            "run_command"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_get_json",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "_run_command",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "_write_json",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "capture_evidence",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_get_json",
+          "callee": "requests.get",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.raise_for_status",
+          "lineNumber": 19
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.json",
+          "lineNumber": 20
+        },
+        {
+          "caller": "_run_command",
+          "callee": "subprocess.run",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_write_json",
+          "callee": "path.write_text",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_write_json",
+          "callee": "json.dumps",
+          "lineNumber": 29
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "Path",
+          "lineNumber": 40
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 41
+        },
+        {
+          "caller": "record_failure",
+          "callee": "failures.append",
+          "lineNumber": 46
+        },
+        {
+          "caller": "record_failure",
+          "callee": "str",
+          "lineNumber": 46
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 49
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"topic_list.txt\").write_text",
+          "lineNumber": 50
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "artifacts.append",
+          "lineNumber": 51
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 53
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 56
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"topic_descriptions.txt\").write_text",
+          "lineNumber": 57
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "artifacts.append",
+          "lineNumber": 58
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 60
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 63
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "schema_registry_url.rstrip",
+          "lineNumber": 63
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 64
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "artifacts.append",
+          "lineNumber": 65
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 67
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 70
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "kafka_connect_url.rstrip",
+          "lineNumber": 70
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 71
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "artifacts.append",
+          "lineNumber": 72
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 74
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 82
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "artifacts.append",
+          "lineNumber": 83
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 86
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "datetime.now",
+          "lineNumber": 86
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 95
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "\"; \".join",
+          "lineNumber": 97
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "RuntimeError",
+          "lineNumber": 98
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/evidence.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 237,
+      "nonEmptyLines": 198,
+      "functions": [
+        {
+          "name": "bronze_layout_examples",
+          "startLine": 22,
+          "endLine": 26,
+          "params": []
+        },
+        {
+          "name": "_get_json",
+          "startLine": 29,
+          "endLine": 32,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "get_http_artifact",
+          "startLine": 35,
+          "endLine": 42,
+          "params": [
+            "url",
+            "get"
+          ]
+        },
+        {
+          "name": "_run_command",
+          "startLine": 45,
+          "endLine": 47,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "_write_json",
+          "startLine": 50,
+          "endLine": 51,
+          "params": [
+            "path",
+            "payload"
+          ]
+        },
+        {
+          "name": "parse_bucket_listing",
+          "startLine": 54,
+          "endLine": 63,
+          "params": [
+            "listing"
+          ]
+        },
+        {
+          "name": "capture_bronze_landing_evidence",
+          "startLine": 66,
+          "endLine": 100,
+          "params": [
+            "evidence_root",
+            "listing_text",
+            "listing_path",
+            "run_command"
+          ]
+        },
+        {
+          "name": "capture_evidence",
+          "startLine": 103,
+          "endLine": 237,
+          "params": [
+            "evidence_root",
+            "minio_endpoint",
+            "trino_url",
+            "get_json",
+            "get_http",
+            "run_command"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "bronze_layout_examples",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "_get_json",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "get_http_artifact",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "_run_command",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "_write_json",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "parse_bucket_listing",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "capture_bronze_landing_evidence",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "capture_evidence",
+          "line": 103,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_get_json",
+          "callee": "requests.get",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.raise_for_status",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_get_json",
+          "callee": "response.json",
+          "lineNumber": 32
+        },
+        {
+          "caller": "get_http_artifact",
+          "callee": "get",
+          "lineNumber": 36
+        },
+        {
+          "caller": "get_http_artifact",
+          "callee": "response.raise_for_status",
+          "lineNumber": 37
+        },
+        {
+          "caller": "get_http_artifact",
+          "callee": "response.json",
+          "lineNumber": 39
+        },
+        {
+          "caller": "_run_command",
+          "callee": "subprocess.run",
+          "lineNumber": 46
+        },
+        {
+          "caller": "_write_json",
+          "callee": "path.write_text",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_write_json",
+          "callee": "json.dumps",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parse_bucket_listing",
+          "callee": "listing.splitlines",
+          "lineNumber": 56
+        },
+        {
+          "caller": "parse_bucket_listing",
+          "callee": "line.strip",
+          "lineNumber": 57
+        },
+        {
+          "caller": "parse_bucket_listing",
+          "callee": "stripped.endswith",
+          "lineNumber": 58
+        },
+        {
+          "caller": "parse_bucket_listing",
+          "callee": "stripped.rsplit(\" \", 1)[-1].rstrip",
+          "lineNumber": 60
+        },
+        {
+          "caller": "parse_bucket_listing",
+          "callee": "stripped.rsplit",
+          "lineNumber": 60
+        },
+        {
+          "caller": "parse_bucket_listing",
+          "callee": "buckets.append",
+          "lineNumber": 62
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "Path(listing_path).read_text",
+          "lineNumber": 75
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "Path",
+          "lineNumber": 75
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "run_command",
+          "lineNumber": 77
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "ValueError",
+          "lineNumber": 79
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "listing_text.splitlines",
+          "lineNumber": 82
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "line.find",
+          "lineNumber": 84
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "line[start:].strip",
+          "lineNumber": 87
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "entry.startswith",
+          "lineNumber": 88
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "examples[\"batch\"].append",
+          "lineNumber": 91
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "examples[\"events\"].append",
+          "lineNumber": 93
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "Path",
+          "lineNumber": 96
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 97
+        },
+        {
+          "caller": "capture_bronze_landing_evidence",
+          "callee": "_write_json",
+          "lineNumber": 99
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "Path",
+          "lineNumber": 112
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "evidence_path.mkdir",
+          "lineNumber": 113
+        },
+        {
+          "caller": "record_failure",
+          "callee": "failures.append",
+          "lineNumber": 117
+        },
+        {
+          "caller": "record_failure",
+          "callee": "str",
+          "lineNumber": 117
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_http",
+          "lineNumber": 120
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "minio_endpoint.rstrip",
+          "lineNumber": 120
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "str",
+          "lineNumber": 122
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 123
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "get_json",
+          "lineNumber": 126
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "trino_url.rstrip",
+          "lineNumber": 126
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "str",
+          "lineNumber": 128
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 129
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 132
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 148
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 151
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 154
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 157
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 160
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 163
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 166
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_command",
+          "lineNumber": 169
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 172
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "run_smoke_sql",
+          "lineNumber": 175
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 178
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "parse_bucket_listing",
+          "lineNumber": 180
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "record_failure",
+          "lineNumber": 183
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "', '.join",
+          "lineNumber": 183
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 185
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 186
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "list",
+          "lineNumber": 189
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"postgres_health.txt\").write_text",
+          "lineNumber": 195
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"hive_metastore_health.txt\").write_text",
+          "lineNumber": 196
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 197
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"trino_catalogs.txt\").write_text",
+          "lineNumber": 198
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"trino_schemas.txt\").write_text",
+          "lineNumber": 199
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "(evidence_path / \"trino_smoke_query.txt\").write_text",
+          "lineNumber": 200
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 209
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 212
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "datetime.now",
+          "lineNumber": 212
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "_write_json",
+          "lineNumber": 231
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "\"; \".join",
+          "lineNumber": 234
+        },
+        {
+          "caller": "capture_evidence",
+          "callee": "RuntimeError",
+          "lineNumber": 235
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 8,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/smoke.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "_run_command",
+          "startLine": 10,
+          "endLine": 12,
+          "params": [
+            "command"
+          ]
+        },
+        {
+          "name": "run_smoke_sql",
+          "startLine": 15,
+          "endLine": 27,
+          "params": [
+            "run_command"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_run_command",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "run_smoke_sql",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_run_command",
+          "callee": "subprocess.run",
+          "lineNumber": 11
+        },
+        {
+          "caller": "run_smoke_sql",
+          "callee": "run_command",
+          "lineNumber": 16
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 2,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/specs.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 36,
+      "functions": [
+        {
+          "name": "dag_specs_by_id",
+          "startLine": 30,
+          "endLine": 47,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "DagSpec",
+          "startLine": 10,
+          "endLine": 16,
+          "methods": [],
+          "properties": [
+            "dag_id",
+            "schedule",
+            "supports_hourly_logical_window",
+            "monitors_flink"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "DagSpec",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "dag_specs_by_id",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "OrderedDict",
+          "lineNumber": 37
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 39
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 40
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 41
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 42
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 43
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 44
+        },
+        {
+          "caller": "dag_specs_by_id",
+          "callee": "DagSpec",
+          "lineNumber": 45
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/vina_bim_shop/quality/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

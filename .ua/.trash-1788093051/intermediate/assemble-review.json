@@ -1,0 +1,24 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "unresolvedWarnings": [],
+  "finalCounts": {
+    "nodes": 879,
+    "edges": 1270,
+    "importMapEntries": 322,
+    "importRelationships": 171,
+    "importEdges": 171
+  },
+  "notes": [
+    "Reviewed 40 fragment files representing 32 logical batches.",
+    "All 879 input nodes and 1270 input edges were retained without recovery, remapping, or deduplication changes.",
+    "All 322 scanned file paths have graph coverage; no graph file paths fall outside the scan inventory.",
+    "All 171 deterministic import relationships from importMap have matching forward imports edges with weight 0.7.",
+    "The assembled graph has no missing node IDs, unknown node types or complexity values, duplicate node IDs or edges, dangling edges, or missing required node and edge fields.",
+    "No merge warnings or recovered imports were supplied; none were found during review."
+  ]
+}

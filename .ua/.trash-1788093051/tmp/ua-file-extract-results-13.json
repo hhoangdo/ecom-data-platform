@@ -1,0 +1,242 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 4,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 4
+    }
+  },
+  "results": [
+    {
+      "path": "architecture/domain/business-context.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 36,
+      "nonEmptyLines": 26,
+      "sections": [
+        {
+          "heading": "Vina Bim Shop Business Context",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Marketplace Model",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "Core Actors",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "Business Questions Supported",
+          "level": 2,
+          "line": 21
+        },
+        {
+          "heading": "Scope Boundaries",
+          "level": 2,
+          "line": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "architecture/domain/category-taxonomy.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 56,
+      "nonEmptyLines": 39,
+      "sections": [
+        {
+          "heading": "Vina Bim Shop Category Taxonomy",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Taxonomy Policy",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Level-1 Categories And Subcategories",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "FMCG",
+          "level": 3,
+          "line": 13
+        },
+        {
+          "heading": "ELHA",
+          "level": 3,
+          "line": 21
+        },
+        {
+          "heading": "Fashion",
+          "level": 3,
+          "line": 31
+        },
+        {
+          "heading": "Home & Living",
+          "level": 3,
+          "line": 39
+        },
+        {
+          "heading": "Implementation Notes",
+          "level": 2,
+          "line": 47
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "architecture/domain/source-event-catalog.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 111,
+      "nonEmptyLines": 84,
+      "sections": [
+        {
+          "heading": "Source Event Catalog",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Common JSON Envelope",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Source Topics",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "`commerce_events`",
+          "level": 3,
+          "line": 25
+        },
+        {
+          "heading": "`catalog_events`",
+          "level": 3,
+          "line": 44
+        },
+        {
+          "heading": "`fulfillment_events`",
+          "level": 3,
+          "line": 58
+        },
+        {
+          "heading": "`ops_events`",
+          "level": 3,
+          "line": 70
+        },
+        {
+          "heading": "`dead_letter_events`",
+          "level": 3,
+          "line": 82
+        },
+        {
+          "heading": "Downstream Derived Topics",
+          "level": 2,
+          "line": 95
+        },
+        {
+          "heading": "Freshness And Truth Policy",
+          "level": 2,
+          "line": 105
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "architecture/domain/source-to-target-mapping.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 60,
+      "nonEmptyLines": 47,
+      "sections": [
+        {
+          "heading": "Source To Target Mapping",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Offline Snapshot Mapping",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "Event Topic Mapping",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Realtime Serving Mapping",
+          "level": 2,
+          "line": 33
+        },
+        {
+          "heading": "Local Analytics And Governance Mapping",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "Contract Reminders",
+          "level": 2,
+          "line": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    }
+  ]
+}

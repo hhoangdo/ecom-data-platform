@@ -1,0 +1,10 @@
+{
+  "projectRoot": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework",
+  "batchFiles": [
+    {"path":"architecture/domain/business-context.md","language":"markdown","sizeLines":36,"fileCategory":"docs"},
+    {"path":"architecture/domain/category-taxonomy.md","language":"markdown","sizeLines":56,"fileCategory":"docs"},
+    {"path":"architecture/domain/source-event-catalog.md","language":"markdown","sizeLines":111,"fileCategory":"docs"},
+    {"path":"architecture/domain/source-to-target-mapping.md","language":"markdown","sizeLines":60,"fileCategory":"docs"}
+  ],
+  "batchImportData": {"architecture/domain/business-context.md":[],"architecture/domain/category-taxonomy.md":[],"architecture/domain/source-event-catalog.md":[],"architecture/domain/source-to-target-mapping.md":[]}
+}

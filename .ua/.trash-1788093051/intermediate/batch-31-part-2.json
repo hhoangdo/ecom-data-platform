@@ -1,0 +1,306 @@
+{
+  "nodes": [
+    {
+      "id": "file:scripts/qa/upload_bronze.sh",
+      "type": "file",
+      "name": "upload_bronze.sh",
+      "filePath": "scripts/qa/upload_bronze.sh",
+      "summary": "Implements the upload_bronze.sh script or module.",
+      "tags": [
+        "quality-assurance",
+        "automation",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/spark/capture_evidence.py",
+      "type": "file",
+      "name": "capture_evidence.py",
+      "filePath": "scripts/spark/capture_evidence.py",
+      "summary": "Implements the capture_evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/spark/export_executive_mart.py",
+      "type": "file",
+      "name": "export_executive_mart.py",
+      "filePath": "scripts/spark/export_executive_mart.py",
+      "summary": "Implements the export_executive_mart.py script or module.",
+      "tags": [
+        "spark",
+        "automation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/spark/export_executive_mart.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/spark/export_executive_mart.py",
+      "lineRange": [
+        15,
+        25
+      ],
+      "summary": "Implements main for the export_executive_mart.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/spark/job.py",
+      "type": "file",
+      "name": "job.py",
+      "filePath": "scripts/spark/job.py",
+      "summary": "Implements the job.py script or module.",
+      "tags": [
+        "spark",
+        "automation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/spark/run_batch.py",
+      "type": "file",
+      "name": "run_batch.py",
+      "filePath": "scripts/spark/run_batch.py",
+      "summary": "Implements the run_batch.py script or module.",
+      "tags": [
+        "spark",
+        "automation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/spark/run_batch.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/spark/run_batch.py",
+      "lineRange": [
+        17,
+        30
+      ],
+      "summary": "Implements main for the run_batch.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/spark/run_optimization_experiments.py",
+      "type": "file",
+      "name": "run_optimization_experiments.py",
+      "filePath": "scripts/spark/run_optimization_experiments.py",
+      "summary": "Implements the run_optimization_experiments.py script or module.",
+      "tags": [
+        "spark",
+        "automation",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/spark/run_optimization_experiments.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/spark/run_optimization_experiments.py",
+      "lineRange": [
+        23,
+        33
+      ],
+      "summary": "Implements main for the run_optimization_experiments.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:src/vina_bim_shop/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/vina_bim_shop/README.md",
+      "summary": "Documentation for the README.md package area.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/datahub_lineage/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/datahub_lineage/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/datahub_lineage/__init__.py:__getattr__",
+      "type": "function",
+      "name": "__getattr__",
+      "filePath": "src/vina_bim_shop/datahub_lineage/__init__.py",
+      "lineRange": [
+        12,
+        25
+      ],
+      "summary": "Implements __getattr__ for the __init__.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/flink/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/flink/evidence.py",
+      "type": "file",
+      "name": "evidence.py",
+      "filePath": "src/vina_bim_shop/flink/evidence.py",
+      "summary": "Implements the evidence.py script or module.",
+      "tags": [
+        "evidence",
+        "automation",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/evidence.py:capture_evidence",
+      "type": "function",
+      "name": "capture_evidence",
+      "filePath": "src/vina_bim_shop/flink/evidence.py",
+      "lineRange": [
+        28,
+        108
+      ],
+      "summary": "Implements capture_evidence for the evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/flink/evidence.py:_consume_topic_sample",
+      "type": "function",
+      "name": "_consume_topic_sample",
+      "filePath": "src/vina_bim_shop/flink/evidence.py",
+      "lineRange": [
+        111,
+        133
+      ],
+      "summary": "Implements _consume_topic_sample for the evidence.py workflow.",
+      "tags": [
+        "utility",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/generators/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "src/vina_bim_shop/generators/__init__.py",
+      "summary": "Implements the __init__.py script or module.",
+      "tags": [
+        "entry-point",
+        "package",
+        "python"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:scripts/spark/export_executive_mart.py",
+      "target": "function:scripts/spark/export_executive_mart.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/spark/run_batch.py",
+      "target": "function:scripts/spark/run_batch.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/spark/run_optimization_experiments.py",
+      "target": "function:scripts/spark/run_optimization_experiments.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/datahub_lineage/__init__.py",
+      "target": "function:src/vina_bim_shop/datahub_lineage/__init__.py:__getattr__",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/evidence.py",
+      "target": "function:src/vina_bim_shop/flink/evidence.py:capture_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:src/vina_bim_shop/flink/evidence.py",
+      "target": "function:src/vina_bim_shop/flink/evidence.py:_consume_topic_sample",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

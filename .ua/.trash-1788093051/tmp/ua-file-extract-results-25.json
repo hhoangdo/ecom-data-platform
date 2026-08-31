@@ -1,0 +1,126 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 3,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 3
+    }
+  },
+  "results": [
+    {
+      "path": "infra/pinot/schemas/pinot_realtime_commerce_metrics_1m.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 32,
+      "nonEmptyLines": 32,
+      "sections": [
+        {
+          "heading": "schemaName",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "dimensionFieldSpecs",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "metricFieldSpecs",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "dateTimeFieldSpecs",
+          "level": 1,
+          "line": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "infra/pinot/schemas/pinot_realtime_metric_corrections.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 37,
+      "nonEmptyLines": 37,
+      "sections": [
+        {
+          "heading": "schemaName",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "dimensionFieldSpecs",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "metricFieldSpecs",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "dateTimeFieldSpecs",
+          "level": 1,
+          "line": 34
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "infra/pinot/schemas/pinot_realtime_ops_alerts.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 32,
+      "nonEmptyLines": 32,
+      "sections": [
+        {
+          "heading": "schemaName",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "dimensionFieldSpecs",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "metricFieldSpecs",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "dateTimeFieldSpecs",
+          "level": 1,
+          "line": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    }
+  ]
+}

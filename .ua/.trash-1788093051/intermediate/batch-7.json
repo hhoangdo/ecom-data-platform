@@ -1,0 +1,10 @@
+{
+  "nodes": [
+    {"id":"service:infra/flink/Dockerfile","type":"service","name":"Dockerfile","filePath":"infra/flink/Dockerfile","summary":"Builds the Flink runtime image with Python data-processing libraries plus Kafka and S3 connectors. It installs the job submission utilities used to run Flink workloads in the project.","tags":["infrastructure","containerization","flink","stream-processing"],"complexity":"simple","languageNotes":"The image extends Flink 1.19 and adds connector JARs directly to Flink's user-library and plugin directories."},
+    {"id":"service:infra/flink/Dockerfile:flink","type":"service","name":"flink","filePath":"infra/flink/Dockerfile","summary":"Flink service image stage that provides the configured runtime for stream-processing jobs.","tags":["service","flink","containerization"],"complexity":"simple"}
+  ],
+  "edges": [
+    {"source":"service:infra/flink/Dockerfile","target":"file:infra/flink/bin/submit-jobs.sh","type":"deploys","direction":"forward","weight":0.7},
+    {"source":"service:infra/flink/Dockerfile","target":"file:infra/flink/bin/run-with-time-limit.sh","type":"deploys","direction":"forward","weight":0.7}
+  ]
+}

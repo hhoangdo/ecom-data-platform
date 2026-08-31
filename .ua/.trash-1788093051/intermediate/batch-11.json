@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    {"id":"service:infra/spark/Dockerfile","type":"service","name":"Dockerfile","filePath":"infra/spark/Dockerfile","summary":"Builds the Spark runtime image with Iceberg, Hadoop AWS, and AWS SDK JARs alongside Python data-quality and columnar-data libraries. It configures a project entrypoint for Spark workloads running in the workspace.","tags":["infrastructure","containerization","spark","lakehouse","iceberg"],"complexity":"simple","languageNotes":"The image pins Spark 4-compatible Iceberg and Hadoop AWS artifacts, then uses tini to launch a custom entrypoint."},
+    {"id":"service:infra/spark/Dockerfile:spark","type":"service","name":"spark","filePath":"infra/spark/Dockerfile","summary":"Spark service image stage configured for Iceberg-enabled lakehouse workloads and a custom container entrypoint.","tags":["service","spark","iceberg","containerization"],"complexity":"simple"}
+  ],
+  "edges": [
+    {"source":"service:infra/spark/Dockerfile","target":"file:infra/spark/bin/entrypoint.sh","type":"deploys","direction":"forward","weight":0.7}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "nodes": [
+    {"id":"config:infra/pinot/schemas/pinot_realtime_commerce_metrics_1m.json","type":"config","name":"pinot_realtime_commerce_metrics_1m.json","filePath":"infra/pinot/schemas/pinot_realtime_commerce_metrics_1m.json","summary":"Defines the Pinot schema for minute-level realtime commerce metrics, including dimensional attributes, KPIs, correction versioning, and event-time granularity.","tags":["configuration","pinot","schema-definition","realtime-analytics"],"complexity":"simple"},
+    {"id":"config:infra/pinot/schemas/pinot_realtime_metric_corrections.json","type":"config","name":"pinot_realtime_metric_corrections.json","filePath":"infra/pinot/schemas/pinot_realtime_metric_corrections.json","summary":"Defines the Pinot schema for append-only metric corrections, preserving correction metadata, metric snapshots, and event-time fields.","tags":["configuration","pinot","schema-definition","data-correction"],"complexity":"simple"},
+    {"id":"config:infra/pinot/schemas/pinot_realtime_ops_alerts.json","type":"config","name":"pinot_realtime_ops_alerts.json","filePath":"infra/pinot/schemas/pinot_realtime_ops_alerts.json","summary":"Defines the Pinot schema for realtime operational alerts with severity, dimensional context, metric payloads, and minute-granularity event time.","tags":["configuration","pinot","schema-definition","monitoring"],"complexity":"simple"}
+  ],
+  "edges": []
+}

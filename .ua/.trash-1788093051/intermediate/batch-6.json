@@ -1,0 +1,621 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/kafka/bootstrap.py",
+      "type": "file",
+      "name": "bootstrap.py",
+      "filePath": "src/vina_bim_shop/kafka/bootstrap.py",
+      "summary": "Applies Pinot schema and table assets and waits for them to become ready.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/bootstrap.py:bootstrap_topics",
+      "type": "function",
+      "name": "bootstrap_topics",
+      "filePath": "src/vina_bim_shop/kafka/bootstrap.py",
+      "lineRange": [
+        13,
+        43
+      ],
+      "summary": "Implements bootstrap topics behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/bronze_sink.py",
+      "type": "file",
+      "name": "bronze_sink.py",
+      "filePath": "src/vina_bim_shop/kafka/bronze_sink.py",
+      "summary": "Registers the Kafka Connect bronze sink from the project template configuration.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/bronze_sink.py:_resolve_template_path",
+      "type": "function",
+      "name": "_resolve_template_path",
+      "filePath": "src/vina_bim_shop/kafka/bronze_sink.py",
+      "lineRange": [
+        15,
+        29
+      ],
+      "summary": "Implements  resolve template path behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/bronze_sink.py:register_bronze_sink",
+      "type": "function",
+      "name": "register_bronze_sink",
+      "filePath": "src/vina_bim_shop/kafka/bronze_sink.py",
+      "lineRange": [
+        32,
+        70
+      ],
+      "summary": "Implements register bronze sink behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/cleanup.py",
+      "type": "file",
+      "name": "cleanup.py",
+      "filePath": "src/vina_bim_shop/kafka/cleanup.py",
+      "summary": "Cleans Kafka topics and related state used by smoke and cleanroom workflows.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/cleanup.py:cleanup_kafka",
+      "type": "function",
+      "name": "cleanup_kafka",
+      "filePath": "src/vina_bim_shop/kafka/cleanup.py",
+      "lineRange": [
+        15,
+        43
+      ],
+      "summary": "Implements cleanup kafka behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "type": "file",
+      "name": "consumer_smoke.py",
+      "filePath": "src/vina_bim_shop/kafka/consumer_smoke.py",
+      "summary": "Consumes and validates Kafka smoke-test messages against topic schemas.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/consumer_smoke.py:_schema_for",
+      "type": "function",
+      "name": "_schema_for",
+      "filePath": "src/vina_bim_shop/kafka/consumer_smoke.py",
+      "lineRange": [
+        17,
+        18
+      ],
+      "summary": "Implements  schema for behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/consumer_smoke.py:_consume_messages",
+      "type": "function",
+      "name": "_consume_messages",
+      "filePath": "src/vina_bim_shop/kafka/consumer_smoke.py",
+      "lineRange": [
+        21,
+        45
+      ],
+      "summary": "Implements  consume messages behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/consumer_smoke.py:run_consumer_smoke",
+      "type": "function",
+      "name": "run_consumer_smoke",
+      "filePath": "src/vina_bim_shop/kafka/consumer_smoke.py",
+      "lineRange": [
+        48,
+        87
+      ],
+      "summary": "Implements run consumer smoke behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/producer_smoke.py",
+      "type": "file",
+      "name": "producer_smoke.py",
+      "filePath": "src/vina_bim_shop/kafka/producer_smoke.py",
+      "summary": "Generates and publishes Kafka smoke-test events.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/producer_smoke.py:run_producer_smoke",
+      "type": "function",
+      "name": "run_producer_smoke",
+      "filePath": "src/vina_bim_shop/kafka/producer_smoke.py",
+      "lineRange": [
+        11,
+        53
+      ],
+      "summary": "Implements run producer smoke behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/schema_registry.py",
+      "type": "file",
+      "name": "schema_registry.py",
+      "filePath": "src/vina_bim_shop/kafka/schema_registry.py",
+      "summary": "Registers project Kafka schema subjects with Schema Registry.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/schema_registry.py:register_schema_subjects",
+      "type": "function",
+      "name": "register_schema_subjects",
+      "filePath": "src/vina_bim_shop/kafka/schema_registry.py",
+      "lineRange": [
+        23,
+        50
+      ],
+      "summary": "Implements register schema subjects behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/kafka/topics.py",
+      "type": "file",
+      "name": "topics.py",
+      "filePath": "src/vina_bim_shop/kafka/topics.py",
+      "summary": "Loads Kafka topic configuration and exposes source, derived, and combined topic names.",
+      "tags": [
+        "kafka",
+        "python",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/topics.py:load_topic_config",
+      "type": "function",
+      "name": "load_topic_config",
+      "filePath": "src/vina_bim_shop/kafka/topics.py",
+      "lineRange": [
+        12,
+        17
+      ],
+      "summary": "Implements load topic config behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/topics.py:source_topic_names",
+      "type": "function",
+      "name": "source_topic_names",
+      "filePath": "src/vina_bim_shop/kafka/topics.py",
+      "lineRange": [
+        20,
+        21
+      ],
+      "summary": "Implements source topic names behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/topics.py:derived_placeholder_topic_names",
+      "type": "function",
+      "name": "derived_placeholder_topic_names",
+      "filePath": "src/vina_bim_shop/kafka/topics.py",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "Implements derived placeholder topic names behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/kafka/topics.py:all_topic_names",
+      "type": "function",
+      "name": "all_topic_names",
+      "filePath": "src/vina_bim_shop/kafka/topics.py",
+      "lineRange": [
+        28,
+        29
+      ],
+      "summary": "Implements all topic names behavior for the kafka workflow.",
+      "tags": [
+        "kafka",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "type": "file",
+      "name": "kafka_bootstrap.py",
+      "filePath": "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "summary": "Orchestrates Kafka topic, schema, and bronze-sink bootstrap steps for a run.",
+      "tags": [
+        "orchestration",
+        "python",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/kafka_bootstrap.py:run_kafka_topic_bootstrap",
+      "type": "function",
+      "name": "run_kafka_topic_bootstrap",
+      "filePath": "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "lineRange": [
+        27,
+        74
+      ],
+      "summary": "Implements run kafka topic bootstrap behavior for the orchestration workflow.",
+      "tags": [
+        "orchestration",
+        "function",
+        "exported"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/kafka/bootstrap.py",
+      "target": "function:src/vina_bim_shop/kafka/bootstrap.py:bootstrap_topics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/bootstrap.py",
+      "target": "function:src/vina_bim_shop/kafka/bootstrap.py:bootstrap_topics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/bootstrap.py",
+      "target": "file:src/vina_bim_shop/kafka/topics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/bronze_sink.py",
+      "target": "function:src/vina_bim_shop/kafka/bronze_sink.py:_resolve_template_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/bronze_sink.py",
+      "target": "function:src/vina_bim_shop/kafka/bronze_sink.py:_resolve_template_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/bronze_sink.py",
+      "target": "function:src/vina_bim_shop/kafka/bronze_sink.py:register_bronze_sink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/bronze_sink.py",
+      "target": "function:src/vina_bim_shop/kafka/bronze_sink.py:register_bronze_sink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/cleanup.py",
+      "target": "function:src/vina_bim_shop/kafka/cleanup.py:cleanup_kafka",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/cleanup.py",
+      "target": "function:src/vina_bim_shop/kafka/cleanup.py:cleanup_kafka",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/cleanup.py",
+      "target": "file:src/vina_bim_shop/kafka/bootstrap.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/cleanup.py",
+      "target": "file:src/vina_bim_shop/kafka/topics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/consumer_smoke.py:_schema_for",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/consumer_smoke.py:_schema_for",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/consumer_smoke.py:_consume_messages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/consumer_smoke.py:_consume_messages",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/consumer_smoke.py:run_consumer_smoke",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/consumer_smoke.py:run_consumer_smoke",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/consumer_smoke.py",
+      "target": "file:src/vina_bim_shop/kafka/topics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/producer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/producer_smoke.py:run_producer_smoke",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/producer_smoke.py",
+      "target": "function:src/vina_bim_shop/kafka/producer_smoke.py:run_producer_smoke",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/producer_smoke.py",
+      "target": "file:src/vina_bim_shop/generators/runner.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/producer_smoke.py",
+      "target": "file:src/vina_bim_shop/kafka/topics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/schema_registry.py",
+      "target": "function:src/vina_bim_shop/kafka/schema_registry.py:register_schema_subjects",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/schema_registry.py",
+      "target": "function:src/vina_bim_shop/kafka/schema_registry.py:register_schema_subjects",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:load_topic_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:load_topic_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:source_topic_names",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:source_topic_names",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:derived_placeholder_topic_names",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:derived_placeholder_topic_names",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:all_topic_names",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/kafka/topics.py",
+      "target": "function:src/vina_bim_shop/kafka/topics.py:all_topic_names",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "function:src/vina_bim_shop/orchestration/kafka_bootstrap.py:run_kafka_topic_bootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "function:src/vina_bim_shop/orchestration/kafka_bootstrap.py:run_kafka_topic_bootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "file:src/vina_bim_shop/kafka/bootstrap.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "file:src/vina_bim_shop/kafka/bronze_sink.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "file:src/vina_bim_shop/kafka/schema_registry.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+      "target": "file:src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "batchIndex": 2,
+  "files": [
+    {
+      "path": "src/vina_bim_shop/lakehouse/bronze.py",
+      "language": "python",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "language": "python",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "language": "python",
+      "sizeLines": 234,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/maintenance.py",
+      "language": "python",
+      "sizeLines": 217,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "language": "python",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "language": "python",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/lakehouse/spark/window.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "language": "python",
+      "sizeLines": 193,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "language": "python",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/local_evidence.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "language": "python",
+      "sizeLines": 554,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/paths.py",
+      "language": "python",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/quality_helpers.py",
+      "language": "python",
+      "sizeLines": 81,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/reconciliation.py",
+      "language": "python",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "language": "python",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/pinot/query_examples.py",
+      "language": "python",
+      "sizeLines": 214,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/quality/policies.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/vina_bim_shop/quality/reports.py",
+      "language": "python",
+      "sizeLines": 184,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/vina_bim_shop/lakehouse/bronze.py": [],
+    "src/vina_bim_shop/lakehouse/spark/evidence.py": [],
+    "src/vina_bim_shop/lakehouse/spark/executive_mart.py": [
+      "src/vina_bim_shop/lakehouse/spark/constants.py",
+      "src/vina_bim_shop/lakehouse/spark/trino.py"
+    ],
+    "src/vina_bim_shop/lakehouse/spark/maintenance.py": [
+      "src/vina_bim_shop/lakehouse/spark/trino.py"
+    ],
+    "src/vina_bim_shop/lakehouse/spark/parity.py": [
+      "src/vina_bim_shop/lakehouse/spark/constants.py",
+      "src/vina_bim_shop/lakehouse/spark/trino.py"
+    ],
+    "src/vina_bim_shop/lakehouse/spark/runner.py": [
+      "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "src/vina_bim_shop/lakehouse/spark/executive_mart.py",
+      "src/vina_bim_shop/lakehouse/spark/parity.py",
+      "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "src/vina_bim_shop/lakehouse/spark/window.py"
+    ],
+    "src/vina_bim_shop/lakehouse/spark/trino.py": [],
+    "src/vina_bim_shop/lakehouse/spark/window.py": [],
+    "src/vina_bim_shop/orchestration/datahub_ingestion.py": [
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/orchestration/quality_helpers.py",
+      "src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "src/vina_bim_shop/quality/reports.py"
+    ],
+    "src/vina_bim_shop/orchestration/hourly_batch.py": [
+      "src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "src/vina_bim_shop/lakehouse/spark/window.py",
+      "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/orchestration/quality_helpers.py",
+      "src/vina_bim_shop/orchestration/subprocess_helpers.py"
+    ],
+    "src/vina_bim_shop/orchestration/local_evidence.py": [
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/orchestration/subprocess_helpers.py"
+    ],
+    "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": [
+      "src/vina_bim_shop/lakehouse/bronze.py",
+      "src/vina_bim_shop/lakehouse/spark/constants.py",
+      "src/vina_bim_shop/lakehouse/spark/runner.py",
+      "src/vina_bim_shop/lakehouse/spark/sql.py",
+      "src/vina_bim_shop/lakehouse/spark/trino.py",
+      "src/vina_bim_shop/lakehouse/spark/window.py",
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/orchestration/quality_helpers.py",
+      "src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "src/vina_bim_shop/quality/reports.py"
+    ],
+    "src/vina_bim_shop/orchestration/paths.py": [],
+    "src/vina_bim_shop/orchestration/pinot_bootstrap.py": [
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/pinot/bootstrap.py",
+      "src/vina_bim_shop/pinot/query_examples.py"
+    ],
+    "src/vina_bim_shop/orchestration/quality_helpers.py": [
+      "src/vina_bim_shop/lakehouse/spark/window.py",
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/quality/policies.py",
+      "src/vina_bim_shop/quality/reports.py"
+    ],
+    "src/vina_bim_shop/orchestration/reconciliation.py": [
+      "src/vina_bim_shop/lakehouse/spark/window.py",
+      "src/vina_bim_shop/orchestration/paths.py",
+      "src/vina_bim_shop/orchestration/quality_helpers.py",
+      "src/vina_bim_shop/pinot/query_examples.py",
+      "src/vina_bim_shop/quality/policies.py"
+    ],
+    "src/vina_bim_shop/orchestration/subprocess_helpers.py": [
+      "src/vina_bim_shop/orchestration/paths.py"
+    ],
+    "src/vina_bim_shop/pinot/query_examples.py": [
+      "src/vina_bim_shop/lakehouse/spark/trino.py"
+    ],
+    "src/vina_bim_shop/quality/policies.py": [],
+    "src/vina_bim_shop/quality/reports.py": []
+  },
+  "neighborMap": {
+    "src/vina_bim_shop/lakehouse/spark/executive_mart.py": [
+      {
+        "path": "src/vina_bim_shop/lakehouse/spark/constants.py",
+        "batchIndex": 3,
+        "symbols": []
+      }
+    ],
+    "src/vina_bim_shop/lakehouse/spark/parity.py": [
+      {
+        "path": "src/vina_bim_shop/lakehouse/spark/constants.py",
+        "batchIndex": 3,
+        "symbols": []
+      }
+    ],
+    "src/vina_bim_shop/lakehouse/spark/window.py": [
+      {
+        "path": "src/vina_bim_shop/lakehouse/spark/__init__.py",
+        "batchIndex": 3,
+        "symbols": []
+      },
+      {
+        "path": "src/vina_bim_shop/lakehouse/spark/job.py",
+        "batchIndex": 3,
+        "symbols": [
+          "parse_args",
+          "build_spark_session",
+          "_window_dates",
+          "_table_location",
+          "_path_exists",
+          "_existing_paths",
+          "_batch_paths",
+          "_event_paths",
+          "_read_required_parquet",
+          "_read_required_json",
+          "_read_optional_dead_letter_events",
+          "_empty_bad_snapshots",
+          "_resolve_bad_snapshots_file",
+          "_read_optional_bad_snapshots",
+          "_create_raw_views",
+          "_dedupe_latest",
+          "_json_string",
+          "_json_double",
+          "_json_int",
+          "_build_silver_tables_for_window",
+          "_partition_clause",
+          "_create_namespace",
+          "_create_table_if_missing",
+          "_merge_into_table",
+          "_persist_silver_tables_for_window",
+          "_replace_gold_table",
+          "_restore_spark_configuration",
+          "_compaction_evidence_bucket_rows",
+          "_gold_data_file_partition_counts",
+          "_replace_gold_table_for_compaction_evidence",
+          "_register_persisted_tables",
+          "_persist_gold_query_group",
+          "_persist_gold_tables",
+          "_capture_table_row_counts",
+          "_write_job_manifest",
+          "_write_compaction_layout_manifest",
+          "run_job",
+          "main"
+        ]
+      }
+    ],
+    "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py": [
+      {
+        "path": "src/vina_bim_shop/lakehouse/spark/constants.py",
+        "batchIndex": 3,
+        "symbols": []
+      },
+      {
+        "path": "src/vina_bim_shop/lakehouse/spark/sql.py",
+        "batchIndex": 3,
+        "symbols": [
+          "category_cost_rate_sql",
+          "_legacy_ordered_gold_queries",
+          "ordered_core_gold_queries",
+          "ordered_feature_queries",
+          "ordered_gold_queries"
+        ]
+      }
+    ],
+    "src/vina_bim_shop/orchestration/paths.py": [
+      {
+        "path": "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+        "batchIndex": 6,
+        "symbols": [
+          "run_kafka_topic_bootstrap"
+        ]
+      }
+    ],
+    "src/vina_bim_shop/orchestration/pinot_bootstrap.py": [
+      {
+        "path": "src/vina_bim_shop/pinot/bootstrap.py",
+        "batchIndex": 4,
+        "symbols": [
+          "_request_factory",
+          "_load_json_assets",
+          "_table_listing",
+          "_schema_listing",
+          "_wait_for_table_status",
+          "apply_assets"
+        ]
+      }
+    ],
+    "src/vina_bim_shop/orchestration/subprocess_helpers.py": [
+      {
+        "path": "src/vina_bim_shop/orchestration/kafka_bootstrap.py",
+        "batchIndex": 6,
+        "symbols": [
+          "run_kafka_topic_bootstrap"
+        ]
+      }
+    ],
+    "src/vina_bim_shop/pinot/query_examples.py": [
+      {
+        "path": "src/vina_bim_shop/pinot/refresh_evidence.py",
+        "batchIndex": 4,
+        "symbols": [
+          "_payload_is_healthy",
+          "_require_http_json",
+          "refresh_evidence"
+        ]
+      }
+    ]
+  }
+}

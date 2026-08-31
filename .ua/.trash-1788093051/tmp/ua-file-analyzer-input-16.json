@@ -1,0 +1,23 @@
+{
+  "projectRoot": "C:/Users/hhoangdo/Documents/Personal Projects/FSDS/coursework",
+  "batchFiles": [
+    {"path":"deliverables/01_data_generator.md","language":"markdown","sizeLines":247,"fileCategory":"docs"},
+    {"path":"deliverables/02_schema_design.md","language":"markdown","sizeLines":298,"fileCategory":"docs"},
+    {"path":"deliverables/03_data_generator_improvement.md","language":"markdown","sizeLines":9,"fileCategory":"docs"},
+    {"path":"deliverables/03_kafka_ingestion.md","language":"markdown","sizeLines":192,"fileCategory":"docs"},
+    {"path":"deliverables/04.1_ml_design.md","language":"markdown","sizeLines":9,"fileCategory":"docs"},
+    {"path":"deliverables/04.2_llm_design.md","language":"markdown","sizeLines":9,"fileCategory":"docs"},
+    {"path":"deliverables/04_lakehouse.md","language":"markdown","sizeLines":223,"fileCategory":"docs"},
+    {"path":"deliverables/05_spark_batch.md","language":"markdown","sizeLines":236,"fileCategory":"docs"},
+    {"path":"deliverables/06_flink_streaming.md","language":"markdown","sizeLines":262,"fileCategory":"docs"},
+    {"path":"deliverables/07_pinot_serving.md","language":"markdown","sizeLines":172,"fileCategory":"docs"},
+    {"path":"deliverables/08_airflow_gx_orchestration.md","language":"markdown","sizeLines":345,"fileCategory":"docs"},
+    {"path":"deliverables/09_datahub_governance.md","language":"markdown","sizeLines":183,"fileCategory":"docs"},
+    {"path":"deliverables/10_duckdb_dbt_local_analytics.md","language":"markdown","sizeLines":158,"fileCategory":"docs"},
+    {"path":"deliverables/11_solving_data_challenges.md","language":"markdown","sizeLines":192,"fileCategory":"docs"},
+    {"path":"deliverables/12_novel_ideas.md","language":"markdown","sizeLines":74,"fileCategory":"docs"},
+    {"path":"deliverables/13_mini_coursework_rubric_evidence.md","language":"markdown","sizeLines":53,"fileCategory":"docs"},
+    {"path":"deliverables/README.md","language":"markdown","sizeLines":34,"fileCategory":"docs"}
+  ],
+  "batchImportData": {"deliverables/01_data_generator.md":[],"deliverables/02_schema_design.md":[],"deliverables/03_data_generator_improvement.md":[],"deliverables/03_kafka_ingestion.md":[],"deliverables/04.1_ml_design.md":[],"deliverables/04.2_llm_design.md":[],"deliverables/04_lakehouse.md":[],"deliverables/05_spark_batch.md":[],"deliverables/06_flink_streaming.md":[],"deliverables/07_pinot_serving.md":[],"deliverables/08_airflow_gx_orchestration.md":[],"deliverables/09_datahub_governance.md":[],"deliverables/10_duckdb_dbt_local_analytics.md":[],"deliverables/11_solving_data_challenges.md":[],"deliverables/12_novel_ideas.md":[],"deliverables/13_mini_coursework_rubric_evidence.md":[],"deliverables/README.md":[]}
+}

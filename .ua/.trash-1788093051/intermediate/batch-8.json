@@ -1,0 +1,8 @@
+{
+  "nodes": [
+    {"id":"service:infra/kafka/connect/Dockerfile","type":"service","name":"Dockerfile","filePath":"infra/kafka/connect/Dockerfile","summary":"Builds a Kafka Connect image that installs the Confluent S3 sink connector into the runtime plugin directory. A separate builder stage isolates plugin acquisition from the final image.","tags":["infrastructure","containerization","kafka-connect","s3"],"complexity":"simple","languageNotes":"This is a multi-stage Docker build that copies the downloaded Confluent Hub plugin into the production Kafka Connect image."},
+    {"id":"service:infra/kafka/connect/Dockerfile:plugin-builder","type":"service","name":"plugin-builder","filePath":"infra/kafka/connect/Dockerfile","summary":"Build stage that downloads the Confluent S3 connector into a reusable plugin directory.","tags":["service","build-stage","kafka-connect","plugin"],"complexity":"simple"},
+    {"id":"service:infra/kafka/connect/Dockerfile:cp-kafka-connect","type":"service","name":"cp-kafka-connect","filePath":"infra/kafka/connect/Dockerfile","summary":"Final Kafka Connect service stage containing the S3 connector plugin and trusted certificate setup.","tags":["service","kafka-connect","containerization","s3"],"complexity":"simple"}
+  ],
+  "edges": []
+}

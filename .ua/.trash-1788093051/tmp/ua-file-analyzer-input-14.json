@@ -1,0 +1,13 @@
+{
+  "projectRoot": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework",
+  "batchFiles": [
+    {"path":"compose/batch.spark.yml","language":"yaml","sizeLines":83,"fileCategory":"config"},
+    {"path":"compose/governance.datahub.yml","language":"yaml","sizeLines":166,"fileCategory":"config"},
+    {"path":"compose/ingestion.kafka.yml","language":"yaml","sizeLines":104,"fileCategory":"config"},
+    {"path":"compose/lakehouse.yml","language":"yaml","sizeLines":161,"fileCategory":"config"},
+    {"path":"compose/orchestration.airflow.yml","language":"yaml","sizeLines":147,"fileCategory":"config"},
+    {"path":"compose/serving.pinot.yml","language":"yaml","sizeLines":86,"fileCategory":"config"},
+    {"path":"compose/streaming.flink.yml","language":"yaml","sizeLines":105,"fileCategory":"config"}
+  ],
+  "batchImportData": {"compose/batch.spark.yml":[],"compose/governance.datahub.yml":[],"compose/ingestion.kafka.yml":[],"compose/lakehouse.yml":[],"compose/orchestration.airflow.yml":[],"compose/serving.pinot.yml":[],"compose/streaming.flink.yml":[]}
+}

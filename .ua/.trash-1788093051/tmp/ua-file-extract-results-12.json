@@ -1,0 +1,797 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 5,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 5
+    }
+  },
+  "results": [
+    {
+      "path": ".env.example",
+      "language": "config",
+      "fileCategory": "config",
+      "totalLines": 52,
+      "nonEmptyLines": 52,
+      "definitions": [
+        {
+          "name": "VBS_ENV",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "name": "VBS_DUCKDB_PATH",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 2,
+          "endLine": 2
+        },
+        {
+          "name": "VBS_RANDOM_SEED",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 3,
+          "endLine": 3
+        },
+        {
+          "name": "VBS_TAXONOMY_PATH",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 4,
+          "endLine": 4
+        },
+        {
+          "name": "VBS_KAFKA_BOOTSTRAP_SERVERS",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 5,
+          "endLine": 5
+        },
+        {
+          "name": "VBS_SCHEMA_REGISTRY_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 6,
+          "endLine": 6
+        },
+        {
+          "name": "VBS_KAFKA_CONNECT_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 7,
+          "endLine": 7
+        },
+        {
+          "name": "VBS_KAFKA_UI_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 8,
+          "endLine": 8
+        },
+        {
+          "name": "VBS_MINIO_ENDPOINT",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 9,
+          "endLine": 9
+        },
+        {
+          "name": "VBS_MINIO_INTERNAL_ENDPOINT",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 10,
+          "endLine": 10
+        },
+        {
+          "name": "VBS_MINIO_CONSOLE_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 11,
+          "endLine": 11
+        },
+        {
+          "name": "VBS_MINIO_ROOT_USER",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 12,
+          "endLine": 12
+        },
+        {
+          "name": "VBS_MINIO_ROOT_PASSWORD",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 13,
+          "endLine": 13
+        },
+        {
+          "name": "VBS_MINIO_REGION",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 14,
+          "endLine": 14
+        },
+        {
+          "name": "VBS_LAKEHOUSE_POSTGRES_HOST",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 15,
+          "endLine": 15
+        },
+        {
+          "name": "VBS_LAKEHOUSE_POSTGRES_PORT",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 16,
+          "endLine": 16
+        },
+        {
+          "name": "VBS_LAKEHOUSE_POSTGRES_DB",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 17,
+          "endLine": 17
+        },
+        {
+          "name": "VBS_LAKEHOUSE_POSTGRES_USER",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 18,
+          "endLine": 18
+        },
+        {
+          "name": "VBS_LAKEHOUSE_POSTGRES_PASSWORD",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 19,
+          "endLine": 19
+        },
+        {
+          "name": "VBS_HIVE_METASTORE_DB",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 20,
+          "endLine": 20
+        },
+        {
+          "name": "VBS_HIVE_METASTORE_USER",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 21,
+          "endLine": 21
+        },
+        {
+          "name": "VBS_HIVE_METASTORE_PASSWORD",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 22,
+          "endLine": 22
+        },
+        {
+          "name": "VBS_HIVE_METASTORE_URI",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 23,
+          "endLine": 23
+        },
+        {
+          "name": "VBS_HIVE_METASTORE_INTERNAL_URI",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 24,
+          "endLine": 24
+        },
+        {
+          "name": "VBS_TRINO_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 25,
+          "endLine": 25
+        },
+        {
+          "name": "VBS_TRINO_USER",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 26,
+          "endLine": 26
+        },
+        {
+          "name": "VBS_TRINO_ICEBERG_CATALOG",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 27,
+          "endLine": 27
+        },
+        {
+          "name": "VBS_PINOT_CONTROLLER_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 28,
+          "endLine": 28
+        },
+        {
+          "name": "VBS_PINOT_CONTROLLER_INTERNAL_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 29,
+          "endLine": 29
+        },
+        {
+          "name": "VBS_PINOT_BROKER_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 30,
+          "endLine": 30
+        },
+        {
+          "name": "VBS_PINOT_BROKER_INTERNAL_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 31,
+          "endLine": 31
+        },
+        {
+          "name": "VBS_SPARK_MASTER_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 32,
+          "endLine": 32
+        },
+        {
+          "name": "VBS_SPARK_MASTER_UI_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 33,
+          "endLine": 33
+        },
+        {
+          "name": "VBS_SPARK_HISTORY_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 34,
+          "endLine": 34
+        },
+        {
+          "name": "VBS_FLINK_UI_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 35,
+          "endLine": 35
+        },
+        {
+          "name": "VBS_FLINK_JOBMANAGER_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 36,
+          "endLine": 36
+        },
+        {
+          "name": "VBS_FLINK_JOBMANAGER_INTERNAL_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 37,
+          "endLine": 37
+        },
+        {
+          "name": "VBS_FLINK_MAX_RUNTIME_MINUTES",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 38,
+          "endLine": 38
+        },
+        {
+          "name": "VBS_FLINK_MAX_RUNTIME_GRACE_SECONDS",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 39,
+          "endLine": 39
+        },
+        {
+          "name": "VBS_FLINK_DISABLE_AUTO_STOP",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 40,
+          "endLine": 40
+        },
+        {
+          "name": "VBS_AIRFLOW_UI_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 41,
+          "endLine": 41
+        },
+        {
+          "name": "VBS_GX_DOCS_URL",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 42,
+          "endLine": 42
+        },
+        {
+          "name": "VBS_AIRFLOW_ADMIN_USERNAME",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 43,
+          "endLine": 43
+        },
+        {
+          "name": "VBS_AIRFLOW_ADMIN_PASSWORD",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 44,
+          "endLine": 44
+        },
+        {
+          "name": "VBS_RAW_ROOT",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 45,
+          "endLine": 45
+        },
+        {
+          "name": "VBS_BRONZE_BATCH_PREFIX",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 46,
+          "endLine": 46
+        },
+        {
+          "name": "VBS_BRONZE_EVENTS_PREFIX",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 47,
+          "endLine": 47
+        },
+        {
+          "name": "VBS_BRONZE_BUCKET",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 48,
+          "endLine": 48
+        },
+        {
+          "name": "VBS_SILVER_BUCKET",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 49,
+          "endLine": 49
+        },
+        {
+          "name": "VBS_GOLD_BUCKET",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 50,
+          "endLine": 50
+        },
+        {
+          "name": "VBS_CHECKPOINTS_BUCKET",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 51,
+          "endLine": 51
+        },
+        {
+          "name": "VBS_EVIDENCE_BUCKET",
+          "kind": "variable",
+          "fields": [],
+          "startLine": 52,
+          "endLine": 52
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 52
+      }
+    },
+    {
+      "path": "Makefile",
+      "language": "makefile",
+      "fileCategory": "infra",
+      "totalLines": 208,
+      "nonEmptyLines": 175,
+      "steps": [
+        {
+          "name": "help",
+          "startLine": 85,
+          "endLine": 100
+        },
+        {
+          "name": "install",
+          "startLine": 107,
+          "endLine": 108
+        },
+        {
+          "name": "generate",
+          "startLine": 112,
+          "endLine": 114
+        },
+        {
+          "name": "build-dbt",
+          "startLine": 117,
+          "endLine": 118
+        },
+        {
+          "name": "test",
+          "startLine": 121,
+          "endLine": 122
+        },
+        {
+          "name": "finalize",
+          "startLine": 125,
+          "endLine": 126
+        },
+        {
+          "name": "reset",
+          "startLine": 134,
+          "endLine": 137
+        },
+        {
+          "name": "up-ingestion",
+          "startLine": 146,
+          "endLine": 147
+        },
+        {
+          "name": "down-ingestion",
+          "startLine": 150,
+          "endLine": 151
+        },
+        {
+          "name": "up-lakehouse",
+          "startLine": 154,
+          "endLine": 155
+        },
+        {
+          "name": "down-lakehouse",
+          "startLine": 158,
+          "endLine": 159
+        },
+        {
+          "name": "up-batch",
+          "startLine": 162,
+          "endLine": 163
+        },
+        {
+          "name": "down-batch",
+          "startLine": 166,
+          "endLine": 167
+        },
+        {
+          "name": "up-streaming",
+          "startLine": 170,
+          "endLine": 171
+        },
+        {
+          "name": "down-streaming",
+          "startLine": 174,
+          "endLine": 175
+        },
+        {
+          "name": "up-serving",
+          "startLine": 178,
+          "endLine": 179
+        },
+        {
+          "name": "down-serving",
+          "startLine": 182,
+          "endLine": 183
+        },
+        {
+          "name": "up-orchestration",
+          "startLine": 186,
+          "endLine": 187
+        },
+        {
+          "name": "down-orchestration",
+          "startLine": 190,
+          "endLine": 191
+        },
+        {
+          "name": "up-governance",
+          "startLine": 194,
+          "endLine": 195
+        },
+        {
+          "name": "down-governance",
+          "startLine": 198,
+          "endLine": 199
+        },
+        {
+          "name": "up-all",
+          "startLine": 203,
+          "endLine": 204
+        },
+        {
+          "name": "down-all",
+          "startLine": 207,
+          "endLine": 209
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "stepCount": 23
+      }
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 478,
+      "nonEmptyLines": 327,
+      "sections": [
+        {
+          "heading": "Vina Bim Shop Data Platform",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Table of Contents",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "System Architecture",
+          "level": 2,
+          "line": 27
+        },
+        {
+          "heading": "Tech Stack",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "Introduction",
+          "level": 2,
+          "line": 59
+        },
+        {
+          "heading": "Problem Definition",
+          "level": 2,
+          "line": 72
+        },
+        {
+          "heading": "Project Status",
+          "level": 2,
+          "line": 96
+        },
+        {
+          "heading": "Platform Implementation Overview",
+          "level": 2,
+          "line": 123
+        },
+        {
+          "heading": "Data Generation",
+          "level": 3,
+          "line": 139
+        },
+        {
+          "heading": "Ingestion",
+          "level": 3,
+          "line": 151
+        },
+        {
+          "heading": "Lakehouse",
+          "level": 3,
+          "line": 162
+        },
+        {
+          "heading": "Batch",
+          "level": 3,
+          "line": 173
+        },
+        {
+          "heading": "Streaming",
+          "level": 3,
+          "line": 186
+        },
+        {
+          "heading": "Serving",
+          "level": 3,
+          "line": 197
+        },
+        {
+          "heading": "Local Analytics",
+          "level": 3,
+          "line": 215
+        },
+        {
+          "heading": "Orchestration",
+          "level": 3,
+          "line": 227
+        },
+        {
+          "heading": "Governance",
+          "level": 3,
+          "line": 238
+        },
+        {
+          "heading": "Repository Structure",
+          "level": 2,
+          "line": 252
+        },
+        {
+          "heading": "Prerequisites",
+          "level": 2,
+          "line": 278
+        },
+        {
+          "heading": "Installation & Setup",
+          "level": 2,
+          "line": 293
+        },
+        {
+          "heading": "Common Commands",
+          "level": 3,
+          "line": 297
+        },
+        {
+          "heading": "1. Install Python dependencies",
+          "level": 3,
+          "line": 313
+        },
+        {
+          "heading": "2. Run the fast local compatibility path",
+          "level": 3,
+          "line": 319
+        },
+        {
+          "heading": "3. Start the distributed platform in stages",
+          "level": 3,
+          "line": 329
+        },
+        {
+          "heading": "4. Generate final Section 01/02 package evidence",
+          "level": 3,
+          "line": 345
+        },
+        {
+          "heading": "5. Export the local executive mart",
+          "level": 3,
+          "line": 351
+        },
+        {
+          "heading": "6. Reset local runtime state",
+          "level": 3,
+          "line": 359
+        },
+        {
+          "heading": "Configuration",
+          "level": 2,
+          "line": 379
+        },
+        {
+          "heading": "Known Limits",
+          "level": 2,
+          "line": 397
+        },
+        {
+          "heading": "Runtime and startup",
+          "level": 3,
+          "line": 401
+        },
+        {
+          "heading": "Data and serving truth",
+          "level": 3,
+          "line": 406
+        },
+        {
+          "heading": "Operations and recovery",
+          "level": 3,
+          "line": 412
+        },
+        {
+          "heading": "Scope boundaries",
+          "level": 3,
+          "line": 418
+        },
+        {
+          "heading": "Data",
+          "level": 2,
+          "line": 424
+        },
+        {
+          "heading": "Rubric Evidence and Navigation",
+          "level": 2,
+          "line": 452
+        },
+        {
+          "heading": "Public API documentation",
+          "level": 3,
+          "line": 466
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 36
+      }
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "fileCategory": "infra",
+      "totalLines": 25,
+      "nonEmptyLines": 23,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "include",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "volumes",
+          "level": 1,
+          "line": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "fileCategory": "config",
+      "totalLines": 32,
+      "nonEmptyLines": 28,
+      "sections": [
+        {
+          "heading": "project",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "dependency-groups",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "build-system",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "tool.hatch.build.targets.wheel",
+          "level": 5,
+          "line": 28
+        },
+        {
+          "heading": "tool.pytest.ini_options",
+          "level": 3,
+          "line": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "projectRoot": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework",
+  "batchFiles": [
+    {"path":".env.example","language":"config","sizeLines":52,"fileCategory":"config"},
+    {"path":"Makefile","language":"makefile","sizeLines":208,"fileCategory":"infra"},
+    {"path":"README.md","language":"markdown","sizeLines":478,"fileCategory":"docs"},
+    {"path":"docker-compose.yml","language":"yaml","sizeLines":25,"fileCategory":"infra"},
+    {"path":"pyproject.toml","language":"toml","sizeLines":32,"fileCategory":"config"}
+  ],
+  "batchImportData": {".env.example":[],"Makefile":[],"README.md":[],"docker-compose.yml":[],"pyproject.toml":[]}
+}

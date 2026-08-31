@@ -1,0 +1,5 @@
+{
+  "projectRoot": "C:/Users/hhoangdo/Documents/Personal Projects/FSDS/coursework",
+  "batchFiles": [{"path":"infra/spark/Dockerfile","language":"dockerfile","sizeLines":41,"fileCategory":"infra"}],
+  "batchImportData": {"infra/spark/Dockerfile": []}
+}

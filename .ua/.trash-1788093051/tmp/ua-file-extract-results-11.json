@@ -1,0 +1,124 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 1,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 1,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 1
+    }
+  },
+  "results": [
+    {
+      "path": "infra/spark/Dockerfile",
+      "language": "dockerfile",
+      "fileCategory": "infra",
+      "totalLines": 41,
+      "nonEmptyLines": 30,
+      "services": [
+        {
+          "name": "spark",
+          "image": "apache/spark:4.0.0",
+          "ports": [],
+          "startLine": 1,
+          "endLine": 42
+        }
+      ],
+      "steps": [
+        {
+          "name": "FROM apache/spark:4.0.0",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "name": "ARG ICEBERG_VERSION=1.10.1",
+          "startLine": 3,
+          "endLine": 3
+        },
+        {
+          "name": "ARG HADOOP_AWS_VERSION=3.4.1",
+          "startLine": 4,
+          "endLine": 4
+        },
+        {
+          "name": "ARG AWS_BUNDLE_VERSION=2.24.6",
+          "startLine": 5,
+          "endLine": 5
+        },
+        {
+          "name": "USER root",
+          "startLine": 7,
+          "endLine": 7
+        },
+        {
+          "name": "ENV SPARK_HOME=/opt/spark",
+          "startLine": 9,
+          "endLine": 9
+        },
+        {
+          "name": "ENV JAVA_HOME=/opt/java/openjdk",
+          "startLine": 10,
+          "endLine": 10
+        },
+        {
+          "name": "ENV PATH=/opt/spark/bin:/opt/spark/sbin:/opt/java/openjdk/bin:${",
+          "startLine": 11,
+          "endLine": 11
+        },
+        {
+          "name": "RUN curl -fsSL \\",
+          "startLine": 13,
+          "endLine": 13
+        },
+        {
+          "name": "RUN python3 -m pip install --no-cache-dir \\",
+          "startLine": 23,
+          "endLine": 23
+        },
+        {
+          "name": "RUN mkdir -p /opt/vina /workspace \\",
+          "startLine": 29,
+          "endLine": 29
+        },
+        {
+          "name": "COPY infra/spark/bin/entrypoint.sh /opt/vina/entrypoint.sh",
+          "startLine": 33,
+          "endLine": 33
+        },
+        {
+          "name": "RUN chmod +x /opt/vina/entrypoint.sh",
+          "startLine": 35,
+          "endLine": 35
+        },
+        {
+          "name": "USER spark",
+          "startLine": 37,
+          "endLine": 37
+        },
+        {
+          "name": "WORKDIR /workspace",
+          "startLine": 39,
+          "endLine": 39
+        },
+        {
+          "name": "ENTRYPOINT [\"/usr/bin/tini\", \"--\", \"/opt/vina/entrypoint.sh\"]",
+          "startLine": 41,
+          "endLine": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "serviceCount": 1,
+        "stepCount": 16
+      }
+    }
+  ]
+}

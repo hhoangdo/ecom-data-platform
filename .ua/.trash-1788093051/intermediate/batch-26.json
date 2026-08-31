@@ -1,0 +1,8 @@
+{
+  "nodes": [
+    {"id":"file:infra/pinot/sql/dashboard_pinot.sql","type":"file","name":"dashboard_pinot.sql","filePath":"infra/pinot/sql/dashboard_pinot.sql","summary":"Queries Pinot's live commerce metrics and correction stream to produce correction-aware dashboard aggregates by minute and category.","tags":["sql","pinot","dashboard","reconciliation"],"complexity":"moderate"},
+    {"id":"file:infra/pinot/sql/reconciliation_pinot.sql","type":"file","name":"reconciliation_pinot.sql","filePath":"infra/pinot/sql/reconciliation_pinot.sql","summary":"Calculates correction-aware hourly aggregates from Pinot realtime commerce metrics for reconciliation against canonical results.","tags":["sql","pinot","reconciliation","data-quality"],"complexity":"simple"},
+    {"id":"file:infra/pinot/sql/reconciliation_trino.sql","type":"file","name":"reconciliation_trino.sql","filePath":"infra/pinot/sql/reconciliation_trino.sql","summary":"Queries the canonical Iceberg gold KPI aggregate through Trino for a supplied time range during reconciliation.","tags":["sql","trino","reconciliation","lakehouse"],"complexity":"simple"}
+  ],
+  "edges": []
+}

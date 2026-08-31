@@ -1,0 +1,356 @@
+{
+  "nodes": [
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_bad_events.sql",
+      "type": "file",
+      "name": "raw_bad_events.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_bad_events.sql",
+      "summary": "Defines the bronze quarantine model for malformed Kafka and dead-letter event payloads.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_bad_snapshots.sql",
+      "type": "file",
+      "name": "raw_bad_snapshots.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_bad_snapshots.sql",
+      "summary": "Defines the bronze quarantine model for malformed periodic table-state snapshot records.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_customers.sql",
+      "type": "file",
+      "name": "raw_customers.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_customers.sql",
+      "summary": "Loads raw customers records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_inventory_snapshots.sql",
+      "type": "file",
+      "name": "raw_inventory_snapshots.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_inventory_snapshots.sql",
+      "summary": "Loads raw inventory snapshots records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_kafka_catalog_events.sql",
+      "type": "file",
+      "name": "raw_kafka_catalog_events.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_kafka_catalog_events.sql",
+      "summary": "Loads raw Kafka catalog events event envelopes and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_kafka_commerce_events.sql",
+      "type": "file",
+      "name": "raw_kafka_commerce_events.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_kafka_commerce_events.sql",
+      "summary": "Loads raw Kafka commerce events event envelopes and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_kafka_fulfillment_events.sql",
+      "type": "file",
+      "name": "raw_kafka_fulfillment_events.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_kafka_fulfillment_events.sql",
+      "summary": "Loads raw Kafka fulfillment events event envelopes and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_kafka_ops_events.sql",
+      "type": "file",
+      "name": "raw_kafka_ops_events.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_kafka_ops_events.sql",
+      "summary": "Loads raw Kafka ops events event envelopes and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_order_items.sql",
+      "type": "file",
+      "name": "raw_order_items.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_order_items.sql",
+      "summary": "Loads raw order items records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_orders.sql",
+      "type": "file",
+      "name": "raw_orders.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_orders.sql",
+      "summary": "Loads raw orders records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_payments.sql",
+      "type": "file",
+      "name": "raw_payments.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_payments.sql",
+      "summary": "Loads raw payments records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_product_category_map.sql",
+      "type": "file",
+      "name": "raw_product_category_map.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_product_category_map.sql",
+      "summary": "Loads raw product category map records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_products.sql",
+      "type": "file",
+      "name": "raw_products.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_products.sql",
+      "summary": "Loads raw products records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_promotions.sql",
+      "type": "file",
+      "name": "raw_promotions.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_promotions.sql",
+      "summary": "Loads raw promotions records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_sellers.sql",
+      "type": "file",
+      "name": "raw_sellers.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_sellers.sql",
+      "summary": "Loads raw sellers records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:infra/analytics/dbt/models/bronze/raw_shipments.sql",
+      "type": "file",
+      "name": "raw_shipments.sql",
+      "filePath": "infra/analytics/dbt/models/bronze/raw_shipments.sql",
+      "summary": "Loads raw shipments records from Parquet into the bronze layer and adds an ingestion timestamp.",
+      "tags": [
+        "dbt",
+        "bronze-layer",
+        "raw-ingestion",
+        "sql"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "type": "config",
+      "name": "schema.yml",
+      "filePath": "infra/analytics/dbt/models/bronze/schema.yml",
+      "summary": "Defines dbt bronze-model descriptions and not-null or accepted-value data-quality tests.",
+      "tags": [
+        "configuration",
+        "dbt",
+        "data-quality",
+        "bronze-layer"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_bad_events.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_bad_snapshots.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_customers.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_inventory_snapshots.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_kafka_catalog_events.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_kafka_commerce_events.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_kafka_fulfillment_events.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_kafka_ops_events.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_order_items.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_orders.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_payments.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_product_category_map.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_products.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_promotions.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_sellers.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:infra/analytics/dbt/models/bronze/schema.yml",
+      "target": "file:infra/analytics/dbt/models/bronze/raw_shipments.sql",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

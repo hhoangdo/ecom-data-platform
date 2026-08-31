@@ -1,0 +1,166 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 3,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 3
+    }
+  },
+  "results": [
+    {
+      "path": "configs/pipelines/flink_baseline_experiment.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 19,
+      "nonEmptyLines": 19,
+      "sections": [
+        {
+          "heading": "variants",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "configs/pipelines/flink_streaming.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 28,
+      "nonEmptyLines": 23,
+      "sections": [
+        {
+          "heading": "source_topics",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "derived_topics",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "window_minutes",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "out_of_orderness_seconds",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "allowed_lateness_seconds",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "payment_failure_alert_threshold",
+          "level": 1,
+          "line": 21
+        },
+        {
+          "heading": "checkpoint_bucket",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "checkpoint_prefix",
+          "level": 1,
+          "line": 26
+        },
+        {
+          "heading": "curated_output_bucket",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "curated_output_prefix",
+          "level": 1,
+          "line": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "path": "configs/pipelines/local.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 18,
+      "nonEmptyLines": 16,
+      "sections": [
+        {
+          "heading": "runtime",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "batch_engine",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "stream_engine",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "sql_engine",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "catalog",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "object_store",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "local_transform_tool",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "storage",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "scheduling",
+          "level": 1,
+          "line": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    }
+  ]
+}

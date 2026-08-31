@@ -1,0 +1,1557 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "type": "file",
+      "name": "window.py",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/window.py",
+      "summary": "Defines UTC parsing and an immutable time-window value object used by batch workflows.",
+      "tags": [
+        "lakehouse",
+        "spark",
+        "data-pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/lakehouse/spark/window.py:parse_iso8601_utc",
+      "type": "function",
+      "name": "parse_iso8601_utc",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/window.py",
+      "lineRange": [
+        7,
+        14
+      ],
+      "summary": "Implements parse iso8601 utc for window.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/vina_bim_shop/lakehouse/spark/window.py:BatchWindow",
+      "type": "class",
+      "name": "BatchWindow",
+      "filePath": "src/vina_bim_shop/lakehouse/spark/window.py",
+      "lineRange": [
+        18,
+        44
+      ],
+      "summary": "Defines the BatchWindow data structure used by window.py.",
+      "tags": [
+        "python",
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "type": "file",
+      "name": "datahub_ingestion.py",
+      "filePath": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "summary": "Coordinates DataHub ingestion, quality-report discovery, and custom lineage emission for a coursework run.",
+      "tags": [
+        "orchestration",
+        "pipeline",
+        "data-quality"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_latest_quality_reports",
+      "type": "function",
+      "name": "_latest_quality_reports",
+      "filePath": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "lineRange": [
+        24,
+        36
+      ],
+      "summary": "Implements latest quality reports for datahub_ingestion.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_docs_reports_with",
+      "type": "function",
+      "name": "_docs_reports_with",
+      "filePath": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "lineRange": [
+        39,
+        55
+      ],
+      "summary": "Implements docs reports with for datahub_ingestion.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_bootstrap_governance_vocabulary",
+      "type": "function",
+      "name": "_bootstrap_governance_vocabulary",
+      "filePath": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "lineRange": [
+        58,
+        87
+      ],
+      "summary": "Implements bootstrap governance vocabulary for datahub_ingestion.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_run_custom_lineage_emission",
+      "type": "function",
+      "name": "_run_custom_lineage_emission",
+      "filePath": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "lineRange": [
+        90,
+        139
+      ],
+      "summary": "Implements run custom lineage emission for datahub_ingestion.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:run_datahub_ingestion",
+      "type": "function",
+      "name": "run_datahub_ingestion",
+      "filePath": "src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "lineRange": [
+        142,
+        193
+      ],
+      "summary": "Implements run datahub ingestion for datahub_ingestion.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "type": "file",
+      "name": "hourly_batch.py",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "summary": "Orchestrates hourly lakehouse processing, supporting evidence capture and quality-document preparation.",
+      "tags": [
+        "orchestration",
+        "pipeline",
+        "data-quality"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_list_bronze_objects",
+      "type": "function",
+      "name": "_list_bronze_objects",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "lineRange": [
+        51,
+        74
+      ],
+      "summary": "Implements list bronze objects for hourly_batch.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_count_quarantine_records",
+      "type": "function",
+      "name": "_count_quarantine_records",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "lineRange": [
+        77,
+        88
+      ],
+      "summary": "Implements count quarantine records for hourly_batch.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_prepare_spark_evidence_root",
+      "type": "function",
+      "name": "_prepare_spark_evidence_root",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "lineRange": [
+        91,
+        107
+      ],
+      "summary": "Implements prepare spark evidence root for hourly_batch.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_prepare_gx_docs_root",
+      "type": "function",
+      "name": "_prepare_gx_docs_root",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "lineRange": [
+        110,
+        125
+      ],
+      "summary": "Implements prepare gx docs root for hourly_batch.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_capture_airflow_batch_evidence",
+      "type": "function",
+      "name": "_capture_airflow_batch_evidence",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "lineRange": [
+        128,
+        133
+      ],
+      "summary": "Implements capture airflow batch evidence for hourly_batch.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/hourly_batch.py:run_hourly_batch_lakehouse",
+      "type": "function",
+      "name": "run_hourly_batch_lakehouse",
+      "filePath": "src/vina_bim_shop/orchestration/hourly_batch.py",
+      "lineRange": [
+        136,
+        169
+      ],
+      "summary": "Implements run hourly batch lakehouse for hourly_batch.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/local_evidence.py",
+      "type": "file",
+      "name": "local_evidence.py",
+      "filePath": "src/vina_bim_shop/orchestration/local_evidence.py",
+      "summary": "Runs the local evidence build command within the generated coursework run directory.",
+      "tags": [
+        "orchestration",
+        "pipeline",
+        "data-quality"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/local_evidence.py:run_local_evidence_build",
+      "type": "function",
+      "name": "run_local_evidence_build",
+      "filePath": "src/vina_bim_shop/orchestration/local_evidence.py",
+      "lineRange": [
+        29,
+        48
+      ],
+      "summary": "Implements run local evidence build for local_evidence.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "type": "file",
+      "name": "mini_coursework_pipeline.py",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "summary": "Implements the end-to-end mini-coursework pipeline from bronze ingestion through quality validation and offline features.",
+      "tags": [
+        "orchestration",
+        "pipeline",
+        "data-quality"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_url_from_connection",
+      "type": "function",
+      "name": "_url_from_connection",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        100,
+        107
+      ],
+      "summary": "Implements url from connection for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:settings_from_airflow",
+      "type": "function",
+      "name": "settings_from_airflow",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        110,
+        133
+      ],
+      "summary": "Implements settings from airflow for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:settings_from_environment",
+      "type": "function",
+      "name": "settings_from_environment",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        136,
+        153
+      ],
+      "summary": "Implements settings from environment for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:build_coursework_run_root",
+      "type": "function",
+      "name": "build_coursework_run_root",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        156,
+        159
+      ],
+      "summary": "Implements build coursework run root for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_window",
+      "type": "function",
+      "name": "_window",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        162,
+        163
+      ],
+      "summary": "Implements window for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_stage_payload",
+      "type": "function",
+      "name": "_stage_payload",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        166,
+        183
+      ],
+      "summary": "Implements stage payload for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_write_stage",
+      "type": "function",
+      "name": "_write_stage",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        186,
+        218
+      ],
+      "summary": "Implements write stage for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_raw_files",
+      "type": "function",
+      "name": "_raw_files",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        221,
+        226
+      ],
+      "summary": "Implements raw files for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_event_files",
+      "type": "function",
+      "name": "_event_files",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        229,
+        235
+      ],
+      "summary": "Implements event files for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_copy_to_bronze",
+      "type": "function",
+      "name": "_copy_to_bronze",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        238,
+        254
+      ],
+      "summary": "Implements copy to bronze for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:ingest_raw_to_bronze",
+      "type": "function",
+      "name": "ingest_raw_to_bronze",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        257,
+        284
+      ],
+      "summary": "Implements ingest raw to bronze for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_quality_dir",
+      "type": "function",
+      "name": "_quality_dir",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        287,
+        290
+      ],
+      "summary": "Implements quality dir for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_render_run_docs",
+      "type": "function",
+      "name": "_render_run_docs",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        293,
+        299
+      ],
+      "summary": "Implements render run docs for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_bronze",
+      "type": "function",
+      "name": "validate_bronze",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        302,
+        335
+      ],
+      "summary": "Implements validate bronze for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_prepare_spark_evidence_root",
+      "type": "function",
+      "name": "_prepare_spark_evidence_root",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        338,
+        352
+      ],
+      "summary": "Implements prepare spark evidence root for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_latest_spark_application_id",
+      "type": "function",
+      "name": "_latest_spark_application_id",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        355,
+        359
+      ],
+      "summary": "Implements latest spark application id for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:transform_bronze_to_silver_gold",
+      "type": "function",
+      "name": "transform_bronze_to_silver_gold",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        362,
+        386
+      ],
+      "summary": "Implements transform bronze to silver gold for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_trino_count",
+      "type": "function",
+      "name": "_trino_count",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        389,
+        396
+      ],
+      "summary": "Implements trino count for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_silver_gold",
+      "type": "function",
+      "name": "validate_silver_gold",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        399,
+        451
+      ],
+      "summary": "Implements validate silver gold for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:compute_offline_features",
+      "type": "function",
+      "name": "compute_offline_features",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        454,
+        490
+      ],
+      "summary": "Implements compute offline features for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_offline_features",
+      "type": "function",
+      "name": "validate_offline_features",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        493,
+        554
+      ],
+      "summary": "Implements validate offline features for mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:CourseworkPipelineSettings",
+      "type": "class",
+      "name": "CourseworkPipelineSettings",
+      "filePath": "src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "lineRange": [
+        69,
+        97
+      ],
+      "summary": "Defines the CourseworkPipelineSettings data structure used by mini_coursework_pipeline.py.",
+      "tags": [
+        "python",
+        "data-model",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "file",
+      "name": "paths.py",
+      "filePath": "src/vina_bim_shop/orchestration/paths.py",
+      "summary": "Creates normalized, timestamped coursework run directories and writes run metadata safely.",
+      "tags": [
+        "orchestration",
+        "pipeline",
+        "data-quality"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/paths.py:_slugify_run_id",
+      "type": "function",
+      "name": "_slugify_run_id",
+      "filePath": "src/vina_bim_shop/orchestration/paths.py",
+      "lineRange": [
+        27,
+        28
+      ],
+      "summary": "Implements slugify run id for paths.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/paths.py:build_run_root",
+      "type": "function",
+      "name": "build_run_root",
+      "filePath": "src/vina_bim_shop/orchestration/paths.py",
+      "lineRange": [
+        31,
+        34
+      ],
+      "summary": "Implements build run root for paths.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/paths.py:_utc_now",
+      "type": "function",
+      "name": "_utc_now",
+      "filePath": "src/vina_bim_shop/orchestration/paths.py",
+      "lineRange": [
+        37,
+        38
+      ],
+      "summary": "Implements utc now for paths.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/paths.py:_write_json",
+      "type": "function",
+      "name": "_write_json",
+      "filePath": "src/vina_bim_shop/orchestration/paths.py",
+      "lineRange": [
+        41,
+        43
+      ],
+      "summary": "Implements write json for paths.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "type": "file",
+      "name": "pinot_bootstrap.py",
+      "filePath": "src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "summary": "Bootstraps Pinot schemas and tables for a coursework run while recording command results.",
+      "tags": [
+        "orchestration",
+        "pipeline",
+        "data-quality"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/vina_bim_shop/orchestration/pinot_bootstrap.py:run_pinot_bootstrap",
+      "type": "function",
+      "name": "run_pinot_bootstrap",
+      "filePath": "src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "lineRange": [
+        18,
+        36
+      ],
+      "summary": "Implements run pinot bootstrap for pinot_bootstrap.py.",
+      "tags": [
+        "python",
+        "function",
+        "data-engineering"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/window.py:parse_iso8601_utc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "target": "function:src/vina_bim_shop/lakehouse/spark/window.py:parse_iso8601_utc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "target": "class:src/vina_bim_shop/lakehouse/spark/window.py:BatchWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "target": "class:src/vina_bim_shop/lakehouse/spark/window.py:BatchWindow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_latest_quality_reports",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_latest_quality_reports",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_docs_reports_with",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_docs_reports_with",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_bootstrap_governance_vocabulary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_bootstrap_governance_vocabulary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_run_custom_lineage_emission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:_run_custom_lineage_emission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:run_datahub_ingestion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "function:src/vina_bim_shop/orchestration/datahub_ingestion.py:run_datahub_ingestion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "file:src/vina_bim_shop/orchestration/quality_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "file:src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/datahub_ingestion.py",
+      "target": "file:src/vina_bim_shop/quality/reports.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_list_bronze_objects",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_list_bronze_objects",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_count_quarantine_records",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_count_quarantine_records",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_prepare_spark_evidence_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_prepare_spark_evidence_root",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_prepare_gx_docs_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_prepare_gx_docs_root",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_capture_airflow_batch_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:_capture_airflow_batch_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:run_hourly_batch_lakehouse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "function:src/vina_bim_shop/orchestration/hourly_batch.py:run_hourly_batch_lakehouse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/evidence.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/orchestration/quality_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/hourly_batch.py",
+      "target": "file:src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/local_evidence.py",
+      "target": "function:src/vina_bim_shop/orchestration/local_evidence.py:run_local_evidence_build",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/local_evidence.py",
+      "target": "function:src/vina_bim_shop/orchestration/local_evidence.py:run_local_evidence_build",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/local_evidence.py",
+      "target": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/local_evidence.py",
+      "target": "file:src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_url_from_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_url_from_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:settings_from_airflow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:settings_from_airflow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:settings_from_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:settings_from_environment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:build_coursework_run_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:build_coursework_run_root",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_window",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_window",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_stage_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_stage_payload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_write_stage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_write_stage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_raw_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_raw_files",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_event_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_event_files",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_copy_to_bronze",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_copy_to_bronze",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:ingest_raw_to_bronze",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:ingest_raw_to_bronze",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_quality_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_quality_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_render_run_docs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_render_run_docs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_bronze",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_bronze",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_prepare_spark_evidence_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_prepare_spark_evidence_root",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_latest_spark_application_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_latest_spark_application_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:transform_bronze_to_silver_gold",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:transform_bronze_to_silver_gold",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_trino_count",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:_trino_count",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_silver_gold",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_silver_gold",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:compute_offline_features",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:compute_offline_features",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_offline_features",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "function:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:validate_offline_features",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "class:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:CourseworkPipelineSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "class:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py:CourseworkPipelineSettings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/lakehouse/bronze.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/constants.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/runner.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/sql.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/trino.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/lakehouse/spark/window.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/orchestration/quality_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/orchestration/subprocess_helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/mini_coursework_pipeline.py",
+      "target": "file:src/vina_bim_shop/quality/reports.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:_slugify_run_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:_slugify_run_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:build_run_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:build_run_root",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:_utc_now",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:_utc_now",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:_write_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/paths.py",
+      "target": "function:src/vina_bim_shop/orchestration/paths.py:_write_json",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "target": "function:src/vina_bim_shop/orchestration/pinot_bootstrap.py:run_pinot_bootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "target": "function:src/vina_bim_shop/orchestration/pinot_bootstrap.py:run_pinot_bootstrap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "target": "file:src/vina_bim_shop/orchestration/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "target": "file:src/vina_bim_shop/pinot/bootstrap.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/vina_bim_shop/orchestration/pinot_bootstrap.py",
+      "target": "file:src/vina_bim_shop/pinot/query_examples.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "projectRoot": "C:/Users/hhoangdo/Documents/Personal Projects/FSDS/coursework",
+  "batchFiles": [{"path":"infra/kafka/connect/Dockerfile","language":"dockerfile","sizeLines":21,"fileCategory":"infra"}],
+  "batchImportData": {"infra/kafka/connect/Dockerfile": []}
+}

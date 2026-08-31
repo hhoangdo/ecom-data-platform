@@ -1,0 +1,182 @@
+{
+  "projectRoot": "C:\\Users\\hhoangdo\\Documents\\Personal Projects\\FSDS\\coursework",
+  "batchFiles": [
+    {
+      "path": "infra/spark/bin/entrypoint.sh",
+      "language": "shell",
+      "sizeLines": 80,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/README.md",
+      "language": "markdown",
+      "sizeLines": 103,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/analytics/benchmark_duckdb_index.py",
+      "language": "python",
+      "sizeLines": 208,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/ctl.py",
+      "language": "python",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/datahub/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 704,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/datahub/restore_search_indices.py",
+      "language": "python",
+      "sizeLines": 310,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/cleanroom_verify.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/publish_smoke.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/run_baseline_comparison.py",
+      "language": "python",
+      "sizeLines": 491,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/run_commerce_metrics_job.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/flink/run_ops_alerts_job.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/generate/run_generator.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/bootstrap_topics.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/capture_connect_image_optimization.py",
+      "language": "python",
+      "sizeLines": 157,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/cleanup_kafka.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/consumer_smoke.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/producer_smoke.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/register_bronze_sink.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/kafka/register_schemas.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/capture_bronze_evidence.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/capture_evidence.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/cleanup_lakehouse.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/lakehouse/land_bronze_batch.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "infra/spark/bin/entrypoint.sh": [],
+    "scripts/README.md": [],
+    "scripts/analytics/benchmark_duckdb_index.py": [],
+    "scripts/ctl.py": [],
+    "scripts/datahub/capture_evidence.py": [],
+    "scripts/datahub/restore_search_indices.py": [],
+    "scripts/flink/capture_evidence.py": [],
+    "scripts/flink/cleanroom_verify.py": [],
+    "scripts/flink/publish_smoke.py": [],
+    "scripts/flink/run_baseline_comparison.py": [],
+    "scripts/flink/run_commerce_metrics_job.py": [],
+    "scripts/flink/run_ops_alerts_job.py": [],
+    "scripts/generate/run_generator.py": [],
+    "scripts/kafka/bootstrap_topics.py": [],
+    "scripts/kafka/capture_connect_image_optimization.py": [],
+    "scripts/kafka/capture_evidence.py": [],
+    "scripts/kafka/cleanup_kafka.py": [],
+    "scripts/kafka/consumer_smoke.py": [],
+    "scripts/kafka/producer_smoke.py": [],
+    "scripts/kafka/register_bronze_sink.py": [],
+    "scripts/kafka/register_schemas.py": [],
+    "scripts/lakehouse/capture_bronze_evidence.py": [],
+    "scripts/lakehouse/capture_evidence.py": [],
+    "scripts/lakehouse/cleanup_lakehouse.py": [],
+    "scripts/lakehouse/land_bronze_batch.py": []
+  }
+}

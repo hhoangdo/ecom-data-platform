@@ -1,0 +1,359 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [
+    ".gitattributes",
+    ".python-version",
+    "architecture/diagrams/architecture.excalidraw",
+    "architecture/diagrams/detailed-architecture.excalidraw",
+    "architecture/diagrams/detailed-lambda_architecture.puml",
+    "architecture/diagrams/erd/gold_layer_ERD.dbdiagram",
+    "architecture/diagrams/erd/gold_layer_ERD.dbml",
+    "architecture/diagrams/erd/physical_gold_model.puml",
+    "architecture/diagrams/lambda_architecture.puml",
+    "architecture/diagrams/mermaid/01-data-generation.mmd",
+    "architecture/diagrams/mermaid/02-ingestion.mmd",
+    "architecture/diagrams/mermaid/03-lakehouse.mmd",
+    "architecture/diagrams/mermaid/04-batch.mmd",
+    "architecture/diagrams/mermaid/05-streaming.mmd",
+    "architecture/diagrams/mermaid/06-serving.mmd",
+    "architecture/diagrams/mermaid/07-local-analytics.mmd",
+    "architecture/diagrams/mermaid/08-orchestration.mmd",
+    "architecture/diagrams/mermaid/09-governance.mmd",
+    "architecture/diagrams/schema_design.puml"
+  ],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 6,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 6
+    }
+  },
+  "results": [
+    {
+      "path": "architecture/diagrams/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 62,
+      "nonEmptyLines": 47,
+      "sections": [
+        {
+          "heading": "Diagram Editing Notes",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Reviewer Navigation and Arrow Conventions",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Arrow conventions",
+          "level": 3,
+          "line": 10
+        },
+        {
+          "heading": "Excalidraw",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "PlantUML",
+          "level": 2,
+          "line": 20
+        },
+        {
+          "heading": "Mermaid",
+          "level": 2,
+          "line": 29
+        },
+        {
+          "heading": "DBML",
+          "level": 2,
+          "line": 46
+        },
+        {
+          "heading": "Optional Offline PlantUML Setup",
+          "level": 2,
+          "line": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "architecture/masterplan.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 174,
+      "nonEmptyLines": 129,
+      "sections": [
+        {
+          "heading": "Vina Bim Shop Master Plan",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Purpose",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Current Evidence Boundary",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Business Context",
+          "level": 2,
+          "line": 26
+        },
+        {
+          "heading": "Source Contracts",
+          "level": 2,
+          "line": 42
+        },
+        {
+          "heading": "Platform Architecture",
+          "level": 2,
+          "line": 57
+        },
+        {
+          "heading": "Layering Model",
+          "level": 2,
+          "line": 74
+        },
+        {
+          "heading": "Implemented Service Profiles",
+          "level": 2,
+          "line": 85
+        },
+        {
+          "heading": "Data Formats",
+          "level": 2,
+          "line": 100
+        },
+        {
+          "heading": "Data Model",
+          "level": 2,
+          "line": 111
+        },
+        {
+          "heading": "Quality And Governance",
+          "level": 2,
+          "line": 125
+        },
+        {
+          "heading": "Evidence Map",
+          "level": 2,
+          "line": 138
+        },
+        {
+          "heading": "Repository Ownership",
+          "level": 2,
+          "line": 154
+        },
+        {
+          "heading": "Assumptions And Defaults",
+          "level": 2,
+          "line": 166
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 14
+      }
+    },
+    {
+      "path": "configs/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 26,
+      "nonEmptyLines": 18,
+      "sections": [
+        {
+          "heading": "`configs`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "What Is Here",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "How To Read It",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "How It Differs From Similar Folders",
+          "level": 2,
+          "line": 18
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "configs/generator/base.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 198,
+      "nonEmptyLines": 188,
+      "sections": [
+        {
+          "heading": "platform_name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "random_seed",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "default_scale",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "end_date",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "taxonomy",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "scale_profiles",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "outputs",
+          "level": 1,
+          "line": 35
+        },
+        {
+          "heading": "quality_scenarios",
+          "level": 1,
+          "line": 39
+        },
+        {
+          "heading": "category_weights",
+          "level": 1,
+          "line": 51
+        },
+        {
+          "heading": "geography",
+          "level": 1,
+          "line": 57
+        },
+        {
+          "heading": "customer_segments",
+          "level": 1,
+          "line": 100
+        },
+        {
+          "heading": "seller_tiers",
+          "level": 1,
+          "line": 132
+        },
+        {
+          "heading": "streaming",
+          "level": 1,
+          "line": 158
+        },
+        {
+          "heading": "kafka",
+          "level": 1,
+          "line": 175
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 14
+      }
+    },
+    {
+      "path": "configs/scenarios/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "sections": [
+        {
+          "heading": "Scenario Configs",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "infra/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 30,
+      "nonEmptyLines": 22,
+      "sections": [
+        {
+          "heading": "`infra`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "What Is Here",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "How To Read It",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "How It Differs From Similar Folders",
+          "level": 2,
+          "line": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    }
+  ]
+}
